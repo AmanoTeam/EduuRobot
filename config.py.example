@@ -1,0 +1,45 @@
+import amanobot
+
+bot = amanobot.Bot('token:aqui') #Token do bot
+
+me = bot.getMe()
+bot_username = me['username']
+bot_id = me['id']
+
+keys = {
+    openweathermap = 'key_aqui', #Obtenha uma key em https://openweathermap.org
+    yandex = 'key_aqui',  #Obtenha uma key em https://tech.yandex.com/translate
+    giphy = 'key_aqui' #Obtenha uma key em https://developers.giphy.com
+}
+
+max_time = 60
+
+version = 'v1.0 Beta'
+logs = -1001297931062
+
+sudos = [
+    123892996, 200097591, 204807919,
+    269122834, 276145711, 282809263,
+    337730276, 398410916, 481445653,
+    582005141
+]
+
+enabled_plugins = [
+    'processamsg',
+    'start',
+    'shorten',
+    'traduzir',
+    'inlines',
+    'admins',
+    'prints',
+    'clima',
+    'youtube',
+    'ping',
+    'gif',
+    'sudos',
+    'id',
+    'ip',
+    'jsondump',
+    'dados',
+    'diversos'
+]
