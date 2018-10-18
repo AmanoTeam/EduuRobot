@@ -9,7 +9,7 @@ def ip(msg):
         if msg['text'].startswith('/ip') or msg['text'].startswith('!ip'):
             text = msg['text'][4:]
             if text == '':
-                bot.sendMessage(msg['chat']['id'], 'Uso: `/ip IP/endereço`',
+                bot.sendMessage(msg['chat']['id'], '*Uso:* `/ip IP/endereço`',
                                 parse_mode='Markdown',
                                 reply_to_message_id=msg['message_id'])
             else:
