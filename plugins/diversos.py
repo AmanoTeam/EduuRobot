@@ -3,7 +3,7 @@ import requests
 import re
 
 bot = config.bot
-sudos = config.sudos
+sudos = config.sudoers
 logs = config.logs
 bot_username = config.bot_username
 

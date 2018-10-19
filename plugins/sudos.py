@@ -16,10 +16,14 @@ import db_handler as db
 bot = config.bot
 bot_id = config.bot_id
 bot_username = config.bot_username
+git_repo = config.git_repo
+sudoers = config.sudoers
 
 def sudos(msg):
+    global db
+
     if msg.get('text'):
-        if msg['from']['id'] in config.sudos:
+        if msg['from']['id'] in sudoers:
 
             if msg['text'] == '!sudos' or msg['text'] == '/sudos':
                 bot.sendMessage(msg['chat']['id'], '''*Lista de sudos:*
@@ -83,6 +87,16 @@ def sudos(msg):
                     res = 'Código sem retornos.' 
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
+
+
+            elif msg['text'] == '!upgrade':
+                sent = bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot de {}...'.format(git_repo),
+                                       reply_to_message_id=msg['message_id'], disable_web_page_preview=True)
+                config = open('config.py').read()
+                db = open('bot.db', 'rb').read()
+                os.remove('*')
+
+                
 
 
             elif msg['text'].startswith('!leave'):

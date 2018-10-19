@@ -4,7 +4,7 @@ from telepot.exception import TelegramError, NotEnoughRightsError
 
 bot = config.bot
 bot_id = config.bot_id
-sudos = config.sudos
+sudos = config.sudoers
 
 
 def isAdmin(chat_id, user_id, reply_id=None):
