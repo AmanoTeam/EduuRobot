@@ -17,13 +17,13 @@ bot = config.bot
 bot_id = config.bot_id
 bot_username = config.bot_username
 git_repo = config.git_repo
-sudos = config.sudoers
+sudoers = config.sudoers
 
 def sudos(msg):
     global db
 
     if msg.get('text'):
-        if msg['from']['id'] in sudos:
+        if msg['from']['id'] in sudoers:
 
             if msg['text'] == '!sudos' or msg['text'] == '/sudos':
                 bot.sendMessage(msg['chat']['id'], '''*Lista de sudos:*
