@@ -35,7 +35,8 @@ def sudos(msg):
 *!leave* - O bot sai do chat.
 *!promote* - Promove alguém a admin.
 *!promoteme* - Promove você a admin.
-*!restart* - Reinicia o bot.''',
+*!restart* - Reinicia o bot.
+*!upgrade* - Atualiza a base do bot.''',
                                 'Markdown',
                                 reply_to_message_id=msg['message_id'])
                 return True
@@ -90,11 +91,28 @@ def sudos(msg):
 
 
             elif msg['text'] == '!upgrade':
-                sent = bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot de {}...'.format(git_repo),
-                                       reply_to_message_id=msg['message_id'], disable_web_page_preview=True)
-                config = open('config.py').read()
-                db = open('bot.db', 'rb').read()
-                os.remove('*')
+                if os.system('git') == 32512:
+                    bot.sendMessage(msg['chat']['id'], 'Ei, você precisa instalar o git para que esse comando funcione!',
+                                    reply_to_message_id=msg['message_id'])
+                else:
+                    sent = bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
+                                           reply_to_message_id=msg['message_id'], disable_web_page_preview=True)
+                    config = open('config.py').read()
+                    database = open('bot.db', 'rb').read()
+                    cdir = os.getcwd()
+                    os.chdir('..')
+                    os.system('rm -rf '+cdir)
+                    os.system('git clone {} {}'.format(git_repo,cdir))
+                    os.chdir(cdir)
+                    with open('config.py', 'w') as cfg:
+                        cfg.write(config)
+                    with open('bot.db', 'wb') as dbf:
+                        dbf.write(database)
+                    bot.editMessageText((msg['chat']['id'], sent['message_id']), 'Reiniciando...')
+                    time.sleep(1)
+                    os.execl(sys.executable, sys.executable, *sys.argv)
+                    del threading.Thread
+
 
                 
 
