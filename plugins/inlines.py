@@ -1,5 +1,5 @@
 import requests
-from telepot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
+from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 import config
 
 bot_username = config.me['username']

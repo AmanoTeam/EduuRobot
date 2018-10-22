@@ -1,6 +1,6 @@
 import config
-from telepot.namedtuple import InlineKeyboardMarkup
-from telepot.exception import TelegramError, NotEnoughRightsError
+from amanobot.namedtuple import InlineKeyboardMarkup
+from amanobot.exception import TelegramError, NotEnoughRightsError
 
 bot = config.bot
 bot_id = config.bot_id

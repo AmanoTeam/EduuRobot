@@ -1,4 +1,4 @@
-from telepot.namedtuple import InlineKeyboardMarkup
+from amanobot.namedtuple import InlineKeyboardMarkup
 import config
 
 start = InlineKeyboardMarkup(inline_keyboard=[
