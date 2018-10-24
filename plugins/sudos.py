@@ -31,7 +31,8 @@ def sudos(msg):
 *!backup* - Faz backup do bot.
 *!cmd* - Executa um comando.
 *!chat* - Obtem infos de um chat.
-*!eval* - Executa um código Python.
+*!eval* - Executa uma função Python.
+*!exec* - Executa um código Python.
 *!leave* - O bot sai do chat.
 *!promote* - Promove alguém a admin.
 *!promoteme* - Promove você a admin.
@@ -76,8 +77,8 @@ def sudos(msg):
                 return True
 
 
-            elif msg['text'].split()[0] == '!py':
-                text = msg['text'][4:]
+            elif msg['text'].split()[0] == '!exec':
+                text = msg['text'][6:]
                 try:
                     with io.StringIO() as buf, redirect_stdout(buf):
                         exec(text)

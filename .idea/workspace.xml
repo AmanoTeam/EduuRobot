@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c92764-93e6-4945-942b-527c8e61878f" name="Default" comment="" />
+    <list default="true" id="09c92764-93e6-4945-942b-527c8e61878f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/EduuNew.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EduuNew.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,14 +80,34 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1680360527">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.46" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="md" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Markdown" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
+            <state relative-caret-position="765">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#291#328#0" expanded="true" />
               </folding>
@@ -102,11 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/keyboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="45">
               <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/plugins/start.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="96" column="124" selection-start-line="96" selection-start-column="124" selection-end-line="96" selection-end-column="124" />
+              <caret line="96" column="93" selection-start-line="96" selection-start-column="93" selection-end-line="96" selection-end-column="93" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -124,6 +146,9 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -155,18 +180,13 @@
         <subPane>
           <expand>
             <path>
-              <item name="EduuRobot Beta" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EduuRobot Beta" type="462c0819:PsiDirectoryNode" />
+              <item name="EduuRobot-git" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EduuRobot-git" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="EduuRobot Beta" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EduuRobot Beta" type="462c0819:PsiDirectoryNode" />
-              <item name="aiml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EduuRobot Beta" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EduuRobot Beta" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="EduuRobot-git" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EduuRobot-git" type="462c0819:PsiDirectoryNode" />
+              <item name="dls" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,7 +196,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Amanobot" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -250,7 +270,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="25" width="1364" height="745" extended-state="6" />
+    <frame x="0" y="0" width="1360" height="736" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1807319" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -287,21 +308,12 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/admins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/traduzir.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -309,9 +321,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -322,16 +331,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
+        <state relative-caret-position="765">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="e#291#328#0" expanded="true" />
           </folding>
@@ -347,18 +361,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/keyboard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="45">
           <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/start.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="96" column="124" selection-start-line="96" selection-start-column="124" selection-end-line="96" selection-end-column="124" />
+          <caret line="96" column="93" selection-start-line="96" selection-start-column="93" selection-end-line="96" selection-end-column="93" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
