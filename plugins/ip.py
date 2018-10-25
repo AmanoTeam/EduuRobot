@@ -17,8 +17,7 @@ def ip(msg):
                 x = ''
                 for i in req:
                     x += "*{}*: `{}`\n".format(i.title(), req[i])
-                bot.sendMessage(msg['chat']['id'], x,
-                                parse_mode='Markdown',
+                bot.sendMessage(msg['chat']['id'], x, 'Markdown',
                                 reply_to_message_id=msg['message_id'])
                 try:
                     bot.sendLocation(msg['chat']['id'],

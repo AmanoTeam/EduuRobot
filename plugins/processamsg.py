@@ -10,8 +10,8 @@ def processamsg(msg):
         if time.time() - msg['date'] > config.max_time:
             return True
         elif msg.get('chat'):
-        	try:
-        		lock.acquire(True)
-        		add_chat(msg['chat']['type'], msg['chat']['id'])
-        	finally:
-        		lock.release()
+            try:
+                lock.acquire(True)
+                add_chat(msg['chat']['type'], msg['chat']['id'])
+            finally:
+                lock.release()
