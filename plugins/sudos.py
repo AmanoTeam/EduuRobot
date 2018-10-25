@@ -115,22 +115,14 @@ def sudos(msg):
                     del threading.Thread
 
 
-                
-
 
             elif msg['text'].startswith('!leave'):
                 if ' ' in msg['text']:
                     chat_id = text.split()[1]
                 else:
                     chat_id = msg['chat']['id']
-                if msg['from']['id'] in sudos:
-                    bot.sendMessage(
-                        chat_id=chat_id,
-                        text='Tou saindo daqui flws',
-                    )
-                    bot.leaveChat(
-                        chat_id=chat_id,
-                    )
+                bot.sendMessage(chat_id, 'Tou saindo daqui flws')
+                bot.leaveChat(chat_id)
 
 
             elif msg['text'].startswith('!chat'):
@@ -213,7 +205,7 @@ def sudos(msg):
                     reply_id = msg['reply_to_message']['from']['id']
                 else:
                     return
-                for perms in bot.getChatAdministrators(chat_id):
+                for perms in bot.getChatAdministrators(msg['chat']['id']):
                     if perms['user']['id'] == bot_id:
                         bot.promoteChatMember(
                             chat_id=msg['chat']['id'],
