@@ -5,7 +5,7 @@ bot = config.bot
 
 def id(msg):
     if msg.get('text'):
-        if msg['text'] == '/id' or msg['text'] == '!id':
+        if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@'+config.bot_username:
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], '''
 *Informações:*
