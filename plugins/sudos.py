@@ -123,7 +123,7 @@ def sudos(msg):
                     chat_id = text.split()[1]
                 else:
                     chat_id = msg['chat']['id']
-                if user_id in sudos:
+                if msg['from']['id'] in sudos:
                     bot.sendMessage(
                         chat_id=chat_id,
                         text='Tou saindo daqui flws',
