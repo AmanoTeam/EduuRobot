@@ -7,18 +7,24 @@ def id(msg):
     if msg.get('text'):
         if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@'+config.bot_username:
             if msg['chat']['type'] == 'private':
+                if 'last_name' in msg['from']:
+                    last_name = msg['from']['last_name']
+                else:
+                    last_name = ''
+                if 'username' in msg['from']:
+                    username = '@' + msg['from']['username']
+                else:
+                    username = ''
                 bot.sendMessage(msg['chat']['id'], '''
 *Informações:*
 
-*Nome:* `{}`
-*Sobrenome:* `{}`
-*Username:* `{}`
+*Nome:* `{}`{}{}
 *ID:* `{}`
 *Idioma:* `{}`
 *Tipo de chat:* `{}`'''.format(
                     msg['from']['first_name'],
-                    msg['from']['last_name'],
-                    'username',
+                    '\n*Sobrenome:* `{}`'.format(last_name) if last_name != '' else '',
+                    '\n*Username:* `{}`'.format(username) if username != '' else '',
                     msg['from']['id'],
                     msg['from']['language_code'],
                     msg['chat']['type']
@@ -78,9 +84,7 @@ def id(msg):
                     text='''
 *Informações do chat:*
 
-*Nome:* `{}`
-*Sobrenome:* `{}`
-*Username:* `{}`
+*Nome:* `{}`{}{}
 *ID:* `{}`
 *Idioma:* `{}`
 
@@ -91,8 +95,8 @@ def id(msg):
 *Tipo de chat:* `{}`
 *Total de membros:* `{}`'''.format(
                         first_name,
-                        last_name,
-                        username,
+                        '\n*Sobrenome:* `{}`'.format(last_name) if last_name != '' else '',
+                        '\n*Username:* `{}`'.format(username) if username != '' else '',
                         user_id,
                         lang_code,
                         msg['chat']['title'],
