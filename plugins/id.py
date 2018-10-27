@@ -21,29 +21,23 @@ def id(msg):
 *Nome:* `{}`{}{}
 *ID:* `{}`
 *Idioma:* `{}`
-*Tipo de chat:* `{}`'''.format(
-                    msg['from']['first_name'],
-                    '\n*Sobrenome:* `{}`'.format(last_name) if last_name != '' else '',
-                    '\n*Username:* `{}`'.format(username) if username != '' else '',
-                    msg['from']['id'],
-                    msg['from']['language_code'],
-                    msg['chat']['type']
-                ),
+*Tipo de chat:* `{}`'''.format(msg['from']['first_name'],
+                               '\n*Sobrenome:* `{}`'.format(last_name) if last_name != '' else '',
+                               '\n*Último nome:* `{}`'.format(username) if username != '' else '',
+                               msg['from']['id'],
+                               msg['from']['language_code'],
+                               msg['chat']['type']),
                                 parse_mode='Markdown',
-                                reply_to_message_id=msg['message_id']
-                                )
+                                reply_to_message_id=msg['message_id'])
             else:
-                message_id = bot.sendMessage(
-                    chat_id=msg['chat']['id'],
-                    text='⏰ Consultando informações...',
-                    reply_to_message_id=msg['message_id']
-                )['message_id']
+                sent = bot.sendMessage(msg['chat']['id'], '⏰ Consultando informações...',
+                                       reply_to_message_id=msg['message_id'])
                 chat_title = msg['chat']['title']
                 members = bot.getChatMembersCount(msg['chat']['id'])
                 if 'username' in msg['chat']:
                     chat_username = '@' + msg['chat']['username']
                 else:
-                    chat_username = 'nenhum'
+                    chat_username = ''
                 if 'language_code' in msg['from']:
                     lang_code = msg['from']['language_code']
                 else:
@@ -56,7 +50,7 @@ def id(msg):
                 if 'username' in msg['from']:
                     username = '@' + msg['from']['username']
                 else:
-                    username = 'nenhum'
+                    username = ''
                 user_id = msg['from']['id']
                 if 'reply_to_message' in msg:
                     from_info = msg['reply_to_message']['from']
@@ -72,7 +66,7 @@ def id(msg):
                     if 'username' in from_info:
                         username = '@' + from_info['username']
                     else:
-                        username = 'nenhum'
+                        username = ''
 
                     if 'language_code' in from_info:
                         lang_code = from_info['language_code']
@@ -80,7 +74,7 @@ def id(msg):
                         lang_code = '-'
 
                 bot.editMessageText(
-                    (msg['chat']['id'], message_id),
+                    (msg['chat']['id'], sent['message_id']),
                     text='''
 *Informações do chat:*
 
@@ -88,19 +82,18 @@ def id(msg):
 *ID:* `{}`
 *Idioma:* `{}`
 
-*Nome do grupo:* `{}`
-*Username do grupo:* `{}`
-*ID do chat:* `{}`
+*Nome do grupo:* `{}`{}
+*ID do grupo:* `{}`
 *Total de mensagens:* `{}`
 *Tipo de chat:* `{}`
 *Total de membros:* `{}`'''.format(
                         first_name,
-                        '\n*Sobrenome:* `{}`'.format(last_name) if last_name != '' else '',
+                        '\n*Último nome:* `{}`'.format(last_name) if last_name != '' else '',
                         '\n*Username:* `{}`'.format(username) if username != '' else '',
                         user_id,
                         lang_code,
                         msg['chat']['title'],
-                        chat_username,
+                        '\n*Username do grupo:* `{}`'.format(chat_username) if chat_username != '' else '',
                         msg['chat']['id'],
                         msg['message_id'],
                         msg['chat']['type'],

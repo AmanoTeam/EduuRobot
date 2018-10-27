@@ -40,6 +40,7 @@ def search_yt(query):
 
 def youtube(msg):
     if msg.get('text'):
+
         if msg['text'].startswith('/yt '):
             try:
                 res = search_yt(msg['text'][4:])
