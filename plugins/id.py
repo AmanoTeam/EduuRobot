@@ -84,9 +84,9 @@ def id(msg):
 
 *Nome do grupo:* `{}`{}
 *ID do grupo:* `{}`
-*Total de mensagens:* `{}`
+*Mensagens:* `{}`
 *Tipo de chat:* `{}`
-*Total de membros:* `{}`'''.format(
+*Membros:* `{}`'''.format(
                         first_name,
                         '\n*Último nome:* `{}`'.format(last_name) if last_name != '' else '',
                         '\n*Username:* `{}`'.format(username) if username != '' else '',

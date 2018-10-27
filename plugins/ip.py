@@ -7,7 +7,7 @@ bot = config.bot
 def ip(msg):
     if msg.get('text'):
         if msg['text'].startswith('/ip') or msg['text'].startswith('!ip'):
-            text = msg['text'][4:]
+            text = msg['text'][4:].split('://')[-1]
             if text == '':
                 bot.sendMessage(msg['chat']['id'], '*Uso:* `/ip IP/endereço`',
                                 parse_mode='Markdown',
