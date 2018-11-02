@@ -32,6 +32,7 @@ enabled_plugins = [
     'inlines',
     'admins',
     'prints',
+    'pypi',
     'clima',
     'youtube',
     'ping',
