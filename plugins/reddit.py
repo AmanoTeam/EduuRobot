@@ -4,7 +4,7 @@ import re
 
 bot = config.bot
 bot_username = config.bot_username
-def redddit(msg):
+def reddit(msg):
     if msg.get('text'):
             if msg['text'].startswith('/r ') or msg['text'].startswith('!r '):
               sub = msg['text'][3:]
