@@ -312,6 +312,11 @@ def admins(msg):
                                 reply_to_message_id=msg['message_id'])
             return True
 
+        elif msg['text'] == '/admdebug':
+            res = isAdmin(msg['chat']['id'], msg['from']['id'], msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
+            bot.sendMessage(msg['chat']['id'], res)
+            return True
+
     elif msg.get('data'):
 
         if msg['data'].startswith('options'):
@@ -321,7 +326,7 @@ def admins(msg):
                 kb = InlineKeyboardMarkup(inline_keyboard=[
                     [dict(text='IA', callback_data='.'.format(msg['data'].split()[1]))] +
                     [dict(text='None', callback_data='IA {}'.format(msg['data'].split()[1]))],
-                    [dict(text='Voltar', callback_data='back {}'.format(msg['data'].split()[1]))]
+                    [dict(text='« Voltar', callback_data='back {}'.format(msg['data'].split()[1]))]
                 ])
                 bot.editMessageText((msg['from']['id'], msg['message']['message_id']),
                                     'Opções do chat {}'.format(info['title']),

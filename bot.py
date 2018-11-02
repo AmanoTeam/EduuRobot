@@ -24,15 +24,14 @@ ep = []
 n_ep = []
 
 
-for i in config.enabled_plugins:
+for num, i in enumerate(config.enabled_plugins):
     try:
-        print(Fore.RESET + 'Carregando plugin {}...  '.format(i), end='', flush=True)
+        print(Fore.RESET + 'Carregando plugins... [{}/{}]'.format(num+1, len(config.enabled_plugins)), end='\r')
         exec('from plugins import {0}'.format(i))
         ep.append(i)
-        print(Fore.LIGHTGREEN_EX + 'Pronto!'.format(i))
     except Exception as erro:
         n_ep.append(i)
-        print(Fore.LIGHTRED_EX + 'Erro!' + Fore.RESET, erro)
+        print('\n'+Fore.RED+'Erro ao carregar o plugin {}:{}'.format(i, Fore.RESET), erro)
 
 
 def handle_thread(*args):
@@ -55,7 +54,7 @@ def handle(msg):
         raise
 
 
-print(Fore.RESET + '\nBot iniciado! {}\n'.format(config.version))
+print('\n\nBot iniciado! {}\n'.format(config.version))
 
 MessageLoop(bot, handle_thread).run_as_thread()
 
