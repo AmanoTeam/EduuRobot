@@ -37,6 +37,7 @@ enabled_plugins = [
     'youtube',
     'ping',
     'gif',
+    'reddit',
     'coub',
     'sudos',
     'id',
