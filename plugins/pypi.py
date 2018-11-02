@@ -1,3 +1,4 @@
+from amanobot.namedtuple import InlineKeyboardMarkup
 import config
 import requests
 import re
@@ -30,7 +31,7 @@ def pypi(msg):
                         "License: <b>%s</b>\n" \
                         "Summary: <b>%s</b>\n" % (pypi["name"], pypi["author"], pypi["author_email"], pypi["platform"],
                                                   pypi["version"], pypi["platform"], pypi["summary"])
-              MESSAGE += f"<a href='{pypi["home_page"]}'>Package home page</a>" 
-              return bot.sendMessage(msg['chat']['id'], MESSAGE, reply_to_message_id=msg['message_id'], parse_mode="HTML", disable_web_page_preview=True)
+              return bot.sendMessage(msg['chat']['id'], MESSAGE, reply_to_message_id=msg['message_id'], parse_mode="HTML", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+    [dict(text='Package home page', url='{}'.format(pypi['home_page']))]]))
           else:
               return bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi", reply_to_message_id=msg['message_id'], parse_mode="Markdown", disable_web_page_preview=True)           
