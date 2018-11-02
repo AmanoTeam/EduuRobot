@@ -13,6 +13,6 @@ def coub(msg):
             content = random.choice(r.json()['coubs'])
             links = content['permalink']
             title = content['title']
-            bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})', reply_to_message_id=msg['message_id'])
+            bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})', reply_to_message_id=msg['message_id'], parse_mode="Markdown")
           except IndexError:
-            bot.sendMessage(msg['chat']['id'], 'Found', reply_to_message_id=msg['message_id'])
+            bot.sendMessage(msg['chat']['id'], 'Not Found!', reply_to_message_id=msg['message_id'])
