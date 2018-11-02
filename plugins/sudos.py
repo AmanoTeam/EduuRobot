@@ -6,7 +6,6 @@ import re
 import time
 import zipfile
 import threading
-import subprocess
 import json
 import html
 import io
@@ -72,7 +71,7 @@ def sudos(msg):
                 if re.match('(?i).*poweroff|halt|shutdown|reboot', text):
                     res = 'Comando proibido.'
                 else:
-                    res = subprocess.getoutput(text)
+                    res = os.popen(text).read()
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
 
