@@ -4,6 +4,15 @@ import re
 
 bot = config.bot
 bot_username = config.bot_username
+
+def treatTitle(title):
+    title = title.replace("_", " ")
+    title = title.replace("[", "(")
+    title = title.replace("]", ")")
+    title = title.replace("(", "(")
+    title = title.replace(")", ")")
+    return title
+
 def reddit(msg):
     if msg.get('text'):
             if msg['text'].startswith('/r ') or msg['text'].startswith('!r '):
