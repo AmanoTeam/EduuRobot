@@ -70,7 +70,7 @@ def kibe(msg):
             packname = "a" + hash[:20] + "_by_" + config.me['username']
             try:
                 success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe Amano Pack",
-                                                  png_sticker="https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4",
+                                                  png_sticker="https://telegra.ph/file/f18208051b2c3fe5d374c.png",
                                                   emojis='🦇')
             except TelegramError as e:
                 print(e)
