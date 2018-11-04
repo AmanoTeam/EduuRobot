@@ -170,8 +170,8 @@ def inlines(msg):
                 articles = [
                 dict(type='article',
                     id='a', title='Informações', description='Exibe informações sobre você', input_message_content=dict(message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>'+html.escape(first_name)+'</code>\n<b>ID:</b> <code>'+str(user_id)+'</code>\n<b>Username:</b> <code>'+username+'</code>', parse_mode="HTML")),
-                dict(type='article',
-                    id='b', title='/echo', description='Repete o texto informado', input_message_content=InputTextMessageContent(message_text='Uso: @{} /echo texto'.format(bot_username))),
+                #dict(type='article',
+                #    id='b', title='/echo', description='Repete o texto informado', input_message_content=InputTextMessageContent(message_text='Uso: @{} /echo texto'.format(bot_username))),
                 dict(type='article',
                     id='c', title='/faces', description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯', input_message_content=dict(message_text='Uso: @{} /faces - exibe uma lista de carinhas ¯\\_(ツ)_/¯'.format(bot_username))),
                 dict(type='article',
@@ -180,8 +180,8 @@ def inlines(msg):
                     id='e', title='/html', description='Formata um texto usando HTML', input_message_content=dict(message_text='Uso: @{} /html <b>texto</b>'.format(bot_username))),
                 dict(type='article',
                     id='f', title='/ip', description='Exibe informações de um IP informado', input_message_content=dict(message_text='Uso: @{} /ip google.com'.format(bot_username))),
-                dict(type='article',
-                    id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
+                #dict(type='article',
+                #    id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
                 dict(type='article',
                     id='h', title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: /proxi'))
                 ]
