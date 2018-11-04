@@ -6,7 +6,14 @@ import html
 bot_username = config.me['username']
 bot = config.bot
 
+proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
+
+def escape_definition(definition):
+    for key, value in definition.items():
+        if isinstance(value, str):
+            definition[key] = html.escape(value)
+    return definition
 
 def inlines(msg):
     if 'query' in msg:
@@ -32,7 +39,7 @@ def inlines(msg):
         elif msg['query'].startswith('/proxi'):
             count = 50
             number = 1
-            prox = get(apiurl, params={
+            prox = get(proxs, params={
                 "max": count,
                 "key": "87d538ef1c1db71603e60f278446c86470162380"
             }).json()["result"]
