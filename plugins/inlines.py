@@ -46,7 +46,7 @@ def inlines(msg):
                 "key": "87d538ef1c1db71603e60f278446c86470162380"
             }).json()["result"]
             if len(prox) > 0:
-                defs = []
+                articles = []
                 if count + number > len(prox):
                     maxdef = len(prox)
                 else:
@@ -54,9 +54,9 @@ def inlines(msg):
                 for i in range(number - 1, maxdef - 1):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
-                    defs.append([InlineQueryResultArticle(
-                        id='proxx' or uuid4(), title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
-                article = defs 
+                    articles.append(dict(type='article',
+                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}')))
+
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],input_message_content=InputTextMessageContent(message_text=query[::-1]))]
