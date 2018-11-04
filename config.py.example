@@ -32,6 +32,7 @@ enabled_plugins = [
     'processamsg',
     'start',
     'shorten',
+    'kibe',
     'traduzir',
     'inlines',
     'admins',
