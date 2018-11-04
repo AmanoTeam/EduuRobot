@@ -22,7 +22,7 @@ def kibe(msg):
         if msg['text'].startswith('/kibe_stickerid') or msg['text'].startswith('!stickerid'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
                 bot.sendMessage(msg['chat']['id'], "Sticker ID:\n```" +
-                                escape_markdown(msg['reply_to_message']['sticker']['file_id']) + "```",
+                                msg['reply_to_message']['sticker']['file_id'] + "```",
                                 parse_mode='markdown')
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker to get its ID.")
