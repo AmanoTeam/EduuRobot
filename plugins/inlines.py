@@ -168,7 +168,7 @@ def inlines(msg):
                 dict(type='article',
                     id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
                 dict(type='article',
-                    id='h' or uuid4(), title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: /proxi))
+                    id='h' or uuid4(), title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: /proxi'))
                 ]
 
 
