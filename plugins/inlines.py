@@ -9,11 +9,11 @@ bot = config.bot
 proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
 
-def escape_definition(definition):
-    for key, value in definition.items():
+def escape_definition(prox):
+    for key, value in prox.items():
         if isinstance(value, str):
-            definition[key] = html.escape(value)
-    return definition
+            prox[key] = html.escape(value)
+    return prox
 
 def inlines(msg):
     if 'query' in msg:
@@ -45,12 +45,12 @@ def inlines(msg):
             }).json()["result"]
             if len(prox) > 0:
                 defs = []
-                if count + number > len(definition):
-                    maxdef = len(definition)
+                if count + number > len(prox):
+                    maxdef = len(prox)
                 else:
                     maxdef = count + number
                 for i in range(number - 1, maxdef - 1):
-                    deftxt = definition[i]
+                    deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
                     articles = defs.append([InlineQueryResultArticle(
                         id='a', title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
