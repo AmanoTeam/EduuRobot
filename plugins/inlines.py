@@ -1,4 +1,5 @@
 import requests
+from requests import get
 from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 import config
 import html
@@ -6,7 +7,14 @@ import html
 bot_username = config.me['username']
 bot = config.bot
 
+proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
+
+def escape_definition(prox):
+    for key, value in prox.items():
+        if isinstance(value, str):
+            prox[key] = html.escape(value)
+    return prox
 
 def inlines(msg):
     if 'query' in msg:
@@ -28,7 +36,25 @@ def inlines(msg):
         elif msg['query'].startswith('/echo'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
-        
+            
+        elif msg['query'].startswith('/proxi'):
+            count = 50
+            number = 1
+            prox = get(proxs, params={
+                "max": count,
+                "key": "87d538ef1c1db71603e60f278446c86470162380"
+            }).json()["result"]
+            if len(prox) > 0:
+                defs = []
+                if count + number > len(prox):
+                    maxdef = len(prox)
+                else:
+                    maxdef = count + number
+                for i in range(number - 1, maxdef - 1):
+                    deftxt = prox[i]
+                    deftxt = escape_definition(deftxt)
+                    articles = defs.append([InlineQueryResultArticle(
+                        id='a', title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
         
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
