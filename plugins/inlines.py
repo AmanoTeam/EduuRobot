@@ -1,4 +1,5 @@
 import requests
+from requests import get
 from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 import config
 import html
