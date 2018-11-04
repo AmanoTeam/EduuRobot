@@ -41,7 +41,7 @@ def kibe(msg):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
                 user = msg['from']
                 file_id = msg['reply_to_message']['sticker']['file_id']
-                bot.download_file(file_id, 'kibe_sticker.png')
+                bot.download_file(file_id, str(msg['from']['id'])+'_kibe_sticker.png')
                 hash = hashlib.sha1(bytearray(user['id'])).hexdigest()
                 packname = "a" + hash[:20] + "_by_" + config.me['username']
                 if len(msg['text'][5:]) > 0:
@@ -51,8 +51,8 @@ def kibe(msg):
 
                 try:
                     bot.addStickerToSet(user_id=user['id'], name=packname,
-                                        png_sticker=open('kibe_sticker.png', 'rb'), emojis=sticker_emoji)
-                    os.remove("kibe_sticker.png")
+                                        png_sticker=open(str(msg['from']['id'])+'_kibe_sticker.png', 'rb'), emojis=sticker_emoji)
+                    os.remove(str(msg['from']['id'])+"_kibe_sticker.png")
                     bot.sendMessage(msg['chat']['id'],
                                     "Sticker successfully added to [pack](t.me/addstickers/%s)" % packname,
                                     parse_mode='markdown')
