@@ -3,6 +3,7 @@ from requests import get
 from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 import config
 import html
+from uuid import uuid4
 
 bot_username = config.me['username']
 bot = config.bot
@@ -54,7 +55,7 @@ def inlines(msg):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
                     articles.append([InlineQueryResultArticle(
-                        id='a', title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
+                        id='proxx' or uuid4(), title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
         
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
@@ -167,7 +168,7 @@ def inlines(msg):
                 dict(type='article',
                     id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
                 dict(type='article',
-                    id='g', title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username)))
+                    id='h' or uuid4(), title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: /proxi))
                 ]
 
 
