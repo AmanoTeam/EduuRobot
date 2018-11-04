@@ -7,18 +7,21 @@ bot_username = me['username']
 bot_id = me['id']
 
 keys = {
-    openweathermap = 'key_aqui', #Obtenha uma key em https://openweathermap.org
-    yandex = 'key_aqui',  #Obtenha uma key em https://tech.yandex.com/translate
-    giphy = 'key_aqui', #Obtenha uma key em https://developers.giphy.com
-    grab_proxy = 'key_aqui', #Obtenha uma key em https://apis.mazterin.com/
+    openweathermap = 'key_aqui',  #Obtenha uma key em https://openweathermap.org
+    yandex = 'key_aqui',          #Obtenha uma key em https://tech.yandex.com/translate
+    giphy = 'key_aqui',           #Obtenha uma key em https://developers.giphy.com
+    grab_proxy = 'key_aqui',      #Obtenha uma key em https://apis.mazterin.com/
+    screenshots = 'key_aqui'      #Obtenha uma key em https://thumbnail.ws
 }
+
+git_repo = 'https://github.com/AmanoTeam/EduuRobot' #Repositório onde seu bot está
 
 max_time = 60
 
 version = 'v1.0 Beta'
 logs = -1001297931062
 
-sudos = [
+sudoers = [
     123892996, 200097591, 204807919,
     269122834, 276145711, 282809263,
     337730276, 398410916, 481445653,

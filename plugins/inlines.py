@@ -4,6 +4,8 @@ from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageConten
 import config
 import html
 from uuid import uuid4
+from .youtube import search_yt
+
 
 bot_username = config.me['username']
 bot = config.bot
@@ -70,6 +72,18 @@ def inlines(msg):
         elif msg['query'].startswith('/html'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
+
+
+        elif msg['query'].startswith('/yt'):
+            articles = []
+            try:
+                search = search_yt(msg['query'][4:])
+                for i in search:
+                    articles.append(dict(type='article',
+                        id=str(uuid4()), title=i['title'], thumb_url=f"https://i.ytimg.com/vi/{i['url'].split('v=')[1]}/default.jpg", input_message_content=InputTextMessageContent(message_text=i['url'])))
+            except:
+                articles.append(dict(type='article',
+                        id=str(uuid4()), title=f'Nenhum resultado encontrado para "{msg["query"][4:]}".', input_message_content=InputTextMessageContent(message_text='.')))
 
 
         elif msg['query'].startswith('/faces'):

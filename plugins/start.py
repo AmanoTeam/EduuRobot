@@ -28,18 +28,22 @@ def start(msg):
                 text='''*Ferramentas:*
 
 /clima - Exibe informações de clima.
+/coub - Pesquisa de pequenas animações.
 /echo - Repete o texto informado.
-/gif - Pesquisa e envia uma GIF no chat.
+/gif - Pesquisa de GIFs.
 /git - Envia informações de um user do GitHub.
 /html - Repete o texto informado usando HTML.
 /ip - Exibe informações sobre um IP/domínio.
 /jsondump - Envia o json da mensagem.
 /mark - Repete o texto informado usando Markdown.
 /print - Envia uma print de um site.
+/pypi - Pesquisa de módulos no PyPI.
+/r - Pesquisa de tópicos no Reddit
 /request - Faz uma requisição a um site.
 /shorten - Encurta uma URL.
 /token - Exibe informações de um token de bot.
 /tr - Traduz um texto.
+/yt - Pesquisa vídeos no YouTube.
 /ytdl - Baixa o áudio de um vídeo no YouTube.''',
                 parse_mode='Markdown',
                 reply_markup=keyboard.cmds_back
