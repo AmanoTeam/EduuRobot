@@ -21,12 +21,12 @@ def inlines(msg):
             for i in r.json():
                 x += "*{}*: `{}`\n".format(i, r.json()[i])
             articles = [InlineQueryResultArticle(
-                id='abcde', title='Informações de '+msg['query'][4:], input_message_content=InputTextMessageContent(message_text='*Consulta*: `'+msg['query'][4:]+'`\n\n'+x, parse_mode="Markdown"))]
+                id='a', title='Informações de '+msg['query'][4:], input_message_content=InputTextMessageContent(message_text='*Consulta*: `'+msg['query'][4:]+'`\n\n'+x, parse_mode="Markdown"))]
 
 
         elif msg['query'].startswith('/echo'):
             articles = [InlineQueryResultArticle(
-                id='abcde', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
+                id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
         
         
         elif msg['query'].startswith('/invert'):
@@ -36,12 +36,12 @@ def inlines(msg):
 
         elif msg['query'].startswith('/markdown'):
             articles = [InlineQueryResultArticle(
-                id='abcde', title=msg['query'][10:], input_message_content=InputTextMessageContent(message_text=kk, parse_mode='Markdown'))]
+                id='a', title=msg['query'][10:], input_message_content=InputTextMessageContent(message_text=kk, parse_mode='Markdown'))]
 
 
         elif msg['query'].startswith('/html'):
             articles = [InlineQueryResultArticle(
-                id='abcde', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
+                id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
 
 
         elif msg['query'].startswith('/faces'):
@@ -121,7 +121,7 @@ def inlines(msg):
         
         elif msg['query'].startswith('/hidemsg'):
             articles = [InlineQueryResultArticle(
-                id='abcde', title='Resultado: '+msg['query'][9:], input_message_content=InputTextMessageContent(message_text='\u2060'*3600+msg['query'][9:]))]
+                id='a', title='Resultado: '+msg['query'][9:], input_message_content=InputTextMessageContent(message_text='\u2060'*3600+msg['query'][9:]))]
 
 
         else:
@@ -134,7 +134,7 @@ def inlines(msg):
                 dict(type='article',
                     id='d', title='/html', description='Formata um texto usando HTML', input_message_content=dict(message_text='Uso: @{} /html <b>texto</b>'.format(bot_username))),
                 dict(type='article',
-                    id='e', title='/id', description='Exibe informações sobre você', input_message_content=dict(message_text='Suas informações:\n\nNome: '+first_name+'\nID: '+str(user_id)+'\nUsername: '+username)),
+                    id='e', title='/id', description='Exibe informações sobre você', input_message_content=dict(message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>'+html.escape(first_name)+'</code>\n<b>ID:</b> <code>'+str(user_id)+'</code>\n<b>Username:</b> <code>'+username+'</code>', parse_mode="HTML")),
                 dict(type='article',
                     id='f', title='/ip', description='Exibe informações de um IP informado', input_message_content=dict(message_text='Uso: @{} /ip google.com'.format(bot_username))),
                 dict(type='article',
@@ -143,4 +143,4 @@ def inlines(msg):
 
 
 
-        bot.answerInlineQuery(msg['id'],results=articles, is_personal=True)
+        bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
