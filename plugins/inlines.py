@@ -28,7 +28,25 @@ def inlines(msg):
         elif msg['query'].startswith('/echo'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
-        
+            
+        elif msg['query'].startswith('/proxi'):
+            count = 50
+            number = 1
+            prox = get(apiurl, params={
+                "max": count,
+                "key": "87d538ef1c1db71603e60f278446c86470162380"
+            }).json()["result"]
+            if len(prox) > 0:
+                defs = []
+                if count + number > len(definition):
+                    maxdef = len(definition)
+                else:
+                    maxdef = count + number
+                for i in range(number - 1, maxdef - 1):
+                    deftxt = definition[i]
+                    deftxt = escape_definition(deftxt)
+                    articles = defs.append([InlineQueryResultArticle(
+                        id='a', title=msg['query'][7:], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}'))])
         
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
