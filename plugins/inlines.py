@@ -43,7 +43,7 @@ def inlines(msg):
             number = 1
             prox = get(proxs, params={
                 "max": count,
-                "key": "87d538ef1c1db71603e60f278446c86470162380"
+                "key": config.keys['grab_proxy']
             }).json()["result"]
             if len(prox) > 0:
                 articles = []
