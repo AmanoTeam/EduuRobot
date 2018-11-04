@@ -1,5 +1,5 @@
 <h6 align="center">
-  <img src="https://i.imgur.com/OZ62r4c.png" alt="EduuRobot" height="150px">
+  <img src="https://i.imgur.com/tosnDbv.png" alt="EduuRobot" height="150px">
   <h2 align="center">EduuRobot</h2>
   <h5 align="center">Bot multipropósito em Python para o Telegram</h5>
 </h6>
