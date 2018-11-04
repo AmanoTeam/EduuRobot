@@ -55,7 +55,7 @@ def inlines(msg):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
                     articles.append(dict(type='article',
-                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}')))
+                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}')))
 
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
