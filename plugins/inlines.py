@@ -1,6 +1,7 @@
 import requests
 from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
 import config
+import html
 
 bot_username = config.me['username']
 bot = config.bot
