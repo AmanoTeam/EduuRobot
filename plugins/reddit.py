@@ -1,6 +1,7 @@
 import config
 import requests
 import re
+import urllib
 
 bot = config.bot
 bot_username = config.bot_username
