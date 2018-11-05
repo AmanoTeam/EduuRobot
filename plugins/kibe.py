@@ -48,18 +48,21 @@ def kibe(msg):
                     sticker_emoji = msg['text'].split()[1]
                 else:
                     sticker_emoji = msg['reply_to_message']['sticker']['emoji']
-
+                success = False
                 try:
                     bot.addStickerToSet(user_id=user['id'], name=packname,
                                         png_sticker=open(str(msg['from']['id'])+'_kibe_sticker.png', 'rb'), emojis=sticker_emoji)
+                    success = True
                 except TelegramError as e:
                     if e.description == "Bad Request: STICKERSET_INVALID":
                         bot.sendMessage(msg['chat']['id'], "Use /make_kibe to create a pack first.")
                         return
                     elif e.description == "Internal Server Error: sticker set not found":
-                        pass
+                        success = True
                 finally:
                     os.remove(str(msg['from']['id'])+"_kibe_sticker.png")
+
+                if success:
                     bot.sendMessage(msg['chat']['id'],
                                     "Sticker successfully added to [pack](t.me/addstickers/%s)" % packname,
                                     parse_mode='markdown')
