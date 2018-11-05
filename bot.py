@@ -8,7 +8,10 @@ print(r'''
 Iniciando...
 ''')
 
+import sys, io
+import traceback
 from amanobot.loop import MessageLoop
+from contextlib import redirect_stdout
 from colorama import Fore
 import config
 import time
@@ -48,10 +51,12 @@ def handle(msg):
     except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
         pass
     except Exception as e:
+        with io.StringIO() as buf, redirect_stdout(buf):
+            traceback.print_exc(file=sys.stdout)
+            res = buf.getvalue()
         bot.sendMessage(config.logs, '''Ocorreu um erro no plugin {}:
 
-{}: {}'''.format(plugin, type(e).__name__, e))
-        raise
+{}'''.format(plugin, res))
 
 
 print('\n\nBot iniciado! {}\n'.format(config.version))

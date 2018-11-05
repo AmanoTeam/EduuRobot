@@ -52,14 +52,18 @@ def kibe(msg):
                 try:
                     bot.addStickerToSet(user_id=user['id'], name=packname,
                                         png_sticker=open(str(msg['from']['id'])+'_kibe_sticker.png', 'rb'), emojis=sticker_emoji)
+                except TelegramError as e:
+                    if e.description == "Bad Request: STICKERSET_INVALID":
+                        bot.sendMessage(msg['chat']['id'], "Use /make_kibe to create a pack first.")
+                        return
+                    elif e.description == "Internal Server Error: sticker set not found":
+                        pass
+                finally:
                     os.remove(str(msg['from']['id'])+"_kibe_sticker.png")
                     bot.sendMessage(msg['chat']['id'],
                                     "Sticker successfully added to [pack](t.me/addstickers/%s)" % packname,
                                     parse_mode='markdown')
-                except TelegramError as e:
-                    if e.description == "Bad Request: STICKERSET_INVALID":
-                        bot.sendMessage(msg['chat']['id'], "Use /make_kibe to create a pack first.")
-                    print(e)
+
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to kibe it.")
         elif msg['text'].startswith('/make_kibe') or msg['text'].startswith('!make_kibe'):
@@ -73,7 +77,6 @@ def kibe(msg):
                                                   png_sticker="https://i.imgur.com/wB1iZFI.png",
                                                   emojis='©')
             except TelegramError as e:
-                print(e)
                 if e.description == "Bad Request: sticker set name is already occupied":
                     bot.sendMessage(msg['chat']['id'],
                                     "Your pack can be found [here](t.me/addstickers/%s)" % packname,
@@ -82,7 +85,7 @@ def kibe(msg):
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                                         [dict(text='Start', url="t.me/{}".format(config.me['username']))]]))
-                return
+            return True
 
             if success:
                 bot.sendMessage(msg['chat']['id'],
