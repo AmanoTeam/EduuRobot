@@ -69,9 +69,9 @@ def kibe(msg):
             hash = hashlib.sha1(bytearray(user['id'])).hexdigest()
             packname = "a" + hash[:20] + "_by_" + config.me['username']
             try:
-                success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe Amano Pack",
-                                                  png_sticker="https://images.emojiterra.com/google/android-pie/512px/265f.png",
-                                                  emojis='🦇')
+                success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe @AmanoTeam",
+                                                  png_sticker="https://i.imgur.com/wB1iZFI.png",
+                                                  emojis='©')
             except TelegramError as e:
                 print(e)
                 if e.description == "Bad Request: sticker set name is already occupied":
