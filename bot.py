@@ -30,7 +30,7 @@ n_ep = []
 for num, i in enumerate(config.enabled_plugins):
     try:
         print(Fore.RESET + 'Carregando plugins... [{}/{}]'.format(num+1, len(config.enabled_plugins)), end='\r')
-        exec('from plugins import {0}'.format(i))
+        exec('from plugins.{0} import {0}'.format(i))
         ep.append(i)
     except Exception as erro:
         n_ep.append(i)
@@ -45,7 +45,7 @@ def handle_thread(*args):
 def handle(msg):
     try:
         for plugin in ep:
-            p = eval('{0}.{0}(msg)'.format(plugin))
+            p = globals()[plugin](msg)
             if p:
                 break
     except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
