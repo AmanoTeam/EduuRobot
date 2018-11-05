@@ -1,4 +1,3 @@
-import hashlib
 import os
 from amanobot.namedtuple import InlineKeyboardMarkup
 from amanobot.exception import TelegramError
@@ -42,8 +41,7 @@ def kibe(msg):
                 user = msg['from']
                 file_id = msg['reply_to_message']['sticker']['file_id']
                 bot.download_file(file_id, str(msg['from']['id'])+'_kibe_sticker.png')
-                hash = hashlib.sha1(bytearray(user['id'])).hexdigest()
-                packname = "a" + hash[:20] + "_by_" + config.me['username']
+                packname = "a" + str(user['id']) + "_by_" + config.me['username']
                 if len(msg['text'][5:]) > 0:
                     sticker_emoji = msg['text'].split()[1]
                 else:
@@ -73,8 +71,7 @@ def kibe(msg):
             user = msg['from']
             name = user['first_name']
             name = name[:50]
-            hash = hashlib.sha1(bytearray(user['id'])).hexdigest()
-            packname = "a" + hash[:20] + "_by_" + config.me['username']
+            packname = "a" + str(user['id']) + "_by_" + config.me['username']
             try:
                 success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe @AmanoTeam",
                                                   png_sticker="https://i.imgur.com/wB1iZFI.png",
@@ -88,11 +85,11 @@ def kibe(msg):
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                                         [dict(text='Start', url="t.me/{}".format(config.me['username']))]]))
+                else:
+                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.")
+
 
             if success:
                 bot.sendMessage(msg['chat']['id'],
                                 "Sticker pack successfully created. Get it [here](t.me/addstickers/%s)" % packname,
                                 parse_mode='markdown')
-            else:
-                bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.")
-
