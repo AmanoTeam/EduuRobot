@@ -72,6 +72,7 @@ def kibe(msg):
             name = user['first_name']
             name = name[:50]
             packname = "a" + str(user['id']) + "_by_" + config.me['username']
+            success = False
             try:
                 success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe @AmanoTeam",
                                                   png_sticker="https://i.imgur.com/wB1iZFI.png",
