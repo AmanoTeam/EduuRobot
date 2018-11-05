@@ -88,7 +88,6 @@ def kibe(msg):
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
                                         [dict(text='Start', url="t.me/{}".format(config.me['username']))]]))
-            return True
 
             if success:
                 bot.sendMessage(msg['chat']['id'],
