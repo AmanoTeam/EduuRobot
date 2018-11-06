@@ -18,7 +18,7 @@ git_repo = 'https://github.com/AmanoTeam/EduuRobot' #Repositório onde seu bot e
 
 max_time = 60
 
-version = 'v1.0 Beta'
+version = 'v1.0 rc1'
 logs = -1001297931062
 
 sudoers = [

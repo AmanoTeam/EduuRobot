@@ -76,7 +76,7 @@ else:
 
 Versão: {}
 Plugins carregados: {}
-Ocorreram erros em {} plugin(s)'''.format(config.version, len(ep), len(n_ep)))
+Ocorreram erros em {} plugin(s){}'''.format(config.version, len(ep), len(n_ep), ': '+(', '.join(n_ep)) if n_ep else ''))
 
 while True:
     time.sleep(10)

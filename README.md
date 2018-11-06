@@ -4,7 +4,7 @@
   <h5 align="center">Bot multipropósito em Python para o Telegram</h5>
 </h6>
 <h6 align="center">
-  <a href="https://t.me/EduuRobot"><img src="https://img.shields.io/badge/Versão-v1.0 Beta-0688CB.svg" /></a>
+  <a href="https://t.me/EduuRobot"><img src="https://img.shields.io/badge/Versão-v1.0 rc1-0688CB.svg" /></a>
   <a href="https://t.me/AmanoChat"><img src="https://img.shields.io/badge/Support-Chat-0688CB.svg" /></a>
   <a href="https://t.me/AmanoTeam"><img src="https://img.shields.io/badge/Telegram-Channel-0688CB.svg" /></a>
 </h6>
