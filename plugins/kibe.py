@@ -34,7 +34,7 @@ def kibe(msg):
                 bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
                 os.remove("sticker.png")
             else:
-                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.", , reply_to_message_id=msg['message_id'])
+                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.", reply_to_message_id=msg['message_id'])
 
         elif msg['text'].startswith('/kibe') or msg['text'].startswith('!kibe'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
