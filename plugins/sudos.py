@@ -9,6 +9,7 @@ import threading
 import json
 import html
 import io
+import subprocess
 from contextlib import redirect_stdout
 import db_handler as db
 
@@ -71,7 +72,7 @@ def sudos(msg):
                 if re.match('(?i).*poweroff|halt|shutdown|reboot', text):
                     res = 'Comando proibido.'
                 else:
-                    res = os.popen(text).read()
+                    res = subprocess.getstatusoutput(text)
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
 
@@ -91,7 +92,7 @@ def sudos(msg):
 
 
             elif msg['text'] == '!upgrade':
-                if os.system('git') == 32512:
+                if os.system('git > /dev/null') == 32512:
                     bot.sendMessage(msg['chat']['id'], 'Ei, você precisa instalar o git para que esse comando funcione!',
                                     reply_to_message_id=msg['message_id'])
                 else:
@@ -112,7 +113,6 @@ def sudos(msg):
                     time.sleep(1)
                     os.execl(sys.executable, sys.executable, *sys.argv)
                     del threading.Thread
-
 
 
             elif msg['text'].startswith('!leave'):
