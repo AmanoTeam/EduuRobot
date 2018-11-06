@@ -72,7 +72,7 @@ def sudos(msg):
                 if re.match('(?i).*poweroff|halt|shutdown|reboot', text):
                     res = 'Comando proibido.'
                 else:
-                    res = subprocess.getstatusoutput(text)
+                    res = subprocess.getstatusoutput(text)[1]
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
 
