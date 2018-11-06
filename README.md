@@ -11,7 +11,6 @@
 
 ## Instalação e execução
 
-
 ### Requisitos
 
 - Python 3.6+
@@ -19,18 +18,15 @@
 - Um SO Linux (O bot em Windows não funciona corretamente)
 - Módulos: amanobot, requests, python-aiml, youtube-dl, colorama e pyfiglet
 
-
 ### Recomendações
 
 - Sistema operacional: Ubuntu e derivados
 - Python 3.7+
 
-
 ### Instalação
 
 - Abra o Terminal na pasta do bot
 - Digite ```pip3 install -r requirements.txt```
-
 
 ### Configuração
 
@@ -40,13 +36,11 @@
 - Coloque sua ID em `sudos` (Caso você não saiba a sua envie o comando `/id`)
 - Coloque a sua ID ou a de um grupo/canal em `logs`
 
-
 ### Executando
 
 - Para iniciar o bot use o comando ```python3 bot.py```
 - E pronto! o bot agora está executando
 - Agora você pode ir para os sites informados no config.py e conseguir as keys para comandos especiais (opcionais)
-
 
 ### Nota
 
