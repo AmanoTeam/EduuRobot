@@ -22,7 +22,7 @@ def kibe(msg):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
                 bot.sendMessage(msg['chat']['id'], "Sticker ID:\n```" +
                                 msg['reply_to_message']['sticker']['file_id'] + "```",
-                                parse_mode='markdown')
+                                parse_mode='markdown', reply_to_message_id=msg['message_id'])
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker to get its ID.")
 
@@ -34,7 +34,7 @@ def kibe(msg):
                 bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
                 os.remove("sticker.png")
             else:
-                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.")
+                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.", , reply_to_message_id=msg['message_id'])
 
         elif msg['text'].startswith('/kibe') or msg['text'].startswith('!kibe'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
@@ -53,7 +53,8 @@ def kibe(msg):
                     success = True
                 except TelegramError as e:
                     if e.description == "Bad Request: STICKERSET_INVALID":
-                        bot.sendMessage(msg['chat']['id'], "Use /make_kibe to create a pack first.")
+                        bot.sendMessage(msg['chat']['id'], "Use /make_kibe to create a pack first.",
+                                        reply_to_message_id=msg['message_id'])
                         return
                     elif e.description == "Internal Server Error: sticker set not found":
                         success = True
@@ -63,7 +64,7 @@ def kibe(msg):
                 if success:
                     bot.sendMessage(msg['chat']['id'],
                                     "Sticker successfully added to [pack](t.me/addstickers/%s)" % packname,
-                                    parse_mode='markdown')
+                                    parse_mode='markdown', reply_to_message_id=msg['message_id'])
 
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to kibe it.")
@@ -81,16 +82,16 @@ def kibe(msg):
                 if e.description == "Bad Request: sticker set name is already occupied":
                     bot.sendMessage(msg['chat']['id'],
                                     "Your pack can be found [here](t.me/addstickers/%s)" % packname,
-                                    parse_mode='markdown')
+                                    parse_mode='markdown', reply_to_message_id=msg['message_id'])
                 elif e.description == "Bad Request: PEER_ID_INVALID":
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                                        [dict(text='Start', url="t.me/{}".format(config.me['username']))]]))
+                                        [dict(text='Start', url="t.me/{}".format(config.me['username']))]]), reply_to_message_id=msg['message_id'])
                 else:
-                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.")
+                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.", reply_to_message_id=msg['message_id'])
 
 
             if success:
                 bot.sendMessage(msg['chat']['id'],
                                 "Sticker pack successfully created. Get it [here](t.me/addstickers/%s)" % packname,
-                                parse_mode='markdown')
+                                parse_mode='markdown', reply_to_message_id=msg['message_id'])
