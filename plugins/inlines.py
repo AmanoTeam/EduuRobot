@@ -40,7 +40,7 @@ def inlines(msg):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
             
-        elif msg['query'].startswith('/proxi'):
+        elif msg['query'].startswith('/proxy'):
             count = 50
             number = 1
             prox = get(proxs, params={
@@ -57,7 +57,7 @@ def inlines(msg):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
                     articles.append(dict(type='article',
-                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'IP: {deftxt["ip"]}\nPORT: {deftxt["port"]}\nIP_PORT: {deftxt["ip_port"]}\nLAST_CHECKED: {deftxt["last_checked"]}')))
+                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'Proxy:\n\nPaís:{deftxt["country"]}\nIP: {deftxt["ip"]}\nPorta: {deftxt["port"]}\nChecado há: {deftxt["last_checked"]}')))
 
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
@@ -183,7 +183,7 @@ def inlines(msg):
                 #dict(type='article',
                 #    id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
                 dict(type='article',
-                    id='h', title='/proxi', description='searching proxy', input_message_content=dict(message_text='Uso: /proxi'))
+                    id='h', title='/proxy', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /proxy - Exibe uma lista de proxys de vários países.'))
                 ]
 
 
