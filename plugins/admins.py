@@ -157,7 +157,7 @@ def admins(msg):
                             bot.sendMessage(msg['chat']['id'], 'Esse aí tem admin',
                                             reply_to_message_id=msg['message_id'])
                         else:
-                            bot.unbanChatMember(msg['chat']['id'], reply_id)
+                            bot.restrictChatMember(msg['chat']['id'], reply_id)
                             bot.sendMessage(msg['chat']['id'], '{} restringiu {}!'.format(
                                 msg['from']['first_name'],
                                 reply_name),
