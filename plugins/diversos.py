@@ -7,6 +7,12 @@ sudos = config.sudoers
 logs = config.logs
 bot_username = config.bot_username
 
+
+def send_to_hastebin(text):
+    post = requests.post("https://hastebin.com/documents", data=text.encode('utf-8'))
+    return "https://hastebin.com/" + post.json()["key"]
+
+
 def diversos(msg):
     if msg.get('text'):
 
@@ -86,6 +92,8 @@ Mensagem: {}'''.format(msg['from']['id'],
             except Exception as e:
                 return bot.sendMessage(msg['chat']['id'], str(e),
                                 reply_to_message_id=msg['message_id'])
+            if len(res) > 4000:
+                res = send_to_hastebin(res)
             bot.sendMessage(msg['chat']['id'], '*Conteúdo:*\n`{}`'.format(res), 'markdown',
                             reply_to_message_id=msg['message_id'])
             return True
