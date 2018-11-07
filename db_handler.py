@@ -32,7 +32,7 @@ def chat_exists(chat_id):
 
 def user_exists(user_id):
     try:
-        cursor.execute('SELECT * FROM chats WHERE user_id = (?)', (user_id,))
+        cursor.execute('SELECT * FROM users WHERE user_id = (?)', (user_id,))
         cursor.fetchall()[0]
         return True
     except (OperationalError, IndexError):
@@ -69,7 +69,7 @@ def set_restarted(chat_id, message_id):
 
 
 def get_welcome(chat_id):
-    cursor.execute('SELECT (welcome, welcome_set) FROM chats WHERE chat_id = (?)', (chat_id,))
+    cursor.execute('SELECT (welcome, welcome_enabled) FROM chats WHERE chat_id = (?)', (chat_id,))
     try:
         return cursor.fetchall()[0]
     except IndexError:

@@ -201,7 +201,7 @@ def admins(msg):
                             bot.sendMessage(msg['chat']['id'], 'Esse aí tem admin',
                                             reply_to_message_id=msg['message_id'])
                         else:
-                            bot.restrictChatMember(chat_id, reply_id,
+                            bot.restrictChatMember(msg['chat']['id'], reply_id,
                                                    can_send_messages=True,
                                                    can_send_media_messages=True,
                                                    can_send_other_messages=True,

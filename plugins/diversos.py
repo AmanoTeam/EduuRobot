@@ -59,6 +59,23 @@ Mensagem: {}'''.format(msg['from']['id'],
             return True
 
 
+        elif msg['text'].startswith('/text ') or msg['text'].startswith('!text '):
+            string = ''
+            text = msg['text'][6:]
+            if msg.get('reply_to_message'):
+                reply_id = msg['reply_to_message']['message_id']
+            else:
+                reply_id = None
+            sent = bot.sendMessage(msg['chat']['id'], '<code>|</code>', 'html',
+                                    reply_to_message_id=reply_id)
+            for char in text:
+                string = string + char
+                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+string+'</code>', 'html')
+                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+string+'|</code>', 'html')
+            bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+msg['text'][6:]+'</code>', 'html')
+            return True
+
+
         elif msg['text'].startswith('/request ') or msg['text'].startswith('!request '):
             if re.match(r'^(https?:\/\/)', msg['text'][9:]):
                 text = msg['text'][9:]

@@ -2,7 +2,7 @@ from amanobot.namedtuple import InlineKeyboardMarkup
 import config
 
 start = InlineKeyboardMarkup(inline_keyboard=[
-    [dict(text='🤖 Iniciar uma conversa', url='https://t.me/{}?start='.format(config.bot_username))]
+    [dict(text='🤖 Iniciar uma conversa', url='https://t.me/{}?start=start'.format(config.bot_username))]
 ])
 
 start_pv = InlineKeyboardMarkup(inline_keyboard=[
@@ -17,15 +17,15 @@ all_cmds = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='\ud83d\udc64 Usuários', callback_data='user_cmds')],
     [dict(text='🔧 Ferramentas', callback_data='tools_cmds')] +
     [dict(text='🔎 Modo inline', switch_inline_query_current_chat='/')],
-    [dict(text='⬅️ Voltar', callback_data='start_back')]
+    [dict(text='« Voltar', callback_data='start_back')]
 ])
 
 start_back = InlineKeyboardMarkup(inline_keyboard=[
-    [dict(text='⬅️ Voltar', callback_data='start_back')]
+    [dict(text='« Voltar', callback_data='start_back')]
 ])
 
 cmds_back = InlineKeyboardMarkup(inline_keyboard=[
-    [dict(text='⬅️ Voltar', callback_data='all_cmds')]
+    [dict(text='« Voltar', callback_data='all_cmds')]
 ])
 
 del_msg = InlineKeyboardMarkup(inline_keyboard=[

@@ -108,16 +108,13 @@ def start(msg):
                                 '''• EduuRobot
 
 Version: {}
-Developer: <a href="tg://user?id=200097591">Alisson</>
+Developers: <a href="https://github.com/AmanoTeam">Amano Team</>
 Owner: <a href="tg://user?id=123892996">Edu :3</>
-Contributors:
- - <i>Paulo</i>
- - <i>Taylor</i>
- - <i>Henx</i>
+
 Partnerships:
  » <a href="https://t.me/hpxlist">HPXList - by usernein</>
 
-©2018 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
+©2017-2018 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
                                 parse_mode='html',
                                 reply_markup=keyboard.start_back,
                                 disable_web_page_preview=True)

@@ -54,7 +54,7 @@ def sudos(msg):
                 try:
                     bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
                 except Exception as e:
-                    bot.sendMessage(msg['chat']['id'], str(e), reply_to_message_id=msg['message_id'])
+                    bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
                 return True
 
 
