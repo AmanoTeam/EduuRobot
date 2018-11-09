@@ -81,9 +81,11 @@ def inlines(msg):
                                              input_message_content=InputTextMessageContent(
                                                  message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
                                                  parse_mode='HTML')))        elif msg['query'].startswith('/invert'):
+        elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
-            articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],input_message_content=InputTextMessageContent(message_text=query[::-1]))]
-
+            articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],
+                                                 input_message_content=InputTextMessageContent(
+                                                     message_text=query[::-1]))]
 
         elif msg['query'].startswith('/markdown'):
             articles = [InlineQueryResultArticle(
