@@ -1,4 +1,4 @@
-amanobot
+amanoboot
 bs4
 colorama
 requests
