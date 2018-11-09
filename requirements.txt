@@ -2,5 +2,5 @@ amanobot
 bs4
 colorama
 requests
-youtube-dll
+youtube-dl
 duck
