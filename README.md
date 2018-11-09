@@ -1,7 +1,7 @@
 <h6 align="center">
   <img src="https://i.imgur.com/tosnDbv.png" alt="EduuRobot" height="150px">
   <h2 align="center">EduuRobot</h2>
-  <h5 align="center">Bot multipropósito em Python para o Telegram</h5>
+  <h5 align="center">Bot multipropósito em Python para o Telegram.</h5>
 </h6>
 <h6 align="center">
   <a href="https://t.me/EduuRobot"><img src="https://img.shields.io/badge/Versão-v1.0 rc1-0688CB.svg" /></a>
@@ -16,7 +16,7 @@
 - Python 3.6+
 - python3-pip (para instalar os módulos)
 - Um SO Linux (O bot em Windows não funciona corretamente)
-- Módulos: amanobot, requests, python-aiml, youtube-dl, colorama e pyfiglet
+- Módulos: amanobot, requests, youtube-dl, colorama, duckpy e pyfiglet
 
 ### Recomendações
 
@@ -44,4 +44,4 @@
 
 ### Nota
 
-- Caso encontre algum bug no bot, crie um issue [aqui](https://github.com/AmanoTeam/EduuRobot/issues) ou envie /bug + o erro que você está tendo.
+- Caso encontre algum bug no bot, crie um issue [aqui](https://github.com/AmanoTeam/EduuRobot/issues) ou envie /bug + o erro que você está tendo (No [EduuRobot](https://t.me/EduuRobot)).
