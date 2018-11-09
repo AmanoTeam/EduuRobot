@@ -139,7 +139,7 @@ def sudos(msg):
                     res_chat = bot.getChat(chat)
                 except TelegramError:
                     bot.editMessageText(
-                        (chat_id, sent),
+                        (msg['chat']['id'], sent),
                         text='Chat não encontrado'
                     )
                 if res_chat['type'] != 'private':
