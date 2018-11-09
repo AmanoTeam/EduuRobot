@@ -1,4 +1,4 @@
-from amanobot.namedtuple import InlineKeyboardMarkup p
+from amanobot.namedtuple import InlineKeyboardMarkup
 import config
 
 start = InlineKeyboardMarkup(inline_keyboard=[
