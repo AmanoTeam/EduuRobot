@@ -4,4 +4,3 @@ colorama
 requests
 youtube-dl
 duck
-preguiça
