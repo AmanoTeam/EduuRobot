@@ -16,7 +16,7 @@
 - Python 3.6+
 - python3-pip (para instalar os módulos)
 - Um SO Linux (O bot em Windows não funciona corretamente)
-- Módulos: amanobot, requests, python-aiml, youtube-dl, colorama e pyfiglet
+- Módulos: amanobot, requests, python-aiml, youtube-dl, colorama, duckpy e pyfiglet
 
 ### Recomendações
 
