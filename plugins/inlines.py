@@ -64,23 +64,23 @@ def inlines(msg):
             number = 1
             search = msg['query'][6:]
             duc = duckpy.search(str(search))['results']
-            articles = []
-            if count + number > len(duc):
-                maxdef = len(duc)
-            else:
-                maxdef = count + number
-            for i in range(number - 1, maxdef - 1):
-                    deftxt = duc[i]
-                    deftxt = escape_definition(deftxt)
-                    articles.append(dict(type='article',
-                                         id=str(uuid4()),
-                                         title=deftxt['title'],
-                                         thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4',
-                                         description=deftxt['url'],
-                                         input_message_content=InputTextMessageContent(
-                                             message_text=f"**{deftxt['title']}**\n{deftxt['url']}",
-                                             parse_mode='MARKDOWN')))
-        elif msg['query'].startswith('/invert'):
+            if len(duc) > 0:
+                articles = []
+                if count + number > len(duc):
+                    maxdef = len(duc)
+                else:
+                    maxdef = count + number
+                for i in range(number - 1, maxdef - 1):
+                        deftxt = duc[i]
+                        deftxt = escape_definition(deftxt)
+                        articles.append(dict(type='article',
+                                             id=str(uuid4()),
+                                             title=deftxt['title'],
+                                             thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4',
+                                             description=deftxt['url'],
+                                             input_message_content=InputTextMessageContent(
+                                                 message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
+                                                 parse_mode='HTML')))        elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],input_message_content=InputTextMessageContent(message_text=query[::-1]))]
 
