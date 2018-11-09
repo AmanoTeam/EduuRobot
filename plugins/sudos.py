@@ -11,6 +11,7 @@ import html
 import io
 import subprocess
 from contextlib import redirect_stdout
+from amanobot.exception import TelegramError
 import db_handler as db
 
 bot = config.bot
