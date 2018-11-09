@@ -14,7 +14,7 @@ start_pv = InlineKeyboardMarkup(inline_keyboard=[
 
 all_cmds = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='👮 Admins', callback_data='admin_cmds')] +
-    [dict(text='👤 Usuários', callback_data='user_cmds')],
+    [dict(text='\ud83d\udc64 Usuários', callback_data='user_cmds')],
     [dict(text='🔧 Ferramentas', callback_data='tools_cmds')] +
     [dict(text='🔎 Modo inline', switch_inline_query_current_chat='/')],
     [dict(text='« Voltar', callback_data='start_back')]
