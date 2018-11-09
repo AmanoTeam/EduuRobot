@@ -3,5 +3,5 @@ bs4
 colorama
 requests
 youtube-dl
-duckpyp
+duckpy
 
