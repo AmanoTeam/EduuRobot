@@ -1,1 +1,6 @@
-
+amanobot
+bs4
+colorama
+requests
+youtube-dl
+duckpy
