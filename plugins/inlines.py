@@ -4,6 +4,7 @@ from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageConten
 import config
 import html
 from uuid import uuid4
+import duckpy
 from .youtube import search_yt
 
 
@@ -58,7 +59,27 @@ def inlines(msg):
                     deftxt = escape_definition(deftxt)
                     articles.append(dict(type='article',
                         id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'Proxy:\n\nPaís:{deftxt["country"]}\nIP: {deftxt["ip"]}\nPorta: {deftxt["port"]}\nChecado há: {deftxt["last_checked"]}')))
-
+        elif msg['query'].startswith('/duck'):
+            count = 50
+            number = 1
+            search = msg['query'][6:]
+            duc = duckpy.search(str(search))['results']
+            articles = []
+            if count + number > len(duc):
+                maxdef = len(duc)
+            else:
+                maxdef = count + number
+            for i in range(number - 1, maxdef - 1):
+                    deftxt = duc[i]
+                    deftxt = escape_definition(deftxt)
+                    articles.append(dict(type='article',
+                                         id=str(uuid4()),
+                                         title=deftxt['title'],
+                                         thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4',
+                                         description=deftxt['url'],
+                                         input_message_content=InputTextMessageContent(
+                                             message_text=f"**{deftxt['title']}**\n{deftxt['url']}",
+                                             parse_mode='MARKDOWN')))
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],input_message_content=InputTextMessageContent(message_text=query[::-1]))]
@@ -185,7 +206,9 @@ def inlines(msg):
                 dict(type='article',
                     id='h', title='/proxy', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /proxy - Exibe uma lista de proxys de vários países.'.format(bot_username))),
                 dict(type='article',
-                    id='i', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
+                     id='i' or uuid4(), title='/duck', description='searching with ddg engine', input_message_content=dict(message_text='Uso: /duck')),
+                dict(type='article',
+                    id='j', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
                 ]
 
 
