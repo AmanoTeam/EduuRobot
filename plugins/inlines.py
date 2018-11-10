@@ -117,14 +117,13 @@ def inlines(msg):
             bot.answerInlineQuery(msg['id'], results=articles)
 
 
-        elif msg['query'].startswith('/yt'):
+        elif msg['query'].startswith('/yt '):
             articles = []
-            try:
-                search = search_yt(msg['query'][4:])
-                for i in search:
-                    articles.append(dict(type='article',
-                        id=str(uuid4()), title=i['title'], thumb_url=f"https://i.ytimg.com/vi/{i['url'].split('v=')[1]}/default.jpg", input_message_content=InputTextMessageContent(message_text=i['url'])))
-            except:
+            search = search_yt(msg['query'][4:])
+            for i in search:
+                articles.append(dict(type='article',
+                    id=str(uuid4()), title=i['title'], thumb_url=f"https://i.ytimg.com/vi/{i['url'].split('v=')[1]}/default.jpg", input_message_content=InputTextMessageContent(message_text=i['url'])))
+            if not articles:
                 articles.append(dict(type='article',
                         id=str(uuid4()), title=f'Nenhum resultado encontrado para "{msg["query"][4:]}".', input_message_content=InputTextMessageContent(message_text='.')))
 
