@@ -62,7 +62,7 @@ def inlines(msg):
                 for i in range(number - 1, maxdef - 1):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
-                    articles.append(dict(type='article',
+                    articles.append(InlineQueryResultArticle(
                         id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'Proxy:\n\nPaís:{deftxt["country"]}\nIP: {deftxt["ip"]}\nPorta: {deftxt["port"]}\nChecado há: {deftxt["last_checked"]}')))
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
@@ -82,7 +82,7 @@ def inlines(msg):
                 for i in range(number - 1, maxdef - 1):
                         deftxt = duc[i]
                         deftxt = escape_definition(deftxt)
-                        articles.append(dict(type='article',
+                        articles.append(InlineQueryResultArticle(
                                              id=str(uuid4()),
                                              title=deftxt['title'],
                                              thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4',
@@ -121,87 +121,88 @@ def inlines(msg):
             articles = []
             search = search_yt(msg['query'][4:])
             for i in search:
-                articles.append(dict(type='article',
+                articles.append(InlineQueryResultArticle(
                     id=str(uuid4()), title=i['title'], thumb_url=f"https://i.ytimg.com/vi/{i['url'].split('v=')[1]}/default.jpg", input_message_content=InputTextMessageContent(message_text=i['url'])))
             if not articles:
-                articles.append(dict(type='article',
+                articles.append(InlineQueryResultArticle(
                         id=str(uuid4()), title=f'Nenhum resultado encontrado para "{msg["query"][4:]}".', input_message_content=InputTextMessageContent(message_text='.')))
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('/faces'):
-            articles = [InlineQueryResultArticle(
-                id='a', title='¯\\_(ツ)_/¯', input_message_content=InputTextMessageContent(message_text='¯\\_(ツ)_/¯')),
-                dict(type='article',
+            articles = [
+                InlineQueryResultArticle(
+                    id='a', title='¯\\_(ツ)_/¯', input_message_content=InputTextMessageContent(message_text='¯\\_(ツ)_/¯')),
+                InlineQueryResultArticle(
                     id='b', title='( ͡° ͜ʖ ͡°)', input_message_content=dict(message_text='( ͡° ͜ʖ ͡°)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='c', title='( ͡~ ͜ʖ ͡°)', input_message_content=dict(message_text='( ͡~ ͜ʖ ͡°)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='d', title='( ͡◐ ͜ʖ ͡◑))', input_message_content=dict(message_text='( ͡◐ ͜ʖ ͡◑))')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='e', title='( ͡◔ ͜ʖ ͡◔)', input_message_content=dict(message_text='( ͡◔ ͜ʖ ͡◔)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='f', title='( ͡⚆ ͜ʖ ͡⚆)', input_message_content=dict(message_text='( ͡⚆ ͜ʖ ͡⚆)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='g', title='( ͡ʘ ͜ʖ ͡ʘ)', input_message_content=dict(message_text='( ͡ʘ ͜ʖ ͡ʘ)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='h', title='ヽ༼ຈل͜ຈ༽ﾉ', input_message_content=dict(message_text='ヽ༼ຈل͜ຈ༽ﾉ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='i', title='༼ʘ̚ل͜ʘ̚༽', input_message_content=dict(message_text='༼ʘ̚ل͜ʘ̚༽')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='j', title='(╯°□°）╯', input_message_content=dict(message_text='(╯°□°）╯')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='k', title='(ﾉ◕ヮ◕)ﾉ', input_message_content=dict(message_text='(ﾉ◕ヮ◕)ﾉ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='l', title='(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧', input_message_content=dict(message_text='(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='m', title='(◕‿◕)', input_message_content=dict(message_text='(◕‿◕)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='n', title='(｡◕‿‿◕｡)', input_message_content=dict(message_text='(｡◕‿‿◕｡)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='o', title='(っ◕‿◕)っ', input_message_content=dict(message_text='(っ◕‿◕)っ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='p', title='(づ｡◕‿‿◕｡)づ', input_message_content=dict(message_text='(づ｡◕‿‿◕｡)づ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='q', title='༼ つ ◕_◕ ༽つ', input_message_content=dict(message_text='༼ つ ◕_◕ ༽つ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='r', title='(ง ͠° ͟ل͜ ͡°)ง', input_message_content=dict(message_text='(ง ͠° ͟ل͜ ͡°)ง')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='s', title='(ง\'̀-\'́)ง', input_message_content=dict(message_text='(ง\'̀-\'́)ง')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='t', title='ᕙ(⇀‸↼‶)ᕗ', input_message_content=dict(message_text='ᕙ(⇀‸↼‶)ᕗ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='u', title='(҂⌣̀_⌣́)', input_message_content=dict(message_text='(҂⌣̀_⌣́)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='v', title='ᕦ(ò_óˇ)ᕤ', input_message_content=dict(message_text='ᕦ(ò_óˇ)ᕤ')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='w', title='╚(ಠ_ಠ)=┐', input_message_content=dict(message_text='╚(ಠ_ಠ)=┐')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='x', title='ლ(ಠ益ಠლ)', input_message_content=dict(message_text='ლ(ಠ益ಠლ)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='y', title='\\_(ʘ_ʘ)_/', input_message_content=dict(message_text='\\_(ʘ_ʘ)_/')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='z', title='( ⚆ _ ⚆ )', input_message_content=dict(message_text='( ⚆ _ ⚆ )')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='aa', title='(ಥ﹏ಥ)', input_message_content=dict(message_text='(ಥ﹏ಥ)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ab', title='﴾͡๏̯͡๏﴿', input_message_content=dict(message_text='﴾͡๏̯͡๏﴿')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ac', title='(◔̯◔)', input_message_content=dict(message_text='(◔̯◔)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ad', title='(ಠ_ಠ)', input_message_content=dict(message_text='(ಠ_ಠ)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ae', title='(ಠ‿ಠ)', input_message_content=dict(message_text='(ಠ‿ಠ)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='af', title='(¬_¬)', input_message_content=dict(message_text='(¬_¬)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ag', title='(¬‿¬)', input_message_content=dict(message_text='(¬‿¬)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ah', title='\\ (•◡•) /', input_message_content=dict(message_text='\\ (•◡•) /')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='ai', title='(◕‿◕✿)', input_message_content=dict(message_text='(◕‿◕✿)')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='aj', title='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)', input_message_content=dict(message_text='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)'))]
 
             bot.answerInlineQuery(msg['id'], results=articles)
@@ -214,21 +215,21 @@ def inlines(msg):
 
         else:
             articles = [
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='a', title='Informações', description='Exibe informações sobre você', input_message_content=dict(message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>'+html.escape(first_name)+'</code>\n<b>ID:</b> <code>'+str(user_id)+'</code>\n<b>Username:</b> <code>'+username+'</code>', parse_mode="HTML")),
-                dict(type='article',
+                InlineQueryResultArticle(
                      id='b', title='/duck', description='searching with ddg engine', input_message_content=dict(message_text='Uso: /duck')),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='c', title='/faces', description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯', input_message_content=dict(message_text='Uso: @{} /faces - exibe uma lista de carinhas ¯\\_(ツ)_/¯'.format(bot_username))),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='d', title='/hidemsg', description='Envia uma mensagem que não aparece nas ações recentes ao ser apagada em até 1 minuto.', input_message_content=dict(message_text='Uso: @{} /hidemsg texto para a mensagem\n\nEnvia uma mensagem que se for apagada em até 1 minuto não aparece nas ações recentes do grupo'.format(bot_username))),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='e', title='/html', description='Formata um texto usando HTML', input_message_content=dict(message_text='Uso: @{} /html <b>texto</b>'.format(bot_username))),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='f', title='/ip', description='Exibe informações de um IP informado', input_message_content=dict(message_text='Uso: @{} /ip google.com'.format(bot_username))),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='g', title='/proxy', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /proxy - Exibe uma lista de proxys de vários países.'.format(bot_username))),
-                dict(type='article',
+                InlineQueryResultArticle(
                     id='h', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
                 ]
 
