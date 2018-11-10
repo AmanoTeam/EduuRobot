@@ -216,8 +216,8 @@ def inlines(msg):
             articles = [
                 dict(type='article',
                     id='a', title='Informações', description='Exibe informações sobre você', input_message_content=dict(message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>'+html.escape(first_name)+'</code>\n<b>ID:</b> <code>'+str(user_id)+'</code>\n<b>Username:</b> <code>'+username+'</code>', parse_mode="HTML")),
-                #dict(type='article',
-                #    id='b', title='/echo', description='Repete o texto informado', input_message_content=InputTextMessageContent(message_text='Uso: @{} /echo texto'.format(bot_username))),
+                dict(type='article',
+                     id='b', title='/duck', description='searching with ddg engine', input_message_content=dict(message_text='Uso: /duck')),
                 dict(type='article',
                     id='c', title='/faces', description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯', input_message_content=dict(message_text='Uso: @{} /faces - exibe uma lista de carinhas ¯\\_(ツ)_/¯'.format(bot_username))),
                 dict(type='article',
@@ -226,14 +226,10 @@ def inlines(msg):
                     id='e', title='/html', description='Formata um texto usando HTML', input_message_content=dict(message_text='Uso: @{} /html <b>texto</b>'.format(bot_username))),
                 dict(type='article',
                     id='f', title='/ip', description='Exibe informações de um IP informado', input_message_content=dict(message_text='Uso: @{} /ip google.com'.format(bot_username))),
-                #dict(type='article',
-                #    id='g', title='/markdown', description='Formata um texto usando Markdown', input_message_content=dict(message_text='Uso: @{} /markdown *texto*'.format(bot_username))),
                 dict(type='article',
-                    id='h', title='/proxy', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /proxy - Exibe uma lista de proxys de vários países.'.format(bot_username))),
+                    id='g', title='/proxy', description='searching proxy', input_message_content=dict(message_text='Uso: @{} /proxy - Exibe uma lista de proxys de vários países.'.format(bot_username))),
                 dict(type='article',
-                     id='i' or uuid4(), title='/duck', description='searching with ddg engine', input_message_content=dict(message_text='Uso: /duck')),
-                dict(type='article',
-                    id='j', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
+                    id='h', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
                 ]
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
