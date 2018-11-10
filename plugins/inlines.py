@@ -36,10 +36,15 @@ def inlines(msg):
             articles = [InlineQueryResultArticle(
                 id='a', title='Informações de '+msg['query'][4:], input_message_content=InputTextMessageContent(message_text='*Consulta*: `'+msg['query'][4:]+'`\n\n'+x, parse_mode="Markdown"))]
 
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+
 
         elif msg['query'].startswith('/echo'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:]))]
+
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+
             
         elif msg['query'].startswith('/proxy'):
             count = 50
@@ -59,6 +64,10 @@ def inlines(msg):
                     deftxt = escape_definition(deftxt)
                     articles.append(dict(type='article',
                         id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'Proxy:\n\nPaís:{deftxt["country"]}\nIP: {deftxt["ip"]}\nPorta: {deftxt["port"]}\nChecado há: {deftxt["last_checked"]}')))
+
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+
+
         elif msg['query'].startswith('/duck'):
             count = 50
             number = 1
@@ -81,20 +90,31 @@ def inlines(msg):
                                              input_message_content=InputTextMessageContent(
                                                  message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
                                                  parse_mode='HTML')))
+
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+
+
         elif msg['query'].startswith('/invert'):
             query = msg['query'][8:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],
                                                  input_message_content=InputTextMessageContent(
                                                      message_text=query[::-1]))]
 
+            bot.answerInlineQuery(msg['id'], results=articles)
+
+
         elif msg['query'].startswith('/markdown'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][10:], input_message_content=InputTextMessageContent(message_text=kk, parse_mode='Markdown'))]
+
+            bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('/html'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
+
+            bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('/yt'):
@@ -107,6 +127,8 @@ def inlines(msg):
             except:
                 articles.append(dict(type='article',
                         id=str(uuid4()), title=f'Nenhum resultado encontrado para "{msg["query"][4:]}".', input_message_content=InputTextMessageContent(message_text='.')))
+
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('/faces'):
@@ -182,15 +204,17 @@ def inlines(msg):
                     id='ai', title='(◕‿◕✿)', input_message_content=dict(message_text='(◕‿◕✿)')),
                 dict(type='article',
                     id='aj', title='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)', input_message_content=dict(message_text='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)'))]
-        
+
+            bot.answerInlineQuery(msg['id'], results=articles)
+
         
         elif msg['query'].startswith('/hidemsg'):
             articles = [InlineQueryResultArticle(
                 id='a', title='Resultado: '+msg['query'][9:], input_message_content=InputTextMessageContent(message_text='\u2060'*3600+msg['query'][9:]))]
-
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
         else:
-                articles = [
+            articles = [
                 dict(type='article',
                     id='a', title='Informações', description='Exibe informações sobre você', input_message_content=dict(message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>'+html.escape(first_name)+'</code>\n<b>ID:</b> <code>'+str(user_id)+'</code>\n<b>Username:</b> <code>'+username+'</code>', parse_mode="HTML")),
                 #dict(type='article',
@@ -213,6 +237,4 @@ def inlines(msg):
                     id='j', title='/yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(message_text='Uso: @{} /yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
                 ]
 
-
-
-        bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
