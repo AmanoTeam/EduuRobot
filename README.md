@@ -1,6 +1,6 @@
 <h6 align="center">
   <a href="https://t.me/EduuRobot">
-    <img src="https://i.imgur.com/tosnDbv.png" alt="EduuRobot" height="150px">
+    <img src="https://piics.ml/i/000.png" alt="EduuRobot" height="150px">
   </a>
   <h2 align="center">EduuRobot</h2>
   <h5 align="center">Bot multipropósito em Python para o Telegram.</h5>
