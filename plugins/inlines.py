@@ -98,7 +98,7 @@ def inlines(msg):
                                          message_text=f"Sem resultados para '{search}'."
                                      )))
 
-                bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('/invert'):
