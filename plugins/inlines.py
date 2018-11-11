@@ -91,7 +91,7 @@ def inlines(msg):
                                                  message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
                                                  parse_mode='HTML')))
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+                bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('/invert'):
