@@ -63,7 +63,7 @@ def inlines(msg):
                     deftxt = prox[i]
                     deftxt = escape_definition(deftxt)
                     articles.append(InlineQueryResultArticle(
-                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'<b>Proxy:</b>\nPaís: {deftxt["country"]}\nIP: <code>{deftxt["ip"]}</code>\nPorta: <code>{deftxt["port"]}</code>\nChecado há: <i>{deftxt["last_checked"]}</i>', parse_mode='HTML')))
+                        id=str(uuid4()), title=deftxt["country"]+' - '+deftxt["ip"]+':'+deftxt['port'], thumb_url='http://piics.ml/i/003.png', description='Last checked: '+deftxt["last_checked"], input_message_content=InputTextMessageContent(message_text=f'<b>Proxy:</b>\nPaís: {deftxt["country"]}\nIP: <code>{deftxt["ip"]}</code>\nPorta: <code>{deftxt["port"]}</code>\nChecado há: <i>{deftxt["last_checked"]}</i>', parse_mode='HTML')))
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
@@ -85,7 +85,7 @@ def inlines(msg):
                         articles.append(InlineQueryResultArticle(
                                              id=str(uuid4()),
                                              title=deftxt['title'],
-                                             thumb_url='https://avatars1.githubusercontent.com/u/43427286?s=400&u=73e7345af8746161e4d3c18893f90d10c2aa7306&v=4',
+                                             thumb_url='http://piics.ml/i/003.png',
                                              description=deftxt['url'],
                                              input_message_content=InputTextMessageContent(
                                                  message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
