@@ -73,8 +73,8 @@ def inlines(msg):
             number = 1
             search = msg['query'][6:]
             duc = duckpy.search(str(search))['results']
-            if len(duc) > 0:
-                articles = []
+            articles = []
+            if duc:
                 if count + number > len(duc):
                     maxdef = len(duc)
                 else:
@@ -90,6 +90,13 @@ def inlines(msg):
                                              input_message_content=InputTextMessageContent(
                                                  message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
                                                  parse_mode='HTML')))
+            else:
+                articles.append(InlineQueryResultArticle(
+                                     id=str(uuid4()),
+                                     title="Sem resultados.",
+                                     input_message_content=InputTextMessageContent(
+                                         message_text=f"Sem resultados para '{search}'."
+                                     )))
 
                 bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
