@@ -1,6 +1,7 @@
 import requests
 from requests import get
 from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
+from amanobot.exception import TelegramError
 import config
 import html
 from uuid import uuid4
@@ -120,8 +121,11 @@ def inlines(msg):
         elif msg['query'].startswith('/html'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][6:], input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
-
-            bot.answerInlineQuery(msg['id'], results=articles)
+            try:
+                bot.answerInlineQuery(msg['id'], results=articles)
+            except TelegramError:
+                articles = [InlineQueryResultArticle(
+                    id='a', title='Texto com erros de formatação.', input_message_content=InputTextMessageContent(message_text='Ocorreu um erro. provavelmente porque você usou uma tag não suportada, ou porque você esqueceu de fechar alguma tag. As tags suportadas são estas: <b>, <i>, <code>, <a> e <pre>.', parse_mode='html'))]
 
 
         elif msg['query'].startswith('/yt '):
