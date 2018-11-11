@@ -114,7 +114,7 @@ Owner: <a href="tg://user?id=123892996">Edu :3</>
 Partnerships:
  » <a href="https://t.me/hpxlist">HPXList - by usernein</>
 
-©2017-2018 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
+©2018 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
                                 parse_mode='html',
                                 reply_markup=keyboard.start_back,
                                 disable_web_page_preview=True)
