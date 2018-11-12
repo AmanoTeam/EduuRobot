@@ -90,7 +90,7 @@ def youtube(msg):
                         title = name
                     bot.editMessageText((msg['chat']['id'],sent_id),
                                         'Baixando <code>{}</code> do YouTube...\n({})'.format(name,pretty_size(fsize)), 'HTML')
-                    ydl.extract_info('https://www.youtube.com/watch?v='yt['id'], download=True)
+                    ydl.extract_info('https://www.youtube.com/watch?v='+yt['id'], download=True)
                     bot.editMessageText((msg['chat']['id'],sent_id), 'Enviando áudio...')
                     bot.sendChatAction(msg['chat']['id'], 'upload_document')
                     sent = bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
