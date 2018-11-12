@@ -125,9 +125,9 @@ def inlines(msg):
                 bot.answerInlineQuery(msg['id'], results=articles)
             except TelegramError:
                 articles = [InlineQueryResultArticle(
-                    id='a', title='Texto com erros de formatação.', input_message_content=InputTextMessageContent(message_text='Ocorreu um erro. provavelmente porque você usou uma tag não suportada, ou porque você esqueceu de fechar alguma tag. As tags suportadas são estas: <b>, <i>, <code>, <a> e <pre>.', parse_mode='html'))]
+                    id='a', title='Texto com erros de formatação.', input_message_content=InputTextMessageContent(message_text='Ocorreu um erro. provavelmente porque você usou uma tag não suportada, ou porque você esqueceu de fechar alguma tag. As tags suportadas são estas: <b>, <i>, <code>, <a> e <pre>.'))]
                 bot.answerInlineQuery(msg['id'], results=articles)
-                
+
 
         elif msg['query'].startswith('/yt '):
             articles = []
