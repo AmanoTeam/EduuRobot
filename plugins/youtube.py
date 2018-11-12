@@ -66,7 +66,7 @@ def youtube(msg):
                                           reply_to_message_id=msg['message_id'])['message_id']
                 try:
                     if 'youtu.be' not in text and 'youtube.com' not in text:
-                        yt = ydl.extract_info('ytsearch:'+text, download=False)
+                        yt = ydl.extract_info('ytsearch:'+text, download=False)['entries']
                     else:
                         url = text
                         yt = ydl.extract_info(url, download=False)
