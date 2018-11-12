@@ -96,6 +96,7 @@ def youtube(msg):
                     sent = bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
                         performer=performer,
                         title=title,
+                        duration=yt['duration'],
                         reply_to_message_id=msg['message_id']
                     )
                     os.remove(ydl.prepare_filename(yt))
