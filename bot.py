@@ -50,7 +50,7 @@ def handle(msg):
                 break
     except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
         pass
-    except Exception as e:
+    except Exception:
         with io.StringIO() as buf, redirect_stdout(buf):
             traceback.print_exc(file=sys.stdout)
             res = buf.getvalue()

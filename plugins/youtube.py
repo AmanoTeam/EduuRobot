@@ -82,7 +82,6 @@ def youtube(msg):
                         text='Ocorreu um erro.\n\n'+str(e)
                     )
                 if fsize < 52428800:
-                    first = time.time()
                     if ' - ' in name:
                         performer, title = name.rsplit(' - ',1)
                     else:
@@ -93,7 +92,7 @@ def youtube(msg):
                     ydl.extract_info('https://www.youtube.com/watch?v='+yt['id'], download=True)
                     bot.editMessageText((msg['chat']['id'],sent_id), 'Enviando áudio...')
                     bot.sendChatAction(msg['chat']['id'], 'upload_document')
-                    sent = bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
+                    bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
                         performer=performer,
                         title=title,
                         duration=yt['duration'],
