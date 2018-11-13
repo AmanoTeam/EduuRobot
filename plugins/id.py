@@ -5,7 +5,7 @@ bot = config.bot
 
 def id(msg):
     if msg.get('text'):
-        if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@'+config.bot_username:
+        if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@' + config.bot_username:
             if msg['chat']['type'] == 'private':
                 if 'last_name' in msg['from']:
                     last_name = msg['from']['last_name']

@@ -5,6 +5,7 @@ import threading
 
 lock = threading.Lock()
 
+
 def processamsg(msg):
     if msg.get('date'):
         if time.time() - msg['date'] > config.max_time:

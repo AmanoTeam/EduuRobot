@@ -8,7 +8,8 @@ bot_username = config.bot_username
 
 def jsondump(msg):
     if msg.get('text'):
-        if msg['text'].startswith('/jsondump') or msg['text'].startswith('!jsondump') or msg['text'] == '/jsondump@' + bot_username:
+        if msg['text'].startswith('/jsondump') or msg['text'].startswith('!jsondump') or msg[
+            'text'] == '/jsondump@' + bot_username:
             try:
                 if '-f' not in msg['text']:
                     bot.sendMessage(msg['chat']['id'], '`' + json.dumps(msg, indent=2, sort_keys=False) + '`',

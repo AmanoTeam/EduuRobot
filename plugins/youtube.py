@@ -19,18 +19,18 @@ def pretty_size(size):
 
 def search_yt(query):
     URL_BASE = "https://www.youtube.com/results"
-    url_yt= "https://www.youtube.com"
+    url_yt = "https://www.youtube.com"
     r = requests.get(URL_BASE, params=dict(search_query=query))
     page = r.text
-    soup = bs(page,"html.parser")
+    soup = bs(page, "html.parser")
     id_url = None
     list_videos = []
     for link in soup.find_all('a'):
         url = link.get('href')
         title = link.get('title')
-        if url.startswith("/watch") and (id_url!=url) and (title!=None):
+        if url.startswith("/watch") and (id_url != url) and (title != None):
             id_url = url
-            dic = {'title':title,'url':url_yt+url}
+            dic = {'title': title, 'url': url_yt + url}
             list_videos.append(dic)
         else:
             pass
@@ -45,10 +45,10 @@ def youtube(msg):
                 res = search_yt(msg['text'][4:])
                 vids = ''
                 for num, i in enumerate(res):
-                    vids += '{}: <a href="{}">{}</a>\n'.format(num+1,i['url'], i['title'])
+                    vids += '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])
             except IndexError:
                 vids = "Nenhum resultado foi encontrado"
-                
+
             bot.sendMessage(msg['chat']['id'], vids, 'HTML',
                             reply_to_message_id=msg['message_id'],
                             disable_web_page_preview=True)
@@ -66,7 +66,7 @@ def youtube(msg):
                 try:
                     if 'youtu.be' not in text and 'youtube.com' not in text:
                         url = text
-                        yt = ydl.extract_info('ytsearch:'+text, download=False)['entries'][0]
+                        yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
                     else:
                         url = text
                         yt = ydl.extract_info(url, download=False)
@@ -74,31 +74,32 @@ def youtube(msg):
                         if format['format_id'] == '140':
                             fsize = format['filesize']
                     name = yt['title']
-                    extname = yt['title']+'.m4a'
                 except Exception as e:
                     return bot.editMessageText(
-                        (msg['chat']['id'],sent_id),
-                        text='Ocorreu um erro.\n\n'+str(e)
+                        (msg['chat']['id'], sent_id),
+                        text='Ocorreu um erro.\n\n' + str(e)
                     )
                 if fsize < 52428800:
                     if ' - ' in name:
-                        performer, title = name.rsplit(' - ',1)
+                        performer, title = name.rsplit(' - ', 1)
                     else:
                         performer = None
                         title = name
-                    bot.editMessageText((msg['chat']['id'],sent_id),
-                                        'Baixando <code>{}</code> do YouTube...\n({})'.format(name,pretty_size(fsize)), 'HTML')
-                    ydl.extract_info('https://www.youtube.com/watch?v='+yt['id'], download=True)
-                    bot.editMessageText((msg['chat']['id'],sent_id), 'Enviando áudio...')
+                    bot.editMessageText((msg['chat']['id'], sent_id),
+                                        'Baixando <code>{}</code> do YouTube...\n({})'.format(name, pretty_size(fsize)),
+                                        'HTML')
+                    ydl.extract_info('https://www.youtube.com/watch?v=' + yt['id'], download=True)
+                    bot.editMessageText((msg['chat']['id'], sent_id), 'Enviando áudio...')
                     bot.sendChatAction(msg['chat']['id'], 'upload_document')
                     bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
-                        performer=performer,
-                        title=title,
-                        duration=yt['duration'],
-                        reply_to_message_id=msg['message_id']
-                    )
+                                  performer=performer,
+                                  title=title,
+                                  duration=yt['duration'],
+                                  reply_to_message_id=msg['message_id']
+                                  )
                     os.remove(ydl.prepare_filename(yt))
-                    bot.deleteMessage((msg['chat']['id'],sent_id))
+                    bot.deleteMessage((msg['chat']['id'], sent_id))
                 else:
-                    bot.editMessageText((msg['chat']['id'],sent_id),
-                                        'Ow, o arquivo resultante ({}) ultrapassa o meu limite de 50 MB'.format(pretty_size(fsize)))
+                    bot.editMessageText((msg['chat']['id'], sent_id),
+                                        'Ow, o arquivo resultante ({}) ultrapassa o meu limite de 50 MB'.format(
+                                            pretty_size(fsize)))

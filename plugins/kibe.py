@@ -34,13 +34,14 @@ def kibe(msg):
                 bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
                 os.remove("sticker.png")
             else:
-                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.", reply_to_message_id=msg['message_id'])
+                bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.",
+                                reply_to_message_id=msg['message_id'])
 
         elif msg['text'].startswith('/kibe') or msg['text'].startswith('!kibe'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
                 user = msg['from']
                 file_id = msg['reply_to_message']['sticker']['file_id']
-                bot.download_file(file_id, str(msg['from']['id'])+'_kibe_sticker.png')
+                bot.download_file(file_id, str(msg['from']['id']) + '_kibe_sticker.png')
                 packname = "a" + str(user['id']) + "_by_" + config.me['username']
                 if len(msg['text'][5:]) > 0:
                     sticker_emoji = msg['text'].split()[1]
@@ -49,7 +50,8 @@ def kibe(msg):
                 success = False
                 try:
                     bot.addStickerToSet(user_id=user['id'], name=packname,
-                                        png_sticker=open(str(msg['from']['id'])+'_kibe_sticker.png', 'rb'), emojis=sticker_emoji)
+                                        png_sticker=open(str(msg['from']['id']) + '_kibe_sticker.png', 'rb'),
+                                        emojis=sticker_emoji)
                     success = True
                 except TelegramError as e:
                     if e.description == "Bad Request: STICKERSET_INVALID":
@@ -59,7 +61,7 @@ def kibe(msg):
                     elif e.description == "Internal Server Error: sticker set not found":
                         success = True
                 finally:
-                    os.remove(str(msg['from']['id'])+"_kibe_sticker.png")
+                    os.remove(str(msg['from']['id']) + "_kibe_sticker.png")
 
                 if success:
                     bot.sendMessage(msg['chat']['id'],
@@ -86,10 +88,11 @@ def kibe(msg):
                 elif e.description == "Bad Request: PEER_ID_INVALID":
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                                        [dict(text='Start', url="t.me/{}".format(config.me['username']))]]), reply_to_message_id=msg['message_id'])
+                                        [dict(text='Start', url="t.me/{}".format(config.me['username']))]]),
+                                    reply_to_message_id=msg['message_id'])
                 else:
-                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.", reply_to_message_id=msg['message_id'])
-
+                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.",
+                                    reply_to_message_id=msg['message_id'])
 
             if success:
                 bot.sendMessage(msg['chat']['id'],

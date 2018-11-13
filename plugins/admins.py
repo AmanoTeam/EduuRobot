@@ -293,7 +293,8 @@ def admins(msg):
                         bot.sendMessage(msg['chat']['id'], 'O novo título do grupo foi definido com sucesso!',
                                         reply_to_message_id=msg['message_id'])
                     except NotEnoughRightsError:
-                        bot.sendMessage(msg['chat']['id'], 'Eu nao tenho tenho permissão para alterar as informações do grupo',
+                        bot.sendMessage(msg['chat']['id'],
+                                        'Eu nao tenho tenho permissão para alterar as informações do grupo',
                                         reply_to_message_id=msg['message_id'])
                     except:
                         bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro.',
@@ -313,7 +314,8 @@ def admins(msg):
             return True
 
         elif msg['text'] == '/admdebug':
-            res = isAdmin(msg['chat']['id'], msg['from']['id'], msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
+            res = isAdmin(msg['chat']['id'], msg['from']['id'],
+                          msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
             bot.sendMessage(msg['chat']['id'], res)
             return True
 

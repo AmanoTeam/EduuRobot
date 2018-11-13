@@ -20,6 +20,7 @@ bot_username = config.bot_username
 git_repo = config.git_repo
 sudoers = config.sudoers
 
+
 def sudos(msg):
     global db
 
@@ -87,14 +88,15 @@ def sudos(msg):
                 except Exception as e:
                     res = 'Erro: {}: {}'.format(type(e).__name__, e)
                 if len(res) < 1:
-                    res = 'Código sem retornos.' 
+                    res = 'Código sem retornos.'
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
 
 
             elif msg['text'] == '!upgrade':
                 if os.system('git > /dev/null') == 32512:
-                    bot.sendMessage(msg['chat']['id'], 'Ei, você precisa instalar o git para que esse comando funcione!',
+                    bot.sendMessage(msg['chat']['id'],
+                                    'Ei, você precisa instalar o git para que esse comando funcione!',
                                     reply_to_message_id=msg['message_id'])
                 else:
                     sent = bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
@@ -103,8 +105,8 @@ def sudos(msg):
                     database = open('bot.db', 'rb').read()
                     cdir = os.getcwd()
                     os.chdir('..')
-                    os.system('rm -rf '+cdir)
-                    os.system('git clone {} {}'.format(git_repo,cdir))
+                    os.system('rm -rf ' + cdir)
+                    os.system('git clone {} {}'.format(git_repo, cdir))
                     os.chdir(cdir)
                     with open('config.py', 'w') as cfg:
                         cfg.write(config)

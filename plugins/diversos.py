@@ -41,7 +41,7 @@ def diversos(msg):
             if text == '' or text == bot_username:
                 bot.sendMessage(msg['chat']['id'], '''*Uso:* `/bug <descrição do bug>` - _Reporta erro/bug para minha equipe_
   obs.: Mal uso há possibilidade de ID\_ban''', 'markdown',
-                    reply_to_message_id=msg['message_id'])
+                                reply_to_message_id=msg['message_id'])
             else:
                 bot.sendMessage(logs, '''
 <a href="tg://user?id={}">{}</a> reportou um bug
@@ -52,7 +52,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                        msg['from']['id'],
                        text), 'HTML')
                 bot.sendMessage(msg['chat']['id'], 'O bug foi reportado com sucesso para a minha equipe!',
-                    reply_to_message_id=msg['message_id'])
+                                reply_to_message_id=msg['message_id'])
 
 
         elif msg['text'].startswith('/html ') or msg['text'].startswith('!html '):
@@ -73,12 +73,12 @@ Mensagem: {}'''.format(msg['from']['id'],
             else:
                 reply_id = None
             sent = bot.sendMessage(msg['chat']['id'], '<code>|</code>', 'html',
-                                    reply_to_message_id=reply_id)
+                                   reply_to_message_id=reply_id)
             for char in text:
                 string = string + char
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+string+'</code>', 'html')
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+string+'|</code>', 'html')
-            bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>'+msg['text'][6:]+'</code>', 'html')
+                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '</code>', 'html')
+                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '|</code>', 'html')
+            bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + msg['text'][6:] + '</code>', 'html')
             return True
 
 
@@ -86,12 +86,12 @@ Mensagem: {}'''.format(msg['from']['id'],
             if re.match(r'^(https?:\/\/)', msg['text'][9:]):
                 text = msg['text'][9:]
             else:
-                text = 'http://'+msg['text'][9:]
+                text = 'http://' + msg['text'][9:]
             try:
                 res = requests.get(text).text
             except Exception as e:
                 return bot.sendMessage(msg['chat']['id'], str(e),
-                                reply_to_message_id=msg['message_id'])
+                                       reply_to_message_id=msg['message_id'])
             if len(res) > 4000:
                 res = send_to_hastebin(res)
             bot.sendMessage(msg['chat']['id'], '*Conteúdo:*\n`{}`'.format(res), 'markdown',
@@ -114,6 +114,6 @@ Mensagem: {}'''.format(msg['from']['id'],
                     bot.sendMessage(msg['chat']['id'], '''🔃 <b>{}</b> retweetou:
 
 👤 <b>{}</b>: <i>{}</i>'''.format(msg['from']['first_name'], msg['reply_to_message']['from']['first_name'],
-                                   msg['reply_to_message']['text']), 'HTML',
+                                  msg['reply_to_message']['text']), 'HTML',
                                     reply_to_message_id=msg['message_id'])
                     return True

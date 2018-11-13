@@ -14,7 +14,8 @@ def start(msg):
         else:
             teclado = keyboard.start
             smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre mim inicie uma conversa comigo.'
-        if msg['text'].split()[0] == '/start' or msg['text'] == '!start' or msg['text'].split()[0] == '/start@' + bot_username:
+        if msg['text'].split()[0] == '/start' or msg['text'] == '!start' or msg['text'].split()[
+            0] == '/start@' + bot_username:
             bot.sendMessage(msg['chat']['id'], smsg,
                             reply_to_message_id=msg['message_id'], reply_markup=teclado)
             return True
