@@ -1,7 +1,6 @@
 import config
 import youtube_dl
 import requests
-import time
 import os
 from bs4 import BeautifulSoup as bs
 
