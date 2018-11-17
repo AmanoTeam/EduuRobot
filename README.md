@@ -48,3 +48,5 @@
 ### Nota
 
   - Caso encontre algum bug no bot, crie um issue [aqui](https://github.com/AmanoTeam/EduuRobot/issues) ou envie /bug + o erro que você está tendo (No [EduuRobot](https://t.me/EduuRobot)).
+
+©2018 - [AmanoTeam™](https://amanoteam.ml)
