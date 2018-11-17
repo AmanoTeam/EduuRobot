@@ -35,6 +35,7 @@ enabled_plugins = [
     'kibe',
     'traduzir',
     'inlines',
+    'welcome',
     'admins',
     'prints',
     'pypi',
