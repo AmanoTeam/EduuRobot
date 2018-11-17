@@ -1,8 +1,10 @@
 import config
 from db_handler import conn, cursor
+from .admins import isAdmin
 
 bot = config.bot
 bot_username = config.bot_username
+bot_id = config.bot_id
 
 
 def escape(text):
@@ -14,7 +16,7 @@ def escape(text):
 
 
 def get_welcome(chat_id):
-    cursor.execute('SELECT (welcome, welcome_enabled) FROM chats WHERE chat_id = (?)', (chat_id,))
+    cursor.execute('SELECT welcome, welcome_enabled FROM chats WHERE chat_id = (?)', (chat_id,))
     try:
         return cursor.fetchall()[0]
     except IndexError:
@@ -22,31 +24,26 @@ def get_welcome(chat_id):
 
 
 def set_welcome(chat_id, welcome):
-    try:
-        cursor.execute('UPDATE chats SET welcome = ? welcome_set = True WHERE chat_id = ?', (welcome, chat_id))
-    finally:
-        cursor.execute('INSERT INTO chats (chat_id, welcome) VALUES (?, ?)', (chat_id, welcome))
+    cursor.execute('UPDATE chats SET welcome = ?, welcome_enabled = True WHERE chat_id = ?', (welcome, chat_id))
     conn.commit()
 
 
 def welcome(msg):
-    if msg.get('new_chat_member'):
+    if msg.get('text'):
+        pass
+    elif msg.get('new_chat_member'):
         chat_title = msg['chat']['title']
+        chat_id = msg['chat']['id']
         first_name = msg['new_chat_member']['first_name']
         user_id = msg['new_chat_member']['id']
         if msg['new_chat_member']['id'] == bot_id:
-            bot.sendMessage(
-                chat_id=200097591,
-                text='''O bot foi adicionado em um novo grupo!
-
-Nome do grupo: {}
-ID do grupo: {}'''.format(msg['chat']['title'], msg['chat']['id']))
+            pass
         else:
             welcome = get_welcome(chat_id)
-            if welcome != None:
-                welcome = welcome.replace('$name', md_utils.escape(first_name)).replace('$title', md_utils.escape(chat_title)).replace('$id', str(user_id))
+            if welcome[0] != None:
+                welcome = welcome[0].replace('$name', escape(first_name)).replace('$title', escape(chat_title)).replace('$id', str(user_id))
             else:
-                welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name,md_utils.escape(chat_title))
+                welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape(chat_title))
             if '$rules' in welcome:
                 welcome = welcome.replace('$rules', '')
                 rules_markup = InlineKeyboardMarkup(inline_keyboard=[
@@ -56,6 +53,6 @@ ID do grupo: {}'''.format(msg['chat']['title'], msg['chat']['id']))
             else:
                 rules_markup = None
             bot.sendMessage(chat_id, welcome, 'Markdown',
-                            reply_to_message_id=msg_id,
+                            reply_to_message_id=msg['message_id'],
                             reply_markup=rules_markup,
                             disable_web_page_preview=True)
