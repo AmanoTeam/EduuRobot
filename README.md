@@ -36,7 +36,7 @@
   - Vá ao [@BotFather](https://t.me/BotFather) e envie o comando `/setprivacy`, clique no bot escolhido, então clique em Disable
   - Renomeie o arquivo `config.py.example` para `config.py` e abra ele
   - Coloque o token do seu bot em onde tem `seu:token`
-  - Coloque sua ID em `sudos` (Caso você não saiba a sua envie o comando `/id`)
+  - Coloque sua ID em `sudoers` (Caso você não saiba a sua envie o comando `/id`)
   - Coloque a sua ID ou a de um grupo/canal em `logs`
 
 ### Executando
