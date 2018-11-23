@@ -13,7 +13,8 @@ bot = config.bot
 
 proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
-
+googl_img_api = 'https://apikuu.herokuapp.com/api/v0/sakty/imej'
+HEADERS = {"User-Agent": "Eduu/1.0"}
 
 def escape_definition(prox):
     for key, value in prox.items():
@@ -108,7 +109,24 @@ def inlines(msg):
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
-
+        elif msg['query'].startswith('img'):
+            query = msg['query'][4:]
+            img = get(googl_img_api,
+                  params={
+                      "cari": query
+                  },
+                  headers=HEADERS).json()
+            resp = []
+            for k, result in enumerate(img):
+                    if k == 50:
+                        break
+                    resp.append(InlineQueryResultPhoto(
+                        id=str(uuid4()),
+                        photo_url=result["Isi"],
+                        thumb_url=result["Tumbnil"],
+                        caption=f'{result["Deskripsi"]}'
+                    ))
+             bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
         elif msg['query'].startswith('invert'):
             query = msg['query'][7:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],
@@ -272,7 +290,11 @@ def inlines(msg):
                         message_text='Uso: @{} proxy - Exibe uma lista de proxys de vários países.'.format(
                             bot_username))),
                 InlineQueryResultArticle(
-                    id='h', title='yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(
+                    id='h', title='google image', description='searching image using google image', input_message_content=dict(
+                        message_text='Uso: @{} image - Exibe uma image de image de vários países.'.format(
+                            bot_username))),
+                InlineQueryResultArticle(
+                    id='i', title='yt', description='Pesquisar vídeos no YouTube', input_message_content=dict(
                         message_text='Uso: @{} yt - Pesquisar vídeos no YouTube.'.format(bot_username)))
             ]
 
