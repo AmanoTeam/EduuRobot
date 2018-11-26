@@ -109,6 +109,7 @@ def inlines(msg):
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
+
         elif msg['query'].startswith('img'):
             query = msg['query'][4:]
             img = get(googl_img_api,
@@ -126,7 +127,9 @@ def inlines(msg):
                         thumb_url=result["Tumbnil"],
                         caption=f'{result["Deskripsi"]}'
                     ))
-             bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
+            bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
+
+
         elif msg['query'].startswith('invert'):
             query = msg['query'][7:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],
