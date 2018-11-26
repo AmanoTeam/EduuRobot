@@ -1,6 +1,6 @@
 import requests
 from requests import get
-from amanobot.namedtuple import InlineQueryResultArticle, InputTextMessageContent
+from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 from amanobot.exception import TelegramError
 import config
 import html
