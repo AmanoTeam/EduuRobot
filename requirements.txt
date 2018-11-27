@@ -4,3 +4,4 @@ colorama
 requests
 youtube-dl
 duckpy
+python-aiml
