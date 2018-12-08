@@ -24,13 +24,48 @@ def get_welcome(chat_id):
 
 
 def set_welcome(chat_id, welcome):
-    cursor.execute('UPDATE chats SET welcome = ?, welcome_enabled = True WHERE chat_id = ?', (welcome, chat_id))
+    cursor.execute('UPDATE chats SET welcome = ? WHERE chat_id = ?', (welcome, chat_id))
+    conn.commit()
+
+
+def enable_welcome(chat_id):
+    cursor.execute('UPDATE chats SET welcome_enabled = True WHERE chat_id = ?', (chat_id,))
+    conn.commit()
+
+
+def disable_welcome(chat_id):
+    cursor.execute('UPDATE chats SET welcome_enabled = False WHERE chat_id = ?', (chat_id,))
     conn.commit()
 
 
 def welcome(msg):
     if msg.get('text'):
-        pass
+        if msg['text'].startswith('/welcome') or msg['text'].startswith('!welcome'):
+            if chat_type == 'private':
+                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+
+            elif isAdmin(msg['chat']['id'], msg['from']['id']):
+                if text == '' or text == bot_username:
+                    bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
+                                    reply_to_message_id=msg['message_id'])
+                        elif text == 'on':
+                            enable_welcome(msg['chat']['id'])
+                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
+                                            reply_to_message_id=msg['message_id'])
+                        elif text == 'off':
+                            disable_welcome(msg['chat']['id'])
+                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
+                                            reply_to_message_id=msg['message_id'])
+                        elif text == 'reset':
+                            set_welcome(msg['chat']['id'], None)
+                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
+                                            reply_to_message_id=msg['message_id'])
+                        else:
+                            set_welcome(msg['chat']['id'], text)
+                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
+                                            reply_to_message_id=msg['message_id'])
+
+
     elif msg.get('new_chat_member'):
         chat_title = msg['chat']['title']
         chat_id = msg['chat']['id']
