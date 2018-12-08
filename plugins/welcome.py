@@ -29,12 +29,12 @@ def set_welcome(chat_id, welcome):
 
 
 def enable_welcome(chat_id):
-    cursor.execute('UPDATE chats SET welcome_enabled = True WHERE chat_id = ?', (chat_id,))
+    cursor.execute('UPDATE chats SET welcome_enabled = ? WHERE chat_id = ?', (True, chat_id))
     conn.commit()
 
 
 def disable_welcome(chat_id):
-    cursor.execute('UPDATE chats SET welcome_enabled = False WHERE chat_id = ?', (chat_id,))
+    cursor.execute('UPDATE chats SET welcome_enabled = ? WHERE chat_id = ?', (False, chat_id))
     conn.commit()
 
 
