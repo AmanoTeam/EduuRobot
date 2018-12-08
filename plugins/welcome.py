@@ -48,22 +48,22 @@ def welcome(msg):
                 if text == '' or text == bot_username:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
                                     reply_to_message_id=msg['message_id'])
-                        elif text == 'on':
-                            enable_welcome(msg['chat']['id'])
-                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
-                                            reply_to_message_id=msg['message_id'])
-                        elif text == 'off':
-                            disable_welcome(msg['chat']['id'])
-                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
-                                            reply_to_message_id=msg['message_id'])
-                        elif text == 'reset':
-                            set_welcome(msg['chat']['id'], None)
-                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
-                                            reply_to_message_id=msg['message_id'])
-                        else:
-                            set_welcome(msg['chat']['id'], text)
-                            bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
-                                            reply_to_message_id=msg['message_id'])
+                elif text == 'on':
+                    enable_welcome(msg['chat']['id'])
+                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
+                                    reply_to_message_id=msg['message_id'])
+                elif text == 'off':
+                    disable_welcome(msg['chat']['id'])
+                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
+                                    reply_to_message_id=msg['message_id'])
+                elif text == 'reset':
+                    set_welcome(msg['chat']['id'], None)
+                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
+                                    reply_to_message_id=msg['message_id'])
+                else:
+                    set_welcome(msg['chat']['id'], text)
+                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
+                                    reply_to_message_id=msg['message_id'])
 
 
     elif msg.get('new_chat_member'):
