@@ -41,7 +41,7 @@ def disable_welcome(chat_id):
 def welcome(msg):
     if msg.get('text'):
         if msg['text'].startswith('/welcome') or msg['text'].startswith('!welcome'):
-            if chat_type == 'private':
+            if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
             elif isAdmin(msg['chat']['id'], msg['from']['id']):
