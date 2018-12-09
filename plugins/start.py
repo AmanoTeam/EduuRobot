@@ -8,14 +8,16 @@ bot_username = config.bot_username
 
 def start(msg):
     if msg.get('text'):
-        if msg['chat']['type'] == 'private':
-            teclado = keyboard.start_pv
-            smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções clique nos botões abaixo:'
-        else:
-            teclado = keyboard.start
-            smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre mim inicie uma conversa comigo.'
-        if msg['text'].split()[0] == '/start' or msg['text'] == '!start' or msg['text'].split()[
+        if msg['text'] == '/start' or msg['text'] == '!start' or msg['text'].split()[
             0] == '/start@' + bot_username:
+
+            if msg['chat']['type'] == 'private':
+                teclado = keyboard.start_pv
+                smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:'
+            else:
+                teclado = keyboard.start
+                smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre mim inicie uma conversa comigo.'
+
             bot.sendMessage(msg['chat']['id'], smsg,
                             reply_to_message_id=msg['message_id'], reply_markup=teclado)
             return True
