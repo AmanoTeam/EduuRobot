@@ -25,13 +25,13 @@ def rules(msg):
 
         if msg['text'].startswith('/start rules_'):
             chat_id = msg['text'].split('_')[1]
-            rules = get_rules(chat_id) or 'Sem regras!'
+            rules = get_rules(chat_id)[0] or 'Sem regras!'
 
             bot.sendMessage(msg['chat']['id'], rules, 'Markdown')
 
 
         elif msg['text'] == '/rules' or msg['text'] == '!rules' or msg['text'] == '/regras' or msg['text'] == '!regras' or msg['text'] == '/regras@'+bot_username or msg['text'] == '/rules@'+bot_username:
-            rules = get_rules(msg['chat']['id']) or 'Sem regras!'
+            rules = get_rules(msg['chat']['id'])[0] or 'Sem regras!'
 
             bot.sendMessage(msg['chat']['id'], rules, 'Markdown',
                             reply_to_message_id=msg['message_id'])
