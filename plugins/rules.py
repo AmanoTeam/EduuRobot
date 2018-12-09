@@ -38,7 +38,7 @@ def rules(msg):
 
 
         elif msg['text'] == '/defrules' or msg['text'] == '!defrules' or msg['text'] == '/defregras' or msg['text'] == '!defregras' or msg['text'] == '/defregras@'+bot_username or msg['text'] == '/defrules@'+bot_username:
-            if isAdmin(msg['chat']['id'], msg['from']['id'])[0]:
+            if isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
                 if len(msg['text'].split()) == 1:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /defregras Regras do grupo (suporta Markdown)',
                                     reply_to_message_id=msg['message_id'])
