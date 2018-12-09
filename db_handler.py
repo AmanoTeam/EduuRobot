@@ -9,6 +9,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS chats (
                                                     chat_id,
                                                     welcome,
                                                     welcome_enabled,
+                                                    rules,
                                                     goodbye,
                                                     goodbye_enabled,
                                                     ia
