@@ -1,6 +1,7 @@
 import config
 import requests
 import re
+import html
 
 bot = config.bot
 sudos = config.sudoers
@@ -33,6 +34,17 @@ def diversos(msg):
                 reply_id = None
             bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'markdown',
                             reply_to_message_id=reply_id)
+            return True
+
+
+        elif msg['text'] == '/admins' or msg['text'] == '!admins':
+            adms = bot.getChatAdministrators(msg['chat']['id'])
+            names = 'Admins:\n\n'
+            for num, user in enumerate(adms):
+                names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num+1, user['user']['id'],
+                    html.escape(user['user']['first_name']))
+            bot.sendMessage(msg['chat']['id'], names, 'html',
+                            reply_to_message_id=msg['message_id'])
             return True
 
 
