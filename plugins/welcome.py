@@ -1,4 +1,5 @@
 import config
+from amanobot.namedtuple import InlineKeyboardMarkup
 from db_handler import conn, cursor
 from .admins import isAdmin
 
