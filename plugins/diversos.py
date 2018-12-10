@@ -2,6 +2,7 @@ import config
 import requests
 import re
 import html
+import amanobot
 
 bot = config.bot
 sudos = config.sudoers
@@ -48,6 +49,25 @@ def diversos(msg):
             return True
 
 
+        elif text.startswith('/token ') or text.startswith('!token '):
+            text = text[7:]
+            try:
+                bot = amanobot.Bot(text).getMe()
+                bot_name = bot_token['first_name']
+                bot_user = bot_token['username']
+                bot_id = bot_token['id']
+                bot.sendMessage(msg['chat']['id'], '''Informações do bot:
+
+Nome: {}
+Username: @{}
+ID: {}'''.format(bot_name, bot_user, bot_id), reply_to_message_id=msg['message_id'])
+
+            except UnauthorizedError:
+                bot.sendMessage(msg['chat']['id'], 'Token inválido.',
+                                reply_to_message_id=msg['message_id'])
+            return True
+
+
         elif msg['text'].startswith('/bug') or msg['text'].startswith('!bug'):
             text = msg['text'][5:]
             if text == '' or text == bot_username:
@@ -65,6 +85,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                        text), 'HTML')
                 bot.sendMessage(msg['chat']['id'], 'O bug foi reportado com sucesso para a minha equipe!',
                                 reply_to_message_id=msg['message_id'])
+            return True
 
 
         elif msg['text'].startswith('/html ') or msg['text'].startswith('!html '):
