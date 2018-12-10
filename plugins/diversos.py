@@ -143,9 +143,9 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].lower() == 'rt' and msg.get('reply_to_message'):
-            if msg['reply_to_message']['text'].lower() != 'rt':
-                if not re.match('🔃 .* retweetou:\n\n👤 .*', msg['reply_to_message']['text']):
-                    if msg['reply_to_message'].get('text'):
+            if msg['reply_to_message'].get('text'):
+                if msg['reply_to_message']['text'].lower() != 'rt':
+                    if not re.match('🔃 .* retweetou:\n\n👤 .*', msg['reply_to_message']['text']):
                         bot.sendMessage(msg['chat']['id'], '''🔃 <b>{}</b> retweetou:
 
 👤 <b>{}</b>: <i>{}</i>'''.format(msg['from']['first_name'], msg['reply_to_message']['from']['first_name'],
