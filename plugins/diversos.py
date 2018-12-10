@@ -3,6 +3,7 @@ import requests
 import re
 import html
 import amanobot
+from amanobot.exception import UnauthorizedError
 
 bot = config.bot
 sudos = config.sudoers
