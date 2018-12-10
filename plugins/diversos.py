@@ -3,7 +3,7 @@ import requests
 import re
 import html
 import amanobot
-from amanobot.exception import UnauthorizedError
+from amanobot.exception import TelegramError
 
 bot = config.bot
 sudos = config.sudoers
@@ -63,7 +63,7 @@ Nome: {}
 Username: @{}
 ID: {}'''.format(bot_name, bot_user, bot_id), reply_to_message_id=msg['message_id'])
 
-            except UnauthorizedError:
+            except TelegramError:
                 bot.sendMessage(msg['chat']['id'], 'Token inválido.',
                                 reply_to_message_id=msg['message_id'])
             return True
