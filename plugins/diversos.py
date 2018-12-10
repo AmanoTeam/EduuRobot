@@ -53,7 +53,7 @@ def diversos(msg):
         elif msg['text'].startswith('/token ') or msg['text'].startswith('!token '):
             text = msg['text'][7:]
             try:
-                bot = amanobot.Bot(text).getMe()
+                bot_token = amanobot.Bot(text).getMe()
                 bot_name = bot_token['first_name']
                 bot_user = bot_token['username']
                 bot_id = bot_token['id']
