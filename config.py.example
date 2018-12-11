@@ -33,6 +33,7 @@ enabled_plugins = [
     'start',
     'rules',
     'shorten',
+    'sed',
     'kibe',
     'traduzir',
     'inlines',
