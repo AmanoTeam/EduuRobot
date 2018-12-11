@@ -11,7 +11,7 @@ def sed(msg):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
             pattern = exp[1]
             replace_with = exp[2]
-            flags = exp[3] if len(exp) > 3 else 'g'
+            flags = exp[3] if len(exp) > 3 else ''
 
             count = 1
             rflags = 0
