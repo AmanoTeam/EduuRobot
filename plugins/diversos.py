@@ -11,8 +11,8 @@ logs = config.logs
 bot_username = config.bot_username
 
 
-def send_to_hastebin(text):
-    post = requests.post("https://hastebin.com/documents", data=text.encode('utf-8'))
+def send_to_dogbin(text):
+    post = requests.post("https://del.dog/documents", data=text.encode('utf-8'))
     return "https://hastebin.com/" + post.json()["key"]
 
 
@@ -127,7 +127,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                 return bot.sendMessage(msg['chat']['id'], str(e),
                                        reply_to_message_id=msg['message_id'])
             if len(res) > 4000:
-                res = send_to_hastebin(res)
+                res = send_to_dogbin(res)
             bot.sendMessage(msg['chat']['id'], '*Conteúdo:*\n`{}`'.format(res), 'markdown',
                             reply_to_message_id=msg['message_id'])
             return True

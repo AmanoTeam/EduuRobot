@@ -94,3 +94,4 @@ def welcome(msg):
                                 reply_to_message_id=msg['message_id'],
                                 reply_markup=rules_markup,
                                 disable_web_page_preview=True)
+                

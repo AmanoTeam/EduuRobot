@@ -23,7 +23,6 @@ def sed(msg):
                 rflags = re.I
             elif 'g' in flags:
                 count = 0
-                
 
             res = re.sub(pattern, replace_with, msg['reply_to_message']['text'], count=count, flags=rflags)
 
@@ -31,4 +30,3 @@ def sed(msg):
                             reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True
-
