@@ -13,7 +13,7 @@ bot_username = config.bot_username
 
 def send_to_dogbin(text):
     post = requests.post("https://del.dog/documents", data=text.encode('utf-8'))
-    return "https://hastebin.com/" + post.json()["key"]
+    return "https://del.dog/" + post.json()["key"]
 
 
 def diversos(msg):
