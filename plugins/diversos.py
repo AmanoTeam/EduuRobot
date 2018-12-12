@@ -128,7 +128,9 @@ Mensagem: {}'''.format(msg['from']['id'],
                                        reply_to_message_id=msg['message_id'])
             if len(res) > 4000:
                 res = send_to_dogbin(res)
-            bot.sendMessage(msg['chat']['id'], '*Conteúdo:*\n`{}`'.format(res), 'markdown',
+            else:
+                res = '<pre>'+html.escape(res)+'</pre>'
+            bot.sendMessage(msg['chat']['id'], '*Conteúdo:*\n{}'.format(res), 'html',
                             reply_to_message_id=msg['message_id'])
             return True
 
