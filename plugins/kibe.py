@@ -64,6 +64,10 @@ def kibe(msg):
                         return
                     elif e.description == "Internal Server Error: sticker set not found":
                         success = True
+                    else:
+                        bot.sendMessage(msg['chat']['id'], 'Error: '+e.description,
+                                        reply_to_message_id=msg['message_id'])
+                        return
                 finally:
                     os.remove(str(msg['from']['id']) + "_kibe_sticker.png")
 
@@ -74,6 +78,7 @@ def kibe(msg):
 
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to kibe it.")
+
         elif msg['text'].startswith('/make_kibe') or msg['text'].startswith('!make_kibe'):
             user = msg['from']
             name = user['first_name']
