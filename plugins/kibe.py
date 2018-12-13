@@ -46,7 +46,11 @@ def kibe(msg):
                 if len(msg['text'][5:]) > 0:
                     sticker_emoji = msg['text'].split()[1]
                 else:
-                    sticker_emoji = msg['reply_to_message']['sticker']['emoji']
+                    try:
+                        sticker_emoji = msg['reply_to_message']['sticker']['emoji']
+                    except KeyError:
+                        return bot.sendMessage(msg['chat']['id'], 'You need to define a emoticon for this sticker, since it doesn\'t have one.',
+                                               reply_to_message_id=msg['message_id'])
                 success = False
                 try:
                     bot.addStickerToSet(user_id=user['id'], name=packname,
