@@ -5,15 +5,13 @@ conn = sqlite3.connect('bot.db', check_same_thread=False)
 
 cursor = conn.cursor()
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS chats (
-                                                    chat_id,
+cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
                                                     welcome,
                                                     welcome_enabled,
                                                     rules,
                                                     goodbye,
                                                     goodbye_enabled,
-                                                    ia
-                                                    )''')
+                                                    ia)''')
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS users (user_id, ia)''')
 
