@@ -3,7 +3,7 @@ from config import bot
 
 def git(msg):
     if msg.get('text'):
-        if msg['text'].startswith('/git ') or text.startswith('!git '):
+        if msg['text'].startswith('/git ') or msg['text'].startswith('!git '):
             text = msg['text'][5:]
             res = requests.get('https://api.github.com/users/' + text).json()
             if not res.get('login'):
