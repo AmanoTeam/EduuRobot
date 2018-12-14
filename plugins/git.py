@@ -7,10 +7,10 @@ def git(msg):
             text = msg['text'][5:]
             res = requests.get('https://api.github.com/users/' + text).json()
             if not res.get('login'):
-                return bot.sendMessage(chat_id, 'Usuário "{}" não encontrado.'.format(text),
+                return bot.sendMessage(msg['chat']['id'], 'Usuário "{}" não encontrado.'.format(text),
                                        reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(chat_id, '''*Nome:* `{}`
+                bot.sendMessage(msg['chat']['id'], '''*Nome:* `{}`
 *Login:* `{}`
 *Localização:* `{}`
 *Tipo:* `{}`
