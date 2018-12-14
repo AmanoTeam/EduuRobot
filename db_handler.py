@@ -13,7 +13,9 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
                                                     goodbye_enabled,
                                                     ia)''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS users (user_id, ia)''')
+cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia)')
+
+cursor.execute('CREATE TABLE IF NOT EXISTS user_warns (user_id, chat_id, count)')
 
 cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id)')
 
@@ -21,19 +23,19 @@ cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id
 def chat_exists(chat_id):
     try:
         cursor.execute('SELECT * FROM chats WHERE chat_id = (?)', (chat_id,))
-        cursor.fetchall()[0]
-        return True
-    except IndexError:
-        return False
+        if cursor.fetchall():
+            return True
+        else:
+            return False
 
 
 def user_exists(user_id):
     try:
         cursor.execute('SELECT * FROM users WHERE user_id = (?)', (user_id,))
-        cursor.fetchall()[0]
-        return True
-    except (OperationalError, IndexError):
-        return False
+        if cursor.fetchall():
+            return True
+        else:
+            return False
 
 
 def del_restarted():
