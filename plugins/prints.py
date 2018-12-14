@@ -25,5 +25,5 @@ def prints(msg):
             except Exception as e:
                 bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
             finally:
-                os.delete(f'{ctime}.png')
+                os.remove(f'{ctime}.png')
             return True
