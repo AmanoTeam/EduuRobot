@@ -29,7 +29,7 @@ def warns(msg):
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
             else:
-                warns_limit = get_warns_limit(msg['chat']['id'])
+                warns_limit = get_warns_limit(msg['chat']['id']) or 3
                 if msg.get('reply_to_message'):
                     reply_id = msg['reply_to_message']['from']['id']
                     reply_name = msg['reply_to_message']['from']['first_name']
