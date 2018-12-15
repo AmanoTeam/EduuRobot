@@ -17,7 +17,7 @@ def get_warns_limit(chat_id):
 
 def add_warns(chat_id, user_id, number):
     try:
-        cursor.execute('UPDATE count SET user_warns = user_warns + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
+        cursor.execute('UPDATE user_warns SET user_warns = user_warns + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
     except:
         cursor.execute('INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)', (user_id, chat_id, number))
     return True
