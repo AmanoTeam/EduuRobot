@@ -20,6 +20,7 @@ def add_warns(chat_id, user_id, number):
         cursor.execute('UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
     except:
         cursor.execute('INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)', (user_id, chat_id, number))
+    conn.commit()
     return True
 
 
