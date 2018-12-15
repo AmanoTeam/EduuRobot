@@ -10,6 +10,11 @@ def get_warns(chat_id, user_id):
     return cursor.fetchall()[0][0]
 
 
+def get_warns_limit(chat_id):
+    cursor.execute('SELECT warns_limit FROM user_warns WHERE chat_id = ?', (chat_id))
+    return cursor.fetchall()[0][0]
+
+
 def add_warns(chat_id, user_id, number):
     try:
         cursor.execute('UPDATE count SET user_warns = user_warns + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
@@ -24,6 +29,7 @@ def warns(msg):
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
             else:
+                warns_limit = get_warns_limit(msg['chat']['id'])
                 if msg.get('reply_to_message'):
                     reply_id = msg['reply_to_message']['from']['id']
                     reply_name = msg['reply_to_message']['from']['first_name']

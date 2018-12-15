@@ -11,7 +11,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
                                                     rules,
                                                     goodbye,
                                                     goodbye_enabled,
-                                                    ia)''')
+                                                    ia,
+                                                    warns_limit)''')
 
 cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia)')
 
