@@ -11,7 +11,7 @@ def get_warns(chat_id, user_id):
 
 
 def get_warns_limit(chat_id):
-    cursor.execute('SELECT warns_limit FROM chats WHERE chat_id = ?', (chat_id))
+    cursor.execute('SELECT warns_limit FROM chats WHERE chat_id = ?', (chat_id,))
     return cursor.fetchall()[0][0]
 
 
