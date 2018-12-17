@@ -326,8 +326,8 @@ def admins(msg):
             if is_admin(msg['data'].split()[1], msg['from']['id'])['user']:
                 info = bot.getChat(msg['data'].split()[1])
                 kb = InlineKeyboardMarkup(inline_keyboard=[
-                    [dict(text='IA', callback_data='.'.format(msg['data'].split()[1]))] +
-                    [dict(text='None', callback_data='IA {}'.format(msg['data'].split()[1]))],
+                    [dict(text='IA', callback_data='ai')] +
+                    [dict(text='None', callback_data='ai_switch {}'.format(msg['data'].split()[1]))],
                     [dict(text='« Voltar', callback_data='back {}'.format(msg['data'].split()[1]))]
                 ])
                 bot.editMessageText((msg['from']['id'], msg['message']['message_id']),
