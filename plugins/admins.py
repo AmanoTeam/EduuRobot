@@ -7,7 +7,7 @@ bot_id = config.bot_id
 sudos = config.sudoers
 
 
-def isAdmin(chat_id, user_id, reply_id=None):
+def is_admin(chat_id, user_id, reply_id=None):
     adms = bot.getChatAdministrators(chat_id)
     adm_id = []
     dic = {}
@@ -55,7 +55,7 @@ def admins(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:
@@ -100,7 +100,7 @@ def admins(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:
@@ -144,7 +144,7 @@ def admins(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:
@@ -188,7 +188,7 @@ def admins(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:
@@ -234,7 +234,7 @@ def admins(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:
@@ -260,7 +260,7 @@ def admins(msg):
         elif msg['text'].split()[0] == '/pin' or msg['text'].split()[0] == '!pin':
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 if msg.get('reply_to_message'):
                     bot.pinChatMessage(msg['chat']['id'], msg['reply_to_message']['message_id'])
                     bot.sendMessage(msg['chat']['id'], 'Mensagem fixada',
@@ -273,7 +273,7 @@ def admins(msg):
         elif msg['text'].split()[0] == '/unpin' or msg['text'].split()[0] == '!unpin':
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 bot.unpinChatMessage(msg['chat']['id'])
                 bot.sendMessage(msg['chat']['id'], 'Mensagem desfixada',
                                 reply_to_message_id=msg['message_id'])
@@ -283,7 +283,7 @@ def admins(msg):
             text = msg['text'][7:]
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(chat_id, 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 if text == '':
                     bot.sendMessage(msg['chat']['id'], 'Uso: /title titulo do grupo',
                                     reply_to_message_id=msg['message_id'])
@@ -302,7 +302,7 @@ def admins(msg):
 
 
         elif msg['text'] == '/config':
-            if isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
+            if is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 kb = InlineKeyboardMarkup(inline_keyboard=[
                     [dict(text='⚙️ Opções do chat', callback_data='options {}'.format(msg['chat']['id']))],
                     [dict(text='🗑 Deletar mensagem', callback_data='del_msg')]
@@ -314,7 +314,7 @@ def admins(msg):
             return True
 
         elif msg['text'] == '/admdebug':
-            res = isAdmin(msg['chat']['id'], msg['from']['id'],
+            res = is_admin(msg['chat']['id'], msg['from']['id'],
                           msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
             bot.sendMessage(msg['chat']['id'], res)
             return True
@@ -323,7 +323,7 @@ def admins(msg):
 
         if msg['data'].startswith('options'):
             bot.answerCallbackQuery(msg['id'], 'Abrindo...')
-            if isAdmin(msg['data'].split()[1], msg['from']['id'])['user']:
+            if is_admin(msg['data'].split()[1], msg['from']['id'])['user']:
                 info = bot.getChat(msg['data'].split()[1])
                 kb = InlineKeyboardMarkup(inline_keyboard=[
                     [dict(text='IA', callback_data='.'.format(msg['data'].split()[1]))] +

@@ -1,5 +1,5 @@
 import config
-from .admins import isAdmin
+from .admins import is_admin
 from db_handler import cursor, conn
 
 bot = config.bot
@@ -49,7 +49,7 @@ def warns(msg):
                 else:
                     reply_id = None
 
-                adm = isAdmin(msg['chat']['id'], msg['from']['id'], reply_id)
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
 
                 if adm['user']:
                     try:

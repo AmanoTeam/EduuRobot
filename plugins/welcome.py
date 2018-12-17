@@ -1,7 +1,7 @@
 import config
 from amanobot.namedtuple import InlineKeyboardMarkup
 from db_handler import conn, cursor
-from .admins import isAdmin
+from .admins import is_admin
 
 bot = config.bot
 bot_username = config.bot_username
@@ -45,7 +45,7 @@ def welcome(msg):
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
-            elif isAdmin(msg['chat']['id'], msg['from']['id']):
+            elif is_admin(msg['chat']['id'], msg['from']['id']):
                 text = msg['text'][9:]
                 if text == '' or text == bot_username:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',

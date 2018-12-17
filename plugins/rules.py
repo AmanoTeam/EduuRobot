@@ -1,6 +1,6 @@
 import config
 from db_handler import conn, cursor
-from .admins import isAdmin
+from .admins import is_admin
 
 bot = config.bot
 bot_username = config.bot_username
@@ -38,7 +38,7 @@ def rules(msg):
 
 
         elif msg['text'].split()[0] == '/defrules' or msg['text'].split()[0] == '!defrules' or msg['text'].split()[0] == '/defregras' or msg['text'].split()[0] == '!defregras' or msg['text'].split()[0] == '/defregras@'+bot_username or msg['text'].split()[0] == '/defrules@'+bot_username:
-            if isAdmin(msg['chat']['id'], msg['from']['id'])['user']:
+            if is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 if len(msg['text'].split()) == 1:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /defregras Regras do grupo (suporta Markdown)',
                                     reply_to_message_id=msg['message_id'])
