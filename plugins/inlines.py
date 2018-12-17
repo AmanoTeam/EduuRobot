@@ -271,7 +271,7 @@ def inlines(msg):
                             user_id) + '</code>\n<b>Username:</b> <code>' + username + '</code>', parse_mode="HTML")),
                 InlineQueryResultArticle(
                     id='b', title='duck', description='searching with ddg engine',
-                    input_message_content=dict(message_text='Uso: duck')),
+                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} duck</code> - Pesquise no DuckDuckGo via inline.')),
                 InlineQueryResultArticle(
                     id='c', title='faces', description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯',
                     input_message_content=dict(
