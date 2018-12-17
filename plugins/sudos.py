@@ -138,10 +138,9 @@ def sudos(msg):
                 try:
                     res_chat = bot.getChat(chat)
                 except TelegramError:
-                    bot.editMessageText(
+                    return bot.editMessageText(
                         (msg['chat']['id'], sent),
-                        text='Chat não encontrado'
-                    )
+                        text='Chat não encontrado')
                 if res_chat['type'] != 'private':
                     try:
                         link = bot.exportChatInviteLink(chat)
