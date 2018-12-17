@@ -150,7 +150,7 @@ def inlines(msg):
         elif msg['query'].startswith('html'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][5:],
-                input_message_content=InputTextMessageContent(message_text=msg['query'][6:], parse_mode='html'))]
+                input_message_content=InputTextMessageContent(message_text=msg['query'][5:], parse_mode='html'))]
             try:
                 bot.answerInlineQuery(msg['id'], results=articles)
             except TelegramError:
