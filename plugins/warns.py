@@ -66,10 +66,10 @@ def warns(msg):
                             user_warns = get_warns(msg['chat']['id'], reply_id)
                             if user_warns >= warns_limit:
                                 bot.kickChatMember(msg['chat']['id'], reply_id)
-                                bot.sendMessage(msg['chat']['id'], '{} banido pois atingiu o limite de advertências'.format(reply_name),
+                                bot.sendMessage(msg['chat']['id'], '{} banido(a) pois atingiu o limite de advertências'.format(reply_name),
                                                 reply_to_message_id=msg['message_id'])
                             else:
-                                bot.sendMessage(msg['chat']['id'], '{} Foi advertido ({}/{})'.format(reply_name, user_warns, warns_limit),
+                                bot.sendMessage(msg['chat']['id'], '{} Foi advertido(a) ({}/{})'.format(reply_name, user_warns, warns_limit),
                                                 reply_to_message_id=msg['message_id'])
                     else:
                         bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
