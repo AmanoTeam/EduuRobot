@@ -280,7 +280,7 @@ def inlines(msg):
                     id='d', title='hidemsg',
                     description='Envia uma mensagem que não aparece nas ações recentes ao ser apagada em até 1 minuto.',
                     input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} hidemsg - Envie uma mensagem que se for apagada em até 1 minuto não aparece nas <i>ações recentes</i> do grupo.'.format(bot_username), parse_mode='HTML')),
+                        message_text='<b>Uso:</b> <code>@{} hidemsg</code> - Envie uma mensagem que se for apagada em até 1 minuto não aparece nas <i>ações recentes</i> do grupo.'.format(bot_username), parse_mode='HTML')),
                 InlineQueryResultArticle(
                     id='e', title='html', description='Formata um texto usando HTML',
                     input_message_content=dict(message_text='<b>Uso:</b> <code>@{} html</code> - Formata um código em HTML.'.format(bot_username), parse_mode='HTML')),
