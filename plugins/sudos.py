@@ -48,11 +48,9 @@ def sudos(msg):
             elif msg['text'].split()[0] == '!eval':
                 text = msg['text'][6:]
                 try:
-                    res = eval(text)
+                    res = eval(text) or 'Código sem retornos.'
                 except Exception as e:
                     res = 'Erro:\n{}: {}'.format(type(e).__name__, e)
-                if res == '':
-                    res == 'Código sem retornos.'
                 try:
                     bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
                 except Exception as e:
@@ -87,7 +85,7 @@ def sudos(msg):
                         res = buf.getvalue()
                 except Exception as e:
                     res = 'Erro: {}: {}'.format(type(e).__name__, e)
-                if len(res) < 1:
+                if not res:
                     res = 'Código sem retornos.'
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
