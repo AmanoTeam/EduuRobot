@@ -8,12 +8,10 @@ print(r'''
 Iniciando...
 ''')
 
-import io
 import sys
 import threading
 import time
 import traceback
-from contextlib import redirect_stdout
 
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
 from amanobot.loop import MessageLoop
@@ -52,9 +50,8 @@ def handle(msg):
     except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
         pass
     except Exception:
-        with io.StringIO() as buf, redirect_stdout(buf):
-            traceback.print_exc(file=sys.stdout)
-            res = buf.getvalue()
+        res = traceback.format_exc()
+        print(res)
         bot.sendMessage(config.logs, '''Ocorreu um erro no plugin {}:
 
 {}'''.format(plugin, res))
