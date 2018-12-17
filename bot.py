@@ -15,7 +15,7 @@ import time
 import traceback
 from contextlib import redirect_stdout
 
-from amanobot.exception import TooManyRequestsError, NotEnoughRightsError
+from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
 from amanobot.loop import MessageLoop
 from colorama import Fore
 from urllib3.exceptions import ReadTimeoutError
@@ -69,7 +69,7 @@ wr = db.get_restarted()
 if wr:
     try:
         bot.editMessageText(wr, 'Reiniciado com sucesso!')
-    except:
+    except TelegramError:
         pass
     db.del_restarted()
 else:
