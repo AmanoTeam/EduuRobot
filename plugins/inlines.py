@@ -289,7 +289,7 @@ def inlines(msg):
                         message_text='<b>Uso:</b> <code>@{} img</code> - Buscador de imagens via inline.'.format(bot_username), parse_mode='HTML')),
                 InlineQueryResultArticle(
                     id='g', title='ip', description='Exibe informações de um IP informado',
-                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} ip</code> Exibe informações de determinado IP/URL.'.format(bot_username), parse_mode='HTML')),
+                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} ip</code> - Exibe informações de determinado IP/URL.'.format(bot_username), parse_mode='HTML')),
                 InlineQueryResultArticle(
                     id='h', title='proxy', description='searching proxy', input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} proxy</code> - Exibe uma lista de proxys de vários países.'.format(bot_username), parse_mode='HTML')),
