@@ -19,10 +19,10 @@ def ip(msg):
                     x += "*{}*: `{}`\n".format(i.title(), req[i])
                 bot.sendMessage(msg['chat']['id'], x, 'Markdown',
                                 reply_to_message_id=msg['message_id'])
-                try:
+                """try:
                     bot.sendLocation(msg['chat']['id'],
                                      latitude=req['lat'],
                                      longitude=req['lon'],
                                      reply_to_message_id=msg['message_id'])
                 except KeyError:
-                    pass
+                    pass"""
