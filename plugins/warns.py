@@ -25,6 +25,11 @@ def add_warns(chat_id, user_id, number):
         conn.commit()
     return True
 
+def reset_warns(chat_id, user_id):
+    cursor.execute('DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
+    conn.commit()
+    return True
+
 
 def warns(msg):
     if msg.get('text'):
@@ -73,5 +78,43 @@ def warns(msg):
                                                 reply_to_message_id=msg['message_id'])
                     else:
                         bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
+                                        reply_to_message_id=msg['message_id'])
+            return True
+
+
+        elif msg['text'].split()[0] == '/unwarn' or msg['text'].split()[0] == '!unwarn':
+            if msg['chat']['type'] == 'private':
+                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+            else:
+                if msg.get('reply_to_message'):
+                    reply_id = msg['reply_to_message']['from']['id']
+                    reply_name = msg['reply_to_message']['from']['first_name']
+                elif len(msg['text'].split()) > 1:
+                    u_id = msg['text'].split()[1]
+                    try:
+                        get = bot.getChat(u_id)
+                        reply_id = get['id']
+                        reply_name = get['first_name']
+                    except:
+                        bot.sendMessage(msg['chat']['id'], 'ID inválida ou desconhecida. use nesse formato: /unwarn ID do usuário',
+                                        reply_to_message_id=msg['message_id'])
+                        return
+                else:
+                    reply_id = None
+
+                adm = is_admin(msg['chat']['id'], msg['from']['id'], reply_id)
+
+                if adm['user']:
+                    try:
+                        int(reply_id)
+                    except ValueError:
+                        return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID.',
+                                               reply_to_message_id=msg['message_id'])
+                    if adm['reply']:
+                        bot.sendMessage(msg['chat']['id'], 'Esse aí tem admin.',
+                                        reply_to_message_id=msg['message_id'])
+                    else:
+                        reset_warns(msg['chat']['id'], reply_id)
+                        bot.sendMessage(msg['chat']['id'], 'Advertências de {} removidas.'.format(reply_name),
                                         reply_to_message_id=msg['message_id'])
             return True
