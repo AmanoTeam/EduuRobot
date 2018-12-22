@@ -13,8 +13,8 @@ def prints(msg):
                 sent = bot.sendMessage(msg['chat']['id'], 'Tirando print...',
                                 reply_to_message_id=msg['message_id'])
                 ctime = time.time()
-                requests.get("https://image.thum.io/get/width/1080/crop/720/"+msg['text'][7:])
-                r = requests.get("https://image.thum.io/get/width/1080/crop/720/"+msg['text'][7:])
+                requests.get("https://image.thum.io/get/width/1280/crop/675/"+msg['text'][7:])
+                r = requests.get("https://image.thum.io/get/width/1280/crop/675/"+msg['text'][7:])
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
 
