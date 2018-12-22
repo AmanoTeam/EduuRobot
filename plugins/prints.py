@@ -13,8 +13,9 @@ def prints(msg):
                 sent = bot.sendMessage(msg['chat']['id'], 'Tirando print...',
                                 reply_to_message_id=msg['message_id'])
                 ctime = time.time()
-                requests.get("https://image.thum.io/get/width/1280/crop/675/"+msg['text'][7:])
-                r = requests.get("https://image.thum.io/get/width/1280/crop/675/"+msg['text'][7:])
+                requests.get("https://image.thum.io/get/width/1000/"+msg['text'][7:])
+                # We need to to a request again to prevent the bot from getting a GIF instead of a PNG file.
+                r = requests.get("https://image.thum.io/get/width/1000/"+msg['text'][7:])
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
 
