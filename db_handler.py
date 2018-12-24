@@ -47,7 +47,7 @@ def del_restarted():
 def add_chat(chat_type, chat_id):
     if chat_type == 'supergroup' or chat_type == 'group':
         if not chat_exists(chat_id):
-            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled) VALUES (?,?)', (chat_id, True))
+            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled, antichato_list) VALUES (?,?,?)', (chat_id, True, '[]'))
             conn.commit()
     else:
         if not user_exists(chat_id):
