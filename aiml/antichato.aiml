@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <category>
+    <pattern>*</pattern>
+    <template>
+      <random>
+        <li>Gay</li>
+        <li>Viado</li>
+        <li>cala boca viado</li>
+        <li>Vai pra puta que pariu</li>
+        <li>vai a merda seu arrombado</li>
+        <li>lixo humano</li>
+        <li>vai chupar um canavial de rola</li>
+        <li>Vai tomar no cu</li>
+        <li>Vai lá dar o cu</li>
+        <li>Tomate cru fdp</li>
+        <li>Homossexual adorador de rola</li>
+        <li>soca uma linguiça no cu e para de encher o saco</li>
+        <li>doador de ânus para instituição kid bengala</li>
+        <li>Vai enfiar um consolo no cu</li>
+        <li>Quando deus te desenhou, ele tava sem borracha... A caneta estorou e nasceu essa 10graça...</li>
+        <li>Por obséquio, cala a boca</li>
+        <li>Vai chupar um pau que pelomenos fica calado</li>
+        <li>Esse cara da foto é viado</li>
+        <li>Aqui não é grupo gay, vai embora</li>
+        <li>Bota uma dentadura no cu e ri pro caralho</li>
+        <li>Vai tomar no cu tranquilo valeu</li>
+        <li>A donsela gostaria de tomar no cu?</li>
+        <li>Tem o cu trocado com a boca é porra?</li>
+      </random>
+    </template>
+  </category>
+
+</aiml>

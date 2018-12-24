@@ -1,8 +1,11 @@
 import config
 import json
+import aiml
 from db_handler import conn, cursor
 
 bot = config.bot
+
+k.learn("aiml/antichato.aiml")
 
 
 def get_antichato(chat_id):
@@ -34,4 +37,4 @@ def antichato(msg):
     if msg.get('chat') and msg.get('from') and msg['chat']['type'].endswith('group'):
         ac = get_antichato(msg['chat']['id'])
         if ac[0] and msg['from']['id'] in json.loads(ac[1]):
-            bot.sendMessage(msg['chat']['id'], 'Test', reply_to_message_id=msg['message_id'])
+            bot.sendMessage(msg['chat']['id'], k.respond('a'), reply_to_message_id=msg['message_id'])
