@@ -5,6 +5,7 @@ from db_handler import conn, cursor
 
 bot = config.bot
 
+k = aiml.Kernel()
 k.learn("aiml/antichato.aiml")
 
 
