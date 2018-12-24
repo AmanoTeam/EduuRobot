@@ -31,5 +31,5 @@ def remove_user(chat_id, user_id):
 def antichato(msg):
     if msg.get('chat') and msg.get('from') and msg['chat']['type'].endswith('group'):
         ac = get_antichato(msg['chat']['id'])
-        if ac[0] and msg['from']['id'] in json.dumps(ac[1]):
+        if ac[0] and msg['from']['id'] in json.loads(ac[1]):
             bot.sendMessage(msg['chat']['id'], 'Test', reply_to_message_id=msg['message_id'])
