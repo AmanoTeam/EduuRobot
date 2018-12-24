@@ -2,6 +2,8 @@ import config
 import json
 from db_handler import conn, cursor
 
+bot = config.bot
+
 
 def get_antichato(chat_id):
     cursor.execute('SELECT antichato_enabled, antichato_list FROM chats WHERE chat_id = ?', (chat_id,))
