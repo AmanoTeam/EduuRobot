@@ -4,7 +4,7 @@ from db_handler import conn, cursor
 
 
 def get_antichato(chat_id):
-    cursor.execute('SELECT (antichato_enabled, antichato_list) FROM chats WHERE chat_id = ?', (chat_id,))
+    cursor.execute('SELECT antichato_enabled, antichato_list FROM chats WHERE chat_id = ?', (chat_id,))
     return cursor.fetchall()[0]
 
 
