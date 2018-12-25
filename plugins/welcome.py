@@ -41,12 +41,12 @@ def disable_welcome(chat_id):
 
 def welcome(msg):
     if msg.get('text'):
-        if msg['text'].startswith('/welcome') or msg['text'].startswith('!welcome'):
+        if msg['text'].split()[0] == '/welcome' or msg['text'].split()[0] == '/welcome@'+bot_username or msg['text'].split()[0] == '!welcome':
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
             elif is_admin(msg['chat']['id'], msg['from']['id']):
-                text = msg['text'][9:]
+                text = msg['text'].split(' ', 1)[1]
                 if text == '' or text == bot_username:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
                                     reply_to_message_id=msg['message_id'])
