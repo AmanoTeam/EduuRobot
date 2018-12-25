@@ -73,7 +73,7 @@ def sudos(msg):
                     res = 'Comando proibido.'
                 else:
                     res = subprocess.getstatusoutput(text)[1]
-                bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
+                bot.sendMessage(msg['chat']['id'], res or 'Comando executado.', reply_to_message_id=msg['message_id'])
                 return True
 
 
