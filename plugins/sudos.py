@@ -104,7 +104,8 @@ def sudos(msg):
                 sent = bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
                                        reply_to_message_id=msg['message_id'])
                 out = subprocess.getstatusoutput('git pull {}'.format(git_repo))[1]
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado da atualização:\n{out}\nReiniciando...')
+                bot.sendMessage(msg['chat']['id'], f'Resultado da atualização:\n{out}')
+                bot.editMessageText((msg['chat']['id'], sent['message_id']), 'Reiniciando...')
                 db.set_restarted(sent['chat']['id'], sent['message_id'])
                 time.sleep(1)
                 os.execl(sys.executable, sys.executable, *sys.argv)
