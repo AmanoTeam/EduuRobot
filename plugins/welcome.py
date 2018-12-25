@@ -46,8 +46,8 @@ def welcome(msg):
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
             elif is_admin(msg['chat']['id'], msg['from']['id']):
-                text = msg['text'].split(' ', 1)[1]
-                if text == '' or text == bot_username:
+                text = msg['text'].split(' ', 1)
+                if len(text) == 1:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
                                     reply_to_message_id=msg['message_id'])
                 elif text == 'on':
@@ -63,7 +63,7 @@ def welcome(msg):
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
                                     reply_to_message_id=msg['message_id'])
                 else:
-                    set_welcome(msg['chat']['id'], text)
+                    set_welcome(msg['chat']['id'], text[1])
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
                                     reply_to_message_id=msg['message_id'])
 
