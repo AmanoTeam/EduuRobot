@@ -14,7 +14,7 @@ keys = dict(
     screenshots = 'key_aqui'      #Obtenha uma key em https://thumbnail.ws
 )
 
-git_repo = 'https://github.com/AmanoTeam/EduuRobot' #Repositório onde seu bot está
+git_repo = 'https://github.com/AmanoTeam/EduuRobot master' #Repositório onde seu bot está
 
 max_time = 60
 
