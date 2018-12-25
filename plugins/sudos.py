@@ -33,6 +33,7 @@ def sudos(msg):
 *!backup* - Faz backup do bot.
 *!cmd* - Executa um comando.
 *!chat* - Obtem infos de um chat.
+*!del* - Deleta a mensagem respondida.
 *!eval* - Executa uma função Python.
 *!exec* - Executa um código Python.
 *!leave* - O bot sai do chat.
@@ -75,6 +76,14 @@ def sudos(msg):
                     res = subprocess.getstatusoutput(text)[1]
                 bot.sendMessage(msg['chat']['id'], res or 'Comando executado.', reply_to_message_id=msg['message_id'])
                 return True
+
+
+            elif msg['text'] == '!del':
+                if msg.get('reply_to_message'):
+                    try:bot.deleteMessage((msg['chat']['id'], msg['reply_to_message']['message_id']))
+                    except TelegramError:pass
+                    try:bot.deleteMessage((msg['chat']['id'], msg['message_id']))
+                    except TelegramError:pass
 
 
             elif msg['text'].split()[0] == '!exec':
