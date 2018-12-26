@@ -1,3 +1,4 @@
+import html
 import config
 import requests
 
@@ -45,7 +46,7 @@ def traduzir(msg):
 
                 bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                     '''<b>Idioma:</b> {}
-<b>Tradução:</b> <code>{}</code>'''.format(req['lang'], req['text'][0]),
+<b>Tradução:</b> <code>{}</code>'''.format(req['lang'], html.escape(req['text'][0])),
                                     parse_mode='HTML')
 
             else:
