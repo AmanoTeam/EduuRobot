@@ -7,7 +7,7 @@ import html
 from uuid import uuid4
 import duckpy
 from .youtube import search_yt
-
+from urllib.parse import quote, unquote, quote_plus
 bot_username = config.me['username']
 bot = config.bot
 
@@ -112,9 +112,13 @@ def inlines(msg):
 
         elif msg['query'].startswith('img'):
             query = msg['query'][4:]
+            if r'\U' in query.encode('unicode-escape').decode('utf-8'):
+                term = query
+            else:
+                term = quote_plus(query)
             img = get(googl_img_api,
                   params={
-                      "cari": query
+                      "cari": term
                   },
                   headers=HEADERS).json()
             resp = []
@@ -123,9 +127,8 @@ def inlines(msg):
                         break
                     resp.append(InlineQueryResultPhoto(
                         id=str(uuid4()),
-                        photo_url=result["Isi"],
-                        thumb_url=result["Tumbnil"],
-                        caption=f'{result["Deskripsi"]}'
+                        photo_url=result["Tumbnil"],
+                        thumb_url=result["Tumbnil"]
                     ))
             bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
