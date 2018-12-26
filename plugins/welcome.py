@@ -50,15 +50,15 @@ def welcome(msg):
                 if len(text) == 1:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
                                     reply_to_message_id=msg['message_id'])
-                elif text == 'on':
+                elif text[1] == 'on':
                     enable_welcome(msg['chat']['id'])
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
                                     reply_to_message_id=msg['message_id'])
-                elif text == 'off':
+                elif text[1] == 'off':
                     disable_welcome(msg['chat']['id'])
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
                                     reply_to_message_id=msg['message_id'])
-                elif text == 'reset':
+                elif text[1] == 'reset':
                     set_welcome(msg['chat']['id'], None)
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
                                     reply_to_message_id=msg['message_id'])
