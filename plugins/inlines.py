@@ -112,13 +112,9 @@ def inlines(msg):
 
         elif msg['query'].startswith('img'):
             query = msg['query'][4:]
-            if r'\U' in query.encode('unicode-escape').decode('utf-8'):
-                term = query
-            else:
-                term = quote_plus(query)
             img = get(googl_img_api,
                   params={
-                      "cari": term
+                      "cari": query
                   },
                   headers=HEADERS).json()
             resp = []
