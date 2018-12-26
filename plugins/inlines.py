@@ -125,7 +125,7 @@ def inlines(msg):
                         id=str(uuid4()),
                         photo_url=result["Tumbnil"],
                         thumb_url=result["Isi"],
-                        description=result["Deskripsi"]
+                        caption=result["Deskripsi"]
                     ))
             bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
