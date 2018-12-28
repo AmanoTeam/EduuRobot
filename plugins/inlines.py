@@ -123,8 +123,8 @@ def inlines(msg):
                         break
                     resp.append(InlineQueryResultPhoto(
                         id=str(uuid4()),
-                        photo_url=result["Tumbnil"],
-                        thumb_url=result["Isi"],
+                        photo_url=result["Isi"],
+                        thumb_url=result["Tumbnil"],
                         caption=result["Deskripsi"]
                     ))
             bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
