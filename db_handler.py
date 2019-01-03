@@ -18,6 +18,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
 
 cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia)')
 
+cursor.execute('CREATE TABLE IF NOT EXISTS channels (chat_id)')
+
 cursor.execute('CREATE TABLE IF NOT EXISTS user_warns (user_id, chat_id, count)')
 
 cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id)')
@@ -25,6 +27,14 @@ cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id
 
 def chat_exists(chat_id):
     cursor.execute('SELECT * FROM chats WHERE chat_id = (?)', (chat_id,))
+    if cursor.fetchall():
+        return True
+    else:
+        return False
+
+
+def channel_exists(chat_id):
+    cursor.execute('SELECT * FROM channels WHERE chat_id = (?)', (chat_id,))
     if cursor.fetchall():
         return True
     else:
@@ -45,14 +55,19 @@ def del_restarted():
 
 
 def add_chat(chat_type, chat_id):
-    if chat_type == 'supergroup' or chat_type == 'group':
-        if not chat_exists(chat_id):
-            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled, antichato_list) VALUES (?,?,?)', (chat_id, True, '[]'))
-            conn.commit()
-    else:
+    if chat_type == 'private':
         if not user_exists(chat_id):
             cursor.execute('INSERT INTO users (user_id) VALUES (?)', (chat_id,))
             conn.commit()
+    elif chat_type == 'supergroup' or chat_type == 'group':
+        if not chat_exists(chat_id):
+            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled, antichato_list) VALUES (?,?,?)', (chat_id, True, '[]'))
+            conn.commit()
+    elif chat_type == 'channel':
+         if not channel_exists(chat_id):
+            cursor.execute('INSERT INTO channels (chat_id) VALUES (?)', (chat_id,))
+            conn.commit()
+    
 
 
 def get_restarted():
