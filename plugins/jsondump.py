@@ -1,10 +1,7 @@
 import json
-import config
+from config import bot, bot_username
 import os
 import html
-
-bot = config.bot
-bot_username = config.bot_username
 
 
 def jsondump(msg):

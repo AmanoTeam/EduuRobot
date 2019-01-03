@@ -1,8 +1,6 @@
-import config
+from config import bot
 from .admins import is_admin
 from db_handler import cursor, conn
-
-bot = config.bot
 
 
 def get_warns(chat_id, user_id):

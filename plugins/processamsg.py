@@ -1,5 +1,5 @@
 import time
-import config
+from config import max_time
 from db_handler import *
 import threading
 
@@ -8,7 +8,7 @@ lock = threading.Lock()
 
 def processamsg(msg):
     if msg.get('date'):
-        if time.time() - msg['date'] > config.max_time:
+        if time.time() - msg['date'] > max_time:
             return True
         elif msg.get('chat'):
             try:

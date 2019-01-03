@@ -1,10 +1,7 @@
 import os
 from amanobot.namedtuple import InlineKeyboardMarkup
 from amanobot.exception import TelegramError
-import config
-
-bot = config.bot
-bot_username = config.bot_username
+from config import bot, bot_username
 
 
 def escape_markdown(text):
@@ -43,7 +40,7 @@ def kibe(msg):
                 user = msg['from']
                 file_id = msg['reply_to_message']['sticker']['file_id']
                 bot.download_file(file_id, str(msg['from']['id']) + '_kibe_sticker.png')
-                packname = "a" + str(user['id']) + "_by_" + config.me['username']
+                packname = "a" + str(user['id']) + "_by_" + bot_username
                 if len(msg['text'][5:]) > 0:
                     sticker_emoji = msg['text'].split()[1]
                 else:
@@ -85,7 +82,7 @@ def kibe(msg):
             user = msg['from']
             name = user['first_name']
             name = name[:50]
-            packname = "a" + str(user['id']) + "_by_" + config.me['username']
+            packname = "a" + str(user['id']) + "_by_" + bot_username
             success = False
             try:
                 success = bot.createNewStickerSet(user['id'], packname, name + "'s Kibe @AmanoTeam",
@@ -99,7 +96,7 @@ def kibe(msg):
                 elif e.description == "Bad Request: PEER_ID_INVALID":
                     bot.sendMessage(msg['chat']['id'], "Contact me in PM first.",
                                     reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                                        [dict(text='Start', url="t.me/{}".format(config.me['username']))]]),
+                                        [dict(text='Start', url="t.me/{}".format(bot_username))]]),
                                     reply_to_message_id=msg['message_id'])
                 else:
                     bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.",

@@ -1,7 +1,5 @@
-import config
+from config import bot
 import requests
-
-bot = config.bot
 
 
 def shorten(msg):

@@ -1,4 +1,3 @@
-import config
 import os
 import requests
 import sys
@@ -12,13 +11,8 @@ import io
 import subprocess
 from contextlib import redirect_stdout
 from amanobot.exception import TelegramError
+from config import bot, bot_id, bot_username, git_repo, sudoers
 import db_handler as db
-
-bot = config.bot
-bot_id = config.bot_id
-bot_username = config.bot_username
-git_repo = config.git_repo
-sudoers = config.sudoers
 
 
 def sudos(msg):

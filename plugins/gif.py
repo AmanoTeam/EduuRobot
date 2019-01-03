@@ -1,10 +1,9 @@
-import config
+from config import bot, bot_username, keys
 import requests
 import random
 
-bot = config.bot
-bot_username = config.bot_username
-giphy_key = config.keys['giphy']
+
+giphy_key = keys['giphy']
 
 
 def gif(msg):

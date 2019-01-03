@@ -1,9 +1,9 @@
 import html
-import config
+from config import bot, keys
 import requests
 
-bot = config.bot
-traducao = config.keys['yandex']
+
+traducao = keys['yandex']
 
 idiomas = [
     'az', 'ml', 'sq', 'mt', 'am', 'mk', 'en', 'mi', 'ar', 'mr', 'hy', 'mhr', 'af', 'mn', 'eu', 'de', 'ba', 'ne', 'be',

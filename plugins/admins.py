@@ -1,10 +1,6 @@
-import config
+from config import bot, bot_id, sudoers
 from amanobot.namedtuple import InlineKeyboardMarkup
 from amanobot.exception import TelegramError, NotEnoughRightsError
-
-bot = config.bot
-bot_id = config.bot_id
-sudos = config.sudoers
 
 
 def is_admin(chat_id, user_id, reply_id=None):

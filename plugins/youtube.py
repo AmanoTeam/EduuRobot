@@ -1,10 +1,10 @@
-import config
+from config import bot
 import youtube_dl
 import requests
 import os
 from bs4 import BeautifulSoup as bs
 
-bot = config.bot
+
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
 
 

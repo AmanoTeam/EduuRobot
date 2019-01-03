@@ -1,8 +1,6 @@
-import config
+from config import bot
 import re
 import html
-
-bot = config.bot
 
 
 def sed(msg):

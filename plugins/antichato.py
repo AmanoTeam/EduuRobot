@@ -1,9 +1,8 @@
-import config
+from config import bot
 import json
 import aiml
 from db_handler import conn, cursor
 
-bot = config.bot
 
 k = aiml.Kernel()
 k.learn("aiml/antichato.aiml")

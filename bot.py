@@ -18,17 +18,16 @@ from amanobot.loop import MessageLoop
 from colorama import Fore
 from urllib3.exceptions import ReadTimeoutError
 
-import config
+from config import bot, enabled_plugins, logs, version
 import db_handler as db
 
-bot = config.bot
 
 ep = []
 n_ep = []
 
-for num, i in enumerate(config.enabled_plugins):
+for num, i in enumerate(enabled_plugins):
     try:
-        print(Fore.RESET + 'Carregando plugins... [{}/{}]'.format(num + 1, len(config.enabled_plugins)), end='\r')
+        print(Fore.RESET + 'Carregando plugins... [{}/{}]'.format(num + 1, len(enabled_plugins)), end='\r')
         exec('from plugins.{0} import {0}'.format(i))
         ep.append(i)
     except Exception as erro:
@@ -52,12 +51,12 @@ def handle(msg):
     except Exception:
         res = traceback.format_exc()
         print(res)
-        bot.sendMessage(config.logs, '''Ocorreu um erro no plugin {}:
+        bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:
 
 {}'''.format(plugin, res))
 
 
-print('\n\nBot iniciado! {}\n'.format(config.version))
+print('\n\nBot iniciado! {}\n'.format(version))
 
 MessageLoop(bot, handle_thread).run_as_thread()
 
@@ -70,11 +69,11 @@ if wr:
         pass
     db.del_restarted()
 else:
-    bot.sendMessage(config.logs, '''Bot iniciado
+    bot.sendMessage(logs, '''Bot iniciado
 
 Versão: {}
 Plugins carregados: {}
-Ocorreram erros em {} plugin(s){}'''.format(config.version, len(ep), len(n_ep),
+Ocorreram erros em {} plugin(s){}'''.format(version, len(ep), len(n_ep),
                                             ': ' + (', '.join(n_ep)) if n_ep else ''))
 
 while True:

@@ -1,14 +1,9 @@
-import config
+from config import bot, sudoers, logs, bot_username
 import requests
 import re
 import html
 import amanobot
 from amanobot.exception import TelegramError
-
-bot = config.bot
-sudos = config.sudoers
-logs = config.logs
-bot_username = config.bot_username
 
 
 def send_to_dogbin(text):
@@ -136,7 +131,7 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].startswith('/suco'):
-            if msg['from']['id'] in sudos:
+            if msg['from']['id'] in sudoers:
                 l = '✅'
             else:
                 l = '❌'

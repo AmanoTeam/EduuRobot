@@ -1,9 +1,5 @@
-import config
+from config import bot, version, bot_username
 import keyboard
-
-bot = config.bot
-version = config.version
-bot_username = config.bot_username
 
 
 def start(msg):

@@ -1,9 +1,7 @@
-import config
+from config import bot
 import requests
 import time
 import os
-
-bot = config.bot
 
 
 def prints(msg):

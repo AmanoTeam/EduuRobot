@@ -1,8 +1,5 @@
-import config
+from config import bot, bot_username
 import time
-
-bot = config.bot
-bot_username = config.bot_username
 
 
 def ping(msg):

@@ -1,8 +1,5 @@
-import config
+from config import bot, bot_username
 import random
-
-bot = config.bot
-bot_username = config.bot_username
 
 
 def dados(msg):

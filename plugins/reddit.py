@@ -1,10 +1,7 @@
-import config
+from config import bot, bot_username
 import requests
 import re
 import urllib
-
-bot = config.bot
-bot_username = config.bot_username
 
 
 def treatTitle(title):

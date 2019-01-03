@@ -1,11 +1,7 @@
-import config
+from config import bot, bot_username, bot_id
 from amanobot.namedtuple import InlineKeyboardMarkup
 from db_handler import conn, cursor
 from .admins import is_admin
-
-bot = config.bot
-bot_username = config.bot_username
-bot_id = config.bot_id
 
 
 def escape(text):

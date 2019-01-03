@@ -1,8 +1,8 @@
-import config
+from config import bot, keys
 import requests
 
-bot = config.bot
-owm_key = config.keys['openweathermap']
+
+owm_key = keys['openweathermap']
 
 get_coords = 'http://maps.google.com/maps/api/geocode/json'
 url = 'http://api.openweathermap.org/data/2.5/weather/?q={}&units=metric&lang=pt&appid={}'

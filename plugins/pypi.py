@@ -1,11 +1,8 @@
 from amanobot.namedtuple import InlineKeyboardMarkup
-import config
+from config import bot, bot_username
 import requests
 import re
 import html
-
-bot = config.bot
-bot_username = config.bot_username
 
 
 def cleanhtml(raw_html):

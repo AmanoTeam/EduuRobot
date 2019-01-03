@@ -2,14 +2,13 @@ import requests
 from requests import get
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 from amanobot.exception import TelegramError
-import config
+from config import bot, bot_username, keys
 import html
 from uuid import uuid4
 import duckpy
 from .youtube import search_yt
 from urllib.parse import quote, unquote, quote_plus
-bot_username = config.me['username']
-bot = config.bot
+
 
 proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
@@ -56,7 +55,7 @@ def inlines(msg):
             number = 1
             prox = get(proxs, params={
                 "max": count,
-                "key": config.keys['grab_proxy']
+                "key": keys['grab_proxy']
             }).json()["result"]
             if len(prox) > 0:
                 articles = []
