@@ -22,8 +22,6 @@ sudoers = config.sudoers
 
 
 def sudos(msg):
-    global db
-
     if msg.get('text'):
         if msg['from']['id'] in sudoers:
 
