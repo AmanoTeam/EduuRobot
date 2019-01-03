@@ -6,7 +6,7 @@ bot = config.bot
 
 def ip(msg):
     if msg.get('text'):
-        if msg['text'].startswith('/ip') or msg['text'].startswith('!ip'):
+        if msg['text'].split()[0] == '/ip' or msg['text'].split()[0] == '!ip':
             text = msg['text'][4:].split('://')[-1]
             if text == '':
                 bot.sendMessage(msg['chat']['id'], '*Uso:* `/ip IP/endereço`',
@@ -19,10 +19,3 @@ def ip(msg):
                     x += "*{}*: `{}`\n".format(i.title(), req[i])
                 bot.sendMessage(msg['chat']['id'], x, 'Markdown',
                                 reply_to_message_id=msg['message_id'])
-                """try:
-                    bot.sendLocation(msg['chat']['id'],
-                                     latitude=req['lat'],
-                                     longitude=req['lon'],
-                                     reply_to_message_id=msg['message_id'])
-                except KeyError:
-                    pass"""
