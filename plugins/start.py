@@ -96,7 +96,7 @@ def start(msg):
             else:
                 teclado = keyboard.start
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                "Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções clique nos botões abaixo:",
+                                "Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:",
                                 reply_markup=teclado)
 
 
