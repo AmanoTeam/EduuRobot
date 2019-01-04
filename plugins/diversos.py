@@ -125,7 +125,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                 res = send_to_dogbin(r.text)
             else:
                 res = '<code>'+html.escape(r.text)+'</code>'
-            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n<code>{}</code>\n\n<b>Conteúdo:</b>\n{}'.format(html.escape(r.headers), res), 'html',
+            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n<code>{}</code>\n\n<b>Conteúdo:</b>\n{}'.format(html.escape(str(r.headers)), res), 'html',
                             reply_to_message_id=msg['message_id'])
             return True
 
