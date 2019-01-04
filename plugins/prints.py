@@ -11,9 +11,13 @@ def prints(msg):
                 sent = bot.sendMessage(msg['chat']['id'], 'Tirando print...',
                                 reply_to_message_id=msg['message_id'])
                 ctime = time.time()
-                requests.get("https://image.thum.io/get/width/1000/"+msg['text'][7:])
+                if re.match(r'^https?:\/\/', msg['text'][7:]):
+                    url = msg['text'][7:]
+                else:
+                    url = 'http://'+msg['text'][7:]
+                requests.get("https://image.thum.io/get/width/1000/"+url)
                 # We need to to a request again to prevent the bot from getting a GIF instead of a PNG file.
-                r = requests.get("https://image.thum.io/get/width/1000/"+msg['text'][7:])
+                r = requests.get("https://image.thum.io/get/width/1000/"+url)
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
 
