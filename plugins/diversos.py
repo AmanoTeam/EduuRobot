@@ -112,20 +112,20 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].startswith('/request ') or msg['text'].startswith('!request '):
-            if re.match(r'^(https?:\/\/)', msg['text'][9:]):
+            if re.match(r'^https?:\/\/', msg['text'][9:]):
                 text = msg['text'][9:]
             else:
                 text = 'http://' + msg['text'][9:]
             try:
-                res = requests.get(text).text
+                r = requests.get(text)
             except Exception as e:
                 return bot.sendMessage(msg['chat']['id'], str(e),
                                        reply_to_message_id=msg['message_id'])
-            if len(res) > 4000:
-                res = send_to_dogbin(res)
+            if len(r.text) > 3500:
+                res = send_to_dogbin(r.text)
             else:
-                res = '<pre>'+html.escape(res)+'</pre>'
-            bot.sendMessage(msg['chat']['id'], '<b>Conteúdo:</b>\n{}'.format(res), 'html',
+                res = '<code>'+html.escape(r.text)+'</code>'
+            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n<code>{}</code>\n\n<b>Conteúdo:</b>\n{}'.format(html.escape(r.headers), res), 'html',
                             reply_to_message_id=msg['message_id'])
             return True
 
