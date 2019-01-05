@@ -10,7 +10,7 @@ def is_admin(chat_id, user_id, reply_id=None):
     for ids in adms:
         adm_id.append(ids['user']['id'])
 
-    if user_id in adm_id or user_id in sudos:
+    if user_id in adm_id or user_id in sudoers:
         dic['user'] = True
     else:
         dic['user'] = False
