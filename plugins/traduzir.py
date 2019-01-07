@@ -33,7 +33,10 @@ def traduzir(msg):
             text = msg['text'][4:]
             lang = obter_idioma(text)
             if msg.get('reply_to_message'):
-                text = msg['reply_to_message']['text']
+                if msg['reply_to_message'].get('text'):
+                    text = msg['reply_to_message']['text']
+                if msg['reply_to_message'].get('caption'):
+                    text = msg['reply_to_message']['caption']
             else:
                 text = text.replace(lang, '', 1).strip() if text.startswith(lang) else text
 
