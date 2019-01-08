@@ -9,6 +9,7 @@ start = InlineKeyboardMarkup(inline_keyboard=[
 start_pv = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='📚 Comandos', callback_data='all_cmds')] +
     [dict(text='ℹ️ Informações', callback_data='infos')],
+    [dict(text='🌍 Idioma', callback_data='change_lang')] +
     [dict(text='➕ Add em um grupo', url='https://t.me/{}?startgroup=new'.format(bot_username))]
 ])
 
