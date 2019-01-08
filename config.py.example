@@ -1,5 +1,6 @@
 import amanobot
 
+
 bot = amanobot.Bot('token:aqui') #Token do bot
 
 me = bot.getMe()
