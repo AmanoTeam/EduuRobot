@@ -22,7 +22,12 @@ def sed(msg):
             elif 'g' in flags:
                 count = 0
 
-            res = re.sub(pattern, replace_with, msg['reply_to_message']['text'], count=count, flags=rflags)
+            if msg['reply_to_message'].get('text'):
+                text = msg['reply_to_message']['text']
+            if msg['reply_to_message'].get('caption'):
+                text = msg['reply_to_message']['caption']
+
+            res = re.sub(pattern, replace_with, text, count=count, flags=rflags)
 
             bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
                             reply_to_message_id=msg['reply_to_message']['message_id'])
