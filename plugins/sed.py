@@ -5,7 +5,7 @@ import html
 
 def sed(msg):
     if msg.get('text'):
-        if msg['text'].startswith('s/') and msg.get('reply_to_message'):
+        if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
             pattern = exp[1]
             replace_with = exp[2]
