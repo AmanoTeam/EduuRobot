@@ -63,7 +63,7 @@ def add_chat(chat_type, chat_id, chat_lang='en'):
             conn.commit()
     elif chat_type == 'supergroup' or chat_type == 'group':
         if not chat_exists(chat_id):
-            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled, antichato_list, chat_lang) VALUES (?,?,?)', (chat_id, True, '[]', chat_lang))
+            cursor.execute('INSERT INTO chats (chat_id, welcome_enabled, antichato_list, chat_lang) VALUES (?,?,?,?)', (chat_id, True, '[]', chat_lang))
             conn.commit()
     elif chat_type == 'channel':
          if not channel_exists(chat_id):
