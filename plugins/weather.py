@@ -14,7 +14,7 @@ def flag(code):
     return chr(ord(code[0]) + OFFSET) + chr(ord(code[1]) + OFFSET)
 
 
-def clima(msg):
+def weather(msg):
     if msg.get('text'):
         if msg['text'].startswith('/clima'):
             if msg['text'][7:] == '':

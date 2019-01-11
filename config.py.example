@@ -40,7 +40,7 @@ enabled_plugins = [
     'warns',
     'prints',
     'pypi',
-    'clima',
+    'weather',
     'youtube',
     'ping',
     'gif',
