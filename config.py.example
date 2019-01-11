@@ -51,7 +51,7 @@ enabled_plugins = [
     'id',
     'ip',
     'jsondump',
-    'dados',
+    'dice',
     'misc',
     'antichato'
 ]

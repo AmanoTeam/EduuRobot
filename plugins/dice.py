@@ -2,7 +2,7 @@ from config import bot, bot_username
 import random
 
 
-def dados(msg):
+def dice(msg):
     if msg.get('text'):
         if msg['text'] == '/dados' or msg['text'] == '!dados' or msg['text'] == '/dados@' + bot_username:
             dados = random.randint(1, 6)
