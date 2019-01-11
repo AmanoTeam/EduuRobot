@@ -15,9 +15,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
                                                     ia,
                                                     warns_limit,
                                                     antichato_enabled,
-                                                    antichato_list)''')
+                                                    antichato_list,
+                                                    chat_lang)''')
 
-cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia)')
+cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia, chat_lang)')
 
 cursor.execute('CREATE TABLE IF NOT EXISTS channels (chat_id)')
 
