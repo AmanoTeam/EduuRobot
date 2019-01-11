@@ -33,7 +33,7 @@ enabled_plugins = [
     'shorten',
     'sed',
     'kibe',
-    'traduzir',
+    'translate',
     'inlines',
     'welcome',
     'admins',
