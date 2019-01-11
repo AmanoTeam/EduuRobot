@@ -41,7 +41,7 @@ def welcome(msg):
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
-            elif is_admin(msg['chat']['id'], msg['from']['id']):
+            elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 text = msg['text'].split(' ', 1)
                 if len(text) == 1:
                     bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
