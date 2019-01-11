@@ -11,7 +11,7 @@ def send_to_dogbin(text):
     return "https://del.dog/" + post.json()["key"]
 
 
-def diversos(msg):
+def misc(msg):
     if msg.get('text'):
 
         if msg['text'].startswith('/echo ') or msg['text'].startswith('!echo '):
