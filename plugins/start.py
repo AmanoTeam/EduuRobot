@@ -87,13 +87,15 @@ def start(msg):
 
 
         elif msg['data'] == 'start_back':
-            if msg['message']['chat']['type'] == 'private':
-                teclado = keyboard.start_pv
-            else:
-                teclado = keyboard.start
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 "Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:",
-                                reply_markup=teclado)
+                                reply_markup=keyboard.start_pv)
+
+
+        elif msg['data'] == 'change_lang':
+            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                "Coming soon!",
+                                reply_markup=keyboard.start_back)
 
 
         elif msg['data'] == 'all_cmds':
