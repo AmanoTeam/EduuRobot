@@ -27,7 +27,7 @@ sudoers = [
 ]
 
 enabled_plugins = [
-    'processamsg',
+    'processmsg',
     'start',
     'rules',
     'shorten',
