@@ -6,7 +6,7 @@ import threading
 lock = threading.Lock()
 
 
-def processamsg(msg):
+def processmsg(msg):
     if msg.get('date'):
         if time.time() - msg['date'] > max_time:
             return True

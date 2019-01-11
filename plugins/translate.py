@@ -14,7 +14,7 @@ idiomas = [
 ]
 
 
-def obter_idioma(text):
+def get_lang(text):
     if len(text.split()) > 0:
         lang = text.split()[0]
         if lang.split('-')[0] not in idiomas:
@@ -27,11 +27,11 @@ def obter_idioma(text):
     return lang
 
 
-def traduzir(msg):
+def translate(msg):
     if msg.get('text'):
         if msg['text'].startswith('/tr ') or msg['text'] == '/tr':
             text = msg['text'][4:]
-            lang = obter_idioma(text)
+            lang = get_lang(text)
             if msg.get('reply_to_message'):
                 if msg['reply_to_message'].get('text'):
                     text = msg['reply_to_message']['text']
