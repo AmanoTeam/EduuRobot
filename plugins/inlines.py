@@ -264,37 +264,70 @@ def inlines(msg):
         else:
             articles = [
                 InlineQueryResultArticle(
-                    id='a', title='Informações', description='Exibe informações sobre você', input_message_content=dict(
+                    id='a', title='Informações', thumb_url='https://piics.ml/amn/eduu/info.png',
+                    description='Exibe informações sobre você',
+                    input_message_content=dict(
                         message_text='<b>Suas informações:</b>\n\n<b>Nome:</b> <code>' + html.escape(
                             first_name) + '</code>\n<b>ID:</b> <code>' + str(
-                            user_id) + '</code>\n<b>Username:</b> <code>' + username + '</code>', parse_mode="HTML")),
+                            user_id) + '</code>\n<b>Username:</b> <code>' + username + '</code>', parse_mode="HTML"
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='b', title='duck', description='Pesquise no DuckDuckGo via inline.',
-                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} duck</code> - Pesquise no DuckDuckGo via inline.'.format(bot_username), parse_mode='HTML')),
-                InlineQueryResultArticle(
-                    id='c', title='faces', description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯',
+                    id='b', title='duck',
+                    description='Pesquise no DuckDuckGo via inline.',
                     input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} faces</code> - exibe uma lista de carinhas :D'.format(bot_username), parse_mode='HTML')),
+                        message_text='<b>Uso:</b> <code>@{} duck</code> - Pesquise no DuckDuckGo via inline.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='d', title='hidemsg',
+                    id='c', title='faces', thumb_url='https://piics.ml/amn/eduu/faces.png',
+                    description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} faces</code> - exibe uma lista de carinhas :D'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
+                InlineQueryResultArticle(
+                    id='d', title='hidemsg', thumb_url='https://piics.ml/amn/eduu/hidemsg.png',
                     description='Envia uma mensagem que não aparece nas ações recentes ao ser apagada em até 1 minuto.',
                     input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} hidemsg</code> - Envie uma mensagem que se for apagada em até 1 minuto não aparece nas <i>ações recentes</i> do grupo.'.format(bot_username), parse_mode='HTML')),
+                        message_text='<b>Uso:</b> <code>@{} hidemsg</code> - Envie uma mensagem que se for apagada em até 1 minuto não aparece nas <i>ações recentes</i> do grupo.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='e', title='html', description='Formata um código em HTML.',
-                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} html</code> - Formata um código em HTML.'.format(bot_username), parse_mode='HTML')),
+                    id='e', title='html', thumb_url='https://piics.ml/amn/eduu/html.png',
+                    description='Formata um código em HTML.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} html</code> - Formata um código em HTML.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='f', title='img', description='Buscador de imagens via inline.', input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} img</code> - Buscador de imagens via inline.'.format(bot_username), parse_mode='HTML')),
+                    id='f', title='img',
+                    description='Buscador de imagens via inline.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} img</code> - Buscador de imagens via inline.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='g', title='ip', description='Exibe informações de determinado IP/URL.',
-                    input_message_content=dict(message_text='<b>Uso:</b> <code>@{} ip</code> - Exibe informações de determinado IP/URL.'.format(bot_username), parse_mode='HTML')),
+                    id='g', title='ip',
+                    description='Exibe informações de determinado IP/URL.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} ip</code> - Exibe informações de determinado IP/URL.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='h', title='proxy', description='Exibe uma lista de proxys de vários países.', input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} proxy</code> - Exibe uma lista de proxys de vários países.'.format(bot_username), parse_mode='HTML')),
+                    id='h', title='proxy',
+                    description='Exibe uma lista de proxys de vários países.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} proxy</code> - Exibe uma lista de proxys de vários países.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
                 InlineQueryResultArticle(
-                    id='i', title='yt', description='Pesquise vídeos no YouTube via inline.', input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} yt</code> - Pesquise vídeos no YouTube via inline.'.format(bot_username), parse_mode='HTML'))
+                    id='i', title='yt', thumb_url='https://piics.ml/amn/eduu/yt.png',
+                    description='Pesquise vídeos no YouTube via inline.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} yt</code> - Pesquise vídeos no YouTube via inline.'.format(bot_username), parse_mode='HTML'
+                    )
+                )
             ]
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
