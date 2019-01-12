@@ -246,7 +246,7 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='b', title='duck',
+                    id='b', title='duck', thumb_url='https://piics.ml/amn/eduu/duck.png',
                     description='Pesquise no DuckDuckGo via inline.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} duck</code> - Pesquise no DuckDuckGo via inline.'.format(bot_username), parse_mode='HTML'
@@ -281,7 +281,7 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='g', title='ip',
+                    id='g', title='ip', thumb_url='https://piics.ml/amn/eduu/ip.png',
                     description='Exibe informações de determinado IP/URL.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} ip</code> - Exibe informações de determinado IP/URL.'.format(bot_username), parse_mode='HTML'
