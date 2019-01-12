@@ -10,10 +10,9 @@ from .youtube import search_yt
 from urllib.parse import quote, unquote, quote_plus
 
 
-proxs = 'http://api.m45ter.id/proxy_grabber.php'
 geo_ip = 'http://ip-api.com/json/'
 googl_img_api = 'https://apikuu.herokuapp.com/api/v0/sakty/imej'
-HEADERS = {"User-Agent": "Eduu/1.0"}
+
 
 def escape_definition(prox):
     for key, value in prox.items():
@@ -46,32 +45,6 @@ def inlines(msg):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][5:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:]))]
-
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
-
-
-        elif msg['query'].startswith('proxy'):
-            count = 50
-            number = 1
-            prox = get(proxs, params={
-                "max": count,
-                "key": keys['grab_proxy']
-            }).json()["result"]
-            if len(prox) > 0:
-                articles = []
-                if count + number > len(prox):
-                    maxdef = len(prox)
-                else:
-                    maxdef = count + number
-                for i in range(number - 1, maxdef - 1):
-                    deftxt = prox[i]
-                    deftxt = escape_definition(deftxt)
-                    articles.append(InlineQueryResultArticle(
-                        id=str(uuid4()), title=deftxt["country"] + ' - ' + deftxt["ip"] + ':' + deftxt['port'],
-                        thumb_url='http://piics.ml/i/003.png', description='Last checked: ' + deftxt["last_checked"],
-                        input_message_content=InputTextMessageContent(
-                            message_text=f'<b>Proxy:</b>\nPaís: {deftxt["country"]}\nIP: <code>{deftxt["ip"]}</code>\nPorta: <code>{deftxt["port"]}</code>\nChecado há: <i>{deftxt["last_checked"]}</i>',
-                            parse_mode='HTML')))
 
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
@@ -315,14 +288,7 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='h', title='proxy',
-                    description='Exibe uma lista de proxys de vários países.',
-                    input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} proxy</code> - Exibe uma lista de proxys de vários países.'.format(bot_username), parse_mode='HTML'
-                    )
-                ),
-                InlineQueryResultArticle(
-                    id='i', title='yt', thumb_url='https://piics.ml/amn/eduu/yt.png',
+                    id='h', title='yt', thumb_url='https://piics.ml/amn/eduu/yt.png',
                     description='Pesquise vídeos no YouTube via inline.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} yt</code> - Pesquise vídeos no YouTube via inline.'.format(bot_username), parse_mode='HTML'
