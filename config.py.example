@@ -11,7 +11,6 @@ keys = dict(
     openweathermap = 'key_aqui',  #Obtenha uma key em https://openweathermap.org
     yandex = 'key_aqui',          #Obtenha uma key em https://tech.yandex.com/translate
     giphy = 'key_aqui',           #Obtenha uma key em https://developers.giphy.com
-    grab_proxy = 'key_aqui',      #Obtenha uma key em https://apis.mazterin.com/
     screenshots = 'key_aqui'      #Obtenha uma key em https://thumbnail.ws
 )
 
