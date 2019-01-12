@@ -274,7 +274,7 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='f', title='img',
+                    id='f', title='img', thumb_url='https://piics.ml/amn/eduu/img.png',
                     description='Buscador de imagens via inline.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} img</code> - Buscador de imagens via inline.'.format(bot_username), parse_mode='HTML'
