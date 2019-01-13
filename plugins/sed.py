@@ -7,17 +7,12 @@ from threading import Thread, Event
 stop = Event()
 
 
-def timeout_exception(*args):
-    
-    return True
-
-
 def replace():
     globals()['res'] = re.sub(pattern, replace_with, text, count=count, flags=rflags)
 
 
 def sed(msg):
-    global msg, pattern, replace_with, text, count, rflags
+    global pattern, replace_with, text, count, rflags
     if msg.get('text'):
         if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
