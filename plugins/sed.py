@@ -33,7 +33,7 @@ def sed(msg):
             if msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
 
-            signal.signal(signal.SIGALARM, timeout_exception)
+            signal.signal(signal.SIGALRM, timeout_exception)
             globals()['msg'] = msg
 
             signal.alarm(1)
