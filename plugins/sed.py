@@ -1,15 +1,23 @@
 from config import bot
 import re
 import html
-import signal
+from threading import Thread, Event
+
+
+stop = Event()
 
 
 def timeout_exception(*args):
-    bot.sendMessage(msg['chat']['id'], 'Um padrão regex não pode executar por mais de 1 segundo.')
+    
     return True
 
 
+def replace():
+    globals()['res'] = re.sub(pattern, replace_with, text, count=count, flags=rflags)
+
+
 def sed(msg):
+    global msg, pattern, replace_with, text, count, rflags
     if msg.get('text'):
         if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
@@ -33,14 +41,16 @@ def sed(msg):
             if msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
 
-            signal.signal(signal.SIGALRM, timeout_exception)
-            globals()['msg'] = msg
+            t = Thread(target=replace)
+            t.start()
+            t.join(0.5)
+            stop.set()
 
-            signal.alarm(1)
-            res = re.sub(pattern, replace_with, text, count=count, flags=rflags)
-            signal.alarm(0)
-
-            bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
-                            reply_to_message_id=msg['reply_to_message']['message_id'])
+            if globals().get('res') is None:
+                bot.sendMessage(msg['chat']['id'], 'Ocorreu um problema com o seu padrão regex.',
+                                reply_to_message_id=msg['reply_to_message']['message_id'])
+            else:
+                bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
+                                reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True
