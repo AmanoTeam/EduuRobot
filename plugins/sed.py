@@ -1,10 +1,7 @@
 from config import bot
 import re
 import html
-from threading import Thread, Event
-
-
-stop = Event()
+from multiprocessing import Process
 
 
 def replace():
@@ -36,10 +33,10 @@ def sed(msg):
             if msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
 
-            t = Thread(target=replace)
-            t.start()
-            t.join(0.5)
-            stop.set()
+            p = Process(target=replace)
+            p.start()
+            p.join(0.2)
+            p.terminate()
 
             if globals().get('res') is None:
                 bot.sendMessage(msg['chat']['id'], 'Ocorreu um problema com o seu padrão regex.',
