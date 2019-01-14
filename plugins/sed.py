@@ -47,7 +47,7 @@ def sed(msg):
                 bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro com o seu padrão regex.',
                                 reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
+                bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res.value)}</pre>', 'html',
                                 reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True
