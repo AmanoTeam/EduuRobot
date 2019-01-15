@@ -1,9 +1,17 @@
 from config import bot
 import re
 import html
+from multiprocessing import Process, Manager
+import ctypes
+
+
+def replace(res, pattern, replace_with, text, count, rflags):
+    res.value = re.sub(pattern, replace_with, text, count=count, flags=rflags)
+
 
 
 def sed(msg):
+    global pattern, replace_with, text, count, rflags
     if msg.get('text'):
         if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
@@ -27,9 +35,19 @@ def sed(msg):
             if msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
 
-            res = re.sub(pattern, replace_with, text, count=count, flags=rflags)
+            manager = Manager()
+            res = manager.Value(ctypes.c_char_p, None)
 
-            bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
-                            reply_to_message_id=msg['reply_to_message']['message_id'])
+            p = Process(target=replace, args=(res, pattern, replace_with, text, count, rflags))
+            p.start()
+            p.join(0.2)
+            p.terminate()
+
+            if res.value is None:
+                bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro com o seu padrão regex.',
+                                reply_to_message_id=msg['message_id'])
+            else:
+                bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res.value)}</pre>', 'html',
+                                reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True
