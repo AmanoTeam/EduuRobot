@@ -1,17 +1,16 @@
 import amanobot
 
 
-bot = amanobot.Bot('token:aqui') #Token do bot
+bot = amanobot.Bot('token:here') #Bot token
 
 me = bot.getMe()
 bot_username = me['username']
 bot_id = me['id']
 
 keys = dict(
-    openweathermap = 'key_aqui',  #Obtenha uma key em https://openweathermap.org
-    yandex = 'key_aqui',          #Obtenha uma key em https://tech.yandex.com/translate
-    giphy = 'key_aqui',           #Obtenha uma key em https://developers.giphy.com
-    screenshots = 'key_aqui'      #Obtenha uma key em https://thumbnail.ws
+    openweathermap = 'key_here',  #You can obtain an key at https://openweathermap.org
+    yandex = 'key_here',          #You can obtain an key at https://tech.yandex.com/translate
+    giphy = 'key_here',           #You can obtain an key at https://developers.giphy.com
 )
 
 git_repo = 'https://github.com/AmanoTeam/EduuRobot master' #Repositório onde seu bot está
