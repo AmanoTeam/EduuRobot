@@ -87,8 +87,7 @@ def inlines(msg):
             img = get(googl_img_api,
                   params={
                       "cari": query
-                  },
-                  headers=HEADERS).json()
+                  }).json()
             resp = []
             for k, result in enumerate(img):
                     if k == 50:
