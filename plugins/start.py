@@ -25,7 +25,7 @@ def start(msg):
 
 
     elif msg.get('data'):
-
+        strs = Strings(msg['message']['chat']['id'])
         if msg['data'] == 'tools_cmds':
             bot.editMessageText(
                 (msg['message']['chat']['id'], msg['message']['message_id']),
