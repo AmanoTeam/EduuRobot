@@ -1,4 +1,5 @@
 {
 	"start_msg": "Hello! I'm EduuRobot, to discover more about me, start a conversation with me.",
-	"pm_start_msg": "Hello! I'm EduuRobot, to discover more about my functions, browse using the keyboard below:"
+	"pm_start_msg": "Hello! I'm EduuRobot, to discover more about my functions, browse using the keyboard below:",
+	"lang_changed": "Language changed.\n\nPlese note that this function isn't yet complete."
 }

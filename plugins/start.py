@@ -2,6 +2,7 @@ from config import bot, version, bot_username
 from amanobot.namedtuple import InlineKeyboardMarkup
 from get_strings import strings, Strings
 import keyboard
+from db_handler import cursor
 
 
 def start(msg):
@@ -91,19 +92,25 @@ def start(msg):
 
 
         elif msg['data'] == 'start_back':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                "Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:",
+            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
                                 reply_markup=keyboard.start_pv)
 
 
         elif msg['data'] == 'change_lang':
             langs_kb = InlineKeyboardMarkup(inline_keyboard=
                 [[dict(text='{lang_flag} {lang_name}'.format(**strings[x]), callback_data='set_lang '+x)] for x in strings]+
-                [[dict(text='<< Back', callback_data='start_back')]]
+                [[dict(text='« Back', callback_data='start_back')]]
             )
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 "Select your prefered lang below:",
                                 reply_markup=langs_kb)
+
+
+        elif msg['data'].split()[0] == 'set_lang':
+            cursor.execute('UPDATE users SET chat_lang = ? WHERE user_id = ?', (msg['data'].split()[1], msg['message']['chat']['id']))
+            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                Strings(msg['message']['chat']['id']).get('lang_changed'),
+                                reply_markup=keyboard.start_back)
 
 
         elif msg['data'] == 'all_cmds':
