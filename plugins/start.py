@@ -1,23 +1,25 @@
 from config import bot, version, bot_username
 from amanobot.namedtuple import InlineKeyboardMarkup
-from get_strings import strings
+from get_strings import strings, Strings
 import keyboard
 
 
 def start(msg):
     if msg.get('text'):
+        strs = Strings(msg['chat']['id'])
+
         if msg['text'] == '/start' or msg['text'] == '!start' or msg['text'].split()[
             0] == '/start@' + bot_username:
 
             if msg['chat']['type'] == 'private':
-                teclado = keyboard.start_pv
-                smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:'
+                kb = keyboard.start_pv
+                smsg = strs.get('pm_start_msg')
             else:
-                teclado = keyboard.start
-                smsg = 'Olá! eu sou o EduuRobot, para descobrir mais sobre mim inicie uma conversa comigo.'
+                kb = keyboard.start
+                smsg = strs.get('start_msg')
 
             bot.sendMessage(msg['chat']['id'], smsg,
-                            reply_to_message_id=msg['message_id'], reply_markup=teclado)
+                            reply_to_message_id=msg['message_id'], reply_markup=kb)
             return True
 
 
