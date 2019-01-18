@@ -28,6 +28,9 @@ class Strings:
             except IndexError:
                 self.language = 'en'
 
+        self.strings = strings[self.language]
+
+
     def get(self, string_key):
         if strings[self.language].get(string_key):
             return strings[self.language][string_key]
