@@ -1,5 +1,5 @@
 {
-	"start_msg": "Olá! eu sou o EduuRobot, para descobrir mais sobre mim inicie uma conversa comigo.",
-	"pm_start_msg": "Olá! eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:",
-	"lang_changed": "Idioma alterado.\n\nPor favor note que esta função ainda não está completa."
+	"start_msg": "Hello! I'm EduuRobot, to discover more about me, start a conversation with me.",
+	"pm_start_msg": "Hello! I'm EduuRobot, to discover more about my functions, browse using the keyboard below:",
+	"lang_changed": "Language changed.\n\nPlese note that this function isn't yet complete."
 }
