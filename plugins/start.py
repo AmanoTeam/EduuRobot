@@ -1,4 +1,6 @@
 from config import bot, version, bot_username
+from amanobot.namedtuple import InlineKeyboardMarkup
+from get_strings import strings
 import keyboard
 
 
@@ -93,9 +95,13 @@ def start(msg):
 
 
         elif msg['data'] == 'change_lang':
+            langs_kb = InlineKeyboardMarkup(inline_keyboard=
+                [[dict(text='{lang_flag} {lang_name}'.format(**strings[x]), callback_data='set_lang '+x)] for x in strings]+
+                [dict(text='<< Back', callback_data='start_back')]
+            )
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                "Coming soon!",
-                                reply_markup=keyboard.start_back)
+                                "Select your prefered lang below:",
+                                reply_markup=langs_kb)
 
 
         elif msg['data'] == 'all_cmds':
