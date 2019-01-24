@@ -66,7 +66,7 @@ def inlines(msg):
                     articles.append(InlineQueryResultArticle(
                         id=str(uuid4()),
                         title=deftxt['title'],
-                        thumb_url='http://piics.ml/i/003.png',
+                        thumb_url='https://piics.ml/i/002.png',
                         description=deftxt['url'],
                         input_message_content=InputTextMessageContent(
                             message_text=f"<b>{deftxt['title']}</b>\n{deftxt['url']}",
