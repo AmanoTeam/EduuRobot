@@ -162,7 +162,7 @@ def inlines(msg):
                 res = [InlineQueryResultArticle(
                         id='a', title='Error',
                         input_message_content=InputTextMessageContent(str(e)))]
-                bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+                bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('faces'):
