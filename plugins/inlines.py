@@ -159,7 +159,7 @@ def inlines(msg):
                 res = [InlineQueryResultPhoto(
                     id='a',
                     photo_url="https://image.thum.io/get/width/1000/"+url,
-                    thumb_url="https://image.thum.io/get/width/1000/"+url,
+                    thumb_url="https://image.thum.io/get/width/320/"+url,
                     caption=url
                 )]
                 bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
