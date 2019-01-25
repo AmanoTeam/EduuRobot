@@ -147,6 +147,24 @@ def inlines(msg):
             bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
+        elif msg['query'].startswith('print '):
+            url = msg['query'][6:]
+            requests.get("https://image.thum.io/get/width/1000/"+url)
+            try:
+                res = [InlineQueryResultPhoto(
+                    id='a',
+                    photo_url="https://image.thum.io/get/width/1000/"+url,
+                    thumb_url="https://image.thum.io/get/width/1000/"+url,
+                    caption=url
+                )]
+                bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
+            except Exception as e:
+                res = [InlineQueryResultArticle(
+                        id='a', title='Error',
+                        input_message_content=InputTextMessageContent(str(e)))]
+                bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+
+
         elif msg['query'].startswith('faces'):
             articles = [
                 InlineQueryResultArticle(
@@ -287,7 +305,14 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='h', title='yt', thumb_url='https://piics.ml/amn/eduu/yt.png',
+                    id='h', title='print', thumb_url='https://piics.ml/amn/eduu/print.png',
+                    description='Faz uma screenshot de uma página.',
+                    input_message_content=dict(
+                        message_text='<b>Uso:</b> <code>@{} print</code> - Faz uma screenshot de uma página.'.format(bot_username), parse_mode='HTML'
+                    )
+                ),
+                InlineQueryResultArticle(
+                    id='i', title='yt', thumb_url='https://piics.ml/amn/eduu/yt.png',
                     description='Pesquise vídeos no YouTube via inline.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} yt</code> - Pesquise vídeos no YouTube via inline.'.format(bot_username), parse_mode='HTML'
