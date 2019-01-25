@@ -8,6 +8,7 @@ from uuid import uuid4
 import duckpy
 from .youtube import search_yt
 from urllib.parse import quote, unquote, quote_plus
+import re
 
 
 geo_ip = 'http://ip-api.com/json/'
@@ -150,6 +151,10 @@ def inlines(msg):
         elif msg['query'].startswith('print '):
             url = msg['query'][6:]
             requests.get("https://image.thum.io/get/width/1000/"+url)
+            if re.match(r'^https?:\/\/', msg['query'][6:]):
+                url = msg['text'][6:]
+            else:
+                url = 'http://'+msg['text'][6:]
             try:
                 res = [InlineQueryResultPhoto(
                     id='a',
