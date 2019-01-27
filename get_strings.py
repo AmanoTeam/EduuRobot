@@ -27,6 +27,8 @@ class Strings:
                 self.language = cursor.fetchall()[0][0]
             except IndexError:
                 self.language = 'en'
+        if self.language not in langs:
+            self.language = 'en'
 
         self.strings = strings[self.language]
 
