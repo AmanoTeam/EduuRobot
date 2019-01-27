@@ -11,6 +11,6 @@ def shorten(msg):
                                 '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by _🇧🇷.ml', 'Markdown',
                                 reply_to_message_id=msg['message_id'])
             else:
-                r = requests.post('https://xn--f77h6a.ml/api/', data=dict(url=text))
+                r = requests.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
                 bot.sendMessage(msg['chat']['id'], '*Resultado:* {}'.format(r.json()['result']), 'Markdown',
                                 reply_to_message_id=msg['message_id'])
