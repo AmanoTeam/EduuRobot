@@ -12,5 +12,5 @@ def shorten(msg):
                                 reply_to_message_id=msg['message_id'])
             else:
                 r = requests.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
-                bot.sendMessage(msg['chat']['id'], '*Resultado:* {}'.format(r.json()['result']), 'Markdown',
+                bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(r.json()['link']), 'Markdown',
                                 reply_to_message_id=msg['message_id'])
