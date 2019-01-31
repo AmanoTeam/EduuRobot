@@ -50,7 +50,6 @@ def sudos(msg):
 *!exec* - Executa um código Python.
 *!leave* - O bot sai do chat.
 *!promote* - Promove alguém a admin.
-*!promoteme* - Promove você a admin.
 *!restart* - Reinicia o bot.
 *!upgrade* - Atualiza a base do bot.''',
                                 'Markdown',
