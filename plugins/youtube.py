@@ -22,7 +22,7 @@ import os
 
 import requests
 import youtube_dl
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 from config import bot
 
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
@@ -38,17 +38,17 @@ def pretty_size(size):
 
 
 def search_yt(query):
-    URL_BASE = "https://www.youtube.com/results"
+    url_base = "https://www.youtube.com/results"
     url_yt = "https://www.youtube.com"
-    r = requests.get(URL_BASE, params=dict(search_query=query))
+    r = requests.get(url_base, params=dict(search_query=query))
     page = r.text
-    soup = bs(page, "html.parser")
+    soup = BeautifulSoup(page, "html.parser")
     id_url = None
     list_videos = []
     for link in soup.find_all('a'):
         url = link.get('href')
         title = link.get('title')
-        if url.startswith("/watch") and (id_url != url) and (title != None):
+        if url.startswith("/watch") and (id_url != url) and (title is not None):
             id_url = url
             dic = {'title': title, 'url': url_yt + url}
             list_videos.append(dic)
@@ -88,9 +88,9 @@ def youtube(msg):
                         yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
                     else:
                         yt = ydl.extract_info(text, download=False)
-                    for format in yt['formats']:
-                        if format['format_id'] == '140':
-                            fsize = format['filesize']
+                    for f in yt['formats']:
+                        if f['format_id'] == '140':
+                            fsize = f['filesize']
                     name = yt['title']
                 except Exception as e:
                     return bot.editMessageText(

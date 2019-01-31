@@ -298,7 +298,7 @@ def admins(msg):
         elif msg['text'].startswith('/title') or msg['text'].startswith('!title'):
             text = msg['text'][7:]
             if msg['chat']['type'] == 'private':
-                bot.sendMessage(chat_id, 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
             elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 if text == '':
                     bot.sendMessage(msg['chat']['id'], 'Uso: /title titulo do grupo',

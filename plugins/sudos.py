@@ -66,7 +66,7 @@ def sudos(msg):
                     res = 'Erro:\n{}: {}'.format(type(e).__name__, e)
                 try:
                     bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
-                except Exception as e:
+                except TelegramError as e:
                     bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
                 return True
 
@@ -126,7 +126,7 @@ def sudos(msg):
 
             elif msg['text'].startswith('!leave'):
                 if ' ' in msg['text']:
-                    chat_id = text.split()[1]
+                    chat_id = msg['text'].split()[1]
                 else:
                     chat_id = msg['chat']['id']
                 bot.sendMessage(chat_id, 'Tou saindo daqui flws')

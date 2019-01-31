@@ -95,7 +95,7 @@ def welcome(msg):
         else:
             welcome = get_welcome(chat_id)
             if welcome[1]:
-                if welcome[0] != None:
+                if welcome[0] is not None:
                     welcome = welcome[0].replace('$name', escape(first_name)).replace('$title', escape(chat_title)).replace('$id', str(user_id))
                 else:
                     welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape(chat_title))

@@ -25,7 +25,7 @@ import requests
 from config import bot
 
 
-def treatTitle(title):
+def treattitle(title):
     title = title.replace("_", " ")
     title = title.replace("[", "(")
     title = title.replace("]", ")")
@@ -49,18 +49,18 @@ def reddit(msg):
                 if request.status_code == 200:
                     for post in data['data']['children']:
                         domain = post['data']['domain']
-                        title = treatTitle(post['data']['title'])
-                        pUrl = urllib.parse.quote_plus(post['data']['url'])
-                        isNsfw_bool = post['data']['over_18']
+                        title = treattitle(post['data']['title'])
+                        purl = urllib.parse.quote_plus(post['data']['url'])
+                        isnsfw_bool = post['data']['over_18']
                         permalink = "http://www.reddit.com" + post['data']['permalink']
-                        if isNsfw_bool:
-                            isNsfw = "nsfw"
+                        if isnsfw_bool:
+                            isnsfw = "nsfw"
                         else:
-                            isNsfw = "sfw"
+                            isnsfw = "sfw"
                         post = u"`> `[{title}]({pUrl})` <{nsfw}> - `[comments]({permalink})\n".format(title=title,
                                                                                                       permalink=permalink,
-                                                                                                      nsfw=isNsfw,
-                                                                                                      pUrl=pUrl,
+                                                                                                      nsfw=isnsfw,
+                                                                                                      pUrl=purl,
                                                                                                       domain=domain)
                         posts += post
                     if posts:

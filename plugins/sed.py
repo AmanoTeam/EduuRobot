@@ -30,7 +30,6 @@ def replace(res, pattern, replace_with, text, count, rflags):
     res.value = re.sub(pattern, replace_with, text, count=count, flags=rflags)
 
 
-
 def sed(msg):
     global pattern, replace_with, text, count, rflags
     if msg.get('text'):

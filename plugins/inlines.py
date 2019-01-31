@@ -134,7 +134,7 @@ def inlines(msg):
         elif msg['query'].startswith('markdown'):
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][9:],
-                input_message_content=InputTextMessageContent(message_text=kk, parse_mode='Markdown'))]
+                input_message_content=InputTextMessageContent(message_text=msg['query'][9:], parse_mode='Markdown'))]
 
             bot.answerInlineQuery(msg['id'], results=articles)
 
