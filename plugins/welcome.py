@@ -18,8 +18,9 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from config import bot, bot_username, bot_id
 from amanobot.namedtuple import InlineKeyboardMarkup
+from config import bot, bot_username, bot_id
+
 from db_handler import conn, cursor
 from .admins import is_admin
 

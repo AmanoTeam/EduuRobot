@@ -18,10 +18,10 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from db_handler import cursor
-from glob import glob
 import json
+from glob import glob
 
+from db_handler import cursor
 
 strings = {}
 langs = [x.split('/')[1] for x in glob('langs/*/main.json')]

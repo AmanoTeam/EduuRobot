@@ -18,11 +18,12 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from amanobot.namedtuple import InlineKeyboardMarkup
-from config import bot, bot_username
-import requests
-import re
 import html
+import re
+
+import requests
+from amanobot.namedtuple import InlineKeyboardMarkup
+from config import bot
 
 
 def cleanhtml(raw_html):

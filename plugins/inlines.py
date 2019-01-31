@@ -18,18 +18,18 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import requests
-from requests import get
-from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
-from amanobot.exception import TelegramError
-from config import bot, bot_username, keys
 import html
-from uuid import uuid4
-import duckpy
-from .youtube import search_yt
-from urllib.parse import quote, unquote, quote_plus
 import re
+from uuid import uuid4
 
+import duckpy
+import requests
+from amanobot.exception import TelegramError
+from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
+from config import bot, bot_username
+from requests import get
+
+from .youtube import search_yt
 
 geo_ip = 'http://ip-api.com/json/'
 googl_img_api = 'https://apikuu.herokuapp.com/api/v0/sakty/imej'

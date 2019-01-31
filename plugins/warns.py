@@ -19,8 +19,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from config import bot
-from .admins import is_admin
+
 from db_handler import cursor, conn
+from .admins import is_admin
 
 
 def get_warns(chat_id, user_id):

@@ -19,9 +19,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import html
-from config import bot, keys
-import requests
 
+import requests
+from config import bot, keys
 
 traducao = keys['yandex']
 

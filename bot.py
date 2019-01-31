@@ -28,7 +28,6 @@ print(r'''
 Iniciando...
 ''')
 
-import sys
 import threading
 import time
 import traceback
@@ -36,11 +35,10 @@ import traceback
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
 from amanobot.loop import MessageLoop
 from colorama import Fore
+from config import bot, enabled_plugins, logs, version
 from urllib3.exceptions import ReadTimeoutError
 
-from config import bot, enabled_plugins, logs, version
 import db_handler as db
-
 
 ep = []
 n_ep = []

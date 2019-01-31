@@ -19,8 +19,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
-from amanobot.namedtuple import InlineKeyboardMarkup
+
 from amanobot.exception import TelegramError
+from amanobot.namedtuple import InlineKeyboardMarkup
 from config import bot, bot_username
 
 

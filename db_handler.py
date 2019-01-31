@@ -19,8 +19,6 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sqlite3
-from sqlite3 import OperationalError
-
 
 conn = sqlite3.connect('bot.db', check_same_thread=False)
 

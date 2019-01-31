@@ -18,11 +18,12 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from config import bot
-import re
-import html
-from multiprocessing import Process, Manager
 import ctypes
+import html
+import re
+from multiprocessing import Process, Manager
+
+from config import bot
 
 
 def replace(res, pattern, replace_with, text, count, rflags):

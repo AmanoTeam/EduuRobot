@@ -18,10 +18,11 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import json
-from config import bot, bot_username
-import os
 import html
+import json
+import os
+
+from config import bot, bot_username
 
 
 def jsondump(msg):

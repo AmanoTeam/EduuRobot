@@ -18,9 +18,9 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from config import bot, bot_id, sudoers
-from amanobot.namedtuple import InlineKeyboardMarkup
 from amanobot.exception import TelegramError, NotEnoughRightsError
+from amanobot.namedtuple import InlineKeyboardMarkup
+from config import bot, bot_id, sudoers
 
 
 def is_admin(chat_id, user_id, reply_id=None):

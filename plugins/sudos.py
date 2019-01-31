@@ -18,20 +18,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
-import requests
-import sys
-import re
-import time
-import zipfile
-import threading
-import json
 import html
 import io
+import os
+import re
 import subprocess
+import sys
+import threading
+import time
+import zipfile
 from contextlib import redirect_stdout
+
 from amanobot.exception import TelegramError
 from config import bot, bot_id, bot_username, git_repo, sudoers
+
 import db_handler as db
 
 
