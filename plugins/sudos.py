@@ -30,9 +30,9 @@ import zipfile
 from contextlib import redirect_stdout
 
 from amanobot.exception import TelegramError
-from config import bot, bot_id, bot_username, git_repo, sudoers
 
 import db_handler as db
+from config import bot, bot_id, bot_username, git_repo, sudoers
 
 
 def sudos(msg):

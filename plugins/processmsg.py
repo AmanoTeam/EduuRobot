@@ -22,7 +22,6 @@ import threading
 import time
 
 from config import max_time
-
 from db_handler import *
 
 lock = threading.Lock()

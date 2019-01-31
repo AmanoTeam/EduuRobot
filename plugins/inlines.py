@@ -26,9 +26,9 @@ import duckpy
 import requests
 from amanobot.exception import TelegramError
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
-from config import bot, bot_username
 from requests import get
 
+from config import bot, bot_username
 from .youtube import search_yt
 
 geo_ip = 'http://ip-api.com/json/'

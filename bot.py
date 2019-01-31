@@ -66,7 +66,7 @@ def handle(msg):
                 break
     except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
         pass
-    except Exception:
+    except:
         res = traceback.format_exc()
         print(res)
         bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:

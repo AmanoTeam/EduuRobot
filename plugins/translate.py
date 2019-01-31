@@ -21,6 +21,7 @@
 import html
 
 import requests
+
 from config import bot, keys
 
 traducao = keys['yandex']

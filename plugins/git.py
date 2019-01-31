@@ -19,7 +19,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import requests
+
 from config import bot
+
 
 def git(msg):
     if msg.get('text'):

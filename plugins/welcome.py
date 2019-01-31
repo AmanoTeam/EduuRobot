@@ -19,8 +19,8 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from amanobot.namedtuple import InlineKeyboardMarkup
-from config import bot, bot_username, bot_id
 
+from config import bot, bot_username, bot_id
 from db_handler import conn, cursor
 from .admins import is_admin
 

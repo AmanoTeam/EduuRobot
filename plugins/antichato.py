@@ -21,8 +21,8 @@
 import json
 
 import aiml
-from config import bot
 
+from config import bot
 from db_handler import conn, cursor
 
 k = aiml.Kernel()

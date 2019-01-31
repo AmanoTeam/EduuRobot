@@ -19,9 +19,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from amanobot.namedtuple import InlineKeyboardMarkup
-from config import bot, version, bot_username
 
 import keyboard
+from config import bot, version, bot_username
 from db_handler import cursor
 from get_strings import strings, Strings
 

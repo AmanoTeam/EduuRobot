@@ -21,6 +21,7 @@
 import random
 
 import requests
+
 from config import bot, keys
 
 giphy_key = keys['giphy']
