@@ -35,10 +35,10 @@ import traceback
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
 from amanobot.loop import MessageLoop
 from colorama import Fore
-from config import bot, enabled_plugins, logs, version
 from urllib3.exceptions import ReadTimeoutError
 
 import db_handler as db
+from config import bot, enabled_plugins, logs, version
 
 ep = []
 n_ep = []
