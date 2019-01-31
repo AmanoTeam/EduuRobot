@@ -72,26 +72,27 @@ def handle(msg):
 
 {}'''.format(plugin, res))
 
+if __name__ == '__main__':
 
-print('\n\nBot iniciado! {}\n'.format(version))
+    print('\n\nBot iniciado! {}\n'.format(version))
 
-MessageLoop(bot, handle_thread).run_as_thread()
+    MessageLoop(bot, handle_thread).run_as_thread()
 
-wr = db.get_restarted()
+    wr = db.get_restarted()
 
-if wr:
-    try:
-        bot.editMessageText(wr, 'Reiniciado com sucesso!')
-    except TelegramError:
-        pass
-    db.del_restarted()
-else:
-    bot.sendMessage(logs, '''Bot iniciado
+    if wr:
+        try:
+            bot.editMessageText(wr, 'Reiniciado com sucesso!')
+        except TelegramError:
+            pass
+        db.del_restarted()
+    else:
+        bot.sendMessage(logs, '''Bot iniciado
 
 Versão: {}
 Plugins carregados: {}
 Ocorreram erros em {} plugin(s){}'''.format(version, len(ep), len(n_ep),
                                             ': ' + (', '.join(n_ep)) if n_ep else ''))
 
-while True:
-    time.sleep(10)
+    while True:
+        time.sleep(10)
