@@ -59,17 +59,16 @@ def handle_thread(*args):
 
 
 def handle(msg):
-    try:
-        for plugin in ep:
+    for plugin in ep:
+        try:
             p = globals()[plugin](msg)
             if p:
                 break
-    except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
-        pass
-    except:
-        res = traceback.format_exc()
-        print(res)
-        bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:
+        except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
+            break
+        except:
+            res = traceback.format_exc()
+            bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:
 
 {}'''.format(plugin, res))
 
