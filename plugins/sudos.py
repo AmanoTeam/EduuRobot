@@ -25,6 +25,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 import zipfile
 from contextlib import redirect_stdout
 
@@ -61,8 +62,8 @@ def sudos(msg):
                 text = msg['text'][6:]
                 try:
                     res = eval(text) or 'Código sem retornos.'
-                except Exception as e:
-                    res = 'Erro:\n{}: {}'.format(type(e).__name__, e)
+                except:
+                    res = traceback.format_exc()
                 try:
                     bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
                 except TelegramError as e:
@@ -104,8 +105,8 @@ def sudos(msg):
                     with io.StringIO() as buf, redirect_stdout(buf):
                         exec(text)
                         res = buf.getvalue()
-                except Exception as e:
-                    res = 'Erro: {}: {}'.format(type(e).__name__, e)
+                except:
+                    res = traceback.format_exc()
                 if not res:
                     res = 'Código sem retornos.'
                 bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
