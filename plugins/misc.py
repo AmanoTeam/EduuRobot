@@ -164,8 +164,10 @@ Mensagem: {}'''.format(msg['from']['id'],
         elif msg['text'].lower() == 'rt' and msg.get('reply_to_message'):
             if msg['reply_to_message'].get('text'):
                 text = msg['reply_to_message']['text']
-            if msg['reply_to_message'].get('caption'):
+            elif msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
+            else:
+                text = None
             if text:
                 if text.lower() != 'rt':
                     if not re.match('🔃 .* retweetou:\n\n👤 .*', text):
