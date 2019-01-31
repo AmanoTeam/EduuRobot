@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -159,6 +158,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                 l = '❌'
             bot.sendMessage(msg['chat']['id'], l + '🍹',
                             reply_to_message_id=msg['message_id'])
+            return True
 
 
         elif msg['text'].lower() == 'rt' and msg.get('reply_to_message'):

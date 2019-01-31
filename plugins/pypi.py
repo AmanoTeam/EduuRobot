@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -62,3 +61,4 @@ def pypi(msg):
                 return bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi",
                                        reply_to_message_id=msg['message_id'], parse_mode="Markdown",
                                        disable_web_page_preview=True)
+            return True

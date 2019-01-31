@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -38,3 +37,4 @@ def ip(msg):
                     x += "*{}*: `{}`\n".format(i.title(), req[i])
                 bot.sendMessage(msg['chat']['id'], x, 'Markdown',
                                 reply_to_message_id=msg['message_id'])
+            return True

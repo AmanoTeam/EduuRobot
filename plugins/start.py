@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -48,9 +47,8 @@ def start(msg):
     elif msg.get('data'):
         strs = Strings(msg['message']['chat']['id'])
         if msg['data'] == 'tools_cmds':
-            bot.editMessageText(
-                (msg['message']['chat']['id'], msg['message']['message_id']),
-                text='''*Ferramentas:*
+            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                text='''*Ferramentas:*
 
 /clima - Exibe informações de clima.
 /coub - Pesquisa de pequenas animações.
@@ -70,9 +68,9 @@ def start(msg):
 /tr - Traduz um texto.
 /yt - Pesquisa vídeos no YouTube.
 /ytdl - Baixa o áudio de um vídeo no YouTube.''',
-                parse_mode='Markdown',
-                reply_markup=keyboard.cmds_back
-            )
+                                parse_mode='Markdown',
+                                reply_markup=keyboard.cmds_back)
+            return True
 
 
         elif msg['data'] == 'admin_cmds':
@@ -94,6 +92,7 @@ def start(msg):
 /welcome - Define a mensagem de welcome.''',
                                 parse_mode='Markdown',
                                 reply_markup=keyboard.cmds_back)
+            return True
 
 
         elif msg['data'] == 'user_cmds':
@@ -110,11 +109,13 @@ def start(msg):
 /roleta - Para jogar a Roleta Russa.''',
                                 parse_mode='Markdown',
                                 reply_markup=keyboard.cmds_back)
+            return True
 
 
         elif msg['data'] == 'start_back':
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
                                 reply_markup=keyboard.start_pv)
+            return True
 
 
         elif msg['data'] == 'change_lang':
@@ -125,6 +126,7 @@ def start(msg):
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 "Select your prefered lang below:",
                                 reply_markup=langs_kb)
+            return True
 
 
         elif msg['data'].split()[0] == 'set_lang':
@@ -132,12 +134,14 @@ def start(msg):
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 Strings(msg['message']['chat']['id']).get('lang_changed'),
                                 reply_markup=keyboard.start_back)
+            return True
 
 
         elif msg['data'] == 'all_cmds':
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 'Selecione uma categoria de comando para visualizar.\n\nCaso precise de ajuda com o bot ou tem alguma sugestão entre no @AmanoChat',
                                 reply_markup=keyboard.all_cmds)
+            return True
 
 
         elif msg['data'] == 'infos':
@@ -155,3 +159,4 @@ Partnerships:
                                 parse_mode='html',
                                 reply_markup=keyboard.start_back,
                                 disable_web_page_preview=True)
+            return True

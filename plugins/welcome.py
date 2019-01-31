@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -83,6 +82,7 @@ def welcome(msg):
                     set_welcome(msg['chat']['id'], text[1])
                     bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
                                     reply_to_message_id=msg['message_id'])
+            return True
 
 
     elif msg.get('new_chat_member'):
@@ -111,4 +111,5 @@ def welcome(msg):
                                 reply_to_message_id=msg['message_id'],
                                 reply_markup=rules_markup,
                                 disable_web_page_preview=True)
+        return True
                 

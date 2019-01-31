@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -27,7 +26,7 @@ def shorten(msg):
     if msg.get('text'):
         if msg['text'].startswith('/shorten'):
             text = msg['text'][9:]
-            if text == '':
+            if not text:
                 bot.sendMessage(msg['chat']['id'],
                                 '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by _🇧🇷.ml', 'Markdown',
                                 reply_to_message_id=msg['message_id'])
@@ -35,3 +34,4 @@ def shorten(msg):
                 r = requests.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
                 bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(r.json()['link']), 'Markdown',
                                 reply_to_message_id=msg['message_id'])
+            return True

@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -38,3 +37,4 @@ def coub(msg):
                                 reply_to_message_id=msg['message_id'], parse_mode="Markdown")
             except IndexError:
                 bot.sendMessage(msg['chat']['id'], 'Not Found!', reply_to_message_id=msg['message_id'])
+            return True

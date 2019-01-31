@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -73,6 +72,7 @@ def youtube(msg):
             bot.sendMessage(msg['chat']['id'], vids, 'HTML',
                             reply_to_message_id=msg['message_id'],
                             disable_web_page_preview=True)
+            return True
 
 
         elif msg['text'].startswith('/ytdl '):
@@ -122,3 +122,4 @@ def youtube(msg):
                     bot.editMessageText((msg['chat']['id'], sent_id),
                                         'Ow, o arquivo resultante ({}) ultrapassa o meu limite de 50 MB'.format(
                                             pretty_size(fsize)))
+            return True

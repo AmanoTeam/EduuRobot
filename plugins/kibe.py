@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -45,6 +44,8 @@ def kibe(msg):
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker to get its ID.",
                                 reply_to_message_id=msg['message_id'])
+            return True
+
 
         elif msg['text'].startswith('/kibe_getsticker') or msg['text'].startswith('!getsticker'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
@@ -56,6 +57,8 @@ def kibe(msg):
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to upload its PNG.",
                                 reply_to_message_id=msg['message_id'])
+            return True
+
 
         elif msg['text'].startswith('/kibe') or msg['text'].startswith('!kibe'):
             if msg.get('reply_to_message') and msg['reply_to_message'].get('sticker'):
@@ -99,6 +102,8 @@ def kibe(msg):
 
             else:
                 bot.sendMessage(msg['chat']['id'], "Please reply to a sticker for me to kibe it.")
+            return True
+
 
         elif msg['text'].startswith('/make_kibe') or msg['text'].startswith('!make_kibe'):
             user = msg['from']
@@ -128,3 +133,4 @@ def kibe(msg):
                 bot.sendMessage(msg['chat']['id'],
                                 "Sticker pack successfully created. Get it [here](t.me/addstickers/%s)" % packname,
                                 parse_mode='markdown', reply_to_message_id=msg['message_id'])
+            return True

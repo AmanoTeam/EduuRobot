@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -45,6 +44,7 @@ def rules(msg):
             rules = get_rules(int(chat_id))[0] or 'Sem regras!'
 
             bot.sendMessage(msg['chat']['id'], rules, 'Markdown')
+            return True
 
 
         elif msg['text'] == '/rules' or msg['text'] == '!rules' or msg['text'] == '/regras' or msg['text'] == '!regras' or msg['text'] == '/regras@'+bot_username or msg['text'] == '/rules@'+bot_username:
@@ -52,6 +52,7 @@ def rules(msg):
 
             bot.sendMessage(msg['chat']['id'], rules, 'Markdown',
                             reply_to_message_id=msg['message_id'])
+            return True
 
 
         elif msg['text'].split()[0] == '/defrules' or msg['text'].split()[0] == '!defrules' or msg['text'].split()[0] == '/defregras' or msg['text'].split()[0] == '!defregras' or msg['text'].split()[0] == '/defregras@'+bot_username or msg['text'].split()[0] == '/defrules@'+bot_username:
@@ -67,3 +68,4 @@ def rules(msg):
                     set_rules(msg['chat']['id'], msg['text'].split(' ', 1)[1])
                     bot.sendMessage(msg['chat']['id'], 'As regras do grupo foram definidas com sucesso.',
                                     reply_to_message_id=msg['message_id'])
+            return True

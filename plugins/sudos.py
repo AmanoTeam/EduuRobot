@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -96,6 +95,7 @@ def sudos(msg):
                     except TelegramError:pass
                     try:bot.deleteMessage((msg['chat']['id'], msg['message_id']))
                     except TelegramError:pass
+                return True
 
 
             elif msg['text'].split()[0] == '!exec':
@@ -131,6 +131,7 @@ def sudos(msg):
                     chat_id = msg['chat']['id']
                 bot.sendMessage(chat_id, 'Tou saindo daqui flws')
                 bot.leaveChat(chat_id)
+                return True
 
 
             elif msg['text'].startswith('!chat'):
@@ -191,20 +192,7 @@ def sudos(msg):
 '''.format(html.escape(res_chat['first_name']), username, res_chat['id']),
                         parse_mode='HTML',
                         disable_web_page_preview=True)
-
-
-            elif msg['text'] == '!promoteme':
-                for perms in bot.getChatAdministrators(msg['chat']['id']):
-                    if perms['user']['id'] == bot_id:
-                        bot.promoteChatMember(
-                            chat_id=msg['chat']['id'],
-                            user_id=msg['from']['id'],
-                            can_change_info=perms['can_change_info'],
-                            can_delete_messages=perms['can_delete_messages'],
-                            can_invite_users=perms['can_invite_users'],
-                            can_restrict_members=perms['can_restrict_members'],
-                            can_pin_messages=perms['can_pin_messages'],
-                            can_promote_members=True)
+                return True
 
 
             elif msg['text'] == '!promote':
@@ -223,6 +211,7 @@ def sudos(msg):
                             can_restrict_members=perms['can_restrict_members'],
                             can_pin_messages=perms['can_pin_messages'],
                             can_promote_members=True)
+                return True
 
 
             elif msg['text'].split()[0] == '!backup':

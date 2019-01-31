@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -85,3 +84,4 @@ def reddit(msg):
                 bot.sendMessage(msg['chat']['id'],
                                 "`Follow this command with the name of a subreddit to see the top 6 posts.\nExample: /r Awww`",
                                 reply_to_message_id=msg['message_id'], parse_mode="Markdown")
+            return True

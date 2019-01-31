@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -41,3 +40,4 @@ def gif(msg):
             else:
                 bot.sendMessage(msg['chat']['id'], "Sem resultados",
                                 reply_to_message_id=msg['message_id'])
+            return True

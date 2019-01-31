@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -59,3 +58,4 @@ def antichato(msg):
         ac = get_antichato(msg['chat']['id'])
         if ac[0] and msg['from']['id'] in json.loads(ac[1]):
             bot.sendMessage(msg['chat']['id'], k.respond('a'), reply_to_message_id=msg['message_id'])
+            return True
