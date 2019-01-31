@@ -50,7 +50,6 @@ def id(msg):
             else:
                 sent = bot.sendMessage(msg['chat']['id'], '⏰ Consultando informações...',
                                        reply_to_message_id=msg['message_id'])
-                chat_title = msg['chat']['title']
                 members = bot.getChatMembersCount(msg['chat']['id'])
                 if 'username' in msg['chat']:
                     chat_username = '@' + msg['chat']['username']

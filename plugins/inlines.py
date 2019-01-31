@@ -171,7 +171,7 @@ def inlines(msg):
         elif msg['query'].startswith('print '):
             url = msg['query'][6:]
             requests.get("https://image.thum.io/get/width/1000/"+url)
-            if re.match(r'^https?:\/\/', msg['query'][6:]):
+            if re.match(r'^https?://', msg['query'][6:]):
                 url = msg['query'][6:]
             else:
                 url = 'http://'+msg['query'][6:]

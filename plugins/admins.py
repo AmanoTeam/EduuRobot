@@ -242,7 +242,7 @@ def admins(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except Exception as e:
+                    except TelegramError:
                         bot.sendMessage(msg['chat']['id'],
                                         'ID inválida ou desconhecida. use nesse formato: /unban ID do usuário',
                                         reply_to_message_id=msg['message_id'])
@@ -331,7 +331,7 @@ def admins(msg):
 
         elif msg['text'] == '/admdebug':
             res = is_admin(msg['chat']['id'], msg['from']['id'],
-                          msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
+                           msg['reply_to_message']['from']['id'] if msg.get('reply_to_message') else None)
             bot.sendMessage(msg['chat']['id'], res)
             return True
 

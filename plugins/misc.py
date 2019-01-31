@@ -133,7 +133,7 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].startswith('/request ') or msg['text'].startswith('!request '):
-            if re.match(r'^https?:\/\/', msg['text'][9:]):
+            if re.match(r'^https?://', msg['text'][9:]):
                 text = msg['text'][9:]
             else:
                 text = 'http://' + msg['text'][9:]

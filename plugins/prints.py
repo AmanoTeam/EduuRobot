@@ -33,7 +33,7 @@ def prints(msg):
                 sent = bot.sendMessage(msg['chat']['id'], 'Tirando print...',
                                 reply_to_message_id=msg['message_id'])
                 ctime = time.time()
-                if re.match(r'^https?:\/\/', msg['text'][7:]):
+                if re.match(r'^https?://', msg['text'][7:]):
                     url = msg['text'][7:]
                 else:
                     url = 'http://'+msg['text'][7:]
