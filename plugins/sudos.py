@@ -152,15 +152,15 @@ def sudos(msg):
                 if res_chat['type'] != 'private':
                     try:
                         link = bot.exportChatInviteLink(chat)
-                    except:
+                    except TelegramError:
                         link = 'Não disponível'
                     try:
                         members = bot.getChatMembersCount(chat)
-                    except:
+                    except TelegramError:
                         members = 'erro'
                     try:
                         username = '@' + res_chat['username']
-                    except:
+                    except KeyError:
                         username = 'nenhum'
                     bot.editMessageText(
                         (msg['chat']['id'], sent),
@@ -178,7 +178,7 @@ def sudos(msg):
                 else:
                     try:
                         username = '@' + res_chat['username']
-                    except:
+                    except KeyError:
                         username = 'nenhum'
                     bot.editMessageText(
                         (msg['chat']['id'], sent),

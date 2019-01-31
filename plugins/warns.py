@@ -19,6 +19,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from config import bot
+from amanobot.exception import TelegramError
 
 from db_handler import cursor, conn
 from .admins import is_admin
@@ -66,7 +67,7 @@ def warns(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except:
+                    except (TelegramError, KeyError):
                         bot.sendMessage(msg['chat']['id'], 'ID inválida ou desconhecida. use nesse formato: /warn ID do usuário',
                                         reply_to_message_id=msg['message_id'])
                         return
@@ -78,7 +79,7 @@ def warns(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -114,7 +115,7 @@ def warns(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except:
+                    except (TelegramError, KeyError):
                         bot.sendMessage(msg['chat']['id'], 'ID inválida ou desconhecida. use nesse formato: /unwarn ID do usuário',
                                         reply_to_message_id=msg['message_id'])
                         return

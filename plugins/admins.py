@@ -63,7 +63,7 @@ def admins(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except:
+                    except (TelegramError, KeyError):
                         bot.sendMessage(msg['chat']['id'],
                                         'ID inválida ou desconhecida. use nesse formato: /ban ID do usuário',
                                         reply_to_message_id=msg['message_id'])
@@ -76,7 +76,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -108,7 +108,7 @@ def admins(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except:
+                    except (TelegramError, KeyError):
                         bot.sendMessage(msg['chat']['id'],
                                         'ID inválida ou desconhecida. use nesse formato: /kick ID do usuário',
                                         reply_to_message_id=msg['message_id'])
@@ -121,7 +121,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -152,7 +152,7 @@ def admins(msg):
                         get = bot.getChat(u_id)
                         reply_id = get['id']
                         reply_name = get['first_name']
-                    except:
+                    except (TelegramError, KeyError):
                         bot.sendMessage(msg['chat']['id'],
                                         'ID inválida ou desconhecida. use nesse formato: /mute ID do usuário',
                                         reply_to_message_id=msg['message_id'])
@@ -165,7 +165,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -209,7 +209,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -255,7 +255,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except:
+                    except ValueError:
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -312,7 +312,7 @@ def admins(msg):
                         bot.sendMessage(msg['chat']['id'],
                                         'Eu nao tenho tenho permissão para alterar as informações do grupo',
                                         reply_to_message_id=msg['message_id'])
-                    except:
+                    except TelegramError:
                         bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro.',
                                         reply_to_message_id=msg['message_id'])
 

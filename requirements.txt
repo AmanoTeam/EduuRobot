@@ -1,3 +1,4 @@
+urllib3
 amanobot
 bs4
 colorama
