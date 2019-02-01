@@ -90,7 +90,6 @@ def add_chat(chat_type, chat_id, chat_lang='en'):
             conn.commit()
     
 
-
 def get_restarted():
     cursor.execute('SELECT * FROM was_restarted_on')
     try:
