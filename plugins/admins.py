@@ -279,8 +279,6 @@ def admins(msg):
             elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 if msg.get('reply_to_message'):
                     bot.pinChatMessage(msg['chat']['id'], msg['reply_to_message']['message_id'])
-                    bot.sendMessage(msg['chat']['id'], 'Mensagem fixada',
-                                    reply_to_message_id=msg['message_id'])
                 else:
                     bot.sendMessage(msg['chat']['id'], 'Responda a uma mensagem para eu fixar.',
                                     reply_to_message_id=msg['message_id'])
