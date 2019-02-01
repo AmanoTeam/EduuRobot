@@ -30,7 +30,6 @@ def replace(res, pattern, replace_with, text, count, rflags):
 
 
 def sed(msg):
-    global pattern, replace_with, text, count, rflags
     if msg.get('text'):
         if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
