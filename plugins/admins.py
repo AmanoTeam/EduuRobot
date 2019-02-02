@@ -76,7 +76,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except ValueError:
+                    except (TypeError, ValueError):
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -121,7 +121,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except ValueError:
+                    except (TypeError, ValueError):
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -165,7 +165,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except ValueError:
+                    except (TypeError, ValueError):
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -209,7 +209,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except ValueError:
+                    except (TypeError, ValueError):
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
@@ -255,7 +255,7 @@ def admins(msg):
                 if adm['user']:
                     try:
                         int(reply_id)
-                    except ValueError:
+                    except (TypeError, ValueError):
                         return bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
                                                reply_to_message_id=msg['message_id'])
                     if adm['bot']:
