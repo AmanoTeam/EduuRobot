@@ -50,8 +50,10 @@ def sed(msg):
 
             if msg['reply_to_message'].get('text'):
                 text = msg['reply_to_message']['text']
-            if msg['reply_to_message'].get('caption'):
+            elif msg['reply_to_message'].get('caption'):
                 text = msg['reply_to_message']['caption']
+            else:
+                return
 
             manager = Manager()
             res = manager.Value(ctypes.c_char_p, None)
