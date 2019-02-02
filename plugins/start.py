@@ -30,7 +30,7 @@ def start(msg):
         strs = Strings(msg['chat']['id'])
 
         if msg['text'] == '/start' or msg['text'] == '!start' or msg['text'].split()[
-            0] == '/start@' + bot_username:
+            0] == '/start@' + bot_username or msg['text'] == '/start start':
 
             if msg['chat']['type'] == 'private':
                 kb = keyboard.start_pv
