@@ -28,7 +28,7 @@ from config import bot, sudoers, logs, bot_username
 
 
 def send_to_dogbin(text):
-    if not type(text) == bytes:
+    if not isinstance(text, bytes):
         text = text.encode()
     post = requests.post("https://del.dog/documents", data=text)
     return "https://del.dog/" + post.json()["key"]
