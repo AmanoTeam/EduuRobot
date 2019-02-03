@@ -144,11 +144,13 @@ Mensagem: {}'''.format(msg['from']['id'],
             except Exception as e:
                 return bot.sendMessage(msg['chat']['id'], str(e),
                                        reply_to_message_id=msg['message_id'])
-            if len(r.text) > 3500:
+            headers = '<b>Status Code:</b> <code>{}</code>\n'.format(str(r.status_code))
+            headers += '\n'.join('<b>{}:</b> <code>{}</code>'.format(x, html.escape(r.headers[x])) for x in r.headers)
+            if len(r.text) > 3000:
                 res = send_to_dogbin(r.content)
             else:
                 res = '<code>'+html.escape(r.text)+'</code>'
-            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n<code>{}</code>\n\n<b>Conteúdo:</b>\n{}'.format(html.escape(str(r.headers)), res), 'html',
+            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res), 'html',
                             reply_to_message_id=msg['message_id'])
             return True
 
