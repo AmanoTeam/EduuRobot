@@ -28,7 +28,9 @@ from config import bot, sudoers, logs, bot_username
 
 
 def send_to_dogbin(text):
-    post = requests.post("https://del.dog/documents", data=text.encode('utf-8'))
+    if not type(text) == bytes:
+        text = text.encode()
+    post = requests.post("https://del.dog/documents", data=text)
     return "https://del.dog/" + post.json()["key"]
 
 
@@ -133,7 +135,7 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].startswith('/request ') or msg['text'].startswith('!request '):
-            if re.match(r'^(https?|ftp)://', msg['text'][9:]):
+            if re.match(r'^[a-z]+://', msg['text'][9:]):
                 text = msg['text'][9:]
             else:
                 text = 'http://' + msg['text'][9:]
@@ -143,7 +145,7 @@ Mensagem: {}'''.format(msg['from']['id'],
                 return bot.sendMessage(msg['chat']['id'], str(e),
                                        reply_to_message_id=msg['message_id'])
             if len(r.text) > 3500:
-                res = send_to_dogbin(r.text)
+                res = send_to_dogbin(r.content)
             else:
                 res = '<code>'+html.escape(r.text)+'</code>'
             bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n<code>{}</code>\n\n<b>Conteúdo:</b>\n{}'.format(html.escape(str(r.headers)), res), 'html',
@@ -151,12 +153,12 @@ Mensagem: {}'''.format(msg['from']['id'],
             return True
 
 
-        elif msg['text'].startswith('/suco'):
+        elif msg['text'] == '/suco':
             if msg['from']['id'] in sudoers:
-                l = '✅'
+                is_sudo = '✅'
             else:
-                l = '❌'
-            bot.sendMessage(msg['chat']['id'], l + '🍹',
+                is_sudo = '❌'
+            bot.sendMessage(msg['chat']['id'], is_sudo + '🍹',
                             reply_to_message_id=msg['message_id'])
             return True
 
