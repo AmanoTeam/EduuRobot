@@ -131,9 +131,13 @@ def start(msg):
 
         elif msg['data'].split()[0] == 'set_lang':
             cursor.execute('UPDATE users SET chat_lang = ? WHERE user_id = ?', (msg['data'].split()[1], msg['message']['chat']['id']))
+            usr_lang = Strings(msg['message']['chat']['id'])
+            start_back = InlineKeyboardMarkup(inline_keyboard=[
+                [dict(text=usr_lang.get('back_button'), callback_data='start_back')]
+            ])
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                Strings(msg['message']['chat']['id']).get('lang_changed'),
-                                reply_markup=keyboard.start_back)
+                                usr_lang.get('lang_changed'),
+                                reply_markup=start_back)
             return True
 
 
@@ -145,6 +149,9 @@ def start(msg):
 
 
         elif msg['data'] == 'infos':
+            start_back = InlineKeyboardMarkup(inline_keyboard=[
+                [dict(text=usr_lang.get('back_button'), callback_data='start_back')]
+            ])
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''• EduuRobot
 
@@ -157,6 +164,6 @@ Partnerships:
 
 ©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
                                 parse_mode='html',
-                                reply_markup=keyboard.start_back,
+                                reply_markup=start_back,
                                 disable_web_page_preview=True)
             return True
