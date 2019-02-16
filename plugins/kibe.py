@@ -25,15 +25,6 @@ from amanobot.namedtuple import InlineKeyboardMarkup
 from config import bot, bot_username
 
 
-def escape_markdown(text):
-    text = text.replace('[', '\[')
-    text = text.replace('_', '\_')
-    text = text.replace('*', '\*')
-    text = text.replace('`', '\`')
-
-    return text
-
-
 def kibe(msg):
     if msg.get('text'):
         if msg['text'].startswith('/kibe_stickerid') or msg['text'].startswith('!stickerid'):

@@ -20,16 +20,9 @@
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 from config import bot, bot_username, bot_id
+from utils import escape_markdown
 from db_handler import conn, cursor
 from .admins import is_admin
-
-
-def escape(text):
-    text = text.replace('[', '\[')
-    text = text.replace('_', '\_')
-    text = text.replace('*', '\*')
-    text = text.replace('`', '\`')
-    return text
 
 
 def get_welcome(chat_id):
@@ -96,9 +89,9 @@ def welcome(msg):
             welcome = get_welcome(chat_id)
             if welcome[1]:
                 if welcome[0] is not None:
-                    welcome = welcome[0].replace('$name', escape(first_name)).replace('$title', escape(chat_title)).replace('$id', str(user_id))
+                    welcome = welcome[0].replace('$name', escape_markdown(first_name)).replace('$title', escape_markdown(chat_title)).replace('$id', str(user_id))
                 else:
-                    welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape(chat_title))
+                    welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape_markdown(chat_title))
                 if '$rules' in welcome:
                     welcome = welcome.replace('$rules', '')
                     rules_markup = InlineKeyboardMarkup(inline_keyboard=[

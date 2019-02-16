@@ -20,17 +20,12 @@
 import requests
 
 from config import bot, keys
+from utils import get_flag
 
 owm_key = keys['openweathermap']
 
 get_coords = 'http://maps.google.com/maps/api/geocode/json'
 url = 'http://api.openweathermap.org/data/2.5/weather/?q={}&units=metric&lang=pt&appid={}'
-
-OFFSET = 127462 - ord('A')
-
-
-def flag(code):
-    return chr(ord(code[0]) + OFFSET) + chr(ord(code[1]) + OFFSET)
 
 
 def weather(msg):
@@ -50,7 +45,7 @@ Clima: `{}`
 Temperatura min.: `{} °C`
 Temperatura máx.: `{} °C`
 Umidade do ar: `{}%`
-Vento: `{:.2f} m/s`'''.format(json['name'], flag(json['sys']['country']),
+Vento: `{:.2f} m/s`'''.format(json['name'], get_flag(json['sys']['country']),
                               json['weather'][0]['description'], json['main']['temp_min'],
                               json['main']['temp_max'], json['main']['humidity'], json['wind']['speed'])
             bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])

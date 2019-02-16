@@ -24,17 +24,9 @@ import youtube_dl
 from bs4 import BeautifulSoup
 
 from config import bot
+from utils import pretty_size
 
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
-
-
-def pretty_size(size):
-    units = ['B', 'KB', 'MB', 'GB']
-    unit = 0
-    while size >= 1024:
-        size /= 1024
-        unit += 1
-    return '%0.2f %s' % (size, units[unit])
 
 
 def search_yt(query):
