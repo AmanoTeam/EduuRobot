@@ -108,7 +108,7 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 
         elif msg['text'].startswith('/dogbin') or msg['text'].startswith('!dogbin'):
-            text = msg['text'][8:]
+            text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
             if not text:
                 bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''', 'markdown',
                                 reply_to_message_id=msg['message_id'])
