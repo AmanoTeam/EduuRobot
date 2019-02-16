@@ -3,5 +3,6 @@
 	"commands_button": "📚 Commands",
 	"infos_button": "ℹ️ Infos",
 	"lang_button": "🌍 Language",
-	"add_button": "➕ Add to a group"
+	"add_button": "➕ Add to a group",
+	"start_pm_button": "🤖 Start an conversation"
 }

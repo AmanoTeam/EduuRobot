@@ -22,9 +22,6 @@ from amanobot.namedtuple import InlineKeyboardMarkup
 
 from config import bot_username
 
-start = InlineKeyboardMarkup(inline_keyboard=[
-    [dict(text='🤖 Iniciar uma conversa', url='https://t.me/{}?start=start'.format(bot_username))]
-])
 
 all_cmds = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='👮 Admins', callback_data='admin_cmds')] +
