@@ -41,10 +41,6 @@ all_cmds = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='« Voltar', callback_data='start_back')]
 ])
 
-start_back = InlineKeyboardMarkup(inline_keyboard=[
-    [dict(text='« Voltar', callback_data='start_back')]
-])
-
 cmds_back = InlineKeyboardMarkup(inline_keyboard=[
     [dict(text='« Voltar', callback_data='all_cmds')]
 ])

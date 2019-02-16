@@ -46,6 +46,11 @@ def start(msg):
 
     elif msg.get('data'):
         strs = Strings(msg['message']['chat']['id'])
+
+        cmds_back = InlineKeyboardMarkup(inline_keyboard=[
+            [dict(text=strs.get('back_button'), callback_data='all_cmds')]
+        ])
+
         if msg['data'] == 'tools_cmds':
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 text='''*Ferramentas:*
@@ -69,7 +74,7 @@ def start(msg):
 /yt - Pesquisa vídeos no YouTube.
 /ytdl - Baixa o áudio de um vídeo no YouTube.''',
                                 parse_mode='Markdown',
-                                reply_markup=keyboard.cmds_back)
+                                reply_markup=cmds_back)
             return True
 
 
@@ -91,7 +96,7 @@ def start(msg):
 /warn - Adverte um usuário.
 /welcome - Define a mensagem de welcome.''',
                                 parse_mode='Markdown',
-                                reply_markup=keyboard.cmds_back)
+                                reply_markup=cmds_back)
             return True
 
 
@@ -108,7 +113,7 @@ def start(msg):
 /regras - Exibe as regras do grupo.
 /roleta - Para jogar a Roleta Russa.''',
                                 parse_mode='Markdown',
-                                reply_markup=keyboard.cmds_back)
+                                reply_markup=cmds_back)
             return True
 
 
