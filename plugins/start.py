@@ -51,6 +51,10 @@ def start(msg):
             [dict(text=strs.get('back_button'), callback_data='all_cmds')]
         ])
 
+        start_back = InlineKeyboardMarkup(inline_keyboard=[
+            [dict(text=strs.get('back_button'), callback_data='start_back')]
+        ])
+
         if msg['data'] == 'tools_cmds':
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 text='''*Ferramentas:*
@@ -154,9 +158,6 @@ def start(msg):
 
 
         elif msg['data'] == 'infos':
-            start_back = InlineKeyboardMarkup(inline_keyboard=[
-                [dict(text=usr_lang.get('back_button'), callback_data='start_back')]
-            ])
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''• EduuRobot
 
