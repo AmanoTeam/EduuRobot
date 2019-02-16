@@ -33,10 +33,17 @@ def start(msg):
             0] == '/start@' + bot_username or msg['text'] == '/start start':
 
             if msg['chat']['type'] == 'private':
-                kb = keyboard.start_pv
+                kb = InlineKeyboardMarkup(inline_keyboard=[
+                    [dict(text=strs.get('commands_button'), callback_data='all_cmds')] +
+                    [dict(text=strs.get('infos_button'), callback_data='infos')],
+                    [dict(text=strs.get('lang_button'), callback_data='change_lang')] +
+                    [dict(text=strs.get('add_button'), url='https://t.me/{}?startgroup=new'.format(bot_username))]
+                ])
                 smsg = strs.get('pm_start_msg')
             else:
-                kb = keyboard.start
+                kb = InlineKeyboardMarkup(inline_keyboard=[
+                    [dict(text=strs.get('start_pm_button'), url='https://t.me/{}?start=start'.format(bot_username))]
+                ])
                 smsg = strs.get('start_msg')
 
             bot.sendMessage(msg['chat']['id'], smsg,
@@ -122,8 +129,14 @@ def start(msg):
 
 
         elif msg['data'] == 'start_back':
+            kb = InlineKeyboardMarkup(inline_keyboard=[
+                [dict(text=strs.get('commands_button'), callback_data='all_cmds')] +
+                [dict(text=strs.get('infos_button'), callback_data='infos')],
+                [dict(text=strs.get('lang_button'), callback_data='change_lang')] +
+                [dict(text=strs.get('add_button'), url='https://t.me/{}?startgroup=new'.format(bot_username))]
+            ])
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
-                                reply_markup=keyboard.start_pv)
+                                reply_markup=kb)
             return True
 
 

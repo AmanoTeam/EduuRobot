@@ -1,3 +1,7 @@
 {
-	"back_button": "« Voltar"
+	"back_button": "« Voltar",
+	"commands_button": "📚 Comandos",
+	"infos_button": "ℹ️ Informações",
+	"lang_button": "🌍 Idioma",
+	"add_button": "➕ Add em um grupo"
 }
