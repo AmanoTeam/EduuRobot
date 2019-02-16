@@ -26,7 +26,7 @@ from .admins import is_admin
 def get_rules(chat_id):
     cursor.execute('SELECT rules FROM chats WHERE chat_id = (?)', (chat_id,))
     try:
-        return cursor.fetchall()[0]
+        return cursor.fetchone()
     except IndexError:
         return None
 

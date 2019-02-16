@@ -26,17 +26,17 @@ from .admins import is_admin
 
 def get_warns(chat_id, user_id):
     cursor.execute('SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
-    return cursor.fetchall()[0][0]
+    return cursor.fetchone()[0]
 
 
 def get_warns_limit(chat_id):
     cursor.execute('SELECT warns_limit FROM chats WHERE chat_id = ?', (chat_id,))
-    return cursor.fetchall()[0][0]
+    return cursor.fetchone()[0]
 
 
 def add_warns(chat_id, user_id, number):
     cursor.execute('SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
-    if cursor.fetchall():
+    if cursor.fetchone():
         cursor.execute('UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
         conn.commit()
     else:

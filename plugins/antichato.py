@@ -30,12 +30,12 @@ k.learn("aiml/antichato.aiml")
 
 def get_antichato(chat_id):
     cursor.execute('SELECT antichato_enabled, antichato_list FROM chats WHERE chat_id = ?', (chat_id,))
-    return cursor.fetchall()[0]
+    return cursor.fetchone()
 
 
 def add_user(chat_id, user_id):
     cursor.execute('SELECT antichato_list FROM chats WHERE chat_id = ?', (chat_id,))
-    user_list = json.loads(cursor.fetchall()[0][0])
+    user_list = json.loads(cursor.fetchone()[0])
     if user_id not in user_list:
         user_list.append(user_id)
         cursor.execute('UPDATE chats SET antichato_list = ? WHERE chat_id = ?', (json.dumps(user_list), chat_id,))
@@ -45,7 +45,7 @@ def add_user(chat_id, user_id):
 
 def remove_user(chat_id, user_id):
     cursor.execute('SELECT antichato_list FROM chats WHERE chat_id = ?', (chat_id,))
-    user_list = json.loads(cursor.fetchall()[0][0])
+    user_list = json.loads(cursor.fetchone()[0])
     for num, user in enumerate(user_list):
         if user == user_id:
             del user_list[num]

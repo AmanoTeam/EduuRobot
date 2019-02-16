@@ -47,7 +47,7 @@ cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id
 
 def chat_exists(chat_id):
     cursor.execute('SELECT * FROM chats WHERE chat_id = (?)', (chat_id,))
-    if cursor.fetchall():
+    if cursor.fetchone():
         return True
     else:
         return False
@@ -55,7 +55,7 @@ def chat_exists(chat_id):
 
 def channel_exists(chat_id):
     cursor.execute('SELECT * FROM channels WHERE chat_id = (?)', (chat_id,))
-    if cursor.fetchall():
+    if cursor.fetchone():
         return True
     else:
         return False
@@ -63,7 +63,7 @@ def channel_exists(chat_id):
 
 def user_exists(user_id):
     cursor.execute('SELECT * FROM users WHERE user_id = (?)', (user_id,))
-    if cursor.fetchall():
+    if cursor.fetchone():
         return True
     else:
         return False
@@ -92,10 +92,7 @@ def add_chat(chat_type, chat_id, chat_lang='en'):
 
 def get_restarted():
     cursor.execute('SELECT * FROM was_restarted_on')
-    try:
-        return cursor.fetchall()[0]
-    except IndexError:
-        return None
+    return cursor.fetchone()
 
 
 def set_restarted(chat_id, message_id):

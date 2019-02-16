@@ -28,7 +28,7 @@ from .admins import is_admin
 def get_welcome(chat_id):
     cursor.execute('SELECT welcome, welcome_enabled FROM chats WHERE chat_id = (?)', (chat_id,))
     try:
-        return cursor.fetchall()[0]
+        return cursor.fetchone()
     except IndexError:
         return None
 
