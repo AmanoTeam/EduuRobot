@@ -189,7 +189,7 @@ def inlines(msg):
                 bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('faces'):
+        elif msg['query'] == 'faces' or msg['query'] == 'f':
             articles = [
                 InlineQueryResultArticle(
                     id='a', title='¯\\_(ツ)_/¯',
@@ -294,7 +294,7 @@ def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='c', title='faces', thumb_url='https://piics.ml/amn/eduu/faces.png',
+                    id='c', title='faces (f)', thumb_url='https://piics.ml/amn/eduu/faces.png',
                     description='Mostra uma lista de carinhas ¯\\_(ツ)_/¯',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} faces</code> - exibe uma lista de carinhas :D'.format(bot_username), parse_mode='HTML'
