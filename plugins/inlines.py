@@ -195,7 +195,7 @@ def inlines(msg):
                      '(っ◕‿◕)っ', '(づ｡◕‿‿◕｡)づ', '༼ つ ◕_◕ ༽つ', '(ง ͠° ͟ل͜ ͡°)ง', '(ง\'̀-\'́)ง', 'ᕙ(⇀‸↼‶)ᕗ', '(҂⌣̀_⌣́)',
                      'ᕦ(ò_óˇ)ᕤ', '╚(ಠ_ಠ)=┐', 'ლ(ಠ益ಠლ)', '\\_(ʘ_ʘ)_/', '( ⚆ _ ⚆ )', '(ಥ﹏ಥ)', '﴾͡๏̯͡๏﴿', '(◔̯◔)', '(ಠ_ಠ)',
                      '(ಠ‿ಠ)', '(¬_¬)', '(¬‿¬)', '\\ (•◡•) /', '(◕‿◕✿)', '( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)']
-            articles = [InlineQueryResultPhoto(id=str(uuid4()), title=face, input_message_content=dict(message_text=face)) for face in faces]
+            articles = [InlineQueryResultArticle(id=str(uuid4()), title=face, input_message_content=dict(message_text=face)) for face in faces]
 
             bot.answerInlineQuery(msg['id'], results=articles)
 
