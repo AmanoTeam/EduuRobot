@@ -190,81 +190,12 @@ def inlines(msg):
 
 
         elif msg['query'] == 'faces' or msg['query'] == 'f':
-            articles = [
-                InlineQueryResultArticle(
-                    id='a', title='¯\\_(ツ)_/¯',
-                    input_message_content=InputTextMessageContent(message_text='¯\\_(ツ)_/¯')),
-                InlineQueryResultArticle(
-                    id='b', title='( ͡° ͜ʖ ͡°)', input_message_content=dict(message_text='( ͡° ͜ʖ ͡°)')),
-                InlineQueryResultArticle(
-                    id='c', title='( ͡~ ͜ʖ ͡°)', input_message_content=dict(message_text='( ͡~ ͜ʖ ͡°)')),
-                InlineQueryResultArticle(
-                    id='d', title='( ͡◐ ͜ʖ ͡◑))', input_message_content=dict(message_text='( ͡◐ ͜ʖ ͡◑))')),
-                InlineQueryResultArticle(
-                    id='e', title='( ͡◔ ͜ʖ ͡◔)', input_message_content=dict(message_text='( ͡◔ ͜ʖ ͡◔)')),
-                InlineQueryResultArticle(
-                    id='f', title='( ͡⚆ ͜ʖ ͡⚆)', input_message_content=dict(message_text='( ͡⚆ ͜ʖ ͡⚆)')),
-                InlineQueryResultArticle(
-                    id='g', title='( ͡ʘ ͜ʖ ͡ʘ)', input_message_content=dict(message_text='( ͡ʘ ͜ʖ ͡ʘ)')),
-                InlineQueryResultArticle(
-                    id='h', title='ヽ༼ຈل͜ຈ༽ﾉ', input_message_content=dict(message_text='ヽ༼ຈل͜ຈ༽ﾉ')),
-                InlineQueryResultArticle(
-                    id='i', title='༼ʘ̚ل͜ʘ̚༽', input_message_content=dict(message_text='༼ʘ̚ل͜ʘ̚༽')),
-                InlineQueryResultArticle(
-                    id='j', title='(╯°□°）╯', input_message_content=dict(message_text='(╯°□°）╯')),
-                InlineQueryResultArticle(
-                    id='k', title='(ﾉ◕ヮ◕)ﾉ', input_message_content=dict(message_text='(ﾉ◕ヮ◕)ﾉ')),
-                InlineQueryResultArticle(
-                    id='l', title='(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧', input_message_content=dict(message_text='(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧')),
-                InlineQueryResultArticle(
-                    id='m', title='(◕‿◕)', input_message_content=dict(message_text='(◕‿◕)')),
-                InlineQueryResultArticle(
-                    id='n', title='(｡◕‿‿◕｡)', input_message_content=dict(message_text='(｡◕‿‿◕｡)')),
-                InlineQueryResultArticle(
-                    id='o', title='(っ◕‿◕)っ', input_message_content=dict(message_text='(っ◕‿◕)っ')),
-                InlineQueryResultArticle(
-                    id='p', title='(づ｡◕‿‿◕｡)づ', input_message_content=dict(message_text='(づ｡◕‿‿◕｡)づ')),
-                InlineQueryResultArticle(
-                    id='q', title='༼ つ ◕_◕ ༽つ', input_message_content=dict(message_text='༼ つ ◕_◕ ༽つ')),
-                InlineQueryResultArticle(
-                    id='r', title='(ง ͠° ͟ل͜ ͡°)ง', input_message_content=dict(message_text='(ง ͠° ͟ل͜ ͡°)ง')),
-                InlineQueryResultArticle(
-                    id='s', title='(ง\'̀-\'́)ง', input_message_content=dict(message_text='(ง\'̀-\'́)ง')),
-                InlineQueryResultArticle(
-                    id='t', title='ᕙ(⇀‸↼‶)ᕗ', input_message_content=dict(message_text='ᕙ(⇀‸↼‶)ᕗ')),
-                InlineQueryResultArticle(
-                    id='u', title='(҂⌣̀_⌣́)', input_message_content=dict(message_text='(҂⌣̀_⌣́)')),
-                InlineQueryResultArticle(
-                    id='v', title='ᕦ(ò_óˇ)ᕤ', input_message_content=dict(message_text='ᕦ(ò_óˇ)ᕤ')),
-                InlineQueryResultArticle(
-                    id='w', title='╚(ಠ_ಠ)=┐', input_message_content=dict(message_text='╚(ಠ_ಠ)=┐')),
-                InlineQueryResultArticle(
-                    id='x', title='ლ(ಠ益ಠლ)', input_message_content=dict(message_text='ლ(ಠ益ಠლ)')),
-                InlineQueryResultArticle(
-                    id='y', title='\\_(ʘ_ʘ)_/', input_message_content=dict(message_text='\\_(ʘ_ʘ)_/')),
-                InlineQueryResultArticle(
-                    id='z', title='( ⚆ _ ⚆ )', input_message_content=dict(message_text='( ⚆ _ ⚆ )')),
-                InlineQueryResultArticle(
-                    id='aa', title='(ಥ﹏ಥ)', input_message_content=dict(message_text='(ಥ﹏ಥ)')),
-                InlineQueryResultArticle(
-                    id='ab', title='﴾͡๏̯͡๏﴿', input_message_content=dict(message_text='﴾͡๏̯͡๏﴿')),
-                InlineQueryResultArticle(
-                    id='ac', title='(◔̯◔)', input_message_content=dict(message_text='(◔̯◔)')),
-                InlineQueryResultArticle(
-                    id='ad', title='(ಠ_ಠ)', input_message_content=dict(message_text='(ಠ_ಠ)')),
-                InlineQueryResultArticle(
-                    id='ae', title='(ಠ‿ಠ)', input_message_content=dict(message_text='(ಠ‿ಠ)')),
-                InlineQueryResultArticle(
-                    id='af', title='(¬_¬)', input_message_content=dict(message_text='(¬_¬)')),
-                InlineQueryResultArticle(
-                    id='ag', title='(¬‿¬)', input_message_content=dict(message_text='(¬‿¬)')),
-                InlineQueryResultArticle(
-                    id='ah', title='\\ (•◡•) /', input_message_content=dict(message_text='\\ (•◡•) /')),
-                InlineQueryResultArticle(
-                    id='ai', title='(◕‿◕✿)', input_message_content=dict(message_text='(◕‿◕✿)')),
-                InlineQueryResultArticle(
-                    id='aj', title='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)',
-                    input_message_content=dict(message_text='( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)'))]
+            faces = ['¯\\_(ツ)_/¯', '( ͡° ͜ʖ ͡°)', '( ͡~ ͜ʖ ͡°)', '( ͡◐ ͜ʖ ͡◑))', '( ͡◔ ͜ʖ ͡◔)', '( ͡⚆ ͜ʖ ͡⚆)',
+                     '( ͡ʘ ͜ʖ ͡ʘ)', 'ヽ༼ຈل͜ຈ༽ﾉ', '༼ʘ̚ل͜ʘ̚༽', '(╯°□°）╯', '(ﾉ◕ヮ◕)ﾉ', '(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧', '(◕‿◕)', '(｡◕‿‿◕｡)',
+                     '(っ◕‿◕)っ', '(づ｡◕‿‿◕｡)づ', '༼ つ ◕_◕ ༽つ', '(ง ͠° ͟ل͜ ͡°)ง', '(ง\'̀-\'́)ง', 'ᕙ(⇀‸↼‶)ᕗ', '(҂⌣̀_⌣́)',
+                     'ᕦ(ò_óˇ)ᕤ', '╚(ಠ_ಠ)=┐', 'ლ(ಠ益ಠლ)', '\\_(ʘ_ʘ)_/', '( ⚆ _ ⚆ )', '(ಥ﹏ಥ)', '﴾͡๏̯͡๏﴿', '(◔̯◔)', '(ಠ_ಠ)',
+                     '(ಠ‿ಠ)', '(¬_¬)', '(¬‿¬)', '\\ (•◡•) /', '(◕‿◕✿)', '( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)']
+            articles = [InlineQueryResultPhoto(id=str(uuid4()), title=face, input_message_content=dict(message_text=face)) for face in faces]
 
             bot.answerInlineQuery(msg['id'], results=articles)
 
