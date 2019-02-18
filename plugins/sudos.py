@@ -46,6 +46,7 @@ def sudos(msg):
 *!cmd* - Executa um comando.
 *!chat* - Obtem infos de um chat.
 *!del* - Deleta a mensagem respondida.
+*!doc* - Envia um documento do server.
 *!eval* - Executa uma função Python.
 *!exec* - Executa um código Python.
 *!leave* - O bot sai do chat.
@@ -86,6 +87,20 @@ def sudos(msg):
                 else:
                     res = subprocess.getstatusoutput(text)[1]
                 bot.sendMessage(msg['chat']['id'], res or 'Comando executado.', reply_to_message_id=msg['message_id'])
+                return True
+
+            elif msg['text'].split()[0] == '!doc':
+                text = msg['text'][5:]
+                if text:
+                    try:
+                        bot.sendChatAction(msg['chat']['id'], 'upload_document')
+                        bot.sendDocument(msg['chat']['id'], open(text, 'rb'), reply_to_message_id=msg['message_id'])
+                    except FileNotFoundError:
+                        bot.sendMessage(msg['chat']['id'], 'O arquivo não existe.',
+                                        reply_to_message_id=msg['message_id'])
+                    except TelegramError as e:
+                        bot.sendMessage(msg['chat']['id'], str(e),
+                                        reply_to_message_id=msg['message_id'])
                 return True
 
 
