@@ -28,8 +28,8 @@ def pretty_size(size):
 
 
 def get_flag(code):
-    OFFSET = 127462 - ord('A')
-    return chr(ord(code[0]) + OFFSET) + chr(ord(code[1]) + OFFSET)
+    offset = 127462 - ord('A')
+    return chr(ord(code[0]) + offset) + chr(ord(code[1]) + offset)
 
 
 def escape_markdown(text):
