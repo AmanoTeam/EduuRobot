@@ -96,10 +96,10 @@ def sudos(msg):
                         bot.sendChatAction(msg['chat']['id'], 'upload_document')
                         bot.sendDocument(msg['chat']['id'], open(text, 'rb'), reply_to_message_id=msg['message_id'])
                     except FileNotFoundError:
-                        bot.sendMessage(msg['chat']['id'], 'O arquivo não existe.',
+                        bot.sendMessage(msg['chat']['id'], 'Arquivo não encontrado.',
                                         reply_to_message_id=msg['message_id'])
                     except TelegramError as e:
-                        bot.sendMessage(msg['chat']['id'], str(e),
+                        bot.sendMessage(msg['chat']['id'], e.description,
                                         reply_to_message_id=msg['message_id'])
                 return True
 
