@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -51,7 +50,6 @@ class Strings:
             self.language = 'en'
 
         self.strings = strings[self.language]
-
 
     def get(self, string_key):
         if strings[self.language].get(string_key):

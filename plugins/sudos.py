@@ -91,10 +91,14 @@ def sudos(msg):
 
             elif msg['text'] == '!del':
                 if msg.get('reply_to_message'):
-                    try:bot.deleteMessage((msg['chat']['id'], msg['reply_to_message']['message_id']))
-                    except TelegramError:pass
-                    try:bot.deleteMessage((msg['chat']['id'], msg['message_id']))
-                    except TelegramError:pass
+                    try:
+                        bot.deleteMessage((msg['chat']['id'], msg['reply_to_message']['message_id']))
+                    except TelegramError:
+                        pass
+                    try:
+                        bot.deleteMessage((msg['chat']['id'], msg['message_id']))
+                    except TelegramError:
+                        pass
                 return True
 
 

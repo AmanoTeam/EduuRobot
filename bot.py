@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -71,6 +70,7 @@ def handle(msg):
             bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:
 
 {}'''.format(plugin, res))
+
 
 if __name__ == '__main__':
 

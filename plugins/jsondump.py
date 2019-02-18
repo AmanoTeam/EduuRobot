@@ -30,8 +30,8 @@ def jsondump(msg):
             'text'] == '/jsondump@' + bot_username:
             msgjson = json.dumps(msg, indent=2, sort_keys=False)
             if '-f' not in msg['text'] and len(msgjson) < 4080:
-                    bot.sendMessage(msg['chat']['id'], '<pre>' + html.escape(msgjson) + '</pre>',
-                                    'html', reply_to_message_id=msg['message_id'])
+                bot.sendMessage(msg['chat']['id'], '<pre>' + html.escape(msgjson) + '</pre>',
+                                'html', reply_to_message_id=msg['message_id'])
             else:
                 bot.sendChatAction(msg['chat']['id'], 'upload_document')
                 with open('dump.json', 'wb') as i:

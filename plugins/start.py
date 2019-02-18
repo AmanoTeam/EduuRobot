@@ -142,9 +142,10 @@ def start(msg):
 
         elif msg['data'] == 'change_lang':
             langs_kb = InlineKeyboardMarkup(inline_keyboard=
-                [[dict(text='{lang_flag} {lang_name}'.format(**strings[x]), callback_data='set_lang '+x)] for x in strings]+
-                [[dict(text=strs.get('back_button'), callback_data='start_back')]]
-            )
+                                            [[dict(text='{lang_flag} {lang_name}'.format(**strings[x]),
+                                                   callback_data='set_lang ' + x)] for x in strings] +
+                                            [[dict(text=strs.get('back_button'), callback_data='start_back')]]
+                                            )
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 "Select your prefered lang below:",
                                 reply_markup=langs_kb)
@@ -152,7 +153,8 @@ def start(msg):
 
 
         elif msg['data'].split()[0] == 'set_lang':
-            cursor.execute('UPDATE users SET chat_lang = ? WHERE user_id = ?', (msg['data'].split()[1], msg['message']['chat']['id']))
+            cursor.execute('UPDATE users SET chat_lang = ? WHERE user_id = ?',
+                           (msg['data'].split()[1], msg['message']['chat']['id']))
             usr_lang = Strings(msg['message']['chat']['id'])
             start_back = InlineKeyboardMarkup(inline_keyboard=[
                 [dict(text=usr_lang.get('back_button'), callback_data='start_back')]

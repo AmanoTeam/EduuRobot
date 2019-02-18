@@ -50,14 +50,16 @@ def disable_welcome(chat_id):
 
 def welcome(msg):
     if msg.get('text'):
-        if msg['text'].split()[0] == '/welcome' or msg['text'].split()[0] == '/welcome@'+bot_username or msg['text'].split()[0] == '!welcome':
+        if msg['text'].split()[0] == '/welcome' or msg['text'].split()[0] == '/welcome@' + bot_username or \
+                msg['text'].split()[0] == '!welcome':
             if msg['chat']['type'] == 'private':
                 bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
             elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 text = msg['text'].split(' ', 1)
                 if len(text) == 1:
-                    bot.sendMessage(msg['chat']['id'], 'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
+                    bot.sendMessage(msg['chat']['id'],
+                                    'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
                                     reply_to_message_id=msg['message_id'])
                 elif text[1] == 'on':
                     enable_welcome(msg['chat']['id'])
@@ -89,14 +91,17 @@ def welcome(msg):
             welcome = get_welcome(chat_id)
             if welcome[1]:
                 if welcome[0] is not None:
-                    welcome = welcome[0].replace('$name', escape_markdown(first_name)).replace('$title', escape_markdown(chat_title)).replace('$id', str(user_id))
+                    welcome = welcome[0].replace('$name', escape_markdown(first_name)).replace('$title',
+                                                                                               escape_markdown(
+                                                                                                   chat_title)).replace(
+                        '$id', str(user_id))
                 else:
                     welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape_markdown(chat_title))
                 if '$rules' in welcome:
                     welcome = welcome.replace('$rules', '')
                     rules_markup = InlineKeyboardMarkup(inline_keyboard=[
                         [dict(text='Leia as regras',
-                                  url='https://t.me/{}?start=rules_{}'.format(bot_username, chat_id))]
+                              url='https://t.me/{}?start=rules_{}'.format(bot_username, chat_id))]
                     ])
                 else:
                     rules_markup = None
@@ -105,4 +110,3 @@ def welcome(msg):
                                 reply_markup=rules_markup,
                                 disable_web_page_preview=True)
         return True
-                

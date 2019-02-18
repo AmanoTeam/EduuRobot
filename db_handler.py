@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -85,10 +84,10 @@ def add_chat(chat_type, chat_id, chat_lang='en'):
                            (chat_id, True, '[]', chat_lang))
             conn.commit()
     elif chat_type == 'channel':
-         if not channel_exists(chat_id):
+        if not channel_exists(chat_id):
             cursor.execute('INSERT INTO channels (chat_id) VALUES (?)', (chat_id,))
             conn.commit()
-    
+
 
 def get_restarted():
     cursor.execute('SELECT * FROM was_restarted_on')

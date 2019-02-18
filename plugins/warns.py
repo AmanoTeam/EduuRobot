@@ -37,12 +37,14 @@ def get_warns_limit(chat_id):
 def add_warns(chat_id, user_id, number):
     cursor.execute('SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
     if cursor.fetchone():
-        cursor.execute('UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?', (number, chat_id, user_id))
+        cursor.execute('UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?',
+                       (number, chat_id, user_id))
         conn.commit()
     else:
         cursor.execute('INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)', (user_id, chat_id, number))
         conn.commit()
     return True
+
 
 def reset_warns(chat_id, user_id):
     cursor.execute('DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
@@ -67,7 +69,8 @@ def warns(msg):
                         reply_id = get['id']
                         reply_name = get['first_name']
                     except (TelegramError, KeyError):
-                        bot.sendMessage(msg['chat']['id'], 'ID inválida ou desconhecida. use nesse formato: /warn ID do usuário',
+                        bot.sendMessage(msg['chat']['id'],
+                                        'ID inválida ou desconhecida. use nesse formato: /warn ID do usuário',
                                         reply_to_message_id=msg['message_id'])
                         return
                 else:
@@ -90,10 +93,13 @@ def warns(msg):
                             user_warns = get_warns(msg['chat']['id'], reply_id)
                             if user_warns >= warns_limit:
                                 bot.kickChatMember(msg['chat']['id'], reply_id)
-                                bot.sendMessage(msg['chat']['id'], '{} banido(a) pois atingiu o limite de advertências'.format(reply_name),
+                                bot.sendMessage(msg['chat']['id'],
+                                                '{} banido(a) pois atingiu o limite de advertências'.format(reply_name),
                                                 reply_to_message_id=msg['message_id'])
                             else:
-                                bot.sendMessage(msg['chat']['id'], '{} Foi advertido(a) ({}/{})'.format(reply_name, user_warns, warns_limit),
+                                bot.sendMessage(msg['chat']['id'],
+                                                '{} Foi advertido(a) ({}/{})'.format(reply_name, user_warns,
+                                                                                     warns_limit),
                                                 reply_to_message_id=msg['message_id'])
                     else:
                         bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
@@ -115,7 +121,8 @@ def warns(msg):
                         reply_id = get['id']
                         reply_name = get['first_name']
                     except (TelegramError, KeyError):
-                        bot.sendMessage(msg['chat']['id'], 'ID inválida ou desconhecida. use nesse formato: /unwarn ID do usuário',
+                        bot.sendMessage(msg['chat']['id'],
+                                        'ID inválida ou desconhecida. use nesse formato: /unwarn ID do usuário',
                                         reply_to_message_id=msg['message_id'])
                         return
                 else:

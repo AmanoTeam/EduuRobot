@@ -61,8 +61,8 @@ def misc(msg):
             adms = bot.getChatAdministrators(msg['chat']['id'])
             names = 'Admins:\n\n'
             for num, user in enumerate(adms):
-                names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num+1, user['user']['id'],
-                    html.escape(user['user']['first_name']))
+                names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num + 1, user['user']['id'],
+                                                                          html.escape(user['user']['first_name']))
             bot.sendMessage(msg['chat']['id'], names, 'html',
                             reply_to_message_id=msg['message_id'])
             return True
@@ -110,7 +110,8 @@ Mensagem: {}'''.format(msg['from']['id'],
         elif msg['text'].startswith('/dogbin') or msg['text'].startswith('!dogbin'):
             text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
             if not text:
-                bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''', 'markdown',
+                bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''',
+                                'markdown',
                                 reply_to_message_id=msg['message_id'])
             else:
                 bot.sendMessage(msg['chat']['id'], send_to_dogbin(text), disable_web_page_preview=True,
@@ -160,9 +161,9 @@ Mensagem: {}'''.format(msg['from']['id'],
             if len(r.text) > 3000:
                 res = send_to_dogbin(r.content)
             else:
-                res = '<code>'+html.escape(r.text)+'</code>'
-            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res), 'html',
-                            reply_to_message_id=msg['message_id'])
+                res = '<code>' + html.escape(r.text) + '</code>'
+            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
+                            'html', reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -190,5 +191,5 @@ Mensagem: {}'''.format(msg['from']['id'],
 
 👤 <b>{}</b>: <i>{}</i>'''.format(msg['from']['first_name'], msg['reply_to_message']['from']['first_name'],
                                   text), 'HTML',
-                                    reply_to_message_id=msg['message_id'])
+                                        reply_to_message_id=msg['message_id'])
                     return True

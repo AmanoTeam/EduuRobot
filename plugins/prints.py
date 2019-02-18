@@ -31,12 +31,12 @@ def prints(msg):
         if msg['text'].startswith('/print ') or msg['text'].startswith('!print '):
             try:
                 sent = bot.sendMessage(msg['chat']['id'], 'Tirando print...',
-                                reply_to_message_id=msg['message_id'])
+                                       reply_to_message_id=msg['message_id'])
                 ctime = time.time()
                 if re.match(r'^[a-z]+://', msg['text'][7:]):
                     url = msg['text'][7:]
                 else:
-                    url = 'http://'+msg['text'][7:]
+                    url = 'http://' + msg['text'][7:]
                 r = requests.post("https://olix.herokuapp.com/print", params=dict(q=url))
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
@@ -46,7 +46,8 @@ def prints(msg):
                               reply_to_message_id=msg['message_id'])
                 bot.deleteMessage((msg['chat']['id'], sent['message_id']))
             except Exception as e:
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
+                bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                    f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
             finally:
                 os.remove(f'{ctime}.png')
             return True

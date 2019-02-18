@@ -1,4 +1,3 @@
-
 # Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -19,8 +18,6 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from amanobot.namedtuple import InlineKeyboardMarkup
-
-from config import bot_username
 
 
 all_cmds = InlineKeyboardMarkup(inline_keyboard=[

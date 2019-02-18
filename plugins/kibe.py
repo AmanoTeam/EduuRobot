@@ -64,7 +64,8 @@ def kibe(msg):
                         sticker_emoji = msg['reply_to_message']['sticker']['emoji']
                     except KeyError:
                         os.remove(str(msg['from']['id']) + "_kibe_sticker.png")
-                        return bot.sendMessage(msg['chat']['id'], 'You need to define a emoticon for this sticker, since it doesn\'t have one.',
+                        return bot.sendMessage(msg['chat']['id'],
+                                               'You need to define a emoticon for this sticker, since it doesn\'t have one.',
                                                reply_to_message_id=msg['message_id'])
                 success = False
                 try:
@@ -80,7 +81,7 @@ def kibe(msg):
                     elif e.description == "Internal Server Error: sticker set not found":
                         success = True
                     else:
-                        bot.sendMessage(msg['chat']['id'], 'Error: '+e.description,
+                        bot.sendMessage(msg['chat']['id'], 'Error: ' + e.description,
                                         reply_to_message_id=msg['message_id'])
                         return
                 finally:

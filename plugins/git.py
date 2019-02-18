@@ -36,7 +36,7 @@ def git(msg):
 *Localização:* `{}`
 *Tipo:* `{}`
 *Bio:* `{}`'''.format(res['name'], res['login'],
-                       res['location'], res['type'],
-                       res['bio']), 'Markdown',
+                      res['location'], res['type'],
+                      res['bio']), 'Markdown',
                                 reply_to_message_id=msg['message_id'])
             return True

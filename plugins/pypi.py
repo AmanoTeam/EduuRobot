@@ -23,7 +23,7 @@ import re
 import requests
 from amanobot.namedtuple import InlineKeyboardMarkup
 
-from config import bot
+from config import bot, version
 
 
 def cleanhtml(raw_html):
@@ -43,7 +43,7 @@ def pypi(msg):
     if msg.get('text'):
         if msg['text'].startswith('/pypi ') or msg['text'].startswith('!pypi '):
             text = msg['text'][6:]
-            r = requests.get(f"https://pypi.python.org/pypi/{text}/json", headers={"User-Agent": "Eduu/v1.0_Beta"})
+            r = requests.get(f"https://pypi.python.org/pypi/{text}/json", headers={"User-Agent": "Eduu/" + version})
             if r.ok:
                 pypi = escape_definition(r.json()["info"])
                 message = "<b>%s</b> by <i>%s</i> (%s)\n" \
@@ -51,8 +51,8 @@ def pypi(msg):
                           "Version: <b>%s</b>\n" \
                           "License: <b>%s</b>\n" \
                           "Summary: <b>%s</b>\n" % (
-                          pypi["name"], pypi["author"], pypi["author_email"], pypi["platform"],
-                          pypi["version"], pypi["platform"], pypi["summary"])
+                              pypi["name"], pypi["author"], pypi["author_email"], pypi["platform"],
+                              pypi["version"], pypi["platform"], pypi["summary"])
                 return bot.sendMessage(msg['chat']['id'], message, reply_to_message_id=msg['message_id'],
                                        parse_mode="HTML", disable_web_page_preview=True,
                                        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
