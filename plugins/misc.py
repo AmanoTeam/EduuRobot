@@ -129,6 +129,15 @@ Mensagem: {}'''.format(msg['from']['id'],
             return True
 
 
+        elif msg['text'] == '/kickme' or msg['text'] == '!kickme':
+            try:
+                bot.unbanChatMember(msg['chat']['id'], msg['from']['id'])
+            except TelegramError:
+                bot.sendMessage(msg['chat']['id'], 'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
+                            reply_to_message_id=msg['message_id'])
+            return True
+
+
         elif msg['text'].startswith('/text ') or msg['text'].startswith('!text '):
             string = ''
             text = msg['text'][6:]
