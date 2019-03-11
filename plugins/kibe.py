@@ -118,7 +118,7 @@ def kibe(msg):
                                         [dict(text='Start', url="t.me/{}".format(bot_username))]]),
                                     reply_to_message_id=msg['message_id'])
                 else:
-                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.",
+                    bot.sendMessage(msg['chat']['id'], "Failed to create sticker pack. Possibly due to blek mejik.\n\n"+str(e),
                                     reply_to_message_id=msg['message_id'])
 
             if success:
