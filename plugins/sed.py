@@ -40,13 +40,14 @@ def sed(msg):
             count = 1
             rflags = 0
 
-            if 'i' in flags and 'g' in flags:
+            if 'g' in flags:
                 count = 0
-                rflags = re.I
+            if 'i' in flags and 'm' in flags:
+                rflags = re.I|re.M
             elif 'i' in flags:
                 rflags = re.I
-            elif 'g' in flags:
-                count = 0
+            elif 'm' in flags:
+                rflags = re.M
 
             if msg['reply_to_message'].get('text'):
                 text = msg['reply_to_message']['text']
