@@ -46,7 +46,7 @@ def sed(msg):
                 rflags = re.I|re.S
             elif 'i' in flags:
                 rflags = re.I
-            elif 'm' in flags:
+            elif 's' in flags:
                 rflags = re.S
 
             if msg['reply_to_message'].get('text'):
