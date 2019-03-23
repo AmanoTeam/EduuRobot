@@ -34,8 +34,8 @@ def send_to_dogbin(text):
     post = requests.post("https://del.dog/documents", data=text)
     try:
         return "https://del.dog/" + post.json()["key"]
-    except JSONDecodeError as e:
-        return str(e)
+    except JSONDecodeError:
+        return post.text
 
 
 def misc(msg):
