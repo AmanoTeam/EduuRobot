@@ -35,7 +35,7 @@ def send_to_dogbin(text):
     try:
         return "https://del.dog/" + post.json()["key"]
     except JSONDecodeError:
-        return post.text
+        return html.escape(post.text)
 
 
 def misc(msg):
