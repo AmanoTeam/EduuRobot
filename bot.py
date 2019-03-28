@@ -78,7 +78,7 @@ Descrição: <code>{exc_desc}</code>
 
 <a href="{exc_url}">Erro completo</a>
 
-{}'''.format(plugin=plugin, exc_type=e.__name__, exc_desc=e, exc_url=exc_url))
+{}'''.format(plugin=plugin, exc_type=e.__class__.__name__, exc_desc=e, exc_url=exc_url))
 
 
 if __name__ == '__main__':
