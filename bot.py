@@ -30,6 +30,7 @@ Iniciando...
 import threading
 import time
 import json
+import html
 import traceback
 
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
@@ -76,9 +77,9 @@ Plugin: <code>{plugin}</code>
 Tipo do erro: <code>{exc_type}</code>
 Descrição: <code>{exc_desc}</code>
 
-<a href="{exc_url}">Erro completo</a>'''.format(
-                                                plugin=plugin, exc_type=e.__class__.__name__,
-                                                exc_desc=e, exc_url=exc_url))
+<a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
+                                                exc_desc=html.escape(e.description if isinstance(e, TelegramError) else e), exc_url=exc_url)
+                            parse_mode='html', disable_web_page_preview=True)
 
 
 if __name__ == '__main__':
