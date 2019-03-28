@@ -72,12 +72,12 @@ def handle(msg):
             formatted_update = json.dumps(msg, indent=3)
             res = traceback.format_exc()
             exc_url = send_to_dogbin('Update:\n'+formatted_update+'\n\n\n\nFull Traceback:\n'+res)
-            bot.sendMessage(logs, '''Ocorreu um erro:
-Plugin: <code>{plugin}</code>
-Tipo do erro: <code>{exc_type}</code>
-Descrição: <code>{exc_desc}</code>
+            bot.sendMessage(logs, '''• <b>Erro:</b>
+ » Plugin: <code>{plugin}</code>
+ » Tipo do erro: <code>{exc_type}</code>
+ » Descrição: <i>{exc_desc}</i>
 
-<a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
+- <a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
                                                 exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
                             parse_mode='html', disable_web_page_preview=True)
 
