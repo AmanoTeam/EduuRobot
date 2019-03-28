@@ -17,6 +17,18 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import requests
+
+
+def send_to_dogbin(text):
+    if not isinstance(text, bytes):
+        text = text.encode()
+    post = requests.post("https://del.dog/documents", data=text)
+    try:
+        return "https://del.dog/" + post.json()["key"]
+    except JSONDecodeError:
+        return html.escape(post.text)
+
 
 def pretty_size(size):
     units = ['B', 'KB', 'MB', 'GB']

@@ -26,16 +26,7 @@ from amanobot.exception import TelegramError
 from json.decoder import JSONDecodeError
 
 from config import bot, sudoers, logs, bot_username
-
-
-def send_to_dogbin(text):
-    if not isinstance(text, bytes):
-        text = text.encode()
-    post = requests.post("https://del.dog/documents", data=text)
-    try:
-        return "https://del.dog/" + post.json()["key"]
-    except JSONDecodeError:
-        return html.escape(post.text)
+from utils import send_to_dogbin
 
 
 def misc(msg):
