@@ -41,7 +41,7 @@ def rules(msg):
 
         if msg['text'].startswith('/start rules_'):
             chat_id = msg['text'].split('_')[1]
-            rules = get_rules(int(chat_id))[0] or 'Sem regras!'
+            rules = get_rules(int(chat_id)) or 'Sem regras!'
 
             bot.sendMessage(msg['chat']['id'], rules, 'Markdown')
             return True
