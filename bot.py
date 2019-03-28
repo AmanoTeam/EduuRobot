@@ -29,6 +29,7 @@ Iniciando...
 
 import threading
 import time
+import json
 import traceback
 
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
@@ -38,6 +39,7 @@ from urllib3.exceptions import ReadTimeoutError
 
 import db_handler as db
 from config import bot, enabled_plugins, logs, version
+from utils import send_to_dogbin
 
 ep = []
 n_ep = []
@@ -65,11 +67,18 @@ def handle(msg):
                 break
         except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
             break
-        except:
+        except Exception as e:
+            formatted_update = json.dumps(msg, indent=3)
             res = traceback.format_exc()
-            bot.sendMessage(logs, '''Ocorreu um erro no plugin {}:
+            exc_url = send_to_dogbin('Update:\n'+formatted_update+'\n\n\n\nFull Traceback:\n'+res)
+            bot.sendMessage(logs, '''Ocorreu um erro:
+Plugin: <code>{plugin}</code>
+Tipo do erro: <code>{exc_type}</code>
+Descrição: <code>{exc_desc}</code>
 
-{}'''.format(plugin, res))
+<a href="{exc_url}">Erro completo</a>
+
+{}'''.format(plugin=plugin, exc_type=e.__name__, exc_desc=e, exc_url=exc_url))
 
 
 if __name__ == '__main__':
