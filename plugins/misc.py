@@ -53,13 +53,16 @@ def misc(msg):
 
 
         elif msg['text'] == '/admins' or msg['text'] == '!admins':
-            adms = bot.getChatAdministrators(msg['chat']['id'])
-            names = 'Admins:\n\n'
-            for num, user in enumerate(adms):
-                names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num + 1, user['user']['id'],
-                                                                          html.escape(user['user']['first_name']))
-            bot.sendMessage(msg['chat']['id'], names, 'html',
-                            reply_to_message_id=msg['message_id'])
+            if msg['chat']['type'] == 'private':
+                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+            else:
+                adms = bot.getChatAdministrators(msg['chat']['id'])
+                names = 'Admins:\n\n'
+                for num, user in enumerate(adms):
+                    names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num + 1, user['user']['id'],
+                                                                              html.escape(user['user']['first_name']))
+                bot.sendMessage(msg['chat']['id'], names, 'html',
+                                reply_to_message_id=msg['message_id'])
             return True
 
 

@@ -344,7 +344,7 @@ def admins(msg):
                                     reply_markup=kb)
                     bot.sendMessage(msg['chat']['id'], 'Enviei um menu de configurações no seu pv.',
                                     reply_to_message_id=msg['message_id'])
-                return True
+            return True
 
         elif msg['text'] == '/admdebug':
             res = is_admin(msg['chat']['id'], msg['from']['id'],
