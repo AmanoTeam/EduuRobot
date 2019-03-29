@@ -28,38 +28,42 @@ from db_handler import conn, cursor
 
 
 def is_admin(chat_id, user_id, reply_id=None):
-    dic = {}
-    cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (chat_id,))
-    adms = cursor.fetchone()[0]
-    if adms:
-        cached_admins = json.loads(adms)
-    else:
-        cached_admins = {'expires': 0}
+    if chat_id < 0:  # Groups and supergoups IDs.
+        dic = {}
+        cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (chat_id,))
+        adms = cursor.fetchone()[0]
+        if adms:
+            cached_admins = json.loads(adms)
+        else:
+            cached_admins = {'expires': 0}
 
-    if cached_admins['expires'] > time.time():
-        adm_id = cached_admins['admins_list']
-    else:
-        adms = bot.getChatAdministrators(chat_id)
-        adm_id = []
-        for ids in adms:
-            adm_id.append(ids['user']['id'])
-        cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time())+1200)), chat_id))
-        conn.commit()
+        if cached_admins['expires'] > time.time():
+            adm_id = cached_admins['admins_list']
+        else:
+            adms = bot.getChatAdministrators(chat_id)
+            adm_id = []
+            for ids in adms:
+                adm_id.append(ids['user']['id'])
+            cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time())+1200)), chat_id))
+            conn.commit()
 
-    if user_id in adm_id or user_id in sudoers:
-        dic['user'] = True
-    else:
-        dic['user'] = False
+        if user_id in adm_id or user_id in sudoers:
+            dic['user'] = True
+        else:
+            dic['user'] = False
 
-    if reply_id in adm_id:
-        dic['reply'] = True
-    else:
-        dic['reply'] = False
+        if reply_id in adm_id:
+            dic['reply'] = True
+        else:
+            dic['reply'] = False
 
-    if bot_id in adm_id:
-        dic['bot'] = True
-    else:
-        dic['bot'] = False
+        if bot_id in adm_id:
+            dic['bot'] = True
+        else:
+            dic['bot'] = False
+
+    else:  # User IDs.
+        dic = dict(user=False, reply=False, bot=False)
 
     return dic
 
