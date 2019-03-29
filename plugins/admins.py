@@ -17,18 +17,36 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import json
+import time
+
 from amanobot.exception import TelegramError, NotEnoughRightsError
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 from config import bot, bot_id, sudoers
+from db_handler import conn, cursor
 
 
 def is_admin(chat_id, user_id, reply_id=None):
-    adms = bot.getChatAdministrators(chat_id)
-    adm_id = []
     dic = {}
-    for ids in adms:
-        adm_id.append(ids['user']['id'])
+    cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (chat_id,))
+    adms = cursor.fetchone()[0]
+    if adms:
+        cached_admins = json.loads(adms)
+    else:
+        cached_admins = {'expires': 0}
+
+    if cached_admins['expires'] > time.time():
+        print('cache usado')
+        adm_id = cached_admins['admins_list']
+    else:
+        print('cache criado')
+        adms = bot.getChatAdministrators(chat_id)
+        adm_id = []
+        for ids in adms:
+            adm_id.append(ids['user']['id'])
+        cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time())+1200)), chat_id))
+        conn.commit()
 
     if user_id in adm_id or user_id in sudoers:
         dic['user'] = True
