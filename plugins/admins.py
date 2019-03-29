@@ -37,10 +37,8 @@ def is_admin(chat_id, user_id, reply_id=None):
         cached_admins = {'expires': 0}
 
     if cached_admins['expires'] > time.time():
-        print('cache usado')
         adm_id = cached_admins['admins_list']
     else:
-        print('cache criado')
         adms = bot.getChatAdministrators(chat_id)
         adm_id = []
         for ids in adms:
