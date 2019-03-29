@@ -332,16 +332,19 @@ def admins(msg):
 
 
         elif msg['text'] == '/config':
-            if is_admin(msg['chat']['id'], msg['from']['id'])['user']:
-                kb = InlineKeyboardMarkup(inline_keyboard=[
-                    [dict(text='⚙️ Opções do chat', callback_data='options {}'.format(msg['chat']['id']))],
-                    [dict(text='🗑 Deletar mensagem', callback_data='del_msg')]
-                ])
-                bot.sendMessage(msg['from']['id'], 'Menu de configuração do chat {}'.format(msg['chat']['title']),
-                                reply_markup=kb)
-                bot.sendMessage(msg['chat']['id'], 'Enviei um menu de configurações no seu pv.',
-                                reply_to_message_id=msg['message_id'])
-            return True
+            if msg['chat']['type'] == 'private':
+                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+            else:
+                if is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+                    kb = InlineKeyboardMarkup(inline_keyboard=[
+                        [dict(text='⚙️ Opções do chat', callback_data='options {}'.format(msg['chat']['id']))],
+                        [dict(text='🗑 Deletar mensagem', callback_data='del_msg')]
+                    ])
+                    bot.sendMessage(msg['from']['id'], 'Menu de configuração do chat {}'.format(msg['chat']['title']),
+                                    reply_markup=kb)
+                    bot.sendMessage(msg['chat']['id'], 'Enviei um menu de configurações no seu pv.',
+                                    reply_to_message_id=msg['message_id'])
+                return True
 
         elif msg['text'] == '/admdebug':
             res = is_admin(msg['chat']['id'], msg['from']['id'],
