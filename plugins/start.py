@@ -115,10 +115,9 @@ def start(msg):
             bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''*Comandos para usuários normais:*
 
-/add - Envia uma sugestão para a IA do bot.
 /admins - Mostra a lista de admins do chat.
 /dados - Envia um número aleatório de 1 a 6.
-/erro - Reporta um bug ao meu desenvolvedor.
+/bug - Reporta um bug ao meu desenvolvedor.
 /id - Exibe suas informações ou de um usuário.
 /ping - Responde com uma mensagem de ping.
 /regras - Exibe as regras do grupo.
