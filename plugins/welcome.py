@@ -55,7 +55,7 @@ async def welcome(msg):
             if msg['chat']['type'] == 'private':
                 await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
-            elif await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 text = msg['text'].split(' ', 1)
                 if len(text) == 1:
                     await bot.sendMessage(msg['chat']['id'],

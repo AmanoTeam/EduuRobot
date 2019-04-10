@@ -59,7 +59,7 @@ async def rules(msg):
         elif msg['text'].split()[0] == '/defrules' or msg['text'].split()[0] == '!defrules' or msg['text'].split()[
             0] == '/defregras' or msg['text'].split()[0] == '!defregras' or msg['text'].split()[
             0] == '/defregras@' + bot_username or msg['text'].split()[0] == '/defrules@' + bot_username:
-            if await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            if (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 if len(msg['text'].split()) == 1:
                     await bot.sendMessage(msg['chat']['id'], 'Uso: /defregras Regras do grupo (suporta Markdown)',
                                           reply_to_message_id=msg['message_id'])

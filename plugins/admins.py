@@ -293,7 +293,7 @@ async def admins(msg):
         elif msg['text'].split()[0] == '/pin' or msg['text'].split()[0] == '!pin':
             if msg['chat']['type'] == 'private':
                 await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 if msg.get('reply_to_message'):
                     await bot.pinChatMessage(msg['chat']['id'], msg['reply_to_message']['message_id'])
                 else:
@@ -304,7 +304,7 @@ async def admins(msg):
         elif msg['text'].split()[0] == '/unpin' or msg['text'].split()[0] == '!unpin':
             if msg['chat']['type'] == 'private':
                 await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 await bot.unpinChatMessage(msg['chat']['id'])
                 await bot.sendMessage(msg['chat']['id'], 'Mensagem desfixada',
                                       reply_to_message_id=msg['message_id'])
@@ -314,7 +314,7 @@ async def admins(msg):
             text = msg['text'][7:]
             if msg['chat']['type'] == 'private':
                 await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
-            elif await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 if text == '':
                     await bot.sendMessage(msg['chat']['id'], 'Uso: /title titulo do grupo',
                                           reply_to_message_id=msg['message_id'])
@@ -336,7 +336,7 @@ async def admins(msg):
             if msg['chat']['type'] == 'private':
                 await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
             else:
-                if await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+                if (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                     kb = InlineKeyboardMarkup(inline_keyboard=[
                         [dict(text='⚙️ Opções do chat', callback_data='options {}'.format(msg['chat']['id']))],
                         [dict(text='🗑 Deletar mensagem', callback_data='del_msg')]
@@ -357,7 +357,7 @@ async def admins(msg):
 
         if msg['data'].startswith('options'):
             await bot.answerCallbackQuery(msg['id'], 'Abrindo...')
-            if await is_admin(msg['data'].split()[1], msg['from']['id'])['user']:
+            if (await is_admin(msg['data'].split()[1], msg['from']['id']))['user']:
                 info = await bot.getChat(msg['data'].split()[1])
                 kb = InlineKeyboardMarkup(inline_keyboard=[
                     [dict(text='IA', callback_data='ai')] +
