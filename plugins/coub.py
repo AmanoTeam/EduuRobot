@@ -24,7 +24,7 @@ import requests
 from config import bot
 
 
-def coub(msg):
+async def coub(msg):
     if msg.get('text'):
         if msg['text'].startswith('/coub ') or msg['text'].startswith('!coub '):
             text = msg['text'][6:]
@@ -33,8 +33,8 @@ def coub(msg):
                 content = random.choice(r.json()['coubs'])
                 links = content['permalink']
                 title = content['title']
-                bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})',
+                await bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})',
                                 reply_to_message_id=msg['message_id'], parse_mode="Markdown")
             except IndexError:
-                bot.sendMessage(msg['chat']['id'], 'Not Found!', reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], 'Not Found!', reply_to_message_id=msg['message_id'])
             return True

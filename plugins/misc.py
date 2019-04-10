@@ -19,6 +19,7 @@
 
 import html
 import re
+import asyncio
 
 import amanobot
 import requests
@@ -29,7 +30,7 @@ from config import bot, sudoers, logs, bot_username
 from utils import send_to_dogbin
 
 
-def misc(msg):
+async def misc(msg):
     if msg.get('text'):
 
         if msg['text'].startswith('/echo ') or msg['text'].startswith('!echo '):
@@ -37,8 +38,8 @@ def misc(msg):
                 reply_id = msg['reply_to_message']['message_id']
             else:
                 reply_id = None
-            bot.sendMessage(msg['chat']['id'], msg['text'][6:],
-                            reply_to_message_id=reply_id)
+            await bot.sendMessage(msg['chat']['id'], msg['text'][6:],
+                                  reply_to_message_id=reply_id)
             return True
 
 
@@ -47,22 +48,22 @@ def misc(msg):
                 reply_id = msg['reply_to_message']['message_id']
             else:
                 reply_id = None
-            bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'markdown',
-                            reply_to_message_id=reply_id)
+            await bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'markdown',
+                                  reply_to_message_id=reply_id)
             return True
 
 
         elif msg['text'] == '/admins' or msg['text'] == '!admins':
             if msg['chat']['type'] == 'private':
-                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+                await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
             else:
-                adms = bot.getChatAdministrators(msg['chat']['id'])
+                adms = await bot.getChatAdministrators(msg['chat']['id'])
                 names = 'Admins:\n\n'
                 for num, user in enumerate(adms):
                     names += '{} - <a href="tg://user?id={}">{}</a>\n'.format(num + 1, user['user']['id'],
                                                                               html.escape(user['user']['first_name']))
-                bot.sendMessage(msg['chat']['id'], names, 'html',
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], names, 'html',
+                                      reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -73,47 +74,45 @@ def misc(msg):
                 bot_name = bot_token['first_name']
                 bot_user = bot_token['username']
                 bot_id = bot_token['id']
-                bot.sendMessage(msg['chat']['id'], '''Informações do bot:
+                await bot.sendMessage(msg['chat']['id'], '''Informações do bot:
 
 Nome: {}
 Username: @{}
 ID: {}'''.format(bot_name, bot_user, bot_id), reply_to_message_id=msg['message_id'])
 
             except TelegramError:
-                bot.sendMessage(msg['chat']['id'], 'Token inválido.',
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], 'Token inválido.',
+                                      reply_to_message_id=msg['message_id'])
             return True
 
 
         elif msg['text'].startswith('/bug') or msg['text'].startswith('!bug'):
             text = msg['text'][5:]
             if text == '' or text == bot_username:
-                bot.sendMessage(msg['chat']['id'], '''*Uso:* `/bug <descrição do bug>` - _Reporta erro/bug para minha equipe_
+                await bot.sendMessage(msg['chat']['id'], '''*Uso:* `/bug <descrição do bug>` - _Reporta erro/bug para minha equipe_
   obs.: Mal uso há possibilidade de ID\_ban''', 'markdown',
-                                reply_to_message_id=msg['message_id'])
+                                      reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(logs, '''
+                await bot.sendMessage(logs, '''
 <a href="tg://user?id={}">{}</a> reportou um bug
 
 ID: <code>{}</code>
-Mensagem: {}'''.format(msg['from']['id'],
-                       msg['from']['first_name'],
-                       msg['from']['id'],
-                       text), 'HTML')
-                bot.sendMessage(msg['chat']['id'], 'O bug foi reportado com sucesso para a minha equipe!',
-                                reply_to_message_id=msg['message_id'])
+Mensagem: {}'''.format(msg['from']['id'], msg['from']['first_name'],
+                       msg['from']['id'], text), 'HTML')
+                await bot.sendMessage(msg['chat']['id'], 'O bug foi reportado com sucesso para a minha equipe!',
+                                      reply_to_message_id=msg['message_id'])
             return True
 
 
         elif msg['text'].startswith('/dogbin') or msg['text'].startswith('!dogbin'):
             text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
             if not text:
-                bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''',
-                                'markdown',
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''',
+                                      'markdown',
+                                      reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(msg['chat']['id'], send_to_dogbin(text), disable_web_page_preview=True,
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], send_to_dogbin(text), disable_web_page_preview=True,
+                                      reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -122,17 +121,17 @@ Mensagem: {}'''.format(msg['from']['id'],
                 reply_id = msg['reply_to_message']['message_id']
             else:
                 reply_id = None
-            bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'html',
-                            reply_to_message_id=reply_id)
+            await bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'html',
+                                  reply_to_message_id=reply_id)
             return True
 
 
         elif msg['text'] == '/kickme' or msg['text'] == '!kickme':
             try:
-                bot.unbanChatMember(msg['chat']['id'], msg['from']['id'])
+                await bot.unbanChatMember(msg['chat']['id'], msg['from']['id'])
             except TelegramError:
-                bot.sendMessage(msg['chat']['id'], 'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
-                            reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], 'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
+                                      reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -143,13 +142,15 @@ Mensagem: {}'''.format(msg['from']['id'],
                 reply_id = msg['reply_to_message']['message_id']
             else:
                 reply_id = None
-            sent = bot.sendMessage(msg['chat']['id'], '<code>|</code>', 'html',
+            sent = await bot.sendMessage(msg['chat']['id'], '<code>|</code>', 'html',
                                    reply_to_message_id=reply_id)
             for char in text:
                 string = string + char
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '</code>', 'html')
-                bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '|</code>', 'html')
-            bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + msg['text'][6:] + '</code>', 'html')
+                await asyncio.sleep(1)
+                await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '</code>', 'html')
+                await asyncio.sleep(1)
+                await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '|</code>', 'html')
+            await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + msg['text'][6:] + '</code>', 'html')
             return True
 
 
@@ -161,15 +162,15 @@ Mensagem: {}'''.format(msg['from']['id'],
             try:
                 r = requests.get(text)
             except Exception as e:
-                return bot.sendMessage(msg['chat']['id'], str(e),
-                                       reply_to_message_id=msg['message_id'])
+                return await bot.sendMessage(msg['chat']['id'], str(e),
+                                             reply_to_message_id=msg['message_id'])
             headers = '<b>Status Code:</b> <code>{}</code>\n'.format(str(r.status_code))
             headers += '\n'.join('<b>{}:</b> <code>{}</code>'.format(x, html.escape(r.headers[x])) for x in r.headers)
             if len(r.text) > 3000:
                 res = send_to_dogbin(r.content)
             else:
                 res = '<code>' + html.escape(r.text) + '</code>'
-            bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
+            await bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
                             'html', reply_to_message_id=msg['message_id'])
             return True
 
@@ -179,8 +180,8 @@ Mensagem: {}'''.format(msg['from']['id'],
                 is_sudo = '✅'
             else:
                 is_sudo = '❌'
-            bot.sendMessage(msg['chat']['id'], is_sudo + '🍹',
-                            reply_to_message_id=msg['message_id'])
+            await bot.sendMessage(msg['chat']['id'], is_sudo + '🍹',
+                                  reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -194,9 +195,10 @@ Mensagem: {}'''.format(msg['from']['id'],
             if text:
                 if text.lower() != 'rt':
                     if not re.match('🔃 .* retweetou:\n\n👤 .*', text):
-                        bot.sendMessage(msg['chat']['id'], '''🔃 <b>{}</b> retweetou:
+                        await bot.sendMessage(msg['chat']['id'], '''🔃 <b>{}</b> retweetou:
 
 👤 <b>{}</b>: <i>{}</i>'''.format(msg['from']['first_name'], msg['reply_to_message']['from']['first_name'],
-                                  text), 'HTML',
-                                        reply_to_message_id=msg['message_id'])
+                                  text),
+                                              parse_mode='HTML',
+                                              reply_to_message_id=msg['message_id'])
                     return True

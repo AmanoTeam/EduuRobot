@@ -41,7 +41,7 @@ def escape_definition(prox):
     return prox
 
 
-def inlines(msg):
+async def inlines(msg):
     if 'query' in msg:
         first_name = msg['from']['first_name']
         user_id = msg['from']['id']
@@ -58,7 +58,7 @@ def inlines(msg):
                 id='a', title='Informações de ' + msg['query'][3:], input_message_content=InputTextMessageContent(
                     message_text='*Consulta*: `' + msg['query'][3:] + '`\n\n' + x, parse_mode="Markdown"))]
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('echo'):
@@ -66,7 +66,7 @@ def inlines(msg):
                 id='a', title=msg['query'][5:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:]))]
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('duck'):
@@ -99,7 +99,7 @@ def inlines(msg):
                         message_text=f"Sem resultados para '{search}'."
                     )))
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('img'):
@@ -118,7 +118,7 @@ def inlines(msg):
                     thumb_url=result["Tumbnil"],
                     caption=result["Deskripsi"]
                 ))
-            bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('invert'):
@@ -127,7 +127,7 @@ def inlines(msg):
                                                  input_message_content=InputTextMessageContent(
                                                      message_text=query[::-1]))]
 
-            bot.answerInlineQuery(msg['id'], results=articles)
+            await bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('markdown'):
@@ -135,7 +135,7 @@ def inlines(msg):
                 id='a', title=msg['query'][9:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][9:], parse_mode='Markdown'))]
 
-            bot.answerInlineQuery(msg['id'], results=articles)
+            await bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('html'):
@@ -143,12 +143,12 @@ def inlines(msg):
                 id='a', title=msg['query'][5:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:], parse_mode='html'))]
             try:
-                bot.answerInlineQuery(msg['id'], results=articles)
+                await bot.answerInlineQuery(msg['id'], results=articles)
             except TelegramError:
                 articles = [InlineQueryResultArticle(
                     id='a', title='Texto com erros de formatação.', input_message_content=InputTextMessageContent(
                         message_text='Ocorreu um erro. provavelmente porque você usou uma tag não suportada, ou porque você esqueceu de fechar alguma tag. As tags suportadas são estas: <b>, <i>, <code>, <a> e <pre>.'))]
-                bot.answerInlineQuery(msg['id'], results=articles)
+                await bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('yt '):
@@ -164,7 +164,7 @@ def inlines(msg):
                     id=str(uuid4()), title=f'Nenhum resultado encontrado para "{msg["query"][3:]}".',
                     input_message_content=InputTextMessageContent(message_text='.')))
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
         elif msg['query'].startswith('print '):
@@ -181,12 +181,12 @@ def inlines(msg):
                     thumb_url="https://image.thum.io/get/width/320/" + url,
                     caption=url
                 )]
-                bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
+                await bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
             except Exception as e:
                 res = [InlineQueryResultArticle(
                     id='a', title='Error',
                     input_message_content=InputTextMessageContent(str(e)))]
-                bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
+                await bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
 
 
         elif msg['query'] == 'faces' or msg['query'] == 'f':
@@ -199,14 +199,14 @@ def inlines(msg):
                 InlineQueryResultArticle(id=str(uuid4()), title=face, input_message_content=dict(message_text=face)) for
                 face in faces]
 
-            bot.answerInlineQuery(msg['id'], results=articles)
+            await bot.answerInlineQuery(msg['id'], results=articles)
 
 
         elif msg['query'].startswith('hidemsg'):
             articles = [InlineQueryResultArticle(
                 id='a', title='Resultado: ' + msg['query'][8:],
                 input_message_content=InputTextMessageContent(message_text='\u2060' * 3600 + msg['query'][8:]))]
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
         else:
             articles = [
@@ -285,4 +285,4 @@ def inlines(msg):
                 )
             ]
 
-            bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
+            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)

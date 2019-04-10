@@ -26,7 +26,7 @@ from config import bot, keys
 giphy_key = keys['giphy']
 
 
-def gif(msg):
+async def gif(msg):
     if msg.get('text'):
         if msg['text'].startswith('/gif ') or msg['text'].startswith('!gif '):
             text = msg['text'][5:]
@@ -35,9 +35,9 @@ def gif(msg):
             if rjson["data"]:
                 res = random.choice(rjson["data"])
                 result = res["images"]["original_mp4"]["mp4"]
-                bot.sendVideo(msg['chat']['id'], result,
+                await bot.sendVideo(msg['chat']['id'], result,
                               reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(msg['chat']['id'], "Sem resultados",
+                await bot.sendMessage(msg['chat']['id'], "Sem resultados",
                                 reply_to_message_id=msg['message_id'])
             return True

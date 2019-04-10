@@ -47,7 +47,7 @@ def get_lang(text):
     return lang
 
 
-def translate(msg):
+async def translate(msg):
     if msg.get('text'):
         if msg['text'].startswith('/tr ') or msg['text'] == '/tr':
             text = msg['text'][4:]
@@ -61,19 +61,19 @@ def translate(msg):
                 text = text.replace(lang, '', 1).strip() if text.startswith(lang) else text
 
             if len(text) > 0:
-                sent = bot.sendMessage(msg['chat']['id'], 'Traduzindo...',
-                                       reply_to_message_id=msg['message_id'])
+                sent = await bot.sendMessage(msg['chat']['id'], 'Traduzindo...',
+                                             reply_to_message_id=msg['message_id'])
 
                 req = requests.post("https://translate.yandex.net/api/v1.5/tr.json/translate",
                                     data=dict(key=traducao, lang=lang, text=text)).json()
 
-                bot.editMessageText((msg['chat']['id'], sent['message_id']),
-                                    '''<b>Idioma:</b> {}
+                await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                          '''<b>Idioma:</b> {}
 <b>Tradução:</b> <code>{}</code>'''.format(req['lang'], html.escape(req['text'][0])),
-                                    parse_mode='HTML')
+                                          parse_mode='HTML')
 
             else:
-                bot.sendMessage(msg['chat']['id'],
-                                'Uso: /tr <idioma> texto para traduzir (pode ser usado em resposta a uma mensagem).',
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'],
+                                      'Uso: /tr <idioma> texto para traduzir (pode ser usado em resposta a uma mensagem).',
+                                      reply_to_message_id=msg['message_id'])
             return True

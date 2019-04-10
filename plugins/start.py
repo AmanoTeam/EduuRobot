@@ -25,7 +25,7 @@ from db_handler import cursor
 from get_strings import strings, Strings
 
 
-def start(msg):
+async def start(msg):
     if msg.get('text'):
         strs = Strings(msg['chat']['id'])
 
@@ -46,7 +46,7 @@ def start(msg):
                 ])
                 smsg = strs.get('start_msg')
 
-            bot.sendMessage(msg['chat']['id'], smsg,
+            await bot.sendMessage(msg['chat']['id'], smsg,
                             reply_to_message_id=msg['message_id'], reply_markup=kb)
             return True
 
@@ -63,7 +63,7 @@ def start(msg):
         ])
 
         if msg['data'] == 'tools_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 text='''*Ferramentas:*
 
 /clima - Exibe informações de clima.
@@ -90,7 +90,7 @@ def start(msg):
 
 
         elif msg['data'] == 'admin_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''*Comandos administrativos:*
 
 /ban - Bane um usuário.
@@ -112,7 +112,7 @@ def start(msg):
 
 
         elif msg['data'] == 'user_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''*Comandos para usuários normais:*
 
 /admins - Mostra a lista de admins do chat.
@@ -134,7 +134,7 @@ def start(msg):
                 [dict(text=strs.get('lang_button'), callback_data='change_lang')] +
                 [dict(text=strs.get('add_button'), url='https://t.me/{}?startgroup=new'.format(bot_username))]
             ])
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
                                 reply_markup=kb)
             return True
 
@@ -145,7 +145,7 @@ def start(msg):
                                                    callback_data='set_lang ' + x)] for x in strings] +
                                             [[dict(text=strs.get('back_button'), callback_data='start_back')]]
                                             )
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 "Select your prefered lang below:",
                                 reply_markup=langs_kb)
             return True
@@ -158,21 +158,21 @@ def start(msg):
             start_back = InlineKeyboardMarkup(inline_keyboard=[
                 [dict(text=usr_lang.get('back_button'), callback_data='start_back')]
             ])
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 usr_lang.get('lang_changed'),
                                 reply_markup=start_back)
             return True
 
 
         elif msg['data'] == 'all_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 'Selecione uma categoria de comando para visualizar.\n\nCaso precise de ajuda com o bot ou tem alguma sugestão entre no @AmanoChat',
                                 reply_markup=keyboard.all_cmds)
             return True
 
 
         elif msg['data'] == 'infos':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''• EduuRobot
 
 Version: {}

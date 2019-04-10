@@ -48,35 +48,35 @@ def disable_welcome(chat_id):
     conn.commit()
 
 
-def welcome(msg):
+async def welcome(msg):
     if msg.get('text'):
         if msg['text'].split()[0] == '/welcome' or msg['text'].split()[0] == '/welcome@' + bot_username or \
                 msg['text'].split()[0] == '!welcome':
             if msg['chat']['type'] == 'private':
-                bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
+                await bot.sendMessage(msg['chat']['id'], 'Este comando só funciona em grupos ¯\\_(ツ)_/¯')
 
-            elif is_admin(msg['chat']['id'], msg['from']['id'])['user']:
+            elif await is_admin(msg['chat']['id'], msg['from']['id'])['user']:
                 text = msg['text'].split(' ', 1)
                 if len(text) == 1:
-                    bot.sendMessage(msg['chat']['id'],
-                                    'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
-                                    reply_to_message_id=msg['message_id'])
+                    await bot.sendMessage(msg['chat']['id'],
+                                          'Uso: /welcome on/off/reset/mensagem de boas-vindas do grupo (suporta Markdown e as tags $name, $title, $id e $rules)',
+                                          reply_to_message_id=msg['message_id'])
                 elif text[1] == 'on':
                     enable_welcome(msg['chat']['id'])
-                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
-                                    reply_to_message_id=msg['message_id'])
+                    await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi ativada.',
+                                          reply_to_message_id=msg['message_id'])
                 elif text[1] == 'off':
                     disable_welcome(msg['chat']['id'])
-                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
-                                    reply_to_message_id=msg['message_id'])
+                    await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi desativada.',
+                                          reply_to_message_id=msg['message_id'])
                 elif text[1] == 'reset':
                     set_welcome(msg['chat']['id'], None)
-                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
-                                    reply_to_message_id=msg['message_id'])
+                    await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
+                                          reply_to_message_id=msg['message_id'])
                 else:
                     set_welcome(msg['chat']['id'], text[1])
-                    bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
-                                    reply_to_message_id=msg['message_id'])
+                    await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
+                                          reply_to_message_id=msg['message_id'])
             return True
 
 
@@ -105,8 +105,8 @@ def welcome(msg):
                     ])
                 else:
                     rules_markup = None
-                bot.sendMessage(chat_id, welcome, 'Markdown',
-                                reply_to_message_id=msg['message_id'],
-                                reply_markup=rules_markup,
-                                disable_web_page_preview=True)
+                await bot.sendMessage(chat_id, welcome, 'Markdown',
+                                      reply_to_message_id=msg['message_id'],
+                                      reply_markup=rules_markup,
+                                      disable_web_page_preview=True)
         return True

@@ -1,9 +1,16 @@
-import amanobot
+import amanobot.aio
+import asyncio
 
 
-bot = amanobot.Bot('token:here') #Bot token
+loop = asyncio.get_event_loop()
 
-me = bot.getMe()
+token = "TOKEN:HERE"
+
+bot = amanobot.aio.Bot(token) #Bot token
+na_bot = amanobot.Bot(token)
+
+
+me = loop.run_until_complete(bot.getMe())
 bot_username = me['username']
 bot_id = me['id']
 

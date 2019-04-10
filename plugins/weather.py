@@ -28,7 +28,7 @@ get_coords = 'http://maps.google.com/maps/api/geocode/json'
 url = 'http://api.openweathermap.org/data/2.5/weather/?q={}&units=metric&lang=pt&appid={}'
 
 
-def weather(msg):
+async def weather(msg):
     if msg.get('text'):
         if msg['text'].startswith('/clima'):
             if msg['text'][7:] == '':
@@ -48,5 +48,5 @@ Umidade do ar: `{}%`
 Vento: `{:.2f} m/s`'''.format(json['name'], get_flag(json['sys']['country']),
                               json['weather'][0]['description'], json['main']['temp_min'],
                               json['main']['temp_max'], json['main']['humidity'], json['wind']['speed'])
-            bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
+            await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True

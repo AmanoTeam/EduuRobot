@@ -17,22 +17,15 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import threading
 import time
 
 from config import max_time
 from db_handler import *
 
-lock = threading.Lock()
 
-
-def processmsg(msg):
+async def processmsg(msg):
     if msg.get('date'):
         if time.time() - msg['date'] > max_time:
             return True
         elif msg.get('chat'):
-            try:
-                lock.acquire(True)
-                add_chat(msg['chat']['type'], msg['chat']['id'])
-            finally:
-                lock.release()
+            add_chat(msg['chat']['type'], msg['chat']['id'])

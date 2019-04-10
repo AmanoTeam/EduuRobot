@@ -34,7 +34,7 @@ def treattitle(title):
     return title
 
 
-def reddit(msg):
+async def reddit(msg):
     if msg.get('text'):
         if msg['text'].startswith('/r ') or msg['text'].startswith('!r '):
             sub = msg['text'][3:]
@@ -64,24 +64,24 @@ def reddit(msg):
                                                                                                       domain=domain)
                         posts += post
                     if posts:
-                        bot.sendMessage(msg['chat']['id'],
-                                        u"[{sub}]({subreddit})`:`\n\n".format(sub=sub, subreddit=subreddit) + posts,
-                                        reply_to_message_id=msg['message_id'], parse_mode="Markdown",
-                                        disable_web_page_preview=True)
+                        await bot.sendMessage(msg['chat']['id'],
+                                              "[{sub}]({subreddit})`:`\n\n".format(sub=sub, subreddit=subreddit) + posts,
+                                              reply_to_message_id=msg['message_id'], parse_mode="Markdown",
+                                              disable_web_page_preview=True)
                     else:
-                        bot.sendMessage(msg['chat']['id'], u"`I couldnt find {sub}, please try again`".format(sub=sub),
-                                        reply_to_message_id=msg['message_id'], parse_mode="Markdown",
-                                        disable_web_page_preview=True)
+                        await bot.sendMessage(msg['chat']['id'], u"`I couldnt find {sub}, please try again`".format(sub=sub),
+                                             reply_to_message_id=msg['message_id'], parse_mode="Markdown",
+                                             disable_web_page_preview=True)
                 elif request.status_code == 403:
-                    bot.sendMessage(msg['chat']['id'], "`Subreddit not found, please verify your input.`",
-                                    reply_to_message_id=msg['message_id'], parse_mode="Markdown")
+                    await bot.sendMessage(msg['chat']['id'], "`Subreddit not found, please verify your input.`",
+                                          reply_to_message_id=msg['message_id'], parse_mode="Markdown")
                 else:
-                    bot.sendMessage(msg['chat']['id'],
-                                    "`There has been an error, the number {error} to be specific.`".format(
-                                        error=request.status_code), reply_to_message_id=msg['message_id'],
-                                    parse_mode="Markdown")
+                    await bot.sendMessage(msg['chat']['id'],
+                                          "`There has been an error, the number {error} to be specific.`".format(
+                                              error=request.status_code), reply_to_message_id=msg['message_id'],
+                                          parse_mode="Markdown")
             else:
-                bot.sendMessage(msg['chat']['id'],
-                                "`Follow this command with the name of a subreddit to see the top 6 posts.\nExample: /r Awww`",
-                                reply_to_message_id=msg['message_id'], parse_mode="Markdown")
+                await bot.sendMessage(msg['chat']['id'],
+                                      "`Follow this command with the name of a subreddit to see the top 6 posts.\nExample: /r Awww`",
+                                      parse_mode="Markdown", reply_to_message_id=msg['message_id'])
             return True
