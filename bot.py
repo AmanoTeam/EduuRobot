@@ -88,7 +88,6 @@ if __name__ == '__main__':
     print('\n\nBot iniciado! {}\n'.format(version))
 
     loop.create_task(MessageLoop(bot, handle).run_forever())
-    loop.run_forever()
 
     wr = db.get_restarted()
 
@@ -106,5 +105,4 @@ Plugins carregados: {}
 Ocorreram erros em {} plugin(s){}'''.format(version, len(ep), len(n_ep),
                                             ': ' + (', '.join(n_ep)) if n_ep else ''))
 
-    while True:
-        time.sleep(10)
+    loop.run_forever()
