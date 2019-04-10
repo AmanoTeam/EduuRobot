@@ -1,3 +1,4 @@
+import amanobot
 import amanobot.aio
 import asyncio
 
