@@ -1,4 +1,5 @@
 __pycache__/
 .idea/
+.spyproject/
 config.py
 bot.db
