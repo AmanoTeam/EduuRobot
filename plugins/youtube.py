@@ -20,7 +20,7 @@
 import os
 import re
 
-import requests
+import aiohttp
 import youtube_dl
 from bs4 import BeautifulSoup
 
@@ -30,11 +30,12 @@ from utils import pretty_size
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
 
 
-def search_yt(query):
+async def search_yt(query):
     url_base = "https://www.youtube.com/results"
     url_yt = "https://www.youtube.com"
-    r = requests.get(url_base, params=dict(search_query=query))
-    page = r.text
+    async with aiohttp.ClientSession() as session:
+        r = await session.get(url_base, params=dict(q=query))
+        page = await r.text()
     soup = BeautifulSoup(page, "html.parser")
     id_url = None
     list_videos = []
@@ -55,7 +56,7 @@ async def youtube(msg):
 
         if msg['text'].startswith('/yt '):
             try:
-                res = search_yt(msg['text'][4:])
+                res = await search_yt(msg['text'][4:])
                 vids = ''
                 for num, i in enumerate(res):
                     vids += '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])

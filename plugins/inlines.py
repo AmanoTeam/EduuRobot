@@ -153,7 +153,7 @@ async def inlines(msg):
 
         elif msg['query'].startswith('yt '):
             articles = []
-            search = search_yt(msg['query'][3:])
+            search = await search_yt(msg['query'][3:])
             for i in search:
                 articles.append(InlineQueryResultArticle(
                     id=str(uuid4()), title=i['title'],
