@@ -18,6 +18,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
+import re
 
 import requests
 import youtube_dl
@@ -67,7 +68,7 @@ async def youtube(msg):
             return True
 
 
-        elif msg['text'].startswith('/ytdl '):
+        elif msg['text'].startswith('/ytdl'):
             text = msg['text'][6:]
 
             if text == '':
@@ -77,10 +78,10 @@ async def youtube(msg):
                 sent_id = (await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
                                                 reply_to_message_id=msg['message_id']))['message_id']
                 try:
-                    if 'youtu.be' not in text and 'youtube.com' not in text:
-                        yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
-                    else:
+                    if re.match(r'^(https?://)?(youtu\.be/|(m\.|www\.)?youtube\.com/watch\?v=).+', text):
                         yt = ydl.extract_info(text, download=False)
+                    else:
+                        yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
                     for f in yt['formats']:
                         if f['format_id'] == '140':
                             fsize = f['filesize']
