@@ -95,7 +95,7 @@ async def youtube(msg):
                         title = name
                     await bot.editMessageText((msg['chat']['id'], sent_id),
                                               'Baixando <code>{}</code> do YouTube...\n({})'.format(name, pretty_size(fsize)), 'HTML')
-                    ydl.download('https://www.youtube.com/watch?v=' + yt['id'])
+                    ydl.download(['https://www.youtube.com/watch?v=' + yt['id']])
                     await bot.editMessageText((msg['chat']['id'], sent_id), 'Enviando áudio...')
                     await bot.sendChatAction(msg['chat']['id'], 'upload_document')
                     await bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
