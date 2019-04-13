@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     print('\n\nBot iniciado! {}\n'.format(version))
 
-    loop.create_task(MessageLoop(bot, handle).run_forever())
+    loop.create_task(MessageLoop(bot, handle).run_forever(timeout=1.5))
 
     wr = db.get_restarted()
 
