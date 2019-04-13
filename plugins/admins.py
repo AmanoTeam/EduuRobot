@@ -28,9 +28,9 @@ from db_handler import conn, cursor
 
 
 async def is_admin(chat_id, user_id, reply_id=None):
-    if chat_id < 0:  # Groups and supergoups IDs.
+    if int(chat_id) < 0:  # Groups and supergoups IDs.
         dic = {}
-        cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (chat_id,))
+        cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (int(chat_id),))
         adms = cursor.fetchone()[0]
         if adms:
             cached_admins = json.loads(adms)
