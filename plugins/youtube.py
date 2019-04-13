@@ -74,8 +74,8 @@ async def youtube(msg):
                 await bot.sendMessage(msg['chat']['id'], '*Uso:* /ytdl URL do vídeo ou nome', 'Markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                sent_id = await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
-                                                reply_to_message_id=msg['message_id'])['message_id']
+                sent_id = (await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
+                                                reply_to_message_id=msg['message_id']))['message_id']
                 try:
                     if 'youtu.be' not in text and 'youtube.com' not in text:
                         yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
