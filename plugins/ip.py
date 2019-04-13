@@ -17,7 +17,7 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -31,7 +31,9 @@ async def ip(msg):
                                       parse_mode='Markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                req = requests.get('http://ip-api.com/json/' + text).json()
+                async with aiohttp.ClientSession() as session:
+                    r = await session.get('http://ip-api.com/json/' + text)
+                    req = await r.json()
                 x = ''
                 for i in req:
                     x += "*{}*: `{}`\n".format(i.title(), req[i])
