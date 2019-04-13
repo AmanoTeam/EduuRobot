@@ -19,7 +19,7 @@
 
 import random
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -29,8 +29,10 @@ async def coub(msg):
         if msg['text'].startswith('/coub ') or msg['text'].startswith('!coub '):
             text = msg['text'][6:]
             try:
-                r = requests.get(f'https://coub.com/api/v2/search/coubs?q={text}')
-                content = random.choice(r.json()['coubs'])
+                async with aiohttp.ClientSession() as session:
+                    r = await session.get(f'https://coub.com/api/v2/search/coubs?q={text}')
+                    rjson = await r.json()
+                content = random.choice(rjson['coubs'])
                 links = content['permalink']
                 title = content['title']
                 await bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})',
