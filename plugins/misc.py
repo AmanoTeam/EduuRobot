@@ -24,7 +24,6 @@ import asyncio
 import amanobot
 import requests
 from amanobot.exception import TelegramError
-from json.decoder import JSONDecodeError
 
 from config import bot, sudoers, logs, bot_username
 from utils import send_to_dogbin

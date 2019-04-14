@@ -18,11 +18,10 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import time
-import json
 
 from db_handler import conn, cursor
 from .admins import is_admin
-from config import bot, sudoers, bot_id
+from config import bot
 
 
 cursor.execute('CREATE TABLE IF NOT EXISTS antiflood (chat_id, user_id, unix_time)')
