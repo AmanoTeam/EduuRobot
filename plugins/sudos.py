@@ -245,8 +245,8 @@ async def sudos(msg):
                 if not os.path.getsize(fname) > 52428800:
                     await bot.sendDocument(msg['chat']['id'], open(fname, 'rb'), caption="📅 "+cstrftime)
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
+                    os.remove(fname)
                 else:
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), f'Ei, o tamanho do backup passa de 50 MB, então não posso enviá-lo aqui.\n\nNome do arquivo: `{fname}`', parse_mode='Markdown')
-                os.remove(fname)
 
                 return True
