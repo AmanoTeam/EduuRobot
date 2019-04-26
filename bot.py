@@ -57,7 +57,6 @@ for num, i in enumerate(enabled_plugins):
 
 
 async def handle(msg):
-    print(msg)
     for plugin in ep:
         print(plugin)
         try:
