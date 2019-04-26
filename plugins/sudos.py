@@ -232,14 +232,21 @@ async def sudos(msg):
                 if 'pv' in msg['text'].lower() or 'privado' in msg['text'].lower():
                     msg['chat']['id'] = msg['from']['id']
 
-                with zipfile.ZipFile('backup-{}.zip'.format(ctime), 'w', zipfile.ZIP_DEFLATED) as backup:
+                fname = 'backup-{}.zip'.format(ctime)
+
+                with zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED) as backup:
                     for folder, subfolders, files in os.walk('.'):
                         for file in files:
-                            if file != 'backup-{}.zip'.format(ctime) and not file.endswith('.pyc'):
+                            if file != fname and not file.endswith('.pyc'):
                                 backup.write(os.path.join(folder, file))
+                
+                result_file = open(fname, 'rb')
 
-                await bot.sendDocument(msg['chat']['id'], open('backup-{}.zip'.format(ctime), 'rb'))
-                await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
-                os.remove('backup-{}.zip'.format(ctime))
+                if not result_file.__sizeof__() > 52428800:
+                    await bot.sendDocument(msg['chat']['id'], result_file)
+                    await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
+                else:
+                    await bot.editMessageText((sent['chat']['id'], sent['message_id']), f'Ei, o tamanho do backup passa de 50 MB, então não posso enviá-lo aqui.\n\nNome do arquivo: `{fname}`', parse_mode='Markdown')
+                os.remove(fname)
 
                 return True
