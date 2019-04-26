@@ -85,11 +85,11 @@ async def youtube(msg):
                         yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
                     for f in yt['formats']:
                         if f['format_id'] == '140':
-                            fsize = f['filesize']
+                            fsize = f['filesize'] or 0
                     name = yt['title']
                 except Exception as e:
                     return await bot.editMessageText((msg['chat']['id'], sent_id), 'Ocorreu um erro.\n\n' + str(e))
-                if fsize < 52428800:
+                if not fsize > 52428800:
                     if ' - ' in name:
                         performer, title = name.rsplit(' - ', 1)
                     else:
