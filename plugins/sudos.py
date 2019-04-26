@@ -153,11 +153,11 @@ async def sudos(msg):
                     chat = msg['text'].split()[1]
                 else:
                     chat = msg['chat']['id']
-                sent = await bot.sendMessage(
+                sent = (await bot.sendMessage(
                     chat_id=msg['chat']['id'],
                     text='⏰ Obtendo informações do chat...',
                     reply_to_message_id=msg['message_id']
-                )['message_id']
+                ))['message_id']
                 try:
                     res_chat = bot.getChat(chat)
                 except TelegramError:
