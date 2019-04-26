@@ -24,6 +24,7 @@ import re
 import subprocess
 import sys
 import time
+from datetime import datetime
 import traceback
 import zipfile
 from contextlib import redirect_stdout
@@ -226,6 +227,7 @@ async def sudos(msg):
 
             elif msg['text'].split()[0] == '!backup':
                 ctime = int(time.time())
+                cstrftime = datetime.fromtimestamp(ctime).strftime('%d/%m/%Y - %H:%M:%s')
 
                 sent = await bot.sendMessage(msg['chat']['id'], '⏰ Fazendo backup...', reply_to_message_id=msg['message_id'])
 
@@ -241,7 +243,7 @@ async def sudos(msg):
                                 backup.write(os.path.join(folder, file))
 
                 if not os.path.getsize(fname) > 52428800:
-                    await bot.sendDocument(msg['chat']['id'], open(fname, 'rb'))
+                    await bot.sendDocument(msg['chat']['id'], open(fname, 'rb'), caption="📅 "+cstrftime)
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
                 else:
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), f'Ei, o tamanho do backup passa de 50 MB, então não posso enviá-lo aqui.\n\nNome do arquivo: `{fname}`', parse_mode='Markdown')
