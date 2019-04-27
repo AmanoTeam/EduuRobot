@@ -19,7 +19,7 @@
 
 import html
 
-import requests
+import aiohttp
 
 from config import bot, keys
 
@@ -63,9 +63,10 @@ async def translate(msg):
             if len(text) > 0:
                 sent = await bot.sendMessage(msg['chat']['id'], 'Traduzindo...',
                                              reply_to_message_id=msg['message_id'])
-
-                req = requests.post("https://translate.yandex.net/api/v1.5/tr.json/translate",
-                                    data=dict(key=traducao, lang=lang, text=text)).json()
+                async with aiohttp.ClientSession() as session:
+                    r = await session.post("https://translate.yandex.net/api/v1.5/tr.json/translate",
+                                           data=dict(key=traducao, lang=lang, text=text))
+                    req = await r.json()
 
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                           '''<b>Idioma:</b> {}
