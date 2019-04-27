@@ -57,7 +57,6 @@ for num, i in enumerate(enabled_plugins):
 
 async def handle(msg):
     for plugin in ep:
-        print(plugin)
         try:
             p = await globals()[plugin](msg)
             if p:
