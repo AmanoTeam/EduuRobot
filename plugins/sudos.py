@@ -227,7 +227,7 @@ async def sudos(msg):
 
             elif msg['text'].split()[0] == '!backup':
                 ctime = int(time.time())
-                cstrftime = datetime.fromtimestamp(ctime).strftime('%d/%m/%Y - %H:%M:%s')
+                cstrftime = datetime.fromtimestamp(ctime).strftime('%d/%m/%Y - %H:%M:%S')
 
                 sent = await bot.sendMessage(msg['chat']['id'], '⏰ Fazendo backup...', reply_to_message_id=msg['message_id'])
 
@@ -239,7 +239,7 @@ async def sudos(msg):
                 with zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED) as backup:
                     for folder, subfolders, files in os.walk('.'):
                         for file in files:
-                            if file != fname and not file.endswith('.pyc'):
+                            if file != fname and not file.endswith('.pyc') and not '.heroku' in folder.split('/'):
                                 backup.write(os.path.join(folder, file))
 
                 if not os.path.getsize(fname) > 52428800:
