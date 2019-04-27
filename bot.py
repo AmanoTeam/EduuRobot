@@ -28,7 +28,6 @@ Iniciando...
 ''')
 
 import asyncio
-import time
 import json
 import html
 import traceback
