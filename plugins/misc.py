@@ -145,9 +145,9 @@ Mensagem: {}'''.format(msg['from']['id'], msg['from']['first_name'],
                                    reply_to_message_id=reply_id)
             for char in text:
                 string = string + char
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.5)
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '</code>', 'html')
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.5)
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '|</code>', 'html')
             await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + msg['text'][6:] + '</code>', 'html')
             return True
