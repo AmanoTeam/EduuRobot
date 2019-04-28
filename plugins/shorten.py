@@ -28,10 +28,10 @@ async def shorten(msg):
             text = msg['text'][9:]
             if not text:
                 await bot.sendMessage(msg['chat']['id'],
-                                '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by _🇧🇷.ml', 'Markdown',
-                                reply_to_message_id=msg['message_id'])
+                                      '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by_ 🇧🇷.ml', 'Markdown',
+                                      reply_to_message_id=msg['message_id'])
             else:
                 r = requests.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
                 await bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(r.json()['link']), 'Markdown',
-                                reply_to_message_id=msg['message_id'])
+                                      reply_to_message_id=msg['message_id'])
             return True

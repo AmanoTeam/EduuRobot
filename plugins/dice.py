@@ -27,5 +27,5 @@ async def dice(msg):
         if msg['text'] == '/dados' or msg['text'] == '!dados' or msg['text'] == '/dados@' + bot_username:
             dados = random.randint(1, 6)
             await bot.sendMessage(msg['chat']['id'], '🎲 O dado parou no número: {}'.format(dados),
-                            reply_to_message_id=msg['message_id'])
+                                  reply_to_message_id=msg['message_id'])
             return True

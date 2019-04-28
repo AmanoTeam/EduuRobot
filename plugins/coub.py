@@ -36,7 +36,7 @@ async def coub(msg):
                 links = content['permalink']
                 title = content['title']
                 await bot.sendMessage(msg['chat']['id'], f'*{title}*[\u00AD](https://coub.com/v/{links})',
-                                reply_to_message_id=msg['message_id'], parse_mode="Markdown")
+                                      reply_to_message_id=msg['message_id'], parse_mode="Markdown")
             except IndexError:
                 await bot.sendMessage(msg['chat']['id'], 'Not Found!', reply_to_message_id=msg['message_id'])
             return True

@@ -41,13 +41,12 @@ async def prints(msg):
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
 
-                await bot.sendPhoto(msg['chat']['id'],
-                              open(f'{ctime}.png', 'rb'),
-                              reply_to_message_id=msg['message_id'])
+                await bot.sendPhoto(msg['chat']['id'], open(f'{ctime}.png', 'rb'),
+                                    reply_to_message_id=msg['message_id'])
                 await bot.deleteMessage((msg['chat']['id'], sent['message_id']))
             except Exception as e:
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']),
-                                    f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
+                                          f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
             finally:
                 os.remove(f'{ctime}.png')
             return True

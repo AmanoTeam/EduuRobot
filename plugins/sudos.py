@@ -130,7 +130,7 @@ async def sudos(msg):
 
             elif msg['text'] == '!upgrade':
                 sent = await bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
-                                       reply_to_message_id=msg['message_id'])
+                                             reply_to_message_id=msg['message_id'])
                 out = subprocess.getstatusoutput('git pull {}'.format(' '.join(git_repo)))[1]
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado da atualização:\n{out}')
                 sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
@@ -178,15 +178,14 @@ async def sudos(msg):
                         username = '@' + res_chat['username']
                     except KeyError:
                         username = 'nenhum'
-                    await bot.editMessageText((msg['chat']['id'], sent),
-                                              '''<b>Informações do chat:</b>
+                    await bot.editMessageText((msg['chat']['id'], sent), f'''<b>Informações do chat:</b>
 
-<b>Título:</b> {}
-<b>Username:</b> {}
-<b>ID:</b> {}
-<b>Link:</b> {}
-<b>Membros:</b> {}
-'''.format(html.escape(res_chat['title']), username, res_chat['id'], link, members),
+<b>Título:</b> {html.escape(res_chat["title"])}
+<b>Username:</b> {username}
+<b>ID:</b> {res_chat["id"]}
+<b>Link:</b> {link}
+<b>Membros:</b> {members}
+''',
                                               parse_mode='HTML',
                                               disable_web_page_preview=True)
                 else:
@@ -239,11 +238,11 @@ async def sudos(msg):
                 with zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED) as backup:
                     for folder, subfolders, files in os.walk('.'):
                         for file in files:
-                            if file != fname and not file.endswith('.pyc') and not '.heroku' in folder.split('/'):
+                            if file != fname and not file.endswith('.pyc') and '.heroku' not in folder.split('/'):
                                 backup.write(os.path.join(folder, file))
 
                 if not os.path.getsize(fname) > 52428800:
-                    await bot.sendDocument(msg['chat']['id'], open(fname, 'rb'), caption="📅 "+cstrftime)
+                    await bot.sendDocument(msg['chat']['id'], open(fname, 'rb'), caption="📅 " + cstrftime)
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
                     os.remove(fname)
                 else:

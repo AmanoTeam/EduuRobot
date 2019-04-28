@@ -134,7 +134,7 @@ async def warns(msg):
                         int(reply_id)
                     except (TypeError, ValueError):
                         return await bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID.',
-                                               reply_to_message_id=msg['message_id'])
+                                                     reply_to_message_id=msg['message_id'])
                     if adm['reply']:
                         await bot.sendMessage(msg['chat']['id'], 'Esse aí tem admin.',
                                               reply_to_message_id=msg['message_id'])

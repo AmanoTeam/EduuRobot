@@ -18,10 +18,10 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 print(r'''
- _____    _             ____       _           _   
-| ____|__| |_   _ _   _|  _ \ ___ | |__   ___ | |_ 
+ _____    _             ____       _           _
+| ____|__| |_   _ _   _|  _ \ ___ | |__   ___ | |_
 |  _| / _` | | | | | | | |_) / _ \| '_ \ / _ \| __|
-| |__| (_| | |_| | |_| |  _ < (_) | |_) | (_) | |_ 
+| |__| (_| | |_| | |_| |  _ < (_) | |_) | (_) | |_
 |_____\__,_|\__,_|\__,_|_| \_\___/|_.__/ \___/ \__|
 
 Iniciando...
@@ -66,15 +66,15 @@ async def handle(msg):
         except Exception as e:
             formatted_update = json.dumps(msg, indent=3)
             res = traceback.format_exc()
-            exc_url = send_to_dogbin('Update:\n'+formatted_update+'\n\n\n\nFull Traceback:\n'+res)
+            exc_url = send_to_dogbin('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + res)
             na_bot.sendMessage(logs, '''• <b>Erro:</b>
  » Plugin: <code>{plugin}</code>
  » Tipo do erro: <code>{exc_type}</code>
  » Descrição: <i>{exc_desc}</i>
 
 - <a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
-                                                exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
-                            parse_mode='html', disable_web_page_preview=True)
+                                                  exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
+                               parse_mode='html', disable_web_page_preview=True)
 
 
 if __name__ == '__main__':

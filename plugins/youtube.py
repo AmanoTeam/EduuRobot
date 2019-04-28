@@ -77,7 +77,7 @@ async def youtube(msg):
                                       reply_to_message_id=msg['message_id'])
             else:
                 sent_id = (await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
-                                                reply_to_message_id=msg['message_id']))['message_id']
+                                                 reply_to_message_id=msg['message_id']))['message_id']
                 try:
                     if re.match(r'^(https?://)?(youtu\.be/|(m\.|www\.)?youtube\.com/watch\?v=).+', text):
                         yt = ydl.extract_info(text, download=False)
@@ -109,6 +109,5 @@ async def youtube(msg):
                     await bot.deleteMessage((msg['chat']['id'], sent_id))
                 else:
                     await bot.editMessageText((msg['chat']['id'], sent_id),
-                                              'Ow, o arquivo resultante ({}) ultrapassa o meu limite de 50 MB'.format(
-                                                pretty_size(fsize)))
+                                              f'Ow, o arquivo resultante ({pretty_size(fsize)}) ultrapassa o meu limite de 50 MB')
             return True

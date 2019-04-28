@@ -44,11 +44,11 @@ async def id(msg):
                                msg['from']['id'],
                                msg['from']['language_code'],
                                msg['chat']['type']),
-                                parse_mode='Markdown',
-                                reply_to_message_id=msg['message_id'])
+                                      parse_mode='Markdown',
+                                      reply_to_message_id=msg['message_id'])
             else:
                 sent = await bot.sendMessage(msg['chat']['id'], '⏰ Consultando informações...',
-                                       reply_to_message_id=msg['message_id'])
+                                             reply_to_message_id=msg['message_id'])
                 members = await bot.getChatMembersCount(msg['chat']['id'])
                 if 'username' in msg['chat']:
                     chat_username = '@' + msg['chat']['username']

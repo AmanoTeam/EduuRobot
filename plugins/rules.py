@@ -48,7 +48,7 @@ async def rules(msg):
 
 
         elif msg['text'] == '/rules' or msg['text'] == '!rules' or msg['text'] == '/regras' or msg[
-            'text'] == '!regras' or msg['text'] == '/regras@' + bot_username or msg['text'] == '/rules@' + bot_username:
+                'text'] == '!regras' or msg['text'] == '/regras@' + bot_username or msg['text'] == '/rules@' + bot_username:
             rules = get_rules(msg['chat']['id']) or 'Sem regras!'
 
             await bot.sendMessage(msg['chat']['id'], rules, 'Markdown',
@@ -57,8 +57,8 @@ async def rules(msg):
 
 
         elif msg['text'].split()[0] == '/defrules' or msg['text'].split()[0] == '!defrules' or msg['text'].split()[
-            0] == '/defregras' or msg['text'].split()[0] == '!defregras' or msg['text'].split()[
-            0] == '/defregras@' + bot_username or msg['text'].split()[0] == '/defrules@' + bot_username:
+                0] == '/defregras' or msg['text'].split()[0] == '!defregras' or msg['text'].split()[
+                0] == '/defregras@' + bot_username or msg['text'].split()[0] == '/defrules@' + bot_username:
             if (await is_admin(msg['chat']['id'], msg['from']['id']))['user']:
                 if len(msg['text'].split()) == 1:
                     await bot.sendMessage(msg['chat']['id'], 'Uso: /defregras Regras do grupo (suporta Markdown)',

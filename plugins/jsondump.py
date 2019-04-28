@@ -27,7 +27,7 @@ from config import bot, bot_username
 async def jsondump(msg):
     if msg.get('text'):
         if msg['text'].startswith('/jsondump') or msg['text'].startswith('!jsondump') or msg[
-            'text'] == '/jsondump@' + bot_username:
+                'text'] == '/jsondump@' + bot_username:
             msgjson = json.dumps(msg, indent=2, sort_keys=False)
             if '-f' not in msg['text'] and len(msgjson) < 4080:
                 await bot.sendMessage(msg['chat']['id'], '<pre>' + html.escape(msgjson) + '</pre>',

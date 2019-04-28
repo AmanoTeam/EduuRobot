@@ -44,7 +44,7 @@ async def is_admin(chat_id, user_id, reply_id=None):
             adm_id = []
             for ids in adms:
                 adm_id.append(ids['user']['id'])
-            cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time())+1200)), chat_id))
+            cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time()) + 1200)), chat_id))
             conn.commit()
 
         if user_id in adm_id or user_id in sudoers:
@@ -105,9 +105,7 @@ async def admins(msg):
                                                   reply_to_message_id=msg['message_id'])
                         else:
                             await bot.kickChatMember(msg['chat']['id'], reply_id)
-                            await bot.sendMessage(msg['chat']['id'], '{} baniu {}!'.format(
-                                msg['from']['first_name'],
-                                reply_name),
+                            await bot.sendMessage(msg['chat']['id'], f'{msg["from"]["first_name"]} baniu {reply_name}!',
                                                   reply_to_message_id=msg['message_id'])
                     else:
                         await bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
@@ -149,8 +147,7 @@ async def admins(msg):
                                                   reply_to_message_id=msg['message_id'])
                         else:
                             await bot.unbanChatMember(msg['chat']['id'], reply_id)
-                            await bot.sendMessage(msg['chat']['id'], '{} kickou {}!'.format(
-                                      msg['from']['first_name'], reply_name),
+                            await bot.sendMessage(msg['chat']['id'], f'{msg["from"]["first_name"]} kickou {reply_name}!'.format,
                                                   reply_to_message_id=msg['message_id'])
                     else:
                         await bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
@@ -185,19 +182,18 @@ async def admins(msg):
                         int(reply_id)
                     except (TypeError, ValueError):
                         return await bot.sendMessage(msg['chat']['id'], 'Responda alguém ou informe sua ID',
-                                               reply_to_message_id=msg['message_id'])
+                                                     reply_to_message_id=msg['message_id'])
                     if adm['bot']:
                         if adm['reply']:
                             await bot.sendMessage(msg['chat']['id'], 'Esse aí tem admin',
                                                   reply_to_message_id=msg['message_id'])
                         else:
                             await bot.restrictChatMember(msg['chat']['id'], reply_id)
-                            await bot.sendMessage(msg['chat']['id'], '{} restringiu {}!'.format(
-                                      msg['from']['first_name'], reply_name),
+                            await bot.sendMessage(msg['chat']['id'], f'{msg["from"]["first_name"]} restringiu {reply_name}!',
                                                   reply_to_message_id=msg['message_id'])
                     else:
                         await bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
-                                        reply_to_message_id=msg['message_id'])
+                                              reply_to_message_id=msg['message_id'])
 
 
         elif msg['text'].split()[0] == '/unmute' or msg['text'].split()[0] == '!unmute':

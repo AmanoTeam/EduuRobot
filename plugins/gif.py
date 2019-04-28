@@ -37,8 +37,8 @@ async def gif(msg):
                 res = random.choice(rjson["data"])
                 result = res["images"]["original_mp4"]["mp4"]
                 await bot.sendVideo(msg['chat']['id'], result,
-                              reply_to_message_id=msg['message_id'])
+                                    reply_to_message_id=msg['message_id'])
             else:
                 await bot.sendMessage(msg['chat']['id'], "Sem resultados",
-                                reply_to_message_id=msg['message_id'])
+                                      reply_to_message_id=msg['message_id'])
             return True
