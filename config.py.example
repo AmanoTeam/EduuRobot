@@ -21,7 +21,7 @@ keys = dict(
     giphy = 'key_here',           #You can obtain an key at https://developers.giphy.com
 )
 
-git_repo = 'https://github.com/AmanoTeam/EduuRobot master' #Repositório onde seu bot está
+git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository where your bot is
 
 max_time = 60
 

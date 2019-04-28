@@ -20,7 +20,7 @@
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 import keyboard
-from config import bot, version, bot_username
+from config import bot, version, bot_username, git_repo
 from db_handler import cursor
 from get_strings import strings, Strings
 
@@ -175,14 +175,15 @@ async def start(msg):
             await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
                                 '''• EduuRobot
 
-Version: {}
+Version: {version}
+Source Code: {sourcelink}
 Developers: <a href="https://github.com/AmanoTeam">Amano Team</>
 Owner: <a href="tg://user?id=123892996">Edu :3</>
 
 Partnerships:
  » <a href="https://t.me/hpxlist">HPXList - by usernein</>
 
-©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
+©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version=version, sourcelink=git_repo[0]),
                                 parse_mode='html',
                                 reply_markup=start_back,
                                 disable_web_page_preview=True)

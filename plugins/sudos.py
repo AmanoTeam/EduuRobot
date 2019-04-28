@@ -131,7 +131,7 @@ async def sudos(msg):
             elif msg['text'] == '!upgrade':
                 sent = await bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
                                        reply_to_message_id=msg['message_id'])
-                out = subprocess.getstatusoutput('git pull {}'.format(git_repo))[1]
+                out = subprocess.getstatusoutput('git pull {}'.format(' '.join(git_repo)))[1]
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado da atualização:\n{out}')
                 sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
                 db.set_restarted(sent['chat']['id'], sent['message_id'])
