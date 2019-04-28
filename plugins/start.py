@@ -176,7 +176,7 @@ async def start(msg):
                                 '''• EduuRobot
 
 Version: {version}
-Source Code: {sourcelink}
+Source Code: <a href="{sourcelink}">Here</a>
 Developers: <a href="https://github.com/AmanoTeam">Amano Team</>
 Owner: <a href="tg://user?id=123892996">Edu :3</>
 
