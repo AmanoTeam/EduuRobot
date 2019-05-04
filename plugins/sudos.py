@@ -232,7 +232,7 @@ async def sudos(msg):
                 fname = 'backup-{}.zip'.format(ctime)
 
                 with zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED) as backup:
-                    for folder, subfolders, files in os.walk('.'):
+                    for folder, _, files in os.walk('.'):
                         for file in files:
                             if file != fname and not file.endswith('.pyc') and '.heroku' not in folder.split('/'):
                                 backup.write(os.path.join(folder, file))
