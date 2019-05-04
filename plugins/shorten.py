@@ -17,7 +17,7 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -31,7 +31,9 @@ async def shorten(msg):
                                       '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by_ 🇧🇷.ml', 'Markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                r = requests.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
-                await bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(r.json()['link']), 'Markdown',
+                async with aiohttp.ClientSession() as session:
+                    r = await session.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
+                    res = await r.json()
+                await bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(res), 'Markdown',
                                       reply_to_message_id=msg['message_id'])
             return True
