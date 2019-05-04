@@ -119,9 +119,9 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!exec':
                 text = msg['text'][6:]
 
-                # Create an async function to run async code without issues.
-                exec('async def __ex(): ' + ''.join(f'\n {l}' for l in text.split('\n')))
                 try:
+                    # Create an async function so we can run async code without issues.
+                    exec('async def __ex(): ' + ''.join(f'\n {l}' for l in text.split('\n')))
                     with io.StringIO() as buf, redirect_stdout(buf):
                         await locals()['__ex']()
                         res = buf.getvalue()
