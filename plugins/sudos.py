@@ -123,7 +123,7 @@ async def sudos(msg):
                 exec('async def __ex(): ' + ''.join(f'\n {l}' for l in text.split('\n')))
                 try:
                     with io.StringIO() as buf, redirect_stdout(buf):
-                        await __ex()
+                        await locals()['__ex']()
                         res = buf.getvalue()
                 except:
                     res = traceback.format_exc() or 'Código sem retornos.'
