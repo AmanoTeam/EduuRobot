@@ -61,7 +61,7 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!eval':
                 text = msg['text'][6:]
                 try:
-                    res = (await eval(cmd[6:]) if cmd.startswith("await") else eval(cmd)) or 'Código sem retornos.'
+                    res = (await eval(text[6:]) if text.startswith("await") else eval(text)) or 'Código sem retornos.'
                 except:
                     res = traceback.format_exc()
                 try:
