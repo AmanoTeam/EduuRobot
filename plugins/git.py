@@ -17,7 +17,7 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -26,7 +26,9 @@ async def git(msg):
     if msg.get('text'):
         if msg['text'].startswith('/git ') or msg['text'].startswith('!git '):
             text = msg['text'][5:]
-            res = requests.get('https://api.github.com/users/' + text).json()
+            async with aiohttp.ClientSession() as session:
+                req = await session.get('https://api.github.com/users/' + text)
+                res = await req.json()
             if not res.get('login'):
                 return await bot.sendMessage(msg['chat']['id'], 'Usuário "{}" não encontrado.'.format(text),
                                              reply_to_message_id=msg['message_id'])
