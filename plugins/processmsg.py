@@ -27,5 +27,5 @@ async def processmsg(msg):
     if msg.get('date'):
         if time.time() - msg['date'] > max_time:
             return True
-        elif msg.get('chat'):
+        elif msg.get('chat') and msg['chat']['type'] != 'channel':
             add_chat(msg['chat']['type'], msg['chat']['id'])
