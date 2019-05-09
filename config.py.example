@@ -3,11 +3,13 @@ import amanobot.aio
 import asyncio
 
 
-loop = asyncio.get_event_loop()
-
 token = "TOKEN:HERE"
 
-bot = amanobot.aio.Bot(token) #Bot token
+
+loop = asyncio.get_event_loop()  # Do not change this
+
+
+bot = amanobot.aio.Bot(token)
 na_bot = amanobot.Bot(token)
 
 
@@ -15,10 +17,11 @@ me = loop.run_until_complete(bot.getMe())
 bot_username = me['username']
 bot_id = me['id']
 
+
 keys = dict(
-    openweathermap = 'key_here',  #You can obtain an key at https://openweathermap.org
-    yandex = 'key_here',          #You can obtain an key at https://tech.yandex.com/translate
-    giphy = 'key_here',           #You can obtain an key at https://developers.giphy.com
+    openweathermap = 'key_here',  #You can get a key at https://openweathermap.org
+    yandex = 'key_here',          #You can get a key at https://tech.yandex.com/translate
+    giphy = 'key_here',           #You can get a key at https://developers.giphy.com
 )
 
 git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository where your bot is
@@ -26,7 +29,9 @@ git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository wher
 max_time = 60
 
 version = open('version.txt').read()
-logs = -1001297931062
+
+logs = 123456789
+backups_chat = 123456789  # Put a 0, False or None to disable.
 
 sudoers = [
     123456789
