@@ -26,12 +26,12 @@ import sys
 import time
 from datetime import datetime
 import traceback
-import zipfile
 from contextlib import redirect_stdout
 
 from amanobot.exception import TelegramError
 
 import db_handler as db
+from utils import backup_sources
 from config import bot, bot_id, bot_username, git_repo, sudoers
 
 
