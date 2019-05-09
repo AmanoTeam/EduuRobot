@@ -38,8 +38,9 @@ from amanobot.aio.loop import MessageLoop
 from colorama import Fore
 from urllib3.exceptions import ReadTimeoutError
 
+import backups
 import db_handler as db
-from config import bot, na_bot, enabled_plugins, logs, version
+from config import bot, na_bot, enabled_plugins, logs, version, backups_chat
 from utils import send_to_dogbin
 
 ep = []
@@ -83,6 +84,9 @@ if __name__ == '__main__':
     loop = asyncio.get_event_loop()
 
     print('\n\nBot iniciado! {}\n'.format(version))
+
+    if backups_chat:
+        backups.backup_service()
 
     loop.create_task(MessageLoop(bot, handle).run_forever())
 
