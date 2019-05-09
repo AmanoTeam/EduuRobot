@@ -43,7 +43,7 @@ async def antiflood(msg):
             cursor.execute('SELECT COUNT(*) FROM antiflood WHERE chat_id = ? AND user_id = ?', (msg['chat']['id'], msg['from']['id']))
             msgs = cursor.fetchone()[0]
 
-            if msgs >= 5:
+            if msgs == 5:
                 await bot.sendMessage(msg['chat']['id'], 'Flood!')
                 cursor.execute('DELETE FROM antiflood WHERE chat_id = ? AND user_id = ?', (msg['chat']['id'], msg['from']['id']))
                 conn.commit()
