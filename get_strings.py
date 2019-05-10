@@ -38,13 +38,13 @@ class Strings:
             cursor.execute('SELECT chat_lang FROM chats WHERE chat_id = ?', (chat_id,))
             try:
                 self.language = cursor.fetchone()[0]
-            except IndexError:
+            except (IndexError, TypeError):
                 self.language = 'en'
         else:
             cursor.execute('SELECT chat_lang FROM users WHERE user_id = ?', (chat_id,))
             try:
                 self.language = cursor.fetchone()[0]
-            except IndexError:
+            except (IndexError, TypeError):
                 self.language = 'en'
         if self.language not in langs:
             self.language = 'en'
