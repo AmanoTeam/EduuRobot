@@ -36,7 +36,7 @@ from config import bot, bot_id, bot_username, git_repo, sudoers
 
 
 async def sudos(msg):
-    if msg.get('text'):
+    if msg.get('text') and msg['chat']['type'] != 'channel':
         if msg['from']['id'] in sudoers:
 
             if msg['text'] == '!sudos' or msg['text'] == '/sudos':
