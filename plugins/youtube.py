@@ -69,13 +69,10 @@ async def youtube(msg):
             return True
 
 
-        elif msg['text'].startswith('/ytdl'):
+        elif msg['text'].split()[0] == '/ytdl':
             text = msg['text'][6:]
 
-            if text == '':
-                await bot.sendMessage(msg['chat']['id'], '*Uso:* /ytdl URL do vídeo ou nome', 'Markdown',
-                                      reply_to_message_id=msg['message_id'])
-            else:
+            if text:
                 sent_id = (await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
                                                  reply_to_message_id=msg['message_id']))['message_id']
                 try:
@@ -93,7 +90,7 @@ async def youtube(msg):
                     if ' - ' in name:
                         performer, title = name.rsplit(' - ', 1)
                     else:
-                        performer = None
+                        performer = yt.get('creator') or yt.get('uploader')
                         title = name
                     await bot.editMessageText((msg['chat']['id'], sent_id),
                                               'Baixando <code>{}</code> do YouTube...\n({})'.format(name, pretty_size(fsize)), 'HTML')
@@ -110,4 +107,9 @@ async def youtube(msg):
                 else:
                     await bot.editMessageText((msg['chat']['id'], sent_id),
                                               f'Ow, o arquivo resultante ({pretty_size(fsize)}) ultrapassa o meu limite de 50 MB')
+
+            else:
+                await bot.sendMessage(msg['chat']['id'], '*Uso:* /ytdl URL do vídeo ou nome', 'Markdown',
+                                      reply_to_message_id=msg['message_id'])
+
             return True
