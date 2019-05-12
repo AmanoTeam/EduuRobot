@@ -143,7 +143,6 @@ async def sudos(msg):
                                                              stdout=asyncio.subprocess.PIPE,
                                                              stderr=asyncio.subprocess.PIPE)
                 stdout, stderr = await proc.communicate()
-                out = subprocess.getstatusoutput('git pull {}'.format(' '.join(git_repo)))[1]
                 if stdout:
                     await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado:\n{stdout.decode()}')
                     sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
