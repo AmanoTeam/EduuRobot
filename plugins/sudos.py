@@ -21,7 +21,7 @@ import html
 import io
 import os
 import re
-import subprocess
+import asyncio
 import sys
 import time
 from datetime import datetime
@@ -84,7 +84,12 @@ async def sudos(msg):
                 if re.match('(?i).*poweroff|halt|shutdown|reboot', text):
                     res = 'Comando proibido.'
                 else:
-                    res = subprocess.getstatusoutput(text)[1]
+                    proc = await asyncio.create_subprocess_shell(text,
+                                                          stdout=asyncio.subprocess.PIPE,
+                                                          stderr=asyncio.subprocess.PIPE)
+                    stdout, stderr = await proc.communicate()
+                    res = ("Output: " + stdout.decode() if stdout else '') + ('\nErrors: ' + stderr.decode() if stderr else '')
+
                 await bot.sendMessage(msg['chat']['id'], res or 'Comando executado.', reply_to_message_id=msg['message_id'])
                 return True
 
@@ -134,12 +139,19 @@ async def sudos(msg):
             elif msg['text'] == '!upgrade':
                 sent = await bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
                                              reply_to_message_id=msg['message_id'])
+                proc = await asyncio.create_subprocess_shell('git fetch {} && git rebase FETCH_HEAD'.format(' '.join(git_repo)),
+                                                             stdout=asyncio.subprocess.PIPE,
+                                                             stderr=asyncio.subprocess.PIPE)
+                stdout, stderr = await proc.communicate()
                 out = subprocess.getstatusoutput('git pull {}'.format(' '.join(git_repo)))[1]
-                await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado da atualização:\n{out}')
-                sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
-                db.set_restarted(sent['chat']['id'], sent['message_id'])
-                time.sleep(1)
-                os.execl(sys.executable, sys.executable, *sys.argv)
+                if stdout:
+                    await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado:\n{stdout.decode()}')
+                    sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
+                    db.set_restarted(sent['chat']['id'], sent['message_id'])
+                    time.sleep(1)
+                    os.execl(sys.executable, sys.executable, *sys.argv)
+                elif stderr:
+                    await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Ocorreu um erro:\n{stderr.decode()}')
 
 
             elif msg['text'].startswith('!leave'):
