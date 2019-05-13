@@ -58,7 +58,7 @@ def escape_markdown(text):
 def backup_sources(output_file=None):
     ctime = int(time.time())
 
-    if output_file is not None and isinstance(output_file, str) and not output_file.lower().endswith('.zip'):
+    if isinstance(output_file, str) and not output_file.lower().endswith('.zip'):
         output_file += '.zip'
 
     fname = output_file or 'backup-{}.zip'.format(ctime)

@@ -41,7 +41,7 @@ def backup_scheduler(target):
 
     while True:
         schedule.run_pending()
-        time.sleep(2)
+        time.sleep(5)
 
 
 def backup_service():
