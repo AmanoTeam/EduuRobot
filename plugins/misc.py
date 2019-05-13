@@ -73,11 +73,12 @@ async def misc(msg):
                 bot_name = bot_token['first_name']
                 bot_user = bot_token['username']
                 bot_id = bot_token['id']
-                await bot.sendMessage(msg['chat']['id'], '''Informações do bot:
+                await bot.sendMessage(msg['chat']['id'], f'''Informações do bot:
 
-Nome: {}
-Username: @{}
-ID: {}'''.format(bot_name, bot_user, bot_id), reply_to_message_id=msg['message_id'])
+Nome: {bot_name}
+Username: @{bot_user}
+ID: {bot_id}''',
+                                      reply_to_message_id=msg['message_id'])
 
             except TelegramError:
                 await bot.sendMessage(msg['chat']['id'], 'Token inválido.',
@@ -92,12 +93,10 @@ ID: {}'''.format(bot_name, bot_user, bot_id), reply_to_message_id=msg['message_i
   obs.: Mal uso há possibilidade de ID\_ban''', 'markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                await bot.sendMessage(logs, '''
-<a href="tg://user?id={}">{}</a> reportou um bug
+                await bot.sendMessage(logs, f"""<a href="tg://user?id={msg['from']['id']}">{msg['from']['first_name']}</a> reportou um bug:
 
-ID: <code>{}</code>
-Mensagem: {}'''.format(msg['from']['id'], msg['from']['first_name'],
-                       msg['from']['id'], text), 'HTML')
+ID: <code>{msg['from']['id']}</code>
+Mensagem: {text}""", 'HTML')
                 await bot.sendMessage(msg['chat']['id'], 'O bug foi reportado com sucesso para a minha equipe!',
                                       reply_to_message_id=msg['message_id'])
             return True
@@ -131,25 +130,6 @@ Mensagem: {}'''.format(msg['from']['id'], msg['from']['first_name'],
             except TelegramError:
                 await bot.sendMessage(msg['chat']['id'], 'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
                                       reply_to_message_id=msg['message_id'])
-            return True
-
-
-        elif msg['text'].startswith('/text ') or msg['text'].startswith('!text '):
-            string = ''
-            text = msg['text'][6:]
-            if msg.get('reply_to_message'):
-                reply_id = msg['reply_to_message']['message_id']
-            else:
-                reply_id = None
-            sent = await bot.sendMessage(msg['chat']['id'], '<code>|</code>', 'html',
-                                   reply_to_message_id=reply_id)
-            for char in text:
-                string = string + char
-                await asyncio.sleep(0.5)
-                await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '</code>', 'html')
-                await asyncio.sleep(0.5)
-                await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + string + '|</code>', 'html')
-            await bot.editMessageText((msg['chat']['id'], sent['message_id']), '<code>' + msg['text'][6:] + '</code>', 'html')
             return True
 
 
@@ -200,4 +180,4 @@ Mensagem: {}'''.format(msg['from']['id'], msg['from']['first_name'],
                                   text),
                                               parse_mode='HTML',
                                               reply_to_message_id=msg['message_id'])
-                    return True
+                return True
