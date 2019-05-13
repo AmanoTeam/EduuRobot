@@ -75,7 +75,7 @@ async def sudos(msg):
                 sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...',
                                              reply_to_message_id=msg['message_id'])
                 db.set_restarted(sent['chat']['id'], sent['message_id'])
-                time.sleep(3)
+                await asyncio.sleep(3)
                 os.execl(sys.executable, sys.executable, *sys.argv)
 
 
@@ -147,7 +147,7 @@ async def sudos(msg):
                     await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado:\n{stdout.decode()}')
                     sent = await bot.sendMessage(msg['chat']['id'], 'Reiniciando...')
                     db.set_restarted(sent['chat']['id'], sent['message_id'])
-                    time.sleep(1)
+                    await asyncio.sleep(3)
                     os.execl(sys.executable, sys.executable, *sys.argv)
                 elif stderr:
                     await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Ocorreu um erro:\n{stderr.decode()}')
