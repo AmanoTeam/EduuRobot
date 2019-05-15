@@ -19,7 +19,6 @@
 
 import html
 import re
-import asyncio
 
 import amanobot
 import requests
