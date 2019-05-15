@@ -30,7 +30,7 @@ async def start(msg):
         strs = Strings(msg['chat']['id'])
 
         if msg['text'] == '/start' or msg['text'] == '!start' or msg['text'].split()[
-                0] == '/start@' + bot_username or msg['text'] == '/start start':
+            0] == '/start@' + bot_username or msg['text'] == '/start start':
 
             if msg['chat']['type'] == 'private':
                 kb = InlineKeyboardMarkup(inline_keyboard=[
@@ -134,7 +134,8 @@ async def start(msg):
                 [dict(text=strs.get('lang_button'), callback_data='change_lang')] +
                 [dict(text=strs.get('add_button'), url='https://t.me/{}?startgroup=new'.format(bot_username))]
             ])
-            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      strs.get('pm_start_msg'),
                                       reply_markup=kb)
             return True
 

@@ -85,8 +85,8 @@ async def admins(msg):
                         reply_name = get['first_name']
                     except (TelegramError, KeyError):
                         await bot.sendMessage(msg['chat']['id'],
-                                        'ID inválida ou desconhecida. use nesse formato: /ban ID do usuário',
-                                        reply_to_message_id=msg['message_id'])
+                                              'ID inválida ou desconhecida. use nesse formato: /ban ID do usuário',
+                                              reply_to_message_id=msg['message_id'])
                         return
                 else:
                     reply_id = None

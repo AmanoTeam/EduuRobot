@@ -93,7 +93,8 @@ ID: {bot_id}''',
   obs.: Mal uso há possibilidade de ID\_ban''', 'markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                await bot.sendMessage(logs, f"""<a href="tg://user?id={msg['from']['id']}">{msg['from']['first_name']}</a> reportou um bug:
+                await bot.sendMessage(logs, f"""<a href="tg://user?id={msg['from']['id']}">{msg['from'][
+                    'first_name']}</a> reportou um bug:
 
 ID: <code>{msg['from']['id']}</code>
 Mensagem: {text}""", 'HTML')
@@ -105,7 +106,8 @@ Mensagem: {text}""", 'HTML')
         elif msg['text'].startswith('/dogbin') or msg['text'].startswith('!dogbin'):
             text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
             if not text:
-                await bot.sendMessage(msg['chat']['id'], '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''',
+                await bot.sendMessage(msg['chat']['id'],
+                                      '''*Uso:* `/dogbin <texto>` - _envia um texto para o del.dog._''',
                                       'markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
@@ -128,7 +130,8 @@ Mensagem: {text}""", 'HTML')
             try:
                 await bot.unbanChatMember(msg['chat']['id'], msg['from']['id'])
             except TelegramError:
-                await bot.sendMessage(msg['chat']['id'], 'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
+                await bot.sendMessage(msg['chat']['id'],
+                                      'Nao deu pra te remover, você deve ser um admin ou eu nao sou admin.',
                                       reply_to_message_id=msg['message_id'])
             return True
 
@@ -150,7 +153,7 @@ Mensagem: {text}""", 'HTML')
             else:
                 res = '<code>' + html.escape(r.text) + '</code>'
             await bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
-                            'html', reply_to_message_id=msg['message_id'])
+                                  'html', reply_to_message_id=msg['message_id'])
             return True
 
 

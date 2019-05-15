@@ -31,7 +31,8 @@ async def gif(msg):
         if msg['text'].startswith('/gif ') or msg['text'].startswith('!gif '):
             text = msg['text'][5:]
             async with aiohttp.ClientSession() as session:
-                r = await session.get("http://api.giphy.com/v1/gifs/search", params=dict(q=text, api_key=giphy_key, limit=7))
+                r = await session.get("http://api.giphy.com/v1/gifs/search",
+                                      params=dict(q=text, api_key=giphy_key, limit=7))
                 rjson = await r.json()
             if rjson["data"]:
                 res = random.choice(rjson["data"])

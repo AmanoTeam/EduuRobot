@@ -65,11 +65,13 @@ async def reddit(msg):
                         posts += post
                     if posts:
                         await bot.sendMessage(msg['chat']['id'],
-                                              "[{sub}]({subreddit})`:`\n\n".format(sub=sub, subreddit=subreddit) + posts,
+                                              "[{sub}]({subreddit})`:`\n\n".format(sub=sub,
+                                                                                   subreddit=subreddit) + posts,
                                               reply_to_message_id=msg['message_id'], parse_mode="Markdown",
                                               disable_web_page_preview=True)
                     else:
-                        await bot.sendMessage(msg['chat']['id'], u"`I couldnt find {sub}, please try again`".format(sub=sub),
+                        await bot.sendMessage(msg['chat']['id'],
+                                              u"`I couldnt find {sub}, please try again`".format(sub=sub),
                                               reply_to_message_id=msg['message_id'], parse_mode="Markdown",
                                               disable_web_page_preview=True)
                 elif request.status_code == 403:

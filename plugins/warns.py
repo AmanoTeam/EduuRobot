@@ -94,11 +94,13 @@ async def warns(msg):
                             if user_warns >= warns_limit:
                                 await bot.kickChatMember(msg['chat']['id'], reply_id)
                                 await bot.sendMessage(msg['chat']['id'],
-                                                      '{} banido(a) pois atingiu o limite de advertências'.format(reply_name),
+                                                      '{} banido(a) pois atingiu o limite de advertências'.format(
+                                                          reply_name),
                                                       reply_to_message_id=msg['message_id'])
                             else:
                                 await bot.sendMessage(msg['chat']['id'],
-                                                      '{} Foi advertido(a) ({}/{})'.format(reply_name, user_warns, warns_limit),
+                                                      '{} Foi advertido(a) ({}/{})'.format(reply_name, user_warns,
+                                                                                           warns_limit),
                                                       reply_to_message_id=msg['message_id'])
                     else:
                         await bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',

@@ -28,7 +28,8 @@ async def shorten(msg):
             text = msg['text'][9:]
             if not text:
                 await bot.sendMessage(msg['chat']['id'],
-                                      '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by_ 🇧🇷.ml', 'Markdown',
+                                      '*Uso:* `/shorten google.com` - _Encurta uma URL. Powered by_ 🇧🇷.ml',
+                                      'Markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
                 async with aiohttp.ClientSession() as session:

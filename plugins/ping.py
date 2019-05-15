@@ -26,7 +26,8 @@ async def ping(msg):
     if msg.get('text'):
         if msg['text'] == '/ping' or msg['text'] == '!ping' or msg['text'] == '/ping@' + bot_username:
             first = time.time()
-            sent = await bot.sendMessage(msg['chat']['id'], '*Pong!*', 'Markdown', reply_to_message_id=msg['message_id'])
+            sent = await bot.sendMessage(msg['chat']['id'], '*Pong!*', 'Markdown',
+                                         reply_to_message_id=msg['message_id'])
             second = time.time()
             await bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                       '*Pong!* `{}`s'.format(round(second - first, 3)), 'Markdown')

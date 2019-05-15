@@ -85,12 +85,14 @@ async def sudos(msg):
                     res = 'Comando proibido.'
                 else:
                     proc = await asyncio.create_subprocess_shell(text,
-                                                          stdout=asyncio.subprocess.PIPE,
-                                                          stderr=asyncio.subprocess.PIPE)
+                                                                 stdout=asyncio.subprocess.PIPE,
+                                                                 stderr=asyncio.subprocess.PIPE)
                     stdout, stderr = await proc.communicate()
-                    res = ("Output: " + stdout.decode() if stdout else '') + ('\nErrors: ' + stderr.decode() if stderr else '')
+                    res = ("Output: " + stdout.decode() if stdout else '') + (
+                        '\nErrors: ' + stderr.decode() if stderr else '')
 
-                await bot.sendMessage(msg['chat']['id'], res or 'Comando executado.', reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], res or 'Comando executado.',
+                                      reply_to_message_id=msg['message_id'])
                 return True
 
             elif msg['text'].split()[0] == '!doc':
@@ -98,7 +100,8 @@ async def sudos(msg):
                 if text:
                     try:
                         await bot.sendChatAction(msg['chat']['id'], 'upload_document')
-                        await bot.sendDocument(msg['chat']['id'], open(text, 'rb'), reply_to_message_id=msg['message_id'])
+                        await bot.sendDocument(msg['chat']['id'], open(text, 'rb'),
+                                               reply_to_message_id=msg['message_id'])
                     except FileNotFoundError:
                         await bot.sendMessage(msg['chat']['id'], 'Arquivo não encontrado.',
                                               reply_to_message_id=msg['message_id'])
@@ -139,9 +142,10 @@ async def sudos(msg):
             elif msg['text'] == '!upgrade':
                 sent = await bot.sendMessage(msg['chat']['id'], 'Atualizando a base do bot...',
                                              reply_to_message_id=msg['message_id'])
-                proc = await asyncio.create_subprocess_shell('git fetch {} && git rebase FETCH_HEAD'.format(' '.join(git_repo)),
-                                                             stdout=asyncio.subprocess.PIPE,
-                                                             stderr=asyncio.subprocess.PIPE)
+                proc = await asyncio.create_subprocess_shell(
+                    'git fetch {} && git rebase FETCH_HEAD'.format(' '.join(git_repo)),
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE)
                 stdout, stderr = await proc.communicate()
                 if stdout:
                     await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Resultado:\n{stdout.decode()}')
@@ -150,7 +154,8 @@ async def sudos(msg):
                     await asyncio.sleep(3)
                     os.execl(sys.executable, sys.executable, *sys.argv)
                 elif stderr:
-                    await bot.editMessageText((msg['chat']['id'], sent['message_id']), f'Ocorreu um erro:\n{stderr.decode()}')
+                    await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                              f'Ocorreu um erro:\n{stderr.decode()}')
 
 
             elif msg['text'].startswith('!leave'):
@@ -170,7 +175,7 @@ async def sudos(msg):
                     chat = msg['chat']['id']
                 sent = (await bot.sendMessage(msg['chat']['id'], '⏰ Obtendo informações do chat...',
                                               reply_to_message_id=msg['message_id']
-                ))['message_id']
+                                              ))['message_id']
                 try:
                     res_chat = bot.getChat(chat)
                 except TelegramError:
@@ -223,19 +228,20 @@ async def sudos(msg):
                 for perms in await bot.getChatAdministrators(msg['chat']['id']):
                     if perms['user']['id'] == bot_id:
                         await bot.promoteChatMember(
-                                  chat_id=msg['chat']['id'],
-                                  user_id=reply_id,
-                                  can_change_info=perms['can_change_info'],
-                                  can_delete_messages=perms['can_delete_messages'],
-                                  can_invite_users=perms['can_invite_users'],
-                                  can_restrict_members=perms['can_restrict_members'],
-                                  can_pin_messages=perms['can_pin_messages'],
-                                  can_promote_members=True)
+                            chat_id=msg['chat']['id'],
+                            user_id=reply_id,
+                            can_change_info=perms['can_change_info'],
+                            can_delete_messages=perms['can_delete_messages'],
+                            can_invite_users=perms['can_invite_users'],
+                            can_restrict_members=perms['can_restrict_members'],
+                            can_pin_messages=perms['can_pin_messages'],
+                            can_promote_members=True)
                 return True
 
 
             elif msg['text'].split()[0] == '!backup':
-                sent = await bot.sendMessage(msg['chat']['id'], '⏰ Fazendo backup...', reply_to_message_id=msg['message_id'])
+                sent = await bot.sendMessage(msg['chat']['id'], '⏰ Fazendo backup...',
+                                             reply_to_message_id=msg['message_id'])
 
                 if 'pv' in msg['text'].lower() or 'privado' in msg['text'].lower():
                     msg['chat']['id'] = msg['from']['id']
@@ -249,6 +255,8 @@ async def sudos(msg):
                     await bot.editMessageText((sent['chat']['id'], sent['message_id']), '✅ Backup concluído!')
                     os.remove(fname)
                 else:
-                    await bot.editMessageText((sent['chat']['id'], sent['message_id']), f'Ei, o tamanho do backup passa de 50 MB, então não posso enviá-lo aqui.\n\nNome do arquivo: `{fname}`', parse_mode='Markdown')
+                    await bot.editMessageText((sent['chat']['id'], sent['message_id']),
+                                              f'Ei, o tamanho do backup passa de 50 MB, então não posso enviá-lo aqui.\n\nNome do arquivo: `{fname}`',
+                                              parse_mode='Markdown')
 
                 return True
