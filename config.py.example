@@ -61,7 +61,7 @@ enabled_plugins = [
     'reddit',
     'coub',
     'sudos',
-    'id',
+    'ids',
     'ip',
     'jsondump',
     'dice',

@@ -20,7 +20,7 @@
 from config import bot, bot_username
 
 
-async def id(msg):
+async def ids(msg):
     if msg.get('text'):
         if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@' + bot_username:
             if msg['chat']['type'] == 'private':
