@@ -37,7 +37,7 @@ def prints(msg):
                     url = msg['text'][7:]
                 else:
                     url = 'http://' + msg['text'][7:]
-                r = requests.post("https://api.olixao.ml/print", params=dict(q=url))
+                r = requests.post("https://api.olixao.ml/print", data=dict(q=url))
                 with open(f'{ctime}.png', 'wb') as f:
                     f.write(r.content)
 
