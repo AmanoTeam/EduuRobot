@@ -22,7 +22,7 @@ import re
 from uuid import uuid4
 
 import duckpy
-import requests
+import aiohttp
 from amanobot.exception import TelegramError
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 from requests import get
@@ -49,19 +49,20 @@ async def inlines(msg):
             username = '@' + msg['from']['username']
         else:
             username = 'nenhum'
-        if msg['query'].startswith('ip') and len(msg['query']) > 6:
-            r = requests.get(geo_ip + msg['query'][3:])
-            x = ''
-            for i in r.json():
-                x += "*{}*: `{}`\n".format(i, r.json()[i])
+        if msg['query'].split()[0].lower() == 'ip' and len(msg['query']) > 6:
+            async with aiohttp.ClientSession() as session:
+                r = await session.get(geo_ip + msg['query'][3:])
+                rjson = await r.json()
+            res = "\n".join(["*{}*: `{}`".format(i, rjson[i]) for i in rjson])
+
             articles = [InlineQueryResultArticle(
                 id='a', title='Informações de ' + msg['query'][3:], input_message_content=InputTextMessageContent(
-                    message_text='*Consulta*: `' + msg['query'][3:] + '`\n\n' + x, parse_mode="Markdown"))]
+                    message_text='*Consulta*: `' + msg['query'][3:] + '`\n\n' + res, parse_mode="Markdown"))]
 
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('echo'):
+        elif msg['query'].split()[0].lower() == 'echo' and len(msg['query'].split()) >= 2:
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][5:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:]))]
@@ -69,7 +70,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('duck'):
+        elif msg['query'].split()[0].lower() == 'duck' and len(msg['query'].split()) >= 2:
             count = 50
             number = 1
             search = msg['query'][5:]
@@ -102,7 +103,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('img'):
+        elif msg['query'].split()[0].lower() == 'img':
             query = msg['query'][4:]
             img = get(googl_img_api,
                       params={
@@ -121,7 +122,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('invert'):
+        elif msg['query'].split()[0].lower() == 'invert' and len(msg['query'].split()) >= 2:
             query = msg['query'][7:]
             articles = [InlineQueryResultArticle(id='abcde', title=query[::-1],
                                                  input_message_content=InputTextMessageContent(
@@ -130,7 +131,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles)
 
 
-        elif msg['query'].startswith('markdown'):
+        elif msg['query'].split()[0].lower() == 'markdown' and len(msg['query'].split()) >= 2:
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][9:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][9:], parse_mode='Markdown'))]
@@ -138,7 +139,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles)
 
 
-        elif msg['query'].startswith('html'):
+        elif msg['query'].split()[0].lower() == 'html' and len(msg['query'].split()) >= 2:
             articles = [InlineQueryResultArticle(
                 id='a', title=msg['query'][5:],
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:], parse_mode='html'))]
@@ -151,7 +152,7 @@ async def inlines(msg):
                 await bot.answerInlineQuery(msg['id'], results=articles)
 
 
-        elif msg['query'].startswith('yt '):
+        elif msg['query'].split()[0].lower() == 'yt' and len(msg['query'].split()) >= 2:
             articles = []
             search = await search_yt(msg['query'][3:])
             for i in search:
@@ -167,7 +168,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
 
-        elif msg['query'].startswith('print '):
+        elif msg['query'].split()[0].lower() == 'print' and len(msg['query'].split()) >= 2:
             url = msg['query'][6:]
             requests.get("https://image.thum.io/get/width/1000/" + url)
             if re.match(r'^https?://', msg['query'][6:]):
@@ -189,7 +190,7 @@ async def inlines(msg):
                 await bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
 
 
-        elif msg['query'] == 'faces' or msg['query'] == 'f':
+        elif msg['query'].lower() == 'faces' or msg['query'].lower() == 'f':
             faces = ['¯\\_(ツ)_/¯', '( ͡° ͜ʖ ͡°)', '( ͡~ ͜ʖ ͡°)', '( ͡◐ ͜ʖ ͡◑))', '( ͡◔ ͜ʖ ͡◔)', '( ͡⚆ ͜ʖ ͡⚆)',
                      '( ͡ʘ ͜ʖ ͡ʘ)', 'ヽ༼ຈل͜ຈ༽ﾉ', '༼ʘ̚ل͜ʘ̚༽', '(╯°□°）╯', '(ﾉ◕ヮ◕)ﾉ', '(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧', '(◕‿◕)', '(｡◕‿‿◕｡)',
                      '(っ◕‿◕)っ', '(づ｡◕‿‿◕｡)づ', '༼ つ ◕_◕ ༽つ', '(ง ͠° ͟ل͜ ͡°)ง', '(ง\'̀-\'́)ง', 'ᕙ(⇀‸↼‶)ᕗ', '(҂⌣̀_⌣́)',
@@ -202,7 +203,7 @@ async def inlines(msg):
             await bot.answerInlineQuery(msg['id'], results=articles)
 
 
-        elif msg['query'].startswith('hidemsg'):
+        elif msg['query'].split()[0].lower() == 'hidemsg':
             articles = [InlineQueryResultArticle(
                 id='a', title='Resultado: ' + msg['query'][8:],
                 input_message_content=InputTextMessageContent(message_text='\u2060' * 3600 + msg['query'][8:]))]
