@@ -59,8 +59,9 @@ async def youtube(msg):
             if len(res) == 0:
                 vids = "Nenhum resultado foi encontrado"
             else:
+                vids = ''
                 for num, i in enumerate(res):
-                    vids = '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])
+                    vids += '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])
             
             await bot.sendMessage(msg['chat']['id'], vids, 'HTML',
                                   reply_to_message_id=msg['message_id'],
