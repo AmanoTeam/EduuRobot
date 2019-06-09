@@ -56,10 +56,10 @@ async def youtube(msg):
 
         if msg['text'].startswith('/yt '):
             res = await search_yt(msg['text'][4:])
+            vids = ''
             if len(res) == 0:
-                vids = "Nenhum resultado foi encontrado"
+                vids += "Nenhum resultado foi encontrado"
             else:
-                vids = ''
                 for num, i in enumerate(res):
                     vids += '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])
             
