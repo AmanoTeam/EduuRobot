@@ -18,28 +18,29 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 print(r'''
- _____    _             ____       _           _   
-| ____|__| |_   _ _   _|  _ \ ___ | |__   ___ | |_ 
+ _____    _             ____       _           _
+| ____|__| |_   _ _   _|  _ \ ___ | |__   ___ | |_
 |  _| / _` | | | | | | | |_) / _ \| '_ \ / _ \| __|
-| |__| (_| | |_| | |_| |  _ < (_) | |_) | (_) | |_ 
+| |__| (_| | |_| | |_| |  _ < (_) | |_) | (_) | |_
 |_____\__,_|\__,_|\__,_|_| \_\___/|_.__/ \___/ \__|
 
 Iniciando...
 ''')
 
-import threading
-import time
+import asyncio
 import json
 import html
 import traceback
+import amanobot.aio
 
 from amanobot.exception import TelegramError, TooManyRequestsError, NotEnoughRightsError
-from amanobot.loop import MessageLoop
+from amanobot.aio.loop import MessageLoop
 from colorama import Fore
 from urllib3.exceptions import ReadTimeoutError
 
+import backups
 import db_handler as db
-from config import bot, enabled_plugins, logs, version
+from config import bot, na_bot, enabled_plugins, logs, version, backups_chat
 from utils import send_to_dogbin
 
 ep = []
@@ -55,15 +56,10 @@ for num, i in enumerate(enabled_plugins):
         print('\n' + Fore.RED + 'Erro ao carregar o plugin {}:{}'.format(i, Fore.RESET), erro)
 
 
-def handle_thread(*args):
-    t = threading.Thread(target=handle, args=args)
-    t.start()
-
-
-def handle(msg):
+async def handle(msg):
     for plugin in ep:
         try:
-            p = globals()[plugin](msg)
+            p = await globals()[plugin](msg)
             if p:
                 break
         except (TooManyRequestsError, NotEnoughRightsError, ReadTimeoutError):
@@ -71,38 +67,43 @@ def handle(msg):
         except Exception as e:
             formatted_update = json.dumps(msg, indent=3)
             res = traceback.format_exc()
-            exc_url = send_to_dogbin('Update:\n'+formatted_update+'\n\n\n\nFull Traceback:\n'+res)
-            bot.sendMessage(logs, '''• <b>Erro:</b>
+            exc_url = send_to_dogbin('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + res)
+            na_bot.sendMessage(logs, '''• <b>Erro:</b>
  » Plugin: <code>{plugin}</code>
  » Tipo do erro: <code>{exc_type}</code>
  » Descrição: <i>{exc_desc}</i>
 
 - <a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
-                                                exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
-                            parse_mode='html', disable_web_page_preview=True)
+                                                  exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
+                               parse_mode='html', disable_web_page_preview=True)
 
 
 if __name__ == '__main__':
 
+    answerer = amanobot.aio.helper.Answerer(bot)
+    loop = asyncio.get_event_loop()
+
     print('\n\nBot iniciado! {}\n'.format(version))
 
-    MessageLoop(bot, handle_thread).run_as_thread()
+    if backups_chat:
+        backups.backup_service()
+
+    loop.create_task(MessageLoop(bot, handle).run_forever())
 
     wr = db.get_restarted()
 
     if wr:
         try:
-            bot.editMessageText(wr, 'Reiniciado com sucesso!')
+            na_bot.editMessageText(wr, 'Reiniciado com sucesso!')
         except TelegramError:
             pass
         db.del_restarted()
     else:
-        bot.sendMessage(logs, '''Bot iniciado
+        na_bot.sendMessage(logs, '''Bot iniciado
 
 Versão: {}
 Plugins carregados: {}
 Ocorreram erros em {} plugin(s){}'''.format(version, len(ep), len(n_ep),
                                             ': ' + (', '.join(n_ep)) if n_ep else ''))
 
-    while True:
-        time.sleep(10)
+    loop.run_forever()

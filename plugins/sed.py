@@ -29,7 +29,7 @@ def replace(res, pattern, replace_with, text, count, rflags):
     res.value = re.sub(pattern, replace_with, text, count=count, flags=rflags)
 
 
-def sed(msg):
+async def sed(msg):
     if msg.get('text'):
         if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = re.split(r'(?<![^\\]\\)/', msg['text'])
@@ -43,7 +43,7 @@ def sed(msg):
             if 'g' in flags:
                 count = 0
             if 'i' in flags and 's' in flags:
-                rflags = re.I|re.S
+                rflags = re.I | re.S
             elif 'i' in flags:
                 rflags = re.I
             elif 's' in flags:
@@ -65,10 +65,10 @@ def sed(msg):
             p.terminate()
 
             if res.value is None:
-                bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro com o seu padrão regex.',
-                                reply_to_message_id=msg['message_id'])
+                await bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro com o seu padrão regex.',
+                                      reply_to_message_id=msg['message_id'])
             else:
-                bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res.value)}</pre>', 'html',
-                                reply_to_message_id=msg['reply_to_message']['message_id'])
+                await bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res.value)}</pre>', 'html',
+                                      reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True

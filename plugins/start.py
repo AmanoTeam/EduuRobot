@@ -20,12 +20,12 @@
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 import keyboard
-from config import bot, version, bot_username
+from config import bot, version, bot_username, git_repo
 from db_handler import cursor
 from get_strings import strings, Strings
 
 
-def start(msg):
+async def start(msg):
     if msg.get('text'):
         strs = Strings(msg['chat']['id'])
 
@@ -46,8 +46,8 @@ def start(msg):
                 ])
                 smsg = strs.get('start_msg')
 
-            bot.sendMessage(msg['chat']['id'], smsg,
-                            reply_to_message_id=msg['message_id'], reply_markup=kb)
+            await bot.sendMessage(msg['chat']['id'], smsg,
+                                  reply_to_message_id=msg['message_id'], reply_markup=kb)
             return True
 
 
@@ -63,8 +63,8 @@ def start(msg):
         ])
 
         if msg['data'] == 'tools_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                text='''*Ferramentas:*
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      text='''*Ferramentas:*
 
 /clima - Exibe informações de clima.
 /coub - Pesquisa de pequenas animações.
@@ -84,14 +84,14 @@ def start(msg):
 /tr - Traduz um texto.
 /yt - Pesquisa vídeos no YouTube.
 /ytdl - Baixa o áudio de um vídeo no YouTube.''',
-                                parse_mode='Markdown',
-                                reply_markup=cmds_back)
+                                      parse_mode='Markdown',
+                                      reply_markup=cmds_back)
             return True
 
 
         elif msg['data'] == 'admin_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                '''*Comandos administrativos:*
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      '''*Comandos administrativos:*
 
 /ban - Bane um usuário.
 /config - Envia um menu de configurações.
@@ -106,14 +106,14 @@ def start(msg):
 /unwarn - Remove as advertências do usuário.
 /warn - Adverte um usuário.
 /welcome - Define a mensagem de welcome.''',
-                                parse_mode='Markdown',
-                                reply_markup=cmds_back)
+                                      parse_mode='Markdown',
+                                      reply_markup=cmds_back)
             return True
 
 
         elif msg['data'] == 'user_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                '''*Comandos para usuários normais:*
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      '''*Comandos para usuários normais:*
 
 /admins - Mostra a lista de admins do chat.
 /dados - Envia um número aleatório de 1 a 6.
@@ -122,8 +122,8 @@ def start(msg):
 /ping - Responde com uma mensagem de ping.
 /regras - Exibe as regras do grupo.
 /roleta - Para jogar a Roleta Russa.''',
-                                parse_mode='Markdown',
-                                reply_markup=cmds_back)
+                                      parse_mode='Markdown',
+                                      reply_markup=cmds_back)
             return True
 
 
@@ -134,8 +134,9 @@ def start(msg):
                 [dict(text=strs.get('lang_button'), callback_data='change_lang')] +
                 [dict(text=strs.get('add_button'), url='https://t.me/{}?startgroup=new'.format(bot_username))]
             ])
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']), strs.get('pm_start_msg'),
-                                reply_markup=kb)
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      strs.get('pm_start_msg'),
+                                      reply_markup=kb)
             return True
 
 
@@ -145,9 +146,9 @@ def start(msg):
                                                    callback_data='set_lang ' + x)] for x in strings] +
                                             [[dict(text=strs.get('back_button'), callback_data='start_back')]]
                                             )
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                "Select your prefered lang below:",
-                                reply_markup=langs_kb)
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      "Select your prefered lang below:",
+                                      reply_markup=langs_kb)
             return True
 
 
@@ -158,32 +159,33 @@ def start(msg):
             start_back = InlineKeyboardMarkup(inline_keyboard=[
                 [dict(text=usr_lang.get('back_button'), callback_data='start_back')]
             ])
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                usr_lang.get('lang_changed'),
-                                reply_markup=start_back)
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      usr_lang.get('lang_changed'),
+                                      reply_markup=start_back)
             return True
 
 
         elif msg['data'] == 'all_cmds':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                'Selecione uma categoria de comando para visualizar.\n\nCaso precise de ajuda com o bot ou tem alguma sugestão entre no @AmanoChat',
-                                reply_markup=keyboard.all_cmds)
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      'Selecione uma categoria de comando para visualizar.\n\nCaso precise de ajuda com o bot ou tem alguma sugestão entre no @AmanoChat',
+                                      reply_markup=keyboard.all_cmds)
             return True
 
 
         elif msg['data'] == 'infos':
-            bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
-                                '''• EduuRobot
+            await bot.editMessageText((msg['message']['chat']['id'], msg['message']['message_id']),
+                                      '''• EduuRobot
 
-Version: {}
+Version: {version}
+Source Code: <a href="{sourcelink}">Here</a>
 Developers: <a href="https://github.com/AmanoTeam">Amano Team</>
 Owner: <a href="tg://user?id=123892996">Edu :3</>
 
 Partnerships:
  » <a href="https://t.me/hpxlist">HPXList - by usernein</>
 
-©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version),
-                                parse_mode='html',
-                                reply_markup=start_back,
-                                disable_web_page_preview=True)
+©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version=version, sourcelink=git_repo[0]),
+                                      parse_mode='html',
+                                      reply_markup=start_back,
+                                      disable_web_page_preview=True)
             return True

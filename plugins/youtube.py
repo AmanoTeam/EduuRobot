@@ -18,8 +18,9 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
+import re
 
-import requests
+import aiohttp
 import youtube_dl
 from bs4 import BeautifulSoup
 
@@ -29,11 +30,12 @@ from utils import pretty_size
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
 
 
-def search_yt(query):
+async def search_yt(query):
     url_base = "https://www.youtube.com/results"
     url_yt = "https://www.youtube.com"
-    r = requests.get(url_base, params=dict(search_query=query))
-    page = r.text
+    async with aiohttp.ClientSession() as session:
+        r = await session.get(url_base, params=dict(q=query))
+        page = await r.text()
     soup = BeautifulSoup(page, "html.parser")
     id_url = None
     list_videos = []
@@ -49,69 +51,62 @@ def search_yt(query):
     return list_videos
 
 
-def youtube(msg):
+async def youtube(msg):
     if msg.get('text'):
 
         if msg['text'].startswith('/yt '):
-            try:
-                res = search_yt(msg['text'][4:])
-                vids = ''
-                for num, i in enumerate(res):
-                    vids += '{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title'])
-            except IndexError:
-                vids = "Nenhum resultado foi encontrado"
+            res = await search_yt(msg['text'][4:])
 
-            bot.sendMessage(msg['chat']['id'], vids, 'HTML',
-                            reply_to_message_id=msg['message_id'],
-                            disable_web_page_preview=True)
+            vids = ['{}: <a href="{}">{}</a>\n'.format(num + 1, i['url'], i['title']) for num, i in enumerate(res)] or "Nenhum resultado foi encontrado"
+            await bot.sendMessage(msg['chat']['id'], '\n'.join(vids), 'HTML',
+                                      reply_to_message_id=msg['message_id'],
+                                      disable_web_page_preview=True)
             return True
 
 
-        elif msg['text'].startswith('/ytdl '):
+        elif msg['text'].split()[0] == '/ytdl':
             text = msg['text'][6:]
 
-            if text == '':
-                bot.sendMessage(msg['chat']['id'], '*Uso:* /ytdl URL do vídeo ou nome', 'Markdown',
-                                reply_to_message_id=msg['message_id'])
-            else:
-                sent_id = bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
-                                          reply_to_message_id=msg['message_id'])['message_id']
+            if text:
+                sent_id = (await bot.sendMessage(msg['chat']['id'], 'Obtendo informações do vídeo...', 'Markdown',
+                                                 reply_to_message_id=msg['message_id']))['message_id']
                 try:
-                    if 'youtu.be' not in text and 'youtube.com' not in text:
-                        yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
-                    else:
+                    if re.match(r'^(https?://)?(youtu\.be/|(m\.|www\.)?youtube\.com/watch\?v=).+', text):
                         yt = ydl.extract_info(text, download=False)
+                    else:
+                        yt = ydl.extract_info('ytsearch:' + text, download=False)['entries'][0]
                     for f in yt['formats']:
                         if f['format_id'] == '140':
-                            fsize = f['filesize']
+                            fsize = f['filesize'] or 0
                     name = yt['title']
                 except Exception as e:
-                    return bot.editMessageText(
-                        (msg['chat']['id'], sent_id),
-                        text='Ocorreu um erro.\n\n' + str(e)
-                    )
-                if fsize < 52428800:
+                    return await bot.editMessageText((msg['chat']['id'], sent_id), 'Ocorreu um erro.\n\n' + str(e))
+                if not fsize > 52428800:
                     if ' - ' in name:
                         performer, title = name.rsplit(' - ', 1)
                     else:
-                        performer = None
+                        performer = yt.get('creator') or yt.get('uploader')
                         title = name
-                    bot.editMessageText((msg['chat']['id'], sent_id),
-                                        'Baixando <code>{}</code> do YouTube...\n({})'.format(name, pretty_size(fsize)),
-                                        'HTML')
-                    ydl.extract_info('https://www.youtube.com/watch?v=' + yt['id'], download=True)
-                    bot.editMessageText((msg['chat']['id'], sent_id), 'Enviando áudio...')
-                    bot.sendChatAction(msg['chat']['id'], 'upload_document')
-                    bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
-                                  performer=performer,
-                                  title=title,
-                                  duration=yt['duration'],
-                                  reply_to_message_id=msg['message_id']
-                                  )
+                    await bot.editMessageText((msg['chat']['id'], sent_id),
+                                              'Baixando <code>{}</code> do YouTube...\n({})'.format(name,
+                                                                                                    pretty_size(fsize)),
+                                              'HTML')
+                    ydl.download(['https://www.youtube.com/watch?v=' + yt['id']])
+                    await bot.editMessageText((msg['chat']['id'], sent_id), 'Enviando áudio...')
+                    await bot.sendChatAction(msg['chat']['id'], 'upload_document')
+                    await bot.sendAudio(msg['chat']['id'], open(ydl.prepare_filename(yt), 'rb'),
+                                        performer=performer,
+                                        title=title,
+                                        duration=yt['duration'],
+                                        reply_to_message_id=msg['message_id'])
                     os.remove(ydl.prepare_filename(yt))
-                    bot.deleteMessage((msg['chat']['id'], sent_id))
+                    await bot.deleteMessage((msg['chat']['id'], sent_id))
                 else:
-                    bot.editMessageText((msg['chat']['id'], sent_id),
-                                        'Ow, o arquivo resultante ({}) ultrapassa o meu limite de 50 MB'.format(
-                                            pretty_size(fsize)))
+                    await bot.editMessageText((msg['chat']['id'], sent_id),
+                                              f'Ow, o arquivo resultante ({pretty_size(fsize)}) ultrapassa o meu limite de 50 MB')
+
+            else:
+                await bot.sendMessage(msg['chat']['id'], '*Uso:* /ytdl URL do vídeo ou nome', 'Markdown',
+                                      reply_to_message_id=msg['message_id'])
+
             return True

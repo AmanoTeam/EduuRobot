@@ -1,24 +1,39 @@
 import amanobot
+import amanobot.aio
+import asyncio
 
 
-bot = amanobot.Bot('token:here') #Bot token
+token = "TOKEN:HERE"
 
-me = bot.getMe()
+
+loop = asyncio.get_event_loop()  # Do not change this
+
+
+bot = amanobot.aio.Bot(token)
+na_bot = amanobot.Bot(token)
+
+
+me = loop.run_until_complete(bot.getMe())
 bot_username = me['username']
 bot_id = me['id']
 
+
 keys = dict(
-    openweathermap = 'key_here',  #You can obtain an key at https://openweathermap.org
-    yandex = 'key_here',          #You can obtain an key at https://tech.yandex.com/translate
-    giphy = 'key_here',           #You can obtain an key at https://developers.giphy.com
+    openweathermap = 'key_here',  #You can get a key at https://openweathermap.org
+    yandex = 'key_here',          #You can get a key at https://tech.yandex.com/translate
+    giphy = 'key_here',           #You can get a key at https://developers.giphy.com
 )
 
-git_repo = 'https://github.com/AmanoTeam/EduuRobot master' #Repositório onde seu bot está
+git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository where your bot is
 
 max_time = 60
 
 version = open('version.txt').read()
-logs = -1001297931062
+
+logs = 123456789
+
+backups_chat = 123456789  # Put a 0, False or None to disable.
+backup_hours = ['00:00', '12:00']
 
 sudoers = [
     123456789
@@ -46,7 +61,7 @@ enabled_plugins = [
     'reddit',
     'coub',
     'sudos',
-    'id',
+    'ids',
     'ip',
     'jsondump',
     'dice',

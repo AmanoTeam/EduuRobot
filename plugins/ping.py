@@ -22,16 +22,17 @@ import time
 from config import bot, bot_username
 
 
-def ping(msg):
+async def ping(msg):
     if msg.get('text'):
         if msg['text'] == '/ping' or msg['text'] == '!ping' or msg['text'] == '/ping@' + bot_username:
             first = time.time()
-            sent = bot.sendMessage(msg['chat']['id'], '*Pong!*', 'Markdown', reply_to_message_id=msg['message_id'])[
-                'message_id']
+            sent = await bot.sendMessage(msg['chat']['id'], '*Pong!*', 'Markdown',
+                                         reply_to_message_id=msg['message_id'])
             second = time.time()
-            bot.editMessageText((msg['chat']['id'], sent), '*Pong!* `{}`s'.format(str(second - first)[:5]), 'Markdown')
+            await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                      '*Pong!* `{}`s'.format(round(second - first, 3)), 'Markdown')
             return True
 
         elif msg['text'] == '/king' or msg['text'] == '!king' or msg['text'] == '/king@' + bot_username:
-            bot.sendMessage(msg['chat']['id'], '*Kong!*', 'Markdown', reply_to_message_id=msg['message_id'])
+            await bot.sendMessage(msg['chat']['id'], '*Kong!*', 'Markdown', reply_to_message_id=msg['message_id'])
             return True

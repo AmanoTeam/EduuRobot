@@ -20,7 +20,7 @@
 from config import bot, bot_username
 
 
-def id(msg):
+async def ids(msg):
     if msg.get('text'):
         if msg['text'] == '/id' or msg['text'] == '!id' or msg['text'] == '/id@' + bot_username:
             if msg['chat']['type'] == 'private':
@@ -32,7 +32,7 @@ def id(msg):
                     username = '@' + msg['from']['username']
                 else:
                     username = ''
-                bot.sendMessage(msg['chat']['id'], '''
+                await bot.sendMessage(msg['chat']['id'], '''
 *Informações:*
 
 *Nome:* `{}`{}{}
@@ -44,12 +44,12 @@ def id(msg):
                                msg['from']['id'],
                                msg['from']['language_code'],
                                msg['chat']['type']),
-                                parse_mode='Markdown',
-                                reply_to_message_id=msg['message_id'])
+                                      parse_mode='Markdown',
+                                      reply_to_message_id=msg['message_id'])
             else:
-                sent = bot.sendMessage(msg['chat']['id'], '⏰ Consultando informações...',
-                                       reply_to_message_id=msg['message_id'])
-                members = bot.getChatMembersCount(msg['chat']['id'])
+                sent = await bot.sendMessage(msg['chat']['id'], '⏰ Consultando informações...',
+                                             reply_to_message_id=msg['message_id'])
+                members = await bot.getChatMembersCount(msg['chat']['id'])
                 if 'username' in msg['chat']:
                     chat_username = '@' + msg['chat']['username']
                 else:
@@ -89,7 +89,7 @@ def id(msg):
                     else:
                         lang_code = '-'
 
-                bot.editMessageText(
+                await bot.editMessageText(
                     (msg['chat']['id'], sent['message_id']),
                     text='''
 *Informações do chat:*

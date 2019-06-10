@@ -17,29 +17,33 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import random
+import os
+import time
+import schedule
+from datetime import datetime
+from utils import backup_sources
+from threading import Thread
+from config import backups_chat, backup_hours, na_bot
 
-import aiohttp
 
-from config import bot, keys
+def backup_func():
+    cstrftime = datetime.now().strftime('%d/%m/%Y - %H:%M:%S')
+    file = backup_sources()
 
-giphy_key = keys['giphy']
+    na_bot.sendDocument(backups_chat, open(file, 'rb'), caption="📅 " + cstrftime + "\n_Auto generated._", parse_mode='Markdown')
+
+    os.remove(file)
 
 
-async def gif(msg):
-    if msg.get('text'):
-        if msg['text'].startswith('/gif ') or msg['text'].startswith('!gif '):
-            text = msg['text'][5:]
-            async with aiohttp.ClientSession() as session:
-                r = await session.get("http://api.giphy.com/v1/gifs/search",
-                                      params=dict(q=text, api_key=giphy_key, limit=7))
-                rjson = await r.json()
-            if rjson["data"]:
-                res = random.choice(rjson["data"])
-                result = res["images"]["original_mp4"]["mp4"]
-                await bot.sendVideo(msg['chat']['id'], result,
-                                    reply_to_message_id=msg['message_id'])
-            else:
-                await bot.sendMessage(msg['chat']['id'], "Sem resultados",
-                                      reply_to_message_id=msg['message_id'])
-            return True
+def backup_scheduler(target):
+    for hour in backup_hours:
+        schedule.every().day.at(hour).do(target)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(5)
+
+
+def backup_service():
+    t = Thread(target=backup_scheduler, args=(backup_func,))
+    t.start()
