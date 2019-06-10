@@ -49,6 +49,7 @@ async def inlines(msg):
             username = '@' + msg['from']['username']
         else:
             username = 'nenhum'
+        msg["query"] = msg["query"] or "0"
         if msg['query'].split()[0].lower() == 'ip' and len(msg['query']) > 6:
             async with aiohttp.ClientSession() as session:
                 r = await session.get(geo_ip + msg['query'][3:])
