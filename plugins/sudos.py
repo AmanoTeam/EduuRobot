@@ -176,7 +176,7 @@ async def sudos(msg):
                                               reply_to_message_id=msg['message_id']
                                               ))['message_id']
                 try:
-                    res_chat = bot.getChat(chat)
+                    res_chat = await bot.getChat(chat)
                 except TelegramError:
                     return await bot.editMessageText((msg['chat']['id'], sent), 'Chat não encontrado')
                 if res_chat['type'] != 'private':
