@@ -126,9 +126,12 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!exec':
                 text = msg['text'][6:]
 
+                # Merge global and local variables
+                variables = dict(globals()).update(locals())
+
                 try:
                     # Create an async function so we can run async code without issues.
-                    exec('async def __ex(): ' + ''.join(f'\n {l}' for l in text.split('\n')))
+                    exec('async def __ex():' + ''.join(f'\n {l}' for l in text.split('\n')), variables)
                     with io.StringIO() as buf, redirect_stdout(buf):
                         await locals()['__ex']()
                         res = buf.getvalue()
