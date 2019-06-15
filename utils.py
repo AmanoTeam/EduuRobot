@@ -18,9 +18,11 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
+import html
 import requests
 import time
 import zipfile
+from simplejson.errors import JSONDecodeError
 
 
 def send_to_dogbin(text):
