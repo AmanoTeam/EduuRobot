@@ -19,20 +19,23 @@
 
 import os
 import html
-import requests
+import aiohttp
 import time
 import zipfile
-from simplejson.errors import JSONDecodeError
+from aiohttp.client_exceptions import ContentTypeError
 
 
-def send_to_dogbin(text):
+async def send_to_dogbin(text):
     if not isinstance(text, bytes):
         text = text.encode()
-    post = requests.post("https://del.dog/documents", data=text)
-    try:
-        return "https://del.dog/" + post.json()["key"]
-    except JSONDecodeError:
-        return html.escape(post.text)
+    async with aiohttp.ClientSession() as session:
+        post = await session.post("https://del.dog/documents", data=text)
+        try:
+            json = await post.json()
+            return "https://del.dog/" + json["key"]
+        except ContentTypeError:
+            text = await post.text()
+            return html.escape()
 
 
 def pretty_size(size):

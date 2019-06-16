@@ -110,7 +110,8 @@ Mensagem: {text}""", 'HTML')
                                       'markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
-                await bot.sendMessage(msg['chat']['id'], send_to_dogbin(text), disable_web_page_preview=True,
+                link = await send_to_dogbin(text)
+                await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
                                       reply_to_message_id=msg['message_id'])
             return True
 
@@ -148,7 +149,7 @@ Mensagem: {text}""", 'HTML')
             headers = '<b>Status Code:</b> <code>{}</code>\n'.format(str(r.status_code))
             headers += '\n'.join('<b>{}:</b> <code>{}</code>'.format(x, html.escape(r.headers[x])) for x in r.headers)
             if len(r.text) > 3000:
-                res = send_to_dogbin(r.content)
+                res = await send_to_dogbin(r.content)
             else:
                 res = '<code>' + html.escape(r.text) + '</code>'
             await bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
