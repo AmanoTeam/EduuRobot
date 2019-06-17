@@ -66,5 +66,5 @@ enabled_plugins = [
     'jsondump',
     'dice',
     'misc',
-    'antichato'
+    'antipedro'
 ]
