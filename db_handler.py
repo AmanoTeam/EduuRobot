@@ -19,30 +19,34 @@
 
 import sqlite3
 
-conn = sqlite3.connect('bot.db', check_same_thread=False)
+conn = sqlite3.connect('bot.db')
 
 cursor = conn.cursor()
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id,
+cursor.execute('''CREATE TABLE IF NOT EXISTS chats (chat_id INTEGER,
                                                     welcome,
-                                                    welcome_enabled,
+                                                    welcome_enabled INTEGER,
                                                     rules,
                                                     goodbye,
-                                                    goodbye_enabled,
-                                                    ia,
-                                                    warns_limit,
-                                                    antipedro_enabled,
+                                                    goodbye_enabled INTEGER,
+                                                    ia INTEGER,
+                                                    warns_limit INTEGER,
+                                                    antipedro_enabled INTEGER,
                                                     antipedro_list,
                                                     chat_lang,
                                                     cached_admins)''')
 
-cursor.execute('CREATE TABLE IF NOT EXISTS users (user_id, ia, chat_lang)')
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+                                                    user_id INTEGER,
+                                                    ia INTEGER,
+                                                    chat_lang)''')
 
-cursor.execute('CREATE TABLE IF NOT EXISTS channels (chat_id)')
+cursor.execute('''CREATE TABLE IF NOT EXISTS channels (
+                                                       chat_id INTEGER)''')
 
-cursor.execute('CREATE TABLE IF NOT EXISTS user_warns (user_id, chat_id, count)')
-
-cursor.execute('CREATE TABLE IF NOT EXISTS was_restarted_on (chat_id, message_id)')
+cursor.execute('''CREATE TABLE IF NOT EXISTS was_restarted_on (
+                                                               chat_id INTEGER,
+                                                               message_id INTEGER)''')
 
 
 def chat_exists(chat_id):

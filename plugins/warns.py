@@ -24,6 +24,12 @@ from db_handler import cursor, conn
 from .admins import is_admin
 
 
+cursor.execute('''CREATE TABLE IF NOT EXISTS user_warns (
+                                                         user_id INTEGER,
+                                                         chat_id INTEGER,
+                                                         count INTEGER)''')
+
+
 def get_warns(chat_id, user_id):
     cursor.execute('SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
     return cursor.fetchone()[0]
