@@ -23,8 +23,7 @@ Requisitos
 
 -  Python 3.6+
 -  python3-pip (para instalar os módulos)
--  Um SO Linux (O bot em Windows não funciona corretamente)
--  Módulos: amanobot, requests, youtube-dl, colorama, duckpy e pyfiglet
+-  Um Sistema Operacional Linux (O bot em Windows não funciona corretamente)
 
 Recomendações
 ~~~~~~~~~~~~~
@@ -42,21 +41,21 @@ Configuração
 ~~~~~~~~~~~~
 
 -  Vá ao `@BotFather`_ e envie o comando ``/setprivacy``, clique no bot
-   escolhido, então clique em Disable
--  Renomeie o arquivo ``config.py.example`` para ``config.py`` e abra
-   ele
--  Coloque o token do seu bot em onde tem ``seu:token``
--  Coloque sua ID em ``sudoers`` (Caso você não saiba a sua envie o
-   comando ``/id``)
--  Coloque a sua ID ou a de um grupo/canal em ``logs``
+   escolhido, então clique em Disable.
+-  Copie o arquivo ``config.py.example`` para ``config.py`` e abra
+   ele. (com ``cp config.py.example config.py``)
+-  Coloque o token do seu bot em onde tem ``seu:token``.
+-  Coloque sua ID em ``sudoers`` (Caso você não saiba a sua, envie o
+   comando ``/id``).
+-  Coloque a sua ID ou a de um grupo/canal em ``logs``.
 
 Executando
 ~~~~~~~~~~
 
--  Para iniciar o bot use o comando ``python3 bot.py``
--  E pronto! o bot agora está executando
+-  Para iniciar o bot use o comando ``python3 bot.py``.
+-  E pronto! o bot agora está executando.
 -  Agora você pode ir para os sites informados no config.py e conseguir
-   as keys para comandos especiais (opcionais)
+   as keys para comandos especiais (opcionais).
 
 Nota
 ~~~~
