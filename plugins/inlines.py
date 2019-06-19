@@ -118,7 +118,7 @@ async def inlines(msg):
                     id=str(uuid4()),
                     photo_url=result["Isi"],
                     thumb_url=result["Tumbnil"],
-                    caption=result["Deskripsi"]
+                    caption=html.unescape(result["Deskripsi"])
                 ))
             await bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
