@@ -43,6 +43,12 @@ def add_user(chat_id, user_id):
     return True
 
 
+def set_antipedro(chat_id, toggle):
+    cursor.execute('UPDATE chats SET antipedro_enabled = ? WHERE chat_id = ?', (bool(toggle), chat_id))
+    conn.commit()
+    return True
+
+
 def remove_user(chat_id, user_id):
     cursor.execute('SELECT antipedro_list FROM chats WHERE chat_id = ?', (chat_id,))
     user_list = json.loads(cursor.fetchone()[0])
@@ -55,7 +61,10 @@ def remove_user(chat_id, user_id):
 
 async def antipedro(msg):
     if msg.get('chat') and msg.get('from') and msg['chat']['type'].endswith('group'):
-        ac = get_antipedro(msg['chat']['id'])
-        if ac[0] and msg['from']['id'] in json.loads(ac[1]):
+        ap = get_antipedro(msg['chat']['id'])
+        print(ap)
+        lista = json.loads(ap[1])
+        print(lista)
+        if ap[0] and msg['from']['id'] in json.loads(ap[1]):
             await bot.sendMessage(msg['chat']['id'], k.respond('a'), reply_to_message_id=msg['message_id'])
             return True
