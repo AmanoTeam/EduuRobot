@@ -48,5 +48,8 @@ async def prints(msg):
                 await bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                           f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
             finally:
-                os.remove(f'{ctime}.png')
+                try:
+                    os.remove(f'{ctime}.png')
+                except FileNotFoundError:
+                    pass
             return True
