@@ -25,7 +25,6 @@ import duckpy
 import aiohttp
 from amanobot.exception import TelegramError
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
-from requests import get
 
 from config import bot, bot_username
 from .youtube import search_yt
@@ -106,10 +105,9 @@ async def inlines(msg):
 
         elif msg['query'].split()[0].lower() == 'img':
             query = msg['query'][4:]
-            img = get(googl_img_api,
-                      params={
-                          "cari": query
-                      }).json()
+            async with aiohttp.ClientSession() as session:
+                r = await session.get(googl_img_api, params=dict(cari=query))
+                img = await r.json()
             resp = []
             for k, result in enumerate(img):
                 if k == 50:
