@@ -2,7 +2,7 @@ urllib3==1.25.3
 amanobot==1.3.0
 bs4==0.0.1
 colorama==0.4.1
-requests
+requests==2.22.0
 youtube-dl
 duckpy
 python-aiml
