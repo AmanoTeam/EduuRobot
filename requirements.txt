@@ -3,7 +3,7 @@ amanobot==1.3.0
 bs4==0.0.1
 colorama==0.4.1
 requests==2.22.0
-youtube-dl
+youtube-dl==2019.6.8
 duckpy
 python-aiml
 schedule
