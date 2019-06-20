@@ -47,7 +47,7 @@ async def reddit(msg):
                     request = await session.get(url, headers={'User-agent': 'testscript by /u/fakebot3'})
                     data = await request.json()
                 posts = ""
-                if request.status_code == 200:
+                if request.status == 200:
                     for post in data['data']['children']:
                         domain = post['data']['domain']
                         title = treattitle(post['data']['title'])
