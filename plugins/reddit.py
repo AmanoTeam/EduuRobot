@@ -36,7 +36,7 @@ def treattitle(title):
 
 async def reddit(msg):
     if msg.get('text'):
-        if msg['text'].startswith('/r ') or msg['text'].startswith('!r '):
+        if msg['text'].split()[0] == '/r' or msg['text'].split()[0] == '!r':
             sub = msg['text'][3:]
             if sub:
                 sub = re.findall(r'\S*', sub)
