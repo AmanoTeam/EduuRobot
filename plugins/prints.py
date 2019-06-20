@@ -21,7 +21,7 @@ import os
 import re
 import time
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -37,9 +37,10 @@ async def prints(msg):
                     url = msg['text'][7:]
                 else:
                     url = 'http://' + msg['text'][7:]
-                r = requests.post("http://api.olixao.ml/print", data=dict(q=url))
-                with open(f'{ctime}.png', 'wb') as f:
-                    f.write(r.content)
+                async with aiohttp.ClientSession() as session:
+                    r = session.post("http://api.olixao.ml/print", data=dict(q=url))
+                    with open(f'{ctime}.png', 'wb') as f:
+                        f.write(r.read())
 
                 await bot.sendPhoto(msg['chat']['id'], open(f'{ctime}.png', 'rb'),
                                     reply_to_message_id=msg['message_id'])
