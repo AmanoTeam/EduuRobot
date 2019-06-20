@@ -17,7 +17,7 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import requests
+import aiohttp
 
 from config import bot, keys
 from utils import get_flag
@@ -34,7 +34,9 @@ async def weather(msg):
             if msg['text'][7:] == '':
                 res = '*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._'
             else:
-                json = requests.post(url.format(msg['text'][7:], owm_key)).json()
+                async with aiohttp.ClientSession() as session:
+                    r = session.post(url.format(msg['text'][7:], owm_key))
+                    json = r.json()
                 if json['cod'] != 200:
                     print(json)
                     res = json['message']
