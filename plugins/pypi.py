@@ -20,7 +20,7 @@
 import html
 import re
 
-import requests
+import aiohttp
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 from config import bot, version
@@ -43,9 +43,12 @@ async def pypi(msg):
     if msg.get('text'):
         if msg['text'].startswith('/pypi ') or msg['text'].startswith('!pypi '):
             text = msg['text'][6:]
-            r = requests.get(f"https://pypi.python.org/pypi/{text}/json", headers={"User-Agent": "Eduu/" + version})
-            if r.ok:
-                pypi = escape_definition(r.json()["info"])
+            async with aiohttp.ClientSession() as session:
+                r = await session.get(f"https://pypi.python.org/pypi/{text}/json",
+                                      headers={"User-Agent": "Eduu/" + version})
+                json = await r.json()
+            if r.status == 200:
+                pypi = escape_definition(json["info"])
                 message = "<b>%s</b> by <i>%s</i> (%s)\n" \
                           "Platform: <b>%s</b>\n" \
                           "Version: <b>%s</b>\n" \
@@ -56,7 +59,7 @@ async def pypi(msg):
                 return await bot.sendMessage(msg['chat']['id'], message, reply_to_message_id=msg['message_id'],
                                              parse_mode="HTML", disable_web_page_preview=True,
                                              reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                                                 [dict(text='Package home page', url='{}'.format(pypi['home_page']))]]))
+                                                 [dict(text='Package home page', url=pypi['home_page'])]]))
             else:
                 return await bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi",
                                              reply_to_message_id=msg['message_id'], parse_mode="Markdown",
