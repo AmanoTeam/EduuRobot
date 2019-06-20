@@ -4,6 +4,6 @@ bs4==0.0.1
 colorama==0.4.1
 requests==2.22.0
 youtube-dl==2019.6.8
-duckpy
+duckpy==1.2.2
 python-aiml
 schedule
