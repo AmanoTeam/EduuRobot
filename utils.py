@@ -35,7 +35,7 @@ async def send_to_dogbin(text):
             return "https://del.dog/" + json["key"]
         except ContentTypeError:
             text = await post.text()
-            return html.escape()
+            return html.escape(text)
 
 
 def pretty_size(size):
