@@ -44,8 +44,8 @@ async def reddit(msg):
                 url = "http://www.reddit.com/" + sub + "/.json?limit=6"
                 subreddit = "http://www.reddit.com/" + sub
                 async with aiohttp.ClientSession() as session:
-                    request = session.get(url, headers={'User-agent': 'testscript by /u/fakebot3'})
-                    data = request.json()
+                    request = await session.get(url, headers={'User-agent': 'testscript by /u/fakebot3'})
+                    data = await request.json()
                 posts = ""
                 if request.status_code == 200:
                     for post in data['data']['children']:

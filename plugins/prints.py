@@ -38,9 +38,10 @@ async def prints(msg):
                 else:
                     url = 'http://' + msg['text'][7:]
                 async with aiohttp.ClientSession() as session:
-                    r = session.post("http://api.olixao.ml/print", data=dict(q=url))
+                    r = await session.post("http://api.olixao.ml/print", data=dict(q=url))
+                    file = await r.read()
                     with open(f'{ctime}.png', 'wb') as f:
-                        f.write(r.read())
+                        f.write(file)
 
                 await bot.sendPhoto(msg['chat']['id'], open(f'{ctime}.png', 'rb'),
                                     reply_to_message_id=msg['message_id'])

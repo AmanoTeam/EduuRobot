@@ -35,12 +35,12 @@ async def weather(msg):
                 res = '*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._'
             else:
                 async with aiohttp.ClientSession() as session:
-                    r = session.post(url, params=dict(q=msg['text'][7:],
-                                                      units='mestrics',
-                                                      lang='pt',
-                                                      appid=owm_key
+                    r = await session.post(url, params=dict(q=msg['text'][7:],
+                                                            units='mestrics',
+                                                            lang='pt',
+                                                            appid=owm_key
                     ))
-                    json = r.json()
+                    json = await r.json()
                 if json['cod'] != 200:
                     print(json)
                     res = json['message']
