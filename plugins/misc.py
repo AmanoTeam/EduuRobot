@@ -21,7 +21,7 @@ import html
 import re
 
 import amanobot
-import requests
+import aiohttp
 from amanobot.exception import TelegramError
 
 from config import bot, sudoers, logs, bot_username
@@ -142,16 +142,19 @@ Mensagem: {text}""", 'HTML')
             else:
                 text = 'http://' + msg['text'][9:]
             try:
-                r = requests.get(text)
+                async with aiohttp.ClientSession() as session:
+                    r = await session.get(text)
             except Exception as e:
                 return await bot.sendMessage(msg['chat']['id'], str(e),
                                              reply_to_message_id=msg['message_id'])
-            headers = '<b>Status Code:</b> <code>{}</code>\n'.format(str(r.status_code))
+            headers = '<b>Status-Code:</b> <code>{}</code>\n'.format(str(r.status))
             headers += '\n'.join('<b>{}:</b> <code>{}</code>'.format(x, html.escape(r.headers[x])) for x in r.headers)
-            if len(r.text) > 3000:
-                res = await send_to_dogbin(r.content)
+            rtext = await r.text()
+            if len(rtext) > 3000:
+                content = await r.read()
+                res = await send_to_dogbin(content)
             else:
-                res = '<code>' + html.escape(r.text) + '</code>'
+                res = '<code>' + html.escape(rtext) + '</code>'
             await bot.sendMessage(msg['chat']['id'], '<b>Headers:</b>\n{}\n\n<b>Conteúdo:</b>\n{}'.format(headers, res),
                                   'html', reply_to_message_id=msg['message_id'])
             return True
