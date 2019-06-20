@@ -20,7 +20,7 @@
 import re
 import urllib
 
-import requests
+import aiohttp
 
 from config import bot
 
@@ -43,8 +43,9 @@ async def reddit(msg):
                 sub = "r/" + sub[0] if sub[0:2] != "r/" else sub[0]
                 url = "http://www.reddit.com/" + sub + "/.json?limit=6"
                 subreddit = "http://www.reddit.com/" + sub
-                request = requests.get(url, headers={'User-agent': 'testscript by /u/fakebot3'})
-                data = request.json()
+                async with aiohttp.ClientSession() as session:
+                    request = session.get(url, headers={'User-agent': 'testscript by /u/fakebot3'})
+                    data = request.json()
                 posts = ""
                 if request.status_code == 200:
                     for post in data['data']['children']:
