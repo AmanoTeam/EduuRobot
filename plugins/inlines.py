@@ -21,7 +21,7 @@ import html
 import re
 from uuid import uuid4
 
-import duckpy
+import duckpy.aio
 import aiohttp
 from amanobot.exception import TelegramError
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
@@ -29,8 +29,11 @@ from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto
 from config import bot, bot_username
 from .youtube import search_yt
 
+
 geo_ip = 'http://ip-api.com/json/'
 googl_img_api = 'https://apikuu.herokuapp.com/api/v0/sakty/imej'
+
+ddg_client = duckpy.aio.Client()
 
 
 def escape_definition(prox):
@@ -74,7 +77,7 @@ async def inlines(msg):
             count = 50
             number = 1
             search = msg['query'][5:]
-            duc = duckpy.search(str(search))['results']
+            duc = await ddg_client.search(str(search))
             articles = []
             if duc:
                 if count + number > len(duc):
