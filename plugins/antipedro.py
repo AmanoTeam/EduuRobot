@@ -62,9 +62,7 @@ def remove_user(chat_id, user_id):
 async def antipedro(msg):
     if msg.get('chat') and msg.get('from') and msg['chat']['type'].endswith('group'):
         ap = get_antipedro(msg['chat']['id'])
-        print(ap)
         lista = json.loads(ap[1])
-        print(lista)
         if ap[0] and msg['from']['id'] in json.loads(ap[1]):
             await bot.sendMessage(msg['chat']['id'], k.respond('a'), reply_to_message_id=msg['message_id'])
             return True
