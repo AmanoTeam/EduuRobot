@@ -164,11 +164,14 @@ async def sudos(msg):
 
 
             elif msg['text'].startswith('!leave'):
-                if ' ' in msg['text']:
+                if len(msg['text'].split()) == 2:
                     chat_id = msg['text'].split()[1]
                 else:
                     chat_id = msg['chat']['id']
-                await bot.sendMessage(chat_id, 'Tou saindo daqui flws')
+                try:
+                    await bot.sendMessage(chat_id, 'Tou saindo daqui flws')
+                except TelegramError:
+                    pass
                 await bot.leaveChat(chat_id)
                 return True
 
