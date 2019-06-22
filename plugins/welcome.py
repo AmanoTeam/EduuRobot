@@ -76,7 +76,8 @@ async def welcome(msg):
                                           reply_to_message_id=msg['message_id'])
                 else:
                     try:
-                        sent = await bot.sendMessage(msg['chat']['id'], text[1], parse_mode='Markdown')
+                        sent = await bot.sendMessage(msg['chat']['id'], text[1], parse_mode='Markdown',
+                                                     reply_to_message_id=msg['message_id'])
                         set_welcome(msg['chat']['id'], text[1])
                         await bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                                   'A mensagem de boas-vindas foi definida.')
@@ -87,7 +88,7 @@ Erro: {}
 
 Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.description),
                                               reply_to_message_id=msg['message_id'])
-                    
+
             return True
 
 
