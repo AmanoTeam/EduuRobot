@@ -134,9 +134,9 @@ async def sudos(msg):
                     exec('async def __ex():' + ''.join(f'\n {l}' for l in text.split('\n')))
                     with io.StringIO() as buf, redirect_stdout(buf):
                         await locals()['__ex']()
-                        res = buf.getvalue()
+                        res = buf.getvalue() or 'Código sem retornos.'
                 except:
-                    res = traceback.format_exc() or 'Código sem retornos.'
+                    res = traceback.format_exc()
                 await bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
                 return True
 
