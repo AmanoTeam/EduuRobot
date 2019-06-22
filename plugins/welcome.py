@@ -18,6 +18,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from amanobot.namedtuple import InlineKeyboardMarkup
+from amanobot.exception import TelegramError
 
 from config import bot, bot_username, bot_id
 from utils import escape_markdown
@@ -74,9 +75,19 @@ async def welcome(msg):
                     await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi redefinida.',
                                           reply_to_message_id=msg['message_id'])
                 else:
-                    set_welcome(msg['chat']['id'], text[1])
-                    await bot.sendMessage(msg['chat']['id'], 'A mensagem de boas-vindas foi definida.',
-                                          reply_to_message_id=msg['message_id'])
+                    try:
+                        sent = await bot.sendMessage(msg['chat']['id'], text[1], parse_mode='Markdown')
+                        set_welcome(msg['chat']['id'], text[1])
+                        await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                                  'A mensagem de boas-vindas foi definida.')
+                    except TelegramError as e:
+                        await bot.sendMessage(msg['chat']['id'], '''Parece que ocorreu um erro ao definir a mensagem de boas-vindas.
+
+Erro: {}
+
+Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.description),
+                                              reply_to_message_id=msg['message_id'])
+                    
             return True
 
 
