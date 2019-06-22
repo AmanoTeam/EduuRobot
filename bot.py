@@ -66,9 +66,9 @@ async def handle(msg):
             break
         except Exception as e:
             formatted_update = json.dumps(msg, indent=3)
-            res = traceback.format_exc()
-            exc_url = await send_to_dogbin('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + res)
-            na_bot.sendMessage(logs, '''• <b>Erro:</b>
+            formatted_exc = traceback.format_exc()
+            exc_url = await send_to_dogbin('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + formatted_exc)
+            await bot.sendMessage(logs, '''• <b>Erro:</b>
  » Plugin: <code>{plugin}</code>
  » Tipo do erro: <code>{exc_type}</code>
  » Descrição: <i>{exc_desc}</i>
