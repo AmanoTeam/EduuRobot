@@ -82,9 +82,8 @@ async def welcome(msg):
                         await bot.editMessageText((msg['chat']['id'], sent['message_id']),
                                                   'A mensagem de boas-vindas foi definida.')
                     except TelegramError as e:
-                        await bot.sendMessage(msg['chat']['id'], '''Parece que ocorreu um erro ao definir a mensagem de boas-vindas.
-
-Erro: {}
+                        await bot.sendMessage(msg['chat']['id'], '''Ocorreu um erro ao definir a mensagem de boas-vindas:
+{}
 
 Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.description),
                                               reply_to_message_id=msg['message_id'])
