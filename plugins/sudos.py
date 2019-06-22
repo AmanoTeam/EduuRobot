@@ -137,7 +137,10 @@ async def sudos(msg):
                         res = buf.getvalue() or 'Código sem retornos.'
                 except:
                     res = traceback.format_exc()
-                await bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
+                try:
+                    await bot.sendMessage(msg['chat']['id'], res, reply_to_message_id=msg['message_id'])
+                except TelegramError as e:
+                    await bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
                 return True
 
 
