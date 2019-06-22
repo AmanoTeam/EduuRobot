@@ -60,7 +60,7 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!eval':
                 text = msg['text'][6:]
                 try:
-                    res = (await eval(text[6:]) if re.match('(\W+)?await', text) else eval(text)) or 'Código sem retornos.'
+                    res = (await eval(text[6:]) if re.match(r'(\W+)?await', text) else eval(text)) or 'Código sem retornos.'
                 except:
                     res = traceback.format_exc()
                 try:
