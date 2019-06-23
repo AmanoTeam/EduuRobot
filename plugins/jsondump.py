@@ -20,6 +20,7 @@
 import html
 import json
 import os
+from io import BytesIO
 
 from config import bot, bot_username
 
@@ -34,9 +35,8 @@ async def jsondump(msg):
                                       'html', reply_to_message_id=msg['message_id'])
             else:
                 await bot.sendChatAction(msg['chat']['id'], 'upload_document')
-                with open('dump.json', 'wb') as i:
-                    i.write(msgjson.encode())
-                await bot.sendDocument(msg['chat']['id'], open('dump.json', 'rb'),
+                file = BytesIO(msgjson.encode())
+                file.name = "dump.json"
+                await bot.sendDocument(msg['chat']['id'], file,
                                        reply_to_message_id=msg['message_id'])
-                os.remove('dump.json')
             return True
