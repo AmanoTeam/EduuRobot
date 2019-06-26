@@ -114,7 +114,19 @@ Mensagem: {text}""", 'HTML')
                 await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
                                       reply_to_message_id=msg['message_id'])
             return True
-
+            
+        elif msg['text'].startswith('/hastebin') or msg['text'].startswith('!hastebin'):
+                text = msg['text'][9:] or msg.get('reply_to_message', {}).get('text')
+                if not text:
+                    await bot.sendMessage(msg['chat']['id'],
+                                          '''*Uso:* `/hastebin <texto>` - _envia um texto para o hastebin._''',
+                                          'markdown',
+                                          reply_to_message_id=msg['message_id'])
+                else:
+                    link = await send_to_hastebin(text)
+                    await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
+                                          reply_to_message_id=msg['message_id'])
+                return True
 
         elif msg['text'].startswith('/html ') or msg['text'].startswith('!html '):
             if msg.get('reply_to_message'):
