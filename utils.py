@@ -36,6 +36,18 @@ async def send_to_dogbin(text):
         except ContentTypeError:
             text = await post.text()
             return html.escape(text)
+        
+async def send_to_hastebin(text):
+    if not isinstance(text, bytes):
+        text = text.encode()
+    async with aiohttp.ClientSession() as session:
+        post = await session.post("https://haste.thevillage.chat/documents", data=text)
+        try:
+            json = await post.json()
+            return "https://haste.thevillage.chat/" + json["key"]
+        except ContentTypeError:
+            text = await post.text()
+            return html.escape(text)
 
 
 def pretty_size(size):
