@@ -25,7 +25,7 @@ import aiohttp
 from amanobot.exception import TelegramError
 
 from config import bot, sudoers, logs, bot_username
-from utils import send_to_dogbin
+from utils import send_to_dogbin, send_to_hastebin 
 
 
 async def misc(msg):
