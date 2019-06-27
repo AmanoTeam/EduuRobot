@@ -24,7 +24,7 @@ from uuid import uuid4
 import duckpy.aio
 import aiohttp
 from amanobot.exception import TelegramError
-from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton
+from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 
 from config import bot, bot_username
 from .youtube import search_yt
@@ -42,8 +42,6 @@ def escape_definition(prox):
             prox[key] = html.escape(value)
     return prox
 
-async def on_callback_query(msg):
-        query_id, from_id, query_data = glance(msg, flavor='callback_query')
 
 async def inlines(msg):
     if 'query' in msg:

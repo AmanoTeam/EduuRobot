@@ -19,7 +19,6 @@
 
 import html
 import json
-import os
 from io import BytesIO
 
 from config import bot, bot_username
