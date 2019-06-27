@@ -25,7 +25,7 @@ import aiohttp
 from amanobot.exception import TelegramError
 
 from config import bot, sudoers, logs, bot_username
-from utils import send_to_dogbin, send_to_hastebin, rexec_aio, languages
+from utils import send_to_dogbin, send_to_hastebin
 
 
 async def misc(msg):
@@ -40,41 +40,6 @@ async def misc(msg):
                                   reply_to_message_id=reply_id)
             return True
 
-        elif msg['text'].startswith('/rextester') or msg['text'].startswith('!rextester'):
-            text = msg['text'][10:]
-            rex = re.split('[ |\n]', text, 2)
-            code = rex[2:]
-            reply_id = msg['message_id']
-            if not text:
-                await bot.sendMessage(msg['chat']['id'], 'give me lang',
-                                  reply_to_message_id=reply_id)
-            elif len(code) == 0:
-                await bot.sendMessage(msg['chat']['id'], 'give me code',
-                                  reply_to_message_id=reply_id)
-            elif msg['text'].split()[1] not in languages:
-                await bot.sendMessage(msg['chat']['id'], 'wrong langs',
-                                  reply_to_message_id=reply_id)
-            else:
-                langs = rex[1]
-                program = ' '.join(code).strip()
-                source = await rexec_aio(langs, program)
-                result = source.results
-                warning = source.warnings
-                errors = source.errors
-                stats = source.stats
-                if warning and errors:
-                    resp = f"*Source:*\n`{program}`\n\n*Warning:*\n`{warning}`\n\n*Errors:*\n`{errors}`"
-                elif warning:
-                    resp = f"*Source:*\n`{program}`\n\n*Results:*\n`{result}`\n\n*Warning:*\n`{warning}`"    
-                elif errors:
-                    resp = f"*Source:*\n`{program}`\n\n*Errors:*\n`{errors}`"
-                else:                
-                    resp = f"*Source:*\n`{program}`\n\n*Results:*\n`{result}`"
-                if len(resp) > 4096:
-                    await bot.sendMessage(msg['chat']['id'], 'msgs are too long!', reply_to_message_id=reply_id, parse_mode='markdown')
-                else:
-                    await bot.sendMessage(msg['chat']['id'], resp, reply_to_message_id=reply_id, parse_mode='markdown')
-            return True
 
         elif msg['text'].startswith('/mark ') or msg['text'].startswith('!mark '):
             if msg.get('reply_to_message'):
@@ -149,7 +114,7 @@ Mensagem: {text}""", 'HTML')
                 await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
                                       reply_to_message_id=msg['message_id'])
             return True
-            
+
         elif msg['text'].startswith('/hastebin') or msg['text'].startswith('!hastebin'):
                 text = msg['text'][9:] or msg.get('reply_to_message', {}).get('text')
                 if not text:

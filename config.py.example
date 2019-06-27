@@ -47,6 +47,7 @@ enabled_plugins = [
     'sed',
     'kibe',
     'translate',
+    'rextester',
     'inlines',
     'welcome',
     'admins',

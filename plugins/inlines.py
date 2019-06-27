@@ -28,7 +28,6 @@ from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto
 
 from config import bot, bot_username
 from .youtube import search_yt
-from utils import rexec_aio, languages
 
 
 geo_ip = 'http://ip-api.com/json/'
@@ -45,7 +44,7 @@ def escape_definition(prox):
 
 async def on_callback_query(msg):
         query_id, from_id, query_data = glance(msg, flavor='callback_query')
-        
+
 async def inlines(msg):
     if 'query' in msg:
         first_name = msg['from']['first_name']
@@ -74,48 +73,7 @@ async def inlines(msg):
                 input_message_content=InputTextMessageContent(message_text=msg['query'][5:]))]
 
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
-            
-        elif msg['query'].split()[0].lower() == 'run' and len(msg['query'].split()) >= 2:
-            if '\n' in msg['query']:
-                code = msg['query'].split('\n', 1)[1:]
-            else:
-                code = msg['query'].split(" ", 2)[2:]
-            if len(code) == 0:
-                articles = [InlineQueryResultArticle(
-                    id='a', title='give me code',
-                    input_message_content=InputTextMessageContent(message_text='give me code'))]
-            elif msg['query'].split()[1] not in languages:
-                articles = [InlineQueryResultArticle(
-                    id='a', title='unknown Lang',
-                    input_message_content=InputTextMessageContent(message_text='unknown lang'))]
-            else:
-                langs = msg['query'].split()[1]
-                program = ' '.join(code).strip()
-                source = await rexec_aio(langs, program)
-                result = source.results
-                warning = source.warnings
-                errors = source.errors
-                stats = source.stats
-                if warning and errors:
-                    resp = f"*Language:*\n`{langs}`\n\n*Source:*\n`{program}`\n\n*Warning:*\n`{warning}`\n\n*Errors:*\n`{errors}`"
-                    desc = errors
-                elif warning:
-                    resp = f"*Language:*\n`{langs}`\n\n*Source:*\n`{program}`\n\n*Results:*\n`{result}`\n\n*Warning:*\n`{warning}`"    
-                    desc = result or 'NULL'
-                elif errors:
-                    resp = f"*Language:*\n`{langs}`\n\n*Source:*\n`{program}`\n\n*Errors:*\n`{errors}`"
-                    desc = errors
-                else:                
-                    resp = f"*Language:*\n`{langs}`\n\n*Source:*\n`{program}`\n\n*Results:*\n`{result}`"
-                    desc = result or 'NULL'
-                keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                   [InlineKeyboardButton(text='dont Press me', callback_data='rextester')],
-               ])
-                articles = [InlineQueryResultArticle(
-                    id='a', title=langs, description=desc,
-                    input_message_content=InputTextMessageContent(message_text=resp, parse_mode='markdown'), reply_markup=keyboard)]
 
-            await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
 
         elif msg['query'].split()[0].lower() == 'duck' and len(msg['query'].split()) >= 2:
             count = 50
