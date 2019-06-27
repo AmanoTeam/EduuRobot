@@ -42,7 +42,7 @@ async def misc(msg):
 
         elif msg['text'].startswith('/rextester') or msg['text'].startswith('/rextester\n') or msg['text'].startswith('!rextester') or msg['text'].startswith('!rextester\n'):
             text = msg['text'][10:]
-            code = re.split('[ \n]', text, 2)[2:]
+            code = re.split('[ |\n]', text, 2)[2:]
             reply_id = msg['message_id']
             if not text:
                 await bot.sendMessage(msg['chat']['id'], 'give me lang',
