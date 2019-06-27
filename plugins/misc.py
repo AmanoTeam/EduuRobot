@@ -42,8 +42,8 @@ async def misc(msg):
 
         elif msg['text'].startswith('/rextester') or msg['text'].startswith('/rextester\n') or msg['text'].startswith('!rextester') or msg['text'].startswith('!rextester\n'):
             text = msg['text'][10:]
-            if '\n' in msg['text'].split(' ')[1:][0]:
-                code = msg['text'].split(' ')[1:][0].split('\n', 1)[1:]
+            if '\n' in msg['text'].split(' ')[0:]:
+                code = ' '.join(msg['text'].split(' ')[0:]).split('\n', 1)[1:]
             else:
                 code = msg['text'].split(" ", 2)[2:]
             reply_id = msg['message_id']
