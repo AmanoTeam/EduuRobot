@@ -24,7 +24,6 @@ from config import bot, version, bot_username, git_repo
 from db_handler import cursor
 from get_strings import strings, Strings
 
-
 async def start(msg):
     if msg.get('text'):
         strs = Strings(msg['chat']['id'])
@@ -51,7 +50,7 @@ async def start(msg):
             return True
 
 
-    elif msg.get('data'):
+    elif msg.get('data') and msg.get('message'):
         strs = Strings(msg['message']['chat']['id'])
 
         cmds_back = InlineKeyboardMarkup(inline_keyboard=[
