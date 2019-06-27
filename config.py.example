@@ -58,7 +58,7 @@ enabled_plugins = [
     'youtube',
     'ping',
     'gif',
-    'git'
+    'git',
     'reddit',
     'coub',
     'sudos',
