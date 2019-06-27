@@ -49,6 +49,7 @@ async def sudos(msg):
 *!eval* - Executa uma função Python.
 *!exec* - Executa um código Python.
 *!leave* - O bot sai do chat.
+*!plist* - Lista os plugins ativos.
 *!promote* - Promove alguém a admin.
 *!restart* - Reinicia o bot.
 *!upgrade* - Atualiza a base do bot.''',
@@ -67,6 +68,25 @@ async def sudos(msg):
                     await bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
                 except TelegramError as e:
                     await bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
+                return True
+
+
+            elif msg['text'].split()[0] == '!plist':
+                from bot import ep, n_ep
+                if msg['text'].split(' ', 1)[-1] == 'errors':
+                    if n_ep:
+                        res = '<b>Tracebacks:</b>\n' + '\n'.join(f"<b>{pname}:</b>\n{html.escape(n_ep[pname])}" for pname in n_ep)
+                    else:
+                        res = 'All plugins loaded without any errors.'
+                    await bot.sendMessage(msg['chat']['id'],  res,
+                                          parse_mode="html",
+                                          reply_to_message_id=msg['message_id'])
+                else:
+                    res = f'<b>Active plugins ({len(ep)}):</b>\n' + '; '.join(sorted(ep))
+                    res += (f'\n\n<b>Inactive plugins ({len(n_ep)}):</b>\n' + '; '.join(sorted(n_ep)) + '\n\nTo see the traceback of these plugins, just type <code>!plist errors</code>') if n_ep else ''
+                    await bot.sendMessage(msg['chat']['id'], res,
+                                          parse_mode="html",
+                                          reply_to_message_id=msg['message_id'])
                 return True
 
 

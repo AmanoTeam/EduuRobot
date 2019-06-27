@@ -44,7 +44,7 @@ from config import bot, na_bot, enabled_plugins, logs, version, backups_chat
 from utils import send_to_dogbin
 
 ep = []
-n_ep = []
+n_ep = {}
 
 for num, i in enumerate(enabled_plugins):
     try:
@@ -52,7 +52,7 @@ for num, i in enumerate(enabled_plugins):
         exec('from plugins.{0} import {0}'.format(i))
         ep.append(i)
     except Exception as erro:
-        n_ep.append(i)
+        n_ep[i] = traceback.format_exc()
         print('\n' + Fore.RED + 'Erro ao carregar o plugin {}:{}'.format(i, Fore.RESET), erro)
 
 
