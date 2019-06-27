@@ -40,7 +40,7 @@ async def misc(msg):
                                   reply_to_message_id=reply_id)
             return True
 
-        elif msg['text'].startswith('/rextester') or msg['text'].startswith('/rextester\n') or msg['text'].startswith('!rextester') or msg['text'].startswith('!rextester\n'):
+        elif msg['text'].startswith('/rextester') or msg['text'].startswith('!rextester'):
             text = msg['text'][10:]
             code = re.split('[ |\n]', text, 2)[2:]
             reply_id = msg['message_id']
@@ -54,7 +54,7 @@ async def misc(msg):
                 await bot.sendMessage(msg['chat']['id'], 'wrong langs',
                                   reply_to_message_id=reply_id)
             else:
-                langs = msg['text'].split()[1]
+                langs = re.split('[ |\n]', text, 1)[1]
                 program = ' '.join(code).strip()
                 source = await rexec_aio(langs, program)
                 result = source.results
