@@ -247,14 +247,6 @@ async def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='e', title='html', thumb_url='https://piics.ml/amn/eduu/html.png',
-                    description='Formata um código em HTML.',
-                    input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} html</code> - Formata um código em HTML.'.format(
-                            bot_username), parse_mode='HTML'
-                    )
-                ),
-                InlineQueryResultArticle(
                     id='f', title='img', thumb_url='https://piics.ml/amn/eduu/img.png',
                     description='Buscador de imagens via inline.',
                     input_message_content=dict(
@@ -279,10 +271,10 @@ async def inlines(msg):
                     )
                 ),
                 InlineQueryResultArticle(
-                    id='i', title='rextester', thumb_url='https://piics.ml/amn/eduu/duck.png',
-                    description='Pesquise no Script via inline.',
+                    id='i', title='run', thumb_url='https://piics.ml/amn/eduu/html.png',
+                    description='Execute códigos via inline.',
                     input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} run</code> - Pesquise no Script via inline.'.format(
+                        message_text='<b>Uso:</b> <code>@{0} run &lt;lang&gt; &lt;code&gt;</code> - Execute códigos via inline.\n\nEx.: <code>@{0} run python3 print("Olá mundo")</code>'.format(
                             bot_username), parse_mode='HTML'
                     )
                 ),
