@@ -52,7 +52,8 @@ async def sudos(msg):
 *!plist* - Lista os plugins ativos.
 *!promote* - Promove alguém a admin.
 *!restart* - Reinicia o bot.
-*!upgrade* - Atualiza a base do bot.''',
+*!upgrade* - Atualiza a base do bot.
+*!upload* - Envia um arquivo para o servidor.''',
                                       'Markdown',
                                       reply_to_message_id=msg['message_id'])
                 return True
@@ -88,6 +89,24 @@ async def sudos(msg):
                                           parse_mode="html",
                                           reply_to_message_id=msg['message_id'])
                 return True
+
+
+            elif msg['text'].startswith('!upload'):
+                text = msg['text'][8:]
+                if msg.get('reply_to_message'):
+                    sent = await bot.sendMessage(msg['chat']['id'], '⏰ Enviando o arquivo para o servidor...',
+                                                 reply_to_message_id=msg['message_id'])
+                    try:
+                        file_id = msg['reply_to_message']['document']['file_id']
+                        file_name = msg['reply_to_message']['document']['file_name']
+                        if len(text) >= 1:
+                            file_name = text + '/' + file_name
+                        await bot.download_file(file_id, file_name)
+                        await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                                  '✅ Envio concluído! Localização: {}'.format(file_name))
+                    except Exception as e:
+                        await bot.editMessageText((msg['chat']['id'], sent['message_id']),
+                                                  '❌ Ocorreu um erro!\n\n{}'.format(traceback.format_exc()))
 
 
             elif msg['text'] == '!restart' or msg['text'] == '!restart @' + bot_username:
