@@ -161,6 +161,10 @@ async def rextester(msg):
                 else:
                     resp = f"*Language:*\n`{langs}`\n\n*Source:*\n`{program}`\n\n*Results:*\n`{result}`"
                     desc = result or 'NULL'
+                print(shorten_stats(stats))
+                print(len(shorten_stats(stats)))
+                print(stats)
+                print(len(stats))
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='Stats', callback_data='rstats '+shorten_stats(stats))],
                ])
@@ -176,19 +180,22 @@ async def rextester(msg):
 
 
 def shorten_stats(stats):
-    stats = stats.replace('Absolute running time:', 'Art')
-    stats = stats.replace('cpu time:', 'Ct')
-    stats = stats.replace('memory peak:', 'Mp')
-    stats = stats.replace('absolute service time:', 'Ast')
+    stats = stats.replace('Absolute running time: ', 'Art')
+    stats = stats.replace('absolute running time: ', 'Art')
+    stats = stats.replace('Compilation time: ', 'CT')
+    stats = stats.replace('cpu time: ', 'Ct')
+    stats = stats.replace('memory peak: ', 'Mp')
+    stats = stats.replace('absolute service time: ', 'Ast')
     stats = stats.replace(', ', '\n')
     return stats
 
 
 def unshorten_stats(stats):
-    stats = stats.replace('Art', 'Absolute running time:')
-    stats = stats.replace('Ct', 'CPU time:')
-    stats = stats.replace('Mp', 'Memory peak:')
-    stats = stats.replace('Ast', 'Absolute service time:')
+    stats = stats.replace('Art', 'Absolute running time: ')
+    stats = stats.replace('CT', 'Compilation time: ')
+    stats = stats.replace('Ct', 'CPU time: ')
+    stats = stats.replace('Mp', 'Memory peak: ')
+    stats = stats.replace('Ast', 'Absolute service time: ')
     return stats
 
 
