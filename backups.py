@@ -22,7 +22,7 @@ import time
 import schedule
 from datetime import datetime
 from utils import backup_sources
-from threading import Thread
+from multiprocessing import Process
 from config import backups_chat, backup_hours, na_bot
 
 
@@ -45,5 +45,5 @@ def backup_scheduler(target):
 
 
 def backup_service():
-    t = Thread(target=backup_scheduler, args=(backup_func,))
-    t.start()
+    p = Process(target=backup_scheduler, args=(backup_func,))
+    p.start()
