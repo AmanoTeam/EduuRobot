@@ -147,7 +147,7 @@ async def admins(msg):
                                                   reply_to_message_id=msg['message_id'])
                         else:
                             await bot.unbanChatMember(msg['chat']['id'], reply_id)
-                            await bot.sendMessage(msg['chat']['id'], f'{msg["from"]["first_name"]} kickou {reply_name}!'.format,
+                            await bot.sendMessage(msg['chat']['id'], f'{msg["from"]["first_name"]} kickou {reply_name}!',
                                                   reply_to_message_id=msg['message_id'])
                     else:
                         await bot.sendMessage(msg['chat']['id'], 'Ei, eu nao tenho admin aqui',
