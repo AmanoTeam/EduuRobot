@@ -171,9 +171,9 @@ async def sudos(msg):
 
                 try:
                     # Create an async function so we can run async code without issues.
-                    exec('async def __ex():' + ''.join(f'\n {l}' for l in text.split('\n')))
+                    exec('async def __ex(c, m): ' + ' '.join('\n ' + l for l in text.split('\n')))
                     with io.StringIO() as buf, redirect_stdout(buf):
-                        await locals()['__ex']()
+                        await locals()['__ex'](bot, msg)
                         res = buf.getvalue() or 'Código sem retornos.'
                 except:
                     res = traceback.format_exc()
