@@ -36,7 +36,7 @@ async def weather(msg):
             else:
                 async with aiohttp.ClientSession() as session:
                     r = await session.post(url, params=dict(q=msg['text'][7:],
-                                                            units='mestrics',
+                                                            units='metric',
                                                             lang='pt',
                                                             appid=owm_key
                     ))
