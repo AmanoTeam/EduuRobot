@@ -47,12 +47,13 @@ async def weather(msg):
                 else:
                     res = '''Clima em *{}*, {}:
 
-Clima: `{}`
+Clima: `{} °C`, `{}`
+
 Temperatura min.: `{} °C`
 Temperatura máx.: `{} °C`
 Umidade do ar: `{}%`
 Vento: `{:.2f} m/s`'''.format(json['name'], get_flag(json['sys']['country']),
-                              json['weather'][0]['description'], json['main']['temp_min'],
+                              json['main']['temp'], json['weather'][0]['description'], json['main']['temp_min'],
                               json['main']['temp_max'], json['main']['humidity'], json['wind']['speed'])
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
