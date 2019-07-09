@@ -17,7 +17,7 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import time
+from datetime import datetime
 
 from config import bot, bot_username
 
@@ -25,12 +25,12 @@ from config import bot, bot_username
 async def ping(msg):
     if msg.get('text'):
         if msg['text'] == '/ping' or msg['text'] == '!ping' or msg['text'] == '/ping@' + bot_username:
-            first = time.time()
+            first = datetime.now()
             sent = await bot.sendMessage(msg['chat']['id'], '*Pong!*', 'Markdown',
                                          reply_to_message_id=msg['message_id'])
-            second = time.time()
+            second = datetime.now()
             await bot.editMessageText((msg['chat']['id'], sent['message_id']),
-                                      '*Pong!* `{}`s'.format(round(second - first, 3)), 'Markdown')
+                                      '*Pong!* `{}`ms'.format((second - first).microseconds / 1000), 'Markdown')
             return True
 
         elif msg['text'] == '/king' or msg['text'] == '!king' or msg['text'] == '/king@' + bot_username:
