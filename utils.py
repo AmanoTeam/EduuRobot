@@ -83,7 +83,7 @@ def backup_sources(output_file=None):
     with zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED) as backup:
         for folder, _, files in os.walk('.'):
             for file in files:
-                if file != fname and not file.endswith('.pyc') and '.heroku' not in folder.split('/'):
+                if file != fname and not file.endswith('.pyc') and '.heroku' not in folder.split('/') and 'dls' not in folder.split('/'):
                     backup.write(os.path.join(folder, file))
 
     return fname
