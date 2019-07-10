@@ -19,12 +19,12 @@ bot_id = me['id']
 
 
 keys = dict(
-    openweathermap = 'key_here',  #You can get a key at https://openweathermap.org
-    yandex = 'key_here',          #You can get a key at https://tech.yandex.com/translate
-    giphy = 'key_here',           #You can get a key at https://developers.giphy.com
+    here = {'app_id': 'key_id_here', 'app_code': 'key_code_here'},  #You can get a key at https://here.com
+    yandex = 'key_here',                                            #You can get a key at https://tech.yandex.com/translate
+    giphy = 'key_here',                                             #You can get a key at https://developers.giphy.com
 )
 
-git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository where your bot is
+git_repo = ('https://github.com/AmanoTeam/EduuRobot', 'master') #Repository where your bot is in
 
 max_time = 60
 

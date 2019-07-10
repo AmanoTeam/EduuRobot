@@ -17,15 +17,17 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import re
+import json
 import aiohttp
 
 from config import bot, keys
 from utils import get_flag
 
-owm_key = keys['openweathermap']
+here_keys = keys['here']
 
-get_coords = 'http://maps.google.com/maps/api/geocode/json'
-url = 'http://api.openweathermap.org/data/2.5/weather/'
+get_coords = 'https://geocoder.api.here.com/6.2/geocode.json'
+url = 'https://weather.com/pt-BR/clima/hoje/l'
 
 
 async def weather(msg):
@@ -35,25 +37,39 @@ async def weather(msg):
                 res = '*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._'
             else:
                 async with aiohttp.ClientSession() as session:
-                    r = await session.post(url, params=dict(q=msg['text'][7:],
-                                                            units='metric',
-                                                            lang='pt',
-                                                            appid=owm_key
-                    ))
-                    json = await r.json()
-                if json['cod'] != 200:
-                    print(json)
-                    res = json['message']
+                    r = await session.get(get_coords, params=dict(searchtext=msg['text'][7:],
+                                                                  app_id=here_keys['app_id'],
+                                                                  app_code=here_keys['app_code']))
+                    gjson = await r.json()
+                if len(gjson['Response']['View']) == 0:
+                    return await bot.sendMessage(msg['chat']['id'], 'Localização não encontrada',
+                                                 reply_to_message_id=msg['message_id'])
                 else:
-                    res = '''Clima em *{}*, {}:
+                    pos = gjson['Response']['View'][0]['Result'][0]['Location']['DisplayPosition']
+                    async with aiohttp.ClientSession() as session:
+                        r = await session.get(f"{url}/{pos['Latitude']},{pos['Longitude']}")
+                        rtext = await r.text()
+                    wjson = re.findall(r'__data=({.*?});', rtext)
+                    # If the returned list is empty...
+                    if not wjson:
+                        return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
+                                                     reply_to_message_id=msg['message_id'])
+                    wjson = json.loads(wjson[0])
+                    fkey = list(wjson['dal']['Location'])[0]
+                    fkey2 = list(wjson['dal']['Observation'])[0]
+                    res = '''*{}, {}*:
 
-Clima: `{} °C`, `{}`
+Temperatura: `{} °C`
+Sensação térmica: `{} °C`
+Umidade do Ar: `{}%`
+Vento: `{} km/h`
 
-Temperatura min.: `{} °C`
-Temperatura máx.: `{} °C`
-Umidade do ar: `{}%`
-Vento: `{:.2f} m/s`'''.format(json['name'], get_flag(json['sys']['country']),
-                              json['main']['temp'], json['weather'][0]['description'], json['main']['temp_min'],
-                              json['main']['temp_max'], json['main']['humidity'], json['wind']['speed'])
+- _{}_'''.format(wjson['dal']['Location'][fkey]['data']['location']['city'],
+                 wjson['dal']['Location'][fkey]['data']['location']['country'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['temperature'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['feelsLike'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['humidity'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['windSpeed'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['phrase'])
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
