@@ -1,0 +1,10 @@
+TOKEN = "YOUR_TOKEN_HERE"
+
+super_sudoers = [123456789]  # List of super sudoers (they can control what sudoers can do)
+sudoers = [987654321]
+
+sudoers += super_sudoers
+
+prefix = ["/", "!"]  # Prefix used for user commands.
+
+disabled_plugins = []  # List of plugins to not load.
