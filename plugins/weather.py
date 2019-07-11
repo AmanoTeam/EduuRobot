@@ -57,7 +57,7 @@ async def weather(msg):
                     wjson = json.loads(wjson[0])
                     fkey = list(wjson['dal']['Location'])[0]
                     fkey2 = list(wjson['dal']['Observation'])[0]
-                    res = '''*{}, {}*:
+                    res = '''*{}, {} - {}*:
 
 Temperatura: `{} °C`
 Sensação térmica: `{} °C`
@@ -65,6 +65,7 @@ Umidade do Ar: `{}%`
 Vento: `{} km/h`
 
 - _{}_'''.format(wjson['dal']['Location'][fkey]['data']['location']['city'],
+                 wjson['dal']['Location'][fkey]['data']['location']['adminDistrict'],
                  wjson['dal']['Location'][fkey]['data']['location']['country'],
                  wjson['dal']['Observation'][fkey2]['data']['vt1observation']['temperature'],
                  wjson['dal']['Observation'][fkey2]['data']['vt1observation']['feelsLike'],
