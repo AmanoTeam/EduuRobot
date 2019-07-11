@@ -1,3 +1,8 @@
+.. code-block::
+
+    Este projeto está sendo reescrito para garantir mais estabilidade e velocidade para o bot.
+    This project is being rewritten to guarantee more stability and speed to the bot.
+
 .. raw:: html
 
   <h6 align="center">
