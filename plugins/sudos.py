@@ -6,8 +6,8 @@ from pyrogram import Client, Filters
 from contextlib import redirect_stdout
 from config import sudoers, super_sudoers
 
-prefix = "!"
 
+prefix = "!"
 
 @Client.on_message(Filters.command("sudos", prefix) & Filters.user(sudoers))
 async def sudos(client, message):

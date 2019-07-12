@@ -4,7 +4,21 @@ from glob import glob
 from pyrogram import Client
 from pyrogram.session import Session
 
-from config import TOKEN, disabled_plugins
+from config import TOKEN, disabled_plugins, log_chat
+
+
+with open("version.txt") as f:
+    version = f.read().strip()
+
+
+async def run_client(client):
+    await client.start()
+    await client.send_message(log_chat, "**Bot started**\n\n"
+                                        f"**Version:** {version}\n\n"
+                                        f"**Loaded plugins:** ({len(plugins)}) {', '.join(plugins)}\n"
+                                        f"**Not loaded plugins:** ({len(disabled_plugins)}) {', '.join(disabled_plugins)}")
+    await client.idle()
+
 
 plugins = []
 
@@ -16,10 +30,9 @@ for plugin in glob("plugins/*.py"):
         disabled_plugins.append(pluginname)
 
 
-
 client = Client("bot", bot_token=TOKEN, plugins=dict(root="plugins", include=plugins))
 
 
 if __name__ == "__main__":
-
-    client.run()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(run_client(client))
