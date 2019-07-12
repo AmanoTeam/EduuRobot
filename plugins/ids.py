@@ -4,7 +4,7 @@ from pyrogram import Client, Filters
 
 
 @Client.on_message(Filters.command("id", prefix) & Filters.private)
-async def start_private(client, message):
+async def ids_private(client, message):
     await message.reply("<b>Informações:</b>\n\n"
                         "<b>Nome:</b> <code>{first_name} {last_name}</code>\n"
                         "<b>Username:</b> @{username}\n"
@@ -22,7 +22,7 @@ async def start_private(client, message):
 
 
 @Client.on_message(Filters.command("id", prefix) & Filters.group)
-async def start_private(client, message):
+async def ids(client, message):
     data = message.reply_to_message or message
     await message.reply("<b>Informações do chat:</b>\n\n"
                         "<b>Nome:</b> <code>{first_name} {last_name}</code>\n"

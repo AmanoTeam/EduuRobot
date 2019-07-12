@@ -10,6 +10,8 @@ from config import TOKEN, disabled_plugins, log_chat
 with open("version.txt") as f:
     version = f.read().strip()
 
+Session.notice_displayed = True
+
 
 async def run_client(client):
     await client.start()
