@@ -1,5 +1,8 @@
+import gettext
 from config import prefix
 from pyrogram import Client, Filters, InlineKeyboardMarkup, InlineKeyboardButton
+
+_ = gettext.gettext
 
 
 @Client.on_message(Filters.command("start", prefix))
@@ -11,7 +14,7 @@ async def start(client, message):
             [InlineKeyboardButton("Idioma", callback_data="chlang")]+
             [InlineKeyboardButton("Add em um grupo", url="https://t.me/{}?startgroup=new")],
         ])
-        await message.reply("Olá! Eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:",
+        await message.reply(_("Olá! Eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue pelo teclado abaixo:"),
                             reply_markup=keyboard)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
