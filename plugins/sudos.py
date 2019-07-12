@@ -2,6 +2,7 @@ import io
 import os
 import re
 import sys
+import traceback
 from pyrogram import Client, Filters
 from contextlib import redirect_stdout
 from config import sudoers, super_sudoers
@@ -18,11 +19,11 @@ async def sudos(client, message):
 async def evals(client, message):
     code = re.split(r"[\n ]+", message.text, 1)[1]
     isasync = re.search(r'\W*?(await )', code)
-    if isasync:
-        res = await eval(code[:isasync.start(1)] + code[isasync.end(1):])
-    else:
-        res = eval()
-    await message.reply(res or "ok")
+    try:
+        res = await eval(code[:isasync.start(1)] + code[isasync.end(1):]) if isasync else eval(code)
+    except Exception as e:
+        res = str(e)
+    await message.reply(res if res != None else "Executed")
 
 
 @Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
@@ -31,7 +32,10 @@ async def execs(client, message):
     code = re.split(r"[\n ]+", message.text, 1)[1]
     exec('async def __ex(client, message): ' + ' '.join('\n ' + l for l in code.split('\n')))
     with redirect_stdout(strio):
-        await locals()["__ex"](client, message)
+        try:
+            await locals()["__ex"](client, message)
+        except:
+            traceback.print_exc()
     await message.reply(strio.getvalue() or "ok")
 
 
