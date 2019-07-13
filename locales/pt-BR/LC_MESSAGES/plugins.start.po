@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: plugins/start.py:12
-msgid "Commands"
-msgstr "Comandos"
+msgid "📚 Commands"
+msgstr "📚 Comandos"
 
 #: plugins/start.py:13
-msgid "Info"
-msgstr "Informações"
+msgid "ℹ️ Info"
+msgstr "ℹ️ Informações"
 
 #: plugins/start.py:14
-msgid "Language"
-msgstr "Idioma"
+msgid "🌎 Language"
+msgstr "🌎 Idioma"
 
 #: plugins/start.py:15
-msgid "Add to a chat"
-msgstr "Add em um grupo"
+msgid "➕ Add to a chat"
+msgstr "➕ Add em um grupo"
 
 #: plugins/start.py:17
 msgid ""
