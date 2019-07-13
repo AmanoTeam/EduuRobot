@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 00:57-0300\n"
+"POT-Creation-Date: 2019-07-12 20:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: plugins/start.py:12
+msgid "Commands"
+msgstr ""
+
+#: plugins/start.py:13
+msgid "Info"
+msgstr ""
+
+#: plugins/start.py:14
+msgid "Language"
+msgstr ""
+
+#: plugins/start.py:15
+msgid "Add to a chat"
+msgstr ""
+
 #: plugins/start.py:17
 msgid ""
-"Olá! Eu sou o EduuRobot, para descobrir mais sobre minhas funções navegue "
-"pelo teclado abaixo:"
+"Hello! I'm EduuRobot. To discover more about my functions, click on the "
+"buttons below."
+msgstr ""
+
+#: plugins/start.py:21
+msgid "🤖 Start a chat"
+msgstr ""
+
+#: plugins/start.py:23
+msgid "Hello! I'm EduuRobot. Start a conversation with me to discover my functions."
 msgstr ""
