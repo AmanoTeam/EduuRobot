@@ -5,42 +5,42 @@ msgstr ""
 "POT-Creation-Date: 2019-07-12 20:38-0300\n"
 "PO-Revision-Date: 2019-07-13 01:17\n"
 "Last-Translator: Alisson Lauffer (Alisson_Lauffer)\n"
-"Language-Team: Portuguese, Brazilian\n"
-"Language: pt_BR\n"
+"Language-Team: Korean\n"
+"Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: eduurobot\n"
-"X-Crowdin-Language: pt-BR\n"
+"X-Crowdin-Language: ko\n"
 "X-Crowdin-File: /rewrite/locales/plugins.start.pot\n"
 
 #: plugins/start.py:12
 msgid "📚 Commands"
-msgstr "📚 Comandos"
+msgstr ""
 
 #: plugins/start.py:13
 msgid "ℹ️ Info"
-msgstr "ℹ️ Informações"
+msgstr ""
 
 #: plugins/start.py:14
 msgid "🌎 Language"
-msgstr "🌎 Idioma"
+msgstr ""
 
 #: plugins/start.py:15
 msgid "➕ Add to a chat"
-msgstr "➕ Add em um chat"
+msgstr ""
 
 #: plugins/start.py:17
 msgid "Hello! I'm EduuRobot. To discover more about my functions, click on the buttons below."
-msgstr "Olá! Eu sou o EduuRobot. Para descobrir mais sobre minhas funções, clique nos botões abaixo."
+msgstr ""
 
 #: plugins/start.py:21
 msgid "🤖 Start a chat"
-msgstr "🤖 Iniciar uma conversa"
+msgstr ""
 
 #: plugins/start.py:23
 msgid "Hello! I'm EduuRobot. Start a conversation with me to discover my functions."
-msgstr "Olá! Eu sou EduuRobot. Comece uma conversa comigo para descobrir minhas funções."
+msgstr ""
 
