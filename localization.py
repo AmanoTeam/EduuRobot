@@ -45,4 +45,4 @@ class GetLang:
         self.dic = self.dic.get(pname) or langdict["en-US"][pname]
 
     def _(self, string):
-        return self.dic.get(string, string)
+        return self.dic.get(string) or string
