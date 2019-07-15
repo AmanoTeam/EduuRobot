@@ -5,6 +5,8 @@ import sys
 import html
 import asyncio
 import traceback
+import speedtest
+from localization import GetLang
 from pyrogram import Client, Filters
 from contextlib import redirect_stdout
 from config import sudoers, super_sudoers
@@ -19,9 +21,10 @@ async def sudos(client, message):
 
 @Client.on_message(Filters.command("cmd", prefix) & Filters.user(sudoers))
 async def run_cmd(client, message):
+    _ = GetLang(message, __name__)._
     cmd = re.split(r"[\n ]+", message.text, 1)[1]
     if re.match('(?i)poweroff|halt|shutdown|reboot', cmd):
-        res = 'Comando proibido.'
+        res = _('Forbidden command.')
     else:
         proc = await asyncio.create_subprocess_shell(cmd,
                                                      stdout=asyncio.subprocess.PIPE,
@@ -56,7 +59,26 @@ async def execs(client, message):
     await message.reply(strio.getvalue() or "ok")
 
 
+@Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
+async def test_speed(client, message):
+    _ = GetLang(message, __name__)._
+    string = _("**Speedtest**\n\n"
+               "**🌐 Host:** `{}`\n\n"
+               "**🏓 Ping:** `{} ms`\n"
+               "**⬇️ Download:** `{} Mbps`\n"
+               "**⬆️ Upload:** `{} Mbps`")
+    sent = await message.reply(string.format("...", "...", "...", "..."))
+    s = speedtest.Speedtest()
+    bs = s.get_best_server()
+    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), "...", "..."))
+    dl = round(s.download() / 1024 / 1024, 2)
+    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), dl, "..."))
+    ul = round(s.upload() / 1024 / 1024, 2)
+    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), dl, ul))
+
+
 @Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
 async def restart(client, message):
-    await message.reply("Reiniciando...")
+    _ = GetLang(message, __name__)._
+    await message.reply(_("Restarting..."))
     os.execl(sys.executable, sys.executable, *sys.argv)
