@@ -1,1 +1,2 @@
 git+https://github.com/pyrogram/pyrogram@asyncio-dev
+speedtest-cli
