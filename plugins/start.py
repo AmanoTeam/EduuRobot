@@ -1,12 +1,12 @@
 #coding: utf-8
 from config import prefix
-from localization import get_lang
+from localization import GetLang
 from pyrogram import Client, Filters, InlineKeyboardMarkup, InlineKeyboardButton
 
 
 @Client.on_message(Filters.command("start", prefix))
 async def start(client, message):
-    _ = get_lang(message, __name__)
+    _ = GetLang(message, __name__)._
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("📚 Commands"), callback_data="commands")]+
@@ -20,7 +20,7 @@ async def start(client, message):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("🤖 Start a chat"), url="https://t.me/{}?start=start")]
         ])
-        await message.reply(_("Hello! I'm EduuRobot. Start a conversation with me to discover my functions."),
+        await message.reply(_("Hello! I'm EduuRobot. To discover my functions start a conversation with me."),
                             reply_markup=keyboard)
 
 

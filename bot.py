@@ -1,7 +1,6 @@
 import asyncio
 import py_compile
 from glob import glob
-import localization as _
 from pyrogram import Client
 from pyrogram.session import Session
 
