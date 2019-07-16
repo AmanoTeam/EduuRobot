@@ -10,7 +10,7 @@ async def start(client, message):
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("📚 Commands"), callback_data="commands")]+
-            [InlineKeyboardButton(_("ℹ️ Info"), callback_data="infos")],
+            [InlineKeyboardButton(_("ℹ️ Infos"), callback_data="infos")],
             [InlineKeyboardButton(_("🌎 Language"), callback_data="chlang")]+
             [InlineKeyboardButton(_("➕ Add to a chat"), url="https://t.me/{}?startgroup=new")],
         ])
