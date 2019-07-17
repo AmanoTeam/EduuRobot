@@ -1,5 +1,5 @@
 {
-  "**Speedtest**\n\n**🌐 Host:** `{}`\n\n**🏓 Ping:** `{} ms`\n**⬇️ Download:** `{} Mbps`\n**⬆️ Upload:** `{} Mbps`": "",
-  "Forbidden command.": "",
-  "Restarting...": "apagando a porra toda..."
+  "**Speedtest**\n\n**🌐 Host:** `{}`\n\n**🏓 Ping:** `{} ms`\n**⬇️ Download:** `{} Mbps`\n**⬆️ Upload:** `{} Mbps`": "**Spidtesti**\n\n**🌐 Houst:** `{}`\n\n**🏓 Raquete:** `{} ms`\n**⬇️ Seta para baixo:** `{} Mbps`\n**⬆️ Seta para cima:** `{} Mbps`",
+  "Forbidden command.": "Ow vacilau, isso é proíbido.",
+  "Restarting...": "Apagando a porra toda..."
 }
