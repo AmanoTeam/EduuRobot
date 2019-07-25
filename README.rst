@@ -1,3 +1,7 @@
+.. raw:: html
+
+  <img src="https://i.imgur.com/RtXS5Yo.png" width="150" align="right">
+
 EduuRobot
 =========
 
