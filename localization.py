@@ -1,5 +1,4 @@
 import json
-import subprocess
 from glob import glob
 
 enabled_locales = [

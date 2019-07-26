@@ -9,7 +9,7 @@ import speedtest
 from localization import GetLang
 from pyrogram import Client, Filters
 from contextlib import redirect_stdout
-from config import sudoers, super_sudoers
+from config import sudoers
 
 prefix = "!"
 
