@@ -28,7 +28,7 @@ langdict = cache_localizations(jsons)
 
 class GetLang:
     def __init__(self, msg, pname):
-        # try to get user lang from language_code, if do not work, use en-US
+        # try to get user lang from language_code, if it does not exist, use en-US
         self.lang = msg.from_user.language_code or "en-US"
         # User has a language_code without hyphen
         if len(self.lang.split("-")) == 1:
