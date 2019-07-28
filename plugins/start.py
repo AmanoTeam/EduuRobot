@@ -14,14 +14,14 @@ async def start(client, message):
             [InlineKeyboardButton(_("🌎 Language"), callback_data="chlang")]+
             [InlineKeyboardButton(_("➕ Add to a chat"), url="https://t.me/{}?startgroup=new")],
         ])
-        await message.reply(_("Hello! I'm EduuRobot. To discover more about my functions, click on the buttons below."),
-                            reply_markup=keyboard)
+        await message.reply_text(_("Hello! I'm EduuRobot. To discover more about my functions, click on the buttons below."),
+                                 reply_markup=keyboard)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("🤖 Start a chat"), url="https://t.me/{}?start=start")]
         ])
-        await message.reply(_("Hello! I'm EduuRobot. To discover my functions start a conversation with me."),
-                            reply_markup=keyboard)
+        await message.reply_text(_("Hello! I'm EduuRobot. To discover my functions start a conversation with me."),
+                                 reply_markup=keyboard)
 
 
 @Client.on_callback_query(Filters.callback_data("commands"))

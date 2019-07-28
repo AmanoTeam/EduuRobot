@@ -16,7 +16,7 @@ prefix = "!"
 
 @Client.on_message(Filters.command("sudos", prefix) & Filters.user(sudoers))
 async def sudos(client, message):
-    await message.reply("Test")
+    await message.reply_text("Test")
 
 
 @Client.on_message(Filters.command("cmd", prefix) & Filters.user(sudoers))
@@ -32,7 +32,7 @@ async def run_cmd(client, message):
         stdout, stderr = await proc.communicate()
         res = ("<b>Output:</b>\n<code>{}</code>".format(stdout.decode())  if stdout else '') + (
                "\n\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode())  if stderr else '')
-    await message.reply(res)
+    await message.reply_text(res)
 
 
 @Client.on_message(Filters.command("eval", prefix) & Filters.user(sudoers))
@@ -43,7 +43,7 @@ async def evals(client, message):
         res = await eval(code[:isasync.start(1)] + code[isasync.end(1):]) if isasync else eval(code)
     except Exception as e:
         res = str(e)
-    await message.reply(html.escape(str(res)), parse_mode="HTML")
+    await message.reply_text(html.escape(str(res)), parse_mode="HTML")
 
 
 @Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
@@ -55,8 +55,8 @@ async def execs(client, message):
         try:
             await locals()["__ex"](client, message)
         except:
-            return await message.reply(html.escape(traceback.format_exc()), parse_mode="HTML")
-    await message.reply(strio.getvalue() or "ok")
+            return await message.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
+    await message.reply_text(strio.getvalue() or "ok")
 
 
 @Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
@@ -67,7 +67,7 @@ async def test_speed(client, message):
                "**🏓 Ping:** `{} ms`\n"
                "**⬇️ Download:** `{} Mbps`\n"
                "**⬆️ Upload:** `{} Mbps`")
-    sent = await message.reply(string.format("...", "...", "...", "..."))
+    sent = await message.reply_text(string.format("...", "...", "...", "..."))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
     await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), "...", "..."))
@@ -80,5 +80,5 @@ async def test_speed(client, message):
 @Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
 async def restart(client, message):
     _ = GetLang(message, __name__)._
-    await message.reply(_("Restarting..."))
+    await message.reply_text(_("Restarting..."))
     os.execl(sys.executable, sys.executable, *sys.argv)
