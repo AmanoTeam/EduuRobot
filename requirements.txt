@@ -1,2 +1,3 @@
 git+https://github.com/pyrogram/pyrogram@asyncio-dev
+tgcrypto
 speedtest-cli
