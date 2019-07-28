@@ -43,7 +43,7 @@ async def evals(client, message):
         res = await eval(code[:isasync.start(1)] + code[isasync.end(1):]) if isasync else eval(code)
     except Exception as e:
         res = str(e)
-    await message.reply(str(res))
+    await message.reply(html.escape(str(res)), parse_mode="HTML")
 
 
 @Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
