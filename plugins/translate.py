@@ -12,8 +12,8 @@ def get_lang(text):
         lang = text.split()[0]
         if lang.split("-")[0] not in LANGUAGES:
             lang = "pt"
-        if len(lang.split('-')) > 1:
-            if lang.split('-')[1] not in LANGUAGES:
+        if len(lang.split("-")) > 1:
+            if lang.split("-")[1] not in LANGUAGES:
                 lang = "pt"
     else:
         lang = "pt"
@@ -33,7 +33,6 @@ async def translate(client, message):
     if len(text):
         sent = await message.reply_text("Translating...",
                                         reply_to_message_id=message.message_id)
-
         langs = {}
 
         if len(lang.split("-")) > 1:
@@ -42,33 +41,25 @@ async def translate(client, message):
         else:
             langs["dest"] = lang
 
-        emojis = re.findall(r'([^\w\s<>,\.!#@]+?)', text)
+        emojis = re.findall(r"([^\w\s<>,\.!#@]+?)", text)
 
         emojisdict = {}
-
         for emoji in emojis:
             em = base64.b16encode(emoji.encode()).decode()
             emojisdict[em] = emoji
             text = text.replace(emoji, f"<{em}>")
 
-        print(text)
-
-        ok = translator.translate(text, **langs)
-
-        text = ok.text
-        print(text)
+        trres = translator.translate(text, **langs)
+        text = trres.text
 
         for key in emojisdict:
             text = text.replace(f"<{key}>", emojisdict[key])
 
-        print(text)
-
         res = html.escape(text)
-
         await sent.edit("""<b>Language:</b> {} -> {}
-<b>Translation:</b> <code>{}</code>""".format(ok.src, ok.dest, res),
-                                          parse_mode='HTML')
+<b>Translation:</b> <code>{}</code>""".format(trres.src, trres.dest, res),
+                                          parse_mode="HTML")
 
     else:
         await message.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",
-                                reply_to_message_id=message.message_id)
+                                 reply_to_message_id=message.message_id, parse_mode="md")
