@@ -41,7 +41,7 @@ async def translate(client, message):
         else:
             langs["dest"] = lang
 
-        emojis = re.findall(r"([^\w\s<>,\.!#@]+?)", text)
+        emojis = re.findall(r"[^\w\s<>,\.!\?;:\\#@'\"]+", text)
 
         emojisdict = {}
         for emoji in emojis:
