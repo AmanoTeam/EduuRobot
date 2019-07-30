@@ -41,19 +41,19 @@ async def translate(client, message):
         else:
             langs["dest"] = lang
 
-        emojis = re.findall(r"[^\w\s<>,\.!\?;:\\#@'\"]+", text)
+        special_chars = re.findall(r"[^\w\s -@ \[-`{-~]+", text)
 
-        emojisdict = {}
-        for emoji in emojis:
-            em = base64.b16encode(emoji.encode()).decode()
-            emojisdict[em] = emoji
-            text = text.replace(emoji, f"<{em}>")
+        scdict = {}
+        for char in special_chars:
+            sckey = base64.b16encode(char.encode()).decode()
+            scdict[sckey] = char
+            text = text.replace(char, f"<{sckey}>")
 
         trres = translator.translate(text, **langs)
         text = trres.text
 
-        for key in emojisdict:
-            text = text.replace(f"<{key}>", emojisdict[key])
+        for key in scdict:
+            text = text.replace(f"<{key}>", scdict[key])
 
         res = html.escape(text)
         await sent.edit("""<b>Language:</b> {} -> {}
