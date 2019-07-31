@@ -57,8 +57,8 @@ async def youtube(msg):
         if msg['text'].startswith('/yt '):
             res = await search_yt(msg['text'][4:])
 
-            vids = ['{}: <a href="{}">{}</a>'.format(num + 1, i['url'], i['title']) for num, i in enumerate(res)] or "Nenhum resultado foi encontrado"
-            await bot.sendMessage(msg['chat']['id'], '\n'.join(vids), 'HTML',
+            vids = ['{}: <a href="{}">{}</a>'.format(num + 1, i['url'], i['title']) for num, i in enumerate(res)]
+            await bot.sendMessage(msg['chat']['id'], '\n'.join(vids) if vids else "Nenhum resultado foi encontrado", 'HTML',
                                       reply_to_message_id=msg['message_id'],
                                       disable_web_page_preview=True)
             return True
