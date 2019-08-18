@@ -24,6 +24,7 @@ from uuid import uuid4
 import duckpy.aio
 import aiohttp
 from amanobot.exception import TelegramError
+from urllib.parse import quote_plus
 from amanobot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 
 from config import bot, bot_username
@@ -172,16 +173,16 @@ async def inlines(msg):
 
         elif msg['query'].split()[0].lower() == 'print' and len(msg['query'].split()) >= 2:
             url = msg['query'][6:]
-            requests.get("https://image.thum.io/get/width/1000/" + url)
             if re.match(r'^https?://', msg['query'][6:]):
                 url = msg['query'][6:]
             else:
                 url = 'http://' + msg['query'][6:]
+            quoted_url = "http://api.olixao.ml/print?q=" + quote_plus(url)
             try:
                 res = [InlineQueryResultPhoto(
                     id='a',
-                    photo_url="https://image.thum.io/get/width/1000/" + url,
-                    thumb_url="https://image.thum.io/get/width/320/" + url,
+                    photo_url=quoted_url,
+                    thumb_url=quoted_url,
                     caption=url
                 )]
                 await bot.answerInlineQuery(msg['id'], results=res, cache_time=60, is_personal=True)
