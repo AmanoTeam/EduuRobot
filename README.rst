@@ -1,7 +1,10 @@
 .. code-block::
 
     Este projeto está sendo reescrito para garantir mais estabilidade e velocidade para o bot.
+    Este branch só receberá correções de bugs.
+
     This project is being rewritten to guarantee more stability and speed to the bot.
+    This branch will only receive bug fixes.
 
 .. raw:: html
 
