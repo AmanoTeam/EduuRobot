@@ -17,41 +17,34 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
 import re
-import time
 
 import aiohttp
-
+from io import BytesIO
 from config import bot
 
 
 async def prints(msg):
     if msg.get('text'):
         if msg['text'].startswith('/print ') or msg['text'].startswith('!print '):
-            try:
-                sent = await bot.sendMessage(msg['chat']['id'], 'Tirando print...',
-                                             reply_to_message_id=msg['message_id'])
-                ctime = time.time()
-                if re.match(r'^[a-z]+://', msg['text'][7:]):
-                    url = msg['text'][7:]
-                else:
-                    url = 'http://' + msg['text'][7:]
-                async with aiohttp.ClientSession() as session:
-                    r = await session.post("http://api.olixao.ml/print", data=dict(q=url))
-                    file = await r.read()
-                    with open(f'{ctime}.png', 'wb') as f:
-                        f.write(file)
+            sent = await bot.sendMessage(msg['chat']['id'], 'Tirando print...',
+                                         reply_to_message_id=msg['message_id'])
+            if re.match(r'^[a-z]+://', msg['text'][7:]):
+                url = msg['text'][7:]
+            else:
+                url = 'http://' + msg['text'][7:]
+            async with aiohttp.ClientSession() as session:
+                r = await session.post("http://api.olixao.ml/print", data=dict(q=url))
+                req = await r.read()
 
-                await bot.sendPhoto(msg['chat']['id'], open(f'{ctime}.png', 'rb'),
+            if r.status == 200:
+                file = BytesIO(req)
+                file.name = "screenshot.png"
+
+                await bot.sendPhoto(msg['chat']['id'], file,
                                     reply_to_message_id=msg['message_id'])
                 await bot.deleteMessage((msg['chat']['id'], sent['message_id']))
-            except Exception as e:
-                await bot.editMessageText((msg['chat']['id'], sent['message_id']),
-                                          f'Ocorreu um erro ao enviar a print, favor tente mais tarde.\nErro: {e}')
-            finally:
-                try:
-                    os.remove(f'{ctime}.png')
-                except FileNotFoundError:
-                    pass
+            else:
+                text = re.sub(r"<.+?>", "", req.decode())
+                await bot.editMessageText((msg['chat']['id'], sent['message_id']), "Erro:\n" + text)
             return True
