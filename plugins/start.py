@@ -1,4 +1,3 @@
-#coding: utf-8
 from config import prefix
 from localization import GetLang
 from pyrogram import Client, Filters, InlineKeyboardMarkup, InlineKeyboardButton
