@@ -116,7 +116,7 @@ Mensagem: {text}""", 'HTML')
             return True
             
         elif msg['text'].startswith('/aman') or msg['text'].startswith('!aman'):
-            text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
+            text = msg['text'][5:] or msg.get('reply_to_message', {}).get('text')
             if not text:
                 await bot.sendMessage(msg['chat']['id'],
                                       '''*Uso:* `/aman <texto>` - _envia um texto para o del.dog._''',
