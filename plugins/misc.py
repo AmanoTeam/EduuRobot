@@ -119,7 +119,7 @@ Mensagem: {text}""", 'HTML')
             text = msg['text'][5:] or msg.get('reply_to_message', {}).get('text')
             if not text:
                 await bot.sendMessage(msg['chat']['id'],
-                                      '''*Uso:* `/aman <texto>` - _envia um texto para o del.dog._''',
+                                      '''*Uso:* `/aman <texto>` - _envia um texto para o amano-bin.ml._''',
                                       'markdown',
                                       reply_to_message_id=msg['message_id'])
             else:
