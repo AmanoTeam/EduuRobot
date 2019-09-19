@@ -25,7 +25,7 @@ import aiohttp
 from amanobot.exception import TelegramError
 
 from config import bot, sudoers, logs, bot_username
-from utils import send_to_dogbin, send_to_hastebin
+from utils import send_to_dogbin, send_to_hastebin, send_to_amano
 
 
 async def misc(msg):
@@ -111,6 +111,19 @@ Mensagem: {text}""", 'HTML')
                                       reply_to_message_id=msg['message_id'])
             else:
                 link = await send_to_dogbin(text)
+                await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
+                                      reply_to_message_id=msg['message_id'])
+            return True
+            
+        elif msg['text'].startswith('/aman') or msg['text'].startswith('!aman'):
+            text = msg['text'][8:] or msg.get('reply_to_message', {}).get('text')
+            if not text:
+                await bot.sendMessage(msg['chat']['id'],
+                                      '''*Uso:* `/aman <texto>` - _envia um texto para o del.dog._''',
+                                      'markdown',
+                                      reply_to_message_id=msg['message_id'])
+            else:
+                link = await send_to_amano(text)
                 await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
                                       reply_to_message_id=msg['message_id'])
             return True
