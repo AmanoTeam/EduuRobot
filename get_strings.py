@@ -17,17 +17,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import os
 import json
 from glob import glob
 
 from db_handler import cursor
 
+sep = os.sep
+
 strings = {}
-langs = [x.split('/')[1] for x in glob('langs/*/main.json')]
+langs = [x.split('/')[1] for x in glob('langs' + sep + '*' + sep +'main.json')]
 
 for lang in langs:
     strings[lang] = {}
-    for file in glob('langs/{}/*.json'.format(lang)):
+    for file in glob('langs' + sep + '{}'.format(lang) + sep + '*.json'):
         strings[lang].update(json.load(open(file)))
 
 
