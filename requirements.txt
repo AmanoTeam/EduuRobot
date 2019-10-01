@@ -1,8 +1,9 @@
 urllib3>=1.25.3
+aiohttp>=3.6.1
 amanobot>=1.3.0
 bs4==0.0.1
 colorama==0.4.1
-youtube-dl>=2019.6.8
+youtube-dl>=2019.9.28
 duckpy>=2.0.0
 python-aiml==0.9.1
 schedule==0.6.0
