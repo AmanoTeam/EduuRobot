@@ -32,7 +32,6 @@ from .youtube import search_yt
 
 
 geo_ip = 'http://ip-api.com/json/'
-googl_img_api = 'https://apikuu.herokuapp.com/api/v0/sakty/imej'
 
 ddg_client = duckpy.aio.Client()
 
@@ -105,24 +104,6 @@ async def inlines(msg):
                     )))
 
             await bot.answerInlineQuery(msg['id'], results=articles, cache_time=60, is_personal=True)
-
-
-        elif msg['query'].split()[0].lower() == 'img':
-            query = msg['query'][4:]
-            async with aiohttp.ClientSession() as session:
-                r = await session.get(googl_img_api, params=dict(cari=query))
-                img = await r.json()
-            resp = []
-            for k, result in enumerate(img):
-                if k == 50:
-                    break
-                resp.append(InlineQueryResultPhoto(
-                    id=str(uuid4()),
-                    photo_url=result["Isi"],
-                    thumb_url=result["Tumbnil"],
-                    caption=html.unescape(result["Deskripsi"])
-                ))
-            await bot.answerInlineQuery(msg['id'], results=resp, cache_time=60, is_personal=True)
 
 
         elif msg['query'].split()[0].lower() == 'invert' and len(msg['query'].split()) >= 2:
@@ -244,14 +225,6 @@ async def inlines(msg):
                     description='Envia uma mensagem que não aparece nas ações recentes ao ser apagada em até 1 minuto.',
                     input_message_content=dict(
                         message_text='<b>Uso:</b> <code>@{} hidemsg</code> - Envie uma mensagem que se for apagada em até 1 minuto não aparece nas <i>ações recentes</i> do grupo.'.format(
-                            bot_username), parse_mode='HTML'
-                    )
-                ),
-                InlineQueryResultArticle(
-                    id='f', title='img', thumb_url='https://piics.ml/amn/eduu/img.png',
-                    description='Buscador de imagens via inline.',
-                    input_message_content=dict(
-                        message_text='<b>Uso:</b> <code>@{} img</code> - Buscador de imagens via inline.'.format(
                             bot_username), parse_mode='HTML'
                     )
                 ),
