@@ -1,6 +1,7 @@
 __pycache__/
 .idea/
 .spyproject/
+.vscode/
 config.py
 config.ini
 *.session
