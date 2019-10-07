@@ -2,15 +2,12 @@ import asyncio
 import py_compile
 from glob import glob
 from pyrogram import Client
-from pyrogram.session import Session
 
 from config import TOKEN, disabled_plugins, log_chat
 
 
 with open("version.txt") as f:
     version = f.read().strip()
-
-Session.notice_displayed = True
 
 
 async def run_client(client):
