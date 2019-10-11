@@ -126,8 +126,8 @@ async def sudos(msg):
                                                                  stdout=asyncio.subprocess.PIPE,
                                                                  stderr=asyncio.subprocess.PIPE)
                     stdout, stderr = await proc.communicate()
-                    res = (f"<b>Output:</b>\n<code>{stdout.decode()}</code>"  if stdout else '') + (
-                           f"\n\n<b>Errors:</b>\n<code>{stderr.decode()}</code>"  if stderr else '')
+                    res = (f"<b>Output:</b>\n<code>{html.escape(stdout.decode())}</code>"  if stdout else '') + (
+                           f"\n\n<b>Errors:</b>\n<code>{html.escape(stderr.decode())}</code>"  if stderr else '')
 
                 await bot.sendMessage(msg['chat']['id'], res or 'Comando executado.',
                                       parse_mode="HTML",
