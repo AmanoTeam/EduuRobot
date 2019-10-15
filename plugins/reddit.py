@@ -75,12 +75,12 @@ async def reddit(msg):
                                               u"`I couldnt find {sub}, please try again`".format(sub=sub),
                                               reply_to_message_id=msg['message_id'], parse_mode="Markdown",
                                               disable_web_page_preview=True)
-                elif request.status_code == 403:
+                elif request.status == 403:
                     await bot.sendMessage(msg['chat']['id'], "`Subreddit not found, please verify your input.`",
                                           reply_to_message_id=msg['message_id'], parse_mode="Markdown")
                 else:
                     await bot.sendMessage(msg['chat']['id'],
-                                          f"`There has been an error, the number {request.status_code} to be specific.`",
+                                          f"`There has been an error, the number {request.status} to be specific.`",
                                           reply_to_message_id=msg['message_id'],
                                           parse_mode="Markdown")
             else:
