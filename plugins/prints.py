@@ -34,7 +34,7 @@ async def prints(msg):
             else:
                 url = 'http://' + msg['text'][7:]
             async with aiohttp.ClientSession() as session:
-                r = await session.post("http://api.olixao.ml/print", data=dict(q=url))
+                r = await session.post("http://amn-api.herokuapp.com/print", data=dict(q=url))
                 req = await r.read()
 
             if r.status == 200:
