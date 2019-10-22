@@ -27,24 +27,47 @@ from config import bot
 async def prints(msg):
     if msg.get('text'):
         if msg['text'].startswith('/print ') or msg['text'].startswith('!print '):
-            sent = await bot.sendMessage(msg['chat']['id'], 'Tirando print...',
-                                         reply_to_message_id=msg['message_id'])
-            if re.match(r'^[a-z]+://', msg['text'][7:]):
-                url = msg['text'][7:]
-            else:
-                url = 'http://' + msg['text'][7:]
-            async with aiohttp.ClientSession() as session:
-                r = await session.post("http://amn-api.herokuapp.com/print", data=dict(q=url))
-                req = await r.read()
+            if 'fullpage ' in msg['text']:
+                sent = await bot.sendMessage(msg['chat']['id'], 'Tirando print...',
+                                             reply_to_message_id=msg['message_id'])
+                if re.match(r'^[a-z]+://', msg['text'][7:]):
+                    url = msg['text'][7:]
+                else:
+                    url = 'http://' + msg['text'][7:]
+                async with aiohttp.ClientSession() as session:
+                    r = await session.post("https://api.thumbnail.ws/api/ab45a17344aa033247137cf2d457fc39ee4e7e16a464/thumbnail/get", data=dict(url=url.replace('fullpage ',''),width=1280, refresh='true', fullpage='true'))
+                    req = await r.read()
 
-            if r.status == 200:
-                file = BytesIO(req)
-                file.name = "screenshot.png"
+                if r.status == 200:
+                    file = BytesIO(req)
+                    file.name = "screenshot.png"
 
-                await bot.sendPhoto(msg['chat']['id'], file,
-                                    reply_to_message_id=msg['message_id'])
-                await bot.deleteMessage((msg['chat']['id'], sent['message_id']))
+                    await bot.sendPhoto(msg['chat']['id'], file,
+                                        reply_to_message_id=msg['message_id'])
+                    await bot.deleteMessage((msg['chat']['id'], sent['message_id']))
+                else:
+                    text = re.sub(r"<.+?>", "", req.decode())
+                    await bot.editMessageText((msg['chat']['id'], sent['message_id']), "Erro:\n" + text)
+                return True
             else:
-                text = re.sub(r"<.+?>", "", req.decode())
-                await bot.editMessageText((msg['chat']['id'], sent['message_id']), "Erro:\n" + text)
-            return True
+                sent = await bot.sendMessage(msg['chat']['id'], 'Tirando print...',
+                                             reply_to_message_id=msg['message_id'])
+                if re.match(r'^[a-z]+://', msg['text'][7:]):
+                    url = msg['text'][7:]
+                else:
+                    url = 'http://' + msg['text'][7:]
+                async with aiohttp.ClientSession() as session:
+                    r = await session.post("http://amn-api.herokuapp.com/print", data=dict(q=url))
+                    req = await r.read()
+
+                if r.status == 200:
+                    file = BytesIO(req)
+                    file.name = "screenshot.png"
+
+                    await bot.sendPhoto(msg['chat']['id'], file,
+                                        reply_to_message_id=msg['message_id'])
+                    await bot.deleteMessage((msg['chat']['id'], sent['message_id']))
+                else:
+                    text = re.sub(r"<.+?>", "", req.decode())
+                    await bot.editMessageText((msg['chat']['id'], sent['message_id']), "Erro:\n" + text)
+                return True
