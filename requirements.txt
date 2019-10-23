@@ -5,5 +5,5 @@ bs4==0.0.1
 colorama==0.4.1
 youtube-dl>=2019.9.28
 duckpy>=2.0.0
-python-aiml==0.9.1
+python-aiml==0.9.3
 schedule==0.6.0
