@@ -119,8 +119,7 @@ async def start(msg):
 /bug - Reporta um bug ao meu desenvolvedor.
 /id - Exibe suas informações ou de um usuário.
 /ping - Responde com uma mensagem de ping.
-/regras - Exibe as regras do grupo.
-/roleta - Para jogar a Roleta Russa.''',
+/regras - Exibe as regras do grupo.''',
                                       parse_mode='Markdown',
                                       reply_markup=cmds_back)
             return True
