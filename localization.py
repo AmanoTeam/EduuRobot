@@ -25,6 +25,7 @@ for locale in enabled_locales:
 
 langdict = cache_localizations(jsons)
 
+
 class GetLang:
     def __init__(self, msg, pname):
         # try to get user lang from language_code, if it does not exist, use en-US
@@ -32,9 +33,9 @@ class GetLang:
         # User has a language_code without hyphen
         if len(self.lang.split("-")) == 1:
             # Try to find a language that starts with the provided language_code
-            for locale in enabled_locales:
-                if locale.startswith(self.lang):
-                    self.lang = locale
+            for locale_ in enabled_locales:
+                if locale_.startswith(self.lang):
+                    self.lang = locale_
         if self.lang.split("-")[1].islower():
             self.lang = self.lang.split("-")
             self.lang[1] = self.lang[1].upper()
@@ -45,4 +46,4 @@ class GetLang:
         self.dic = self.dic.get(pname) or langdict["en-US"][pname]
 
     def _(self, string):
-        return self.dic.get(string) or string
+        return self.dic.get(string, string)
