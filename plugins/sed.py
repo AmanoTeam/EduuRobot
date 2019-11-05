@@ -20,13 +20,14 @@
 import ctypes
 import html
 import re
+from utils import timeout
 from multiprocessing import Process, Manager
 
 from config import bot
 
 
-def replace(res, pattern, replace_with, text, count, rflags):
-    res.value = re.sub(pattern, replace_with, text, count=count, flags=rflags)
+def replace(pattern, replace_with, text, count, rflags):
+    return re.sub(pattern, replace_with, text, count=count, flags=rflags)
 
 
 async def sed(msg):
@@ -56,19 +57,17 @@ async def sed(msg):
             else:
                 return
 
-            manager = Manager()
-            res = manager.Value(ctypes.c_char_p, None)
-
-            p = Process(target=replace, args=(res, pattern, replace_with, text, count, rflags))
-            p.start()
-            p.join(0.2)
-            p.terminate()
-
-            if res.value is None:
-                await bot.sendMessage(msg['chat']['id'], 'Ocorreu um erro com o seu padrão regex.',
+            try:
+                with timeout(seconds=1):
+                    res = replace(pattern, replace_with, text, count, rflags)
+            except TimeoutError:
+                await bot.sendMessage(msg['chat']['id'], 'Ops, o seu regex executou por muito tempo.',
+                                          reply_to_message_id=msg['message_id'])
+            except re.error as e:
+                await bot.sendMessage(msg['chat']['id'], "Erro: " + str(e),
                                       reply_to_message_id=msg['message_id'])
             else:
-                await bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res.value)}</pre>', 'html',
+                await bot.sendMessage(msg['chat']['id'], f'<pre>{html.escape(res)}</pre>', 'html',
                                       reply_to_message_id=msg['reply_to_message']['message_id'])
 
             return True
