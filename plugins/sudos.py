@@ -125,7 +125,9 @@ async def sudos(msg):
                 try:
                     res = await meval(text, **await getattrs(msg))
                 except Exception:
-                    res = traceback.format_exc()
+                    ev = traceback.format_exc()
+                    await bot.sendMessage(msg['chat']['id'], str(ev), reply_to_message_id=msg['message_id'])
+                    return
                 else:                    
                     try:
                         await bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
