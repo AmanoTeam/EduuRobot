@@ -123,7 +123,7 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!eval':
                 text = msg['text'][6:]
                 try:
-                    res = await meval(text, **await getattrs(self, msg))
+                    res = await meval(text, **await getattrs(msg))
                 except Exception:
                     res = traceback.format_exc()
                 else:                    
