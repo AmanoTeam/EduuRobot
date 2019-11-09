@@ -21,7 +21,7 @@ import html
 import io
 import os
 import re
-import asyncio
+import asyncio, _asyncio
 import sys
 from datetime import datetime
 import traceback
@@ -80,8 +80,8 @@ async def meval(code, **kwargs):
     exec(comp, {}, locs)
 
     r = await locs["tmp"](**kwargs)
-    
-    if isinstance(r, types.CoroutineType):
+
+    if isinstance(r, types.CoroutineType) or isinstance(r, _asyncio.Future):
         r = await r  # workaround for 3.5
     try:
         globals().clear()
