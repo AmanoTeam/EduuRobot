@@ -28,11 +28,72 @@ import traceback
 from contextlib import redirect_stdout
 
 from amanobot.exception import TelegramError
-
+import ast
+import types
+import importlib
 import db_handler as db
 from utils import backup_sources
 from config import bot, bot_id, bot_username, git_repo, sudoers
 
+async def meval(code, **kwargs):
+    # Don't clutter locals
+    locs = {}
+    # Restore globals later
+    globs = globals().copy()
+    # This code saves __name__ and __package into a kwarg passed to the function.
+    # It is set before the users code runs to make sure relative imports work
+    global_args = "_globs"
+    while global_args in globs.keys():
+        # Make sure there's no name collision, just keep prepending _s
+        global_args = "_" + global_args
+    kwargs[global_args] = {}
+    for glob in ["__name__", "__package__"]:
+        # Copy data to args we are sending
+        kwargs[global_args][glob] = globs[glob]
+
+    root = ast.parse(code, "exec")
+    code = root.body
+    if isinstance(code[-1], ast.Expr):  # If we can use it as a lambda return (but multiline)
+        code[-1] = ast.copy_location(ast.Return(code[-1].value), code[-1])  # Change it to a return statement
+    # globals().update(**<global_args>)
+    glob_copy = ast.Expr(ast.Call(func=ast.Attribute(value=ast.Call(func=ast.Name(id="globals", ctx=ast.Load()),
+                                                                    args=[], keywords=[]),
+                                                     attr="update", ctx=ast.Load()),
+                                  args=[], keywords=[ast.keyword(arg=None,
+                                                                 value=ast.Name(id=global_args, ctx=ast.Load()))]))
+    ast.fix_missing_locations(glob_copy)
+    code.insert(0, glob_copy)
+    args = []
+    for a in list(map(lambda x: ast.arg(x, None), kwargs.keys())):
+        ast.fix_missing_locations(a)
+        args += [a]
+    args = ast.arguments(args=[], vararg=None, kwonlyargs=args, kwarg=None, defaults=[],
+                         kw_defaults=[None for i in range(len(args))])
+    if int.from_bytes(importlib.util.MAGIC_NUMBER[:-2], 'little') >= 3410:
+        args.posonlyargs = []
+    fun = ast.AsyncFunctionDef(name="tmp", args=args, body=code, decorator_list=[], returns=None)
+    ast.fix_missing_locations(fun)
+    mod = ast.parse("")
+    mod.body = [fun]
+    comp = compile(mod, "<string>", "exec")
+
+    exec(comp, {}, locs)
+
+    r = await locs["tmp"](**kwargs)
+    
+    if isinstance(r, types.CoroutineType):
+        r = await r  # workaround for 3.5
+    try:
+        globals().clear()
+        # Inconsistent state
+    finally:
+        globals().update(**globs)
+    return r
+
+async def getattrs(msg):
+    return {"m": msg,
+            "c": bot,
+            "git": git_repo}
 
 async def sudos(msg):
     if msg.get('text') and msg['chat']['type'] != 'channel':
@@ -62,13 +123,17 @@ async def sudos(msg):
             elif msg['text'].split()[0] == '!eval':
                 text = msg['text'][6:]
                 try:
-                    res = (await eval(text[6:]) if re.match(r'(\W+)?await', text) else eval(text))
-                except:
-                    res = traceback.format_exc()
-                try:
-                    await bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
-                except TelegramError as e:
-                    await bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
+                    res = await meval(text, **await getattrs(self, msg))
+                except Exception:
+                    exc = sys.exc_info()
+                    exc = "".join(traceback.format_exception(exc[0], exc[1], exc[2].tb_next.tb_next.tb_next))
+                    await bot.sendMessage(msg['chat']['id'], str(exc), reply_to_message_id=msg['message_id'])
+                    return
+                else:                    
+                    try:
+                        await bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
+                    except TelegramError as e:
+                        await bot.sendMessage(msg['chat']['id'], e.description, reply_to_message_id=msg['message_id'])
                 return True
 
 
