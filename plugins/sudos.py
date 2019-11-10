@@ -128,7 +128,7 @@ async def sudos(msg):
                     ev = traceback.format_exc()
                     await bot.sendMessage(msg['chat']['id'], str(ev), reply_to_message_id=msg['message_id'])
                     return
-                else:                    
+                else:
                     try:
                         await bot.sendMessage(msg['chat']['id'], str(res), reply_to_message_id=msg['message_id'])
                     except TelegramError as e:

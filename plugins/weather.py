@@ -22,7 +22,6 @@ import json
 import aiohttp
 
 from config import bot, keys
-from utils import get_flag
 
 here_keys = keys['here']
 

@@ -114,7 +114,7 @@ Mensagem: {text}""", 'HTML')
                 await bot.sendMessage(msg['chat']['id'], link, disable_web_page_preview=True,
                                       reply_to_message_id=msg['message_id'])
             return True
-            
+
         elif msg['text'].startswith('/aman') or msg['text'].startswith('!aman'):
             text = msg['text'][5:] or msg.get('reply_to_message', {}).get('text')
             if not text:

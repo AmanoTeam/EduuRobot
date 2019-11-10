@@ -49,7 +49,7 @@ async def send_to_amano(text):
         except ContentTypeError:
             text = await post.text()
             return html.escape(text)
-        
+
 async def send_to_dogbin(text):
     if not isinstance(text, bytes):
         text = text.encode()

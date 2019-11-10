@@ -17,11 +17,9 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import ctypes
 import html
 import re
 from utils import timeout
-from multiprocessing import Process, Manager
 
 from config import bot
 

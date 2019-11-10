@@ -24,7 +24,7 @@ import aiohttp
 from uuid import uuid4
 from amanobot.namedtuple import InlineKeyboardMarkup
 
-from config import bot, version
+from config import bot
 
 
 def cleanhtml(raw_html):
