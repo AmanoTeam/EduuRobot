@@ -35,6 +35,6 @@ async def shorten(msg):
                 async with aiohttp.ClientSession() as session:
                     r = await session.post('https://xn--f77h6a.ml/api/encurtar_url/', data=dict(url=text))
                     res = await r.json()
-                await bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(res), 'Markdown',
+                await bot.sendMessage(msg['chat']['id'], '*Resultado:* `{}`'.format(res["link"]), 'Markdown',
                                       reply_to_message_id=msg['message_id'])
             return True
