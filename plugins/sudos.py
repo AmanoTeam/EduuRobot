@@ -12,6 +12,7 @@ from pyrogram import Client, Filters
 
 from config import sudoers
 from localization import GetLang
+from utils import meval
 
 prefix = "!"
 
@@ -39,13 +40,18 @@ async def run_cmd(client, message):
 
 @Client.on_message(Filters.command("eval", prefix) & Filters.user(sudoers))
 async def evals(client, message):
-    code = re.split(r"[\n ]+", message.text, 1)[1]
-    isasync = re.search(r'\W*?(await )', code)
+    text = message.text[6:]
     try:
-        res = await eval(code[:isasync.start(1)] + code[isasync.end(1):]) if isasync else eval(code)
-    except Exception as e:
-        res = str(e)
-    await message.reply_text(html.escape(str(res)), parse_mode="HTML")
+        res = await meval(text, locals())
+    except:
+        ev = traceback.format_exc()
+        await message.reply_text(ev)
+        return
+    else:
+        try:
+            await message.reply_text(res)
+        except Exception as e:
+            await message.reply_text(e)
 
 
 @Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
