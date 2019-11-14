@@ -34,7 +34,7 @@ async def run_cmd(client, message):
                                                      stderr=asyncio.subprocess.PIPE)
         stdout, stderr = await proc.communicate()
         res = ("<b>Output:</b>\n<code>{}</code>".format(stdout.decode()) if stdout else '') + (
-            "\n\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode()) if stderr else '')
+            "\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode()) if stderr else '')
     await message.reply_text(res)
 
 
