@@ -1,7 +1,9 @@
-import os
 import html
-from config import prefix
+import os
+
 from pyrogram import Client, Filters
+
+from config import prefix
 
 
 @Client.on_message(Filters.command("jsondump", prefix))

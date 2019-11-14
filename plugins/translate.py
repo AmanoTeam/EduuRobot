@@ -1,9 +1,10 @@
-import re
-import html
 import base64
+import html
+import re
 
 from googletrans import Translator, LANGUAGES
 from pyrogram import Client, Filters
+
 from config import prefix
 
 
@@ -58,7 +59,7 @@ async def translate(client, message):
         res = html.escape(text)
         await sent.edit("""<b>Language:</b> {} -> {}
 <b>Translation:</b> <code>{}</code>""".format(trres.src, trres.dest, res),
-                                          parse_mode="HTML")
+                        parse_mode="HTML")
 
     else:
         await message.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",

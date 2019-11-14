@@ -1,10 +1,10 @@
 import asyncio
 import py_compile
 from glob import glob
+
 from pyrogram import Client
 
 from config import TOKEN, disabled_plugins, log_chat
-
 
 with open("version.txt") as f:
     version = f.read().strip()
@@ -28,9 +28,7 @@ for plugin in glob("plugins/*.py"):
     elif pluginname not in disabled_plugins:
         disabled_plugins.append(pluginname)
 
-
 client = Client("bot", bot_token=TOKEN, plugins=dict(root="plugins", include=plugins))
-
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()

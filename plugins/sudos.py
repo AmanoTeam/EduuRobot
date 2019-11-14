@@ -1,15 +1,17 @@
+import asyncio
+import html
 import io
 import os
 import re
 import sys
-import html
-import asyncio
 import traceback
-import speedtest
-from localization import GetLang
-from pyrogram import Client, Filters
 from contextlib import redirect_stdout
+
+import speedtest
+from pyrogram import Client, Filters
+
 from config import sudoers
+from localization import GetLang
 
 prefix = "!"
 
@@ -30,8 +32,8 @@ async def run_cmd(client, message):
                                                      stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
         stdout, stderr = await proc.communicate()
-        res = ("<b>Output:</b>\n<code>{}</code>".format(stdout.decode())  if stdout else '') + (
-               "\n\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode())  if stderr else '')
+        res = ("<b>Output:</b>\n<code>{}</code>".format(stdout.decode()) if stdout else '') + (
+            "\n\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode()) if stderr else '')
     await message.reply_text(res)
 
 

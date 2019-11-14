@@ -1,6 +1,8 @@
-from config import prefix
 from datetime import datetime
+
 from pyrogram import Client, Filters
+
+from config import prefix
 
 
 @Client.on_message(Filters.command("ping", prefix))

@@ -2,10 +2,10 @@ import json
 from glob import glob
 
 enabled_locales = [
-                    "en-US",    # English (United States)
-                    "pt-BR",    # Portuguese (Brazil)
-                    "pt-BR2",   # Portuguese (Brazil, informal version)
-                  ]
+    "en-US",  # English (United States)
+    "pt-BR",  # Portuguese (Brazil)
+    "pt-BR2",  # Portuguese (Brazil, informal version)
+]
 
 
 def cache_localizations(files):
