@@ -41,7 +41,7 @@ from urllib3.exceptions import ReadTimeoutError
 import backups
 import db_handler as db
 from config import bot, na_bot, enabled_plugins, logs, version, backups_chat
-from utils import send_to_dogbin
+from utils import send_to_dogbin, send_to_amano
 
 ep = []
 n_ep = {}
@@ -67,7 +67,7 @@ async def handle(msg):
         except Exception as e:
             formatted_update = json.dumps(msg, indent=3)
             formatted_exc = traceback.format_exc()
-            exc_url = await send_to_dogbin('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + formatted_exc)
+            exc_url = await send_to_amano('Update:\n' + formatted_update + '\n\n\n\nFull Traceback:\n' + formatted_exc)
             await bot.sendMessage(logs, '''• <b>Erro:</b>
  » Plugin: <code>{plugin}</code>
  » Tipo do erro: <code>{exc_type}</code>
