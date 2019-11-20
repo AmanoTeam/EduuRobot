@@ -6,7 +6,7 @@ from localization import GetLang
 
 @Client.on_message(Filters.command("start", prefix))
 async def start(client, message):
-    _ = GetLang(message, __name__)._
+    _ = GetLang(message, __name__).strs
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("📚 Commands"), callback_data="commands")] +

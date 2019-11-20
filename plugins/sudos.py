@@ -24,7 +24,7 @@ async def sudos(client, message):
 
 @Client.on_message(Filters.command("cmd", prefix) & Filters.user(sudoers))
 async def run_cmd(client, message):
-    _ = GetLang(message, __name__)._
+    _ = GetLang(message, __name__).strs
     cmd = re.split(r"[\n ]+", message.text, 1)[1]
     if re.match('(?i)poweroff|halt|shutdown|reboot', cmd):
         res = _('Forbidden command.')
@@ -74,7 +74,7 @@ async def execs(client, message):
 
 @Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
 async def test_speed(client, message):
-    _ = GetLang(message, __name__)._
+    _ = GetLang(message, __name__).strs
     string = _("**Speedtest**\n\n"
                "**🌐 Host:** `{}`\n\n"
                "**🏓 Ping:** `{} ms`\n"
@@ -92,6 +92,6 @@ async def test_speed(client, message):
 
 @Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
 async def restart(client, message):
-    _ = GetLang(message, __name__)._
+    _ = GetLang(message, __name__).strs
     await message.reply_text(_("Restarting..."))
     os.execl(sys.executable, sys.executable, *sys.argv)
