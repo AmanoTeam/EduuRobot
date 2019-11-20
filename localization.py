@@ -42,8 +42,8 @@ class GetLang:
             self.lang = "-".join(self.lang)
         self.lang = self.lang if self.lang in enabled_locales else "en-US"
 
-        self.dic = langdict.get(self.lang) or langdict["en-US"]
-        self.dic = self.dic.get(pname) or langdict["en-US"][pname]
+        self.dic = langdict.get(self.lang, langdict["en-US"])
+        self.dic = self.dic.get(pname, langdict["en-US"][pname])
 
     def strs(self, string):
         return self.dic.get(string, string)

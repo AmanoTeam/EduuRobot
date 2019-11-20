@@ -1,6 +1,6 @@
 from pyrogram import Client, Filters, InlineKeyboardMarkup, InlineKeyboardButton
 
-from config import prefix
+from config import prefix, version
 from localization import GetLang
 
 
@@ -32,7 +32,18 @@ async def commands(client, message):
 
 @Client.on_callback_query(Filters.callback_data("infos"))
 async def infos(client, message):
-    await message.message.edit("infos")
+    _ = GetLang(message, __name__).strs
+    res = _("• EduuRobot\n\n"
+            "Version: {version}\n\n"
+            "Source Code: [Here](https://github.com/AmanoTeam/EduuRobot)\n"
+            "Developers: [Amano Team](https://github.com/AmanoTeam)\n"
+            "Owner: [Edu :3](https://t.me/EduBR029)\n\n"
+            "Partnerships:\n"
+            " » [HPXList - by usernein](https://t.me/hpxlist)\n\n"
+            "©2019 - [AmanoTeam™](https://amanoteam.com)").format(
+                version=version
+            )
+    await message.message.edit(res, disable_web_page_preview=True)
 
 
 @Client.on_callback_query(Filters.callback_data("chlang"))

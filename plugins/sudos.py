@@ -64,7 +64,7 @@ async def execs(client, message):
             await locals()["__ex"](client, message)
         except:
             return await message.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
-    
+
     if strio.getvalue():
         out = f"<code>{html.escape(strio.getvalue())}</code>"
     else:

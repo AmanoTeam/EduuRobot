@@ -9,3 +9,6 @@ sudoers += super_sudoers
 prefix = ["/", "!"]  # Prefix used for user commands.
 
 disabled_plugins = []  # List of plugins to not load.
+
+with open("version.txt") as f:
+    version = f.read().strip()
