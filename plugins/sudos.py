@@ -33,8 +33,8 @@ async def run_cmd(client, message):
                                                      stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
         stdout, stderr = await proc.communicate()
-        res = ("<b>Output:</b>\n<code>{}</code>".format(stdout.decode()) if stdout else '') + (
-            "\n<b>Errors:</b>\n<code>{}</code>".format(stderr.decode()) if stderr else '')
+        res = ("<b>Output:</b>\n<code>{}</code>".format(html.escape(stdout.decode())) if stdout else '') + \
+              ("\n<b>Errors:</b>\n<code>{}</code>".format(html.escape(stderr.decode())) if stderr else '')
     await message.reply_text(res)
 
 
@@ -49,7 +49,7 @@ async def evals(client, message):
         return
     else:
         try:
-            await message.reply_text(res)
+            await message.reply_text(f"<code>{html.escape(res)}</code>")
         except Exception as e:
             await message.reply_text(e)
 
@@ -64,7 +64,12 @@ async def execs(client, message):
             await locals()["__ex"](client, message)
         except:
             return await message.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
-    await message.reply_text(strio.getvalue() or "ok")
+    
+    if strio.getvalue():
+        out = f"<code>{html.escape(strio.getvalue())}</code>"
+    else:
+        out = "Command executed."
+    await message.reply_text(out, parse_mode="HTML")
 
 
 @Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
