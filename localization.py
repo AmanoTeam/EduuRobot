@@ -44,4 +44,4 @@ class GetLang:
         self.dic = langdict.get(self.lang, langdict["en-US"])
 
     def strs(self, string):
-        return self.dic.get(string, string)
+        return self.dic.get(string) or langdict["en-US"].get(string) or string
