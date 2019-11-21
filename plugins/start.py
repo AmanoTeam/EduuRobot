@@ -12,7 +12,7 @@ async def start(client, message):
             [InlineKeyboardButton(_("start.commands_btn"), callback_data="commands")] +
             [InlineKeyboardButton(_("start.infos_btn"), callback_data="infos")],
             [InlineKeyboardButton(_("start.language_btn"), callback_data="chlang")] +
-            [InlineKeyboardButton(_("➕start.add_chat_btn"), url="https://t.me/{}?startgroup=new")],
+            [InlineKeyboardButton(_("start.add_chat_btn"), url="https://t.me/{}?startgroup=new")],
         ])
         await message.reply_text(_("start.private"),
                                  reply_markup=keyboard)
