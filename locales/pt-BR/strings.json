@@ -8,7 +8,7 @@
   "start.start_chat": "🤖 Iniciar uma conversa",
   "start.group": "Olá! Sou EduuRobot. Para descobrir minhas funções, inicie uma conversa comigo.",
   "start.info_page": "",
-  "sudos.speedtest": "**Teste de velocidade**\n\n**🌐 Host:** `{}`\n\n**🏓 Ping:** `{} ms`\n**⬇️ Download:** `{} Mbps`\n**⬆️ Upload:** `{} Mbps`",
-  "sudos.forbidden_command": "",
-  "sudos.restarting": ""
+  "sudos.speedtest": "",
+  "sudos.forbidden_command": "Comando proibido.",
+  "sudos.restarting": "Reiniciando..."
 }
