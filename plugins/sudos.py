@@ -76,14 +76,14 @@ async def execs(client, message):
 async def test_speed(client, message):
     _ = GetLang(message).strs
     string = _("sudos.speedtest")
-    sent = await message.reply_text(string.format("...", "...", "...", "..."))
+    sent = await message.reply_text(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
-    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), "...", "..."))
+    await sent.edit(string.format(host=bs["sponsor"], ping=int(bs["latency"]), download="", upload=""))
     dl = round(s.download() / 1024 / 1024, 2)
-    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), dl, "..."))
+    await sent.edit(string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=""))
     ul = round(s.upload() / 1024 / 1024, 2)
-    await sent.edit(string.format(bs["sponsor"], int(bs["latency"]), dl, ul))
+    await sent.edit(string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul))
 
 
 @Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
