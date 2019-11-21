@@ -1,5 +1,6 @@
 {
   "dice.result": "\uD83C\uDFB2 The dice stopped at the number: {number}",
+  "general.back_btn": "« Back",
   "start.commands_btn": "\uD83D\uDCDA Commands",
   "start.infos_btn": "ℹ️ Infos",
   "start.language_btn": "\uD83C\uDF10 Language",
