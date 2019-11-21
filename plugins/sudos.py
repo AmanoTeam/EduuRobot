@@ -49,7 +49,7 @@ async def evals(client, message):
         return
     else:
         try:
-            await message.reply_text(f"<code>{html.escape(res)}</code>")
+            await message.reply_text(f"<code>{html.escape(str(res))}</code>")
         except Exception as e:
             await message.reply_text(e)
 
