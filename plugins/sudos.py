@@ -27,7 +27,7 @@ async def run_cmd(client, message):
     _ = GetLang(message).strs
     cmd = re.split(r"[\n ]+", message.text, 1)[1]
     if re.match('(?i)poweroff|halt|shutdown|reboot', cmd):
-        res = _('Forbidden command.')
+        res = _('sudos.forbidden_command')
     else:
         proc = await asyncio.create_subprocess_shell(cmd,
                                                      stdout=asyncio.subprocess.PIPE,
@@ -75,11 +75,7 @@ async def execs(client, message):
 @Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
 async def test_speed(client, message):
     _ = GetLang(message).strs
-    string = _("**Speedtest**\n\n"
-               "**🌐 Host:** `{}`\n\n"
-               "**🏓 Ping:** `{} ms`\n"
-               "**⬇️ Download:** `{} Mbps`\n"
-               "**⬆️ Upload:** `{} Mbps`")
+    string = _("sudos.speedtest")
     sent = await message.reply_text(string.format("...", "...", "...", "..."))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
@@ -93,5 +89,5 @@ async def test_speed(client, message):
 @Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
 async def restart(client, message):
     _ = GetLang(message).strs
-    await message.reply_text(_("Restarting..."))
+    await message.reply_text(_("sudos.restarting"))
     os.execl(sys.executable, sys.executable, *sys.argv)
