@@ -11,10 +11,9 @@ enabled_locales = [
 def cache_localizations(files):
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
-        pname = file.split("/")[-1][:-5]
         lname = file.split("/")[1]
         dic = json.load(open(file))
-        ldict[lname].update({pname: dic})
+        ldict[lname].update({dic})
     return ldict
 
 
@@ -27,7 +26,7 @@ langdict = cache_localizations(jsons)
 
 
 class GetLang:
-    def __init__(self, msg, pname):
+    def __init__(self, msg):
         # try to get user lang from language_code, if it does not exist, use en-US
         self.lang = msg.from_user.language_code or "en-US"
         # User has a language_code without hyphen
@@ -43,7 +42,6 @@ class GetLang:
         self.lang = self.lang if self.lang in enabled_locales else "en-US"
 
         self.dic = langdict.get(self.lang, langdict["en-US"])
-        self.dic = self.dic.get(pname, langdict["en-US"][pname])
 
     def strs(self, string):
         return self.dic.get(string, string)

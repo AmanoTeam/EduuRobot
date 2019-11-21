@@ -6,7 +6,7 @@ from localization import GetLang
 
 @Client.on_message(Filters.command("start", prefix))
 async def start(client, message):
-    _ = GetLang(message, __name__).strs
+    _ = GetLang(message).strs
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("📚 Commands"), callback_data="commands")] +
@@ -32,7 +32,7 @@ async def commands(client, message):
 
 @Client.on_callback_query(Filters.callback_data("infos"))
 async def infos(client, message):
-    _ = GetLang(message, __name__).strs
+    _ = GetLang(message).strs
     res = _("• EduuRobot\n\n"
             "Version: {version}\n\n"
             "Source Code: [Here](https://github.com/AmanoTeam/EduuRobot)\n"
