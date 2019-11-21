@@ -1,8 +1,8 @@
 {
-  "dice.result": "",
-  "start.commands_btn": "",
-  "start.infos_btn": "",
-  "start.language_btn": "",
+  "dice.result": "O dadu parô nu numeru: {number}",
+  "start.commands_btn": "📚 Comandus",
+  "start.infos_btn": "ℹ️ Infos",
+  "start.language_btn": "🌐 Indioma",
   "start.add_chat_btn": "➕ Add em um lixo",
   "start.private": "Oi! Sou eu, o ~~Chapolin Colorado~~ EduuRobot. Eu acabei de salvar **sua vida**, para continuar salvo navegue pelos botões abaixo.",
   "start.start_chat": "🤖 Ser salvo",
