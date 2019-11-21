@@ -13,7 +13,7 @@ def cache_localizations(files):
     for file in files:
         lname = file.split("/")[1]
         dic = json.load(open(file))
-        ldict[lname].update({dic})
+        ldict[lname].update(dic)
     return ldict
 
 
