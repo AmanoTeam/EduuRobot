@@ -1,5 +1,6 @@
 {
   "dice.result": "🎲 O dado parou no número: {number}",
+  "general.back_btn": "",
   "start.commands_btn": "📚 Comandos",
   "start.infos_btn": "ℹ️ Informações",
   "start.language_btn": "🌐 Idioma",
