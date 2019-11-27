@@ -1,5 +1,7 @@
 {
+  "cats.meow": "",
   "dice.result": "🎲 O dado parou no número: {number}",
+  "dogs.woof": "",
   "general.back_btn": "« Voltar",
   "start.commands_btn": "📚 Comandos",
   "start.infos_btn": "ℹ️ Informações",
