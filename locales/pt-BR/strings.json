@@ -10,7 +10,7 @@
   "start.private": "Olá! Eu sou o EduuRobot. Para descobrir mais sobre minhas funções, clique nos botões abaixo.",
   "start.start_chat": "🤖 Iniciar uma conversa",
   "start.group": "Olá! Sou EduuRobot. Para descobrir minhas funções, inicie uma conversa comigo.",
-  "start.info_page": "• EduuRobot\n\nVersão: {version}\n\nCódigo fonte: [Aqui](https://github.com/AmanoTeam/EduuRobot)\nDesenvolvedores: [Amano Team](https://github.com/AmanoTeam)\nDono: [Edu :3](https://t.me/EduBR029)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2019 - [AmanoTeam™](https://amanoteam.com)",
+  "start.info_page": "",
   "sudos.speedtest": "**Teste de velocidade**\n\n**🌐 Host:** `{host}`\n\n**🏓 Latência:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "Comando proibido.",
   "sudos.restarting": "Reiniciando..."
