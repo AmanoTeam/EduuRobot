@@ -1,5 +1,7 @@
 {
+  "cats.meow": "Meow!",
   "dice.result": "\uD83C\uDFB2 The dice stopped at the number: {number}",
+  "dogs.woof": "Woof!",
   "general.back_btn": "« Back",
   "start.commands_btn": "\uD83D\uDCDA Commands",
   "start.infos_btn": "ℹ️ Infos",
