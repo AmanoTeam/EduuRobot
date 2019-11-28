@@ -1,7 +1,8 @@
-import _asyncio
 import ast
 import importlib.util
 import types
+
+from asyncio.futures import Future
 
 
 async def meval(code, local_vars):
@@ -50,7 +51,7 @@ async def meval(code, local_vars):
 
     r = await locs["tmp"](**local_vars)
 
-    if isinstance(r, types.CoroutineType) or isinstance(r, _asyncio.Future):
+    if isinstance(r, types.CoroutineType) or isinstance(r, Future):
         r = await r  # workaround for 3.5
     try:
         globals().clear()
