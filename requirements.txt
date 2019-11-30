@@ -7,3 +7,4 @@ youtube-dl>=2019.9.28
 duckpy>=2.0.0
 python-aiml==0.9.3
 schedule==0.6.0
+regex>=2019.11.1

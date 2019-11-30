@@ -18,20 +18,15 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import html
-import re
-from utils import timeout
+import regex
 
 from config import bot
 
 
-def replace(pattern, replace_with, text, count, rflags):
-    return re.sub(pattern, replace_with, text, count=count, flags=rflags)
-
-
 async def sed(msg):
     if msg.get('text'):
-        if re.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
-            exp = re.split(r'(?<![^\\]\\)/', msg['text'])
+        if regex.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
+            exp = regex.split(r'(?<![^\\]\\)/', msg['text'])
             pattern = exp[1]
             replace_with = exp[2]
             flags = exp[3] if len(exp) > 3 else ''
@@ -42,11 +37,11 @@ async def sed(msg):
             if 'g' in flags:
                 count = 0
             if 'i' in flags and 's' in flags:
-                rflags = re.I | re.S
+                rflags = regex.I | regex.S
             elif 'i' in flags:
-                rflags = re.I
+                rflags = regex.I
             elif 's' in flags:
-                rflags = re.S
+                rflags = regex.S
 
             if msg['reply_to_message'].get('text'):
                 text = msg['reply_to_message']['text']
@@ -56,12 +51,11 @@ async def sed(msg):
                 return
 
             try:
-                with timeout(seconds=1):
-                    res = replace(pattern, replace_with, text, count, rflags)
+                res = regex.sub(pattern, replace_with, text, count=count, flags=rflags, timeout=1)
             except TimeoutError:
                 await bot.sendMessage(msg['chat']['id'], 'Ops, o seu regex executou por muito tempo.',
                                           reply_to_message_id=msg['message_id'])
-            except re.error as e:
+            except regex.error as e:
                 await bot.sendMessage(msg['chat']['id'], "Erro: " + str(e),
                                       reply_to_message_id=msg['message_id'])
             else:
