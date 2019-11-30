@@ -19,7 +19,6 @@
 
 import os
 import html
-import signal
 import aiohttp
 import time
 import zipfile
