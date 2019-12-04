@@ -28,7 +28,7 @@ async def sed(msg):
         if regex.match(r's/(.+)?/(.+)?(/.+)?', msg['text']) and msg.get('reply_to_message'):
             exp = regex.split(r'(?<![^\\]\\)/', msg['text'])
             pattern = exp[1]
-            replace_with = exp[2]
+            replace_with = exp[2].replace(r'\/', '/')
             flags = exp[3] if len(exp) > 3 else ''
 
             count = 1
