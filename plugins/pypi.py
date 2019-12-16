@@ -57,10 +57,13 @@ async def pypi(msg):
                           "Summary: <b>%s</b>\n" % (
                               pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"],
                               pypi_info["version"], pypi_info["platform"], pypi_info["summary"])
+                if pypi_info['home_page']:
+                    kb = InlineKeyboardMarkup(inline_keyboard=[
+                                              [dict(text='Package home page', url=pypi_info['home_page'])]])
+                else:
+                    kb = None
                 await bot.sendMessage(msg['chat']['id'], message, reply_to_message_id=msg['message_id'],
-                                      parse_mode="HTML", disable_web_page_preview=True,
-                                      reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                                          [dict(text='Package home page', url=pypi_info['home_page'])]]))
+                                      parse_mode="HTML", disable_web_page_preview=True, reply_markup=kb)
             else:
                 await bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi (Returned code was {r.status})",
                                       reply_to_message_id=msg['message_id'], parse_mode="Markdown",
