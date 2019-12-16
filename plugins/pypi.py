@@ -57,7 +57,7 @@ async def pypi(msg):
                           "Summary: <b>%s</b>\n" % (
                               pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"],
                               pypi_info["version"], pypi_info["platform"], pypi_info["summary"])
-                if pypi_info['home_page']:
+                if pypi_info['home_page'] and pypi_info['home_page'] != "UNKNOWN":
                     kb = InlineKeyboardMarkup(inline_keyboard=[
                                               [dict(text='Package home page', url=pypi_info['home_page'])]])
                 else:
