@@ -2,7 +2,37 @@ import ast
 import importlib.util
 import types
 
+from dbh import dbc, db
 from asyncio.futures import Future
+
+
+def add_chat(chat_id, chat_type):
+    if chat_type == "private":
+        dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
+        db.commit()
+    elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
+        dbc.execute("INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True))
+        db.commit()
+    elif chat_type == "channel":
+        dbc.execute("INSERT INTO channels (chat_id) values (?)", (chat_id,))
+        db.commit()
+    else:
+        raise TypeError("Unknown chat type '%s'." % chat_type)
+    return True
+
+
+def chat_exists(chat_id, chat_type):
+    if chat_type == "private":
+        dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
+        return True if dbc.fetchone() else False
+    elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
+        dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
+        return True if dbc.fetchone() else False
+    elif chat_type == "channel":
+        dbc.execute("SELECT channel_id FROM channels where channel_id = ?", (chat_id,))
+        return True if dbc.fetchone() else False
+    else:
+        raise TypeError("Unknown chat type '%s'." % chat_type)
 
 
 async def meval(code, local_vars):

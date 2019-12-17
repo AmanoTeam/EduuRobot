@@ -4,5 +4,6 @@ __pycache__/
 .vscode/
 config.py
 config.ini
+*.db
 *.session
 *.session-journal
