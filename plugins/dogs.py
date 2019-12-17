@@ -5,6 +5,7 @@ from pyrogram import Client, Filters
 from config import prefix
 from localization import GetLang
 
+
 @Client.on_message(Filters.command("dog", prefix))
 async def dog(client, message):
     _ = GetLang(message).strs

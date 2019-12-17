@@ -29,7 +29,7 @@ def chat_exists(chat_id, chat_type):
         dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
         return True if dbc.fetchone() else False
     elif chat_type == "channel":
-        dbc.execute("SELECT channel_id FROM channels where channel_id = ?", (chat_id,))
+        dbc.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
         return True if dbc.fetchone() else False
     else:
         raise TypeError("Unknown chat type '%s'." % chat_type)

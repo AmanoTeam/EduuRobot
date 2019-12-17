@@ -1,6 +1,6 @@
 import json
 from glob import glob
-from dbh import dbc
+from dbh import dbc, db
 from pyrogram.client.types.bots_and_keyboards import CallbackQuery
 
 
@@ -11,15 +11,30 @@ enabled_locales = [
 ]
 
 
+def set_lang(chat_id, chat_type, lang_code):
+    if chat_type == "private":
+        dbc.execute("UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id))
+        db.commit()
+    elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
+        dbc.execute("UPDATE groups SET chat_lang = ? WHERE chat_id = ?", (lang_code, chat_id))
+        db.commit()
+    elif chat_type == "channel":
+        dbc.execute("UPDATE channels SET chat_lang = ? WHERE chat_id = ?", (lang_code, chat_id))
+        db.commit()
+    else:
+        raise TypeError("Unknown chat type '%s'." % chat_type)
+    return True
+
+
 def get_lang(chat_id, chat_type):
     if chat_type == "private":
-        dbc.execute("SELECT chat_lang FROM users where user_id = ?", (chat_id,))
+        dbc.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = dbc.fetchone()
     elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
-        dbc.execute("SELECT chat_lang FROM groups where chat_id = ?", (chat_id,))
+        dbc.execute("SELECT chat_lang FROM groups WHERE chat_id = ?", (chat_id,))
         ul = dbc.fetchone()
     elif chat_type == "channel":
-        dbc.execute("SELECT chat_lang FROM channels where channel_id = ?", (chat_id,))
+        dbc.execute("SELECT chat_lang FROM channels WHERE chat_id = ?", (chat_id,))
         ul = dbc.fetchone()
     else:
         raise TypeError("Unknown chat type '%s'." % chat_type)

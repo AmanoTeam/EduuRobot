@@ -57,12 +57,3 @@ async def infos(client, message):
         [InlineKeyboardButton(_("general.back_btn"), callback_data="start_back")]
     ])
     await message.message.edit(res, reply_markup=keyboard, disable_web_page_preview=True)
-
-
-@Client.on_callback_query(Filters.callback_data("chlang"))
-async def chlang(client, message):
-    _ = GetLang(message).strs
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(_("general.back_btn"), callback_data="start_back")]
-    ])
-    await message.message.edit("chlang", reply_markup=keyboard)
