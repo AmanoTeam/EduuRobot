@@ -1,6 +1,7 @@
 import json
 from glob import glob
 from dbh import dbc
+from pyrogram.client.types.bots_and_keyboards import CallbackQuery
 
 
 enabled_locales = [
@@ -44,8 +45,13 @@ langdict = cache_localizations(jsons)
 
 class GetLang:
     def __init__(self, msg):
-        lang = get_lang(msg.chat.id, msg.chat.type)
-        if msg.chat.type == "private":
+        if isinstance(msg, CallbackQuery):
+            chat = msg.message.chat
+        else:
+            chat = msg.chat
+
+        lang = get_lang(chat.id, chat.type)
+        if chat.type == "private":
             self.lang = lang or msg.from_user.language_code or "en-US"
         else:
             self.lang = lang or "en-US"
