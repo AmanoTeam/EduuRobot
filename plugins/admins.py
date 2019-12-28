@@ -23,7 +23,7 @@ import time
 from amanobot.exception import TelegramError, NotEnoughRightsError
 from amanobot.namedtuple import InlineKeyboardMarkup
 
-from config import bot, bot_id, sudoers
+from config import bot, bot_id
 from db_handler import conn, cursor
 
 
@@ -47,7 +47,7 @@ async def is_admin(chat_id, user_id, reply_id=None):
             cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time()) + 1200)), chat_id))
             conn.commit()
 
-        if user_id in adm_id or user_id in sudoers:
+        if user_id in adm_id:
             dic['user'] = True
         else:
             dic['user'] = False
