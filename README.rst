@@ -71,9 +71,9 @@ Nota
 -  Caso encontre algum bug no bot, crie um issue `aqui`_ ou envie /bug +
    o erro que você está tendo (No `EduuRobot`_).
 
-©2019 - `AmanoTeam™`_
+©2020 - `AmanoTeam™`_
 
 .. _@BotFather: https://t.me/BotFather
 .. _aqui: https://github.com/AmanoTeam/EduuRobot/issues
 .. _EduuRobot: https://t.me/EduuRobot
-.. _AmanoTeam™: https://amanoteam.ml
+.. _AmanoTeam™: https://amanoteam.com

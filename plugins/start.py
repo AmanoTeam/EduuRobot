@@ -1,4 +1,4 @@
-# Copyright (C) 2018-2019 Amano Team <contact@amanoteam.ml>
+# Copyright (C) 2018-2020 Amano Team <contact@amanoteam.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -182,7 +182,7 @@ Owner: <a href="tg://user?id=123892996">Edu :3</>
 Partnerships:
  » <a href="https://t.me/hpxlist">HPXList - by usernein</>
 
-©2019 - <a href="https://amanoteam.ml">AmanoTeam™</>'''.format(version=version, sourcelink=git_repo[0]),
+©2020 - <a href="https://amanoteam.com">AmanoTeam™</>'''.format(version=version, sourcelink=git_repo[0]),
                                       parse_mode='html',
                                       reply_markup=start_back,
                                       disable_web_page_preview=True)
