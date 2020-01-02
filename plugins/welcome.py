@@ -116,7 +116,7 @@ Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.descripti
                     ])
                 else:
                     rules_markup = None
-                await bot.sendMessage(chat_id, welcome, 'MarkdownV2',
+                await bot.sendMessage(chat_id, welcome, 'markdown',
                                       reply_to_message_id=msg['message_id'],
                                       reply_markup=rules_markup,
                                       disable_web_page_preview=True)
