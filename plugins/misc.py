@@ -46,7 +46,7 @@ async def misc(msg):
                 reply_id = msg['reply_to_message']['message_id']
             else:
                 reply_id = None
-            await bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'markdown',
+            await bot.sendMessage(msg['chat']['id'], msg['text'][6:], 'markdownv2',
                                   reply_to_message_id=reply_id)
             return True
 

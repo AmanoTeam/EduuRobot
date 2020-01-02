@@ -102,12 +102,12 @@ Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.descripti
             welcome = get_welcome(chat_id)
             if welcome[1]:
                 if welcome[0] is not None:
-                    welcome = welcome[0].replace('$name', escape_markdown(first_name)).replace('$title',
-                                                                                               escape_markdown(
-                                                                                                   chat_title)).replace(
-                        '$id', str(user_id))
+                    welcome = welcome[0].replace('$id', str(user_id))
+                    welcome = welcome.replace('$title', escape_markdown(chat_title))
+                    welcome = welcome.replace('$name', escape_markdown(first_name))
                 else:
-                    welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(first_name, escape_markdown(chat_title))
+                    welcome = 'Olá {}, seja bem-vindo(a) ao {}!'.format(escape_markdown(first_name),
+                                                                        escape_markdown(chat_title))
                 if '$rules' in welcome:
                     welcome = welcome.replace('$rules', '')
                     rules_markup = InlineKeyboardMarkup(inline_keyboard=[
@@ -116,7 +116,7 @@ Se esse erro persistir entre em contato com @AmanoSupport.'''.format(e.descripti
                     ])
                 else:
                     rules_markup = None
-                await bot.sendMessage(chat_id, welcome, 'Markdown',
+                await bot.sendMessage(chat_id, welcome, 'MarkdownV2',
                                       reply_to_message_id=msg['message_id'],
                                       reply_markup=rules_markup,
                                       disable_web_page_preview=True)
