@@ -29,10 +29,11 @@ async def send_to_amano(text):
     if not isinstance(text, bytes):
         text = text.encode()
     async with aiohttp.ClientSession() as session:
-        post = await session.post("https://amano-bin.ml/documents", data=text)
+        url = "https://bin.amanoteam.com"
+        post = await session.post(url + "/documents", data=text)
         try:
             json = await post.json()
-            return "https://amano-bin.ml/" + json["key"]
+            return url + "/" + json["key"]
         except ContentTypeError:
             text = await post.text()
             return html.escape(text)
@@ -41,10 +42,11 @@ async def send_to_dogbin(text):
     if not isinstance(text, bytes):
         text = text.encode()
     async with aiohttp.ClientSession() as session:
-        post = await session.post("https://del.dog/documents", data=text)
+        url = "https://del.dog"
+        post = await session.post(url + "/documents", data=text)
         try:
             json = await post.json()
-            return "https://del.dog/" + json["key"]
+            return url + "/" + json["key"]
         except ContentTypeError:
             text = await post.text()
             return html.escape(text)
