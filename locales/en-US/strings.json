@@ -3,6 +3,7 @@
   "dice.result": "\uD83C\uDFB2 The dice stopped at the number: {number}",
   "dogs.woof": "Woof!",
   "general.back_btn": "« Back",
+  "general.no_results": "No results found.",
   "sed.regex_timeout": "Oops, your regex pattern ran for too long.",
   "start.commands_btn": "\uD83D\uDCDA Commands",
   "start.infos_btn": "ℹ️ Infos",

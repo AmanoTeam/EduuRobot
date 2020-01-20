@@ -1,14 +1,29 @@
+# Bot token from Bot Father
 TOKEN = "YOUR_TOKEN_HERE"
 
+
+# Chat used for logs
 log_chat = 123456789
 
-super_sudoers = [123456789]  # List of super sudoers (they can control what sudoers can do)
+
+# Sudoers and super sudoers
+super_sudoers = [123456789]
 sudoers = [987654321]
 sudoers += super_sudoers
 
-prefix = ["/", "!"]  # Prefix used for user commands.
 
-disabled_plugins = []  # List of plugins to not load.
+# Prefixes for commands, e.g: /command and !command
+prefix = ["/", "!"]
 
+
+# List of disabled plugins
+disabled_plugins = []
+
+
+# API keys
+GIPHY_API_KEY = ""
+
+
+# Bot version, do not touch this
 with open("version.txt") as f:
     version = f.read().strip()
