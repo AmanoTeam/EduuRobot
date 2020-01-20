@@ -1,4 +1,4 @@
-from pyrogram import Client, Filters
+from pyrogram import Client
 from utils import chat_exists, add_chat
 
 # This is the first plugin run to guarantee that the actual chat is initialized in the DB.

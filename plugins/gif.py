@@ -1,7 +1,6 @@
 import random
 import aiohttp
 import logging
-import sys
 
 from pyrogram import Client, Filters
 
