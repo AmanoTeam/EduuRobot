@@ -3,6 +3,7 @@
   "dice.result": "🎲 O dado parou no número: {number}",
   "dogs.woof": "Au au!",
   "general.back_btn": "« Voltar",
+  "general.no_results": "",
   "sed.regex_timeout": "",
   "start.commands_btn": "📚 Comandos",
   "start.infos_btn": "ℹ️ Informações",
