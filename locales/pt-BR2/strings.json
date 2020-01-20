@@ -3,6 +3,7 @@
   "dice.result": "O dadu parô nu numeru: {number}",
   "dogs.woof": "Catioro",
   "general.back_btn": "« Votar",
+  "general.no_results": "",
   "sed.regex_timeout": "",
   "start.commands_btn": "📚 Comandus",
   "start.infos_btn": "ℹ️ Infos",
