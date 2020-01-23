@@ -1,6 +1,7 @@
 # Bot token from Bot Father
 TOKEN = "YOUR_TOKEN_HERE"
-
+API_ID = 123123
+API_HASH = ""
 
 # Chat used for logs
 log_chat = 123456789
