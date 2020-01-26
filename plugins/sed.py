@@ -5,7 +5,7 @@ from pyrogram import Client, Filters
 from localization import GetLang
 
 
-@Client.on_message(Filters.regex(r's/(.+)?/(.+)?(/.+)?') & Filters.reply)
+@Client.on_message(Filters.regex(r'^s/(.+)?/(.+)?(/.+)?') & Filters.reply)
 async def sed(client, message):
     _ = GetLang(message).strs
     exp = regex.split(r'(?<![^\\]\\)/', message.text)
