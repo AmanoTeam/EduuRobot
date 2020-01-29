@@ -92,18 +92,18 @@ if __name__ == '__main__':
 
     wr = db.get_restarted()
 
-    if wr:
-        try:
+    try:
+        if wr:
             na_bot.editMessageText(wr, 'Reiniciado com sucesso!')
-        except TelegramError:
-            pass
-        db.del_restarted()
-    else:
-        na_bot.sendMessage(logs, '''Bot iniciado
+            db.del_restarted()
+        else:
+            na_bot.sendMessage(logs, '''Bot iniciado
 
 Versão: {}
 Plugins carregados: {}
 Ocorreram erros em {} plugin(s){}'''.format(version, len(ep), len(n_ep),
                                             ': ' + (', '.join(n_ep)) if n_ep else ''))
+    except TelegramError:
+        pass
 
     loop.run_forever()
