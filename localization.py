@@ -5,9 +5,11 @@ from pyrogram.client.types.bots_and_keyboards import CallbackQuery
 
 
 enabled_locales = [
-    "en-US",  # English (United States)
-    "pt-BR",  # Portuguese (Brazil)
+    "en-US",   # English (United States)
+    "pt-BR",   # Portuguese (Brazil)
     "pt-BR2",  # Portuguese (Brazil, informal version)
+    "ru-RU",   # Russian
+    "tr-TR"    # Turkish
 ]
 
 
