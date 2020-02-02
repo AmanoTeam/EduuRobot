@@ -38,6 +38,26 @@ async def run_cmd(client, message):
     await message.reply_text(res)
 
 
+@Client.on_message(Filters.command("upgrade", prefix) & Filters.user(sudoers))
+async def upgrade(client, message):
+    _ = GetLang(message).strs
+    sm = await message.reply_text("Upgrading sources...")
+    proc = await asyncio.create_subprocess_shell(f"git pull --no-edit",
+                                                 stdout=asyncio.subprocess.PIPE,
+                                                 stderr=asyncio.subprocess.STDOUT)
+    stdout = (await proc.communicate())[0]
+    if proc.returncode == 0:
+        if "Already up to date." in stdout.decode():
+            await sm.edit_text("There's nothing to upgrade.")
+        else:
+            await sm.edit_text(_("sudos.restarting"))
+            os.execl(sys.executable, sys.executable, *sys.argv)
+    else:
+        await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
+        proc = await asyncio.create_subprocess_shell("git pull --no-edit")
+        stdout = await proc.communicate()
+
+
 @Client.on_message(Filters.command("eval", prefix) & Filters.user(sudoers))
 async def evals(client, message):
     text = message.text[6:]
