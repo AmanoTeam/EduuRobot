@@ -54,7 +54,7 @@ async def upgrade(client, message):
             os.execl(sys.executable, sys.executable, *sys.argv)
     else:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
-        proc = await asyncio.create_subprocess_shell("git pull --no-edit")
+        proc = await asyncio.create_subprocess_shell("git merge --abort")
         stdout = await proc.communicate()
 
 
