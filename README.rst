@@ -14,7 +14,7 @@ Requirements
 
 Setup
 =====
-- Install the required modules from the requirements.txt with ``pip3 install -rU requirements.txt``.
+- Install the required modules from the requirements.txt with ``pip3 install -Ur requirements.txt``.
 - Go to https://my.telegram.org/apps and create a new app.
 - Create a new ``config.py`` file from the ``config.py.example`` file (``cp config.py.example config.py``).
 - Place your token, IDs and api keys to your config.py file.
