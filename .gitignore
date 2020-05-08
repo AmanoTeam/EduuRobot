@@ -1,9 +1,10 @@
 __pycache__/
-.idea/
 .spyproject/
 .vscode/
-config.py
-config.ini
-*.db
-*.session
+.idea/
+.venv/
 *.session-journal
+*.session
+*.db
+config.ini
+config.py
