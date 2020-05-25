@@ -21,7 +21,6 @@ import html
 import re
 
 import aiohttp
-from uuid import uuid4
 from amanobot.namedtuple import InlineKeyboardMarkup
 
 from config import bot
@@ -46,7 +45,7 @@ async def pypi(msg):
             text = msg['text'][6:]
             async with aiohttp.ClientSession() as session:
                 r = await session.get(f"https://pypi.org/pypi/{text}/json",
-                                      headers={"User-Agent": str(uuid4())})
+                                      headers={"Accept-Encoding": "gzip"})
             if r.status == 200:
                 json = await r.json()
                 pypi_info = escape_definition(json["info"])
