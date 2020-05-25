@@ -46,25 +46,25 @@ async def pypi(msg):
             async with aiohttp.ClientSession() as session:
                 r = await session.get(f"https://pypi.org/pypi/{text}/json",
                                       headers={"Accept-Encoding": "gzip"})
-            if r.status == 200:
-                json = await r.json()
-                pypi_info = escape_definition(json["info"])
-                message = "<b>%s</b> by <i>%s</i> (%s)\n" \
-                          "Platform: <b>%s</b>\n" \
-                          "Version: <b>%s</b>\n" \
-                          "License: <b>%s</b>\n" \
-                          "Summary: <b>%s</b>\n" % (
-                              pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"],
-                              pypi_info["version"], pypi_info["platform"], pypi_info["summary"])
-                if pypi_info['home_page'] and pypi_info['home_page'] != "UNKNOWN":
-                    kb = InlineKeyboardMarkup(inline_keyboard=[
-                                              [dict(text='Package home page', url=pypi_info['home_page'])]])
+                if r.status == 200:
+                    json = await r.json()
+                    pypi_info = escape_definition(json["info"])
+                    message = "<b>%s</b> by <i>%s</i> (%s)\n" \
+                              "Platform: <b>%s</b>\n" \
+                              "Version: <b>%s</b>\n" \
+                              "License: <b>%s</b>\n" \
+                              "Summary: <b>%s</b>\n" % (
+                                  pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"],
+                                  pypi_info["version"], pypi_info["platform"], pypi_info["summary"])
+                    if pypi_info['home_page'] and pypi_info['home_page'] != "UNKNOWN":
+                        kb = InlineKeyboardMarkup(inline_keyboard=[
+                                                  [dict(text='Package home page', url=pypi_info['home_page'])]])
+                    else:
+                        kb = None
+                    await bot.sendMessage(msg['chat']['id'], message, reply_to_message_id=msg['message_id'],
+                                          parse_mode="HTML", disable_web_page_preview=True, reply_markup=kb)
                 else:
-                    kb = None
-                await bot.sendMessage(msg['chat']['id'], message, reply_to_message_id=msg['message_id'],
-                                      parse_mode="HTML", disable_web_page_preview=True, reply_markup=kb)
-            else:
-                await bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi (Returned code was {r.status})",
-                                      reply_to_message_id=msg['message_id'], parse_mode="Markdown",
-                                      disable_web_page_preview=True)
+                    await bot.sendMessage(msg['chat']['id'], f"Cant find *{text}* in pypi (Returned code was {r.status})",
+                                          reply_to_message_id=msg['message_id'], parse_mode="Markdown",
+                                          disable_web_page_preview=True)
             return True
