@@ -45,7 +45,7 @@ async def weather(msg):
                                                                   language="pt-BR",
                                                                   query=msg['text'][7:]))
                     loc_json = await r.json()
-                if not gjson.get("location"):
+                if not loc_json.get("location"):
                     return await bot.sendMessage(msg['chat']['id'], 'Localização não encontrada',
                                                  reply_to_message_id=msg['message_id'])
                 else:
