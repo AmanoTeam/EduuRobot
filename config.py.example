@@ -19,7 +19,6 @@ bot_id = me['id']
 
 
 keys = dict(
-    here = {'app_id': 'key_id_here', 'app_code': 'key_code_here'},  #You can get a key at https://here.com
     yandex = 'key_here',                                            #You can get a key at https://tech.yandex.com/translate
     giphy = 'key_here',                                             #You can get a key at https://developers.giphy.com
 )

@@ -23,10 +23,13 @@ import aiohttp
 
 from config import bot, keys
 
-here_keys = keys['here']
+# That api key were publicly shown some time ago, and it still work.
+weather_apikey = 'd522aa97197fd864d36b418f39ebb323'
 
-get_coords = 'https://geocoder.api.here.com/6.2/geocode.json'
+get_coords = 'https://api.weather.com/v3/location/search'
 url = 'https://weather.com/pt-BR/clima/hoje/l'
+
+headers = {"Accept-Encoding", "gzip"}
 
 
 async def weather(msg):
@@ -36,26 +39,33 @@ async def weather(msg):
                 res = '*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._'
             else:
                 async with aiohttp.ClientSession() as session:
-                    r = await session.get(get_coords, params=dict(searchtext=msg['text'][7:],
-                                                                  app_id=here_keys['app_id'],
-                                                                  app_code=here_keys['app_code']))
-                    gjson = await r.json()
-                if len(gjson['Response']['View']) == 0:
+                    r = await session.get(get_coords, headers=headers,
+                                                      params=dict(apiKey=weather_apikey,
+                                                                  format="json",
+                                                                  language="pt-BR",
+                                                                  query=msg['text'][7:]))
+                    loc_json = await r.json()
+                if not gjson.get("location"):
                     return await bot.sendMessage(msg['chat']['id'], 'Localização não encontrada',
                                                  reply_to_message_id=msg['message_id'])
                 else:
-                    pos = gjson['Response']['View'][0]['Result'][0]['Location']['DisplayPosition']
+                    pos = loc_json['location']['placeId'][0]
                     async with aiohttp.ClientSession() as session:
-                        r = await session.get(f"{url}/{pos['Latitude']},{pos['Longitude']}")
-                        rtext = await r.text()
-                    wjson = re.findall(r'__data=({.*?});', rtext)
+                        r = await session.get(f"{url}/{pos}", headers=headers)
+                        res_text = await r.text()
+                    res_json = re.findall(r'__data=({.*?});', res_text)
                     # If the returned list is empty...
-                    if not wjson:
+                    if not res_json:
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
                                                      reply_to_message_id=msg['message_id'])
-                    wjson = json.loads(wjson[0])
-                    fkey = list(wjson['dal']['Location'])[0]
-                    fkey2 = list(wjson['dal']['Observation'])[0]
+                    res_json = json.loads(res_json[0])
+
+                    loc_key = next(iter(res_json['dal']['Location']))
+                    loc_dict = res_json['dal']['Location'][loc_key]['data']['location']
+
+                    obs_key = next(iter(res_json['dal']['Observation']))
+                    obs_dict = res_json['dal']['Observation'][obs_key]['data']['vt1observation']
+
                     res = '''*{}, {} - {}*:
 
 Temperatura: `{} °C`
@@ -63,13 +73,15 @@ Sensação térmica: `{} °C`
 Umidade do Ar: `{}%`
 Vento: `{} km/h`
 
-- _{}_'''.format(wjson['dal']['Location'][fkey]['data']['location']['city'],
-                 wjson['dal']['Location'][fkey]['data']['location']['adminDistrict'],
-                 wjson['dal']['Location'][fkey]['data']['location']['country'],
-                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['temperature'],
-                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['feelsLike'],
-                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['humidity'],
-                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['windSpeed'],
-                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['phrase'])
+- _{}_'''.format(loc_dict['city'],
+                 loc_dict['adminDistrict'],
+                 loc_dict['country'],
+
+                 obs_dict['temperature'],
+                 obs_dict['feelsLike'],
+                 obs_dict['humidity'],
+                 obs_dict['windSpeed'],
+                 obs_dict['phrase'])
+
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
