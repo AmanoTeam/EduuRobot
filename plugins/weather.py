@@ -29,7 +29,7 @@ weather_apikey = 'd522aa97197fd864d36b418f39ebb323'
 get_coords = 'https://api.weather.com/v3/location/search'
 url = 'https://weather.com/pt-BR/clima/hoje/l'
 
-headers = {"Accept-Encoding", "gzip"}
+headers = {"Accept-Encoding": "gzip"}
 
 
 async def weather(msg):
