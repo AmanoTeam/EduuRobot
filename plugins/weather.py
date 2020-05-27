@@ -54,8 +54,8 @@ async def weather(msg):
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
                                                      reply_to_message_id=msg['message_id'])
                     wjson = json.loads(wjson[0])
-                    fkey = list(wjson['dal']['getSunV3LocationPointUrlConfig'])[0]
-                    fkey2 = list(wjson['dal']['getSunV3CurrentObservationsUrlConfig'])[0]
+                    fkey = list(wjson['dal']['Location'])[0]
+                    fkey2 = list(wjson['dal']['Observation'])[0]
                     res = '''*{}, {} - {}*:
 
 Temperatura: `{} °C`
@@ -63,13 +63,13 @@ Sensação térmica: `{} °C`
 Umidade do Ar: `{}%`
 Vento: `{} km/h`
 
-- _{}_'''.format(wjson['dal']['getSunV3LocationPointUrlConfig'][fkey]['data']['location']['city'],
-                 wjson['dal']['getSunV3LocationPointUrlConfig'][fkey]['data']['location']['adminDistrict'],
-                 wjson['dal']['getSunV3LocationPointUrlConfig'][fkey]['data']['location']['country'],
-                 wjson['dal']['getSunV3CurrentObservationsUrlConfig'][fkey2]['data']['temperature'],
-                 wjson['dal']['getSunV3CurrentObservationsUrlConfig'][fkey2]['data']['temperatureFeelsLike'],
-                 wjson['dal']['getSunV3CurrentObservationsUrlConfig'][fkey2]['data']['relativeHumidity'],
-                 wjson['dal']['getSunV3CurrentObservationsUrlConfig'][fkey2]['data']['windSpeed'],
-                 wjson['dal']['getSunV3CurrentObservationsUrlConfig'][fkey2]['data']['cloudCoverPhrase'])
+- _{}_'''.format(wjson['dal']['Location'][fkey]['data']['location']['city'],
+                 wjson['dal']['Location'][fkey]['data']['location']['adminDistrict'],
+                 wjson['dal']['Location'][fkey]['data']['location']['country'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['temperature'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['feelsLike'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['humidity'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['windSpeed'],
+                 wjson['dal']['Observation'][fkey2]['data']['vt1observation']['phrase'])
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
