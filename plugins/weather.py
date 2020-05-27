@@ -66,16 +66,14 @@ async def weather(msg):
                     obs_key = next(iter(res_json['dal']['Observation']))
                     obs_dict = res_json['dal']['Observation'][obs_key]['data']['vt1observation']
 
-                    res = '''*{}, {} - {}*:
+                    res = '''*{}*:
 
 Temperatura: `{} °C`
 Sensação térmica: `{} °C`
 Umidade do Ar: `{}%`
 Vento: `{} km/h`
 
-- _{}_'''.format(loc_dict['city'],
-                 loc_dict['adminDistrict'],
-                 loc_dict['country'],
+- _{}_'''.format(loc_json['location']['address'][0],
 
                  obs_dict['temperature'],
                  obs_dict['feelsLike'],
