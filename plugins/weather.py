@@ -48,7 +48,7 @@ async def weather(msg):
                     async with aiohttp.ClientSession() as session:
                         r = await session.get(f"{url}/{pos['Latitude']},{pos['Longitude']}")
                         rtext = await r.text()
-                    wjson = re.findall(r'__data=({.*?});<', rtext)
+                    wjson = re.findall(r'__data=({.*?});', rtext)
                     # If the returned list is empty...
                     if not wjson:
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
