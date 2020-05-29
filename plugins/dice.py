@@ -8,6 +8,4 @@ from localization import GetLang
 async def dice(client, message):
     _ = GetLang(message).strs
     dicen = await client.send_dice(message.chat.id, reply_to_message_id=message.message_id)
-    await dicen.reply_text(_("dice.result").format(
-        number=dicen.dice.value
-    ))
+    await dicen.reply_text(_("dice.result").format(number=dicen.dice.value), quote=True)
