@@ -49,7 +49,7 @@ async def pypi(msg):
                 if r.status == 200:
                     json = await r.json()
                     pypi_info = escape_definition(json["info"])
-                    message = "<b>%s</b> by <i>%s</i> <%s>\n" \
+                    message = "<b>%s</b> by <i>%s</i> &lt;%s&gt;\n" \
                               "Platform: <b>%s</b>\n" \
                               "Version: <b>%s</b>\n" \
                               "License: <b>%s</b>\n" \
