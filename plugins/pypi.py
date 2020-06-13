@@ -49,13 +49,13 @@ async def pypi(msg):
                 if r.status == 200:
                     json = await r.json()
                     pypi_info = escape_definition(json["info"])
-                    message = "<b>%s</b> by <i>%s</i> (%s)\n" \
+                    message = "<b>%s</b> by <i>%s</i> <%s>\n" \
                               "Platform: <b>%s</b>\n" \
                               "Version: <b>%s</b>\n" \
                               "License: <b>%s</b>\n" \
                               "Summary: <b>%s</b>\n" % (
-                                  pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"],
-                                  pypi_info["version"], pypi_info["platform"], pypi_info["summary"])
+                                  pypi_info["name"], pypi_info["author"], pypi_info["author_email"], pypi_info["platform"] or "Not specified",
+                                  pypi_info["version"], pypi_info["license"] or "None", pypi_info["summary"])
                     if pypi_info['home_page'] and pypi_info['home_page'] != "UNKNOWN":
                         kb = InlineKeyboardMarkup(inline_keyboard=[
                                                   [dict(text='Package home page', url=pypi_info['home_page'])]])
