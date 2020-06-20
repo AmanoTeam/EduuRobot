@@ -60,11 +60,11 @@ async def weather(msg):
                                                      reply_to_message_id=msg['message_id'])
                     res_json = json.loads(res_json[0])
 
-                    loc_key = next(iter(res_json['dal']['Location']))
-                    loc_dict = res_json['dal']['Location'][loc_key]['data']['location']
+                    loc_key = next(iter(res_json['dal']['getSunV3LocationPointUrlConfig']))
+                    loc_dict = res_json['dal']['getSunV3LocationPointUrlConfig'][loc_key]['data']['location']
 
-                    obs_key = next(iter(res_json['dal']['Observation']))
-                    obs_dict = res_json['dal']['Observation'][obs_key]['data']['vt1observation']
+                    obs_key = next(iter(res_json['dal']['getSunV3CurrentObservationsUrlConfig']))
+                    obs_dict = res_json['dal']['getSunV3CurrentObservationsUrlConfig'][obs_key]['data']
 
                     res = '''*{}*:
 
@@ -76,10 +76,10 @@ Vento: `{} km/h`
 - _{}_'''.format(loc_json['location']['address'][0],
 
                  obs_dict['temperature'],
-                 obs_dict['feelsLike'],
-                 obs_dict['humidity'],
+                 obs_dict['temperatureFeelsLike'],
+                 obs_dict['relativeHumidity'],
                  obs_dict['windSpeed'],
-                 obs_dict['phrase'])
+                 obs_dict['cloudCoverPhrase'])
 
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
