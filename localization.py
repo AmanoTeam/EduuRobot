@@ -1,4 +1,5 @@
 import json
+import os.path
 from glob import glob
 from dbh import dbc, db
 from pyrogram.client.types.bots_and_keyboards import CallbackQuery
@@ -47,8 +48,8 @@ def get_lang(chat_id, chat_type):
 def cache_localizations(files):
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
-        lname = file.split("/")[1]
-        dic = json.load(open(file))
+        lname = file.split(os.path.sep)[1]
+        dic = json.load(open(file, encoding="utf-8"))
         ldict[lname].update(dic)
     return ldict
 
@@ -56,7 +57,7 @@ def cache_localizations(files):
 jsons = []
 
 for locale in enabled_locales:
-    jsons += glob("locales/%s/*.json" % locale)
+    jsons += glob(os.path.join("locales", locale, "*.json"))
 
 langdict = cache_localizations(jsons)
 
