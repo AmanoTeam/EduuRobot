@@ -15,5 +15,8 @@
   "start.info_page": "",
   "sudos.speedtest": "",
   "sudos.forbidden_command": "",
-  "sudos.restarting": ""
+  "sudos.restarting": "",
+  "translate.translate_usage": "",
+  "translate.translating": "",
+  "translate.translation": ""
 }

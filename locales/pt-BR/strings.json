@@ -15,5 +15,8 @@
   "start.info_page": "• EduuRobot\n\nVersão: {version}\n\n[Código fonte](https://github.com/AmanoTeam/EduuRobot)\nDesenvolvedores: [Amano Team](https://github.com/AmanoTeam)\nDono: [Edu :3](tg://user?id=123892996)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Teste de velocidade**\n\n**🌐 Host:** `{host}`\n\n**🏓 Latência:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "Comando proibido.",
-  "sudos.restarting": "Reiniciando..."
+  "sudos.restarting": "Reiniciando...",
+  "translate.translate_usage": "**Uso:** `/tr <language> texto para tradução` (Também pode ser usado em resposta a uma mensagem).",
+  "translate.translating": "Traduzindo...",
+  "translate.translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Tradução:</b> <code>{translation}</code>"
 }
