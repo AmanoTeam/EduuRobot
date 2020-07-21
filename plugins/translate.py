@@ -3,7 +3,7 @@ import html
 import re
 
 from googletrans import Translator, LANGUAGES
-from pyrogram import Client, Filters
+from pyrogram import Client, Filters, Message
 
 from config import prefix
 
@@ -22,18 +22,18 @@ def get_lang(text):
 
 
 @Client.on_message(Filters.command("tr", prefix))
-async def translate(client, message):
+async def translate(c: Client, m: Message):
     translator = Translator()
-    text = message.text[4:]
+    text = m.text[4:]
     lang = get_lang(text)
-    if message.reply_to_message:
-        text = message.reply_to_message.text or message.reply_to_message.caption
+    if m.reply_to_message:
+        text = m.reply_to_message.text or m.reply_to_message.caption
     else:
         text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
 
     if len(text):
-        sent = await message.reply_text("Translating...",
-                                        reply_to_message_id=message.message_id)
+        sent = await m.reply_text("Translating...",
+                                  reply_to_message_id=message.message_id)
         langs = {}
 
         if len(lang.split("-")) > 1:
@@ -57,10 +57,10 @@ async def translate(client, message):
             text = text.replace(f"<{key}>", scdict[key])
 
         res = html.escape(text)
-        await sent.edit("""<b>Language:</b> {} -> {}
+        await sent.edit_text("""<b>Language:</b> {} -> {}
 <b>Translation:</b> <code>{}</code>""".format(trres.src, trres.dest, res),
                         parse_mode="HTML")
 
     else:
-        await message.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",
-                                 reply_to_message_id=message.message_id, parse_mode="md")
+        await m.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",
+                                 reply_to_message_id=m.message_id, parse_mode="md")

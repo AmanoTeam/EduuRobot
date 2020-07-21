@@ -1,16 +1,16 @@
 import random
 import aiohttp
 
-from pyrogram import Client, Filters
+from pyrogram import Client, Filters, Message
 
 from config import prefix
 from localization import GetLang
 
 
 @Client.on_message(Filters.command("coub", prefix))
-async def coub(client, message):
-    _ = GetLang(message).strs
-    text = message.text[6:]
+async def coub(c: Client, m: Message):
+    _ = GetLang(m).strs
+    text = m.text[6:]
     async with aiohttp.ClientSession() as session:
         r = await session.get('https://coub.com/api/v2/search/coubs',
                               params=dict(q=text))
@@ -20,6 +20,6 @@ async def coub(client, message):
         links = content['permalink']
         title = content['title']
     except IndexError:
-        await message.reply_text(_("general.no_results"))
+        await m.reply_text(_("general.no_results"))
     else:
-        await message.reply_text(f'**[{title}](https://coub.com/v/{links})**')
+        await m.reply_text(f'**[{title}](https://coub.com/v/{links})**')
