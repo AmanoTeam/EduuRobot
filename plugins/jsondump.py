@@ -1,5 +1,5 @@
 import html
-import os
+import io
 
 from pyrogram import Client, Filters, Message
 
@@ -11,8 +11,6 @@ async def jsondump(c: Client, m: Message):
     if len(str(m)) < 3000 and "-f" not in m.command:
         await m.reply_text(f"<code>{html.escape(str(m))}</code>", parse_mode="HTML")
     else:
-        fname = f"dump-{m.chat.id}.json"
-        with open(fname, "w") as f:
-            f.write(str(m))
-        await m.reply_document(fname)
-        os.remove(fname)
+        bio = io.BytesIO(str(m).encode())
+        bio.name = f"dump-{m.chat.id}.json"
+        await m.reply_document(bio)
