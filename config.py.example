@@ -22,7 +22,7 @@ disabled_plugins = []
 
 
 # API keys
-GIPHY_API_KEY = ""
+TENOR_API_KEY = ""
 
 
 # Bot version, do not touch this
