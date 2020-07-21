@@ -1,6 +1,4 @@
-import base64
 import html
-import re
 
 from googletrans import Translator, LANGUAGES
 from pyrogram import Client, Filters, Message
@@ -33,7 +31,7 @@ async def translate(c: Client, m: Message):
 
     if len(text):
         sent = await m.reply_text("Translating...",
-                                  reply_to_message_id=message.message_id)
+                                  reply_to_message_id=m.message_id)
         langs = {}
 
         if len(lang.split("-")) > 1:
@@ -42,19 +40,8 @@ async def translate(c: Client, m: Message):
         else:
             langs["dest"] = lang
 
-        special_chars = re.findall(r"[^\w\s -@ \[-`{-~]+", text)
-
-        scdict = {}
-        for char in special_chars:
-            sckey = base64.b16encode(char.encode()).decode()
-            scdict[sckey] = char
-            text = text.replace(char, f"<{sckey}>")
-
         trres = translator.translate(text, **langs)
         text = trres.text
-
-        for key in scdict:
-            text = text.replace(f"<{key}>", scdict[key])
 
         res = html.escape(text)
         await sent.edit_text("""<b>Language:</b> {} -> {}
@@ -63,4 +50,4 @@ async def translate(c: Client, m: Message):
 
     else:
         await m.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",
-                                 reply_to_message_id=m.message_id, parse_mode="md")
+                           reply_to_message_id=m.message_id, parse_mode="md")
