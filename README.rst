@@ -10,7 +10,7 @@ A complete rewrite of bot's code using Pyrogram and asynchronous programming.
 Requirements
 ============
 - Python 3.6+
-- An Unix-like operating system (Running on Windows isn't supported. If you are on Windows 10, you can use WSL)
+- An Unix-like operating system (Running on Windows isn't 100% supported. In case you find any issues inside Windows, please file an issue)
 
 Setup
 =====
