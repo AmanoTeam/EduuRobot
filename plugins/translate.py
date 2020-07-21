@@ -3,6 +3,7 @@ import html
 from googletrans import Translator, LANGUAGES
 from pyrogram import Client, Filters, Message
 
+from localization import GetLang
 from config import prefix
 
 
@@ -21,6 +22,7 @@ def get_lang(text):
 
 @Client.on_message(Filters.command("tr", prefix))
 async def translate(c: Client, m: Message):
+    _ = GetLang(m).strs
     translator = Translator()
     text = m.text[4:]
     lang = get_lang(text)
@@ -30,7 +32,7 @@ async def translate(c: Client, m: Message):
         text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
 
     if len(text):
-        sent = await m.reply_text("Translating...",
+        sent = await m.reply_text(_("translate.translating"),
                                   reply_to_message_id=m.message_id)
         langs = {}
 
@@ -44,10 +46,14 @@ async def translate(c: Client, m: Message):
         text = trres.text
 
         res = html.escape(text)
-        await sent.edit_text("""<b>Language:</b> {} -> {}
-<b>Translation:</b> <code>{}</code>""".format(trres.src, trres.dest, res),
-                        parse_mode="HTML")
+        await sent.edit_text(_("translate.translation").format(
+                from_lang=trres.src,
+                to_lang=trres.dest,
+                translation=res
+        ),
+                             parse_mode="HTML")
 
     else:
-        await m.reply_text("Usage: /tr <language> text for translation (It can be used in reply to a message).",
-                           reply_to_message_id=m.message_id, parse_mode="md")
+        await m.reply_text(_("translate.translate_usage"),
+                           reply_to_message_id=m.message_id,
+                           parse_mode="markdown")
