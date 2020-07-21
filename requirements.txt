@@ -1,5 +1,5 @@
 googletrans
-https://github.com/pyrogram/pyrogram/archive/asyncio.zip
+https://github.com/pyrogram/pyrogram/archive/asyncio-dev.zip
 tgcrypto
 speedtest-cli
 aiohttp

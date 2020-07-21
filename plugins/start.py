@@ -24,7 +24,7 @@ async def start(c: Client, m: Message):
                            reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.callback_data("start_back"))
+@Client.on_callback_query(Filters.regex("^start_back$"))
 async def start_back(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     # TODO: Create a function to generate translatable keyboards instead of duplicating code fragments
@@ -38,7 +38,7 @@ async def start_back(c: Client, m: CallbackQuery):
                               reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.callback_data("commands"))
+@Client.on_callback_query(Filters.regex("^commands$"))
 async def commands(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -47,7 +47,7 @@ async def commands(c: Client, m: CallbackQuery):
     await m.message.edit_text("commands", reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.callback_data("infos"))
+@Client.on_callback_query(Filters.regex("^infos$"))
 async def infos(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     res = _("start.info_page").format(
