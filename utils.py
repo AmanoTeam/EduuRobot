@@ -6,11 +6,14 @@ from dbh import dbc, db
 from asyncio.futures import Future
 
 
+group_types = ("group", "supergroup")
+
+
 def add_chat(chat_id, chat_type):
     if chat_type == "private":
         dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
         db.commit()
-    elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
+    elif chat_type in group_types: # groups and supergroups share the same table
         dbc.execute("INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True))
         db.commit()
     elif chat_type == "channel":
@@ -25,7 +28,7 @@ def chat_exists(chat_id, chat_type):
     if chat_type == "private":
         dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
         return True if dbc.fetchone() else False
-    elif chat_type == "group" or chat_type == "supergroup": # groups and supergroups share the same table
+    elif chat_type in group_types: # groups and supergroups share the same table
         dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
         return True if dbc.fetchone() else False
     elif chat_type == "channel":
@@ -81,7 +84,7 @@ async def meval(code, local_vars):
 
     r = await locs["tmp"](**local_vars)
 
-    if isinstance(r, (Future, types.CoroutineType):
+    if isinstance(r, (Future, types.CoroutineType)):
         r = await r  # workaround for 3.5
     try:
         globals().clear()
