@@ -81,7 +81,7 @@ async def meval(code, local_vars):
 
     r = await locs["tmp"](**local_vars)
 
-    if isinstance(r, types.CoroutineType) or isinstance(r, Future):
+    if isinstance(r, (Future, types.CoroutineType):
         r = await r  # workaround for 3.5
     try:
         globals().clear()
