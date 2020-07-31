@@ -31,7 +31,7 @@ async def translate(c: Client, m: Message):
     else:
         text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
 
-    if len(text):
+    if text:
         sent = await m.reply_text(_("translate.translating"),
                                   reply_to_message_id=m.message_id)
         langs = {}
