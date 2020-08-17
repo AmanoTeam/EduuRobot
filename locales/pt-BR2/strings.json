@@ -16,7 +16,7 @@
   "sudos.speedtest": "**Teste de lerdeza**\n\n**🌐 Houst:** `{host}`\n\n**🏓 Raquete:** `{ping} ms`\n**⬇️ Seta para baixo:** `{download} Mbps`\n**⬆️ Seta para cima:** `{upload} Mbps`",
   "sudos.forbidden_command": "Ow vacilau, isso é proíbido.",
   "sudos.restarting": "Apagando a porra toda...",
-  "translate.translate_usage": "",
-  "translate.translating": "",
-  "translate.translation": ""
+  "translate.translate_usage": "**Ow vc usa assim:** ~~/tr <indioma> e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara~~ aprende o indioma.",
+  "translate.translating": "Já aprendeu o indioma?",
+  "translate.translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>"
 }
