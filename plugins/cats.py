@@ -10,7 +10,7 @@ from localization import GetLang
 async def cat(c: Client, m: Message):
     _ = GetLang(m).strs
     async with aiohttp.ClientSession() as http:
-        r = await http.request("GET", "https://aws.random.cat/meow")
+        r = await http.request("GET", "https://api.thecatapi.com/v1/images/search")
         rj = await r.json()
 
-    await m.reply_photo(rj["file"], caption=_("cats.meow"))
+    await m.reply_photo(rj[0]["url"], caption=_("cats.meow"))
