@@ -58,7 +58,7 @@ async def weather(msg):
                     if not res_json:
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
                                                      reply_to_message_id=msg['message_id'])
-                    res_json = json.loads(res_json[0].replace("\\", ""))
+                    res_json = json.loads(res_json[0].encode().decode("unicode_escape"))
 
                     loc_key = next(iter(res_json['dal']['getSunV3LocationPointUrlConfig']))
                     loc_dict = res_json['dal']['getSunV3LocationPointUrlConfig'][loc_key]['data']['location']
