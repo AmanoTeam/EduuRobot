@@ -16,7 +16,7 @@ headers = {"User-Agent": "curl/7.72.0"}
 @Client.on_message(Filters.command(["clima", "weather"], prefix))
 async def weather(c: Client, m: Message):
     if len(m.command) == 1:
-        await m.reply_text("*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._")
+        await m.reply_text("**Uso:** `/clima <cidade>` - __Obtem informações meteorológicas da cidade.__")
     else:
         async with httpx.AsyncClient(http2=True) as http:
             r = await http.get(get_coords, headers=headers,
