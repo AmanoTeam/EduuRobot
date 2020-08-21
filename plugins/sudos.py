@@ -25,7 +25,7 @@ async def sudos(c: Client, m: Message):
 @Client.on_message(Filters.command("cmd", prefix) & Filters.user(sudoers))
 async def run_cmd(c: Client, m: Message):
     _ = GetLang(m).strs
-    cmd = re.split(r"[\n ]+", m.text, 1)[1]
+    cmd = m.text.split(maxsplit=1)[1]
     if re.match('(?i)poweroff|halt|shutdown|reboot', cmd):
         res = _('sudos.forbidden_command')
     else:
@@ -77,7 +77,7 @@ async def evals(c: Client, m: Message):
 @Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
-    code = re.split(r"[\n ]+", m.text, 1)[1]
+    code = m.text.split(maxsplit=1)[1]
     exec('async def __ex(client, message): ' + ' '.join('\n ' + l for l in code.split('\n')))
     with redirect_stdout(strio):
         try:
