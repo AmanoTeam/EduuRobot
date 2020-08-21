@@ -1,5 +1,5 @@
 import random
-import aiohttp
+import httpx
 
 from pyrogram import Client, Filters, Message
 
@@ -11,10 +11,10 @@ from localization import GetLang
 async def coub(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[6:]
-    async with aiohttp.ClientSession() as session:
-        r = await session.get('https://coub.com/api/v2/search/coubs',
-                              params=dict(q=text))
-        rjson = await r.json()
+    async with httpx.AsyncClient(http2=True) as http:
+        r = await http.get('https://coub.com/api/v2/search/coubs',
+                           params=dict(q=text))
+        rjson = r.json()
     try:
         content = random.choice(rjson['coubs'])
         links = content['permalink']
