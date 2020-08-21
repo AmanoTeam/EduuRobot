@@ -10,6 +10,8 @@ weather_apikey = "d522aa97197fd864d36b418f39ebb323"
 get_coords = "https://api.weather.com/v3/location/search"
 url = "https://weather.com/pt-BR/clima/hoje/l"
 
+headers = {"User-Agent": "curl/7.72.0"}
+
 
 @Client.on_message(Filters.command(["clima", "weather"], prefix))
 async def weather(c: Client, m: Message):
@@ -17,7 +19,7 @@ async def weather(c: Client, m: Message):
         m.reply_text("*Uso:* `/clima <cidade>` - _Obtem informações meteorológicas da cidade._")
     else:
         async with httpx.AsyncClient(http2=True) as http:
-            r = await http.get(get_coords,
+            r = await http.get(get_coords, headers=headers,
                                params=dict(apiKey=weather_apikey,
                                            format="json",
                                            language="pt-BR",
@@ -28,7 +30,7 @@ async def weather(c: Client, m: Message):
         else:
             pos = loc_json["location"]["placeId"][0]
             async with httpx.AsyncClient(http2=True) as http:
-                r = await http.get(f"{url}/{pos}")
+                r = await http.get(f"{url}/{pos}", headers=headers)
             res_json = regex.findall(r"__data=JSON\.parse\(\"(.*)\"\);</script><script>window\.env", r.text)
             # If the returned list is empty...
             if not res_json:
