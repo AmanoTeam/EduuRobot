@@ -2,5 +2,5 @@ googletrans>=3.0.0
 https://github.com/pyrogram/pyrogram/archive/asyncio-dev.zip
 tgcrypto
 speedtest-cli
-httpx==0.14.*
+httpx[http2]==0.14.*
 regex
