@@ -21,7 +21,7 @@ import re
 import json
 import aiohttp
 
-from config import bot, keys
+from config import bot
 
 # That api key were publicly shown some time ago, and it still work.
 weather_apikey = 'd522aa97197fd864d36b418f39ebb323'
@@ -59,9 +59,6 @@ async def weather(msg):
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
                                                      reply_to_message_id=msg['message_id'])
                     res_json = json.loads(res_json[0].encode().decode("unicode_escape"))
-
-                    loc_key = next(iter(res_json['dal']['getSunV3LocationPointUrlConfig']))
-                    loc_dict = res_json['dal']['getSunV3LocationPointUrlConfig'][loc_key]['data']['location']
 
                     obs_key = next(iter(res_json['dal']['getSunV3CurrentObservationsUrlConfig']))
                     obs_dict = res_json['dal']['getSunV3CurrentObservationsUrlConfig'][obs_key]['data']

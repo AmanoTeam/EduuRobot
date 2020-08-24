@@ -41,7 +41,7 @@ from urllib3.exceptions import ReadTimeoutError
 import backups
 import db_handler as db
 from config import bot, na_bot, enabled_plugins, logs, version, backups_chat
-from utils import send_to_dogbin, send_to_amano
+from utils import send_to_amano
 
 ep = []
 n_ep = {}
@@ -76,6 +76,7 @@ async def handle(msg):
 - <a href="{exc_url}">Erro completo</a>'''.format(plugin=plugin, exc_type=e.__class__.__name__,
                                                   exc_desc=html.escape(e.description if isinstance(e, TelegramError) else str(e)), exc_url=exc_url),
                                parse_mode='html', disable_web_page_preview=True)
+            raise
 
 
 if __name__ == '__main__':
