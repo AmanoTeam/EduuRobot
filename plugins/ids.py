@@ -1,11 +1,12 @@
 import html
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from config import prefix
 
 
-@Client.on_message(Filters.command("id", prefix) & Filters.private)
+@Client.on_message(filters.command("id", prefix) & filters.private)
 async def ids_private(c: Client, m: Message):
     await m.reply_text("<b>Informações:</b>\n\n"
                        "<b>Nome:</b> <code>{first_name} {last_name}</code>\n"
@@ -23,7 +24,7 @@ async def ids_private(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@Client.on_message(Filters.command("id", prefix) & Filters.group)
+@Client.on_message(filters.command("id", prefix) & filters.group)
 async def ids(c: Client, m: Message):
     data = m.reply_to_message or m
     await m.reply_text("<b>Informações do chat:</b>\n\n"

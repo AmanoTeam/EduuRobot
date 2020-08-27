@@ -1,7 +1,8 @@
 import html
 
 from googletrans import Translator, LANGUAGES
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from localization import GetLang
 from config import prefix
@@ -20,7 +21,7 @@ def get_lang(text):
     return lang
 
 
-@Client.on_message(Filters.command("tr", prefix))
+@Client.on_message(filters.command("tr", prefix))
 async def translate(c: Client, m: Message):
     _ = GetLang(m).strs
     translator = Translator()

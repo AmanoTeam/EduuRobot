@@ -1,11 +1,12 @@
 from datetime import datetime
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from config import prefix
 
 
-@Client.on_message(Filters.command("ping", prefix))
+@Client.on_message(filters.command("ping", prefix))
 async def ping(c: Client, m: Message):
     first = datetime.now()
     sent = await m.reply_text("**Pong!**")

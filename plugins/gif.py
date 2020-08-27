@@ -1,7 +1,8 @@
 import httpx
 import logging
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from localization import GetLang
 from config import TENOR_API_KEY, prefix
@@ -11,7 +12,7 @@ if not TENOR_API_KEY:
     logging.warning(f"[{__name__}] You need to fill TENOR_API_KEY in your config file in order to use this plugin.")
 
 
-@Client.on_message(Filters.command("gif", prefix))
+@Client.on_message(filters.command("gif", prefix))
 async def gif(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[5:]

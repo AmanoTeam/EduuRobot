@@ -1,11 +1,12 @@
 import html
 import regex
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 from localization import GetLang
 
 
-@Client.on_message(Filters.regex(r'^s/(.+)?/(.+)?(/.+)?') & Filters.reply)
+@Client.on_message(filters.regex(r'^s/(.+)?/(.+)?(/.+)?') & filters.reply)
 async def sed(c: Client, m: Message):
     _ = GetLang(m).strs
     exp = regex.split(r'(?<![^\\]\\)/', m.text)

@@ -3,7 +3,7 @@ import os.path
 from glob import glob
 from dbh import dbc, db
 from utils import group_types
-from pyrogram.client.types.bots_and_keyboards import CallbackQuery
+from pyrogram.types import CallbackQuery
 
 
 enabled_locales = [

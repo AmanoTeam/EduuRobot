@@ -1,13 +1,14 @@
 import random
 import httpx
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from config import prefix
 from localization import GetLang
 
 
-@Client.on_message(Filters.command("coub", prefix))
+@Client.on_message(filters.command("coub", prefix))
 async def coub(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[6:]

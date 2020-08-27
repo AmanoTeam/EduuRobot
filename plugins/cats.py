@@ -1,12 +1,13 @@
 import httpx
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from config import prefix
 from localization import GetLang
 
 
-@Client.on_message(Filters.command("cat", prefix))
+@Client.on_message(filters.command("cat", prefix))
 async def cat(c: Client, m: Message):
     _ = GetLang(m).strs
     async with httpx.AsyncClient(http2=True) as http:

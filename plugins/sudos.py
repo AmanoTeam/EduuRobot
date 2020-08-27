@@ -8,7 +8,8 @@ import traceback
 from contextlib import redirect_stdout
 
 import speedtest
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from config import sudoers
 from localization import GetLang
@@ -17,12 +18,12 @@ from utils import meval
 prefix = "!"
 
 
-@Client.on_message(Filters.command("sudos", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("sudos", prefix) & filters.user(sudoers))
 async def sudos(c: Client, m: Message):
     await m.reply_text("Test")
 
 
-@Client.on_message(Filters.command("cmd", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("cmd", prefix) & filters.user(sudoers))
 async def run_cmd(c: Client, m: Message):
     _ = GetLang(m).strs
     cmd = m.text.split(maxsplit=1)[1]
@@ -38,7 +39,7 @@ async def run_cmd(c: Client, m: Message):
     await m.reply_text(res)
 
 
-@Client.on_message(Filters.command("upgrade", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("upgrade", prefix) & filters.user(sudoers))
 async def upgrade(c: Client, m: Message):
     _ = GetLang(m).strs
     sm = await m.reply_text("Upgrading sources...")
@@ -58,7 +59,7 @@ async def upgrade(c: Client, m: Message):
         stdout = await proc.communicate()
 
 
-@Client.on_message(Filters.command("eval", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("eval", prefix) & filters.user(sudoers))
 async def evals(c: Client, m: Message):
     text = m.text[6:]
     try:
@@ -74,7 +75,7 @@ async def evals(c: Client, m: Message):
             await m.reply_text(e)
 
 
-@Client.on_message(Filters.command("exec", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("exec", prefix) & filters.user(sudoers))
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
@@ -92,7 +93,7 @@ async def execs(c: Client, m: Message):
     await m.reply_text(out, parse_mode="HTML")
 
 
-@Client.on_message(Filters.command("speedtest", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("speedtest", prefix) & filters.user(sudoers))
 async def test_speed(c: Client, m: Message):
     _ = GetLang(m).strs
     string = _("sudos.speedtest")
@@ -106,7 +107,7 @@ async def test_speed(c: Client, m: Message):
     await sent.edit_text(string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul))
 
 
-@Client.on_message(Filters.command("restart", prefix) & Filters.user(sudoers))
+@Client.on_message(filters.command("restart", prefix) & filters.user(sudoers))
 async def restart(c: Client, m: Message):
     _ = GetLang(m).strs
     await m.reply_text(_("sudos.restarting"))

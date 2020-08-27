@@ -1,10 +1,11 @@
-from pyrogram import CallbackQuery, Client, Filters, Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import Client, filters
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 from config import prefix, version
 from localization import GetLang
 
 
-@Client.on_message(Filters.command("start", prefix))
+@Client.on_message(filters.command("start", prefix))
 async def start(c: Client, m: Message):
     _ = GetLang(m).strs
     if m.chat.type == "private":
@@ -24,7 +25,7 @@ async def start(c: Client, m: Message):
                            reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.regex("^start_back$"))
+@Client.on_callback_query(filters.regex("^start_back$"))
 async def start_back(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     # TODO: Create a function to generate translatable keyboards instead of duplicating code fragments
@@ -38,7 +39,7 @@ async def start_back(c: Client, m: CallbackQuery):
                               reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.regex("^commands$"))
+@Client.on_callback_query(filters.regex("^commands$"))
 async def commands(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -47,7 +48,7 @@ async def commands(c: Client, m: CallbackQuery):
     await m.message.edit_text("commands", reply_markup=keyboard)
 
 
-@Client.on_callback_query(Filters.regex("^infos$"))
+@Client.on_callback_query(filters.regex("^infos$"))
 async def infos(c: Client, m: CallbackQuery):
     _ = GetLang(m).strs
     res = _("start.info_page").format(

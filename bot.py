@@ -1,6 +1,6 @@
 import asyncio
 
-from pyrogram import Client
+from pyrogram import Client, idle
 
 from config import TOKEN, disabled_plugins, log_chat, API_ID, API_HASH
 
@@ -12,7 +12,7 @@ async def run_client(client):
     await client.start()
     await client.send_message(log_chat, "**Bot started**\n\n"
                                         f"**Version:** {version}")
-    await client.idle()
+    await idle()
 
 client = Client("bot", API_ID, API_HASH, bot_token=TOKEN, plugins=dict(root="plugins", exclude=disabled_plugins))
 

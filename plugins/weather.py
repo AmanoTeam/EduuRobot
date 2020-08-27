@@ -2,7 +2,8 @@ import regex
 import json
 import httpx
 from config import prefix
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 # That api key were publicly shown some time ago, but it still works.
 weather_apikey = "d522aa97197fd864d36b418f39ebb323"
@@ -13,7 +14,7 @@ url = "https://weather.com/pt-BR/clima/hoje/l"
 headers = {"User-Agent": "curl/7.72.0"}
 
 
-@Client.on_message(Filters.command(["clima", "weather"], prefix))
+@Client.on_message(filters.command(["clima", "weather"], prefix))
 async def weather(c: Client, m: Message):
     if len(m.command) == 1:
         await m.reply_text("**Uso:** `/clima <cidade>` - __Obtem informações meteorológicas da cidade.__")
