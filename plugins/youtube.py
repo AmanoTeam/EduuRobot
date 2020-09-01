@@ -22,32 +22,28 @@ import re
 
 import aiohttp
 import youtube_dl
-from bs4 import BeautifulSoup
 
 from config import bot
 from utils import pretty_size
 
 ydl = youtube_dl.YoutubeDL({'outtmpl': 'dls/%(title)s.%(ext)s', 'format': '140', 'noplaylist': True})
 
+yt_headers = {"x-youtube-client-name": "1", "x-youtube-client-version": "2.20200827"}
+
 
 async def search_yt(query):
     url_base = "https://www.youtube.com/results"
-    url_yt = "https://www.youtube.com"
+    url_yt = "https://www.youtube.com/watch?v="
     async with aiohttp.ClientSession() as session:
-        r = await session.get(url_base, params=dict(q=query))
-        page = await r.text()
-    soup = BeautifulSoup(page, "html.parser")
-    id_url = None
+        r = await session.get(url_base, params=dict(search_query=query, pbj="1"), headers=yt_headers)
+        page = await r.json()
     list_videos = []
-    for link in soup.find_all('a'):
-        url = link.get('href')
-        title = link.get('title')
-        if url.startswith("/watch") and (id_url != url) and (title is not None):
-            id_url = url
-            dic = {'title': title, 'url': url_yt + url}
+    for video in page[1]["response"]["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]:
+        if video.get("videoRenderer"):
+            vid_id = video["videoRenderer"]["videoId"]
+            title = video["videoRenderer"]["title"]["runs"][0]["text"]
+            dic = {'title': title, 'url': url_yt + vid_id}
             list_videos.append(dic)
-        else:
-            pass
     return list_videos
 
 
