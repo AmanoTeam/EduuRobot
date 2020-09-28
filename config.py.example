@@ -19,7 +19,6 @@ bot_id = me['id']
 
 
 keys = dict(
-    yandex = 'key_here',                                            #You can get a key at https://tech.yandex.com/translate
     giphy = 'key_here',                                             #You can get a key at https://developers.giphy.com
 )
 
