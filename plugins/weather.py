@@ -1,15 +1,13 @@
-import regex
-import json
 import httpx
 from config import prefix
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-# That api key were publicly shown some time ago, but it still works.
-weather_apikey = "d522aa97197fd864d36b418f39ebb323"
+# Api key used in weather.com's mobile app.
+weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
 get_coords = "https://api.weather.com/v3/location/search"
-url = "https://weather.com/pt-BR/clima/hoje/l"
+url = "https://api.weather.com/v3/aggcommon/v3-wx-forecast-daily-15day-cognitiveHealth;vt1idxBreathingDaypart;v3-wx-conditions-historical-dailysummary-30day;vt1wwir;v3-wx-forecast-hourly-10day;vt1nowcast;v2idxRunDaypart5;vt1pastpollen;vt1contentMode;v3-location-point;vt1pollenobs;v3-wx-globalAirQuality;vt1currentTides;v3-wx-observations-current;v2idxDrySkinDaypart15;v3-wx-forecast-daily-15day;v3alertsHeadlines;vt1precipitation;vt1runweatherhourly"
 
 headers = {"User-Agent": "curl/7.72.0"}
 
@@ -27,19 +25,23 @@ async def weather(c: Client, m: Message):
                                            query=m.text.split(maxsplit=1)[1]))
             loc_json = r.json()
         if not loc_json.get("location"):
-            await m.reply_text("Localização não encontrada")
+            await m.reply_text("Localização não encontrada.")
         else:
-            pos = loc_json["location"]["placeId"][0]
+            pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
             async with httpx.AsyncClient(http2=True) as http:
-                r = await http.get(f"{url}/{pos}", headers=headers)
-            res_json = regex.findall(r"__data=JSON\.parse\(\"(.*)\"\);</script><script>window\.env", r.text)
-            # If the returned list is empty...
-            if not res_json:
-                return await m.reply_text("Esta localização não possui dados meteorológicos.")
-            res_json = json.loads(res_json[0].encode().decode("unicode_escape"))
+                r = await http.get(url, headers=headers,
+                                   params=dict(apiKey=weather_apikey,
+                                               format="json",
+                                               language="pt-BR",
+                                               pollenDays=0,
+                                               pollenStartDate="20200830",
+                                               geocode=pos,
+                                               scale="EPA",
+                                               conditionType="all",
+                                               units="m"))
+                res_json = r.json()
 
-            obs_key = next(iter(res_json["dal"]["getSunV3CurrentObservationsUrlConfig"]))
-            obs_dict = res_json["dal"]["getSunV3CurrentObservationsUrlConfig"][obs_key]["data"]
+            obs_dict = res_json["v3-wx-observations-current"]
 
             res = """**{}**:
 
@@ -54,6 +56,6 @@ Vento: `{} km/h`
                  obs_dict["temperatureFeelsLike"],
                  obs_dict["relativeHumidity"],
                  obs_dict["windSpeed"],
-                 obs_dict["cloudCoverPhrase"])
+                 obs_dict["wxPhraseLong"])
 
             await m.reply_text(res, parse_mode="markdown")
