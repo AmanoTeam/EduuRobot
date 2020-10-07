@@ -18,5 +18,10 @@
   "sudos.restarting": "Apagando a porra toda...",
   "translate.translate_usage": "**Ow vc usa assim:** ~~/tr <indioma> e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara~~ aprende o indioma.",
   "translate.translating": "Já aprendeu o indioma?",
-  "translate.translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>"
+  "translate.translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nTemperature: `{temperature} °F`\nFeels like: `{feels_like} °F`\nAir humidity: `{air_humidity}%`\nWind speed: `{wind_speed} mph`\n\n- __{overview}__",
+  "weather.location_not_found": "Location not found.",
+  "weather.temperature_unit": "e",
+  "weather.weather_language": "en-US",
+  "weather.weather_usage": "**Usage:** `/weather location or city` - Get weather information from __location or city__."
 }
