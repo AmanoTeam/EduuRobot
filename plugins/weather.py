@@ -1,5 +1,6 @@
 import httpx
 from config import prefix
+from localization import GetLang
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -14,44 +15,38 @@ headers = {"User-Agent": "curl/7.72.0"}
 
 @Client.on_message(filters.command(["clima", "weather"], prefix))
 async def weather(c: Client, m: Message):
+    _ = GetLang(m).strs
     if len(m.command) == 1:
-        await m.reply_text("**Uso:** `/clima <cidade>` - __Obtem informações meteorológicas da cidade.__")
+        await m.reply_text(_("weather.weather_usage"))
     else:
         async with httpx.AsyncClient(http2=True) as http:
             r = await http.get(get_coords, headers=headers,
                                params=dict(apiKey=weather_apikey,
                                            format="json",
-                                           language="pt-BR",
+                                           language=_("weather.weather_language"),
                                            query=m.text.split(maxsplit=1)[1]))
             loc_json = r.json()
         if not loc_json.get("location"):
-            await m.reply_text("Localização não encontrada.")
+            await m.reply_text(_("weather.location_not_found"))
         else:
             pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
             async with httpx.AsyncClient(http2=True) as http:
                 r = await http.get(url, headers=headers,
                                    params=dict(apiKey=weather_apikey,
                                                format="json",
-                                               language="pt-BR",
+                                               language=_("weather.weather_language"),
                                                geocode=pos,
-                                               units="m"))
+                                               units=_("weather.temperature_unit")))
                 res_json = r.json()
 
             obs_dict = res_json["v3-wx-observations-current"]
 
-            res = """**{}**:
+            res = _("weather.details").format(location=loc_json["location"]["address"][0],
 
-Temperatura: `{} °C`
-Sensação térmica: `{} °C`
-Umidade do Ar: `{}%`
-Vento: `{} km/h`
-
-- __{}__""".format(loc_json["location"]["address"][0],
-
-                 obs_dict["temperature"],
-                 obs_dict["temperatureFeelsLike"],
-                 obs_dict["relativeHumidity"],
-                 obs_dict["windSpeed"],
-                 obs_dict["wxPhraseLong"])
+                                              temperature=obs_dict["temperature"],
+                                              feels_like=obs_dict["temperatureFeelsLike"],
+                                              air_humidity=obs_dict["relativeHumidity"],
+                                              wind_speed=obs_dict["windSpeed"],
+                                              overview=obs_dict["wxPhraseLong"])
 
             await m.reply_text(res, parse_mode="markdown")
