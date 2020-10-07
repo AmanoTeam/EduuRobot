@@ -15,13 +15,5 @@
   "start.info_page": "• EduuRobot\n\nVersione: {version}\n\n[Codice sorgente](https://github.com/AmanoTeam/EduuRobot)\nDevelopers: [Amano Team](https://github.com/AmanoTeam)\nOwner: [Edu :3](tg://user?id=123892996)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Host:** `{host}\n\n**🏓 Ping:** `{ping} ms`\n**⬇ Download:** `{download} Mbps`\n**⬆ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "Non puoi eseguire questo comando.",
-  "sudos.restarting": "Mi sto riavviando...",
-  "translate.translate_usage": "**Usage:** `/tr <language> text for translation` (Can be also used in reply to a message).",
-  "translate.translating": "Translating...",
-  "translate.translation": "<b>Language:</b> {from_lang} -> {to_lang}\n<b>Translation:</b> <code>{translation}</code>",
-  "weather.details": "**{location}**:\n\nTemperature: `{temperature} °F`\nFeels like: `{feels_like} °F`\nAir humidity: `{air_humidity}%`\nWind speed: `{wind_speed} mph`\n\n- __{overview}__",
-  "weather.location_not_found": "Location not found.",
-  "weather.temperature_unit": "e",
-  "weather.weather_language": "en-US",
-  "weather.weather_usage": "**Usage:** `/weather location or city` - Get weather information from __location or city__."
+  "sudos.restarting": "Mi sto riavviando..."
 }
