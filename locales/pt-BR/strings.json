@@ -18,5 +18,10 @@
   "sudos.restarting": "Reiniciando...",
   "translate.translate_usage": "**Uso:** `/tr <language> texto para tradução` (Também pode ser usado em resposta a uma mensagem).",
   "translate.translating": "Traduzindo...",
-  "translate.translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Tradução:</b> <code>{translation}</code>"
+  "translate.translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Tradução:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nTemperature: `{temperature} °F`\nFeels like: `{feels_like} °F`\nAir humidity: `{air_humidity}%`\nWind speed: `{wind_speed} mph`\n\n- __{overview}__",
+  "weather.location_not_found": "Location not found.",
+  "weather.temperature_unit": "e",
+  "weather.weather_language": "en-US",
+  "weather.weather_usage": "**Usage:** `/weather location or city` - Get weather information from __location or city__."
 }
