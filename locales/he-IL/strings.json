@@ -1,3 +1,23 @@
 {
-  "general.back_btn": "חזור"
+  "cats.meow": "מיאו!",
+  "dice.result": "🎲 הקוביות נעצרו במספר: {number}",
+  "dogs.woof": "ווף!",
+  "general.back_btn": "חזור",
+  "general.no_results": "לא נמצאו תוצאות מתאימות.",
+  "sed.regex_timeout": "שגיאה, תבנית הregex שלך ארוכה מדי.",
+  "start.commands_btn": "פקודות",
+  "start.infos_btn": "פרטים",
+  "start.language_btn": "שפה",
+  "start.add_chat_btn": "הוסף לקבוצה",
+  "start.private": "שלום, אני EduuRobot. בשביל לגלות את מה שאני עושה תלחצו על הכפתורים למטה.",
+  "start.start_chat": "תתחילו אותי בפרטי",
+  "start.group": "שלום, אני EduuRobot, בשביל לגלות מה אני עושה תתחילו אותי בפרטי.",
+  "sudos.speedtest": "**בדיקת מהירות**\n\n**🌐 Host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
+  "sudos.forbidden_command": "פקודה אסורה.",
+  "sudos.restarting": "מפעיל מחדש...",
+  "translate.translate_usage": "**שימוש:** `/tr <language> טקסט לתרגום` (אפשר להשתמש גם בהשב על הודעה).",
+  "translate.translating": "מתרגם...",
+  "translate.translation": "<b>שפה:</b> {from_lang} -> {to_lang}\n<b>תרגום:</b> <code>{translation}</code>",
+  "weather.location_not_found": "מיקום לא נמצא.",
+  "weather.weather_language": "he-il"
 }
