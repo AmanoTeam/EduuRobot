@@ -15,5 +15,11 @@
   "start.info_page": "• EduuRobot\n\nВерсия: {version}\n\n[Исходный код](https://github.com/AmanoTeam/EduuRobot)\nРазработчики: [Amano Team](https://github. om/AmanoTeam)\nВладелец: [Edu :3](tg://user?id=123892996)\n\nПартнерские Отношения:\n » [HPXList - пользователем](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Хост:** `{host}`\n\n**🏓 Пинг:** `{ping} ms`\n**⬇ Загрузка:** `{download} Mbps`\n**⬆ Загрузить:** `{upload} Mbps`",
   "sudos.forbidden_command": "Запрещенная команда.",
-  "sudos.restarting": "Перезагружать..."
+  "sudos.restarting": "Перезагружать...",
+  "translate.translate_usage": "**Использование:** `/tr <язык> текст для перевода` (также может использоваться в ответе на сообщение).",
+  "translate.translation": "<b>Язык:</b> {from_lang} -> {to_lang}\n<b>Перевод:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nТемпература: `{temperature} °C`\nТепловое ощущение: `{feels_like} °C`\nТемпература воздуха: `{air_humidity}%`\nСкорость ветра: `{wind_speed} км/ч`\n\n- __{overview}__",
+  "weather.location_not_found": "Местоположение не найдено.",
+  "weather.temperature_unit": "m",
+  "weather.weather_language": "ru-RU"
 }
