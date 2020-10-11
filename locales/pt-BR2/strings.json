@@ -12,7 +12,7 @@
   "start.private": "Oi! Sou eu, o ~~Chapolin Colorado~~ EduuRobot. Eu acabei de salvar **sua vida**, para continuar salvo navegue pelos botões abaixo.",
   "start.start_chat": "🤖 Ser salvo",
   "start.group": "Oi! Sou eu, o ~~Chapolin Colorado~~ EduuRobot, para poder ser salvo por mim aperte no botão abaixo.",
-  "start.info_page": "• EduuRobot\n\nVerção: {version}\n\n[Código-nú](https://github.com/AmanoTeam/EduuRobot)\nDesenvolvedores: [Amano Team](https://github.com/AmanoTeam)\n~~Corno~~ Dono: [Edu :3](tg://user?id=123892996)\n\nPorcarias(sqn):\n » [HPXList - por usernein](https://t.me/hpxlist)\n\n© 2020 - [AMinecTeam™](https://amanoteam.com)",
+  "start.info_page": "• EduuRobot\n\nVerção: {version}\n\n[Código-nú](https://github.com/AmanoTeam/EduuRobot)\nDesenvolvedores: ~~Ninguém~~ [Amano Team](https://github.com/AmanoTeam)\n~~Corno~~ Dono: [Edu :3](tg://user?id=123892996)\n\nPorcarias(sqn):\n » [HPXList - por usernein](https://t.me/hpxlist)\n\n© 2020 - [AMinecTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Teste de lerdeza**\n\n**🌐 Houst:** `{host}`\n\n**🏓 Raquete:** `{ping} ms`\n**⬇️ Seta para baixo:** `{download} Mbps`\n**⬆️ Seta para cima:** `{upload} Mbps`",
   "sudos.forbidden_command": "Ow vacilau, isso é proíbido.",
   "sudos.restarting": "Apagando a porra toda...",
