@@ -15,5 +15,9 @@
   "start.info_page": "• EduuRobot\n\nVersione: {version}\n\n[Codice sorgente](https://github.com/AmanoTeam/EduuRobot)\nDevelopers: [Amano Team](https://github.com/AmanoTeam)\nOwner: [Edu :3](tg://user?id=123892996)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Host:** `{host}\n\n**🏓 Ping:** `{ping} ms`\n**⬇ Download:** `{download} Mbps`\n**⬆ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "Non puoi eseguire questo comando.",
-  "sudos.restarting": "Mi sto riavviando..."
+  "sudos.restarting": "Mi sto riavviando...",
+  "translate.translate_usage": "**Uso:** `/tr <lingua> testo per la traduzione` (può essere utilizzato anche in risposta a un messaggio).",
+  "translate.translation": "<b>Lingua:</b> {from_lang} -> {to_lang}\n<b> Traduzione:</b> <code>{translation}</code>",
+  "weather.location_not_found": "Posizione non trovata.",
+  "weather.weather_language": "it-IT"
 }
