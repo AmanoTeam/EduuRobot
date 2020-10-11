@@ -13,6 +13,7 @@ enabled_locales = [
     "pt-BR2",  # Portuguese (Brazil, informal version)
     "ru-RU",   # Russian
     "tr-TR"    # Turkish
+    "he-IL"    # Hebrew
 ]
 
 
