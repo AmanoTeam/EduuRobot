@@ -56,7 +56,7 @@ async def upgrade(c: Client, m: Message):
     else:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
         proc = await asyncio.create_subprocess_shell("git merge --abort")
-        stdout = await proc.communicate()
+        await proc.communicate()
 
 
 @Client.on_message(filters.command("eval", prefix) & filters.user(sudoers))
