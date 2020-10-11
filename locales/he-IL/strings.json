@@ -19,9 +19,9 @@
   "translate.translate_usage": "**שימוש:** `/tr <שפה> טקסט לתרגום` (אפשר להשתמש גם בהשב על הודעה).",
   "translate.translating": "מתרגם...",
   "translate.translation": "<b>שפה:</b> {from_lang} -> {to_lang}\n<b>תרגום:</b> <code>{translation}</code>",
-  "weather.details": "**{location}**:\n\nטמפרטורה: `{temperature} °F`\nמרגיש כמו: `{feels_like} °F`\nלחות: `{air_humidity}%`\nמהירות הרוח: `{wind_speed} mph`\n\n- __{overview}__",
+  "weather.details": "**{location}**:\n\nטמפרטורה: `{temperature} °C`\nמרגיש כמו: `{feels_like} °C`\nלחות: `{air_humidity}%`\nמהירות הרוח: `{wind_speed} קמ\"ש`\n\n- __{overview}__",
   "weather.location_not_found": "מיקום לא נמצא.",
-  "weather.temperature_unit": "e",
+  "weather.temperature_unit": "m",
   "weather.weather_language": "he-IL",
   "weather.weather_usage": "**שימוש:** `/weather מיקום או עיר` - קבל את מזג האוויר לעיר זאת __מיקום או עיר__."
 }
