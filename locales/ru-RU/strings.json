@@ -16,5 +16,7 @@
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Хост:** `{host}`\n\n**🏓 Пинг:** `{ping} ms`\n**⬇ Загрузка:** `{download} Mbps`\n**⬆ Загрузить:** `{upload} Mbps`",
   "sudos.forbidden_command": "Запрещенная команда.",
   "sudos.restarting": "Перезагружать...",
+  "weather.details": "**{location}**:\n\nТемпература: `{temperature} °C`\nТепловое ощущение: `{feels_like} °C`\nТемпература воздуха: `{air_humidity}%`\nСкорость ветра: `{wind_speed} км/ч`\n\n- __{overview}__",
+  "weather.temperature_unit": "m",
   "weather.weather_language": "ru-RU"
 }
