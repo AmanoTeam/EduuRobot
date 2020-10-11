@@ -8,6 +8,7 @@ from pyrogram.types import CallbackQuery
 
 enabled_locales = [
     "en-US",   # English (United States)
+    "es-ES",   # Spanish
     "he-IL",   # Hebrew
     "it-IT",   # Italian
     "pt-BR",   # Portuguese (Brazil)
