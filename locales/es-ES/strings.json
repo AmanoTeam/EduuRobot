@@ -4,10 +4,15 @@
   "start.language_btn": "🌐 Idioma",
   "start.add_chat_btn": "➕ Añadir a un chat",
   "start.start_chat": "🤖 Iniciar un chat",
+  "start.info_page": "• EduuRobot\n\nVersión: {version}\n\n[Código fuente](https://github.com/AmanoTeam/EduuRobot)\nDesarrolladores: [Amano Team](https://github. om/AmanoTeam)\nPropietario: [Edu :3](tg://user?id=123892996)\n\nAsociaciones:\n » [HPXList - por usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™️](https://amanoteam.com)",
   "sudos.forbidden_command": "Comando prohibido.",
   "sudos.restarting": "Reiniciando...",
+  "translate.translate_usage": "**Uso:** `/tr <idioma> texto para traducción` (También puede utilizarse en respuesta a un mensaje).",
   "translate.translating": "Traduciendo...",
+  "translate.translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Traducción:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nTemperatura: `{temperature} °C`\nSiente como: `{feels_like} °C`\nhumedad del aire: `{air_humidity}%`\nVelocidad del viento: `{wind_speed} km/h`\n\n- __{overview}__",
   "weather.location_not_found": "Ubicación no encontrada.",
+  "weather.temperature_unit": "m",
   "weather.weather_language": "es-ES",
   "weather.weather_usage": "**Uso:** `/weather ubicación o ciudad` - Obtenga información meteorológica de __ubicación o ciudad__."
 }
