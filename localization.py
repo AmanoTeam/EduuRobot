@@ -1,6 +1,7 @@
 import json
 import os.path
 from glob import glob
+from typing import List, Dict
 from dbh import dbc, db
 from utils import group_types
 from pyrogram.types import CallbackQuery
@@ -18,7 +19,7 @@ enabled_locales = [
 ]
 
 
-def set_lang(chat_id, chat_type, lang_code):
+def set_lang(chat_id: int, chat_type: str, lang_code: str):
     if chat_type == "private":
         dbc.execute("UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id))
         db.commit()
@@ -30,10 +31,9 @@ def set_lang(chat_id, chat_type, lang_code):
         db.commit()
     else:
         raise TypeError("Unknown chat type '%s'." % chat_type)
-    return True
 
 
-def get_lang(chat_id, chat_type):
+def get_lang(chat_id: int, chat_type: str) -> str:
     if chat_type == "private":
         dbc.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = dbc.fetchone()
@@ -48,7 +48,7 @@ def get_lang(chat_id, chat_type):
     return ul[0] if ul else None
 
 
-def cache_localizations(files):
+def cache_localizations(files: List[str]) -> Dict[str, Dict[str, str]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
         lname = file.split(os.path.sep)[1]
@@ -57,7 +57,7 @@ def cache_localizations(files):
     return ldict
 
 
-jsons = []
+jsons: List[str] = []
 
 for locale in enabled_locales:
     jsons += glob(os.path.join("locales", locale, "*.json"))
