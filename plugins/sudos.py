@@ -64,7 +64,7 @@ async def evals(c: Client, m: Message):
     text = m.text[6:]
     try:
         res = await meval(text, locals())
-    except:
+    except:  # skipcq
         ev = traceback.format_exc()
         await m.reply_text(ev)
         return
@@ -83,7 +83,7 @@ async def execs(c: Client, m: Message):
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)
-        except:
+        except:  # skipcq
             return await m.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
 
     if strio.getvalue().strip():
