@@ -1,1 +1,11 @@
-{}
+{
+  "general.back_btn": "« Atrás",
+  "start.language_btn": "🌐 Idioma",
+  "start.add_chat_btn": "➕ Añadir a un chat",
+  "sudos.forbidden_command": "Comando prohibido.",
+  "sudos.restarting": "Reiniciando...",
+  "translate.translating": "Traduciendo...",
+  "weather.location_not_found": "Ubicación no encontrada.",
+  "weather.weather_language": "es-ES",
+  "weather.weather_usage": "**Uso:** `/weather ubicación o ciudad` - Obtenga información meteorológica de __ubicación o ciudad__."
+}
