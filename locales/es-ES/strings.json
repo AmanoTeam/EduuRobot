@@ -1,7 +1,9 @@
 {
   "general.back_btn": "« Atrás",
+  "start.commands_btn": "📚 Comandos",
   "start.language_btn": "🌐 Idioma",
   "start.add_chat_btn": "➕ Añadir a un chat",
+  "start.start_chat": "🤖 Iniciar un chat",
   "sudos.forbidden_command": "Comando prohibido.",
   "sudos.restarting": "Reiniciando...",
   "translate.translating": "Traduciendo...",
