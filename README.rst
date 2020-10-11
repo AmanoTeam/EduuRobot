@@ -5,7 +5,9 @@
 EduuRobot
 =========
 
-A complete rewrite of bot's code using Pyrogram and asynchronous programming.
+|License| |Codacy| |Crowdin|
+
+A multipurpose Telegram Bot made with Pyrogram and asynchronous programming.
 
 Requirements
 ============
@@ -33,3 +35,10 @@ If you find any bugs/issues with the bot you have three options:
 - If you know how to fix the issue, fork our repo and open up a pull request.
 
 ©2020 - `AmanoTeam™ <https://amanoteam.com>`__
+
+.. Badges
+.. |Codacy| image:: https://app.codacy.com/project/badge/Grade/7e9bffc2c3a140cf9f1e5d3c4aea0c2f
+   :target: https://www.codacy.com/gh/AmanoTeam/EduuRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=AmanoTeam/EduuRobot&utm_campaign=Badge_Grade
+.. |Crowdin| image:: https://badges.crowdin.net/eduurobot/localized.svg
+   :target: https://crowdin.com/project/eduurobot
+.. |License| image:: https://img.shields.io/github/license/AmanoTeam/EduuRobot
