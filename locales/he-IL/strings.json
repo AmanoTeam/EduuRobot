@@ -2,7 +2,7 @@
   "cats.meow": "מיאו!",
   "dice.result": "🎲 הקוביות נעצרו במספר: {number}",
   "dogs.woof": "ווף!",
-  "general.back_btn": "חזור",
+  "general.back_btn": "« חזור",
   "general.no_results": "לא נמצאו תוצאות מתאימות.",
   "sed.regex_timeout": "שגיאה, תבנית הregex שלך ארוכה מדי.",
   "start.commands_btn": "📚 פקודות",
