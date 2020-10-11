@@ -28,14 +28,13 @@ def chat_exists(chat_id, chat_type):
     if chat_type == "private":
         dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
         return bool(dbc.fetchone())
-    elif chat_type in group_types: # groups and supergroups share the same table
+    if chat_type in group_types: # groups and supergroups share the same table
         dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
         return bool(dbc.fetchone())
-    elif chat_type == "channel":
+    if chat_type == "channel":
         dbc.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
         return bool(dbc.fetchone())
-    else:
-        raise TypeError("Unknown chat type '%s'." % chat_type)
+    raise TypeError("Unknown chat type '%s'." % chat_type)
 
 
 async def meval(code, local_vars):
