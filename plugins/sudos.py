@@ -43,7 +43,7 @@ async def run_cmd(c: Client, m: Message):
 async def upgrade(c: Client, m: Message):
     _ = GetLang(m).strs
     sm = await m.reply_text("Upgrading sources...")
-    proc = await asyncio.create_subprocess_shell(f"git pull --no-edit",
+    proc = await asyncio.create_subprocess_shell("git pull --no-edit",
                                                  stdout=asyncio.subprocess.PIPE,
                                                  stderr=asyncio.subprocess.STDOUT)
     stdout = (await proc.communicate())[0]
@@ -86,7 +86,7 @@ async def execs(c: Client, m: Message):
         except:
             return await m.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
 
-    if strio.getvalue():
+    if strio.getvalue().strip():
         out = f"<code>{html.escape(strio.getvalue())}</code>"
     else:
         out = "Command executed."
