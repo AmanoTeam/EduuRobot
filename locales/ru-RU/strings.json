@@ -17,9 +17,11 @@
   "sudos.forbidden_command": "Запрещенная команда.",
   "sudos.restarting": "Перезагружать...",
   "translate.translate_usage": "**Использование:** `/tr <язык> текст для перевода` (также может использоваться в ответе на сообщение).",
+  "translate.translating": "Идет перевод...",
   "translate.translation": "<b>Язык:</b> {from_lang} -> {to_lang}\n<b>Перевод:</b> <code>{translation}</code>",
   "weather.details": "**{location}**:\n\nТемпература: `{temperature} °C`\nТепловое ощущение: `{feels_like} °C`\nТемпература воздуха: `{air_humidity}%`\nСкорость ветра: `{wind_speed} км/ч`\n\n- __{overview}__",
   "weather.location_not_found": "Местоположение не найдено.",
   "weather.temperature_unit": "m",
-  "weather.weather_language": "ru-RU"
+  "weather.weather_language": "ru-RU",
+  "weather.weather_usage": "**Использование:** `/weather место или город` - Получите информацию о погоде от __место или город__."
 }
