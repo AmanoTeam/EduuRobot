@@ -8,7 +8,7 @@ from pyrogram.types import CallbackQuery
 
 
 enabled_locales = [
-    "en-US",   # English (United States)
+    "en-GB",   # English
     "es-ES",   # Spanish
     "he-IL",   # Hebrew
     "it-IT",   # Italian
@@ -74,9 +74,9 @@ class GetLang:
 
         lang = get_lang(chat.id, chat.type)
         if chat.type == "private":
-            self.lang = lang or msg.from_user.language_code or "en-US"
+            self.lang = lang or msg.from_user.language_code or "en-GB"
         else:
-            self.lang = lang or "en-US"
+            self.lang = lang or "en-GB"
         # User has a language_code without hyphen
         if len(self.lang.split("-")) == 1:
             # Try to find a language that starts with the provided language_code
@@ -87,9 +87,9 @@ class GetLang:
             self.lang = self.lang.split("-")
             self.lang[1] = self.lang[1].upper()
             self.lang = "-".join(self.lang)
-        self.lang = self.lang if self.lang in enabled_locales else "en-US"
+        self.lang = self.lang if self.lang in enabled_locales else "en-GB"
 
-        self.dic = langdict.get(self.lang, langdict["en-US"])
+        self.dic = langdict.get(self.lang, langdict["en-GB"])
 
     def strs(self, string):
-        return self.dic.get(string) or langdict["en-US"].get(string) or string
+        return self.dic.get(string) or langdict["en-GB"].get(string) or string
