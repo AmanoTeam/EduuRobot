@@ -12,6 +12,7 @@
   "start.private": "Ciao! Sono EduuRobot. Per scoprire di più riguardo alle mie funzioni, clicca uno dei pulsanti qui sotto.",
   "start.start_chat": "🤖 Avvia una chat",
   "start.group": "Ciao! Sono EduuRobot. Per scoprire le mie funzioni, avvia una conversazione con me.",
+  "start.info_page": "• EduuRobot\n\nVersione: {version}\n\n[Codice sorgente](https://github.com/AmanoTeam/EduuRobot)\nDevelopers: [Amano Team](https://github.com/AmanoTeam)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Host:** `{host}\n\n**🏓 Ping:** `{ping} ms`\n**⬇ Download:** `{download} Mbps`\n**⬆ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "Comando proibito.",
   "sudos.restarting": "Riavviando...",
