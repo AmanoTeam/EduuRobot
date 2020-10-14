@@ -12,6 +12,7 @@
   "start.private": "Merhaba! Ben EduuRobot. Komutlarımı görmek için butonları kullanabilirsiniz.",
   "start.start_chat": "🤖 Bir konuşma başlat",
   "start.group": "Merhaba! Ben EduuRobot. Komutlarımı görmek için özelden yazınız.",
+  "start.info_page": "• EduuRobot\n\nVersiyon: {version}\n\n[Kaynak Kodu](https://github.com/AmanoTeam/EduuRobot)\nGeliştiriciler: [Amano Team](https://github.com/AmanoTeam)\n\nSponsorlar:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
   "sudos.forbidden_command": "403 İzinsiz komut.",
   "sudos.restarting": "Yeniden başlatılıyor...",
