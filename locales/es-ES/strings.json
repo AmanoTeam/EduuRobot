@@ -19,9 +19,6 @@
   "translate.translate_usage": "**Uso:** `/tr <idioma> texto para traducción` (También puede utilizarse en respuesta a un mensaje).",
   "translate.translating": "Traduciendo...",
   "translate.translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Traducción:</b> <code>{translation}</code>",
-  "weather.details": "**{location}**:\n\nTemperatura: `{temperature} °C`\nSensación térmica: `{feels_like} °C`\nhumedad del aire: `{air_humidity}%`\nVelocidad del viento: `{wind_speed} km/h`\n\n- __{overview}__",
   "weather.location_not_found": "Ubicación no encontrada.",
-  "weather.temperature_unit": "m",
-  "weather.weather_language": "es-ES",
   "weather.weather_usage": "**Uso:** `/weather ubicación o ciudad` - Obtenga información meteorológica de __ubicación o ciudad__."
 }
