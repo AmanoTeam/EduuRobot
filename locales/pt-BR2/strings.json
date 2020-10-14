@@ -18,7 +18,5 @@
   "sudos.restarting": "Apagando a porra toda...",
   "translate.translate_usage": "**Ow vc usa assim:** ~~/tr <indioma> e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara~~ aprende o indioma.",
   "translate.translating": "Já aprendeu o indioma?",
-  "translate.translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>",
-  "weather.temperature_unit": "m",
-  "weather.weather_language": "pt-BR"
+  "translate.translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>"
 }
