@@ -52,7 +52,7 @@ async def upgrade(c: Client, m: Message):
             await sm.edit_text("There's nothing to upgrade.")
         else:
             await sm.edit_text(_("sudos.restarting"))
-            os.execl(sys.executable, sys.executable, *sys.argv)
+            os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
     else:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
         proc = await asyncio.create_subprocess_shell("git merge --abort")
@@ -71,7 +71,7 @@ async def evals(c: Client, m: Message):
     else:
         try:
             await m.reply_text(f"<code>{html.escape(str(res))}</code>")
-        except Exception as e:
+        except Exception as e:  # skipcq
             await m.reply_text(e)
 
 
@@ -79,7 +79,7 @@ async def evals(c: Client, m: Message):
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
-    exec('async def __ex(client, message): ' + ' '.join('\n ' + l for l in code.split('\n')))
+    exec('async def __ex(client, message): ' + ' '.join('\n ' + l for l in code.split('\n')))  # skipcq: PYL-W0122
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)
@@ -111,4 +111,4 @@ async def test_speed(c: Client, m: Message):
 async def restart(c: Client, m: Message):
     _ = GetLang(m).strs
     await m.reply_text(_("sudos.restarting"))
-    os.execl(sys.executable, sys.executable, *sys.argv)
+    os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606

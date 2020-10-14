@@ -79,7 +79,7 @@ async def meval(code, local_vars):
     mod.body = [fun]
     comp = compile(mod, "<string>", "exec")
 
-    exec(comp, {}, locs)
+    exec(comp, {}, locs)  # skipcq: PYL-W0122
 
     r = await locs["tmp"](**local_vars)
 
