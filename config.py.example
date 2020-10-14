@@ -1,5 +1,7 @@
 # Bot token from Bot Father
 TOKEN = "YOUR_TOKEN_HERE"
+
+# Your API ID and Hash from https://my.telegram.org/apps
 API_ID = 123123
 API_HASH = ""
 
