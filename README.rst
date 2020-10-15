@@ -5,7 +5,7 @@
 EduuRobot
 =========
 
-|License| |Codacy| |Crowdin|
+|License| |Codacy| |Crowdin| |Telegram Channel| |Telegram Chat|
 
 A multipurpose Telegram Bot made with Pyrogram and asynchronous programming.
 
@@ -42,3 +42,7 @@ If you find any bugs/issues with the bot you have three options:
 .. |Crowdin| image:: https://badges.crowdin.net/eduurobot/localized.svg
    :target: https://crowdin.com/project/eduurobot
 .. |License| image:: https://img.shields.io/github/license/AmanoTeam/EduuRobot
+.. |Telegram Channel| image:: https://img.shields.io/badge/Telegram-Channel-33A8E3
+   :target: https://t.me/AmanoTeam
+.. |Telegram Chat| image:: https://img.shields.io/badge/Telegram-Chat-33A8E3
+   :target: https://t.me/AmanoChat
