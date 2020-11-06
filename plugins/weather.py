@@ -76,7 +76,7 @@ Vento: `{} km/h`
                  obs_dict['temperatureFeelsLike'],
                  obs_dict['relativeHumidity'],
                  obs_dict['windSpeed'],
-                 obs_dict['cloudCoverPhrase'])
+                 obs_dict['wxPhraseLong'])
 
             await bot.sendMessage(msg['chat']['id'], res, 'Markdown', reply_to_message_id=msg['message_id'])
             return True
