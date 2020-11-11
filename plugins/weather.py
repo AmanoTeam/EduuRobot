@@ -1,5 +1,5 @@
-import httpx
 from config import prefix
+from utils import http
 from localization import GetLang
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -19,25 +19,23 @@ async def weather(c: Client, m: Message):
     if len(m.command) == 1:
         await m.reply_text(_("weather.weather_usage"))
     else:
-        async with httpx.AsyncClient(http2=True) as http:
-            r = await http.get(get_coords, headers=headers,
-                               params=dict(apiKey=weather_apikey,
-                                           format="json",
-                                           language=_("weather.weather_language"),
-                                           query=m.text.split(maxsplit=1)[1]))
-            loc_json = r.json()
+        r = await http.get(get_coords, headers=headers,
+                           params=dict(apiKey=weather_apikey,
+                                       format="json",
+                                       language=_("weather.weather_language"),
+                                       query=m.text.split(maxsplit=1)[1]))
+        loc_json = r.json()
         if not loc_json.get("location"):
             await m.reply_text(_("weather.location_not_found"))
         else:
             pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
-            async with httpx.AsyncClient(http2=True) as http:
-                r = await http.get(url, headers=headers,
-                                   params=dict(apiKey=weather_apikey,
-                                               format="json",
-                                               language=_("weather.weather_language"),
-                                               geocode=pos,
-                                               units=_("weather.temperature_unit")))
-                res_json = r.json()
+            r = await http.get(url, headers=headers,
+                               params=dict(apiKey=weather_apikey,
+                                           format="json",
+                                           language=_("weather.weather_language"),
+                                           geocode=pos,
+                                           units=_("weather.temperature_unit")))
+            res_json = r.json()
 
             obs_dict = res_json["v3-wx-observations-current"]
 

@@ -1,10 +1,10 @@
-import httpx
 import logging
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from localization import GetLang
+from utils import http
 from config import TENOR_API_KEY, prefix
 
 
@@ -16,10 +16,9 @@ if not TENOR_API_KEY:
 async def gif(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[5:]
-    async with httpx.AsyncClient() as http:
-        r = await http.get("https://api.tenor.com/v1/random",
-                           params=dict(q=text, key=TENOR_API_KEY, limit=1))
-        rjson = r.json()
+    r = await http.get("https://api.tenor.com/v1/random",
+                       params=dict(q=text, key=TENOR_API_KEY, limit=1))
+    rjson = r.json()
     if rjson["results"]:
         res = rjson["results"][0]["media"][0]["mediumgif"]["url"]
         await m.reply_animation(res)

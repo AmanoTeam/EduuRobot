@@ -1,4 +1,5 @@
 import ast
+import httpx
 import importlib.util
 import types
 
@@ -7,6 +8,8 @@ from asyncio.futures import Future
 
 
 group_types = ("group", "supergroup")
+
+http = httpx.AsyncClient(http2=True)
 
 
 def add_chat(chat_id, chat_type):
