@@ -12,6 +12,7 @@ enabled_locales = [
     "en-US",   # English (United States)
     "es-ES",   # Spanish
     "he-IL",   # Hebrew
+    "id-ID",   # Indonesian
     "it-IT",   # Italian
     "pt-BR",   # Portuguese (Brazil)
     "pt-BR2",  # Portuguese (Brazil, informal version)
