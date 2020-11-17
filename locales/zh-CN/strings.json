@@ -1,1 +1,27 @@
-{}
+{
+  "cats.meow": "肉！",
+  "dice.result": "🎲 在数字处停止: {number}",
+  "dogs.woof": "哇！",
+  "general.back_btn": "“后退",
+  "general.no_results": "未找到任何结果。",
+  "sed.regex_timeout": "糟糕，您的 regex 模式运行时间太长。",
+  "start.commands_btn": "📚 命令",
+  "start.infos_btn": "i️ Infos",
+  "start.language_btn": ":globe_with_meridians：语言",
+  "start.add_chat_btn": ":very_plus_sign: 添加到聊天",
+  "start.private": "你好！我是EduuRobot。要发现更多关于我的功能，请点击下面的按钮。",
+  "start.start_chat": "🤖 开始聊天",
+  "start.group": "你好！我是EduuRobot。要发现我的功能，请与我开始对话。",
+  "start.info_page": "• EduuRobot\n\n版本: {version}\n\n[Source Code](https://github.com/AmanoTeam/EduuRobot)\n开发者: [Amano Team](https://github.com/AmanoTeam)\n\n伙伴关系:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeamTM](https://amanoteam.com)",
+  "sudos.speedtest": "**Speedtest**\n\n**:globe_with_meridian: Host:** `{host}\n\n**:ping_pong : Ping:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
+  "sudos.forbidden_command": "禁止命令。",
+  "sudos.restarting": "正在重启...",
+  "translate.translate_usage": "**用法：** `/tr <language> 文本翻译` (Can be used in reply to a message).",
+  "translate.translating": "正在翻译...",
+  "translate.translation": "<b>语言：</b> {from_lang} -> {to_lang}\n<b>翻译：</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\n温度: `{temperature} °C`\n感觉像: `{feels_like} °C`\n空气湿度: `{air_humidity}%`\n风速: `{wind_speed} km/h`\n\n- __{overview}",
+  "weather.location_not_found": "找不到位置。",
+  "weather.temperature_unit": "米",
+  "weather.weather_language": "zh-GB",
+  "weather.weather_usage": "**用法：** `/天气位置或城市` - 从 __location or city__获取天气信息。"
+}
