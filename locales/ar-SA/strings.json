@@ -21,7 +21,7 @@
   "translate.translation": "<b>اللغة:</b> {from_lang} -> {to_lang}\n<b>الترجمة:</b> <code>{translation}</code>",
   "weather.details": "**{location}**:\n\nدرجة الحرارة: `{temperature} درجة مئوية`\nيشبه شعور: `{feels_like} درجة مئوية`\nرطوبة الهواء: `{air_humidity}%`\nسرعة الريح: `{wind_speed} كم/ساعة\n\n- __{overview}__",
   "weather.location_not_found": "الموقع غير موجود.",
-  "weather.temperature_unit": "د",
-  "weather.weather_language": "ن جيبايت",
-  "weather.weather_usage": "**الاستخدام:** `/الطقس الموقع أو المدينة` - احصل على معلومات الطقس من __موقع أو مدينة."
+  "weather.temperature_unit": "m",
+  "weather.weather_language": "ar-SA",
+  "weather.weather_usage": "**الاستخدام:** `/weather الموقع أو المدينة` - احصل على معلومات الطقس من ** الموقع أو المدينة **."
 }
