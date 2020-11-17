@@ -23,5 +23,5 @@
   "weather.location_not_found": "Standort nicht gefunden.",
   "weather.temperature_unit": "m",
   "weather.weather_language": "de-DE",
-  "weather.weather_usage": "**Nutzung:** `/weather location or city` - Erhalte Wetterinformationen von __location oder city__."
+  "weather.weather_usage": "**Nutzung:** `/weather ort oder stadt` - Erhalte Wetterinformationen von __ort oder stadt__."
 }
