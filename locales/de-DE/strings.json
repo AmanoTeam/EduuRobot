@@ -1,7 +1,27 @@
 {
+  "cats.meow": "Weide!",
+  "dice.result": "🎲 Der Würfel wurde an der Nummer gestoppt: {number}",
+  "dogs.woof": "Woof!",
+  "general.back_btn": "« Zurück",
+  "general.no_results": "Keine Ergebnisse gefunden.",
+  "sed.regex_timeout": "Hoppla, dein regex-Muster lief zu lang.",
   "start.commands_btn": "📚 Befehle",
+  "start.infos_btn": "i️ Infos",
   "start.language_btn": "🌐 Sprache",
+  "start.add_chat_btn": "➕ Zu einem Chat hinzufügen",
+  "start.private": "Hallo! Ich bin EduuRobot. Um mehr über meine Funktionen zu erfahren, klicken Sie auf die Schaltflächen unten.",
+  "start.start_chat": "🤖 Einen Chat starten",
+  "start.group": "Hallo! Ich bin EduuRobot. Um meine Funktionen zu entdecken, starten Sie ein Gespräch mit mir.",
   "start.info_page": "• EduuRobot\n\nVersion: {version}\n\n[Quellcode](https://github.com/AmanoTeam/EduuRobot)\nEntwickler: [Amano Team](https://github.com/AmanoTeam)\n\nPartnerships:\n » [HPXList - von usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)",
   "sudos.speedtest": "**Speedtest**\n\n**🌐 Host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
-  "weather.weather_language": "de-DE"
+  "sudos.forbidden_command": "Unerlaubter Befehl.",
+  "sudos.restarting": "Neustarten...",
+  "translate.translate_usage": "**Verwendung:** `/tr <language> Text für Übersetzung` (Can wird auch als Antwort auf eine Nachricht verwendet).",
+  "translate.translating": "Übersetzen...",
+  "translate.translation": "<b>Sprache:</b> {from_lang} -> {to_lang}\n<b>Übersetzung:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nTemperatur: `{temperature} °C`\nfühlt sich wie: `{feels_like} °C`\nLuftfeuchtigkeit: `{air_humidity}%`\nWindgeschwindigkeit: `{wind_speed} km/h`\n\n- __{overview}__",
+  "weather.location_not_found": "Standort nicht gefunden.",
+  "weather.temperature_unit": "m",
+  "weather.weather_language": "de-DE",
+  "weather.weather_usage": "**Nutzung:** `/weather ort oder stadt` - Erhalte Wetterinformationen von __ort oder stadt__."
 }
