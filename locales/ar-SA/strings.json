@@ -1,1 +1,27 @@
-{}
+{
+  "cats.meow": "كيف!",
+  "dice.result": "🎲 توقفت النغمة عند العدد: {number}",
+  "dogs.woof": "لحم!",
+  "general.back_btn": "\"العودة",
+  "general.no_results": "لا توجد نتائج.",
+  "sed.regex_timeout": "عفواً، كان نمط regex الخاص بك طويلاً جداً.",
+  "start.commands_btn": "📚 أوامر",
+  "start.infos_btn": "i️ Infos",
+  "start.language_btn": "🌐 اللغة",
+  "start.add_chat_btn": "➕ إضافة إلى محادثة",
+  "start.private": "مرحبًا! أنا EduuRobot. لاكتشاف المزيد عن وظائفي، انقر على الأزرار أدناه.",
+  "start.start_chat": "🤖 ابدأ محادثة",
+  "start.group": "مرحبًا! أنا إدوروبوت. لاكتشاف وظائفي ابدأ محادثة معي.",
+  "start.info_page": "• EduuRobot\n\nالإصدار: {version}\n\n[Source Code](https://github.com/AmanoTeam/EduuRobot)\nالمطورين: [Amano Team](https://github.com/AmanoTeam)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeamTM](https://amanoteam.com)",
+  "sudos.speedtest": "**السرعة**\n\n**🌐 host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**:download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
+  "sudos.forbidden_command": "أمر محظور.",
+  "sudos.restarting": "إعادة التشغيل...",
+  "translate.translate_usage": "**الاستخدام:** `/tr <language> نص للترجمة` (يمكن استخدامه أيضا في الرد على رسالة).",
+  "translate.translating": "ترجمة ...",
+  "translate.translation": "<b>اللغة:</b> {from_lang} -> {to_lang}\n<b>الترجمة:</b> <code>{translation}</code>",
+  "weather.details": "**{location}**:\n\nدرجة الحرارة: `{temperature} درجة مئوية`\nيشبه شعور: `{feels_like} درجة مئوية`\nرطوبة الهواء: `{air_humidity}%`\nسرعة الريح: `{wind_speed} كم/ساعة\n\n- __{overview}__",
+  "weather.location_not_found": "الموقع غير موجود.",
+  "weather.temperature_unit": "د",
+  "weather.weather_language": "ن جيبايت",
+  "weather.weather_usage": "**الاستخدام:** `/الطقس الموقع أو المدينة` - احصل على معلومات الطقس من __موقع أو مدينة."
+}
