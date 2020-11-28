@@ -25,6 +25,10 @@ from googletrans import Translator, LANGUAGES
 
 from config import bot
 
+
+translator = Translator()
+
+
 def get_lang(text):
     if len(text.split()) > 0:
         lang = text.split()[0]
@@ -41,7 +45,6 @@ def get_lang(text):
 async def translate(msg):
     if msg.get("text"):
         if msg["text"].startswith("/tr ") or msg["text"] == "/tr":
-            translator = Translator()
             text = msg["text"][4:]
             lang = get_lang(text)
             if msg.get("reply_to_message"):
