@@ -8,6 +8,9 @@ from localization import GetLang
 from config import prefix
 
 
+translator = Translator()
+
+
 def get_lang(text):
     if len(text.split()) > 0:
         lang = text.split()[0]
@@ -24,7 +27,6 @@ def get_lang(text):
 @Client.on_message(filters.command("tr", prefix))
 async def translate(c: Client, m: Message):
     _ = GetLang(m).strs
-    translator = Translator()
     text = m.text[4:]
     lang = get_lang(text)
     if m.reply_to_message:
