@@ -25,7 +25,7 @@ async def jsondump(c: Client, m: Message):
         if obj is None:
             break
 
-    obj = json.dumps(obj, indent=4)
+    obj = json.dumps(obj, indent=4, ensure_ascii=False)
 
     send_as_file = len(obj) > 3000 or "-f" in params
 
