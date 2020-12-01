@@ -59,7 +59,7 @@ def get_lang(chat_id: int, chat_type: str) -> str:
     return ul[0] if ul else None
 
 
-def cache_localizations(files: List[str]) -> Dict[str, Dict[str, str]]:
+def cache_localizations(files: List[str]) -> Dict[str, Dict[str, Dict[str, str]]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
         _, lname, pname = file.split(os.path.sep)
