@@ -1,0 +1,7 @@
+{
+  "details": "**{location}**:\n\nTemperatura: `{temperature} °C`\nSensação térmica: `{feels_like} °C`\nUmidade do ar: `{air_humidity}%`\nVento: `{wind_speed} km/h`\n\n- __{overview}__",
+  "location_not_found": "Localização não encontrada.",
+  "temperature_unit": "m",
+  "weather_language": "pt-BR",
+  "weather_usage": "**Uso:** `/weather local ou cidade` - Obtém informações meteorológicas de __local ou cidade__."
+}

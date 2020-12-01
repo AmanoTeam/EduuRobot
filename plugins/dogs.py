@@ -3,13 +3,13 @@ from pyrogram.types import Message
 
 from config import prefix
 from utils import http
-from localization import GetLang
+from localization import use_chat_lang
 
 
 @Client.on_message(filters.command("dog", prefix))
-async def dog(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def dog(c: Client, m: Message, strings):
     r = await http.get("https://random.dog/woof.json")
     rj = r.json()
 
-    await m.reply_photo(rj["url"], caption=_("dogs.woof"))
+    await m.reply_photo(rj["url"], caption=strings("woof"))

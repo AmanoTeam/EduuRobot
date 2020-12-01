@@ -1,5 +1,7 @@
 import json
+import inspect
 import os.path
+from functools import wraps, partial
 from glob import glob
 from typing import List, Dict
 from dbh import dbc, db
@@ -24,6 +26,8 @@ enabled_locales = [
     "tr-TR",   # Turkish
     "zh-CN",   # Chinese (Simplified)
 ]
+
+default_language = "en-GB"
 
 
 def set_lang(chat_id: int, chat_type: str, lang_code: str):
@@ -58,9 +62,11 @@ def get_lang(chat_id: int, chat_type: str) -> str:
 def cache_localizations(files: List[str]) -> Dict[str, Dict[str, str]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
-        lname = file.split(os.path.sep)[1]
+        _, lname, pname = file.split(os.path.sep)
+        pname = pname.split(".")[0]
         dic = json.load(open(file, encoding="utf-8"))
-        ldict[lname].update(dic)
+        dic.update(ldict[lname].get(pname, {}))
+        ldict[lname][pname] = dic
     return ldict
 
 
@@ -72,31 +78,42 @@ for locale in enabled_locales:
 langdict = cache_localizations(jsons)
 
 
-class GetLang:
-    def __init__(self, msg):
-        if isinstance(msg, CallbackQuery):
-            chat = msg.message.chat
+def get_locale_string(dic: dict, language: str, key: str, context: str = None) -> str:
+    if context:
+        dic = langdict[language][context]
+    return dic.get(key) or langdict[default_language].get(key) or key
+
+
+def use_chat_lang(func):
+    frame = inspect.stack()[1]
+    filename = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
+
+    @wraps(func)
+    async def wrapper(client, message):
+        if isinstance(message, CallbackQuery):
+            chat = message.message.chat
         else:
-            chat = msg.chat
+            chat = message.chat
 
         lang = get_lang(chat.id, chat.type)
         if chat.type == "private":
-            self.lang = lang or msg.from_user.language_code or "en-GB"
+            lang = lang or message.from_user.language_code or default_language
         else:
-            self.lang = lang or "en-GB"
+            lang = lang or default_language
         # User has a language_code without hyphen
-        if len(self.lang.split("-")) == 1:
+        if len(lang.split("-")) == 1:
             # Try to find a language that starts with the provided language_code
             for locale_ in enabled_locales:
-                if locale_.startswith(self.lang):
-                    self.lang = locale_
-        elif self.lang.split("-")[1].islower():
-            self.lang = self.lang.split("-")
-            self.lang[1] = self.lang[1].upper()
-            self.lang = "-".join(self.lang)
-        self.lang = self.lang if self.lang in enabled_locales else "en-GB"
+                if locale_.startswith(lang):
+                    lang = locale_
+        elif lang.split("-")[1].islower():
+            lang = lang.split("-")
+            lang[1] = lang[1].upper()
+            lang = "-".join(lang)
+        lang = lang if lang in enabled_locales else default_language
 
-        self.dic = langdict.get(self.lang, langdict["en-GB"])
+        dic = langdict.get(lang, langdict[default_language])
 
-    def strs(self, string):
-        return self.dic.get(string) or langdict["en-GB"].get(string) or string
+        lfunc = partial(get_locale_string, dic.get(filename), lang)
+        return await func(client, message, lfunc)
+    return wrapper

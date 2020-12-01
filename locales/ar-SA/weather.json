@@ -1,0 +1,7 @@
+{
+  "details": "**{location}**:\n\nدرجة الحرارة: `{temperature} درجة مئوية`\nيشبه شعور: `{feels_like} درجة مئوية`\nرطوبة الهواء: `{air_humidity}%`\nسرعة الريح: `{wind_speed} كم/ساعة\n\n- __{overview}__",
+  "location_not_found": "الموقع غير موجود.",
+  "temperature_unit": "m",
+  "weather_language": "ar-SA",
+  "weather_usage": "**الاستخدام:** `/weather الموقع أو المدينة` - احصل على معلومات الطقس من ** الموقع أو المدينة **."
+}

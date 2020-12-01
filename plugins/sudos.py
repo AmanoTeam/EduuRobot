@@ -12,7 +12,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import sudoers
-from localization import GetLang
+from localization import use_chat_lang
 from utils import meval
 
 prefix = "!"
@@ -24,11 +24,11 @@ async def sudos(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("cmd", prefix) & filters.user(sudoers))
-async def run_cmd(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def run_cmd(c: Client, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
-        res = _("sudos.forbidden_command")
+        res = strings("forbidden_command")
     else:
         proc = await asyncio.create_subprocess_shell(cmd,
                                                      stdout=asyncio.subprocess.PIPE,
@@ -40,8 +40,8 @@ async def run_cmd(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("upgrade", prefix) & filters.user(sudoers))
-async def upgrade(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources...")
     proc = await asyncio.create_subprocess_shell("git pull --no-edit",
                                                  stdout=asyncio.subprocess.PIPE,
@@ -51,7 +51,7 @@ async def upgrade(c: Client, m: Message):
         if "Already up to date." in stdout.decode():
             await sm.edit_text("There's nothing to upgrade.")
         else:
-            await sm.edit_text(_("sudos.restarting"))
+            await sm.edit_text(strings("restarting"))
             os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
     else:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
@@ -94,9 +94,9 @@ async def execs(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("speedtest", prefix) & filters.user(sudoers))
-async def test_speed(c: Client, m: Message):
-    _ = GetLang(m).strs
-    string = _("sudos.speedtest")
+@use_chat_lang
+async def test_speed(c: Client, m: Message, strings):
+    string = strings("speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
@@ -108,7 +108,7 @@ async def test_speed(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("restart", prefix) & filters.user(sudoers))
-async def restart(c: Client, m: Message):
-    _ = GetLang(m).strs
-    await m.reply_text(_("sudos.restarting"))
+@use_chat_lang
+async def restart(c: Client, m: Message, strings):
+    await m.reply_text(strings("restarting"))
     os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606

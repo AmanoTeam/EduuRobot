@@ -1,0 +1,10 @@
+{
+  "commands_btn": "📚 Commandes",
+  "infos_btn": "ℹ️ Infos",
+  "language_btn": "🌐 Langue",
+  "add_chat_btn": "➕ Ajouter à un chat",
+  "private": "Bonjour! Je suis EduuRobot. Pour en savoir plus sur mes fonctions, cliquez sur les boutons ci-dessous.",
+  "start_chat": "🤖 Démarrer un chat",
+  "group": "Bonjour! Je suis EduuRobot. Pour découvrir mes fonctions, commencez une conversation avec moi.",
+  "info_page": "• EduuRobot\n\nVersion : {version}\n\n[Code Source](https://github.com/AmanoTeam/EduuRobot)\nDéveloppeurs : [Amano Team](https://github.com/AmanoTeam)\n\nPartenaires :\n » [HPXList - par usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)"
+}

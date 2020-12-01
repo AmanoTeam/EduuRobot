@@ -3,7 +3,7 @@ import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from localization import GetLang
+from localization import use_chat_lang
 from utils import http
 from config import TENOR_API_KEY, prefix
 
@@ -13,8 +13,8 @@ if not TENOR_API_KEY:
 
 
 @Client.on_message(filters.command("gif", prefix))
-async def gif(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def gif(c: Client, m: Message, strings):
     text = m.text[5:]
     r = await http.get("https://api.tenor.com/v1/random",
                        params=dict(q=text, key=TENOR_API_KEY, limit=1))
@@ -23,5 +23,5 @@ async def gif(c: Client, m: Message):
         res = rjson["results"][0]["media"][0]["mediumgif"]["url"]
         await m.reply_animation(res)
     else:
-        await m.reply_text(_("general.no_results"))
+        await m.reply_text(strings("no_results", context="general"))
 

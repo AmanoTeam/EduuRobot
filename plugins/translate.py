@@ -4,7 +4,7 @@ from googletrans import Translator, LANGUAGES
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from localization import GetLang
+from localization import use_chat_lang
 from config import prefix
 
 
@@ -25,8 +25,8 @@ def get_tr_lang(text):
 
 
 @Client.on_message(filters.command("tr", prefix))
-async def translate(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def translate(c: Client, m: Message, strings):
     text = m.text[4:]
     lang = get_tr_lang(text)
     if m.reply_to_message:
@@ -35,7 +35,7 @@ async def translate(c: Client, m: Message):
         text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
 
     if text:
-        sent = await m.reply_text(_("translate.translating"),
+        sent = await m.reply_text(strings("translating"),
                                   reply_to_message_id=m.message_id)
         langs = {}
 
@@ -49,7 +49,7 @@ async def translate(c: Client, m: Message):
         text = trres.text
 
         res = html.escape(text)
-        await sent.edit_text(_("translate.translation").format(
+        await sent.edit_text(strings("translation").format(
                 from_lang=trres.src,
                 to_lang=trres.dest,
                 translation=res
@@ -57,6 +57,6 @@ async def translate(c: Client, m: Message):
                              parse_mode="HTML")
 
     else:
-        await m.reply_text(_("translate.translate_usage"),
+        await m.reply_text(strings("translate_usage"),
                            reply_to_message_id=m.message_id,
                            parse_mode="markdown")

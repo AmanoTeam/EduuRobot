@@ -1,0 +1,7 @@
+{
+  "details": "**{location}**:\n\nLá tá a: `{temperature} °C`\nPorém vai parecer: `{feels_like} °C`\nJogaram água em: `{air_humidity}% do ar`\nO avião voa a: `{wind_speed} km/h`\n\n- __{overview}__",
+  "location_not_found": "Onde fica isso? conheço naum.",
+  "temperature_unit": "m",
+  "weather_language": "pt-BR",
+  "weather_usage": "**Você usa assim:** `/weather Maceió` - Você ganha uma viagem **de graça** para Maceió."
+}

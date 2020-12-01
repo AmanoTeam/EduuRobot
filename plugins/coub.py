@@ -5,12 +5,12 @@ from pyrogram.types import Message
 
 from config import prefix
 from utils import http
-from localization import GetLang
+from localization import use_chat_lang
 
 
 @Client.on_message(filters.command("coub", prefix))
-async def coub(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def coub(c: Client, m: Message, strings):
     text = m.text[6:]
     r = await http.get("https://coub.com/api/v2/search/coubs",
                        params=dict(q=text))
@@ -20,6 +20,6 @@ async def coub(c: Client, m: Message):
         links = content["permalink"]
         title = content["title"]
     except IndexError:
-        await m.reply_text(_("general.no_results"))
+        await m.reply_text(strings("no_results", context="general"))
     else:
         await m.reply_text(f"**[{title}](https://coub.com/v/{links})**")

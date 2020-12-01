@@ -3,12 +3,12 @@ import regex
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from localization import GetLang
+from localization import use_chat_lang
 
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)
-async def sed(c: Client, m: Message):
-    _ = GetLang(m).strs
+@use_chat_lang
+async def sed(c: Client, m: Message, strings):
     exp = regex.split(r"(?<![^\\]\\)/", m.text)
     pattern = exp[1]
     replace_with = exp[2].replace(r"\/", "/")
@@ -34,7 +34,7 @@ async def sed(c: Client, m: Message):
     try:
         res = regex.sub(pattern, replace_with, text, count=count, flags=rflags, timeout=1)
     except TimeoutError:
-        await m.reply_text(_("sed.regex_timeout"))
+        await m.reply_text(strings("regex_timeout"))
     except regex.error as e:
         await m.reply_text(str(e))
     else:
