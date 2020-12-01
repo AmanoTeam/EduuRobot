@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 
 from typing import Union
 

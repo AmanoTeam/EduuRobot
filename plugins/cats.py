@@ -3,7 +3,6 @@ from pyrogram.types import Message
 
 from config import prefix
 from utils import http
-from typing import Callable
 from localization import use_chat_lang
 
 
