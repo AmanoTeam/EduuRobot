@@ -1,13 +1,17 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
 
+from typing import Union
+
 from config import prefix, version
 from localization import GetLang
 
 
 @Client.on_message(filters.command("start", prefix))
-async def start(c: Client, m: Message):
+@Client.on_callback_query(filters.regex("^start_back$"))
+async def start(c: Client, m: Union[Message, CallbackQuery]):
     _ = GetLang(m).strs
+    send = m.edit_text if isinstance(m, CallbackQuery) else m.reply_text
     if m.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("start.commands_btn"), callback_data="commands")] +
@@ -15,28 +19,14 @@ async def start(c: Client, m: Message):
             [InlineKeyboardButton(_("start.language_btn"), callback_data="chlang")] +
             [InlineKeyboardButton(_("start.add_chat_btn"), url=f"https://t.me/{c.me.username}?startgroup=new")],
         ])
-        await m.reply_text(_("start.private"),
-                           reply_markup=keyboard)
+        await send(_("start.private"),
+                   reply_markup=keyboard)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(_("start.start_chat"), url=f"https://t.me/{c.me.username}?start=start")]
         ])
-        await m.reply_text(_("start.group"),
-                           reply_markup=keyboard)
-
-
-@Client.on_callback_query(filters.regex("^start_back$"))
-async def start_back(c: Client, m: CallbackQuery):
-    _ = GetLang(m).strs
-    # TODO: Create a function to generate translatable keyboards instead of duplicating code fragments
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(_("start.commands_btn"), callback_data="commands")] +
-        [InlineKeyboardButton(_("start.infos_btn"), callback_data="infos")],
-        [InlineKeyboardButton(_("start.language_btn"), callback_data="chlang")] +
-        [InlineKeyboardButton(_("start.add_chat_btn"), url=f"https://t.me/{c.me.username}?startgroup=new")],
-    ])
-    await m.message.edit_text(_("start.private"),
-                              reply_markup=keyboard)
+        await send(_("start.group"),
+                   reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^commands$"))
