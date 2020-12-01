@@ -7,6 +7,7 @@ with open("version.txt") as f:
 
 with Client("bot", API_ID, API_HASH, bot_token=TOKEN, plugins=dict(root="plugins", exclude=disabled_plugins)) as client:
     if __name__ == "__main__":
+        client.me = client.get_me()
         client.send_message(log_chat, "**Bot started**\n\n"
                                       f"**Version:** {version}")
         idle()

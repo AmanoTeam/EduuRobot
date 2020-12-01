@@ -13,13 +13,13 @@ async def start(c: Client, m: Message):
             [InlineKeyboardButton(_("start.commands_btn"), callback_data="commands")] +
             [InlineKeyboardButton(_("start.infos_btn"), callback_data="infos")],
             [InlineKeyboardButton(_("start.language_btn"), callback_data="chlang")] +
-            [InlineKeyboardButton(_("start.add_chat_btn"), url="https://t.me/{}?startgroup=new")],
+            [InlineKeyboardButton(_("start.add_chat_btn"), url=f"https://t.me/{c.me.username}?startgroup=new")],
         ])
         await m.reply_text(_("start.private"),
                            reply_markup=keyboard)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(_("start.start_chat"), url="https://t.me/{}?start=start")]
+            [InlineKeyboardButton(_("start.start_chat"), url=f"https://t.me/{c.me.username}?start=start")]
         ])
         await m.reply_text(_("start.group"),
                            reply_markup=keyboard)
@@ -33,7 +33,7 @@ async def start_back(c: Client, m: CallbackQuery):
         [InlineKeyboardButton(_("start.commands_btn"), callback_data="commands")] +
         [InlineKeyboardButton(_("start.infos_btn"), callback_data="infos")],
         [InlineKeyboardButton(_("start.language_btn"), callback_data="chlang")] +
-        [InlineKeyboardButton(_("start.add_chat_btn"), url="https://t.me/{}?startgroup=new")],
+        [InlineKeyboardButton(_("start.add_chat_btn"), url=f"https://t.me/{c.me.username}?startgroup=new")],
     ])
     await m.message.edit_text(_("start.private"),
                               reply_markup=keyboard)
