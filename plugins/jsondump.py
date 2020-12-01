@@ -11,7 +11,6 @@ from config import prefix
 @Client.on_message(filters.command("jsondump", prefix))
 async def jsondump(c: Client, m: Message):
     params = m.text.split()
-    send_as_file = len(str(m)) > 3000 or "-f" in params
     # Remove the command and -f flag from list.
     params.pop(0)
     if "-f" in params:
@@ -27,6 +26,8 @@ async def jsondump(c: Client, m: Message):
             break
 
     obj = json.dumps(obj, indent=4)
+
+    send_as_file = len(obj) > 3000 or "-f" in params
 
     if send_as_file:
         bio = io.BytesIO(obj.encode())
