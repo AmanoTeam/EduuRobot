@@ -51,7 +51,7 @@ Special thanks
 --------------
 * @iiiiii1wepfj: Hebrew translation
 * @HafitzSetya: Indonesian translation
-* Pato: Italian translation
+* @Pato05: Italian translation
 * @Quiec: Russian and Turkish translations
 * And many other people I couldn't list here.
 
