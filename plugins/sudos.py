@@ -27,15 +27,15 @@ async def sudos(c: Client, m: Message):
 async def run_cmd(c: Client, m: Message):
     _ = GetLang(m).strs
     cmd = m.text.split(maxsplit=1)[1]
-    if re.match('(?i)poweroff|halt|shutdown|reboot', cmd):
-        res = _('sudos.forbidden_command')
+    if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
+        res = _("sudos.forbidden_command")
     else:
         proc = await asyncio.create_subprocess_shell(cmd,
                                                      stdout=asyncio.subprocess.PIPE,
                                                      stderr=asyncio.subprocess.PIPE)
         stdout, stderr = await proc.communicate()
-        res = ("<b>Output:</b>\n<code>{}</code>".format(html.escape(stdout.decode().strip())) if stdout else '') + \
-              ("\n<b>Errors:</b>\n<code>{}</code>".format(html.escape(stderr.decode().strip())) if stderr else '')
+        res = ("<b>Output:</b>\n<code>{}</code>".format(html.escape(stdout.decode().strip())) if stdout else "") + \
+              ("\n<b>Errors:</b>\n<code>{}</code>".format(html.escape(stderr.decode().strip())) if stderr else "")
     await m.reply_text(res)
 
 
@@ -79,7 +79,7 @@ async def evals(c: Client, m: Message):
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
-    exec('async def __ex(client, message): ' + ' '.join('\n ' + l for l in code.split('\n')))  # skipcq: PYL-W0122
+    exec("async def __ex(client, message): " + " ".join("\n " + l for l in code.split("\n")))  # skipcq: PYL-W0122
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)

@@ -12,14 +12,14 @@ from localization import GetLang
 async def coub(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[6:]
-    r = await http.get('https://coub.com/api/v2/search/coubs',
+    r = await http.get("https://coub.com/api/v2/search/coubs",
                        params=dict(q=text))
     rjson = r.json()
     try:
-        content = random.choice(rjson['coubs'])
-        links = content['permalink']
-        title = content['title']
+        content = random.choice(rjson["coubs"])
+        links = content["permalink"]
+        title = content["title"]
     except IndexError:
         await m.reply_text(_("general.no_results"))
     else:
-        await m.reply_text(f'**[{title}](https://coub.com/v/{links})**')
+        await m.reply_text(f"**[{title}](https://coub.com/v/{links})**")
