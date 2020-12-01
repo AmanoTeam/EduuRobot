@@ -11,7 +11,7 @@ from config import prefix
 translator = Translator()
 
 
-def get_lang(text):
+def get_tr_lang(text):
     if len(text.split()) > 0:
         lang = text.split()[0]
         if lang.split("-")[0] not in LANGUAGES:
@@ -28,7 +28,7 @@ def get_lang(text):
 async def translate(c: Client, m: Message):
     _ = GetLang(m).strs
     text = m.text[4:]
-    lang = get_lang(text)
+    lang = get_tr_lang(text)
     if m.reply_to_message:
         text = m.reply_to_message.text or m.reply_to_message.caption
     else:
