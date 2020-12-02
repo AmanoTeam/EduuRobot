@@ -1,6 +1,7 @@
-googletrans==3.0.*
-pyrogram==1.0.*
+googletrans>=3.0.0,<4.0.0
+pyrogram>=1.0.7,<1.1.0
+meval==2.5
 tgcrypto
 speedtest-cli
-httpx[http2]>0.13.0,<1.0.0
+httpx[http2]>=0.13.3,<1.0.0
 regex

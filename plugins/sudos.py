@@ -13,7 +13,7 @@ from pyrogram.types import Message
 
 from config import sudoers
 from localization import use_chat_lang
-from utils import meval
+from meval import meval
 
 prefix = "!"
 
