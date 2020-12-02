@@ -42,10 +42,10 @@ async def weather(c: Client, m: Message, strings):
 
             res = strings("details").format(location=loc_json["location"]["address"][0],
 
-                                              temperature=obs_dict["temperature"],
-                                              feels_like=obs_dict["temperatureFeelsLike"],
-                                              air_humidity=obs_dict["relativeHumidity"],
-                                              wind_speed=obs_dict["windSpeed"],
-                                              overview=obs_dict["wxPhraseLong"])
+                                            temperature=obs_dict["temperature"],
+                                            feels_like=obs_dict["temperatureFeelsLike"],
+                                            air_humidity=obs_dict["relativeHumidity"],
+                                            wind_speed=obs_dict["windSpeed"],
+                                            overview=obs_dict["wxPhraseLong"])
 
-            await m.reply_text(res, parse_mode="markdown")
+            await m.reply_text(res, parse_mode="HTML")
