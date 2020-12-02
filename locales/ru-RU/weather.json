@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\nТемпература: `{temperature} °C`\nТепловое ощущение: `{feels_like} °C`\nТемпература воздуха: `{air_humidity}%`\nСкорость ветра: `{wind_speed} км/ч`\n\n- __{overview}__",
   "location_not_found": "Местоположение не найдено.",
   "temperature_unit": "m",
-  "weather_language": "ru-RU",
-  "weather_usage": "**Использование:** `/weather место или город` - Получите информацию о погоде от __место или город__."
+  "weather_language": "ru-RU"
 }
