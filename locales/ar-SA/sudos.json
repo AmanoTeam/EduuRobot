@@ -1,5 +1,5 @@
 {
-  "speedtest": "**السرعة**\n\n**🌐 host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**:download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
+  "speedtest": "<b>السرعة</b>\n\n<b>🌐 host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "أمر محظور.",
   "restarting": "إعادة التشغيل..."
 }

@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\n温度: `{temperature} °C`\n感觉像: `{feels_like} °C`\n空气湿度: `{air_humidity}%`\n风速: `{wind_speed} km/h`\n\n- __{overview}",
   "location_not_found": "找不到位置。",
   "temperature_unit": "m",
-  "weather_language": "zh-CN",
-  "weather_usage": "**用法：** `/weather 位置或城市`-从以下位置获取天气信息 __位置或城市__。"
+  "weather_language": "zh-CN"
 }

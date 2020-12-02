@@ -6,5 +6,5 @@
   "private": "Olá! Eu sou o EduuRobot. Para descobrir mais sobre minhas funções, clique nos botões abaixo.",
   "start_chat": "🤖 Iniciar uma conversa",
   "group": "Olá! Sou EduuRobot. Para descobrir minhas funções, inicie uma conversa comigo.",
-  "info_page": "• EduuRobot\n\nVersão: {version}\n\n[Código fonte](https://github.com/AmanoTeam/EduuRobot)\nDesenvolvedores: [Amano Team](https://github.com/AmanoTeam)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)"
+  "info_page": "• EduuRobot\n\nVersão: {version}\n\n <a href=\"https://github.com/AmanoTeam/EduuRobot\">Código Fonte</a>\nDesenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nParcerias:\n » <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>\n\n©2020 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>"
 }

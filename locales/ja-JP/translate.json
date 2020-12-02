@@ -1,5 +1,4 @@
 {
-  "translate_usage": "**使用法:** `/tr <言語> テキストを翻訳します。（メッセージへの返信にも使用できます）",
   "translating": "翻訳中...",
   "translation": "<b>言語:</b> {from_lang} -> {to_lang}\n<b>翻訳:</b> <code>{translation}</code>"
 }

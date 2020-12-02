@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\nSuhu: `{temperature} °C`\nTerasa seperti: `{feels_like} °C`\nKelembaban udara: `{air_humidity}%`\nKecepatan angin: `{wind_speed} mph`\n\n- __{overview}__",
   "location_not_found": "Lokasi tidak ditemukan.",
   "temperature_unit": "m",
-  "weather_language": "id-ID",
-  "weather_usage": "**Pemakaian:** `/weather lokasi atau kota` - Dapatkan informasi cuaca dari __lokasi atau kota__."
+  "weather_language": "id-ID"
 }
