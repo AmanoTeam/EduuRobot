@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\nTemperature: `{temperature} °F`\nFeels like: `{feels_like} °F`\nAir humidity: `{air_humidity}%`\nWind speed: `{wind_speed} mph`\n\n- __{overview}__",
   "location_not_found": "Location not found.",
   "temperature_unit": "e",
-  "weather_language": "en-US",
-  "weather_usage": "**Usage:** `/weather location or city` - Get weather information from __location or city__."
+  "weather_language": "en-US"
 }
