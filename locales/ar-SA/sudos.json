@@ -1,5 +1,4 @@
 {
-  "speedtest": "**السرعة**\n\n**🌐 host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**:download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
   "forbidden_command": "أمر محظور.",
   "restarting": "إعادة التشغيل..."
 }
