@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\n気温: `{temperature} °C`\n気温: `{feels_like} °C`\n空気の湿度: `{air_humidity}%`\n風速: `{wind_speed} km/h`\n\n- __{overview}__",
   "location_not_found": "ロケーションが見つかりません。",
   "temperature_unit": "m",
-  "weather_language": "ja-JP",
-  "weather_usage": "**使用方法:** `/weather 場所または都市` - __場所または都市__ から天気情報を取得します。"
+  "weather_language": "ja-JP"
 }

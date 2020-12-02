@@ -1,5 +1,4 @@
 {
-  "speedtest": "**בדיקת מהירות**\n\n**🌐 Host:** `{host}`\n\n**🏓 Ping:** `{ping} ms`\n**⬇️ Download:** `{download} Mbps`\n**⬆️ Upload:** `{upload} Mbps`",
   "forbidden_command": "פקודה אסורה.",
   "restarting": "מפעיל מחדש..."
 }

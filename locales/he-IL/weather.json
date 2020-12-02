@@ -1,7 +1,5 @@
 {
-  "details": "**{location}**:\n\nטמפרטורה: `{temperature} °C`\nמרגיש כמו: `{feels_like} °C`\nלחות: `{air_humidity}%`\nמהירות הרוח: `{wind_speed} קמ\"ש`\n\n- __{overview}__",
   "location_not_found": "מיקום לא נמצא.",
   "temperature_unit": "m",
-  "weather_language": "he-IL",
-  "weather_usage": "**שימוש:** `/weather מיקום או עיר` - קבל את מזג האוויר לעיר זאת __מיקום או עיר__."
+  "weather_language": "he-IL"
 }

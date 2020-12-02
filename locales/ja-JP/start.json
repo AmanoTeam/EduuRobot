@@ -5,6 +5,5 @@
   "add_chat_btn": "➕ チャットに追加",
   "private": "こんにちは！EduuRobotです。関数の詳細については、下のボタンをクリックしてください。",
   "start_chat": "🤖チャットを開始します",
-  "group": "こんにちは！ EduuRobotです。 私の機能を発見するために私との会話を始めてください。",
-  "info_page": "• EduuRobot\n\nVersion: {version}\n\n[Source Code](https://github.com/AnoTeam/EduuRobot)\nDevelopers: [Amano Team](https://github.com/AmanoTeam)\n\nPartnerships:\n » [HPXList - by usernein](https://t.me/hpxlist)\n\n©2020 - [AmanoTeam™](https://amanoteam.com)"
+  "group": "こんにちは！ EduuRobotです。 私の機能を発見するために私との会話を始めてください。"
 }
