@@ -61,18 +61,17 @@ async def upgrade(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("eval", prefix) & filters.user(sudoers))
 async def evals(c: Client, m: Message):
-    text = m.text[6:]
+    text = m.text.split(maxsplit=1)[1]
     try:
-        res = await meval(text, locals())
+        res = await meval(text, globals(), **locals())
     except:  # skipcq
         ev = traceback.format_exc()
-        await m.reply_text(ev)
-        return
+        await m.reply_text(f"<code>{html.escape(ev)}</code>")
     else:
         try:
             await m.reply_text(f"<code>{html.escape(str(res))}</code>")
         except Exception as e:  # skipcq
-            await m.reply_text(e)
+            await m.reply_text(str(e))
 
 
 @Client.on_message(filters.command("exec", prefix) & filters.user(sudoers))
