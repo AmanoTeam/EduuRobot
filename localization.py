@@ -8,7 +8,6 @@ from dbh import dbc, db
 from utils import group_types
 from pyrogram.types import CallbackQuery
 
-
 enabled_locales = [
     "ar-SA",   # Arabic
     "de-DE",   # German
@@ -34,7 +33,7 @@ def set_lang(chat_id: int, chat_type: str, lang_code: str):
     if chat_type == "private":
         dbc.execute("UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id))
         db.commit()
-    elif chat_type in group_types: # groups and supergroups share the same table
+    elif chat_type in group_types:  # groups and supergroups share the same table
         dbc.execute("UPDATE groups SET chat_lang = ? WHERE chat_id = ?", (lang_code, chat_id))
         db.commit()
     elif chat_type == "channel":
@@ -48,7 +47,7 @@ def get_lang(chat_id: int, chat_type: str) -> str:
     if chat_type == "private":
         dbc.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = dbc.fetchone()
-    elif chat_type in group_types: # groups and supergroups share the same table
+    elif chat_type in group_types:  # groups and supergroups share the same table
         dbc.execute("SELECT chat_lang FROM groups WHERE chat_id = ?", (chat_id,))
         ul = dbc.fetchone()
     elif chat_type == "channel":
@@ -116,4 +115,5 @@ def use_chat_lang(func):
 
         lfunc = partial(get_locale_string, dic.get(filename), lang)
         return await func(client, message, lfunc)
+
     return wrapper
