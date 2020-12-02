@@ -1,5 +1,6 @@
 {
   "location_not_found": "Onde fica isso? conheço naum.",
   "temperature_unit": "m",
-  "weather_language": "pt-BR"
+  "weather_language": "pt-BR",
+  "weather_usage": "<b>Você usa assim:</b> <code>/weather Maceió</code> - Você ganha uma viagem <b>de graça</b> para Maceió."
 }
