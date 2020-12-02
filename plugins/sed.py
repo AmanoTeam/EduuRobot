@@ -1,8 +1,9 @@
 import html
-import regex
 
+import regex
 from pyrogram import Client, filters
 from pyrogram.types import Message
+
 from localization import use_chat_lang
 
 

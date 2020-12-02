@@ -8,12 +8,12 @@ import traceback
 from contextlib import redirect_stdout
 
 import speedtest
+from meval import meval
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import sudoers
 from localization import use_chat_lang
-from meval import meval
 
 prefix = "!"
 

@@ -4,9 +4,8 @@ from googletrans import Translator, LANGUAGES
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from localization import use_chat_lang
 from config import prefix
-
+from localization import use_chat_lang
 
 translator = Translator()
 

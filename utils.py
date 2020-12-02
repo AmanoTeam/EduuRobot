@@ -2,7 +2,6 @@ import httpx
 
 from dbh import dbc, db
 
-
 group_types = ("group", "supergroup")
 
 http = httpx.AsyncClient(http2=True)

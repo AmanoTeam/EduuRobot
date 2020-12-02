@@ -1,7 +1,8 @@
 from pyrogram import Client, filters
-from localization import use_chat_lang
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+
 from localization import langdict, set_lang
+from localization import use_chat_lang
 
 
 def gen_langs_kb():

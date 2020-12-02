@@ -2,8 +2,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
-from utils import http
 from localization import use_chat_lang
+from utils import http
 
 
 @Client.on_message(filters.command("cat", prefix))
