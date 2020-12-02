@@ -1,5 +1,4 @@
 {
-  "translate_usage": "**Pemakaian:** `/tr <language> teks untuk terjemahan` (Bisa juga digunakan untuk membalas pesan).",
   "translating": "Menerjemahkan...",
   "translation": "<b>Bahasa:</b> {from_lang} -> {to_lang}\n<b>Terjemahan:</b> <code>{translation}</code>"
 }
