@@ -1,7 +1,7 @@
 import sqlite3
 
 
-db = sqlite3.connect("eduu.db", check_same_thread=False)
+db = sqlite3.connect("eduu.db")
 dbc = db.cursor()
 
 
