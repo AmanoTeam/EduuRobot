@@ -79,10 +79,10 @@ for locale in enabled_locales:
 langdict = cache_localizations(jsons)
 
 
-def get_locale_string(dic: dict, language: str, key: str, context: str = None) -> str:
+def get_locale_string(dic: dict, language: str, default_context: str, key: str, context: str = None) -> str:
     if context:
         dic = langdict[language][context]
-    return dic.get(key) or langdict[default_language].get(key) or key
+    return dic.get(key) or langdict[default_language][default_context].get(key) or key
 
 
 def use_chat_lang(func):
@@ -115,7 +115,7 @@ def use_chat_lang(func):
 
         dic = langdict.get(lang, langdict[default_language])
 
-        lfunc = partial(get_locale_string, dic.get(filename), lang)
+        lfunc = partial(get_locale_string, dic.get(filename), lang, filename)
         return await func(client, message, lfunc)
 
     return wrapper
