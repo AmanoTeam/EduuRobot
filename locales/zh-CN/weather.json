@@ -1,5 +1,5 @@
 {
   "location_not_found": "找不到位置。",
-  "temperature_unit": "m",
+  "measurement_unit": "m",
   "weather_language": "zh-CN"
 }

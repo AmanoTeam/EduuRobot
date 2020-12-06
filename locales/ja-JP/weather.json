@@ -1,5 +1,5 @@
 {
   "location_not_found": "ロケーションが見つかりません。",
-  "temperature_unit": "m",
+  "measurement_unit": "m",
   "weather_language": "ja-JP"
 }

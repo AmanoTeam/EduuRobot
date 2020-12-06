@@ -1,5 +1,5 @@
 {
   "location_not_found": "Konum bulunamadı.",
-  "temperature_unit": "m",
+  "measurement_unit": "m",
   "weather_language": "tr-TR"
 }
