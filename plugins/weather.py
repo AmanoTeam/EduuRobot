@@ -35,7 +35,7 @@ async def weather(c: Client, m: Message, strings):
                                            format="json",
                                            language=strings("weather_language"),
                                            geocode=pos,
-                                           units=strings("temperature_unit")))
+                                           units=strings("measurement_unit")))
             res_json = r.json()
 
             obs_dict = res_json["v3-wx-observations-current"]
