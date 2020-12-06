@@ -2,5 +2,6 @@
   "details": "<b>{location}</b>:\n\nTemperatur: <code>{temperature} °C</code>\nWärmegefühl: <code>{feels_like} °C</code>\nLuftfeuchtigkeit: <code>{air_humidity}%</code>\nWindgeschwindigkeit: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Standort nicht gefunden.",
   "temperature_unit": "m",
-  "weather_language": "de-DE"
+  "weather_language": "de-DE",
+  "weather_usage": "<b>Verwendung:</b> <code>/weather Standort oder Stadt</code> - Holen Sie sich Wetterinformationen von <i>Standort oder Stadt</i>."
 }
