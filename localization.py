@@ -115,7 +115,7 @@ def use_chat_lang(func):
 
         dic = langdict.get(lang, langdict[default_language])
 
-        lfunc = partial(get_locale_string, dic.get(filename), lang, filename)
+        lfunc = partial(get_locale_string, dic.get(filename, {}), lang, filename)
         return await func(client, message, lfunc)
 
     return wrapper
