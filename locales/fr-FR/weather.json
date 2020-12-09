@@ -3,5 +3,5 @@
   "location_not_found": "Lieu introuvable.",
   "measurement_unit": "m",
   "weather_language": "fr-FR",
-  "weather_usage": "<b>Utilisation :</b> <code>/weather location or city</code> - Obtenir des informations météorologiques à partir de <i>localisation ou ville</i>."
+  "weather_usage": "<b>Utilisation:</b> <code>/weather localisation ou ville</code> - Obtenir des informations météorologiques à partir de <i>localisation ou ville</i>."
 }
