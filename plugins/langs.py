@@ -44,4 +44,4 @@ async def set_user_lang(c: Client, m: CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(strings("back_btn"), callback_data="start_back")]
     ])
-    await m.message.edit_text("Language changed.", reply_markup=keyboard)
+    await m.message.edit_text(strings("language_changed_successfully"), reply_markup=keyboard)
