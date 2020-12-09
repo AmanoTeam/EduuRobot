@@ -30,7 +30,7 @@ async def chlang(c: Client, m: CallbackQuery, strings):
         *gen_langs_kb(),
         [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
     ])
-    await m.message.edit_text("Here you can change the language used for the bot.", reply_markup=keyboard)
+    await m.message.edit_text(strings("language_changer_private", context="general"), reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^set_lang "))
