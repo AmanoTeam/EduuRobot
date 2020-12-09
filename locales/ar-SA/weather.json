@@ -3,5 +3,5 @@
   "location_not_found": "الموقع غير موجود.",
   "measurement_unit": "m",
   "weather_language": "ar-SA",
-  "weather_usage": "<b>الاستخدام:</b> <code>/ الطقس الموقع أو المدينة</code> - الحصول على معلومات الطقس من <i>الموقع أو المدينة</i>."
+  "weather_usage": "<b> الاستخدام:</b> <code> /weather الموقع أو المدينة </code> - احصل على معلومات الطقس من <i> الموقع أو المدينة</i>."
 }
