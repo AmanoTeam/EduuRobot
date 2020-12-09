@@ -1,4 +1,5 @@
 {
+  "translate_usage": "<b>用法：</b> <code>/tr &lt;language&gt; 要翻译的文本</code> (Can be used in reply to a message).",
   "translating": "正在翻译...",
   "translation": "<b>语言：</b> {from_lang} -> {to_lang}\n<b>翻译：</b> <code>{translation}</code>"
 }
