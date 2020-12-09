@@ -1,0 +1,4 @@
+{
+  "language_changed_successfully": "Sprog blev ændret.",
+  "language_changer_private": "Her kan du ændre sproget som bruges til botten i denne private chat.\n\nHvis du ønsker at ændre din gruppes sprog, så kør venligst kommandoen <code>/config</code> inde i den.\nHvis dit sprog ikke er angivet her, og du gerne vil bidrage, skal du gå over @AmanoChat."
+}
