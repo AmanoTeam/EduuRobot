@@ -12,6 +12,7 @@ with open("version.txt") as f:
 
 client = Client("bot", API_ID, API_HASH,
                 bot_token=TOKEN,
+                workers=24,
                 plugins=dict(root="plugins", exclude=disabled_plugins))
 
 with client:
