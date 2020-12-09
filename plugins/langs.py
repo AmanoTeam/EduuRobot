@@ -1,8 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from localization import langdict, set_lang
-from localization import use_chat_lang
+from localization import langdict, set_db_lang, use_chat_lang
 
 
 def gen_langs_kb():
@@ -35,7 +34,7 @@ async def chlang(c: Client, m: CallbackQuery, strings):
 @Client.on_callback_query(filters.regex("^set_lang "))
 @use_chat_lang
 async def set_user_lang(c: Client, m: CallbackQuery, strings):
-    set_lang(m.message.chat.id, m.message.chat.type, m.data.split()[1])
+    set_db_lang(m.message.chat.id, m.message.chat.type, m.data.split()[1])
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
     ])

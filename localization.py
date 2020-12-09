@@ -31,7 +31,7 @@ enabled_locales = [
 default_language = "en-GB"
 
 
-def set_lang(chat_id: int, chat_type: str, lang_code: str):
+def set_db_lang(chat_id: int, chat_type: str, lang_code: str):
     if chat_type == "private":
         dbc.execute("UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id))
         db.commit()
@@ -45,7 +45,7 @@ def set_lang(chat_id: int, chat_type: str, lang_code: str):
         raise TypeError("Unknown chat type '%s'." % chat_type)
 
 
-def get_lang(chat_id: int, chat_type: str) -> str:
+def get_db_lang(chat_id: int, chat_type: str) -> str:
     if chat_type == "private":
         dbc.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = dbc.fetchone()
@@ -85,33 +85,38 @@ def get_locale_string(dic: dict, language: str, default_context: str, key: str, 
     return dic.get(key) or langdict[default_language][default_context].get(key) or key
 
 
+def get_lang(client, message) -> str:
+    if isinstance(message, CallbackQuery):
+        chat = message.message.chat
+    else:
+        chat = message.chat
+
+    lang = get_db_lang(chat.id, chat.type)
+
+    if chat.type == "private":
+        lang = lang or message.from_user.language_code or default_language
+    else:
+        lang = lang or default_language
+    # User has a language_code without hyphen
+    if len(lang.split("-")) == 1:
+        # Try to find a language that starts with the provided language_code
+        for locale_ in enabled_locales:
+            if locale_.startswith(lang):
+                lang = locale_
+    elif lang.split("-")[1].islower():
+        lang = lang.split("-")
+        lang[1] = lang[1].upper()
+        lang = "-".join(lang)
+    return lang if lang in enabled_locales else default_language
+
+
 def use_chat_lang(func):
     frame = inspect.stack()[1]
     filename = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
 
     @wraps(func)
     async def wrapper(client, message):
-        if isinstance(message, CallbackQuery):
-            chat = message.message.chat
-        else:
-            chat = message.chat
-
-        lang = get_lang(chat.id, chat.type)
-        if chat.type == "private":
-            lang = lang or message.from_user.language_code or default_language
-        else:
-            lang = lang or default_language
-        # User has a language_code without hyphen
-        if len(lang.split("-")) == 1:
-            # Try to find a language that starts with the provided language_code
-            for locale_ in enabled_locales:
-                if locale_.startswith(lang):
-                    lang = locale_
-        elif lang.split("-")[1].islower():
-            lang = lang.split("-")
-            lang[1] = lang[1].upper()
-            lang = "-".join(lang)
-        lang = lang if lang in enabled_locales else default_language
+        lang = get_lang(client, message)
 
         dic = langdict.get(lang, langdict[default_language])
 
