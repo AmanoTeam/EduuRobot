@@ -1,0 +1,10 @@
+{
+  "commands_btn": "📚 Příkazy",
+  "infos_btn": "i️ Infos",
+  "language_btn": "🌐 Jazyk",
+  "add_chat_btn": "➕ Přidat do chatu",
+  "private": "Ahoj! Jsem EduuRobot. Pro více informací o mých funkcích klikněte na tlačítka níže.",
+  "start_chat": "🤖 Zahájit chat",
+  "group": "Ahoj! Jsem EduuRobot. Chceš-li objevit mé funkce, začni se mnou konverzace.",
+  "info_page": "• EduuRobot\n\nVerze: {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Zdrojový kód</a>\nVývojáři: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartnerství:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2020 - <a href=\"https://amanoteam.com\">AmanoTeamTM</a>"
+}
