@@ -45,7 +45,7 @@ async def pypi(c: Client, m: Message, strings):
 
         if pypi_info["home_page"] and pypi_info["home_page"] != "UNKNOWN":
             kb = InlineKeyboardMarkup(inline_keyboard=[
-                                      [InlineKeyboardButton(text="Package home page", url=pypi_info["home_page"])]])
+                                      [InlineKeyboardButton(text=strings("package_home_page"), url=pypi_info["home_page"])]])
         else:
             kb = None
         await m.reply_text(message, parse_mode="HTML", disable_web_page_preview=True, reply_markup=kb)
