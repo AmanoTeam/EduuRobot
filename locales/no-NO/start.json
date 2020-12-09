@@ -1,0 +1,10 @@
+{
+  "commands_btn": "📚 Kommandoer",
+  "infos_btn": "i️ Infos",
+  "language_btn": "🌐 Språk",
+  "add_chat_btn": "➕ Legg til i en chat",
+  "private": "Hei! Jeg er EduuRobot. For å oppdage mer om mine funksjoner, klikk på knappene nedenfor.",
+  "start_chat": "🤖 Start en chat",
+  "group": "Hei! Jeg EduuRobot. For å oppdage mine funksjoner starter en samtale med meg.",
+  "info_page": "• EduuRobot\n\nVersjon: {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kildekode</a>\nUtvikler: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartnerskap:\n » <a href=\"https://t.me/hpxlist\">HPXList - fra usernein</a>\n\n©2020 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>"
+}

@@ -1,0 +1,10 @@
+{
+  "commands_btn": "📚 Comenzi",
+  "infos_btn": "i️ Infos",
+  "language_btn": "🌐 Limbă",
+  "add_chat_btn": "➕ Adaugă la un chat",
+  "private": "Salut! Sunt EduuRobot. Pentru a descoperi mai multe despre funcțiile mele, faceți clic pe butoanele de mai jos.",
+  "start_chat": "🤖 Începe o conversație",
+  "group": "Salut! Sunt EduuRobot. Pentru a descoperi funcțiile mele, începeți o conversație cu mine.",
+  "info_page": "• EduuRobot\n\nVersiune: {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Cod sursă</a>\nDezvoltator: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nParteneriate:\n » <a href=\"https://t.me/hpxlist\">HPXList - de usernein</a>\n\n©2020 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>"
+}

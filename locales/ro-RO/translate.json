@@ -1,0 +1,5 @@
+{
+  "translate_usage": "<b>Utilizare:</b> <code>/tr &lt;language&gt; text pentru traducere</code> (Can folosit și ca răspuns la un mesaj).",
+  "translating": "Traducere...",
+  "translation": "<b>Limbă:</b> {from_lang} -> {to_lang}\n<b>Traducere:</b> <code>{translation}</code>"
+}
