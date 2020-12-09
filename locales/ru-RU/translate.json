@@ -1,4 +1,5 @@
 {
+  "translate_usage": "<b>Использование:</b> <code>/tr &lt;language&gt; текст для перевода</code> (Также будет использован в ответ на сообщение).",
   "translating": "Идет перевод...",
   "translation": "<b>Язык:</b> {from_lang} -> {to_lang}\n<b>Перевод:</b> <code>{translation}</code>"
 }
