@@ -1,5 +1,6 @@
 {
   "location_not_found": "ロケーションが見つかりません。",
   "measurement_unit": "m",
-  "weather_language": "ja-JP"
+  "weather_language": "ja-JP",
+  "weather_usage": "<b>使用法:</b> <code>/weather location or city</code> - <i>location or city</i> から天気情報を取得します。"
 }
