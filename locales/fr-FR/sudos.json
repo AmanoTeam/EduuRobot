@@ -1,4 +1,5 @@
 {
+  "speedtest": "<b>Test de vitesse</b>\n\n<b>🌐 Hôte :</b> <code>{host}</code>\n\n<b>:ping_pong : Ping :</b> <code>{ping} m</code>\n<b>:down_arrow_selector : Téléchargement :</b> <code>{download} Mbps</code>\n<b>:up_arrow_selector : Upload:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "Commande interdite.",
   "restarting": "Redémarrage..."
 }
