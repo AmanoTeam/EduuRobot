@@ -1,7 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from localization import langdict, set_db_lang, use_chat_lang
+from functools import partial
+
+from localization import langdict, set_db_lang, use_chat_lang, get_locale_string
 
 
 def gen_langs_kb():
@@ -34,8 +36,12 @@ async def chlang(c: Client, m: CallbackQuery, strings):
 @Client.on_callback_query(filters.regex("^set_lang "))
 @use_chat_lang
 async def set_user_lang(c: Client, m: CallbackQuery, strings):
-    set_db_lang(m.message.chat.id, m.message.chat.type, m.data.split()[1])
+    lang = m.data.split()[1]
+    set_db_lang(m.message.chat.id, m.message.chat.type, lang)
+
+    strings = partial(get_locale_string, langdict[lang]["general"], lang, "general")
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
+        [InlineKeyboardButton(strings("back_btn"), callback_data="start_back")]
     ])
     await m.message.edit_text("Language changed.", reply_markup=keyboard)
