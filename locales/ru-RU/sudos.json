@@ -1,4 +1,5 @@
 {
+  "speedtest": "<b>Speedtest</b>\n\n<b>🌐 Хост:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Загрузка:</b> <code>{download} Mbps</code>\n<b>⬆️ Загрузить:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "Запрещенная команда.",
   "restarting": "Перезагружать..."
 }
