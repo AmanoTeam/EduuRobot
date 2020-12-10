@@ -14,7 +14,10 @@ if not TENOR_API_KEY:
 @Client.on_message(filters.command("gif", prefix))
 @use_chat_lang
 async def gif(c: Client, m: Message, strings):
-    text = m.text[5:]
+    if len(m.command) == 1:
+        return await m.reply_text(strings("gif_usage"))
+
+    text = m.text.split(maxsplit=1)[1]
     r = await http.get("https://api.tenor.com/v1/random",
                        params=dict(q=text, key=TENOR_API_KEY, limit=1))
     rjson = r.json()
