@@ -16,15 +16,21 @@ enabled_locales = [
     "en-GB",   # English
     "en-US",   # English (United States)
     "es-ES",   # Spanish
+    "fi-FI",   # Finnish
     "fr-FR",   # French
     "he-IL",   # Hebrew
     "id-ID",   # Indonesian
     "it-IT",   # Italian
     "ja-JP",   # Japanese
+    "no-NO",   # Norwegian
+    "pl-PL",   # Polish
     "pt-BR",   # Portuguese (Brazil)
     "pt-BR2",  # Portuguese (Brazil, informal version)
+    "ro-RO",   # Romanian
     "ru-RU",   # Russian
+    "sv-SE",   # Swedish
     "tr-TR",   # Turkish
+    "uk-UA",   # Ukranian
     "zh-CN",   # Chinese (Simplified)
 ]
 
