@@ -30,9 +30,10 @@ def backup_func():
     cstrftime = datetime.now().strftime('%d/%m/%Y - %H:%M:%S')
     file = backup_sources()
 
-    na_bot.sendDocument(backups_chat, open(file, 'rb'), caption="📅 " + cstrftime + "\n_Auto generated._", parse_mode='Markdown')
-
-    os.remove(file)
+    try:
+        na_bot.sendDocument(backups_chat, open(file, 'rb'), caption="📅 " + cstrftime + "\n_Auto generated._", parse_mode='Markdown')
+    finally:
+        os.remove(file)
 
 
 def backup_scheduler(target):
