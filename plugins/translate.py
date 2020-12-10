@@ -39,7 +39,7 @@ async def translate(c: Client, m: Message, strings):
                                   parse_mode="HTML")
 
     sent = await m.reply_text(strings("translating"),
-                                  reply_to_message_id=m.message_id)
+                              reply_to_message_id=m.message_id)
     langs = {}
 
     if len(lang.split("-")) > 1:
