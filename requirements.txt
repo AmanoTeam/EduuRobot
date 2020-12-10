@@ -1,4 +1,4 @@
-googletrans==3.1.0a0
+googletrans==4.0.0rc1
 pyrogram>=1.0.7,<1.1.0
 meval==2.5
 tgcrypto
