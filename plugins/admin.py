@@ -52,9 +52,9 @@ async def unban(client, message):
 @require_admin(permissions=["can_restrict_members"])
 async def mute(client, message):
     await client.restrict_chat_member(message.chat.id,
-    message.from_user.id,
-    ChatPermissions(can_send_messages=False),
-    )
+     message.reply_to_message.from_user.id,
+     ChatPermissions(can_send_messages=False),
+       )
   
     
 @Client.on_message(filters.command("unmute", prefix))
