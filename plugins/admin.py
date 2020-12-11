@@ -60,7 +60,6 @@ async def mute(client, message):
 @Client.on_message(filters.command("unmute", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(client, message):
-    await message.chat.unban_member(
-    user_id=user_id
-    )        
+    await message.chat.unban_member(message.reply_to_message.from_user.id
+    )     
            
