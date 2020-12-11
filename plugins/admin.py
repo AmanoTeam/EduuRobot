@@ -6,22 +6,24 @@ from pyrogram.types import ChatPermissions
 @Client.on_message(filters.command("pin", prefix))
 async def pin(client, message):
     await client.pin_chat_message(
-    message.reply_to_message.message_id,
-    message.chat.id
+    message.chat.id,
+    message.reply_to_message.message_id
     )
     
     
 @Client.on_message(filters.command("unpin", prefix))
 async def unpin(client, message):
     await client.unpin_chat_message(
-    message.reply_to_message.message_id,
-    message.chat.id
+    message.chat.id,
+    message.reply_to_message.message_id
     )
     
     
 @Client.on_message(filters.command("unpinall", prefix))
 async def unpinall(client, message):
-    await client.unpin_all_chat_messages
+    await client.unpin_all_chat_messages(
+        message.chat.id
+    )
     
        
 @Client.on_message(filters.command("ban", prefix))
