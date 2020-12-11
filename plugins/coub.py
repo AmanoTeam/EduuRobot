@@ -9,7 +9,7 @@ from utils import http
 
 
 @Client.on_message(filters.command("coub", prefix))
-@use_chat_lang
+@use_chat_lang()
 async def coub(c: Client, m: Message, strings):
     text = m.text[6:]
     r = await http.get("https://coub.com/api/v2/search/coubs",

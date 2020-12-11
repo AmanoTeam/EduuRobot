@@ -8,7 +8,7 @@ from localization import use_chat_lang
 
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)
-@use_chat_lang
+@use_chat_lang()
 async def sed(c: Client, m: Message, strings):
     exp = regex.split(r"(?<![^\\]\\)/", m.text)
     pattern = exp[1]

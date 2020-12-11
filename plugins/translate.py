@@ -24,7 +24,7 @@ def get_tr_lang(text):
 
 
 @Client.on_message(filters.command("tr", prefix))
-@use_chat_lang
+@use_chat_lang()
 async def translate(c: Client, m: Message, strings):
     text = m.text[4:]
     lang = get_tr_lang(text)

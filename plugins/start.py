@@ -7,7 +7,7 @@ from localization import use_chat_lang
 
 @Client.on_message(filters.command("start", prefix))
 @Client.on_callback_query(filters.regex("^start_back$"))
-@use_chat_lang
+@use_chat_lang()
 async def start(c: Client, m: Message, strings):
     if m.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -27,7 +27,7 @@ async def start(c: Client, m: Message, strings):
 
 
 @Client.on_callback_query(filters.regex("^start_back$"))
-@use_chat_lang
+@use_chat_lang()
 async def start_back(c: Client, m: CallbackQuery, strings):
     # TODO: Create a function to generate translatable keyboards instead of duplicating code fragments
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -41,7 +41,7 @@ async def start_back(c: Client, m: CallbackQuery, strings):
 
 
 @Client.on_callback_query(filters.regex("^commands$"))
-@use_chat_lang
+@use_chat_lang()
 async def commands(c: Client, m: CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
@@ -50,7 +50,7 @@ async def commands(c: Client, m: CallbackQuery, strings):
 
 
 @Client.on_callback_query(filters.regex("^infos$"))
-@use_chat_lang
+@use_chat_lang()
 async def infos(c: Client, m: CallbackQuery, strings):
     res = strings("info_page").format(
         version=version

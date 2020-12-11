@@ -24,7 +24,7 @@ def gen_langs_kb():
 
 
 @Client.on_callback_query(filters.regex("^chlang$"))
-@use_chat_lang
+@use_chat_lang()
 async def chlang(c: Client, m: CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         *gen_langs_kb(),
@@ -34,7 +34,7 @@ async def chlang(c: Client, m: CallbackQuery, strings):
 
 
 @Client.on_callback_query(filters.regex("^set_lang "))
-@use_chat_lang
+@use_chat_lang()
 async def set_user_lang(c: Client, m: CallbackQuery, strings):
     lang = m.data.split()[1]
     set_db_lang(m.message.chat.id, m.message.chat.type, lang)

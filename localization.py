@@ -116,17 +116,20 @@ def get_lang(client, message) -> str:
     return lang if lang in enabled_locales else default_language
 
 
-def use_chat_lang(func):
-    frame = inspect.stack()[1]
-    filename = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
+def use_chat_lang(context=None):
+    if not context:
+        frame = inspect.stack()[1]
+        context = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
 
-    @wraps(func)
-    async def wrapper(client, message):
-        lang = get_lang(client, message)
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(client, message):
+            lang = get_lang(client, message)
 
-        dic = langdict.get(lang, langdict[default_language])
+            dic = langdict.get(lang, langdict[default_language])
 
-        lfunc = partial(get_locale_string, dic.get(filename, {}), lang, filename)
-        return await func(client, message, lfunc)
+            lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
+            return await func(client, message, lfunc)
 
-    return wrapper
+        return wrapper
+    return decorator
