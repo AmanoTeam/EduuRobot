@@ -4,7 +4,7 @@ from pyrogram.types import ChatPermissions
 
 
 @Client.on_message(filters.command("pin", prefix))
-@require_admin()
+@require_admin(permissions=["can_pin_messages"])
 async def pin(client, message):
     await client.pin_chat_message(
     message.chat.id,
@@ -13,7 +13,7 @@ async def pin(client, message):
     
     
 @Client.on_message(filters.command("unpin", prefix))
-@require_admin()
+@require_admin(permissions=["can_pin_messages"])
 async def unpin(client, message):
     await client.unpin_chat_message(
     message.chat.id,
@@ -22,7 +22,7 @@ async def unpin(client, message):
     
     
 @Client.on_message(filters.command("unpinall", prefix))
-@require_admin()
+@require_admin(permissions=["can_pin_messages"])
 async def unpinall(client, message):
     await client.unpin_all_chat_messages(
         message.chat.id
@@ -30,7 +30,7 @@ async def unpinall(client, message):
     
        
 @Client.on_message(filters.command("ban", prefix))
-@require_admin()
+@require_admin(permissions=["can_restrict_members"])
 async def ban(client, message):
     await message.chat.kick_member(
     user_id=user_id
@@ -38,20 +38,20 @@ async def ban(client, message):
 
     
 @Client.on_message(filters.command("kick", prefix))
-@require_admin()
+@require_admin(permissions=["can_restrict_members"])
 async def kick(client, message):
     await message.client.kick_chat_member(chat_id, user_id, int(time.time() + 60))
     )
     
 @Client.on_message(filters.command("unban", prefix))
-@require_admin()
+@require_admin(permissions=["can_restrict_members"])
 async def unban(client, message):
     await message.chat.unban_member(
     user_id=user_id
     )
     
 @Client.on_message(filters.command("mute", prefix))
-@require_admin()
+@require_admin(permissions=["can_restrict_members"])
 async def mute(client, message):
     await client.restrict_chat_member(message.chat.id,
     message.from_user.id,
@@ -60,7 +60,7 @@ async def mute(client, message):
   
     
 @Client.on_message(filters.command("unmute", prefix))
-@require_admin()
+@require_admin(permissions=["can_restrict_members"])
 async def unmute(client, message):
     await message.chat.unban_member(
     user_id=user_id
