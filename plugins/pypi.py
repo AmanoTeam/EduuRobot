@@ -6,7 +6,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardBu
 
 from config import prefix
 from localization import use_chat_lang
-from utils import http
+from consts import http
 
 
 def cleanhtml(raw_html):

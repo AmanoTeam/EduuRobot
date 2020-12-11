@@ -3,7 +3,7 @@ from pyrogram.types import Message
 
 from config import prefix
 from localization import use_chat_lang
-from utils import http
+from consts import http
 
 # Api key used in weather.com's mobile app.
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"

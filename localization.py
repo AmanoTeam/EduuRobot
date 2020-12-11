@@ -8,7 +8,8 @@ from typing import List, Dict
 from pyrogram.types import CallbackQuery
 
 from dbh import dbc, db
-from utils import group_types
+from consts import group_types
+
 
 enabled_locales = [
     "ar-SA",   # Arabic
@@ -91,7 +92,7 @@ def get_locale_string(dic: dict, language: str, default_context: str, key: str, 
     return dic.get(key) or langdict[default_language][default_context].get(key) or key
 
 
-def get_lang(client, message) -> str:
+def get_lang(message) -> str:
     if isinstance(message, CallbackQuery):
         chat = message.message.chat
     else:
@@ -124,7 +125,7 @@ def use_chat_lang(context=None):
     def decorator(func):
         @wraps(func)
         async def wrapper(client, message):
-            lang = get_lang(client, message)
+            lang = get_lang(message)
 
             dic = langdict.get(lang, langdict[default_language])
 

@@ -5,7 +5,7 @@ from pyrogram.types import Message
 
 from config import prefix
 from localization import use_chat_lang
-from utils import http
+from consts import http
 
 
 @Client.on_message(filters.command("coub", prefix))
