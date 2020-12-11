@@ -54,7 +54,8 @@ async def check_perms(client: Client,
     if not permissions and user.status == "administrator":
         return True
     elif user.status != "administrator":
-        await message.reply_text(strings("no_admin_error"))
+        if complain_missing_perms:
+            await message.reply_text(strings("no_admin_error"))
         return False
 
     if isinstance(permissions, str):
@@ -66,9 +67,9 @@ async def check_perms(client: Client,
 
     if not missing_perms:
         return True
-    else:
+    elif complain_missing_perms:
         await message.reply_text(strings("no_permission_error").format(permissions=", ".join(missing_perms)))
-        return False
+    return False
 
 
 def require_admin(permissions: Union[list, str] = None,
