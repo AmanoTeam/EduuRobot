@@ -1,7 +1,8 @@
 from pyrogram import Client, filters
 from config import prefix
 from pyrogram.types import ChatPermissions
-
+from utils import require_admin
+from pyrogram.types import Message as message
 
 @Client.on_message(filters.command("pin", prefix))
 @require_admin(permissions=["can_pin_messages"])
@@ -32,37 +33,33 @@ async def unpinall(client, message):
 @Client.on_message(filters.command("ban", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def ban(client, message):
-    await message.chat.kick_member(
-    user_id=user_id
-    )
+    await client.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
 
     
 @Client.on_message(filters.command("kick", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def kick(client, message):
-    await message.client.kick_chat_member(chat_id, user_id, int(time.time() + 60))
-    )
+    await client.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    await message.chat.unban_member(message.reply_to_message.from_user.id)
     
 @Client.on_message(filters.command("unban", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def unban(client, message):
-    await message.chat.unban_member(
-    user_id=user_id
+    await message.chat.unban_member(message.reply_to_message.from_user.id
     )
     
 @Client.on_message(filters.command("mute", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def mute(client, message):
     await client.restrict_chat_member(message.chat.id,
-    message.from_user.id,
-    ChatPermissions(can_send_messages=False),
-    )
+     message.reply_to_message.from_user.id,
+     ChatPermissions(can_send_messages=False),
+       )
   
     
 @Client.on_message(filters.command("unmute", prefix))
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(client, message):
-    await message.chat.unban_member(
-    user_id=user_id
-    )        
+    await message.chat.unban_member(message.reply_to_message.from_user.id
+    )     
            
