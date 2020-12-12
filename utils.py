@@ -1,4 +1,5 @@
 import httpx
+import time
 
 from pyrogram import Client
 from pyrogram.types import Message
@@ -98,3 +99,26 @@ def require_admin(permissions: Union[list, str] = None,
 
         return wrapper
     return decorator
+
+
+async def time_extract(m: Message, t: str):
+    if t[-1] in ['m', 'h', 'd']:
+        print(True)
+        unit = t[-1]
+        num = t[:-1]
+        if not num.isdigit():
+            await m.reply_text("Invalid Amount specified")
+            return
+        
+        if unit == 'm':
+            t_time = int(time.time() + int(num) * 60)
+        elif unit == 'h':
+            t_time = int(time.time() + int(num) * 60 * 60)
+        elif unit == 'd':
+            t_time = int(time.time() + int(num) * 24 * 60 * 60)
+        else:
+            return ""
+        return t_time
+    else:
+        await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
+        return ""

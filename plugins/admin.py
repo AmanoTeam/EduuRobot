@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from config import prefix
-from utils import require_admin
+from utils import require_admin, time_extract
 
 
 @Client.on_message(filters.command("pin", prefix))
@@ -62,3 +62,36 @@ async def mute(c: Client, m: Message):
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(c: Client, m: Message):
     await m.chat.unban_member(m.reply_to_message.from_user.id)
+
+
+@Client.on_message(filters.command("tmute", prefix))
+@require_admin(permissions=["can_restrict_members"])
+async def tmute(c: Client, m: Message):
+    if len(m.command) == 1:
+        return 
+    split_time = m.text.split(None, 1)
+    mute_time = await time_extract(m, split_time[1])
+    if not mute_time:
+        return
+    await c.restrict_chat_member(
+        m.chat.id,
+        m.reply_to_message.from_user.id,
+        ChatPermissions(can_send_messages=False),
+        until_date=mute_time
+    )
+
+
+@Client.on_message(filters.command("tban", prefix))
+@require_admin(permissions=["can_restrict_members"])
+async def tban(c: Client, m: Message):
+    if len(m.command) == 1:
+        return
+    split_time = m.text.split(None, 1)
+    ban_time = await time_extract(m, split_time[1])
+    if not ban_time:
+        return
+    await c.kick_chat_member(
+        m.chat.id,
+        m.reply_to_message.from_user.id,
+        until_date=ban_time
+    )
