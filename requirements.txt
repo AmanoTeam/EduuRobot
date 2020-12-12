@@ -1,5 +1,5 @@
 googletrans==4.0.0rc1
-pyrogram>=1.0.7,<1.1.0
+git+https://github.com/pyrogram/pyrogram.git#egg=pyrogram
 meval==2.5
 tgcrypto
 speedtest-cli
