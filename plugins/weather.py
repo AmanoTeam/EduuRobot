@@ -48,4 +48,4 @@ async def weather(c: Client, m: Message, strings):
                                         wind_speed=obs_dict["windSpeed"],
                                         overview=obs_dict["wxPhraseLong"])
 
-        await m.reply_text(res, parse_mode="HTML")
+        await m.reply_text(res)

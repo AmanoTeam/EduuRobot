@@ -48,7 +48,6 @@ async def pypi(c: Client, m: Message, strings):
                                       [InlineKeyboardButton(text=strings("package_home_page"), url=pypi_info["home_page"])]])
         else:
             kb = None
-        await m.reply_text(message, parse_mode="HTML", disable_web_page_preview=True, reply_markup=kb)
+        await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
     else:
-        await m.reply_text(strings("package_not_found").format(package_name=text, http_status=r.status_code),
-                           parse_mode="HTML")
+        await m.reply_text(strings("package_not_found").format(package_name=text, http_status=r.status_code))

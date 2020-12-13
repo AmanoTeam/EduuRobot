@@ -22,4 +22,4 @@ async def coub(c: Client, m: Message, strings):
     except IndexError:
         await m.reply_text(strings("no_results", context="general"))
     else:
-        await m.reply_text(f"**[{title}](https://coub.com/v/{links})**")
+        await m.reply_text(f"<b><a href\"https://coub.com/v/{links}\">{title}</a></b>")

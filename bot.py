@@ -13,14 +13,15 @@ with open("version.txt") as f:
 client = Client("bot", API_ID, API_HASH,
                 bot_token=TOKEN,
                 workers=24,
+                parse_mode="html",
                 plugins=dict(root="plugins", exclude=disabled_plugins))
 
 with client:
     if __name__ == "__main__":
         client.me = client.get_me()
         try:
-            client.send_message(log_chat, "**Bot started**\n\n"
-                                          f"**Version:** {version}")
+            client.send_message(log_chat, "<b>Bot started</b>\n\n"
+                                          f"<b>Version:</b> {version}")
         except BadRequest:
             logging.warning("Unable to send message to log_chat.")
         idle()
