@@ -35,8 +35,7 @@ async def translate(c: Client, m: Message, strings):
 
     if not text:
         return await m.reply_text(strings("translate_usage"),
-                                  reply_to_message_id=m.message_id,
-                                  parse_mode="HTML")
+                                  reply_to_message_id=m.message_id)
 
     sent = await m.reply_text(strings("translating"),
                               reply_to_message_id=m.message_id)
@@ -55,5 +54,4 @@ async def translate(c: Client, m: Message, strings):
     await sent.edit_text(strings("translation").format(
             from_lang=trres.src,
             to_lang=trres.dest,
-            translation=res),
-                         parse_mode="HTML")
+            translation=res))

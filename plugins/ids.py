@@ -20,8 +20,7 @@ async def ids_private(c: Client, m: Message):
                            user_id=m.from_user.id,
                            lang=m.from_user.language_code,
                            chat_type=m.chat.type
-                       ),
-                       parse_mode="HTML")
+                       ))
 
 
 @Client.on_message(filters.command("id", prefix) & filters.group)
@@ -47,5 +46,4 @@ async def ids(c: Client, m: Message):
                            chat_username=m.chat.username,
                            chat_id=m.chat.id,
                            chat_type=m.chat.type
-                       ),
-                       parse_mode="HTML")
+                       ))

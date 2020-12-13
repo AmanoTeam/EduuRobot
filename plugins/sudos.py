@@ -83,13 +83,13 @@ async def execs(c: Client, m: Message):
         try:
             await locals()["__ex"](c, m)
         except:  # skipcq
-            return await m.reply_text(html.escape(traceback.format_exc()), parse_mode="HTML")
+            return await m.reply_text(html.escape(traceback.format_exc()))
 
     if strio.getvalue().strip():
         out = f"<code>{html.escape(strio.getvalue())}</code>"
     else:
         out = "Command executed."
-    await m.reply_text(out, parse_mode="HTML")
+    await m.reply_text(out)
 
 
 @Client.on_message(filters.command("speedtest", prefix) & filters.user(sudoers))

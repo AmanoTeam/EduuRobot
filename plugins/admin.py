@@ -3,6 +3,7 @@ from pyrogram.types import ChatPermissions, Message
 
 from config import prefix
 from utils import require_admin, time_extract
+from localization import use_chat_lang
 
 
 @Client.on_message(filters.command("pin", prefix))
@@ -65,10 +66,11 @@ async def unmute(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("tmute", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def tmute(c: Client, m: Message):
+async def tmute(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return
+        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
     split_time = m.text.split(None, 1)
     mute_time = await time_extract(m, split_time[1])
     if not mute_time:
@@ -82,10 +84,11 @@ async def tmute(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("tban", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def tban(c: Client, m: Message):
+async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return
+        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
     split_time = m.text.split(None, 1)
     ban_time = await time_extract(m, split_time[1])
     if not ban_time:

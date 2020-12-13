@@ -34,4 +34,4 @@ async def jsondump(c: Client, m: Message):
         bio.name = f"dump-{m.chat.id}.json"
         await m.reply_document(bio)
     else:
-        await m.reply_text(f"<code>{html.escape(obj)}</code>", parse_mode="HTML")
+        await m.reply_text(f"<code>{html.escape(obj)}</code>")
