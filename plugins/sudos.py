@@ -11,6 +11,7 @@ import speedtest
 from meval import meval
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.errors import ChatInvalid, RPCError
 
 from config import sudoers
 from localization import use_chat_lang
@@ -111,3 +112,40 @@ async def test_speed(c: Client, m: Message, strings):
 async def restart(c: Client, m: Message, strings):
     await m.reply_text(strings("restarting"))
     os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
+
+
+@Client.on_message(filters.command("leave", prefix) & filters.user(sudoers))
+async def leave_chat(c: Client, m: Message):
+    if len(m.command) == 1:
+        try:
+            await c.leave_chat(m.chat.id)
+        except ChatInvalid or RPCError as e:
+            print(e)
+            pass
+    else:
+        chat_id = m.text.split(maxsplit=1)[1]
+        try:
+            await c.leave_chat(int(chat_id))
+        except ChatInvalid or RPCError as e:
+            print(e)
+            pass
+
+
+@Client.on_message(filters.command("del", prefix) & filters.user(sudoers))
+async def del_message(c: Client, m: Message):
+    try:
+        await c.delete_messages(
+            m.chat.id,
+            m.reply_to_message.message_id
+        )
+    except RPCError as e:
+        print(e)
+        pass
+    try:
+        await c.delete_messages(
+            m.chat.id,
+            m.message_id
+        )
+    except RPCError as e:
+        print(e)
+        pass
