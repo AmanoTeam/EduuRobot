@@ -101,7 +101,7 @@ def require_admin(permissions: Union[list, str] = None,
     return decorator
 
 
-async def time_extract(m: Message, t: str):
+async def time_extract(m: Message, t: str) -> int:
     if t[-1] in ['m', 'h', 'd']:
         print(True)
         unit = t[-1]
@@ -117,8 +117,8 @@ async def time_extract(m: Message, t: str):
         elif unit == 'd':
             t_time = int(num) * 24 * 60 * 60
         else:
-            return ""
+            return 0
         return int(time.time() + t_time)
     else:
         await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
-        return ""
+        return 0
