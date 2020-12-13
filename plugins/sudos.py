@@ -126,7 +126,7 @@ async def leave_chat(c: Client, m: Message):
         chat_id = m.text.split(maxsplit=1)[1]
         try:
             await c.leave_chat(int(chat_id))
-        except ChatInvalid or RPCError as e:
+        except (ChatInvalid, RPCError) as e:
             print(e)
             pass
 
