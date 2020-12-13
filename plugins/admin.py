@@ -68,7 +68,7 @@ async def unmute(c: Client, m: Message):
 @require_admin(permissions=["can_restrict_members"])
 async def tmute(c: Client, m: Message):
     if len(m.command) == 1:
-        return 
+        return
     split_time = m.text.split(None, 1)
     mute_time = await time_extract(m, split_time[1])
     if not mute_time:

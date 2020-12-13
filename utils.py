@@ -109,7 +109,7 @@ async def time_extract(m: Message, t: str):
         if not num.isdigit():
             await m.reply_text("Invalid Amount specified")
             return
-        
+
         if unit == 'm':
             t_time = int(time.time() + int(num) * 60)
         elif unit == 'h':
