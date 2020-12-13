@@ -111,14 +111,14 @@ async def time_extract(m: Message, t: str):
             return
 
         if unit == 'm':
-            t_time = int(time.time() + int(num) * 60)
+            t_time = int(num) * 60
         elif unit == 'h':
-            t_time = int(time.time() + int(num) * 60 * 60)
+            t_time = int(num) * 60 * 60
         elif unit == 'd':
-            t_time = int(time.time() + int(num) * 24 * 60 * 60)
+            t_time = int(num) * 24 * 60 * 60
         else:
             return ""
-        return t_time
+        return int(time.time() + t_time)
     else:
         await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
         return ""
