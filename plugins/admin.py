@@ -100,29 +100,29 @@ async def tban(c: Client, m: Message, strings):
     )
 @Client.on_message(filters.command("purge", prefix))
 @require_admin(permissions=["can_delete_messages"])
-async def purge(client, message):
+async def purge(c: Client, m: Message):
     """ purge upto the replied message """
-    status_message = await message.reply_text("...", quote=True)
-    await message.delete()
+    status_message = await m.reply_text("...", quote=True)
+    await m.delete()
     message_ids = []
     count_del_etion_s = 0
-    if message.reply_to_message:
+    if m.reply_to_message:
         for a_s_message_id in range(
-            message.reply_to_message.message_id,
-            message.message_id
+            m.reply_to_message.message_id,
+            m.message_id
         ):
             message_ids.append(a_s_message_id)
             if len(message_ids) == 100:
-                await client.delete_messages(
-                    chat_id=message.chat.id,
+                await c.delete_messages(
+                    chat_id=m.chat.id,
                     message_ids=message_ids,
                     revoke=True
                 )
                 count_del_etion_s += len(message_ids)
                 message_ids = []
         if len(message_ids) > 0:
-            await client.delete_messages(
-                chat_id=message.chat.id,
+            await c.delete_messages(
+                chat_id=m.chat.id,
                 message_ids=message_ids,
                 revoke=True
             )
