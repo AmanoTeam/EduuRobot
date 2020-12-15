@@ -106,7 +106,7 @@ async def tban(c: Client, m: Message, strings):
 @require_admin(permissions=["can_delete_messages"])
 async def purge(c: Client, m: Message):
     """ purge upto the replied message """
-    status_message = await m.reply_text("...", quote=True)
+    status_message = await m.reply_text("Purging messages...", quote=True)
     await m.delete()
     message_ids = []
     count_del_etion_s = 0
@@ -132,7 +132,7 @@ async def purge(c: Client, m: Message):
             )
             count_del_etion_s += len(message_ids)
     await status_message.edit_text(
-        f"Deleted **{count_del_etion_s}** messages"
+        f"Deleted <b>{count_del_etion_s}</b> messages",
     )
     await asyncio.sleep(5)
     await status_message.delete()
