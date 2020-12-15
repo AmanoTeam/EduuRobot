@@ -98,6 +98,8 @@ async def tban(c: Client, m: Message, strings):
         m.reply_to_message.from_user.id,
         until_date=ban_time
     )
+    
+    
 @Client.on_message(filters.command("purge", prefix))
 @require_admin(permissions=["can_delete_messages"])
 async def purge(c: Client, m: Message):
