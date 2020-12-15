@@ -15,8 +15,8 @@ async def dogbin(c: Client, m: Message):
             with open(to_file,'rb') as fd:
                 m_list = fd.readlines()
             mean=""
-            for m in m_list:
-                mean+= m.decode('UTF-8') +"\r\n"
+            for s in m_list:
+                mean+= s.decode('UTF-8') +"\r\n"
             url = f"https://del.dog/documents"
             r = requests.post(url,data = mean.encode('UTF-8')).json()
             url = f"https://del.dog/{r['key']}"
