@@ -28,4 +28,4 @@ async def dogbin(c: Client, m: Message):
             url = f"https://del.dog/{r['key']}"
             await m.reply_text(url,disable_web_page_preview=True)
     else:
-        await m.reply_text("Please Reply to message or document.")
+        await m.reply_text("Please Reply to text or document.")
