@@ -11,7 +11,7 @@ import speedtest
 from meval import meval
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from pyrogram.errors import ChatInvalid, RPCError
+from pyrogram.errors import RPCError
 
 from config import sudoers
 from localization import use_chat_lang
