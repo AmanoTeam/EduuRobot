@@ -5,3 +5,4 @@ tgcrypto
 speedtest-cli
 httpx[http2]>=0.13.3,<1.0.0
 regex
+telegraph
