@@ -1,4 +1,3 @@
-import httpx
 import time
 
 from pyrogram import Client

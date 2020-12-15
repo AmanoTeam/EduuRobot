@@ -119,16 +119,14 @@ async def leave_chat(c: Client, m: Message):
     if len(m.command) == 1:
         try:
             await c.leave_chat(m.chat.id)
-        except ChatInvalid or RPCError as e:
+        except RPCError as e:
             print(e)
-            pass
     else:
         chat_id = m.text.split(maxsplit=1)[1]
         try:
             await c.leave_chat(int(chat_id))
-        except (ChatInvalid, RPCError) as e:
+        except RPCError as e:
             print(e)
-            pass
 
 
 @Client.on_message(filters.command("del", prefix) & filters.user(sudoers))
@@ -140,7 +138,6 @@ async def del_message(c: Client, m: Message):
         )
     except RPCError as e:
         print(e)
-        pass
     try:
         await c.delete_messages(
             m.chat.id,
@@ -148,4 +145,3 @@ async def del_message(c: Client, m: Message):
         )
     except RPCError as e:
         print(e)
-        pass

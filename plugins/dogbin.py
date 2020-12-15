@@ -16,7 +16,7 @@ async def dogbin(c: Client, m: Message):
         if m.reply_to_message.text:
             mean = m.reply_to_message.text
 
-        url = f"https://del.dog/documents"
+        url = "https://del.dog/documents"
         r = await http.post(url, data=mean.encode('UTF-8'))
         url = f"https://del.dog/{r.json()['key']}"
         await m.reply_text(url, disable_web_page_preview=True)

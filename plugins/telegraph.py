@@ -2,8 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
-import telegraph
-from telegraph import Telegraph, upload_file, exceptions
+from telegraph import Telegraph, upload_file
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name="@EduuRobot on telegram")
