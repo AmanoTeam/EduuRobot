@@ -6,7 +6,7 @@ import telegraph
 from telegraph import Telegraph, upload_file, exceptions
 
 telegraph = Telegraph()
-r = telegraph.create_account(short_name="EduuRobot")
+r = telegraph.create_account(short_name="@EduuRobot on telegram")
 
 @Client.on_message(filters.command("telegraph", prefix))
 async def telegraph(c: Client, m: Message):
