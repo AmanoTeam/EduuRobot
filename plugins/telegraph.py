@@ -14,9 +14,7 @@ async def telegraph(c: Client, m: Message):
         if m.reply_to_message.photo or m.reply_to_message.video or m.reply_to_message.animation:
             d_file = await m.reply_to_message.download()
             media_urls = upload_file(d_file)
-            tele_link = "https://telegra.ph".format(media_urls[0])
+            tele_link = "https://telegra.ph" + media_urls[0]
             await m.reply_text(tele_link)
     else:
         await m.reply_text("Please Reply to Photo or Video")
-            
-    
