@@ -10,6 +10,6 @@
   "purge_success": "Deletei <b>{count}</b> grupos inteiros.",
   "tban_success": "ATENÇÃO TODOS: o {user} não pode entrar no grupo por <b>{time}</b>, vamos comemorar. Valeu {admin}.",
   "tmute_success": "a fita que o {admin} colocou na boca do {user} irá aguentar <b>{time}</b>.",
-  "unban_success": "{user} foi desbanido por {admin}.",
-  "unmute_success": "{user} foi desmutado por {admin}."
+  "unban_success": "{user} pode entrar, mas toma cuidado com esse tal de {admin}.",
+  "unmute_success": "{user} o {admin} tirou a fita da sua boca."
 }
