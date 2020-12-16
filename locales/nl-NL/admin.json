@@ -1,1 +1,15 @@
-{}
+{
+  "ban_success": "{user} is verbannen door {admin}.",
+  "error_must_specify_time": "Je moet een tijd na het commando opgeven. Bijv.: <code>/{command} 7d</code>.",
+  "kick_success": "{user} werd gekickt door {admin}.",
+  "mute_success": "{user} werd gedempt door {admin}.",
+  "no_admin_error": "Je moet beheerder zijn om dit commando uit te voeren.",
+  "no_permission_error": "Het spijt me, maar je hebt niet de vereiste machtigingen om dit commando uit te voeren. Ontbrekende machtigingen: {permissions}",
+  "private_not_allowed": "Deze opdracht kan niet worden gebruikt in een privéchat. Als je hulp nodig hebt, gebruik dan het <code>/help</code> commando.",
+  "purge_in_progress": "Berichten verwijderen...",
+  "purge_success": "Verwijderde <b>{count}</b> berichten.",
+  "tban_success": "{user} is tijdelijk verbannen door {admin} voor <b>{time}</b>.",
+  "tmute_success": "{user} is tijdelijk gedempt door {admin} voor <b>{time}</b>.",
+  "unban_success": "{user} is gedeblokkeerd door {admin}.",
+  "unmute_success": "{user} werd door {admin} unmuted"
+}
