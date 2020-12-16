@@ -1,0 +1,4 @@
+{
+  "mute_success": "O utilizador {user} foi restringido, por intermédio do administrador {admin}, à exprimir suas mensagens por meio de texto, emojis, voz e imagens de modo geral (incluindo, mas não se limitando a: gravuras estáticas, figuras animadas, dentre outros).",
+  "unmute_success": "De modo que o utente {user} volte à desfrutar de seus privilégios comuns de utilizador, o supervisor {admin} revogou as restrições de envios de mensagens do mesmo."
+}

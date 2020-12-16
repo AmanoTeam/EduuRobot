@@ -1,6 +1,10 @@
 {
+  "ban_success": "{user} הוסר על ידי המנהל {admin}.",
   "error_must_specify_time": "אתה צריך לציין זמן אחרי הפקודה. לדוגמה.: <code>/{command} 7d</code>.",
-  "private_not_allowed": "הפקודה הזאת לא נתמכת בצ'אט פרטי לעזרה אפשר להשתמש בפקודה <code>/help</code>.",
+  "kick_success": "{user} נבעט על ידי המנהל {admin}.",
+  "mute_success": "{user} הושתק על ידי המנהל {admin}.",
   "no_admin_error": "אתה צריך להיות מנהל בשביל להשתמש בפקודה הזאת.",
-  "no_permission_error": "אין לך הרשאה להשתמש בפקודה זאת בשביל להשתמש בפקודה זאת אתה צריך הרשאה ל: {permissions}"
+  "no_permission_error": "אין לך הרשאה להשתמש בפקודה זאת בשביל להשתמש בפקודה זאת אתה צריך הרשאה ל: {permissions}",
+  "private_not_allowed": "הפקודה הזאת לא נתמכת בצ'אט פרטי לעזרה אפשר להשתמש בפקודה <code>/help</code>.",
+  "purge_in_progress": "מוחק הודעות..."
 }
