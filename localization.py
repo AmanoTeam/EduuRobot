@@ -26,6 +26,7 @@ enabled_locales = [
     "no-NO",   # Norwegian
     "pl-PL",   # Polish
     "pt-BR",   # Portuguese (Brazil)
+    "pt-BRe",  # Portuguese (Brazil, extended version)
     "pt-BR2",  # Portuguese (Brazil, informal version)
     "ro-RO",   # Romanian
     "ru-RU",   # Russian
