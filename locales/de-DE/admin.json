@@ -1,1 +1,15 @@
-{}
+{
+  "ban_success": "{user} wurde von {admin} gebannt.",
+  "error_must_specify_time": "Sie müssen eine Zeit nach dem Befehl angeben. Beispiel: <code>/{command} 7d</code>.",
+  "kick_success": "{user} wurde von {admin} gekickt.",
+  "mute_success": "{user} wurde von {admin} stumm gemacht.",
+  "no_admin_error": "Sie müssen ein Administrator sein, um diesen Befehl nutzen zu können.",
+  "no_permission_error": "Es tut mir leid, aber Sie haben nicht die erforderlichen Berechtigungen, um diesen Befehl auszuführen. Fehlende Berechtigungen: {permissions}",
+  "private_not_allowed": "Dieser Befehl kann nicht in einem privaten Chat verwendet werden. Wenn Sie Hilfe benötigen, benutzen Sie bitte den <code>/help</code> Befehl.",
+  "purge_in_progress": "Lösche Nachrichten...",
+  "purge_success": "<b>{count}</b> Nachrichten gelöscht.",
+  "tban_success": "{user} wurde vorübergehend von {admin} für <b>{time}</b> gebannt.",
+  "tmute_success": "{user} wurde vorübergehend von {admin} für <b>{time}</b> stumm gemacht.",
+  "unban_success": "{user} wurde von {admin} entbannt.",
+  "unmute_success": "{user} wurde von {admin} entmutet."
+}

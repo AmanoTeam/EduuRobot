@@ -1,1 +1,15 @@
-{}
+{
+  "ban_success": "{user} был забанен {admin}.",
+  "error_must_specify_time": "Необходимо указать время после команды. Например: <code>/{command} 7d</code>.",
+  "kick_success": "{user} был кикнут {admin}.",
+  "mute_success": "{user} был заглушен {admin}.",
+  "no_admin_error": "Вы должны быть администратором, чтобы использовать эту команду.",
+  "no_permission_error": "Мне жаль, но у вас нет необходимых прав для выполнения этой команды. Отсутствуют права доступа: {permissions}",
+  "private_not_allowed": "Эта команда не может быть использована в приватном чате. Если вам нужна помощь, пожалуйста, используйте команду <code>/help</code>.",
+  "purge_in_progress": "Очистка сообщений...",
+  "purge_success": "Удалено <b>{count}</b> сообщений.",
+  "tban_success": "{user} временно забанен {admin} на <b>{time}</b>.",
+  "tmute_success": "{user} временно заблокирован пользователем {admin} за <b>{time}</b>.",
+  "unban_success": "{user} был разбанен {admin}.",
+  "unmute_success": "{user} был размучен {admin}."
+}
