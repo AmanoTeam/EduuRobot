@@ -6,5 +6,9 @@
   "no_admin_error": "Você precisa ser um administrador para usar este comando.",
   "no_permission_error": "Desculpe, mas você não tem as permissões necessárias para executar este comando. Faltam as permissões: {permissions}",
   "private_not_allowed": "Este comando não pode ser usado em um chat privado. Se precisar de ajuda, use o comando <code>/help</code>.",
-  "purge_in_progress": "Apagando mensagens..."
+  "purge_in_progress": "Apagando mensagens...",
+  "purge_success": "Excluído <b>{count}</b> mensagens.",
+  "tban_success": "{user} foi temporariamente banido por {admin} por <b>{time}</b>.",
+  "tmute_success": "{user} foi temporariamente silenciado por {admin} por <b>{time}</b>.",
+  "unban_success": "{user} foi desbanido por {admin}."
 }
