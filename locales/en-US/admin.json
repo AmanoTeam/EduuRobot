@@ -1,6 +1,15 @@
 {
+  "ban_success": "{user} was banned by {admin}.",
   "error_must_specify_time": "You must specify a time after the command. E.g.: <code>/{command} 7d</code>.",
+  "kick_success": "{user} was kicked by {admin}.",
+  "mute_success": "{user} was muted by {admin}.",
   "no_admin_error": "You must be an administrator to use this command.",
   "no_permission_error": "I'm sorry but you don't have the required permissions to run this command. Missing permissions: {permissions}",
-  "private_not_allowed": "This command can't be used in a private chat. If you need any help, please use the <code>/help</code> command."
+  "private_not_allowed": "This command can't be used in a private chat. If you need any help, please use the <code>/help</code> command.",
+  "purge_in_progress": "Purging messages...",
+  "purge_success": "Deleted <b>{count}</b> messages.",
+  "tban_success": "{user} was temporarily banned by {admin} for <b>{time}</b>.",
+  "tmute_success": "{user} was temporarily muted by {admin} for <b>{time}</b>.",
+  "unban_success": "{user} was unbanned by {admin}.",
+  "unmute_success": "{user} was unmuted by {admin}."
 }
