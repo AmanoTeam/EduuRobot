@@ -1,6 +1,6 @@
 {
   "error_must_specify_time": "You must specify a time after the command. E.g.: <code>/{command} 7d</code>.",
-  "private_not_allowed": "This command can't be used in a private chat. If you need any help, please use the <code>/help</code> command.",
   "no_admin_error": "You must be an administrator to use this command.",
-  "no_permission_error": "I'm sorry but you don't have the required permissions to run this command. Missing permissions: {permissions}"
+  "no_permission_error": "I'm sorry but you don't have the required permissions to run this command. Missing permissions: {permissions}",
+  "private_not_allowed": "This command can't be used in a private chat. If you need any help, please use the <code>/help</code> command."
 }
