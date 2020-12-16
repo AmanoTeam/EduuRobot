@@ -2,7 +2,7 @@ import html
 import re
 
 from pyrogram import Client, filters
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 from config import prefix
 from localization import use_chat_lang

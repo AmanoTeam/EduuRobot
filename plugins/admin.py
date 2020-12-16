@@ -1,3 +1,5 @@
+import asyncio
+
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
@@ -98,3 +100,39 @@ async def tban(c: Client, m: Message, strings):
         m.reply_to_message.from_user.id,
         until_date=ban_time
     )
+
+
+@Client.on_message(filters.command("purge", prefix))
+@require_admin(permissions=["can_delete_messages"])
+async def purge(c: Client, m: Message):
+    """ purge upto the replied message """
+    status_message = await m.reply_text("Purging messages...", quote=True)
+    await m.delete()
+    message_ids = []
+    count_del_etion_s = 0
+    if m.reply_to_message:
+        for a_s_message_id in range(
+            m.reply_to_message.message_id,
+            m.message_id
+        ):
+            message_ids.append(a_s_message_id)
+            if len(message_ids) == 100:
+                await c.delete_messages(
+                    chat_id=m.chat.id,
+                    message_ids=message_ids,
+                    revoke=True
+                )
+                count_del_etion_s += len(message_ids)
+                message_ids = []
+        if len(message_ids) > 0:
+            await c.delete_messages(
+                chat_id=m.chat.id,
+                message_ids=message_ids,
+                revoke=True
+            )
+            count_del_etion_s += len(message_ids)
+    await status_message.edit_text(
+        f"Deleted <b>{count_del_etion_s}</b> messages",
+    )
+    await asyncio.sleep(5)
+    await status_message.delete()
