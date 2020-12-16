@@ -38,6 +38,13 @@ async def unpinall(c: Client, m: Message):
 @require_admin(permissions=["can_restrict_members"])
 async def ban(c: Client, m: Message):
     await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+    await m.reply_text(
+        "{} was banned by {}".format(
+            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            html_user(m.from_user.first_name, m.from_user.id)
+        ),
+        reply_to_message_id=m.message_id
+    )
 
 
 @Client.on_message(filters.command("kick", prefix))
@@ -45,6 +52,13 @@ async def ban(c: Client, m: Message):
 async def kick(c: Client, m: Message):
     await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
     await m.chat.unban_member(m.reply_to_message.from_user.id)
+    await m.reply_text(
+        "{} was Kicked by {}".format(
+            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            html_user(m.from_user.first_name, m.from_user.id)
+        ),
+        reply_to_message_id=m.message_id
+    )
 
 
 @Client.on_message(filters.command("unban", prefix))
@@ -59,6 +73,13 @@ async def mute(c: Client, m: Message):
     await c.restrict_chat_member(m.chat.id,
                                  m.reply_to_message.from_user.id,
                                  ChatPermissions(can_send_messages=False))
+    await m.reply_text(
+        "{} was muted by {}".format(
+            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            html_user(m.from_user.first_name, m.from_user.id)
+        ),
+        reply_to_message_id=m.message_id
+    )
 
 
 @Client.on_message(filters.command("unmute", prefix))
@@ -83,6 +104,14 @@ async def tmute(c: Client, m: Message, strings):
         ChatPermissions(can_send_messages=False),
         until_date=mute_time
     )
+    await m.reply_text(
+        "{} was temporarily muted by {} for <b>{}</b>".format(
+            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            html_user(m.from_user.first_name, m.from_user.id),
+            split_time[1]
+        ),
+        reply_to_message_id=m.message_id
+    )
 
 
 @Client.on_message(filters.command("tban", prefix))
@@ -99,6 +128,15 @@ async def tban(c: Client, m: Message, strings):
         m.chat.id,
         m.reply_to_message.from_user.id,
         until_date=ban_time
+    )
+    
+    await m.reply_text(
+        "{} was temporarily banned by {} for <b>{}</b>".format(
+            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            html_user(m.from_user.first_name, m.from_user.id),
+            split_time[1]
+        ),
+        reply_to_message_id=m.message_id
     )
 
 
