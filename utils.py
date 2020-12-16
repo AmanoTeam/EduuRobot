@@ -123,7 +123,7 @@ async def time_extract(m: Message, t: str) -> int:
         await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
         return 0
 
-    
+
 def html_user(name: str, user_id: int):
     name = html.escape(name)
     _html = f"<a href='tg://user?id={user_id}'>{name}</a>"

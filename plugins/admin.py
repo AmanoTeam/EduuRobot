@@ -129,7 +129,7 @@ async def tban(c: Client, m: Message, strings):
         m.reply_to_message.from_user.id,
         until_date=ban_time
     )
-    
+
     await m.reply_text(
         "{} was temporarily banned by {} for <b>{}</b>".format(
             html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
