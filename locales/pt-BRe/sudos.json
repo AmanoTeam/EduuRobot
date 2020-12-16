@@ -1,0 +1,5 @@
+{
+  "speedtest": "<b>Teste de velocidade</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬇️ Upload:</b> <code>{upload} Mbps</code>",
+  "forbidden_command": "Comando proibido.",
+  "restarting": "Reiniciando..."
+}
