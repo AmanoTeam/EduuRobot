@@ -35,57 +35,71 @@ async def unpinall(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("ban", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def ban(c: Client, m: Message):
+async def ban(c: Client, m: Message, strings):
     await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
     await m.reply_text(
-        "{} was banned by {}".format(
-            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
-            html_user(m.from_user.first_name, m.from_user.id)
-        ),
-        reply_to_message_id=m.message_id
+        strings("ban_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id)
+        )
     )
 
 
 @Client.on_message(filters.command("kick", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def kick(c: Client, m: Message):
+async def kick(c: Client, m: Message, strings):
     await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
     await m.chat.unban_member(m.reply_to_message.from_user.id)
     await m.reply_text(
-        "{} was Kicked by {}".format(
-            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
-            html_user(m.from_user.first_name, m.from_user.id)
-        ),
-        reply_to_message_id=m.message_id
+        strings("kick_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id)
+        )
     )
 
 
 @Client.on_message(filters.command("unban", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def unban(c: Client, m: Message):
+async def unban(c: Client, m: Message, strings):
     await m.chat.unban_member(m.reply_to_message.from_user.id)
+    await m.reply_text(
+        strings("unban_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id)
+        )
+    )
 
 
 @Client.on_message(filters.command("mute", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def mute(c: Client, m: Message):
+async def mute(c: Client, m: Message, strings):
     await c.restrict_chat_member(m.chat.id,
                                  m.reply_to_message.from_user.id,
                                  ChatPermissions(can_send_messages=False))
     await m.reply_text(
-        "{} was muted by {}".format(
-            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
-            html_user(m.from_user.first_name, m.from_user.id)
-        ),
-        reply_to_message_id=m.message_id
+        strings("mute_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id)
+        )
     )
 
 
 @Client.on_message(filters.command("unmute", prefix))
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
-async def unmute(c: Client, m: Message):
+async def unmute(c: Client, m: Message, strings):
     await m.chat.unban_member(m.reply_to_message.from_user.id)
+    await m.reply_text(
+        strings("unmute_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id)
+        )
+    )
 
 
 @Client.on_message(filters.command("tmute", prefix))
@@ -105,12 +119,11 @@ async def tmute(c: Client, m: Message, strings):
         until_date=mute_time
     )
     await m.reply_text(
-        "{} was temporarily muted by {} for <b>{}</b>".format(
-            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
-            html_user(m.from_user.first_name, m.from_user.id),
-            split_time[1]
-        ),
-        reply_to_message_id=m.message_id
+        strings("tmute_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id),
+            time=split_time[1]
+        )
     )
 
 
@@ -131,20 +144,20 @@ async def tban(c: Client, m: Message, strings):
     )
 
     await m.reply_text(
-        "{} was temporarily banned by {} for <b>{}</b>".format(
-            html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
-            html_user(m.from_user.first_name, m.from_user.id),
-            split_time[1]
-        ),
-        reply_to_message_id=m.message_id
+        strings("tban_success").format(
+            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            admin=html_user(m.from_user.first_name, m.from_user.id),
+            time=split_time[1]
+        )
     )
 
 
 @Client.on_message(filters.command("purge", prefix))
-@require_admin(permissions=["can_delete_messages"])
-async def purge(c: Client, m: Message):
+@require_admin(permissions=["can_delete_messages"], allow_in_private=True)
+@use_chat_lang()
+async def purge(c: Client, m: Message, strings):
     """ purge upto the replied message """
-    status_message = await m.reply_text("Purging messages...", quote=True)
+    status_message = await m.reply_text(strings("purge_in_progress"), quote=True)
     await m.delete()
     message_ids = []
     count_del_etion_s = 0
@@ -170,7 +183,9 @@ async def purge(c: Client, m: Message):
             )
             count_del_etion_s += len(message_ids)
     await status_message.edit_text(
-        f"Deleted <b>{count_del_etion_s}</b> messages",
+        strings("purge_success").format(
+            count=count_del_etion_s
+        )
     )
     await asyncio.sleep(5)
     await status_message.delete()
