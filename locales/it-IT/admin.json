@@ -1,1 +1,15 @@
-{}
+{
+  "ban_success": "{user} è stato bandito da {admin}.",
+  "error_must_specify_time": "Devi specificare un tempo dopo il comando. Ad esempio: <code>/{command} 7d</code>.",
+  "kick_success": "{user} è stato cacciato da {admin}.",
+  "mute_success": "{user} è stato silenziato da {admin}.",
+  "no_admin_error": "Devi essere un amministratore per usare questo comando.",
+  "no_permission_error": "Mi dispiace ma non hai i permessi necessari per eseguire questo comando. Permessi mancanti: {permissions}",
+  "private_not_allowed": "Questo comando non può essere utilizzato in una chat privata. Se hai bisogno di aiuto, usa il comando <code>/help</code>.",
+  "purge_in_progress": "Pulizia messaggi...",
+  "purge_success": "Eliminato <b>{count}</b> messaggi.",
+  "tban_success": "{user} è stato temporaneamente bandito da {admin} per <b>{time}</b>.",
+  "tmute_success": "{user} è stato temporaneamente mutato da {admin} per <b>{time}</b>.",
+  "unban_success": "{user} è stato sbannato da {admin}.",
+  "unmute_success": "{user} è stato disattivato da {admin}."
+}
