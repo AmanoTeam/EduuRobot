@@ -1,4 +1,5 @@
 import time
+import html
 
 from pyrogram import Client
 from pyrogram.types import Message
@@ -121,3 +122,10 @@ async def time_extract(m: Message, t: str) -> int:
     else:
         await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
         return 0
+
+    
+def html_user(name: str, user_id: int):
+    name = html.escape(name)
+    _html = f"<a href='tg://user?id={user_id}'>{name}</a>"
+    return _html
+
