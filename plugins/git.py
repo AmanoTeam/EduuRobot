@@ -1,4 +1,3 @@
-import os
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -20,11 +19,7 @@ async def git(c: Client, m: Message):
 
     a = await m.reply_text("Fetching information", reply_to_message_id=m.message_id)
 
-    avatar = res["avatar_url"]
-    pic = await http.get(avatar)
-    file_name = f'{res["login"]}.jpg'
-    with open(file_name, mode='wb') as file:
-        file.write(pic.content)
+    avatar = f"https://avatars.githubusercontent.com/{res['login']}"
 
     caption_text = """<b>Name</b> : <code>{name}</code>
 <b>Username</b> : <code>{username}</code>
@@ -34,7 +29,7 @@ async def git(c: Client, m: Message):
     """
     await a.delete()
     await m.reply_photo(
-        file_name,
+        avatar,
         caption=caption_text.format(
             name=res['name'],
             username=res['login'],
@@ -44,7 +39,3 @@ async def git(c: Client, m: Message):
         ),
         reply_to_message_id=m.message_id
     )
-    try:
-        os.remove(file_name)
-    except:
-        pass
