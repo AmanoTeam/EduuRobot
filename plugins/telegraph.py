@@ -2,10 +2,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
-from telegraph import Telegraph, upload_file
+from telegraph import upload_file
 
-telegraph = Telegraph()
-r = telegraph.create_account(short_name="@EduuRobot on telegram")
 
 @Client.on_message(filters.command("telegraph", prefix))
 async def telegraph(c: Client, m: Message):
