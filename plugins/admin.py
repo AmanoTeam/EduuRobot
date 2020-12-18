@@ -13,7 +13,18 @@ from localization import use_chat_lang
 async def pin(c: Client, m: Message):
     await c.pin_chat_message(
         m.chat.id,
-        m.reply_to_message.message_id
+        m.reply_to_message.message_id,
+        disable_notification=True
+    )
+    
+    
+@Client.on_message(filters.command("pin loud", prefix))
+@require_admin(permissions=["can_pin_messages"])
+async def pinloud(c: Client, m: Message):
+    await c.pin_chat_message(
+        m.chat.id,
+        m.reply_to_message.message_id,
+        disable_notification=False
     )
 
 
