@@ -89,12 +89,11 @@ def require_admin(permissions: Union[list, str] = None,
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
                 return await message.reply_text(strings("private_not_allowed"))
-            elif message.chat.type == "channel":
+            if message.chat.type == "channel":
                 return await func(client, message, *args, *kwargs)
-            else:
-                has_perms = await check_perms(client, message, permissions, complain_missing_perms, strings)
-                if has_perms:
-                    return await func(client, message, *args, *kwargs)
+            has_perms = await check_perms(client, message, permissions, complain_missing_perms, strings)
+            if has_perms:
+                return await func(client, message, *args, *kwargs)
 
         return wrapper
     return decorator
