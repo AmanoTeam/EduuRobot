@@ -1,3 +1,4 @@
+import os
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -10,21 +11,30 @@ async def git(c: Client, m: Message):
     if len(m.command) == 1:
         return await m.reply_text("Specify a username", reply_to_message_id=m.message_id)
     text = m.text.split(maxsplit=1)[1]
+
     req = await http.get(f'https://api.github.com/users/{text}')
     res = req.json()
 
     if not res.get('login'):
         return await m.reply_text("User not found", reply_to_message_id=m.message_id)
 
+    a = await m.reply_text("Fetching information", reply_to_message_id=m.message_id)
+
     avatar = res["avatar_url"]
+    pic = await http.get(avatar)
+    file_name = f'{res["login"]}.jpg'
+    with open(file_name, mode='wb') as file:
+        file.write(pic.content)
+
     caption_text = """<b>Name</b> : <code>{name}</code>
 <b>Username</b> : <code>{username}</code>
 <b>Location</b> : <code>{location}</code>
 <b>Type</b> : <code>{type}</code>
 <b>Bio</b> : <code>{bio}</code>
     """
+    await a.delete()
     await m.reply_photo(
-        avatar,
+        file_name,
         caption=caption_text.format(
             name=res['name'],
             username=res['login'],
@@ -34,3 +44,7 @@ async def git(c: Client, m: Message):
         ),
         reply_to_message_id=m.message_id
     )
+    try:
+        os.remove(file_name)
+    except:
+        pass
