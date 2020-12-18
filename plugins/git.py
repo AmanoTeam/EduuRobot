@@ -1,8 +1,8 @@
-import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
+from consts import http
 
 
 @Client.on_message(filters.command("git", prefix))
@@ -10,9 +10,8 @@ async def git(c: Client, m: Message):
     if len(m.command) == 1:
         return await m.reply_text("Specify a username", reply_to_message_id=m.message_id)
     text = m.text.split(maxsplit=1)[1]
-    async with aiohttp.ClientSession() as session:
-        req = await session.get(f'https://api.github.com/users/{text}')
-        res = await req.json()
+    req = await http.get(f'https://api.github.com/users/{text}')
+    res = req.json()
 
     if not res.get('login'):
         return await m.reply_text("User not found", reply_to_message_id=m.message_id)
