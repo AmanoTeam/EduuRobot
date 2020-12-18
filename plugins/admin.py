@@ -25,7 +25,6 @@ async def pin(c: Client, m: Message):
         m.chat.id,
         m.reply_to_message.message_id,
         disable_notification=False
-        
     )
 
 
