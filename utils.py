@@ -54,7 +54,7 @@ async def check_perms(client: Client,
     # No permissions specified, accept being an admin.
     if not permissions and user.status == "administrator":
         return True
-    elif user.status != "administrator":
+    if user.status != "administrator":
         if complain_missing_perms:
             await message.reply_text(strings("no_admin_error"))
         return False
@@ -68,7 +68,7 @@ async def check_perms(client: Client,
 
     if not missing_perms:
         return True
-    elif complain_missing_perms:
+    if complain_missing_perms:
         await message.reply_text(strings("no_permission_error").format(permissions=", ".join(missing_perms)))
     return False
 
@@ -88,8 +88,7 @@ def require_admin(permissions: Union[list, str] = None,
             if message.chat.type == "private":
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
-                else:
-                    return await message.reply_text(strings("private_not_allowed"))
+                return await message.reply_text(strings("private_not_allowed"))
             elif message.chat.type == "channel":
                 return await func(client, message, *args, *kwargs)
             else:
@@ -119,9 +118,8 @@ async def time_extract(m: Message, t: str) -> int:
         else:
             return 0
         return int(time.time() + t_time)
-    else:
-        await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
-        return 0
+    await m.reply_text('Invalid time format. Use \'h\'/\'m\'/\'d\' ')
+    return 0
 
 
 def html_user(name: str, user_id: int):
