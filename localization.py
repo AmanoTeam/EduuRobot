@@ -90,7 +90,8 @@ langdict = cache_localizations(jsons)
 def get_locale_string(dic: dict, language: str, default_context: str, key: str, context: str = None) -> str:
     if context:
         dic = langdict[language][context]
-    return dic.get(key) or langdict[default_language][default_context].get(key) or key
+    res: str = dic.get(key) or langdict[default_language][default_context].get(key) or key
+    return res
 
 
 def get_lang(message) -> str:
