@@ -8,3 +8,4 @@ __pycache__/
 *.db
 config.ini
 config.py
+downloads/
