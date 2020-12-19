@@ -20,7 +20,11 @@ async def jsondump(c: Client, m: Message):
     obj = json.loads(str(m))
 
     for param in params:
-        obj = obj.get(param)
+        param = int(param) if param.lstrip("-").isdecimal() else param
+        try:
+            obj = obj[param]
+        except (IndexError, KeyError) as e:
+            return await m.reply_text(f"{e.__class__.__name__}: {e}")
         # There is nothing to get anymore.
         if obj is None:
             break
