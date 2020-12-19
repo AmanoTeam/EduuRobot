@@ -79,7 +79,7 @@ async def evals(c: Client, m: Message):
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
-    exec("async def __ex(client, message): " + " ".join("\n " + l for l in code.split("\n")))  # skipcq: PYL-W0122
+    exec("async def __ex(c, m): " + " ".join("\n " + l for l in code.split("\n")))  # skipcq: PYL-W0122
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)
