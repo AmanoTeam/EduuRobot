@@ -1,5 +1,7 @@
 import time
 import html
+import inspect
+import os.path
 
 from pyrogram import Client
 from pyrogram.types import Message
@@ -126,3 +128,37 @@ def html_user(name: str, user_id: int):
     _html = f"<a href='tg://user?id={user_id}'>{name}</a>"
     return _html
 
+
+class BotCommands:
+    def __init__(self):
+        self.commands = {}
+
+    def add_command(self, command: str, category: str, description_key: str = None, context_location: str = None):
+        if context_location is None:
+            # If context_location is not defined, get context from file name who added the command
+            frame = inspect.stack()[1]
+            context_location = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
+        if description_key is None:
+            description_key = command + "_description"
+        if self.commands.get(category) is None:
+            self.commands[category] = []
+        self.commands[category].append(dict(command=command, description_key=description_key, context=context_location))
+
+    def get_commands_message(self, strings_manager, category: str = None):
+        # TODO: Add pagination support.
+        if category is None:
+            cmds_list = []
+            for category in self.commands:
+                cmds_list += self.commands[category]
+        else:
+            cmds_list = self.commands[category]
+
+        res = strings_manager("command_category_title").format(category=strings_manager(category)) + "\n\n"
+
+        for cmd in cmds_list:
+            res += f"<b>/{cmd['command']}</b> - <i>{strings_manager(cmd['description_key'], context=cmd['context'])}</i>\n"
+
+        return res
+
+
+commands = BotCommands()

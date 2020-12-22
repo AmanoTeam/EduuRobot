@@ -6,6 +6,7 @@ from pyrogram.types import Message
 
 from localization import use_chat_lang
 from config import prefix
+from utils import commands
 
 
 @Client.on_message(filters.command("id", prefix) & filters.private)
@@ -60,3 +61,6 @@ async def ids(c: Client, m: Message, strings):
                            chat_type=m.chat.type,
                            message_id=m.message_id + 1
                        ))
+
+
+commands.add_command("id", "tools")

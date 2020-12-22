@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from config import prefix
-from utils import require_admin, time_extract, html_user
+from utils import require_admin, time_extract, html_user, commands
 from localization import use_chat_lang
 
 
@@ -16,8 +16,8 @@ async def pin(c: Client, m: Message):
         m.reply_to_message.message_id,
         disable_notification=True
     )
-    
-    
+
+
 @Client.on_message(filters.command("pin loud", prefix))
 @require_admin(permissions=["can_pin_messages"])
 async def pinloud(c: Client, m: Message):
@@ -200,3 +200,7 @@ async def purge(c: Client, m: Message, strings):
     )
     await asyncio.sleep(5)
     await status_message.delete()
+
+
+commands.add_command("ban", "admin")
+commands.add_command("kick", "admin")

@@ -3,13 +3,14 @@ from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardBu
 
 from config import prefix, version
 from localization import use_chat_lang
+from utils import commands
 
 
 @Client.on_message(filters.command("start", prefix))
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang()
 async def start(c: Client, m: Message, strings):
-    if m.chat.type == "private":
+    if m.chat.type == "private" or "private" in m.command:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(strings("commands_btn"), callback_data="commands")] +
             [InlineKeyboardButton(strings("infos_btn"), callback_data="infos")],
@@ -40,15 +41,6 @@ async def start_back(c: Client, m: CallbackQuery, strings):
                               reply_markup=keyboard)
 
 
-@Client.on_callback_query(filters.regex("^commands$"))
-@use_chat_lang()
-async def commands(c: Client, m: CallbackQuery, strings):
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
-    ])
-    await m.message.edit_text("commands", reply_markup=keyboard)
-
-
 @Client.on_callback_query(filters.regex("^infos$"))
 @use_chat_lang()
 async def infos(c: Client, m: CallbackQuery, strings):
@@ -59,3 +51,6 @@ async def infos(c: Client, m: CallbackQuery, strings):
         [InlineKeyboardButton(strings("back_btn", context="general"), callback_data="start_back")]
     ])
     await m.message.edit_text(res, reply_markup=keyboard, disable_web_page_preview=True)
+
+
+commands.add_command("start", "general")

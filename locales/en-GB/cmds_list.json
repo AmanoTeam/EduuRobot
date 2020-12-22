@@ -1,0 +1,7 @@
+{
+  "admin": "Administration",
+  "command_category_title": "Commands in the <b>{category}</b> category:",
+  "general": "General",
+  "select_command_category": "Please select a category to view available commands.",
+  "tools": "Tools"
+}

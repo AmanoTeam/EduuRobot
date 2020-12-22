@@ -3,6 +3,7 @@ from pyrogram.types import Message
 
 from config import prefix
 from localization import use_chat_lang
+from utils import commands
 from consts import http
 
 
@@ -13,3 +14,6 @@ async def cat(c: Client, m: Message, strings):
     rj = r.json()
 
     await m.reply_photo(rj[0]["url"], caption=strings("meow"))
+
+
+commands.add_command("cat", "general")

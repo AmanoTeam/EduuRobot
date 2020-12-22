@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
+from utils import commands
 from localization import use_chat_lang
 from consts import http
 
@@ -24,3 +25,6 @@ async def dogbin(c: Client, m: Message, strings):
         await m.reply_text(url, disable_web_page_preview=True)
     else:
         await m.reply_text(strings("reply_to_document_or_text"))
+
+
+commands.add_command("paste", "tools", "dogbin_description", context_location="pastes")

@@ -6,6 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
+from utils import commands
 
 
 @Client.on_message(filters.command("jsondump", prefix))
@@ -39,3 +40,6 @@ async def jsondump(c: Client, m: Message):
         await m.reply_document(bio)
     else:
         await m.reply_text(f"<code>{html.escape(obj)}</code>")
+
+
+commands.add_command("jsondump", "tools")

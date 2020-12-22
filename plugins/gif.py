@@ -5,6 +5,7 @@ from pyrogram.types import Message
 
 from config import TENOR_API_KEY, prefix
 from localization import use_chat_lang
+from utils import commands
 from consts import http
 
 if not TENOR_API_KEY:
@@ -27,3 +28,5 @@ async def gif(c: Client, m: Message, strings):
     else:
         await m.reply_text(strings("no_results", context="general"))
 
+
+commands.add_command("gif", "general")

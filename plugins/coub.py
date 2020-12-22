@@ -5,6 +5,7 @@ from pyrogram.types import Message
 
 from config import prefix
 from localization import use_chat_lang
+from utils import commands
 from consts import http
 
 
@@ -23,3 +24,6 @@ async def coub(c: Client, m: Message, strings):
         await m.reply_text(strings("no_results", context="general"))
     else:
         await m.reply_text(f"<b><a href\"https://coub.com/v/{links}\">{title}</a></b>")
+
+
+commands.add_command("coub", "general")

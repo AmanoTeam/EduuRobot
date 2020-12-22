@@ -6,6 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 from config import prefix
 from localization import use_chat_lang
+from utils import commands
 from consts import http
 
 
@@ -51,3 +52,6 @@ async def pypi(c: Client, m: Message, strings):
         await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
     else:
         await m.reply_text(strings("package_not_found").format(package_name=text, http_status=r.status_code))
+
+
+commands.add_command("pypi", "tools")
