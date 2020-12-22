@@ -1,6 +1,8 @@
 {
+  "ban_description": "Bane um usuário do chat.",
   "ban_success": "{user} foi banido por {admin}.",
   "error_must_specify_time": "Você deve especificar um tempo após o comando. Por exemplo: <code>/{command} 7d</code>.",
+  "kick_description": "Kicka um usuário do chat.",
   "kick_success": "{user} foi kickado por {admin}.",
   "mute_success": "O utilizador {user} foi restringido, por intermédio do administrador {admin}, à exprimir suas mensagens por meio de texto, emojis, voz e imagens de modo geral (incluindo, mas não se limitando a: gravuras estáticas, figuras animadas, dentre outros).",
   "no_admin_error": "Você precisa ser um administrador para usar este comando.",
