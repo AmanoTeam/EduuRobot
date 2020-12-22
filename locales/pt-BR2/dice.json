@@ -1,3 +1,4 @@
 {
+  "dice_description": "Envia um dado e seu número.",
   "result": "U dadu parô nu numeru: {number}"
 }
