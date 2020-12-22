@@ -10,7 +10,7 @@ from utils import commands
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang()
 async def start(c: Client, m: Message, strings):
-    if m.chat.type == "private" or "private" in m.command:
+    if m.chat.type == "private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(strings("commands_btn"), callback_data="commands")] +
             [InlineKeyboardButton(strings("infos_btn"), callback_data="infos")],
