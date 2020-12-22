@@ -1,5 +1,6 @@
 {
-  "info_private": "<b>Information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> @{username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Language:</b> {lang}\n<b>Chat type:</b> {chat_type}",
-  "info_group": "<b>User information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> @{username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> {user_dc}\n<b>Language:</b> {lang}\n\n<b>Chat information:</b>\n<b>Chat name:</b> <code>{chat_title}</code>\n<b>Chat username:</b> @{chat_username}\n<b>Chat ID:</b> <code>{chat_id}</code>\n<b>Chat type:</b> {chat_type}\n<b>Messages:</b> {message_id}",
-  "unknown_language": "Unknown language"
+  "info_private": "<b>Information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> @{username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> {user_dc}\n<b>Language:</b> {lang}\n<b>Chat type:</b> {chat_type}",
+  "info_group": "<b>User information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> @{username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> {user_dc}\n<b>Language:</b> {lang}\n\n<b>Chat information:</b>\n<b>Chat name:</b> <code>{chat_title}</code>\n<b>Chat username:</b> @{chat_username}\n<b>Chat ID:</b> <code>{chat_id}</code>\n<b>Chat datacenter:</b> <code>{chat_dc}</code>\n<b>Chat type:</b> {chat_type}\n<b>Messages:</b> {message_id}",
+  "unknown": "Unknown",
+  "user_not_found": "No user was found for '<code>{user}</code>'."
 }

@@ -1,6 +1,7 @@
 import html
 
 from pyrogram import Client, filters
+from pyrogram.errors.exceptions import BadRequest
 from pyrogram.types import Message
 
 from localization import use_chat_lang
@@ -10,12 +11,22 @@ from config import prefix
 @Client.on_message(filters.command("id", prefix) & filters.private)
 @use_chat_lang()
 async def ids_private(c: Client, m: Message, strings):
+    if len(m.command) == 2:
+        try:
+            user_data = await c.get_users(int(m.command[1]) if m.command[1].isdecimal() else m.command[1])
+        except BadRequest:
+            return await m.reply_text(strings("user_not_found").format(
+                user=m.command[1]
+            ))
+    else:
+        user_data = m.from_user
     await m.reply_text(strings("info_private").format(
-                           first_name=m.from_user.first_name,
-                           last_name=m.from_user.last_name or "",
-                           username=m.from_user.username,
-                           user_id=m.from_user.id,
-                           lang=m.from_user.language_code,
+                           first_name=user_data.first_name,
+                           last_name=user_data.last_name or "",
+                           username=user_data.username,
+                           user_id=user_data.id,
+                           user_dc=user_data.dc_id or strings("unknown"),
+                           lang=user_data.language_code or strings("unknown"),
                            chat_type=m.chat.type
                        ))
 
@@ -23,17 +34,29 @@ async def ids_private(c: Client, m: Message, strings):
 @Client.on_message(filters.command("id", prefix) & filters.group)
 @use_chat_lang()
 async def ids(c: Client, m: Message, strings):
-    data = m.reply_to_message or m
+    if len(m.command) == 2:
+        try:
+            user_data = await c.get_users(int(m.command[1]) if m.command[1].isdecimal() else m.command[1])
+        except BadRequest:
+            return await m.reply_text(strings("user_not_found").format(
+                user=m.command[1]
+            ))
+    elif m.reply_to_message:
+        user_data = m.reply_to_message.from_user
+    else:
+        user_data = m.from_user
+
     await m.reply_text(strings("info_group").format(
-                           first_name=html.escape(data.from_user.first_name),
-                           last_name=html.escape(data.from_user.last_name or ""),
-                           username=data.from_user.username,
-                           user_id=data.from_user.id,
-                           user_dc=data.from_user.dc_id,
-                           lang=data.from_user.language_code or strings("unknown_language"),
+                           first_name=html.escape(user_data.first_name),
+                           last_name=html.escape(user_data.last_name or ""),
+                           username=user_data.username,
+                           user_id=user_data.id,
+                           user_dc=user_data.dc_id or strings("unknown"),
+                           lang=user_data.language_code or strings("unknown"),
                            chat_title=m.chat.title,
                            chat_username=m.chat.username,
                            chat_id=m.chat.id,
+                           chat_dc=m.chat.dc_id or strings("unknown"),
                            chat_type=m.chat.type,
                            message_id=m.message_id + 1
                        ))
