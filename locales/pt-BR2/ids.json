@@ -1,1 +1,5 @@
-{}
+{
+  "none": "Nenhum",
+  "unknown": "Desconhecido",
+  "user_not_found": "Nenhum usuário encontrado para '<code>{user}</code>'."
+}
