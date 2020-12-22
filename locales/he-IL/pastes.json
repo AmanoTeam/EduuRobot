@@ -1,3 +1,5 @@
 {
+  "dogbin_description": "שולח את הטקסט או המסמך בהשב על ההודעה ל del.dog .",
+  "hastebin_description": "שולח את הטקסט או המסמך בהשב על ההודעה ל hastebin.com .",
   "reply_to_document_or_text": "בבקשה תשתמש בפקודה בהשב על מסמך."
 }
