@@ -9,27 +9,29 @@ from localization import use_chat_lang
 
 
 @Client.on_message(filters.command("pin", prefix))
-@require_admin(permissions=["can_pin_messages"])
+@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def pin(c: Client, m: Message):
     await c.pin_chat_message(
         m.chat.id,
         m.reply_to_message.message_id,
-        disable_notification=True
+        disable_notification=True,
+        both_sides=True
     )
 
 
 @Client.on_message(filters.command("pin loud", prefix))
-@require_admin(permissions=["can_pin_messages"])
+@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def pinloud(c: Client, m: Message):
     await c.pin_chat_message(
         m.chat.id,
         m.reply_to_message.message_id,
-        disable_notification=False
+        disable_notification=False,
+        both_sides=True
     )
 
 
 @Client.on_message(filters.command("unpin", prefix))
-@require_admin(permissions=["can_pin_messages"])
+@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpin(c: Client, m: Message):
     await c.unpin_chat_message(
         m.chat.id,
@@ -38,7 +40,7 @@ async def unpin(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("unpinall", prefix))
-@require_admin(permissions=["can_pin_messages"])
+@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpinall(c: Client, m: Message):
     await c.unpin_all_chat_messages(
         m.chat.id
@@ -204,3 +206,11 @@ async def purge(c: Client, m: Message, strings):
 
 commands.add_command("ban", "admin")
 commands.add_command("kick", "admin")
+commands.add_command("mute", "admin")
+commands.add_command("purge", "admin")
+commands.add_command("tban", "admin")
+commands.add_command("tmute", "admin")
+commands.add_command("unban", "admin")
+commands.add_command("unmute", "admin")
+commands.add_command("unpin", "admin")
+commands.add_command("unpinall", "admin")

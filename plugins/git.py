@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
+from utils import commands
 from consts import http
 
 
@@ -34,3 +35,6 @@ async def git(c: Client, m: Message):
         ),
         reply_to_message_id=m.message_id
     )
+
+
+commands.add_command("git", "tools")
