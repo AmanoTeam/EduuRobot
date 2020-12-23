@@ -3,6 +3,7 @@ from pyrogram.types import Message
 
 from config import prefix
 from localization import use_chat_lang
+from utils import commands
 from consts import http
 
 # Api key used in weather.com's mobile app.
@@ -49,3 +50,6 @@ async def weather(c: Client, m: Message, strings):
                                         overview=obs_dict["wxPhraseLong"])
 
         await m.reply_text(res)
+
+
+commands.add_command("weather", "tools")

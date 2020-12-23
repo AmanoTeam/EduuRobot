@@ -5,6 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import prefix
+from utils import commands
 from localization import use_chat_lang
 
 translator = Translator()
@@ -55,3 +56,6 @@ async def translate(c: Client, m: Message, strings):
             from_lang=trres.src,
             to_lang=trres.dest,
             translation=res))
+
+
+commands.add_command("tr", "tools")
