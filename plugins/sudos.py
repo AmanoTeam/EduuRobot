@@ -15,6 +15,7 @@ from pyrogram.errors import RPCError
 
 from config import sudoers
 from localization import use_chat_lang
+from utils import set_restarted
 
 prefix = "!"
 
@@ -110,7 +111,8 @@ async def test_speed(c: Client, m: Message, strings):
 @Client.on_message(filters.command("restart", prefix) & filters.user(sudoers))
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
-    await m.reply_text(strings("restarting"))
+    sent = await m.reply_text(strings("restarting"))
+    set_restarted(sent.chat.id, sent.message_id)
     os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
 
 

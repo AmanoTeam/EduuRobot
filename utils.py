@@ -41,6 +41,21 @@ def chat_exists(chat_id, chat_type):
     raise TypeError("Unknown chat type '%s'." % chat_type)
 
 
+def del_restarted():
+    dbc.execute("DELETE FROM was_restarted_at")
+    db.commit()
+
+
+def get_restarted():
+    dbc.execute("SELECT * FROM was_restarted_at")
+    return dbc.fetchone()
+
+
+def set_restarted(chat_id, message_id):
+    dbc.execute("INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id))
+    db.commit()
+
+
 async def check_perms(client: Client,
                       message: Message,
                       permissions: Union[list, str],
