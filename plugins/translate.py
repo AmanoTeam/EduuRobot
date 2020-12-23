@@ -29,10 +29,11 @@ def get_tr_lang(text):
 async def translate(c: Client, m: Message, strings):
     text = m.text[4:]
     lang = get_tr_lang(text)
-    if m.reply_to_message:
+
+    text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
+
+    if not text and m.reply_to_message:
         text = m.reply_to_message.text or m.reply_to_message.caption
-    else:
-        text = text.replace(lang, "", 1).strip() if text.startswith(lang) else text
 
     if not text:
         return await m.reply_text(strings("translate_usage"),
