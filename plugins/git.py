@@ -1,3 +1,5 @@
+from urllib.parse import quote_plus
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -18,6 +20,9 @@ async def git(c: Client, m: Message):
         return await m.reply_text("User not found", reply_to_message_id=m.message_id)
 
     avatar = res["avatar_url"]
+
+    anticache = quote_plus((await http.head(avatar)).headers["Last-Modified"])
+
     caption_text = """<b>Name</b> : <code>{name}</code>
 <b>Username</b> : <code>{username}</code>
 <b>Location</b> : <code>{location}</code>
@@ -25,7 +30,7 @@ async def git(c: Client, m: Message):
 <b>Bio</b> : <code>{bio}</code>
     """
     await m.reply_photo(
-        avatar,
+        avatar + anticache,
         caption=caption_text.format(
             name=res['name'],
             username=res['login'],
