@@ -170,6 +170,8 @@ class BotCommands:
 
         res = strings_manager("command_category_title").format(category=strings_manager(category)) + "\n\n"
 
+        cmds_list.sort(key=lambda k: k["command"])
+
         for cmd in cmds_list:
             res += f"<b>/{cmd['command']}</b> - <i>{strings_manager(cmd['description_key'], context=cmd['context'])}</i>\n"
 
