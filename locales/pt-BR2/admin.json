@@ -20,6 +20,6 @@
   "unban_success": "{user} pode entrar, mas toma cuidado com esse tal de {admin}.",
   "unmute_description": "Tirar fita da boca do user.",
   "unmute_success": "{user} o {admin} tirou a fita da sua boca.",
-  "unpin_description": "Desafixa a mensagem respondida no chat.",
-  "unpinall_description": "Desafixa todas as mensagens no chat."
+  "unpin_description": "Tirar essa mensagem da li de cima.",
+  "unpinall_description": "Tirar todas as mensagens da li de cima."
 }
