@@ -1,5 +1,5 @@
 {
-  "dogbin_description": "Envia o texto/documento respondido para o del.dog.",
-  "hastebin_description": "Envia o texto/documento respondido para o hastebin.com.",
-  "reply_to_document_or_text": "Por favor, responda a um texto ou documento para colar o conteúdo deles."
+  "dogbin_description": "Enviar arquivos ou textos para o deletar.cachorros.",
+  "hastebin_description": "Enviar a imagem ou texto para o pressabin.com.",
+  "reply_to_document_or_text": "Ei, responde uma mensagem aí."
 }
