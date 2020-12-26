@@ -207,6 +207,7 @@ async def purge(c: Client, m: Message, strings):
 commands.add_command("ban", "admin")
 commands.add_command("kick", "admin")
 commands.add_command("mute", "admin")
+commands.add_command("pin", "admin")
 commands.add_command("purge", "admin")
 commands.add_command("tban", "admin")
 commands.add_command("tmute", "admin")
