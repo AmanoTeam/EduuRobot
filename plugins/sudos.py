@@ -54,6 +54,7 @@ async def upgrade(c: Client, m: Message, strings):
             await sm.edit_text("There's nothing to upgrade.")
         else:
             await sm.edit_text(strings("restarting"))
+            set_restarted(sm.chat.id, sm.message_id)
             os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
     else:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}")
