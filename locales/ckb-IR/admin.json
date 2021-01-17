@@ -1,0 +1,6 @@
+{
+  "ban_description": "بەکارهێنەر قەدەغەدەکات.",
+  "ban_success": "بەکارهێنەر {user} لەلایەن {admin} قەدەغەکرا.",
+  "error_must_specify_time": "دوای فەرمانەکە دەبێت کاتێک دیاریبکەیت. نموونە: <code>/{command} 7d</code>.",
+  "kick_description": "بەکارهێنەر دەردەکات."
+}
