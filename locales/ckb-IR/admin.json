@@ -2,5 +2,13 @@
   "ban_description": "بەکارهێنەر قەدەغەدەکات.",
   "ban_success": "بەکارهێنەر {user} لەلایەن {admin} قەدەغەکرا.",
   "error_must_specify_time": "دوای فەرمانەکە دەبێت کاتێک دیاریبکەیت. نموونە: <code>/{command} 7d</code>.",
-  "kick_description": "بەکارهێنەر دەردەکات."
+  "kick_description": "بەکارهێنەر دەردەکات.",
+  "kick_success": "بەکارهێنەر {user} لەلایەن {admin} دەرکرا.",
+  "mute_description": "بەکارهێنەر بێدەنگدەکات.",
+  "mute_success": "بەکارهێنەر {user} لەلایەن {admin} بێدەنگکرا.",
+  "no_admin_error": "دەبێت بەڕێوەبەربیت بۆ بەکارهێنانی ئەم فەرمانە.",
+  "no_permission_error": "بمبوورە تۆ مافی پێویستت نییە بۆ ئەنجامدانی ئەمە. مافە پێویستەکان: {permissions}",
+  "private_not_allowed": "ئەم فەرمانە لە تایبەت بەکارنایەت. ئەگەر هاوکاریت دەوێت، فەرمانی <code>/help</code> بەکاربێنە.",
+  "pin_description": "پەیامە وەڵامدراوەکە هەڵدەواسێت. دەتوانیت <code>loud</code> بەکاربێنیت بۆ ناردنی ئاگاردارکردنەوە.",
+  "purge_in_progress": "خاوێندەکرێتەوە..."
 }
