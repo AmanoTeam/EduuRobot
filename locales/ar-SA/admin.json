@@ -1,15 +1,1 @@
-{
-  "ban_success": "{user} تم حظره من قبل {admin}.",
-  "error_must_specify_time": "يجب عليك تحديد وقت بعد الأمر. على سبيل المثال: <code>/{command} 7d</code>.",
-  "kick_success": "{user} تم طرده من قبل {admin}.",
-  "mute_success": "{user} تم كتمه بواسطة {admin}.",
-  "no_admin_error": "يجب أن تكون مسؤول لاستخدام هذا الأمر.",
-  "no_permission_error": "أنا آسف ولكن ليس لديك الصلاحيات المطلوبة لتشغيل هذا الأمر. الأذونات مفقودة: {permissions}",
-  "private_not_allowed": "لا يمكن استخدام هذا الأمر في محادثة خاصة. إذا كنت بحاجة إلى أي مساعدة، يرجى استخدام الأمر <code>/help</code>.",
-  "purge_in_progress": "جاري إزالة الرسائل...",
-  "purge_success": "تم حذف <b>{count}</b> رسائل.",
-  "tban_success": "{user} تم حظره مؤقتا من قبل {admin} لـ <b>{time}</b>.",
-  "tmute_success": "تم كتم {user} مؤقتاً بواسطة {admin} بسبب <b>{time}</b>.",
-  "unban_success": "{user} تم فك حظره من قبل {admin}.",
-  "unmute_success": "{user} لم يكتم بواسطة {admin}."
-}
+{}
