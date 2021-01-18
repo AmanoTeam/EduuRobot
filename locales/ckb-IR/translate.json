@@ -1,0 +1,6 @@
+{
+  "tr_description": "نووسین وەردەگێڕێت لە زمانە دراوەکە (دەیکات بە زمانی وتووێژەکە).",
+  "translate_usage": "<b>بەکارهێنان:</b> <code>/tr &lt;language&gt; نووسین بۆ وەرگێڕانی</code> (وەڵامدانەوەی پەیامێکیش دەبێت).",
+  "translating": "وەردەگێڕرێت...",
+  "translation": "<b>زمان:</b> {from_lang} بۆ {to_lang}\n<b>وەرگێڕان:</b> <code>{translation}</code>"
+}

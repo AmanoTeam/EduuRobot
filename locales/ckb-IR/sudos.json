@@ -1,0 +1,5 @@
+{
+  "speedtest": "<b>تاقیکردنەوەی خێرایی</b>\n\n<b>🌐 دابینکەر:</b> <code>{host}</code>\n\n<b>🏓 پینگ:</b> <code>{ping} مچ</code>\n<b>⬇️ داگرتن:</b> <code>{download} مێگابایت/چرکە</code>\n<b>⬆️ بەرزکردنەوە:</b> <code>{upload} مێگابایت/چرکە</code>",
+  "forbidden_command": "فەرمانی قەدەغەکراو.",
+  "restarting": "دەستپێدەکاتەوە..."
+}
