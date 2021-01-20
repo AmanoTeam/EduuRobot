@@ -13,6 +13,7 @@ from consts import group_types
 
 enabled_locales = [
     "ar-SA",   # Arabic
+    "ckb-IR",  # Sorani (Kurdish)
     "de-DE",   # German
     "en-GB",   # English
     "en-US",   # English (United States)
