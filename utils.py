@@ -144,6 +144,15 @@ def html_user(name: str, user_id: int):
     return _html
 
 
+def pretty_size(size):
+    units = ["B", "KB", "MB", "GB"]
+    unit = 0
+    while size >= 1024:
+        size /= 1024
+        unit += 1
+    return "%0.2f %s" % (size, units[unit])
+
+
 class BotCommands:
     def __init__(self):
         self.commands = {}
