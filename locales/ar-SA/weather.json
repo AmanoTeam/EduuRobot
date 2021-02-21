@@ -1,7 +1,4 @@
 {
-  "details": "<b>{location}</b>:\n\nالحرارة: <code>{temperature} °C</code>\nدرجة الحرارة يشبه: <code>{feels_like} °C</code>\nرطوبة الهواء: <code>{air_humidity}٪</code>\nسرعة الرياح: <code>{wind_speed} كم/ساعة</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "الموقع غير موجود.",
   "measurement_unit": "m",
-  "weather_language": "ar-SA",
-  "weather_usage": "<b> الاستخدام:</b> <code> /weather الموقع أو المدينة </code> - احصل على معلومات الطقس من <i> الموقع أو المدينة</i>."
+  "weather_language": "ar-SA"
 }
