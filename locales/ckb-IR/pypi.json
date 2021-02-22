@@ -4,5 +4,5 @@
   "package_not_found": "ناتوانم <b>{package_name}</b> لە PyPi بدۆزمەوە (کۆدی وەڵامدانەوەکە بریتیبوو لە {http_status}).",
   "not_specified": "دیارینەکراوە",
   "pypi_description": "گەڕان لە PyPi.",
-  "pypi_usage": "<b>بەکارهێنان:</b> <code>/pypi package_name</code> - گەڕان لە PyPi."
+  "pypi_usage": "<b>بەکارهێنان:</b>\n<code>/pypi package_name</code>\n\nبۆ پاکجێک لە PyPi بگەڕێ."
 }

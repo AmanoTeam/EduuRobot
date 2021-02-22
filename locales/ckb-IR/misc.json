@@ -1,4 +1,6 @@
 {
   "html_description": "بە سینتاکسی HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
-  "html_usage": "<b>بەکارهێنان:</b>\n<code>/html &lt;b&gt;&lt;b&gt;نووسین&lt;/b&gt;&lt;/b&gt; بە </code>HTML\nنووسینە پێدراوەکە بە سینتاکسی HTML دەرازێنێتەوە."
+  "html_usage": "<b>بەکارهێنان:</b>\n<code>/html &lt;b&gt;text&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code>\n\nبە سینتاکسی ‌HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
+  "mark_description": "بە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
+  "mark_usage": "<b>بەکارهێنان:</b>\n<code>/mark **text** in __markdown__</code>\n\nبە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە."
 }
