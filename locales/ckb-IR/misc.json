@@ -1,3 +1,4 @@
 {
-  "html_description": "بە سینتاکسی HTML نووسینە پێدراوەکە دەرازێنێتەوە."
+  "html_description": "بە سینتاکسی HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
+  "html_usage": "<b>بەکارهێنان:</b>\n<code>/html &lt;b&gt;&lt;b&gt;نووسین&lt;/b&gt;&lt;/b&gt; بە </code>HTML\nنووسینە پێدراوەکە بە سینتاکسی HTML دەرازێنێتەوە."
 }
