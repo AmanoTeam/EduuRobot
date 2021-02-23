@@ -1,6 +1,7 @@
 import html
 
 from pyrogram import Client, filters
+from pyrogram.errors import BadRequest
 from pyrogram.types import Message
 
 from localization import use_chat_lang
