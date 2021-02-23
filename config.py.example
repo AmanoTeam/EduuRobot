@@ -1,3 +1,5 @@
+from pyrogram import filters
+
 # Bot token from Bot Father
 TOKEN = "YOUR_TOKEN_HERE"
 
@@ -13,7 +15,7 @@ log_chat = 123456789
 super_sudoers = [123456789]
 sudoers = [987654321]
 sudoers += super_sudoers
-
+sudofilter = filters.user(sudoers)
 
 # Prefixes for commands, e.g: /command and !command
 prefix = ["/", "!"]
