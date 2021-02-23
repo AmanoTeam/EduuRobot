@@ -6,5 +6,7 @@
   "info_last_name": "\nשם משפחה: {last_name}",
   "info_username": "\nשם משתמש: {username}",
   "info_userlink": "\nקישור למשתמש: {link}",
-  "info_chat_admin": "\nלמשתמש הזה יש '<b>הרשאות ניהול</b>' בצ'אט הזה."
+  "info_chat_admin": "\nלמשתמש הזה יש '<b>הרשאות ניהול</b>' בצ'אט הזה.",
+  "info_chat_creator": "\nהמשתמש הזה הוא '<b>היוצר</b>' של הצ'אט הזה.",
+  "user_not_found": "\nלא נמצא משתמש המתאים ל '<code>{user}</code>'."
 }
