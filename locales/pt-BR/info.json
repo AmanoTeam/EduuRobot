@@ -1,0 +1,12 @@
+{
+  "info_description": "Obtém informações sobre um usuário.",
+  "info_header": "<b>Informações do usuário:</b>",
+  "info_id": "\nID: <code>{id}</code>",
+  "info_first_name": "\nPrimeiro nome: {first_name}",
+  "info_last_name": "\nÚltimo nome: {last_name}",
+  "info_username": "\nNome do usuário: @{username}",
+  "info_userlink": "\nLink do usuário: {link}",
+  "info_chat_admin": "\nEste usuário tem '<b>direitos de administrador</b>' neste chat.",
+  "info_chat_creator": "\nEste usuário é o '<b>dono</b>' deste chat.",
+  "user_not_found": "\nNenhum usuário foi encontrado para '<code>{user}</code>'."
+}
