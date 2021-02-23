@@ -1,11 +1,19 @@
 import asyncio
 
 from pyrogram import Client, filters
-from pyrogram.types import ChatPermissions, Message
+from pyrogram.types import ChatPermissions, Message, User
 
 from config import prefix
 from utils import require_admin, time_extract, html_user, commands
 from localization import use_chat_lang
+
+
+async def get_target_user(c: Client, m: Message) -> User:
+    if m.reply_to_message:
+        target_user = m.reply_to_message.from_user
+    else:
+        target_user = await c.get_users(int(m.command[1]) if m.command[1].isdecimal() else m.command[1])
+    return target_user
 
 
 @Client.on_message(filters.command("pin", prefix))
@@ -51,10 +59,12 @@ async def unpinall(c: Client, m: Message):
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def ban(c: Client, m: Message, strings):
-    await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+    target_user = await get_target_user(c, m)
+
+    await c.kick_chat_member(m.chat.id, target_user.id)
     await m.reply_text(
         strings("ban_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(target_user.first_name, target_user.id),
             admin=html_user(m.from_user.first_name, m.from_user.id)
         )
     )
@@ -64,11 +74,13 @@ async def ban(c: Client, m: Message, strings):
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def kick(c: Client, m: Message, strings):
-    await c.kick_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-    await m.chat.unban_member(m.reply_to_message.from_user.id)
+    target_user = await get_target_user(c, m)
+
+    await c.kick_chat_member(m.chat.id, target_user.id)
+    await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("kick_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(target_user.first_name, target_user.id),
             admin=html_user(m.from_user.first_name, m.from_user.id)
         )
     )
@@ -78,10 +90,12 @@ async def kick(c: Client, m: Message, strings):
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def unban(c: Client, m: Message, strings):
-    await m.chat.unban_member(m.reply_to_message.from_user.id)
+    target_user = await get_target_user(c, m)
+
+    await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("unban_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(target_user.first_name, target_user.id),
             admin=html_user(m.from_user.first_name, m.from_user.id)
         )
     )
@@ -91,12 +105,14 @@ async def unban(c: Client, m: Message, strings):
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def mute(c: Client, m: Message, strings):
+    target_user = await get_target_user(c, m)
+
     await c.restrict_chat_member(m.chat.id,
-                                 m.reply_to_message.from_user.id,
+                                 target_user.id,
                                  ChatPermissions(can_send_messages=False))
     await m.reply_text(
         strings("mute_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(target_user.first_name, target_user.id),
             admin=html_user(m.from_user.first_name, m.from_user.id)
         )
     )
@@ -106,10 +122,12 @@ async def mute(c: Client, m: Message, strings):
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(c: Client, m: Message, strings):
-    await m.chat.unban_member(m.reply_to_message.from_user.id)
+    target_user = await get_target_user(c, m)
+
+    await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("unmute_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(target_user.first_name, target_user.id),
             admin=html_user(m.from_user.first_name, m.from_user.id)
         )
     )
