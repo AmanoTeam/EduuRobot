@@ -13,19 +13,19 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.errors import RPCError
 
-from config import sudoers
+from config import sudofilter
 from localization import use_chat_lang
 from utils import set_restarted
 
 prefix = "!"
 
 
-@Client.on_message(filters.command("sudos", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("sudos", prefix) & sudofilter)
 async def sudos(c: Client, m: Message):
     await m.reply_text("Test")
 
 
-@Client.on_message(filters.command("cmd", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("cmd", prefix) & sudofilter)
 @use_chat_lang()
 async def run_cmd(c: Client, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
@@ -41,7 +41,7 @@ async def run_cmd(c: Client, m: Message, strings):
     await m.reply_text(res)
 
 
-@Client.on_message(filters.command("upgrade", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang()
 async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources...")
@@ -62,7 +62,7 @@ async def upgrade(c: Client, m: Message, strings):
         await proc.communicate()
 
 
-@Client.on_message(filters.command("eval", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("eval", prefix) & sudofilter)
 async def evals(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     try:
@@ -77,7 +77,7 @@ async def evals(c: Client, m: Message):
             await m.reply_text(str(e))
 
 
-@Client.on_message(filters.command("exec", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("exec", prefix) & sudofilter)
 async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
@@ -95,7 +95,7 @@ async def execs(c: Client, m: Message):
     await m.reply_text(out)
 
 
-@Client.on_message(filters.command("speedtest", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("speedtest", prefix) & sudofilter)
 @use_chat_lang()
 async def test_speed(c: Client, m: Message, strings):
     string = strings("speedtest")
@@ -109,7 +109,7 @@ async def test_speed(c: Client, m: Message, strings):
     await sent.edit_text(string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul))
 
 
-@Client.on_message(filters.command("restart", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("restart", prefix) & sudofilter)
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
@@ -117,7 +117,7 @@ async def restart(c: Client, m: Message, strings):
     os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
 
 
-@Client.on_message(filters.command("leave", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("leave", prefix) & sudofilter)
 async def leave_chat(c: Client, m: Message):
     if len(m.command) == 1:
         try:
@@ -132,7 +132,7 @@ async def leave_chat(c: Client, m: Message):
             print(e)
 
 
-@Client.on_message(filters.command("del", prefix) & filters.user(sudoers))
+@Client.on_message(filters.command("del", prefix) & sudofilter)
 async def del_message(c: Client, m: Message):
     try:
         await c.delete_messages(
