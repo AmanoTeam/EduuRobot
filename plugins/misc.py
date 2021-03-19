@@ -24,10 +24,10 @@ async def html(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("admins", prefix) & filters.group)
 async def mentionadmins(c: Client, m: Message):
- mention = ""
- async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
-  mention += f"{i.user.mention}\n"
- await c.send_message(m.chat.id, f"Admins in the chat {m.chat.title}: \n{mention}")
+    mention = ""
+    async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
+     mention += f"{i.user.mention}\n"
+    await c.send_message(m.chat.id, f"Admins in the chat {m.chat.title}: \n{mention}")
 
 
     
