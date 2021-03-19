@@ -3,6 +3,7 @@ from pyrogram.types import Message
 from config import prefix
 from localization import use_chat_lang
 from utils import commands
+from consts import http
 
 
 @Client.on_message(filters.command("mark", prefix))
@@ -21,5 +22,41 @@ async def html(c: Client, m: Message, strings):
     await m.reply(m.text.split(None, 1)[1], parse_mode="html")
 
 
+@Client.on_message(filters.command("admins", prefix) & filters.group)
+async def mentionadmins(c: Client, m: Message):
+ mention = ""
+ async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
+  mention += f"{i.user.mention}\n"
+ await c.send_message(m.chat.id, f"Admins in the chat {m.chat.title}: \n{mention}")
+
+
+    
+@Client.on_message(filters.command("token"))
+async def getbotinfo(c: Client, m: Message):
+    if len(m.command) == 1:
+        return await m.reply_text("Specify a bot token", reply_to_message_id=m.message_id)
+    text = m.text.split(maxsplit=1)[1]
+    req = await http.get(f'https://api.telegram.org/bot{text}/getme')
+    fullres = req.json()
+    if fullres['ok'] == False:
+     await m.reply("Invalid bot token")
+    elif fullres['ok'] == True:
+     res = fullres['result']
+     get_bot_info_text = """<b>Name</b> : <code>{botname}</code>
+<b>Username</b> : <code>{botusername}</code>
+<b>ID</b> : <code>{botid}</code>
+    """
+     await m.reply(get_bot_info_text.format(
+            botname=res['first_name'],
+            botusername=res['username'],
+            botid=res['id']
+        ),
+        reply_to_message_id=m.message_id
+     )
+   
+    
+
 commands.add_command("mark", "general")
 commands.add_command("html", "general")
+commands.add_command("admins", "general")
+commands.add_command("token", "general")
