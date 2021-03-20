@@ -23,11 +23,12 @@ async def html(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("admins", prefix) & filters.group)
-async def mentionadmins(c: Client, m: Message):
+@use_chat_lang()
+async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
         mention += f"{i.user.mention}\n"
-    await c.send_message(m.chat.id, f"Admins in the chat {m.chat.title}: \n{mention}")
+    await c.send_message(m.chat.id, strings("admins_list").format(chat_title=m.chat.title, admins_list=mention))
 
 
 @Client.on_message(filters.command("token"))
