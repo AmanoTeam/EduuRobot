@@ -1,6 +1,6 @@
 import html
 
-from googletrans import Translator, LANGUAGES
+from gpytranslate import Translator
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -8,7 +8,33 @@ from config import prefix
 from utils import commands
 from localization import use_chat_lang
 
-translator = Translator()
+tr = Translator()
+
+# See https://cloud.google.com/translate/docs/languages
+LANGUAGES = [
+    "af", "sq", "am", "ar", "hy",
+    "az", "eu", "be", "bn", "bs",
+    "bg", "ca", "ceb", "zh", "co",
+    "hr", "cs", "da", "nl", "en",
+    "eo", "et", "fi", "fr", "fy",
+    "gl", "ka", "de", "el", "gu",
+    "ht", "ha", "haw", "he", "iw",
+    "hi", "hmn", "hu", "is", "ig",
+    "id", "ga", "it", "ja", "jv",
+    "kn", "kk", "km", "rw", "ko",
+    "ku", "ky", "lo", "la", "lv",
+    "lt", "lb", "mk", "mg", "ms",
+    "ml", "mt", "mi", "mr", "mn",
+    "my", "ne", "no", "ny", "or",
+    "ps", "fa", "pl", "pt", "pa",
+    "ro", "ru", "sm", "gd", "sr",
+    "st", "sn", "sd", "si", "sk",
+    "sl", "so", "es", "su", "sw",
+    "sv", "tl", "tg", "ta", "tt",
+    "te", "th", "tr", "tk", "uk",
+    "ur", "ug", "uz", "vi", "cy",
+    "xh", "yi", "yo", "zu",
+]
 
 
 def get_tr_lang(text):
@@ -36,27 +62,28 @@ async def translate(c: Client, m: Message, strings):
         text = m.reply_to_message.text or m.reply_to_message.caption
 
     if not text:
-        return await m.reply_text(strings("translate_usage"),
-                                  reply_to_message_id=m.message_id)
+        return await m.reply_text(
+            strings("translate_usage"), reply_to_message_id=m.message_id
+        )
 
-    sent = await m.reply_text(strings("translating"),
-                              reply_to_message_id=m.message_id)
+    sent = await m.reply_text(strings("translating"), reply_to_message_id=m.message_id)
     langs = {}
 
     if len(lang.split("-")) > 1:
-        langs["src"] = lang.split("-")[0]
-        langs["dest"] = lang.split("-")[1]
+        langs["sourcelang"] = lang.split("-")[0]
+        langs["targetlang"] = lang.split("-")[1]
     else:
-        langs["dest"] = lang
+        langs["targetlang"] = lang
 
-    trres = translator.translate(text, **langs)
+    trres = await tr(text, **langs)
     text = trres.text
 
     res = html.escape(text)
-    await sent.edit_text(strings("translation").format(
-            from_lang=trres.src,
-            to_lang=trres.dest,
-            translation=res))
+    await sent.edit_text(
+        strings("translation").format(
+            from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
+        )
+    )
 
 
 commands.add_command("tr", "tools")
