@@ -3,7 +3,9 @@ import httpx
 
 group_types = ("group", "supergroup")
 
-http = httpx.AsyncClient(http2=True)
+timeout = httpx.Timeout(40, pool=None)
+
+http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
 class Permissions:
