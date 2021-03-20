@@ -55,7 +55,6 @@ async def getbotinfo(c: Client, m: Message):
     )
 
 
-    
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
 async def rtcommand(c: Client, m: Message):
     await m.reply(f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>")
