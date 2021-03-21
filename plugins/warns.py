@@ -3,6 +3,7 @@ from pyrogram.types import Message
 from dbh import dbc, db
 from utils import require_admin
 from config import prefix
+from localization import use_chat_lang
 from .admin import get_target_user
 
 dbc.execute('''CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
@@ -44,35 +45,39 @@ def set_warns_limit(chat_id, warns_limit):
 
 @Client.on_message(filters.command("warn", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
-async def warn_user(c: Client, m: Message):
+@use_chat_lang()
+async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     warns_limit = get_warns_limit(m.chat.id)
     add_warns(m.chat.id, target_user.id, 1)
     user_warns = get_warns(m.chat.id, target_user.id)
     if user_warns >= warns_limit:
         await c.kick_chat_member(m.chat.id, target_user.id)
-        await m.reply_text(f"The user {target_user.mention} has been banned because they were warned {user_warns} times.")
+        await m.reply_text(strings("warn_banned").format(target_user=target_user.mention, warn_count=user_warns))
+        reset_warns(m.chat.id, target_user)
     else:
-        await m.reply(f"The user {target_user.mention} has {user_warns} out of {warns_limit} warnings.")
+        await m.reply(strings("user_warned").format(target_user=target_user.mention, warn_count=user_warns, warn_limit=warns_limit))
 
 
 @Client.on_message(filters.command("setwarnslimit", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members", "can_change_info"])
-async def warns_limit(c: Client, m: Message):
+@use_chat_lang()
+async def warns_limit(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text("You must specify a number of warnings, E.g.: <code>/setwarnslimit 5</code>.")
+        return await m.reply_text(strings("warn_limit_help"))
     try:
         warns_limit = int(m.command[1])
     except ValueError:
-        await m.reply_text("The provided value is not valid.")
+        await m.reply_text(strings("warn_limit_invalid"))
     else:
         set_warns_limit(m.chat.id, warns_limit)
-        await m.reply(f"Warnings limit successfully changed to {warns_limit}.")
+        await m.reply(strings("warn_limit_changed").format(warn_limit=warns_limit))
 
 
 @Client.on_message(filters.command(["resetwarns", "unwarn"], prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
-async def unwarn_user(c: Client, m: Message):
+@use_chat_lang()
+async def unwarn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reset_warns(m.chat.id, target_user.id)
-    await m.reply_text(f"{target_user.mention} warnings were successfully removed.")
+    await m.reply_text(strings("warn_reset").format(target_user=target_user.mention))
