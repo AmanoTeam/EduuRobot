@@ -1,5 +1,5 @@
 gpytranslate==0.3.1
-git+https://github.com/pyrogram/pyrogram.git#egg=pyrogram
+pyrogram>=1.2.3
 meval==2.5
 tgcrypto
 speedtest-cli
