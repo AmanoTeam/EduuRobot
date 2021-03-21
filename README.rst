@@ -56,7 +56,7 @@ Special thanks
 * And many other people I couldn't list here.
 
 
-©2020 - `AmanoTeam™ <https://amanoteam.com>`__
+©2021 - `AmanoTeam™ <https://amanoteam.com>`__
 
 .. Badges
 .. |Codacy| image:: https://app.codacy.com/project/badge/Grade/7e9bffc2c3a140cf9f1e5d3c4aea0c2f
