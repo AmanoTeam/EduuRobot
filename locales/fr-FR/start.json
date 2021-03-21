@@ -5,6 +5,5 @@
   "add_chat_btn": "➕ Ajouter à un chat",
   "private": "Bonjour! Je suis EduuRobot. Pour en savoir plus sur mes fonctions, cliquez sur les boutons ci-dessous.",
   "start_chat": "🤖 Démarrer un chat",
-  "group": "Bonjour! Je suis EduuRobot. Pour découvrir mes fonctions, commencez une conversation avec moi.",
-  "info_page": "• EduuRobot\n\nVersion: {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Code Source</a>\nDéveloppeurs: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartenariats:\n » <a href=\"https://t.me/hpxlist\">HPXList - par usernein</a>\n\n©2021 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>"
+  "group": "Bonjour! Je suis EduuRobot. Pour découvrir mes fonctions, commencez une conversation avec moi."
 }
