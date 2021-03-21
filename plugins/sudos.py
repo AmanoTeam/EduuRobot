@@ -13,9 +13,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.errors import RPCError
 
-from config import sudofilter
 from localization import use_chat_lang
-from utils import set_restarted
+from utils import set_restarted, sudofilter
 
 prefix = "!"
 

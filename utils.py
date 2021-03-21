@@ -3,10 +3,11 @@ import html
 import inspect
 import os.path
 
-from pyrogram import Client
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from typing import Union
 from functools import wraps, partial
+from config import sudoers
 from consts import group_types
 from localization import get_lang, get_locale_string, default_language, langdict
 
@@ -114,6 +115,9 @@ def require_admin(permissions: Union[list, str] = None,
 
         return wrapper
     return decorator
+
+
+sudofilter = filters.user(sudoers)
 
 
 async def time_extract(m: Message, t: str) -> int:
