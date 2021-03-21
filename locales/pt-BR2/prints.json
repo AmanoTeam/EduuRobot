@@ -1,0 +1,5 @@
+{
+  "print_description": "Tira uma captura de tela do site especificado.",
+  "print_usage": "<b>Uso:</b> <code>/print https://example.com</code> - Tira uma captura de tela do site especificado.",
+  "taking_screenshot": "Obtendo captura de tela..."
+}

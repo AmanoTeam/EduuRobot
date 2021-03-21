@@ -3,6 +3,5 @@
   "location_not_found": "מיקום לא נמצא.",
   "measurement_unit": "m",
   "weather_language": "he-IL",
-  "weather_description": "מציג את מזג האוויר במיקום הנבחר",
   "weather_usage": "<b>שימוש:</b> <code>/weather מיקום </code> - מציג את מזג האוויר <i>מהמיקום ששלחת</i>."
 }

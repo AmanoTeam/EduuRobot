@@ -3,6 +3,5 @@
   "location_not_found": "ئەم جێیە نەدۆزرایەوە.",
   "measurement_unit": "m",
   "weather_language": "en-GB",
-  "weather_description": "زانیاریی کەش و هەوای شار یان جێیەک وەرگرە.",
   "weather_usage": "<b>بەکارهێنان:</b>\n<code>/weather location or city</code>\n\nزانیاری دەربارەی کەش و هەوای شوێنێک وەرگرە."
 }
