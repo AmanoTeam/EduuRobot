@@ -47,7 +47,7 @@ async def warn_user(c: Client, m: Message):
         await m.reply(f"the user {target_user.mention} has {user_warns} of {warns_limit} warnings")
 
 
-@Client.on_message(filters.command("unwarn", prefix) & filters.group)
+@Client.on_message(filters.command(["resetwarns", "unwarn"], prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 async def unwarn_user(c: Client, m: Message):
     target_user = await get_target_user(c, m)
