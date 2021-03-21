@@ -61,16 +61,17 @@ async def getbotinfo(c: Client, m: Message):
 async def rtcommand(c: Client, m: Message):
     await m.reply(f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>")
 
-    
+
 @Client.on_message(filters.command("urlencode", prefix))
 async def urlencodecmd(c: Client, m: Message):
     await m.reply_text(quote(m.text.split(None, 1)[1]))
 
+
 @Client.on_message(filters.command("urldecode", prefix))
 async def urldecodecmd(c: Client, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
-    
-    
+
+
 commands.add_command("mark", "general")
 commands.add_command("html", "general")
 commands.add_command("admins", "general")
