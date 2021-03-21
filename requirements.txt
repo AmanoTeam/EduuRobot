@@ -3,6 +3,6 @@ git+https://github.com/pyrogram/pyrogram.git#egg=pyrogram
 meval==2.5
 tgcrypto
 speedtest-cli
-httpx[http2]>=0.13.3,<1.0.0
+httpx[http2]>=0.16.1,<1.0.0
 regex
 telegraph
