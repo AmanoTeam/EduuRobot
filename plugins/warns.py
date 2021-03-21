@@ -27,12 +27,6 @@ def add_warns(chat_id, user_id, number):
         db.commit()
     return True
 
-
-def set_warns_limit(chat_id, rules):
-    cursor.execute('UPDATE chats SET rules = ? WHERE chat_id = ?', (rules, chat_id))
-    conn.commit()
-
-
 def reset_warns(chat_id, user_id):
     dbc.execute('DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
     db.commit()
