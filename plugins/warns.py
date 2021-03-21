@@ -5,10 +5,9 @@ from utils import require_admin
 from config import prefix
 from .admin import get_target_user
 
-dbc.execute('''CREATE TABLE IF NOT EXISTS user_warns (
-                                                         user_id INTEGER,
-                                                         chat_id INTEGER,
-                                                         count INTEGER)''')
+dbc.execute('''CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
+                                                      chat_id INTEGER,
+                                                      count INTEGER)''')
 
 
 def get_warns(chat_id, user_id):
@@ -27,10 +26,12 @@ def add_warns(chat_id, user_id, number):
         db.commit()
     return True
 
+
 def reset_warns(chat_id, user_id):
     dbc.execute('DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
     db.commit()
     return True
+
 
 @Client.on_message(filters.command("warn", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
@@ -44,8 +45,8 @@ async def warn_user(c: Client, m: Message):
         await m.reply_text(f"the user {target_user.mention} was banned because he was warned {user_warns} of {warns_limit} times")
     else:
         await m.reply(f"the user {target_user.mention} has {user_warns} of {warns_limit} warnings")
-        
-        
+
+
 @Client.on_message(filters.command("unwarn", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 async def unwarn_user(c: Client, m: Message):
