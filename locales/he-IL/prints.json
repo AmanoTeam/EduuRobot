@@ -1,1 +1,5 @@
-{}
+{
+  "print_description": "מבצע צילום מסך של האתר.",
+  "print_usage": "<b>שימוש:</b> <code>/print https://example.com</code> - מבצע צילום מסך של האתר.",
+  "taking_screenshot": "מצלם מסך..."
+}
