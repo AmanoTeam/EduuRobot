@@ -1,5 +1,5 @@
 {
-  "user_warned": "O usuário {target_user} tem {warn_count} de {warn_limit} advertências.",
+  "user_warned": "O {target_user} é {warn_count}/{warn_limit}. Mas para ser banido.",
   "warn_banned": "O usuário {target_user} foi banido pois foi advertido {warn_count} vezes.",
   "warn_limit_changed": "O limite de advertências foi alterado para {warn_limit} com sucesso.",
   "warn_limit_help": "Você deve especificar um número de advertências, por exemplo: <code>/setwarnslimit 5</code>.",
