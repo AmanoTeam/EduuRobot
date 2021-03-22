@@ -26,7 +26,7 @@ async def settherules(c: Client, m: Message):
         await m.reply_text(f"the rules for {m.chat.title} was setted successfully")
     else:
         await m.reply_text("you must specify the rules, E.g.: <code>/setrules (here the rules)</code>.")
-        
+
 @Client.on_message(filters.command("restrules", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 async def delete_rules(c: Client, m: Message):
