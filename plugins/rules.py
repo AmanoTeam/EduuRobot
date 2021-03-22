@@ -32,8 +32,8 @@ async def settherules(c: Client, m: Message):
 async def delete_rules(c: Client, m: Message):
     set_rules(m.chat.id, None)
     await m.reply_text("the rules for this chat was deleted successfully.")
- 
-        
+
+
 @Client.on_message(filters.command("rules", prefix) & filters.group)
 async def show_rules(c: Client, m: Message):
     rules = get_rules(m.chat.id) or "no rules has been set to this chat"
