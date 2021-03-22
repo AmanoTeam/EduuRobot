@@ -1,6 +1,7 @@
 {
   "user_warned": "The user {target_user} has {warn_count} out of {warn_limit} warnings.",
   "warn_banned": "The user {target_user} has been banned because they were warned {warn_count} times.",
+  "warn_cant_admin": "I can't warn admins.",
   "warn_limit_changed": "Warnings limit successfully changed to {warn_limit}.",
   "warn_limit_help": "You must specify a number of warnings, E.g.: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "The provided number is not valid.",
