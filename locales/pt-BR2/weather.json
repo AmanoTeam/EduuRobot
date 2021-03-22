@@ -4,5 +4,5 @@
   "measurement_unit": "m",
   "weather_language": "pt-BR",
   "weather_description": "Saber a velocidade da cidade.",
-  "weather_usage": "<b>Você usa assim:</b> <code>/weather Maceió</code> - Você ganha uma viagem <b>de graça</b> para Maceió."
+  "weather_usage": "<b>Você usa assim:</b> <code>/clima Maceió</code> - Você ganha uma viagem <b>de graça</b> para Maceió."
 }
