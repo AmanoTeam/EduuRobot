@@ -10,6 +10,7 @@ dbc.execute('''CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
                                                       chat_id INTEGER,
                                                       count INTEGER)''')
 
+admin_status = ["creator", "administrator"]
 
 def get_warns(chat_id, user_id):
     dbc.execute('SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
@@ -51,12 +52,16 @@ async def warn_user(c: Client, m: Message, strings):
     warns_limit = get_warns_limit(m.chat.id)
     add_warns(m.chat.id, target_user.id, 1)
     user_warns = get_warns(m.chat.id, target_user.id)
-    if user_warns >= warns_limit:
-        await c.kick_chat_member(m.chat.id, target_user.id)
-        await m.reply_text(strings("warn_banned").format(target_user=target_user.mention, warn_count=user_warns))
-        reset_warns(m.chat.id, target_user)
+    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    if check_admin.status not in admin_status:
+        if user_warns >= warns_limit:
+            await c.kick_chat_member(m.chat.id, target_user.id)
+            await m.reply_text(strings("warn_banned").format(target_user=target_user.mention, warn_count=user_warns))
+            reset_warns(m.chat.id, target_user)
+        else:
+            await m.reply(strings("user_warned").format(target_user=target_user.mention, warn_count=user_warns, warn_limit=warns_limit))
     else:
-        await m.reply(strings("user_warned").format(target_user=target_user.mention, warn_count=user_warns, warn_limit=warns_limit))
+        await m.reply_text("i cant warn admins")
 
 
 @Client.on_message(filters.command("setwarnslimit", prefix) & filters.group)
