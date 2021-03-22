@@ -61,7 +61,7 @@ async def warn_user(c: Client, m: Message, strings):
         else:
             await m.reply(strings("user_warned").format(target_user=target_user.mention, warn_count=user_warns, warn_limit=warns_limit))
     else:
-        await m.reply_text("i cant warn admins")
+        await m.reply_text(strings("warn_cant_admin"))
 
 
 @Client.on_message(filters.command("setwarnslimit", prefix) & filters.group)
