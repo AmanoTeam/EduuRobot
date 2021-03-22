@@ -1,4 +1,5 @@
 {
+  "admins_description": "Mostra uma lista com os administradores do chat.",
   "admins_list": "Os adm nessa budega chamado de {chat_title} são:\n{admins_list}",
   "html_description": "Ele pega o texto e formata para a linguagem HTML, isso mesmo um site.",
   "html_usage": "<b>Uso:</b> <code>/html &lt;b&gt;texto&lt;/b&gt; em &lt;i&gt;html&lt;/i&gt;</code> - Converte seu texto em linguagem HTML.",
