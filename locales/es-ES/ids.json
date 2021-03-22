@@ -1,1 +1,6 @@
-{}
+{
+  "id_description": "Obtén información acerca del chat.",
+  "none": "Ninguno",
+  "unknown": "Desconocido",
+  "user_not_found": "No se ha encontrado ningún usuario para '<code>{user}</code>'."
+}
