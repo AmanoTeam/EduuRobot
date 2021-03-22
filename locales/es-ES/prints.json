@@ -1,1 +1,5 @@
-{}
+{
+  "print_description": "Tomar una captura de pantalla del sitio web especificado.",
+  "print_usage": "<b>Uso:</b> <code>/print https://example.com</code> - Toma una captura de pantalla del sitio web especificado.",
+  "taking_screenshot": "Tomando captura de pantalla..."
+}
