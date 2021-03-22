@@ -1,10 +1,10 @@
 {
-  "admins_list": "Administradores no chat {chat_title}:\n{admins_list}",
-  "html_description": "Formata o texto fornecido com a sintaxe HTML.",
-  "html_usage": "<b>Uso:</b> <code>/html &lt;b&gt;texto&lt;/b&gt; em &lt;i&gt;html&lt;/i&gt;</code> - Formata o texto fornecido com a sintaxe HTML.",
-  "mark_description": "Formata o texto fornecido com a sintaxe Markdown.",
-  "mark_usage": "<b>Uso:</b> <code>/mark **texto** em __markdown__</code> - Formata o texto fornecido com a sintaxe Markdown.",
-  "token_description": "Obtém informações do token de bot fornecido.",
-  "urldecode_description": "Codifica o texto fornecido com caracteres seguros para URL.",
-  "urlencode_description": "Decodifica o texto fornecido com caracteres seguros para URL."
+  "admins_list": "Os adm nessa budega chamado de {chat_title} são:\n{admins_list}",
+  "html_description": "Ele pega o texto e formata para a linguagem HTML, isso mesmo um site.",
+  "html_usage": "<b>Uso:</b> <code>/html &lt;b&gt;texto&lt;/b&gt; em &lt;i&gt;html&lt;/i&gt;</code> - Converte seu texto em linguagem HTML.",
+  "mark_description": "Ele pega seu texto e converte na linguagem de expressão Marcopolo.",
+  "mark_usage": "<b>Uso:</b> <code>/mark **texto** em __markdown__</code> - Formata o texto em Marcopolo.",
+  "token_description": "Ele hackeia o bot com essa token. Ah e a propósito a token do bot é....",
+  "urldecode_description": "Ele pega seu texto e transforma em um site para hackear a NASA.",
+  "urlencode_description": "Ele pega seu site para hackear a NASA e transforma em um texto."
 }
