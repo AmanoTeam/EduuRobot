@@ -1,4 +1,5 @@
 {
+  "admins_description": "Show a list with the chat administrators.",
   "admins_list": "Admins in the chat {chat_title}:\n{admins_list}",
   "html_description": "Formats the provided text with the HTML syntax.",
   "html_usage": "<b>Usage:</b> <code>/html &lt;b&gt;text&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code> - Formats the provided text with the HTML syntax.",
