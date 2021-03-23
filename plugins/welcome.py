@@ -74,7 +74,7 @@ async def reset_welcome_message(c: Client, m: Message):
     await m.reply_text(f"The welcome message for {m.chat.title} were setted again to the default welcome message of the bot.")
 
 
-@Client.on_message(filters.new_chat_members)
+@Client.on_message(filters.new_chat_members & filters.group)
 async def greet_new_members(c: Client, m: Message):
     chat_title = m.chat.title
     chat_id = m.chat.id
