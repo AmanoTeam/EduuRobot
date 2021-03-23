@@ -47,7 +47,7 @@ async def set_welcome_message(c: Client, m: Message):
         await m.reply_text("You must specify the welcome message, E.g.: <code>/setwelcome (here the welcome message)</code>.")
 
 
-@Client.on_message((filters.regex(r"(?i)^/welcome$") | filters.regex(r"(?i)^!welcome$")) & filters.group)
+@Client.on_message(((filters.command("welcome") & ~filters.command(["welcome on", "welcome off"]))) & filters.group)
 @require_admin()
 async def invlaid_welcome_status_arg(c: Client, m: Message):
     enable_welcome(m.chat.id)
@@ -79,6 +79,8 @@ async def greet_new_members(c: Client, m: Message):
     chat_title = m.chat.title
     chat_id = m.chat.id
     first_name = m.from_user.first_name
+    last_name = m.from_user.last_name
+    full_name = m.from_user.first_name + m.from_user.last_name
     user_id = m.from_user.id
     getme = await c.get_me()
     if m.from_user.id == getme.id:
@@ -89,7 +91,9 @@ async def greet_new_members(c: Client, m: Message):
             if welcome[0] is not None:
                 welcome = welcome[0].replace('$id', str(user_id))
                 welcome = welcome.replace('$title', escape_markdown(chat_title))
-                welcome = welcome.replace('$name', escape_markdown(first_name))
+                welcome = welcome.replace('$name', escape_markdown(full_name))
+                welcome = welcome.replace('$first_name', escape_markdown(first_name))
+                welcome = welcome.replace('$last_name', escape_markdown(last_name))
             else:
                 welcome = 'hey {}, welcome to {}!'.format(escape_markdown(first_name),
                                                                         escape_markdown(chat_title))
