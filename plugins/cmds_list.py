@@ -43,7 +43,7 @@ async def show_help(c: Client, m: Message, strings):
         await m.reply_text(strings("select_command_category"), reply_markup=keyboard)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(strings("start_chat", context="start"), url=f"https://t.me/{c.me.username}?start=help")]
+            [InlineKeyboardButton(strings("start_chat", context="start"), url=f"https://t.me/{c._bot_username}?start=help")]
         ])
         await m.reply_text(strings("group_help"), reply_markup=keyboard)
 

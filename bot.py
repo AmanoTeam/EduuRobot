@@ -19,7 +19,6 @@ client = Client("bot", API_ID, API_HASH,
 
 with client:
     if __name__ == "__main__":
-        client.me = client.get_me()
         wr = get_restarted()
         del_restarted()
         try:
