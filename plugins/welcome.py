@@ -12,7 +12,7 @@ def escape_markdown(text):
     text = text.replace('`', '\`')
 
     return text
-    
+
 
 def get_welcome(chat_id):
     dbc.execute('SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)', (chat_id,))
