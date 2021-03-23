@@ -3,7 +3,7 @@
   "welcome_mode_disable": "The welcome message for {chat_title} is now disabled.",
   "welcome_mode_enable": "The welcome message for {chat_title} is now enabled.",
   "welcome_mode_invalid": "Invalid argument. Use <code>/welcome off/on</code>.",
-  "welcome_reset": "The welcome message for {m.chat.title} were setted again to the default welcome message of the bot.",
+  "welcome_reset": "The welcome message for {chat_title} were setted again to the default welcome message of the bot.",
   "welcome_set_empty": "You must specify the welcome message, E.g.: <code>/setwelcome (here the welcome message)</code>.",
   "welcome_set_success": "The welcome message for {chat_title} were set successfully."
 }
