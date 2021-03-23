@@ -1,0 +1,9 @@
+{
+  "welcome_default": "Olá {user_name}, seja bem-vindo(a) a {chat_title}!",
+  "welcome_mode_disable": "A mensagem de boas-vindas para {chat_title} foi desativada.",
+  "welcome_mode_enable": "A mensagem de boas-vindas para {chat_title} foi ativada.",
+  "welcome_mode_invalid": "Argumento inválido. Use <code>/welcome off/on</code>.",
+  "welcome_reset": "A mensagem de boas-vindas para {chat_title} foi definida novamente para a mensagem de boas-vindas padrão do bot.",
+  "welcome_set_empty": "Você deve especificar a mensagem de boas-vindas, por exemplo: <code>/setwelcome (aqui a mensagem de boas-vindas)</code>.",
+  "welcome_set_success": "A mensagem de boas-vindas para {chat_title} foi definida com sucesso."
+}
