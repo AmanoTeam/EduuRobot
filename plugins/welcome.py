@@ -6,10 +6,10 @@ from utils import require_admin
 
 
 def escape_markdown(text):
-    text = text.replace('[', '\[')
-    text = text.replace('_', '\_')
-    text = text.replace('*', '\*')
-    text = text.replace('`', '\`')
+    text = text.replace('[', r'\[')
+    text = text.replace('_', r'\_')
+    text = text.replace('*', r'\*')
+    text = text.replace('`', r'\`')
 
     return text
 
@@ -67,6 +67,7 @@ async def disable_welcome_message(c: Client, m: Message):
     disable_welcome(m.chat.id)
     await m.reply_text(f"the welcome message for {m.chat.title} was disabled")
 
+
 @Client.on_message(filters.command(["resetwelcome", "clearwelcome"], prefix) & filters.group)
 @require_admin()
 async def reset_welcome_message(c: Client, m: Message):
@@ -96,5 +97,5 @@ async def greet_new_members(c: Client, m: Message):
                 welcome = welcome.replace('$last_name', escape_markdown(last_name))
             else:
                 welcome = 'hey {}, welcome to {}!'.format(escape_markdown(first_name),
-                                                                        escape_markdown(chat_title))
+                                                          escape_markdown(chat_title))
             await m.reply_text(welcome, parse_mode="markdown", disable_web_page_preview=True)
