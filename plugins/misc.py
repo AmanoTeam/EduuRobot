@@ -1,10 +1,11 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from config import prefix
+from config import prefix, log_chat
 from localization import use_chat_lang
 from utils import commands
 from consts import http
 from urllib.parse import quote, unquote
+from pyrogram.errors.exceptions.bad_request_400 import BadRequest
 
 
 @Client.on_message(filters.command("mark", prefix))
@@ -70,6 +71,17 @@ async def urlencodecmd(c: Client, m: Message):
 @Client.on_message(filters.command("urldecode", prefix))
 async def urldecodecmd(c: Client, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
+
+
+@Client.on_message(filters.command("bug", prefix))
+async def bug_report_cmd(c: Client, m: Message):
+    if len(m.text.split()) > 1:
+        try:
+            await c.send_message(log_chat, f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>")
+        except BadRequest:
+            await m.reply_text("error, i cant send the bug report to the admins of the bot")
+    else:
+        await m.reply("You must specify the bug to report, E.g.: <code>/bug (here the bug)</code>.")
 
 
 commands.add_command("mark", "general")
