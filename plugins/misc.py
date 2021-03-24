@@ -78,7 +78,7 @@ async def bug_report_cmd(c: Client, m: Message):
     if len(m.text.split()) > 1:
         try:
             await c.send_message(log_chat, f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>")
-            await m.reply_text("the bug
+            await m.reply_text("the bug was successfully reported")
         except BadRequest:
             await m.reply_text("error, i cant send the bug report to the admins of the bot")
     else:
