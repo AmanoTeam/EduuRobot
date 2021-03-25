@@ -6,6 +6,8 @@ from utils import commands
 from consts import http
 from urllib.parse import quote, unquote
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
+import re
+from html import escape
 
 
 @Client.on_message(filters.command("mark", prefix))
@@ -83,6 +85,22 @@ async def bug_report_cmd(c: Client, m: Message):
             await m.reply_text("error, i cant send the bug report to the admins of the bot")
     else:
         await m.reply("You must specify the bug to report, E.g.: <code>/bug (here the bug)</code>.")
+
+
+@Client.on_message(filters.command("request", prefix))
+async def request_cmd(c: Client, m: Message):
+    if len(m.text.split()) > 1:
+        text = m.text.split(maxsplit=1)[1]
+        if re.match(r"^(https?)://", text):
+            url = text
+        else:
+            url = "http://" + text
+        req = await http.get(url)
+        headers = "<b>Status-Code:</b> <code>{}</code>\n".format(req.status_code)
+        headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x, escape(req.headers[x])) for x in req.headers)
+        await m.reply_text(f"<b>Headers:</b>\n{headers}", parse_mode="html")
+    else:
+        await m.reply_text("You must specify the url, E.g.: <code>/request (here the url)</code>")
 
 
 commands.add_command("mark", "general")
