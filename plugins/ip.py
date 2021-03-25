@@ -16,7 +16,7 @@ async def ip_cmd(c: Client, m: Message):
         req = r.json()
         x = ""
         for i in req:
-            x += "*{}*: `{}`\n".format(i.title(), req[i])
-        await m.reply_text(x, parse_mode="md")
+            x += "<b>{}</b>: <code>{}</code>\n".format(i.title(), req[i])
+        await m.reply_text(x, parse_mode="html")
     else:
         await m.reply_text("You must specify the url, E.g.: <code>/ip example.com</code>")
