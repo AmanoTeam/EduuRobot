@@ -100,7 +100,7 @@ async def request_cmd(c: Client, m: Message):
         headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x, escape(req.headers[x])) for x in req.headers)
         await m.reply_text(f"<b>Headers:</b>\n{headers}", parse_mode="html")
     else:
-        await m.reply_text("You must specify the url, E.g.: <code>/request (here the url)</code>")
+        await m.reply_text("You must specify the url, E.g.: <code>/request https://example.com</code>")
 
 
 commands.add_command("mark", "general")
