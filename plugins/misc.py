@@ -96,7 +96,7 @@ async def request_cmd(c: Client, m: Message):
         else:
             url = "http://" + text
         req = await http.get(url)
-        headers = "<b>Status-Code:</b> <code>{}</code>\n".format(req.status_code)
+        headers = "<b>{}</b> <code>{} {}</code>\n".format(req.ext.get("http_version"), req.status_code, req.ext.get("reason", ""))
         headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x, escape(req.headers[x])) for x in req.headers)
         await m.reply_text(f"<b>Headers:</b>\n{headers}", parse_mode="html")
     else:
