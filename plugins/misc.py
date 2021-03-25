@@ -97,7 +97,7 @@ async def request_cmd(c: Client, m: Message):
             url = "http://" + text
         req = await http.get(url)
         headers = "<b>{}</b> <code>{} {}</code>\n".format(req.ext.get("http_version"), req.status_code, req.ext.get("reason", ""))
-        headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x, escape(req.headers[x])) for x in req.headers)
+        headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x.title(), escape(req.headers[x])) for x in req.headers)
         await m.reply_text(f"<b>Headers:</b>\n{headers}", parse_mode="html")
     else:
         await m.reply_text("You must specify the url, E.g.: <code>/request https://example.com</code>")
