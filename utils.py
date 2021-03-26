@@ -3,7 +3,7 @@ import inspect
 import os.path
 import time
 from functools import wraps, partial
-from typing import Union
+from typing import Union, Tuple, Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -49,12 +49,12 @@ def del_restarted():
     db.commit()
 
 
-def get_restarted():
-    dbc.execute("SELECT * FROM was_restarted_at")
+def get_restarted() -> Tuple[int, int]:
+    dbc.execute("SELECT chat_id, message_id FROM was_restarted_at")
     return dbc.fetchone()
 
 
-def set_restarted(chat_id, message_id):
+def set_restarted(chat_id: int, message_id: int):
     dbc.execute("INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id))
     db.commit()
 
@@ -62,10 +62,10 @@ def set_restarted(chat_id, message_id):
 async def check_perms(
     client: Client,
     message: Message,
-    permissions: Union[list, str],
+    permissions: Optional[list, str],
     complain_missing_perms: bool,
     strings,
-):
+) -> bool:
     # TODO: Cache all admin permissions in db.
     user = await client.get_chat_member(message.chat.id, message.from_user.id)
     if user.status == "creator":
