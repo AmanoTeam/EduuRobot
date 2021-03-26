@@ -11,6 +11,7 @@ from utils import commands
 tr = Translator()
 
 # See https://cloud.google.com/translate/docs/languages
+# fmt: off
 LANGUAGES = [
     "af", "sq", "am", "ar", "hy",
     "az", "eu", "be", "bn", "bs",
@@ -35,6 +36,7 @@ LANGUAGES = [
     "ur", "ug", "uz", "vi", "cy",
     "xh", "yi", "yo", "zu",
 ]
+# fmt: on
 
 
 def get_tr_lang(text):

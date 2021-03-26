@@ -34,7 +34,10 @@ async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
         mention += f"{i.user.mention}\n"
-    await c.send_message(m.chat.id, strings("admins_list").format(chat_title=m.chat.title, admins_list=mention))
+    await c.send_message(
+        m.chat.id,
+        strings("admins_list").format(chat_title=m.chat.title, admins_list=mention),
+    )
 
 
 @Client.on_message(filters.command("token"))
@@ -64,7 +67,9 @@ async def getbotinfo(c: Client, m: Message):
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
 async def rtcommand(c: Client, m: Message):
-    await m.reply(f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>")
+    await m.reply(
+        f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>"
+    )
 
 
 @Client.on_message(filters.command("urlencode", prefix))
@@ -81,12 +86,19 @@ async def urldecodecmd(c: Client, m: Message):
 async def bug_report_cmd(c: Client, m: Message):
     if len(m.text.split()) > 1:
         try:
-            await c.send_message(log_chat, f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>")
+            await c.send_message(
+                log_chat,
+                f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>",
+            )
             await m.reply_text("the bug was successfully reported")
         except BadRequest:
-            await m.reply_text("error, i cant send the bug report to the admins of the bot")
+            await m.reply_text(
+                "error, i cant send the bug report to the admins of the bot"
+            )
     else:
-        await m.reply("You must specify the bug to report, E.g.: <code>/bug (here the bug)</code>.")
+        await m.reply(
+            "You must specify the bug to report, E.g.: <code>/bug (here the bug)</code>."
+        )
 
 
 @Client.on_message(filters.command("request", prefix))
@@ -98,11 +110,18 @@ async def request_cmd(c: Client, m: Message):
         else:
             url = "http://" + text
         req = await http.get(url)
-        headers = "<b>{}</b> <code>{} {}</code>\n".format(req.ext.get("http_version"), req.status_code, req.ext.get("reason", ""))
-        headers += '\n'.join("<b>{}:</b> <code>{}</code>".format(x.title(), escape(req.headers[x])) for x in req.headers)
+        headers = "<b>{}</b> <code>{} {}</code>\n".format(
+            req.ext.get("http_version"), req.status_code, req.ext.get("reason", "")
+        )
+        headers += "\n".join(
+            "<b>{}:</b> <code>{}</code>".format(x.title(), escape(req.headers[x]))
+            for x in req.headers
+        )
         await m.reply_text(f"<b>Headers:</b>\n{headers}", parse_mode="html")
     else:
-        await m.reply_text("You must specify the url, E.g.: <code>/request https://example.com</code>")
+        await m.reply_text(
+            "You must specify the url, E.g.: <code>/request https://example.com</code>"
+        )
 
 
 commands.add_command("mark", "general")

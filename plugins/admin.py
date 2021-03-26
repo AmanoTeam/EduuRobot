@@ -12,7 +12,9 @@ async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
         target_user = m.reply_to_message.from_user
     else:
-        target_user = await c.get_users(int(m.command[1]) if m.command[1].isdecimal() else m.command[1])
+        target_user = await c.get_users(
+            int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+        )
     return target_user
 
 
@@ -23,7 +25,7 @@ async def pin(c: Client, m: Message):
         m.chat.id,
         m.reply_to_message.message_id,
         disable_notification=True,
-        both_sides=True
+        both_sides=True,
     )
 
 
@@ -34,25 +36,20 @@ async def pinloud(c: Client, m: Message):
         m.chat.id,
         m.reply_to_message.message_id,
         disable_notification=False,
-        both_sides=True
+        both_sides=True,
     )
 
 
 @Client.on_message(filters.command("unpin", prefix))
 @require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpin(c: Client, m: Message):
-    await c.unpin_chat_message(
-        m.chat.id,
-        m.reply_to_message.message_id
-    )
+    await c.unpin_chat_message(m.chat.id, m.reply_to_message.message_id)
 
 
 @Client.on_message(filters.command("unpinall", prefix))
 @require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpinall(c: Client, m: Message):
-    await c.unpin_all_chat_messages(
-        m.chat.id
-    )
+    await c.unpin_all_chat_messages(m.chat.id)
 
 
 @Client.on_message(filters.command("ban", prefix))
@@ -65,7 +62,7 @@ async def ban(c: Client, m: Message, strings):
     await m.reply_text(
         strings("ban_success").format(
             user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id)
+            admin=html_user(m.from_user.first_name, m.from_user.id),
         )
     )
 
@@ -81,7 +78,7 @@ async def kick(c: Client, m: Message, strings):
     await m.reply_text(
         strings("kick_success").format(
             user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id)
+            admin=html_user(m.from_user.first_name, m.from_user.id),
         )
     )
 
@@ -96,7 +93,7 @@ async def unban(c: Client, m: Message, strings):
     await m.reply_text(
         strings("unban_success").format(
             user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id)
+            admin=html_user(m.from_user.first_name, m.from_user.id),
         )
     )
 
@@ -107,13 +104,13 @@ async def unban(c: Client, m: Message, strings):
 async def mute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
 
-    await c.restrict_chat_member(m.chat.id,
-                                 target_user.id,
-                                 ChatPermissions(can_send_messages=False))
+    await c.restrict_chat_member(
+        m.chat.id, target_user.id, ChatPermissions(can_send_messages=False)
+    )
     await m.reply_text(
         strings("mute_success").format(
             user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id)
+            admin=html_user(m.from_user.first_name, m.from_user.id),
         )
     )
 
@@ -128,7 +125,7 @@ async def unmute(c: Client, m: Message, strings):
     await m.reply_text(
         strings("unmute_success").format(
             user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id)
+            admin=html_user(m.from_user.first_name, m.from_user.id),
         )
     )
 
@@ -138,7 +135,9 @@ async def unmute(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def tmute(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
+        return await m.reply_text(
+            strings("error_must_specify_time").format(command=m.command[0])
+        )
     split_time = m.text.split(None, 1)
     mute_time = await time_extract(m, split_time[1])
     if not mute_time:
@@ -147,13 +146,15 @@ async def tmute(c: Client, m: Message, strings):
         m.chat.id,
         m.reply_to_message.from_user.id,
         ChatPermissions(can_send_messages=False),
-        until_date=mute_time
+        until_date=mute_time,
     )
     await m.reply_text(
         strings("tmute_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(
+                m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id
+            ),
             admin=html_user(m.from_user.first_name, m.from_user.id),
-            time=split_time[1]
+            time=split_time[1],
         )
     )
 
@@ -163,22 +164,24 @@ async def tmute(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
+        return await m.reply_text(
+            strings("error_must_specify_time").format(command=m.command[0])
+        )
     split_time = m.text.split(None, 1)
     ban_time = await time_extract(m, split_time[1])
     if not ban_time:
         return
     await c.kick_chat_member(
-        m.chat.id,
-        m.reply_to_message.from_user.id,
-        until_date=ban_time
+        m.chat.id, m.reply_to_message.from_user.id, until_date=ban_time
     )
 
     await m.reply_text(
         strings("tban_success").format(
-            user=html_user(m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id),
+            user=html_user(
+                m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id
+            ),
             admin=html_user(m.from_user.first_name, m.from_user.id),
-            time=split_time[1]
+            time=split_time[1],
         )
     )
 
@@ -193,30 +196,21 @@ async def purge(c: Client, m: Message, strings):
     message_ids = []
     count_del_etion_s = 0
     if m.reply_to_message:
-        for a_s_message_id in range(
-            m.reply_to_message.message_id,
-            m.message_id
-        ):
+        for a_s_message_id in range(m.reply_to_message.message_id, m.message_id):
             message_ids.append(a_s_message_id)
             if len(message_ids) == 100:
                 await c.delete_messages(
-                    chat_id=m.chat.id,
-                    message_ids=message_ids,
-                    revoke=True
+                    chat_id=m.chat.id, message_ids=message_ids, revoke=True
                 )
                 count_del_etion_s += len(message_ids)
                 message_ids = []
         if len(message_ids) > 0:
             await c.delete_messages(
-                chat_id=m.chat.id,
-                message_ids=message_ids,
-                revoke=True
+                chat_id=m.chat.id, message_ids=message_ids, revoke=True
             )
             count_del_etion_s += len(message_ids)
     await status_message.edit_text(
-        strings("purge_success").format(
-            count=count_del_etion_s
-        )
+        strings("purge_success").format(count=count_del_etion_s)
     )
     await asyncio.sleep(5)
     await status_message.delete()
