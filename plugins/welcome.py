@@ -104,9 +104,7 @@ async def greet_new_members(c: Client, m: Message, strings):
     last_name = m.from_user.last_name or ""
     full_name = m.from_user.first_name + last_name
     user_id = m.from_user.id
-    if m.from_user.is_bot:
-        pass
-    else:
+    if not m.from_user.is_bot:
         welcome = get_welcome(chat_id)
         if welcome[1]:
             if welcome[0] is not None:
