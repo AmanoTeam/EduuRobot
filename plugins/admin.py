@@ -4,8 +4,8 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
 
 from config import prefix
-from utils import require_admin, time_extract, html_user, commands
 from localization import use_chat_lang
+from utils import require_admin, time_extract, html_user, commands
 
 
 async def get_target_user(c: Client, m: Message) -> User:

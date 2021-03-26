@@ -1,9 +1,10 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from dbh import dbc, db
-from utils import require_admin
-from localization import use_chat_lang
+
 from config import prefix
+from dbh import dbc, db
+from localization import use_chat_lang
+from utils import require_admin
 
 
 def get_rules(chat_id):

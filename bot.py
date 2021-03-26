@@ -1,7 +1,6 @@
 import logging
 
 from pyrogram import Client, idle
-
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
 
 from config import TOKEN, disabled_plugins, log_chat, API_ID, API_HASH

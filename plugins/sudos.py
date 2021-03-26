@@ -10,8 +10,8 @@ from contextlib import redirect_stdout
 import speedtest
 from meval import meval
 from pyrogram import Client, filters
-from pyrogram.types import Message
 from pyrogram.errors import RPCError
+from pyrogram.types import Message
 
 from localization import use_chat_lang
 from utils import set_restarted, sudofilter

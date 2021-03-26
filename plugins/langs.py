@@ -1,7 +1,7 @@
+from functools import partial
+
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
-
-from functools import partial
 
 from localization import langdict, set_db_lang, use_chat_lang, get_locale_string, default_language
 
