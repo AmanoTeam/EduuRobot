@@ -10,19 +10,24 @@ with open("version.txt") as f:
     version = f.read().strip()
 
 
-client = Client("bot", API_ID, API_HASH,
-                bot_token=TOKEN,
-                workers=24,
-                parse_mode="html",
-                plugins=dict(root="plugins", exclude=disabled_plugins))
+client = Client(
+    "bot",
+    API_ID,
+    API_HASH,
+    bot_token=TOKEN,
+    workers=24,
+    parse_mode="html",
+    plugins=dict(root="plugins", exclude=disabled_plugins),
+)
 
 with client:
     if __name__ == "__main__":
         wr = get_restarted()
         del_restarted()
         try:
-            client.send_message(log_chat, "<b>Bot started</b>\n\n"
-                                          f"<b>Version:</b> {version}")
+            client.send_message(
+                log_chat, "<b>Bot started</b>\n\n" f"<b>Version:</b> {version}"
+            )
             if wr:
                 client.edit_message_text(wr[0], wr[1], "Restarted successfully.")
         except BadRequest:

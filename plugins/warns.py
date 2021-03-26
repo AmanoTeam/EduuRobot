@@ -7,41 +7,58 @@ from localization import use_chat_lang
 from utils import require_admin
 from .admin import get_target_user
 
-dbc.execute('''CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
-                                                      chat_id INTEGER,
-                                                      count INTEGER)''')
+dbc.execute(
+    """CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
+                                              chat_id INTEGER,
+                                              count INTEGER)"""
+)
 
 admin_status = ["creator", "administrator"]
 
+
 def get_warns(chat_id, user_id):
-    dbc.execute('SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
+    dbc.execute(
+        "SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?",
+        (chat_id, user_id),
+    )
     return dbc.fetchone()[0]
 
 
 def add_warns(chat_id, user_id, number):
-    dbc.execute('SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
+    dbc.execute(
+        "SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
+    )
     if dbc.fetchone():
-        dbc.execute('UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?',
-                       (number, chat_id, user_id))
+        dbc.execute(
+            "UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?",
+            (number, chat_id, user_id),
+        )
         db.commit()
     else:
-        dbc.execute('INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)', (user_id, chat_id, number))
+        dbc.execute(
+            "INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)",
+            (user_id, chat_id, number),
+        )
         db.commit()
 
 
 def reset_warns(chat_id, user_id):
-    dbc.execute('DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?', (chat_id, user_id))
+    dbc.execute(
+        "DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
+    )
     db.commit()
 
 
 def get_warns_limit(chat_id):
-    dbc.execute('SELECT warns_limit FROM groups WHERE chat_id = ?', (chat_id,))
+    dbc.execute("SELECT warns_limit FROM groups WHERE chat_id = ?", (chat_id,))
     res = dbc.fetchone()[0]
     return 3 if res is None else res
 
 
 def set_warns_limit(chat_id, warns_limit):
-    dbc.execute('UPDATE groups SET warns_limit = ? WHERE chat_id = ?', (warns_limit, chat_id))
+    dbc.execute(
+        "UPDATE groups SET warns_limit = ? WHERE chat_id = ?", (warns_limit, chat_id)
+    )
     db.commit()
 
 
@@ -57,10 +74,20 @@ async def warn_user(c: Client, m: Message, strings):
     if check_admin.status not in admin_status:
         if user_warns >= warns_limit:
             await c.kick_chat_member(m.chat.id, target_user.id)
-            await m.reply_text(strings("warn_banned").format(target_user=target_user.mention, warn_count=user_warns))
+            await m.reply_text(
+                strings("warn_banned").format(
+                    target_user=target_user.mention, warn_count=user_warns
+                )
+            )
             reset_warns(m.chat.id, target_user)
         else:
-            await m.reply(strings("user_warned").format(target_user=target_user.mention, warn_count=user_warns, warn_limit=warns_limit))
+            await m.reply(
+                strings("user_warned").format(
+                    target_user=target_user.mention,
+                    warn_count=user_warns,
+                    warn_limit=warns_limit,
+                )
+            )
     else:
         await m.reply_text(strings("warn_cant_admin"))
 

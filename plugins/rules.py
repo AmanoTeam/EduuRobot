@@ -8,7 +8,7 @@ from utils import require_admin
 
 
 def get_rules(chat_id):
-    dbc.execute('SELECT rules FROM groups WHERE chat_id = (?)', (chat_id,))
+    dbc.execute("SELECT rules FROM groups WHERE chat_id = (?)", (chat_id,))
     try:
         return dbc.fetchone()[0]
     except IndexError:
@@ -16,7 +16,7 @@ def get_rules(chat_id):
 
 
 def set_rules(chat_id, rules):
-    dbc.execute('UPDATE groups SET rules = ? WHERE chat_id = ?', (rules, chat_id))
+    dbc.execute("UPDATE groups SET rules = ? WHERE chat_id = ?", (rules, chat_id))
     db.commit()
 
 
@@ -45,6 +45,8 @@ async def show_rules(c: Client, m: Message, strings):
     rules = get_rules(m.chat.id)
     if rules:
         # TODO: Send rules in private plus a toggle for that.
-        await m.reply_text(strings("rules_message").format(chat_title=m.chat.title, rules=rules))
+        await m.reply_text(
+            strings("rules_message").format(chat_title=m.chat.title, rules=rules)
+        )
     else:
         await m.reply_text(strings("rules_empty"))
