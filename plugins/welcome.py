@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -16,7 +18,7 @@ def escape_markdown(text):
     return text
 
 
-def get_welcome(chat_id):
+def get_welcome(chat_id: int):
     dbc.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
     )
@@ -26,21 +28,14 @@ def get_welcome(chat_id):
         return None
 
 
-def set_welcome(chat_id, welcome):
+def set_welcome(chat_id: int, welcome: Optional[str]):
     dbc.execute("UPDATE groups SET welcome = ? WHERE chat_id = ?", (welcome, chat_id))
     db.commit()
 
 
-def enable_welcome(chat_id):
+def toggle_welcome(chat_id: int, mode: bool):
     dbc.execute(
-        "UPDATE groups SET welcome_enabled = ? WHERE chat_id = ?", (True, chat_id)
-    )
-    db.commit()
-
-
-def disable_welcome(chat_id):
-    dbc.execute(
-        "UPDATE groups SET welcome_enabled = ? WHERE chat_id = ?", (False, chat_id)
+        "UPDATE groups SET welcome_enabled = ? WHERE chat_id = ?", (mode, chat_id)
     )
     db.commit()
 
@@ -65,7 +60,6 @@ async def set_welcome_message(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
-    enable_welcome(m.chat.id)
     await m.reply_text(strings("welcome_mode_invalid"))
 
 
@@ -73,7 +67,7 @@ async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def enable_welcome_message(c: Client, m: Message, strings):
-    enable_welcome(m.chat.id)
+    toggle_welcome(m.chat.id, True)
     await m.reply_text(strings("welcome_mode_enable").format(chat_title=m.chat.title))
 
 
@@ -81,7 +75,7 @@ async def enable_welcome_message(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def disable_welcome_message(c: Client, m: Message, strings):
-    disable_welcome(m.chat.id)
+    toggle_welcome(m.chat.id, False)
     await m.reply_text(strings("welcome_mode_disable").format(chat_title=m.chat.title))
 
 
