@@ -8,4 +8,5 @@ __pycache__/
 *.db
 config.ini
 config.py
+unknown_errors.txt
 downloads/
