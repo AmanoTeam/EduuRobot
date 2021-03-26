@@ -22,10 +22,7 @@ def get_welcome(chat_id: int):
     dbc.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
     )
-    try:
-        return dbc.fetchone()
-    except IndexError:
-        return None
+    return dbc.fetchone()
 
 
 def set_welcome(chat_id: int, welcome: Optional[str]):
