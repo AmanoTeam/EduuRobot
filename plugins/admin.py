@@ -5,7 +5,7 @@ from pyrogram.types import ChatPermissions, Message, User
 
 from config import prefix
 from localization import use_chat_lang
-from utils import require_admin, time_extract, html_user, commands
+from utils import require_admin, time_extract, commands
 
 
 async def get_target_user(c: Client, m: Message) -> User:
@@ -61,8 +61,8 @@ async def ban(c: Client, m: Message, strings):
     await c.kick_chat_member(m.chat.id, target_user.id)
     await m.reply_text(
         strings("ban_success").format(
-            user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=target_user.mention,
+            admin=m.from_user.mention,
         )
     )
 
@@ -77,8 +77,8 @@ async def kick(c: Client, m: Message, strings):
     await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("kick_success").format(
-            user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=target_user.mention,
+            admin=m.from_user.mention,
         )
     )
 
@@ -92,8 +92,8 @@ async def unban(c: Client, m: Message, strings):
     await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("unban_success").format(
-            user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=target_user.mention,
+            admin=m.from_user.mention,
         )
     )
 
@@ -109,8 +109,8 @@ async def mute(c: Client, m: Message, strings):
     )
     await m.reply_text(
         strings("mute_success").format(
-            user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=target_user.mention,
+            admin=m.from_user.mention,
         )
     )
 
@@ -124,8 +124,8 @@ async def unmute(c: Client, m: Message, strings):
     await m.chat.unban_member(target_user.id)
     await m.reply_text(
         strings("unmute_success").format(
-            user=html_user(target_user.first_name, target_user.id),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=target_user.mention,
+            admin=m.from_user.mention,
         )
     )
 
@@ -150,10 +150,8 @@ async def tmute(c: Client, m: Message, strings):
     )
     await m.reply_text(
         strings("tmute_success").format(
-            user=html_user(
-                m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id
-            ),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=m.reply_to_message.from_user.mention,
+            admin=m.from_user.mention,
             time=split_time[1],
         )
     )
@@ -177,10 +175,8 @@ async def tban(c: Client, m: Message, strings):
 
     await m.reply_text(
         strings("tban_success").format(
-            user=html_user(
-                m.reply_to_message.from_user.first_name, m.reply_to_message.from_user.id
-            ),
-            admin=html_user(m.from_user.first_name, m.from_user.id),
+            user=m.reply_to_message.from_user.mention,
+            admin=m.from_user.mention,
             time=split_time[1],
         )
     )
