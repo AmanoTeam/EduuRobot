@@ -62,7 +62,7 @@ def set_restarted(chat_id: int, message_id: int):
 async def check_perms(
     client: Client,
     message: Message,
-    permissions: Optional[list, str],
+    permissions: Optional[Union[list, str]],
     complain_missing_perms: bool,
     strings,
 ) -> bool:
