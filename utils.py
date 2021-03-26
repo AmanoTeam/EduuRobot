@@ -1,4 +1,3 @@
-import html
 import inspect
 import os.path
 import time
