@@ -67,7 +67,7 @@ Special thanks
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 .. |Codacy| image:: https://app.codacy.com/project/badge/Grade/7e9bffc2c3a140cf9f1e5d3c4aea0c2f
-   :target: https://www.codacy.com/gh/AmanoTeam/EduuRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=AmanoTeam/EduuRobot&utm_campaign=Badge_Grade
+   :target: https://www.codacy.com/gh/AmanoTeam/EduuRobot/dashboard
 .. |Crowdin| image:: https://badges.crowdin.net/eduurobot/localized.svg
    :target: https://crowdin.com/project/eduurobot
 .. |License| image:: https://img.shields.io/github/license/AmanoTeam/EduuRobot
