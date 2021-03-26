@@ -54,3 +54,31 @@ async def faces_inline(c: Client, q: InlineQuery):
             )
         )
     await q.answer(results)
+
+
+@Client.on_inline_query(filters.regex(r"^markdown"))
+async def markdown_inline(c: Client, q: InlineQuery):
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title="click here to send the text in markdown format",
+                input_message_content=InputTextMessageContent(
+                    q.query.lower().split(None, 1)[1], parse_mode="markdown"
+                ),
+            )
+        ]
+    )
+
+
+@Client.on_inline_query(filters.regex(r"^html"))
+async def html_inline(c: Client, q: InlineQuery):
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title="click here to send the text in html format",
+                input_message_content=InputTextMessageContent(
+                    q.query.lower().split(None, 1)[1], parse_mode="html"
+                ),
+            )
+        ]
+    )
