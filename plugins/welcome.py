@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message, User
+from pyrogram.types import Message
 
 from config import prefix
 from dbh import dbc, db
@@ -14,13 +14,6 @@ def escape_markdown(text):
     text = text.replace("`", r"\`")
 
     return text
-
-
-async def check_last_name(c: Client, m: Message) -> User:
-    if m.from_user.last_name == None:
-        return " "
-    else:
-        return m.from_user.last_name
 
 
 def get_welcome(chat_id):
@@ -108,7 +101,7 @@ async def greet_new_members(c: Client, m: Message, strings):
     chat_title = m.chat.title
     chat_id = m.chat.id
     first_name = m.from_user.first_name
-    last_name = await check_last_name(c, m)
+    last_name = m.from_user.last_name or ""
     full_name = m.from_user.first_name + last_name
     user_id = m.from_user.id
     getme = await c.get_me()
