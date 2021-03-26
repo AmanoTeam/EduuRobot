@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Tuple
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -9,7 +9,7 @@ from localization import use_chat_lang
 from utils import require_admin
 
 
-def escape_markdown(text):
+def escape_markdown(text: str) -> str:
     text = text.replace("[", r"\[")
     text = text.replace("_", r"\_")
     text = text.replace("*", r"\*")
@@ -18,7 +18,7 @@ def escape_markdown(text):
     return text
 
 
-def get_welcome(chat_id: int):
+def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
     dbc.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
     )
