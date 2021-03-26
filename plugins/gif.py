@@ -4,9 +4,9 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import TENOR_API_KEY, prefix
+from consts import http
 from localization import use_chat_lang
 from utils import commands
-from consts import http
 
 if not TENOR_API_KEY:
     logging.warning(f"[{__name__}] You need to fill TENOR_API_KEY in your config file in order to use this plugin.")

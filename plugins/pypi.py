@@ -5,9 +5,9 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 from config import prefix
+from consts import http
 from localization import use_chat_lang
 from utils import commands
-from consts import http
 
 
 def cleanhtml(raw_html):

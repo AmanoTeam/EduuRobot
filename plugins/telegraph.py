@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from telegraph import upload_file
 
 from config import prefix
-from telegraph import upload_file
 
 
 @Client.on_message(filters.command("telegraph", prefix))

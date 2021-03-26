@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
 
-from utils import commands
 from localization import use_chat_lang
+from utils import commands
 
 
 def gen_categories_kb(strings_manager):

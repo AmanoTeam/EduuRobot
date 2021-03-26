@@ -1,8 +1,9 @@
 """temporary solution"""
-from dbh import dbc, db
 from pyrogram import Client, filters
-from config import prefix
 from pyrogram.types import Message
+
+from config import prefix
+from dbh import dbc, db
 from utils import require_admin
 
 

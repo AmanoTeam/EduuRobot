@@ -1,8 +1,11 @@
+import re
+
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent
+
 from config import prefix
 from consts import http
-import re
+
 
 @Client.on_message(filters.command("ip", prefix))
 async def ip_cmd(c: Client, m: Message):

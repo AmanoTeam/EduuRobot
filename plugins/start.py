@@ -1,6 +1,7 @@
+from typing import Union
+
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
-from typing import Union
 
 from config import prefix, version
 from localization import use_chat_lang

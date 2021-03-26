@@ -7,9 +7,8 @@ from typing import List, Dict
 
 from pyrogram.types import CallbackQuery
 
-from dbh import dbc, db
 from consts import group_types
-
+from dbh import dbc, db
 
 enabled_locales = [
     "ar-SA",   # Arabic
