@@ -109,7 +109,7 @@ async def info_inline(c: Client, q: InlineQuery):
             InlineQueryResultArticle(
                 title="click here to get the information about the user",
                 input_message_content=InputTextMessageContent(
-                    f"username: {user.username} \n id: {user.id} \n dc: {user.dc_id} \n link to the user: {user.mention()}",
+                    f"username: {user.username}\nid: {user.id}\ndc: {user.dc_id}\nlink to the user: {user.mention()}",
                 ),
             )
         ]
