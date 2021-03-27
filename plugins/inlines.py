@@ -104,13 +104,12 @@ async def info_inline(c: Client, q: InlineQuery):
                 )
             ]
         )
-    mentiontext = "here"
     await q.answer(
         [
             InlineQueryResultArticle(
                 title="click here to get the information about the user",
                 input_message_content=InputTextMessageContent(
-                    f"username: {user.username} \n id: {user.id} \n dc: {user.dc_id} \n link to the user: {user.mention(mentiontext)}",
+                    f"username: {user.username} \n id: {user.id} \n dc: {user.dc_id} \n link to the user: {user.mention()}",
                 ),
             )
         ]
