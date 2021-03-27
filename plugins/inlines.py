@@ -4,6 +4,7 @@ from pyrogram.types import (
     InlineQueryResultArticle,
     InputTextMessageContent,
 )
+from pyrogram.errors import PeerIdInvalid, UsernameInvalid, UserIdInvalid
 
 
 @Client.on_inline_query(filters.regex(r"^face"))
@@ -78,6 +79,38 @@ async def html_inline(c: Client, q: InlineQuery):
                 title="click here to send the text in html format",
                 input_message_content=InputTextMessageContent(
                     q.query.lower().split(None, 1)[1], parse_mode="html"
+                ),
+            )
+        ]
+    )
+
+
+@Client.on_inline_query(filters.regex(r"^info"))
+async def info_inline(c: Client, q: InlineQuery):
+    try:
+        if q.query == "info":
+            user = q.from_user
+        elif q.query.lower().split(None, 1)[1]:
+            txt = q.query.lower().split(None, 1)[1]
+            user = await c.get_users(txt)
+    except (PeerIdInvalid, UsernameInvalid, UserIdInvalid):
+        await q.answer(
+            [
+                InlineQueryResultArticle(
+                    title="i cant found the user",
+                    input_message_content=InputTextMessageContent(
+                        "i cant found the user"
+                    ),
+                )
+            ]
+        )
+    mentiontext = "here"
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title="click here to get the information about the user",
+                input_message_content=InputTextMessageContent(
+                    f"username: {user.username} \n id: {user.id} dc: {user.dc_id} \n link to the user: {user.mention(mentiontext)}",
                 ),
             )
         ]
