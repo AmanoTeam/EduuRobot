@@ -186,7 +186,7 @@ async def backupcmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)
 async def uploadfile(c: Client, m: Message):
-    await m.reply_to_message.reply_text("uploading the document")
+    await m.reply_to_message.reply_text("Uploading the Document.")
     await m.reply_to_message.download()
 
 
@@ -195,7 +195,7 @@ async def downloadfile(c: Client, m: Message):
     if len(m.text.split()) > 1:
         await m.reply_document(f"downloads/{m.command[1]}")
     else:
-        await m.reply_text("You must specify the document")
+        await m.reply_text("You must specify the document.")
 
 
 @Client.on_message(filters.command("chat", prefix) & sudofilter)
@@ -204,9 +204,9 @@ async def getchatcmd(c: Client, m: Message):
         targetchat = await c.get_chat(m.command[1])
         if targetchat.type != "private":
             await m.reply_text(
-                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Link:</b> {targetchat.invite_link}\n<b>Members:</b> {targetchat.members_count}"
+                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Link:</b> {targetchat.invite_link}\n<b>Members:</b> {targetchat.members_count}."
             )
         else:
-            await m.reply_text("this is a private chat")
+            await m.reply_text("This is a private Chat.")
     else:
-        await m.reply_text("You must specify the chat")
+        await m.reply_text("You must specify the Chat.")
