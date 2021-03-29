@@ -99,7 +99,11 @@ async def warn_user(c: Client, m: Message, strings):
                 warn_limit=warns_limit,
             )
         if reason:
-            await m.reply_text(warn_text + "\n" + strings("warn_reason_text").format(reason_text=reason))
+            await m.reply_text(
+                warn_text
+                + "\n"
+                + strings("warn_reason_text").format(reason_text=reason)
+            )
         else:
             await m.reply_text(warn_text)
     else:
