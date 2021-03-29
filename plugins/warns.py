@@ -7,6 +7,19 @@ from localization import use_chat_lang
 from utils import require_admin
 from .admin import get_target_user
 
+
+async def get_warn_reason_text(c: Client, m: Message) -> Message:
+    reply = m.reply_to_message
+    spilt_text = m.text.split
+    if not reply and len(spilt_text()) >= 3:
+        warn_reason = spilt_text(None, 2)[2]
+    elif reply and len(spilt_text()) >= 2:
+        warn_reason = spilt_text(None, 1)[1]
+    else:
+        warn_reason = None
+    return warn_reason
+
+
 dbc.execute(
     """CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
                                               chat_id INTEGER,
@@ -68,26 +81,27 @@ def set_warns_limit(chat_id, warns_limit):
 async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     warns_limit = get_warns_limit(m.chat.id)
-    add_warns(m.chat.id, target_user.id, 1)
-    user_warns = get_warns(m.chat.id, target_user.id)
     check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    reason = await get_warn_reason_text(c, m)
     if check_admin.status not in admin_status:
+        add_warns(m.chat.id, target_user.id, 1)
+        user_warns = get_warns(m.chat.id, target_user.id)
         if user_warns >= warns_limit:
             await c.kick_chat_member(m.chat.id, target_user.id)
-            await m.reply_text(
-                strings("warn_banned").format(
-                    target_user=target_user.mention, warn_count=user_warns
-                )
+            warn_text = strings("warn_banned").format(
+                target_user=target_user.mention, warn_count=user_warns
             )
-            reset_warns(m.chat.id, target_user)
+            reset_warns(m.chat.id, target_user.id)
         else:
-            await m.reply(
-                strings("user_warned").format(
-                    target_user=target_user.mention,
-                    warn_count=user_warns,
-                    warn_limit=warns_limit,
-                )
+            warn_text = strings("user_warned").format(
+                target_user=target_user.mention,
+                warn_count=user_warns,
+                warn_limit=warns_limit,
             )
+        if reason:
+            await m.reply_text(f"{warn_text} \nThe reason for this warning: {reason}")
+        else:
+            await m.reply_text(warn_text)
     else:
         await m.reply_text(strings("warn_cant_admin"))
 
