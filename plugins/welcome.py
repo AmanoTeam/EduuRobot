@@ -9,15 +9,6 @@ from localization import use_chat_lang
 from utils import require_admin
 
 
-def escape_markdown(text: str) -> str:
-    text = text.replace("[", r"\[")
-    text = text.replace("_", r"\_")
-    text = text.replace("*", r"\*")
-    text = text.replace("`", r"\`")
-
-    return text
-
-
 def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
     dbc.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
@@ -100,14 +91,14 @@ async def greet_new_members(c: Client, m: Message, strings):
         if welcome[1]:
             if welcome[0] is not None:
                 welcome = welcome[0].replace("$id", str(user_id))
-                welcome = welcome.replace("$title", escape_markdown(chat_title))
-                welcome = welcome.replace("$name", escape_markdown(full_name))
-                welcome = welcome.replace("$first_name", escape_markdown(first_name))
-                welcome = welcome.replace("$last_name", escape_markdown(last_name))
+                welcome = welcome.replace("$title", chat_title)
+                welcome = welcome.replace("$name", full_name)
+                welcome = welcome.replace("$first_name", first_name)
+                welcome = welcome.replace("$last_name", last_name)
             else:
                 welcome = strings("welcome_default").format(
-                    user_name=escape_markdown(first_name),
-                    chat_title=escape_markdown(chat_title),
+                    user_name=first_name,
+                    chat_title=chat_title,
                 )
             await m.reply_text(
                 welcome, parse_mode="markdown", disable_web_page_preview=True
