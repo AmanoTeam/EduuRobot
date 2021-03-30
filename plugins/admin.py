@@ -21,6 +21,19 @@ def toggle_antichannelpin(chat_id: int, mode: bool):
     db.commit()
 
 
+def check_if_del_service(chat_id):
+    dbc.execute("SELECT delservicemsgs FROM groups WHERE chat_id = ?", (chat_id,))
+    res = dbc.fetchone()[0]
+    return None if res is None else res
+
+
+def toggle_del_service(chat_id: int, mode: bool):
+    dbc.execute(
+        "UPDATE groups SET delservicemsgs = ? WHERE chat_id = ?", (mode, chat_id)
+    )
+    db.commit()
+
+
 async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
         target_user = m.reply_to_message.from_user
@@ -253,6 +266,42 @@ async def acp_action(c: Client, m: Message):
     getmychatmember = await c.get_chat_member(m.chat.id, "me")
     if (get_acp and getmychatmember.can_pin_messages) == True:
         await m.unpin()
+    else:
+        pass
+
+
+@Client.on_message(filters.command("cleanservice", prefix))
+@require_admin(permissions=["can_delete_messages"])
+async def delservice(c: Client, m: Message):
+    if len(m.text.split()) > 1:
+        if m.command[1] == "on":
+            toggle_del_service(m.chat.id, True)
+            await m.reply_text("Delete service messages for this chat is now enabled.")
+        elif m.command[1] == "off":
+            toggle_del_service(m.chat.id, None)
+            await m.reply_text("Delete service messages for this chat is now disabled.")
+        else:
+            await m.reply_text(
+                "Invalid argument. Use <code>/cleanservice off/on</code>."
+            )
+    else:
+        check_delservice = check_if_del_service(m.chat.id)
+        if check_delservice is None:
+            await m.reply_text(
+                "Delete service messages is currently disabled in this chat."
+            )
+        if check_delservice is True:
+            await m.reply_text(
+                "Delete service messages is currently enabled in this chat."
+            )
+
+
+@Client.on_message(filters.service, group=-1)
+async def delservice_action(c: Client, m: Message):
+    get_delservice = check_if_del_service(m.chat.id)
+    getmychatmember = await c.get_chat_member(m.chat.id, "me")
+    if (get_delservice and getmychatmember.can_delete_messages) == True:
+        await m.delete()
     else:
         pass
 
