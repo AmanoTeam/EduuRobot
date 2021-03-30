@@ -249,7 +249,8 @@ async def setantichannelpin(c: Client, m: Message):
 @Client.on_message(filters.linked_channel, group=-1)
 async def acp_action(c: Client, m: Message):
     get_acp = check_if_antichannelpin(m.chat.id)
-    if get_acp == True:
+    getmychatmember = await c.get_chat_member(m.chat.id, "me")
+    if (get_acp and getmychatmember.can_pin_messages) == True:
         await m.unpin()
     else:
         pass
