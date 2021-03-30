@@ -2,6 +2,7 @@ import asyncio
 
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
+from typing import Optional, Tuple
 from config import prefix
 from localization import use_chat_lang
 from utils import require_admin, time_extract, commands
@@ -236,7 +237,9 @@ async def setantichannelpin(c: Client, m: Message):
             toggle_antichannelpin(m.chat.id, None)
             await m.reply_text("anti channel pin for this chat is now disabled.")
         else:
-            await m.reply_text("Invalid argument. Use <code>/antichannelpin off/on</code>.")
+            await m.reply_text(
+                "Invalid argument. Use <code>/antichannelpin off/on</code>."
+            )
     else:
         check_acp = check_if_antichannelpin(m.chat.id)
         if check_acp == None:
