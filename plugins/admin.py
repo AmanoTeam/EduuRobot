@@ -2,7 +2,6 @@ import asyncio
 
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
-from typing import Optional, Tuple
 from config import prefix
 from localization import use_chat_lang
 from utils import require_admin, time_extract, commands
