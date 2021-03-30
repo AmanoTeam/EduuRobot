@@ -2,10 +2,23 @@ import asyncio
 
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
-
 from config import prefix
 from localization import use_chat_lang
 from utils import require_admin, time_extract, commands
+from dbh import dbc, db
+
+
+def check_if_antichannelpin(chat_id):
+    dbc.execute("SELECT antichannelpin FROM groups WHERE chat_id = ?", (chat_id,))
+    res = dbc.fetchone()[0]
+    return None if res is None else res
+
+
+def toggle_antichannelpin(chat_id: int, mode: bool):
+    dbc.execute(
+        "UPDATE groups SET antichannelpin = ? WHERE chat_id = ?", (mode, chat_id)
+    )
+    db.commit()
 
 
 async def get_target_user(c: Client, m: Message) -> User:
@@ -210,6 +223,38 @@ async def purge(c: Client, m: Message, strings):
     )
     await asyncio.sleep(5)
     await status_message.delete()
+
+
+@Client.on_message(filters.command("antichannelpin", prefix))
+@require_admin(permissions=["can_pin_messages"])
+async def setantichannelpin(c: Client, m: Message):
+    if len(m.text.split()) > 1:
+        if m.command[1] == "on":
+            toggle_antichannelpin(m.chat.id, True)
+            await m.reply_text("anti channel pin for this chat is now enabled.")
+        elif m.command[1] == "off":
+            toggle_antichannelpin(m.chat.id, None)
+            await m.reply_text("anti channel pin for this chat is now disabled.")
+        else:
+            await m.reply_text(
+                "Invalid argument. Use <code>/antichannelpin off/on</code>."
+            )
+    else:
+        check_acp = check_if_antichannelpin(m.chat.id)
+        if check_acp == None:
+            await m.reply_text("Anti channel pin is currently disabled in this chat.")
+        if check_acp == True:
+            await m.reply_text("Anti channel pin is currently enabled in this chat.")
+
+
+@Client.on_message(filters.linked_channel, group=-1)
+async def acp_action(c: Client, m: Message):
+    get_acp = check_if_antichannelpin(m.chat.id)
+    getmychatmember = await c.get_chat_member(m.chat.id, "me")
+    if (get_acp and getmychatmember.can_pin_messages) == True:
+        await m.unpin()
+    else:
+        pass
 
 
 commands.add_command("ban", "admin")
