@@ -287,9 +287,13 @@ async def delservice(c: Client, m: Message):
     else:
         check_delservice = check_if_del_service(m.chat.id)
         if check_delservice == None:
-            await m.reply_text("Delete service messages is currently disabled in this chat.")
+            await m.reply_text(
+                "Delete service messages is currently disabled in this chat."
+            )
         if check_delservice == True:
-            await m.reply_text("Delete service messages is currently enabled in this chat.")
+            await m.reply_text(
+                "Delete service messages is currently enabled in this chat."
+            )
 
 
 @Client.on_message(filters.service, group=-1)
