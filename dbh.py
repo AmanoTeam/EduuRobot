@@ -15,7 +15,8 @@ dbc.execute(
                                           warns_limit INTEGER,
                                           chat_lang,
                                           cached_admins,
-                                          antichannelpin)"""
+                                          antichannelpin,
+                                          delservicemsgs)"""
 )
 
 dbc.execute(
