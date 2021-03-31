@@ -1,3 +1,4 @@
+import re
 import inspect
 import os.path
 import time
@@ -5,12 +6,24 @@ from functools import wraps, partial
 from typing import Union, Tuple, Optional
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardButton
 
 from config import sudoers
 from consts import group_types
 from dbh import dbc, db
 from localization import get_lang, get_locale_string, default_language, langdict
+
+
+MARKDOWN_REGEX = re.compile(r'\*(.*?)\*|'
+                            r'_(.*?)_|'
+                            r'`(.*?)`|'
+                            r'(?<!\\)(\[.*?\])(\(.*?\))|'
+                            r'(?P<esc>[*_`\[])')
+
+LINK_REGEX = re.compile(r'(?<!\\)\[.+?\]\((.*?)\)')
+BTN_URL_REGEX = re.compile(
+    r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))"
+)
 
 
 def add_chat(chat_id, chat_type):
@@ -153,6 +166,51 @@ async def time_extract(m: Message, t: str) -> int:
         return int(time.time() + t_time)
     await m.reply_text("Invalid time format. Use 'h'/'m'/'d' ")
     return 0
+
+
+def button_parser(m: Message):
+    markdown_note = None
+    if m.media:
+        if m.caption:
+            markdown_note = m.caption.markdown
+    else:
+        markdown_note = m.text.markdown
+    note_data = ""
+    buttons = []
+    if markdown_note is None:
+        return note_data, buttons
+    if markdown_note.startswith("/") or markdown_note.startswith("!"):
+        args = markdown_note.split(None, 2)
+        markdown_note = args[2]
+    prev = 0
+    for match in BTN_URL_REGEX.finditer(markdown_note):
+        n_escapes = 0
+        to_check = match.start(1) - 1
+        while to_check > 0 and markdown_note[to_check] == "\\":
+            n_escapes += 1
+            to_check -= 1
+
+        if n_escapes % 2 == 0:
+            if bool(match.group(4)) and buttons:
+                buttons[-1].append(InlineKeyboardButton(
+                    text=match.group(2),
+                    url=match.group(3)
+                ))
+            else:
+                buttons.append([InlineKeyboardButton(
+                    text=match.group(2),
+                    url=match.group(3)
+                )])
+            note_data += markdown_note[prev:match.start(1)]
+            prev = match.end(1)
+
+        else:
+            note_data += markdown_note[prev:to_check]
+            prev = match.start(1) - 1
+    else:
+        note_data += markdown_note[prev:]
+
+    return note_data, buttons
 
 
 class BotCommands:
