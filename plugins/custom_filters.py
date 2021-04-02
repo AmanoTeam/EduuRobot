@@ -103,6 +103,27 @@ async def delete_filter(c: Client, m: Message):
         )
 
 
+@Client.on_message(filters.command("filters", prefixes=prefix))
+async def get_all_filter(c: Client, m: Message):
+    chat_id = m.chat.id
+    reply_text = "Filters in this chat\n\n"
+    all_filters = get_all_filters(chat_id)
+    for filter_s in all_filters:
+        keyword = filter_s[1]
+        reply_text += f" - {keyword} \n"
+
+    if reply_text == "Filters in this chat\n\n":
+        await m.reply_text(
+            "Currently no filters in the chat",
+            quote=True
+        )
+    else:
+        await m.reply_text(
+            reply_text,
+            quote=True
+        )
+
+
 @Client.on_message(filters.group & filters.text & filters.incoming, group=1)
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
