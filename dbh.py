@@ -25,11 +25,10 @@ dbc.execute(
 )
 
 dbc.execute(
-    """CREATE TABLE IF NOT EXISTS filters (chat_id INTEGER,
+    """CREATE TABLE IF NOT EXISTS filters (chat_id INTEGER ,
                                            filter_name,
-                                           text,
-                                           button,
-                                           file)"""
+                                           raw_data,
+                                           file_id)"""
 )
 
 dbc.execute("""CREATE TABLE IF NOT EXISTS channels (chat_id INTEGER PRIMARY KEY)""")
