@@ -24,6 +24,14 @@ def update_filter(chat_id, trigger, raw_data, file_id):
     db.commit()
 
 
+def rm_filter(chat_id, trigger):
+    dbc.execute(
+        "DELETE from filters WHERE chat_id = ? AND filter_name = ?",
+        (chat_id, trigger)
+    )
+    db.commit()
+
+
 def get_all_filters(chat_id):
     dbc.execute(
         "SELECT * FROM filters WHERE chat_id = ?",
@@ -40,8 +48,7 @@ def check_for_filters(chat_id, trigger):
         keyword = keywords[1]
         if trigger == keyword:
             return True
-        else:
-            return False
+    return False
 
 
 @Client.on_message(filters.command("filter", prefixes=prefix))
@@ -74,7 +81,29 @@ async def save_filter(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.group & filters.text, group=-1)
+@Client.on_message(filters.command(["delfilter", "rmfilter"], prefixes=prefix))
+@require_admin(allow_in_private=True)
+async def delete_filter(c: Client, m: Message):
+    args = m.text.markdown.split(maxsplit=1)
+    trigger = args[1].lower()
+    chat_id = m.chat.id
+    check_filter = check_for_filters(chat_id, trigger)
+    if check_filter:
+        rm_filter(chat_id, trigger)
+        await m.reply_text(
+            f"Removed **{trigger}** from filters",
+            quote=True,
+            parse_mode="md"
+        )
+    else:
+        await m.reply_text(
+            f"There is no filter with name **{trigger}**",
+            quote=True,
+            parse_mode="md"
+        )
+
+
+@Client.on_message(filters.group & filters.text & filters.incoming, group=1)
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text
@@ -91,7 +120,5 @@ async def serve_filter(c: Client, m: Message):
                 parse_mode="md",
                 reply_markup=InlineKeyboardMarkup(
                     button
-                )
+                ) if len(button) != 0 else None
             )
-
-
