@@ -254,9 +254,9 @@ async def setantichannelpin(c: Client, m: Message):
             )
     else:
         check_acp = check_if_antichannelpin(m.chat.id)
-        if check_acp == None:
+        if not check_acp:
             await m.reply_text("Anti channel pin is currently disabled in this chat.")
-        if check_acp == True:
+        else:
             await m.reply_text("Anti channel pin is currently enabled in this chat.")
 
 
@@ -264,7 +264,7 @@ async def setantichannelpin(c: Client, m: Message):
 async def acp_action(c: Client, m: Message):
     get_acp = check_if_antichannelpin(m.chat.id)
     getmychatmember = await c.get_chat_member(m.chat.id, "me")
-    if (get_acp and getmychatmember.can_pin_messages) == True:
+    if (get_acp and getmychatmember.can_pin_messages) is True:
         await m.unpin()
     else:
         pass
@@ -300,7 +300,7 @@ async def delservice(c: Client, m: Message):
 async def delservice_action(c: Client, m: Message):
     get_delservice = check_if_del_service(m.chat.id)
     getmychatmember = await c.get_chat_member(m.chat.id, "me")
-    if (get_delservice and getmychatmember.can_delete_messages) == True:
+    if (get_delservice and getmychatmember.can_delete_messages) is True:
         await m.delete()
     else:
         pass

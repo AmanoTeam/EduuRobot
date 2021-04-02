@@ -49,9 +49,9 @@ async def getbotinfo(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
-    if fullres["ok"] == False:
+    if not fullres["ok"]:
         await m.reply("Invalid bot token")
-    elif fullres["ok"] == True:
+    else:
         res = fullres["result"]
         get_bot_info_text = """<b>Name</b> : <code>{botname}</code>
 <b>Username</b> : <code>{botusername}</code>
