@@ -51,7 +51,7 @@ def check_for_filters(chat_id, trigger):
     return False
 
 
-@Client.on_message(filters.command("filter", prefix))
+@Client.on_message(filters.command(["filter", "savefilter"], prefix))
 @require_admin(allow_in_private=True)
 async def save_filter(c: Client, m: Message):
     args = m.text.markdown.split(maxsplit=1)
