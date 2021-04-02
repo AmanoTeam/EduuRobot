@@ -51,7 +51,7 @@ def check_for_filters(chat_id, trigger):
     return False
 
 
-@Client.on_message(filters.command("filter", prefixes=prefix))
+@Client.on_message(filters.command("filter", prefix))
 @require_admin(allow_in_private=True)
 async def save_filter(c: Client, m: Message):
     args = m.text.markdown.split(maxsplit=1)
@@ -81,7 +81,7 @@ async def save_filter(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.command(["delfilter", "rmfilter"], prefixes=prefix))
+@Client.on_message(filters.command(["delfilter", "rmfilter"], prefix))
 @require_admin(allow_in_private=True)
 async def delete_filter(c: Client, m: Message):
     args = m.text.markdown.split(maxsplit=1)
@@ -103,7 +103,7 @@ async def delete_filter(c: Client, m: Message):
         )
 
 
-@Client.on_message(filters.command("filters", prefixes=prefix))
+@Client.on_message(filters.command("filters", prefix))
 async def get_all_filter(c: Client, m: Message):
     chat_id = m.chat.id
     reply_text = "Filters in this chat\n\n"
