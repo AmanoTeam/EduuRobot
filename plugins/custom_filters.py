@@ -74,7 +74,7 @@ async def save_filter(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.group & filters.text)
+@Client.on_message(filters.group & filters.text, group=-1)
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text
