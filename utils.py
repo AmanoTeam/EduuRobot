@@ -14,13 +14,11 @@ from dbh import dbc, db
 from localization import get_lang, get_locale_string, default_language, langdict
 
 
-BTN_URL_REGEX = re.compile(
-    r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))"
-)
+BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
-SMART_OPEN = '“'
-SMART_CLOSE = '”'
-START_CHAR = ('\'', '"', SMART_OPEN)
+SMART_OPEN = "“"
+SMART_CLOSE = "”"
+START_CHAR = ("'", '"', SMART_OPEN)
 
 
 def add_chat(chat_id, chat_type):
@@ -187,14 +185,16 @@ def split_quotes(text: str) -> List:
         while counter < len(text):
             if text[counter] == "\\":
                 counter += 1
-            elif text[counter] == text[0] or (text[0] == SMART_OPEN and text[counter] == SMART_CLOSE):
+            elif text[counter] == text[0] or (
+                text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
+            ):
                 break
             counter += 1
         else:
             return text.split(None, 1)
 
         key = remove_escapes(text[1:counter].strip())
-        rest = text[counter + 1:].strip()
+        rest = text[counter + 1 :].strip()
         if not key:
             key = text[0] + text[0]
         return list(filter(None, [key, rest]))
@@ -220,16 +220,14 @@ def button_parser(markdown_note):
 
         if n_escapes % 2 == 0:
             if bool(match.group(4)) and buttons:
-                buttons[-1].append(InlineKeyboardButton(
-                    text=match.group(2),
-                    url=match.group(3)
-                ))
+                buttons[-1].append(
+                    InlineKeyboardButton(text=match.group(2), url=match.group(3))
+                )
             else:
-                buttons.append([InlineKeyboardButton(
-                    text=match.group(2),
-                    url=match.group(3)
-                )])
-            note_data += markdown_note[prev:match.start(1)]
+                buttons.append(
+                    [InlineKeyboardButton(text=match.group(2), url=match.group(3))]
+                )
+            note_data += markdown_note[prev : match.start(1)]
             prev = match.end(1)
 
         else:
