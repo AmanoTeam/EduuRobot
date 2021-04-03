@@ -124,6 +124,18 @@ async def request_cmd(c: Client, m: Message):
         )
 
 
+@Client.on_message(filters.command("parsebutton"))
+async def button_parse_helper(c: Client, m: Message):
+    if len(m.text.split()) > 2:
+        await m.reply_text(
+            f"[{m.text.split(None, 2)[2]}](buttonurl:{m.command[1]})", parse_mode=None
+        )
+    else:
+        await m.reply_text(
+            "You must specify a url and the text of the button, \n E.g.: <code>/parsebutton https://google.com text</code>."
+        )
+
+
 commands.add_command("mark", "general")
 commands.add_command("html", "general")
 commands.add_command("admins", "general")
