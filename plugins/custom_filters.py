@@ -107,7 +107,7 @@ async def save_filter(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.command(["delfilter", "rmfilter"], prefix))
+@Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], prefix))
 @require_admin(allow_in_private=True)
 async def delete_filter(c: Client, m: Message):
     args = m.text.markdown.split(maxsplit=1)
