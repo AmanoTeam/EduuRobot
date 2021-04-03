@@ -8,31 +8,35 @@ from utils import require_admin, split_quotes, button_parser
 from dbh import dbc, db
 
 
-def add_filter(chat_id, trigger, raw_data, file_id):
+def add_filter(chat_id, trigger, raw_data, file_id, filter_type):
     dbc.execute(
-        "INSERT INTO filters(chat_id, filter_name, raw_data, file_id) VALUES(?, ?, ?, ?)",
-        (chat_id, trigger, raw_data, file_id),
+        "INSERT INTO filters(chat_id, filter_name, raw_data, file_id, filter_type) VALUES(?, ?, ?, ?, ?)",
+        (chat_id, trigger, raw_data, file_id, filter_type),
     )
     db.commit()
 
 
-def update_filter(chat_id, trigger, raw_data, file_id):
+def update_filter(chat_id, trigger, raw_data, file_id, filter_type):
     dbc.execute(
-        "UPDATE filters SET raw_data = ?, file_id = ? WHERE chat_id = ? AND filter_name = ?",
-        (chat_id, trigger, raw_data, file_id),
+        "UPDATE filters SET raw_data = ?, file_id = ?, filter_type = ? WHERE chat_id = ? AND filter_name = ?",
+        (raw_data, file_id, filter_type, chat_id, trigger),
     )
     db.commit()
 
 
 def rm_filter(chat_id, trigger):
     dbc.execute(
-        "DELETE from filters WHERE chat_id = ? AND filter_name = ?", (chat_id, trigger)
+        "DELETE from filters WHERE chat_id = ? AND filter_name = ?",
+        (chat_id, trigger)
     )
     db.commit()
 
 
 def get_all_filters(chat_id):
-    dbc.execute("SELECT * FROM filters WHERE chat_id = ?", (chat_id,))
+    dbc.execute(
+        "SELECT * FROM filters WHERE chat_id = ?",
+        (chat_id,)
+    )
 
     db.commit()
     return dbc.fetchall()
@@ -55,19 +59,52 @@ async def save_filter(c: Client, m: Message):
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text("There is no content in the filter", quote=True)
+        await m.reply_text(
+            "There is no content in the filter",
+            quote=True
+        )
         return
 
-    file_id = None
-    raw_data = split_text[1]
+    if m.reply_to_message and m.reply_to_message.photo:
+        file_id = m.reply_to_message.photo.file_id
+        raw_data = m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
+        filter_type = "photo"
+    elif m.reply_to_message and m.reply_to_message.document:
+        file_id = m.reply_to_message.document.file_id
+        raw_data = m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
+        filter_type = "document"
+    elif m.reply_to_message and m.reply_to_message.video:
+        file_id = m.reply_to_message.video.file_id
+        raw_data = m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
+        filter_type = "video"
+    elif m.reply_to_message and m.reply_to_message.audio:
+        file_id = m.reply_to_message.audio.file_id
+        raw_data = m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
+        filter_type = "audio"
+    elif m.reply_to_message and m.reply_to_message.animation:
+        file_id = m.reply_to_message.animation.file_id
+        raw_data = m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
+        filter_type = "animation"
+    elif m.reply_to_message and m.reply_to_message.sticker:
+        file_id = m.reply_to_message.sticker.file_id
+        raw_data = split_text[1]
+        filter_type = "sticker"
+    else:
+        file_id = None
+        raw_data = split_text[1]
+        filter_type = "text"
 
     chat_id = m.chat.id
     check_filter = check_for_filters(chat_id, trigger)
     if check_filter:
-        update_filter(chat_id, trigger, raw_data, file_id)
+        update_filter(chat_id, trigger, raw_data, file_id, filter_type)
     else:
-        add_filter(chat_id, trigger, raw_data, file_id)
-    await m.reply_text(f"Added filter **{trigger}**", quote=True, parse_mode="md")
+        add_filter(chat_id, trigger, raw_data, file_id, filter_type)
+    await m.reply_text(
+        f"Added filter **{trigger}**",
+        quote=True,
+        parse_mode="md"
+    )
 
 
 @Client.on_message(filters.command(["delfilter", "rmfilter"], prefix))
@@ -80,11 +117,15 @@ async def delete_filter(c: Client, m: Message):
     if check_filter:
         rm_filter(chat_id, trigger)
         await m.reply_text(
-            f"Removed **{trigger}** from filters", quote=True, parse_mode="md"
+            f"Removed **{trigger}** from filters",
+            quote=True,
+            parse_mode="md"
         )
     else:
         await m.reply_text(
-            f"There is no filter with name **{trigger}**", quote=True, parse_mode="md"
+            f"There is no filter with name **{trigger}**",
+            quote=True,
+            parse_mode="md"
         )
 
 
@@ -98,9 +139,15 @@ async def get_all_filter(c: Client, m: Message):
         reply_text += f" - {keyword} \n"
 
     if reply_text == "Filters in this chat\n\n":
-        await m.reply_text("Currently no filters in the chat", quote=True)
+        await m.reply_text(
+            "Currently no filters in the chat",
+            quote=True
+        )
     else:
-        await m.reply_text(reply_text, quote=True)
+        await m.reply_text(
+            reply_text,
+            quote=True
+        )
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming, group=1)
@@ -114,9 +161,70 @@ async def serve_filter(c: Client, m: Message):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
             data, button = button_parser(filter_s[2])
-            await m.reply_text(
-                data,
-                quote=True,
-                parse_mode="md",
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
+            if filter_s[4] == "text":
+                await m.reply_text(
+                    data,
+                    quote=True,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "photo":
+                await m.reply_photo(
+                    filter_s[3],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "document":
+                await m.reply_document(
+                    filter_s[3],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "video":
+                await m.reply_video(
+                    filter_s[3],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "audio":
+                await m.reply_audio(
+                    filter_s[3],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "animation":
+                await m.reply_animation(
+                    filter_s[3],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode="md",
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
+            elif filter_s[4] == "sticker":
+                await m.reply_sticker(
+                    filter_s[3],
+                    quote=True,
+                    reply_markup=InlineKeyboardMarkup(
+                        button
+                    ) if len(button) != 0 else None
+                )
