@@ -5,6 +5,5 @@
   "warn_limit_changed": "O limite de advertências foi alterado para {warn_limit} com sucesso.",
   "warn_limit_help": "Você deve especificar um número de advertências, por exemplo: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "O número fornecido não é válido.",
-  "warn_reason_text": "Motivo de vc ser lindo: {reason_text}",
   "warn_reset": "As advertências de {target_user} foram removidas com sucesso."
 }
