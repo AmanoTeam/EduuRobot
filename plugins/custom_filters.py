@@ -150,7 +150,7 @@ async def get_all_filter(c: Client, m: Message):
         )
 
 
-@Client.on_message(filters.group & filters.text & filters.incoming, group=1)
+@Client.on_message((filters.group | filters.private) & filters.text & filters.incoming, group=1)
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text
