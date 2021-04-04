@@ -6,5 +6,8 @@
   "warn_limit_help": "You must specify a number of warnings, E.g.: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "The provided number is not valid.",
   "warn_reason_text": "The reason for this warning: {reason_text}",
-  "warn_reset": "{target_user} warnings were successfully removed."
+  "warn_reset": "{target_user} warnings were successfully removed.",
+  "warn_description": "Warn a user.",
+  "setwarnslimit_description": "Set the limit of the warns in the chat.",
+  "resetwarns_description": "Reset the warns of the user."
 }
