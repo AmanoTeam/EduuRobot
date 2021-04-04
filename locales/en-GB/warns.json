@@ -1,13 +1,13 @@
 {
+  "resetwarns_description": "Reset the warns of the user.",
+  "setwarnslimit_description": "Set the limit of the warns in the chat.",
   "user_warned": "The user {target_user} has {warn_count} out of {warn_limit} warnings.",
   "warn_banned": "The user {target_user} has been banned because they were warned {warn_count} times.",
   "warn_cant_admin": "I can't warn admins.",
+  "warn_description": "Warn a user.",
   "warn_limit_changed": "Warnings limit successfully changed to {warn_limit}.",
   "warn_limit_help": "You must specify a number of warnings, E.g.: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "The provided number is not valid.",
   "warn_reason_text": "The reason for this warning: {reason_text}",
-  "warn_reset": "{target_user} warnings were successfully removed.",
-  "warn_description": "Warn a user.",
-  "setwarnslimit_description": "Set the limit of the warns in the chat.",
-  "resetwarns_description": "Reset the warns of the user."
+  "warn_reset": "{target_user} warnings were successfully removed."
 }
