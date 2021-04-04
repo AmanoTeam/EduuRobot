@@ -1,4 +1,5 @@
 import asyncio
+from typing import Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
@@ -11,10 +12,10 @@ from dbh import dbc, db
 def check_if_antichannelpin(chat_id):
     dbc.execute("SELECT antichannelpin FROM groups WHERE chat_id = ?", (chat_id,))
     res = dbc.fetchone()[0]
-    return None if res is None else res
+    return res
 
 
-def toggle_antichannelpin(chat_id: int, mode: bool):
+def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
     dbc.execute(
         "UPDATE groups SET antichannelpin = ? WHERE chat_id = ?", (mode, chat_id)
     )
@@ -24,10 +25,10 @@ def toggle_antichannelpin(chat_id: int, mode: bool):
 def check_if_del_service(chat_id):
     dbc.execute("SELECT delservicemsgs FROM groups WHERE chat_id = ?", (chat_id,))
     res = dbc.fetchone()[0]
-    return None if res is None else res
+    return res
 
 
-def toggle_del_service(chat_id: int, mode: bool):
+def toggle_del_service(chat_id: int, mode: Optional[bool]):
     dbc.execute(
         "UPDATE groups SET delservicemsgs = ? WHERE chat_id = ?", (mode, chat_id)
     )
