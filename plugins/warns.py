@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from config import prefix
 from dbh import dbc, db
 from localization import use_chat_lang
-from utils import require_admin
+from utils import require_admin, commands
 from .admin import get_target_user
 
 
@@ -132,3 +132,8 @@ async def unwarn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reset_warns(m.chat.id, target_user.id)
     await m.reply_text(strings("warn_reset").format(target_user=target_user.mention))
+
+
+commands.add_command("warn", "admin")
+commands.add_command("setwarnslimit", "admin")
+commands.add_command("resetwarns", "admin")
