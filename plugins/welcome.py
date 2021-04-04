@@ -87,10 +87,10 @@ async def greet_new_members(c: Client, m: Message, strings):
     full_name = m.from_user.first_name + last_name
     user_id = m.from_user.id
     if not m.from_user.is_bot:
-        welcome = get_welcome(chat_id)
-        if welcome[1]:
-            if welcome[0] is not None:
-                welcome = welcome[0].replace("$id", str(user_id))
+        welcome, welcome_enabled = get_welcome(chat_id)
+        if welcome_enabled:
+            if welcome is not None:
+                welcome = welcome.replace("$id", str(user_id))
                 welcome = welcome.replace("$title", chat_title)
                 welcome = welcome.replace("$name", full_name)
                 welcome = welcome.replace("$first_name", first_name)
