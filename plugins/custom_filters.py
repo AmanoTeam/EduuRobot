@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup
 from config import prefix
 from localization import use_chat_lang
-from utils import require_admin, split_quotes, button_parser
+from utils import require_admin, split_quotes, button_parser, commands
 from dbh import dbc, db
 
 
@@ -49,13 +49,14 @@ def check_for_filters(chat_id, trigger):
 
 @Client.on_message(filters.command(["filter", "savefilter"], prefix))
 @require_admin(allow_in_private=True)
-async def save_filter(c: Client, m: Message):
+@use_chat_lang()
+async def save_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text("There is no content in the filter", quote=True)
+        await m.reply_text(strings("add_filter_empty"), quote=True)
         return
 
     if m.reply_to_message and m.reply_to_message.photo:
@@ -113,12 +114,15 @@ async def save_filter(c: Client, m: Message):
         update_filter(chat_id, trigger, raw_data, file_id, filter_type)
     else:
         add_filter(chat_id, trigger, raw_data, file_id, filter_type)
-    await m.reply_text(f"Added filter **{trigger}**", quote=True, parse_mode="md")
+    await m.reply_text(
+        strings("add_filter_success").format(trigger=trigger), quote=True
+    )
 
 
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], prefix))
 @require_admin(allow_in_private=True)
-async def delete_filter(c: Client, m: Message):
+@use_chat_lang()
+async def delete_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -126,25 +130,26 @@ async def delete_filter(c: Client, m: Message):
     if check_filter:
         rm_filter(chat_id, trigger)
         await m.reply_text(
-            f"Removed **{trigger}** from filters", quote=True, parse_mode="md"
+            strings("remove_filter_success").format(trigger=trigger), quote=True
         )
     else:
         await m.reply_text(
-            f"There is no filter with name **{trigger}**", quote=True, parse_mode="md"
+            strings("no_filter_with_name").format(trigger=trigger), quote=True
         )
 
 
 @Client.on_message(filters.command("filters", prefix))
-async def get_all_filter(c: Client, m: Message):
+@use_chat_lang()
+async def get_all_filter(c: Client, m: Message, strings):
     chat_id = m.chat.id
-    reply_text = "Filters in this chat\n\n"
+    reply_text = strings("filters_list")
     all_filters = get_all_filters(chat_id)
     for filter_s in all_filters:
         keyword = filter_s[1]
         reply_text += f" - {keyword} \n"
 
-    if reply_text == "Filters in this chat\n\n":
-        await m.reply_text("Currently no filters in the chat", quote=True)
+    if not all_filters:
+        await m.reply_text(strings("filters_list_empty"), quote=True)
     else:
         await m.reply_text(reply_text, quote=True)
 
@@ -229,3 +234,8 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
+
+
+commands.add_command("delfilter", "admin")
+commands.add_command("filter", "admin")
+commands.add_command("filters", "general")
