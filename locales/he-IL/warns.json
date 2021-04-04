@@ -4,7 +4,7 @@
   "user_warned": "למשתמש {target_user} יש {warn_count} מתוך {warn_limit} אזהרות.",
   "warn_banned": "המשתמש {target_user} נחסם בגלל שהוא קיבל {warn_count} אזהרות.",
   "warn_cant_admin": "אני לא יכול לתת אזהרה למנהלים.",
-  "warn_description": "הזהר משתמש.",
+  "warn_description": "הזהר את המשתמש.",
   "warn_limit_changed": "מגבלת האזהרות שונתה בהצלחה ל {warn_limit}.",
   "warn_limit_help": "אתה צריך לציין את מספר האזהרות, לדוגמה: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "המספר שצויין לא חוקי.",
