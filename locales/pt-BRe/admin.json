@@ -12,6 +12,7 @@
   "cleanservice_enabled": "Excluir mensagens de serviço está habilitada para esse chat agora.",
   "cleanservice_invalid_arg": "Argumento inválido. Use <code>/cleanservice off/on</code>.",
   "cleanservice_status_disabled": "Excluir mensagens de serviço está atualmente desabilitada para este chat.",
+  "cleanservice_status_enabled": "Excluir mensagens de serviço está atualmente habilitada para este chat.",
   "error_must_specify_time": "Você deve especificar um tempo após o comando. Por exemplo: <code>/{command} 7d</code>.",
   "kick_description": "Kicka um usuário do chat.",
   "kick_success": "{user} foi kickado por {admin}.",
