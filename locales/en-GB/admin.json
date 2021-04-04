@@ -35,4 +35,8 @@
   "unmute_success": "{user} was unmuted by {admin}.",
   "unpin_description": "Unpins the replied message in chat.",
   "unpinall_description": "Unpins all messages in chat."
+  "warn_description": "Warn a user."
+  "setwarnslimit_description": "Set the limit of the warns in the chat."
+  "resetwarns_description": "Reset the warns of the user."
+
 }
