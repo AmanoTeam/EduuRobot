@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from config import prefix
 from dbh import dbc, db
 from localization import use_chat_lang
-from utils import require_admin
+from utils import require_admin, commands
 
 
 def get_rules(chat_id):
@@ -50,3 +50,8 @@ async def show_rules(c: Client, m: Message, strings):
         )
     else:
         await m.reply_text(strings("rules_empty"))
+
+
+commands.add_command("setrules", "admin")
+commands.add_command("resetrules", "admin")
+commands.add_command("rules", "admin")
