@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from config import prefix
 from dbh import dbc, db
 from localization import use_chat_lang
-from utils import require_admin
+from utils import require_admin, commands
 
 
 def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
@@ -103,3 +103,8 @@ async def greet_new_members(c: Client, m: Message, strings):
             await m.reply_text(
                 welcome, parse_mode="markdown", disable_web_page_preview=True
             )
+
+
+commands.add_command("resetwelcome", "admin")
+commands.add_command("setwelcome", "admin")
+commands.add_command("welcome", "admin")

@@ -1,5 +1,8 @@
 {
+  "resetwelcome_description": "Reset the welcome message to bot's default welcome message.",
+  "setwelcome_description": "Set the welcome message to the specified message.",
   "welcome_default": "Hey {user_name}, welcome to {chat_title}!",
+  "welcome_description": "Toggle welcome message on or off.",
   "welcome_mode_disable": "The welcome message for {chat_title} is now disabled.",
   "welcome_mode_enable": "The welcome message for {chat_title} is now enabled.",
   "welcome_mode_invalid": "Invalid argument. Use <code>/welcome off/on</code>.",
