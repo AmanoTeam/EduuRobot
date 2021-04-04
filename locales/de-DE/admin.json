@@ -1,7 +1,10 @@
 {
+  "ban_description": "Verbannt einen Nutzer vom Chat.",
   "ban_success": "{user} wurde von {admin} gebannt.",
   "error_must_specify_time": "Sie müssen eine Zeit nach dem Befehl angeben. Beispiel: <code>/{command} 7d</code>.",
+  "kick_description": "Kickt einen Nutzer vom Chat.",
   "kick_success": "{user} wurde von {admin} gekickt.",
+  "mute_description": "Stummt einen Nutzer im Chat.",
   "mute_success": "{user} wurde von {admin} stumm gemacht.",
   "no_admin_error": "Sie müssen ein Administrator sein, um diesen Befehl nutzen zu können.",
   "no_permission_error": "Es tut mir leid, aber Sie haben nicht die erforderlichen Berechtigungen, um diesen Befehl auszuführen. Fehlende Berechtigungen: {permissions}",
