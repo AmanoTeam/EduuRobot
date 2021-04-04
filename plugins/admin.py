@@ -240,24 +240,23 @@ async def purge(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("antichannelpin", prefix))
 @require_admin(permissions=["can_pin_messages"])
-async def setantichannelpin(c: Client, m: Message):
+@use_chat_lang()
+async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             toggle_antichannelpin(m.chat.id, True)
-            await m.reply_text("anti channel pin for this chat is now enabled.")
+            await m.reply_text(strings("antichannelpin_enabled"))
         elif m.command[1] == "off":
             toggle_antichannelpin(m.chat.id, None)
-            await m.reply_text("anti channel pin for this chat is now disabled.")
+            await m.reply_text(strings("antichannelpin_disabled"))
         else:
-            await m.reply_text(
-                "Invalid argument. Use <code>/antichannelpin off/on</code>."
-            )
+            await m.reply_text(strings("antichannelpin_invalid_arg"))
     else:
         check_acp = check_if_antichannelpin(m.chat.id)
         if not check_acp:
-            await m.reply_text("Anti channel pin is currently disabled in this chat.")
+            await m.reply_text(strings("antichannelpin_status_disabled"))
         else:
-            await m.reply_text("Anti channel pin is currently enabled in this chat.")
+            await m.reply_text(strings("antichannelpin_status_enabled"))
 
 
 @Client.on_message(filters.linked_channel, group=-1)
@@ -272,28 +271,23 @@ async def acp_action(c: Client, m: Message):
 
 @Client.on_message(filters.command("cleanservice", prefix))
 @require_admin(permissions=["can_delete_messages"])
-async def delservice(c: Client, m: Message):
+@use_chat_lang()
+async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             toggle_del_service(m.chat.id, True)
-            await m.reply_text("Delete service messages for this chat is now enabled.")
+            await m.reply_text(strings("cleanservice_disabled"))
         elif m.command[1] == "off":
             toggle_del_service(m.chat.id, None)
-            await m.reply_text("Delete service messages for this chat is now disabled.")
+            await m.reply_text(strings("cleanservice_enabled"))
         else:
-            await m.reply_text(
-                "Invalid argument. Use <code>/cleanservice off/on</code>."
-            )
+            await m.reply_text(strings("cleanservice_invalid_arg"))
     else:
         check_delservice = check_if_del_service(m.chat.id)
         if check_delservice is None:
-            await m.reply_text(
-                "Delete service messages is currently disabled in this chat."
-            )
+            await m.reply_text(strings("cleanservice_status_disabled"))
         if check_delservice is True:
-            await m.reply_text(
-                "Delete service messages is currently enabled in this chat."
-            )
+            await m.reply_text(strings("cleanservice_status_enabled"))
 
 
 @Client.on_message(filters.service, group=-1)
@@ -306,7 +300,9 @@ async def delservice_action(c: Client, m: Message):
         pass
 
 
+commands.add_command("antichannelpin", "admin")
 commands.add_command("ban", "admin")
+commands.add_command("cleanservice", "admin")
 commands.add_command("kick", "admin")
 commands.add_command("mute", "admin")
 commands.add_command("pin", "admin")
