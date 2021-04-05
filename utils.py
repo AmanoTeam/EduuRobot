@@ -6,7 +6,7 @@ from functools import wraps, partial
 from typing import Union, Tuple, Optional, List
 
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardButton
+from pyrogram.types import Message, InlineKeyboardButton, CallbackQuery
 
 from config import sudoers
 from consts import group_types
@@ -68,13 +68,19 @@ def set_restarted(chat_id: int, message_id: int):
 
 async def check_perms(
     client: Client,
-    message: Message,
+    message: Union[CallbackQuery, Message],
     permissions: Optional[Union[list, str]],
     complain_missing_perms: bool,
     strings,
 ) -> bool:
+    if isinstance(message, CallbackQuery):
+        sender = partial(message.answer, show_alert=True)
+        chat = message.message.chat
+    else:
+        sender = message.reply_text
+        chat = message.chat
     # TODO: Cache all admin permissions in db.
-    user = await client.get_chat_member(message.chat.id, message.from_user.id)
+    user = await client.get_chat_member(chat.id, message.from_user.id)
     if user.status == "creator":
         return True
 
@@ -85,7 +91,7 @@ async def check_perms(
         return True
     if user.status != "administrator":
         if complain_missing_perms:
-            await message.reply_text(strings("no_admin_error"))
+            await sender(strings("no_admin_error"))
         return False
 
     if isinstance(permissions, str):
@@ -98,7 +104,7 @@ async def check_perms(
     if not missing_perms:
         return True
     if complain_missing_perms:
-        await message.reply_text(
+        await sender(
             strings("no_permission_error").format(permissions=", ".join(missing_perms))
         )
     return False
@@ -111,7 +117,10 @@ def require_admin(
 ):
     def decorator(func):
         @wraps(func)
-        async def wrapper(client: Client, message: Message, *args, **kwargs):
+        async def wrapper(
+            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
+        ):
+            print(message)
             lang = get_lang(message)
             strings = partial(
                 get_locale_string,
@@ -120,12 +129,23 @@ def require_admin(
                 "admin",
             )
 
+            if isinstance(message, CallbackQuery):
+                sender = partial(message.answer, show_alert=True)
+                msg = message.message
+            elif isinstance(message, Message):
+                sender = message.reply_text
+                msg = message
+            else:
+                raise NotImplementedError(
+                    f"require_admin can't process updates with the type '{message.__name__}' yet."
+                )
+
             # We don't actually check private and channel chats.
-            if message.chat.type == "private":
+            if msg.chat.type == "private":
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
-                return await message.reply_text(strings("private_not_allowed"))
-            if message.chat.type == "channel":
+                return await sender(strings("private_not_allowed"))
+            if msg.chat.type == "channel":
                 return await func(client, message, *args, *kwargs)
             has_perms = await check_perms(
                 client, message, permissions, complain_missing_perms, strings

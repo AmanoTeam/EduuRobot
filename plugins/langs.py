@@ -1,8 +1,15 @@
 from functools import partial
+from typing import Union
 
 from pyrogram import Client, filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+)
 
+from config import prefix
 from localization import (
     langdict,
     set_db_lang,
@@ -10,6 +17,7 @@ from localization import (
     get_locale_string,
     default_language,
 )
+from utils import require_admin
 
 
 def gen_langs_kb():
@@ -38,8 +46,10 @@ def gen_langs_kb():
 
 
 @Client.on_callback_query(filters.regex("^chlang$"))
+@Client.on_message(filters.command(["setchatlang", "setlang"], prefix) & filters.group)
+@require_admin(allow_in_private=True)
 @use_chat_lang()
-async def chlang(c: Client, m: CallbackQuery, strings):
+async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),
@@ -50,14 +60,27 @@ async def chlang(c: Client, m: CallbackQuery, strings):
             ],
         ]
     )
-    await m.message.edit_text(
-        strings("language_changer_private"), reply_markup=keyboard
+
+    if isinstance(m, CallbackQuery):
+        msg = m.message
+        sender = msg.edit_text
+    else:
+        msg = m
+        sender = msg.reply_text
+
+    res = (
+        strings("language_changer_private")
+        if msg.chat.type == "private"
+        else strings("language_changer_chat")
     )
+
+    await sender(res, reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^set_lang "))
+@require_admin(allow_in_private=True)
 @use_chat_lang()
-async def set_user_lang(c: Client, m: CallbackQuery, strings):
+async def set_chat_lang(c: Client, m: CallbackQuery, strings):
     lang = m.data.split()[1]
     set_db_lang(m.message.chat.id, m.message.chat.type, lang)
 
@@ -68,15 +91,19 @@ async def set_user_lang(c: Client, m: CallbackQuery, strings):
         "langs",
     )
 
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
+    if m.message.chat.type == "private":
+        keyboard = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        strings("back_btn", context="general"),
+                        callback_data="start_back",
+                    )
+                ]
             ]
-        ]
-    )
+        )
+    else:
+        keyboard = None
     await m.message.edit_text(
         strings("language_changed_successfully"), reply_markup=keyboard
     )
