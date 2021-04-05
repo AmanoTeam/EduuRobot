@@ -137,10 +137,11 @@ async def unwarn_user(c: Client, m: Message, strings):
     
 @Client.on_message(filters.command("warns", prefix) & filters.group)
 @require_admin()
-async def get_user_warns_cmd(c: Client, m: Message):
+@use_chat_lang()
+async def get_user_warns_cmd(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     user_warns = get_warns(m.chat.id, target_user.id)
-    await m.reply_text(f"the user {target_user.mention} have {user_warns} warnings")
+    await m.reply_text(strings("warn_reset").format(target_user=target_user.mention, warns_count=user_warns))
 
 
 commands.add_command("warn", "admin")
