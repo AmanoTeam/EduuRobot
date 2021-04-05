@@ -1,0 +1,11 @@
+{
+  "add_filter_success": "הפילטר <b>{trigger}</b> נוסף בהצלחה.",
+  "add_filter_empty": "בבקשה תציין את התוכן של הפילטר.",
+  "delfilter_description": "מוחק את הפילטר מהצ'אט.",
+  "filter_description": "הוסף פילטר לצ'אט.",
+  "filters_description": "מציג את הפילטרים בצ'אט.",
+  "filters_list": "הפילטרים בצ'אט זה:\n\n",
+  "filters_list_empty": "אין כרגע פילטרים בצ'אט זה.",
+  "no_filter_with_name": "אין פילטר בשם <b>{trigger}</b>.",
+  "remove_filter_success": "הפילטר <b>{trigger}</b> נמחק."
+}

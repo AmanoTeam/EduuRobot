@@ -1,10 +1,10 @@
 from pyrogram import Client, filters
+from pyrogram.errors import PeerIdInvalid, UsernameInvalid, UserIdInvalid
 from pyrogram.types import (
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent,
 )
-from pyrogram.errors import PeerIdInvalid, UsernameInvalid, UserIdInvalid
 
 
 @Client.on_inline_query(filters.regex(r"^face"))
