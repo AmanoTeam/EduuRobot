@@ -1,4 +1,3 @@
 {
-  "language_changed_successfully": "Kieli vaihdettu onnistuneesti.",
-  "language_changer_private": "Täällä voit vaihtaa kieltä, jota käytetään botti tässä yksityisessä keskustelussa.\n\nJos haluat vaihtaa ryhmäsi kieltä, suorita <code>/config</code> komento sen sisällä.\nJos kieltäsi ei ole lueteltu tässä ja haluat osallistua, mene yli @AmanoChat."
+  "language_changed_successfully": "Kieli vaihdettu onnistuneesti."
 }

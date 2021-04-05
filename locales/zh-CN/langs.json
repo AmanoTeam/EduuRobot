@@ -1,4 +1,3 @@
 {
-  "language_changed_successfully": "语言更改成功。",
-  "language_changer_private": "在这里您可以更改在这个私聊中用于机器人的语言。\n\n如果您想要更改您的群组语言，请在其中运行 <code>/config</code> 命令。\n如果你的语言没有列在这里而你想作出贡献，请在@AmanoChat上头领。"
+  "language_changed_successfully": "语言更改成功。"
 }

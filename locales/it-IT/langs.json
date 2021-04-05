@@ -1,4 +1,3 @@
 {
-  "language_changed_successfully": "Lingua cambiata con successo.",
-  "language_changer_private": "Qui puoi cambiare la lingua usata per il bot in questa chat privata.\n\nSe vuoi cambiare la lingua del tuo gruppo, esegui il comando <code>/config</code> al suo interno.\nSe la tua lingua non è elencata qui e vuoi contribuire, vai su @AmanoChat."
+  "language_changed_successfully": "Lingua cambiata con successo."
 }
