@@ -9,5 +9,7 @@
   "warn_limit_help": "אתה צריך לציין את מספר האזהרות, לדוגמה: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "המספר שצויין לא חוקי.",
   "warn_reason_text": "הסיבה לאזהרה הזאת: {reason_text}",
-  "warn_reset": "האזהרות של {target_user} נמחקו בהצלחה."
+  "warn_reset": "האזהרות של {target_user} נמחקו בהצלחה.",
+  "warns_description": "ראה את אזהרות המשתמש.",
+  "warns_count_string": "למשתמש {target_user} יש {warns_count} אזהרות."
 }
