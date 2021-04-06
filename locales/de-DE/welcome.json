@@ -1,1 +1,3 @@
-{}
+{
+  "welcome_default": "Hallo {first_name}, herzlich willkommen zu {chat_title}!"
+}
