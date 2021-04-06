@@ -8,5 +8,6 @@
   "welcome_mode_invalid": "משתנה לא חוקי. תשתמש ב <code>/welcome off/on</code>.",
   "welcome_reset": "הודעות הברוכים הבאים ל {chat_title} אופסו להודעת ברירת המחדל של הבוט.",
   "welcome_set_empty": "אתה צריך לציין את הודעת הברוכים הבאים, לדוגמה: <code>/setwelcome (כאן את הודעת הברוכים הבאים)</code>.",
+  "welcome_set_error": "התרחשה שגיאה והודעת הברוכים ההבאים לא הוגדרה. השגיאה: {error}",
   "welcome_set_success": "הודעת הברוכים הבאים לצ'אט {chat_title} הוגדרו בהצלחה."
 }
