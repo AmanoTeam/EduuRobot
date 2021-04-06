@@ -9,5 +9,7 @@
   "warn_limit_help": "You must specify a number of warnings, E.g.: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "The provided number is not valid.",
   "warn_reason_text": "The reason for this warning: {reason_text}",
-  "warn_reset": "{target_user} warnings were successfully removed."
+  "warn_reset": "{target_user} warnings were successfully removed.",
+  "warns_description": "Get the warns of the user.",
+  "warns_count_string": "The user {target_user} has {warns_count} warnings."
 }
