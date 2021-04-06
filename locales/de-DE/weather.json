@@ -3,5 +3,6 @@
   "location_not_found": "Standort nicht gefunden.",
   "measurement_unit": "m",
   "weather_language": "de-DE",
+  "weather_description": "Rufe das Wetter von der angegebenen Lage oder Stadt ab.",
   "weather_usage": "<b>Verwendung:</b> <code>/weather Standort oder Stadt</code> - Holen Sie sich Wetterinformationen von <i>Standort oder Stadt</i>."
 }
