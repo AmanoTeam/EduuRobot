@@ -120,7 +120,6 @@ def require_admin(
         async def wrapper(
             client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
         ):
-            print(message)
             lang = get_lang(message)
             strings = partial(
                 get_locale_string,

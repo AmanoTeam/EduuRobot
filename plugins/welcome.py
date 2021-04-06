@@ -1,6 +1,7 @@
 from typing import Optional, Tuple
 
 from pyrogram import Client, filters
+from pyrogram.errors import BadRequest
 from pyrogram.types import Message
 
 from config import prefix
@@ -33,10 +34,33 @@ def toggle_welcome(chat_id: int, mode: bool):
 @use_chat_lang()
 async def set_welcome_message(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
-        set_welcome(m.chat.id, m.text.split(None, 1)[1])
-        await m.reply_text(
-            strings("welcome_set_success").format(chat_title=m.chat.title)
-        )
+        message = m.text.html.split(None, 1)[1]
+        try:
+            # Try to send message with default parameters
+            sent = await m.reply_text(
+                message.format(
+                    id=m.from_user.id,
+                    username=m.from_user.username,
+                    first_name=m.from_user.first_name,
+                    # full_name and name are the same
+                    full_name=m.from_user.first_name,
+                    name=m.from_user.first_name,
+                    # title and chat_title are the same
+                    title=m.chat.title,
+                    chat_title=m.chat.title,
+                )
+            )
+        except (KeyError, BadRequest) as e:
+            await m.reply_text(
+                strings("welcome_set_error").format(
+                    error=e.__class__.__name__ + ": " + str(e)
+                )
+            )
+        else:
+            set_welcome(m.chat.id, message)
+            await sent.edit_text(
+                strings("welcome_set_success").format(chat_title=m.chat.title)
+            )
     else:
         await m.reply_text(strings("welcome_set_empty"))
 
@@ -80,29 +104,29 @@ async def reset_welcome_message(c: Client, m: Message, strings):
 @Client.on_message(filters.new_chat_members & filters.group)
 @use_chat_lang()
 async def greet_new_members(c: Client, m: Message, strings):
+    members = m.new_chat_members
     chat_title = m.chat.title
-    chat_id = m.chat.id
-    first_name = m.from_user.first_name
-    last_name = m.from_user.last_name or ""
-    full_name = m.from_user.first_name + last_name
-    user_id = m.from_user.id
+    first_name = ", ".join(map(lambda a: a.first_name, members))
+    full_name = ", ".join(map(lambda a: a.first_name + " " + (a.last_name or ""), members))
+    user_id = ", ".join(map(lambda a: str(a.id), members))
+    username = ", ".join(map(lambda a: "@" + a.username if a.username else a.mention, members))
     if not m.from_user.is_bot:
-        welcome, welcome_enabled = get_welcome(chat_id)
+        welcome, welcome_enabled = get_welcome(m.chat.id)
         if welcome_enabled:
-            if welcome is not None:
-                welcome = welcome.replace("$id", str(user_id))
-                welcome = welcome.replace("$title", chat_title)
-                welcome = welcome.replace("$name", full_name)
-                welcome = welcome.replace("$first_name", first_name)
-                welcome = welcome.replace("$last_name", last_name)
-            else:
-                welcome = strings("welcome_default").format(
-                    user_name=first_name,
-                    chat_title=chat_title,
-                )
-            await m.reply_text(
-                welcome, parse_mode="markdown", disable_web_page_preview=True
+            if welcome is None:
+                welcome = strings("welcome_default")
+            welcome = welcome.format(
+                id=user_id,
+                username=username,
+                first_name=first_name,
+                # full_name and name are the same
+                full_name=full_name,
+                name=full_name,
+                # title and chat_title are the same
+                title=chat_title,
+                chat_title=chat_title,
             )
+            await m.reply_text(welcome, disable_web_page_preview=True)
 
 
 commands.add_command("resetwelcome", "admin")
