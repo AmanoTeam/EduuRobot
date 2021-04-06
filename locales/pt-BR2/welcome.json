@@ -1,12 +1,13 @@
 {
   "resetwelcome_description": "Redefine a mensagem de boas-vindas para a padrão do bot.",
   "setwelcome_description": "Define a mensagem de boas-vindas com a mensagem especificada.",
-  "welcome_default": "Roi {user_name} né? bem vindo ao {chat_title}!",
+  "welcome_default": "Roi {first_name} né? bem vindo ao {chat_title}!",
   "welcome_description": "Ativa/desativa a mensagem de boas vindas.",
   "welcome_mode_disable": "Opa a mensagem de bem vindo acaba de ser ligada.",
   "welcome_mode_enable": "Opa, acabei de desligar a mensagem se bem vindo do grupo.",
   "welcome_mode_invalid": "Hey, tá errado isso aí, mande <code>/welcome off/on</code>.",
   "welcome_reset": "Aeeee, as mensagens de Bem-Vindo foram ligadas aqui, agora o {chat_title} está melhor agora.",
   "welcome_set_empty": "Hey, vc tem que usar esse comando assim ó: <code>/setwelcome (mensagem de Bem-Vindo)</code>.",
+  "welcome_set_error": "Ocorreu um erro e a mensagem de boas-vindas não pôde ser definida. Erro: {error}",
   "welcome_set_success": "Essa frase de BEM-VINDO ficou ótimo. curti!"
 }

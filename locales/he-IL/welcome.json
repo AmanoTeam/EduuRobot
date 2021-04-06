@@ -1,7 +1,7 @@
 {
   "resetwelcome_description": "מאפס את הודעת הברוכים הבאים להודעת ברירת המחדל של הבוט.",
   "setwelcome_description": "מגדיר את הודעת הברוכים הבאים.",
-  "welcome_default": "היי {user_name}, ברוך הבא ל {chat_title}!",
+  "welcome_default": "היי {first_name}, ברוך הבא ל {chat_title}!",
   "welcome_description": "משבית או מפעיל את הודעת הברוכים הבאים.",
   "welcome_mode_disable": "הודעת הברוכים הבאים ל {chat_title} מושבתת עכשיו.",
   "welcome_mode_enable": "הודעת הברוכים הבאים ל {chat_title} מופעלת עכשיו.",

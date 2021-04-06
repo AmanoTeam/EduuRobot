@@ -1,1 +1,5 @@
-{}
+{
+  "welcome_default": "Hola {first_name}, ¡bienvenido a {chat_title}!",
+  "welcome_description": "Activa o desactiva el mensaje de bienvenida.",
+  "welcome_mode_invalid": "Argumento inválido. Usa <code>/welcome off/on</code>."
+}
