@@ -34,5 +34,6 @@
   "unmute_description": "Unmutes a user in the chat.",
   "unmute_success": "{user} was unmuted by {admin}.",
   "unpin_description": "Unpins the replied message in chat.",
-  "unpinall_description": "Unpins all messages in chat."
+  "unpinall_description": "Unpins all messages in chat.",
+  "reason_string": "Reason: {reason_text}"
 }
