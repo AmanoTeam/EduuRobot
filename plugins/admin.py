@@ -10,6 +10,21 @@ from localization import use_chat_lang
 from utils import require_admin, time_extract, commands
 
 
+async def get_reason_text(c: Client, m: Message) -> Message:
+    reply = m.reply_to_message
+    spilt_text = m.text.split
+    if not reply and len(spilt_text()) >= 3:
+        reason = spilt_text(None, 2)[2]
+    elif reply and len(spilt_text()) >= 2:
+        reason = spilt_text(None, 1)[1]
+    else:
+        reason = None
+    return reason
+
+
+admin_status = ["creator", "administrator"]
+
+
 def check_if_antichannelpin(chat_id):
     dbc.execute("SELECT antichannelpin FROM groups WHERE chat_id = ?", (chat_id,))
     res = dbc.fetchone()[0]
@@ -85,14 +100,22 @@ async def unpinall(c: Client, m: Message):
 @require_admin(permissions=["can_restrict_members"])
 async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-
-    await c.kick_chat_member(m.chat.id, target_user.id)
-    await m.reply_text(
-        strings("ban_success").format(
+    reason = await get_reason_text(c, m)
+    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    if check_admin.status not in admin_status:
+        await c.kick_chat_member(m.chat.id, target_user.id)
+        text = strings("ban_success").format(
             user=target_user.mention,
             admin=m.from_user.mention,
         )
-    )
+        if reason:
+            await m.reply_text(
+                text + "\n" + strings("reason_string").format(reason_text=reason)
+            )
+        else:
+            await m.reply_text(text)
+    else:
+        await m.reply_text(strings("i_cant_ban_admins"))
 
 
 @Client.on_message(filters.command("kick", prefix))
@@ -100,15 +123,23 @@ async def ban(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-
-    await c.kick_chat_member(m.chat.id, target_user.id)
-    await m.chat.unban_member(target_user.id)
-    await m.reply_text(
-        strings("kick_success").format(
+    reason = await get_reason_text(c, m)
+    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    if check_admin.status not in admin_status:
+        await c.kick_chat_member(m.chat.id, target_user.id)
+        await m.chat.unban_member(target_user.id)
+        text = strings("kick_success").format(
             user=target_user.mention,
             admin=m.from_user.mention,
         )
-    )
+        if reason:
+            await m.reply_text(
+                text + "\n" + strings("reason_string").format(reason_text=reason)
+            )
+        else:
+            await m.reply_text(text)
+    else:
+        await m.reply_text(strings("i_cant_kick_admins"))
 
 
 @Client.on_message(filters.command("unban", prefix))
@@ -131,16 +162,24 @@ async def unban(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def mute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-
-    await c.restrict_chat_member(
-        m.chat.id, target_user.id, ChatPermissions(can_send_messages=False)
-    )
-    await m.reply_text(
-        strings("mute_success").format(
+    reason = await get_reason_text(c, m)
+    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    if check_admin.status not in admin_status:
+        await c.restrict_chat_member(
+            m.chat.id, target_user.id, ChatPermissions(can_send_messages=False)
+        )
+        text = strings("mute_success").format(
             user=target_user.mention,
             admin=m.from_user.mention,
         )
-    )
+        if reason:
+            await m.reply_text(
+                text + "\n" + strings("reason_string").format(reason_text=reason)
+            )
+        else:
+            await m.reply_text(text)
+    else:
+        await m.reply_text(strings("i_cant_mute_admins"))
 
 
 @Client.on_message(filters.command("unmute", prefix))
