@@ -36,7 +36,7 @@
   "unpin_description": "Unpins the replied message in chat.",
   "unpinall_description": "Unpins all messages in chat.",
   "reason_string": "Reason: {reason_text}",
-  "i_cant_ban_admins": "I cant ban admins",
-  "i_cant_mute_admins": "I cant mute admins",
-  "i_cant_kick_admins": "I cant kick admins"
+  "i_cant_ban_admins": "I can't ban admins.",
+  "i_cant_mute_admins": "I can't mute admins.",
+  "i_cant_kick_admins": "I can't kick admins."
 }
