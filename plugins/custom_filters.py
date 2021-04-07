@@ -102,7 +102,7 @@ async def save_filter(c: Client, m: Message, strings):
         filter_type = "animation"
     elif m.reply_to_message and m.reply_to_message.sticker:
         file_id = m.reply_to_message.sticker.file_id
-        raw_data = split_text[1]
+        raw_data = split_text[1] or None
         filter_type = "sticker"
     else:
         file_id = None
