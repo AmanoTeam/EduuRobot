@@ -34,5 +34,9 @@
   "unmute_description": "Tirar fita da boca do user.",
   "unmute_success": "{user} o {admin} tirou a fita da sua boca.",
   "unpin_description": "Tirar essa mensagem da li de cima.",
-  "unpinall_description": "Tirar todas as mensagens da li de cima."
+  "unpinall_description": "Tirar todas as mensagens da li de cima.",
+  "reason_string": "Motivo: {reason_text}",
+  "i_cant_ban_admins": "Eu não posso banir administradores.",
+  "i_cant_mute_admins": "Eu não posso silenciar administradores.",
+  "i_cant_kick_admins": "Eu não posso expulsar administradores."
 }
