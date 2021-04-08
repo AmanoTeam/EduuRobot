@@ -34,5 +34,9 @@
   "unmute_description": "Desmuta um usuário no chat.",
   "unmute_success": "{user} foi desmutado por {admin}.",
   "unpin_description": "Desafixa a mensagem respondida no chat.",
-  "unpinall_description": "Desafixa todas as mensagens no chat."
+  "unpinall_description": "Desafixa todas as mensagens no chat.",
+  "reason_string": "Motivo: {reason_text}",
+  "i_cant_ban_admins": "Eu não posso banir administradores.",
+  "i_cant_mute_admins": "Eu não posso silenciar administradores.",
+  "i_cant_kick_admins": "Eu não posso expulsar administradores."
 }
