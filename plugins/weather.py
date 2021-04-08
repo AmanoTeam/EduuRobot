@@ -27,7 +27,7 @@ from config import bot
 weather_apikey = 'd522aa97197fd864d36b418f39ebb323'
 
 get_coords = 'https://api.weather.com/v3/location/search'
-url = 'https://weather.com/pt-BR/clima/hoje/l'
+url = 'https://api.weather.com/v3/aggcommon/v3-wx-observations-current'
 
 headers = {"Accept-Encoding": "gzip"}
 
@@ -49,19 +49,25 @@ async def weather(msg):
                     return await bot.sendMessage(msg['chat']['id'], 'Localização não encontrada',
                                                  reply_to_message_id=msg['message_id'])
                 else:
-                    pos = loc_json['location']['placeId'][0]
+                    pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
                     async with aiohttp.ClientSession() as session:
-                        r = await session.get(f"{url}/{pos}", headers=headers)
-                        res_text = await r.text()
-                    res_json = re.findall(r'__data=JSON\.parse\(\"(.*)\"\);</script><script>window\.env', res_text)
-                    # If the returned list is empty...
-                    if not res_json:
+                        r = await session.get(
+                            url,
+                            headers=headers,
+                            params=dict(
+                                apiKey=weather_apikey,
+                                format="json",
+                                language='pt-BR',
+                                geocode=pos,
+                                units='m',
+                            ),
+                        )
+                        res_json = await r.json()
+                    if not res_json.get('v3-wx-observations-current'):
                         return await bot.sendMessage(msg['chat']['id'], 'Esta localização não possui dados meteorológicos.',
                                                      reply_to_message_id=msg['message_id'])
-                    res_json = json.loads(res_json[0].encode().decode("unicode_escape"))
 
-                    obs_key = next(iter(res_json['dal']['getSunV3CurrentObservationsUrlConfig']))
-                    obs_dict = res_json['dal']['getSunV3CurrentObservationsUrlConfig'][obs_key]['data']
+                    obs_dict = res_json['v3-wx-observations-current']
 
                     res = '''*{}*:
 
