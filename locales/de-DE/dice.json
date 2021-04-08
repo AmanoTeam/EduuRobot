@@ -1,3 +1,4 @@
 {
+  "dice_description": "Rollt einen Würfel und seinen Wert.",
   "result": "🎲 Der Würfel wurde an der Nummer gestoppt: {number}"
 }

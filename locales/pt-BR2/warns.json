@@ -9,5 +9,7 @@
   "warn_limit_help": "Você deve especificar o nível da beleza para ser banido, por exemplo: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Ow isso não é padrão de beleza.",
   "warn_reason_text": "Motivo de ser bonito: {reason_text}",
-  "warn_reset": "O {target_user} ficou mais comportado, então por conta disso me acostumei com sua beleza."
+  "warn_reset": "O {target_user} ficou mais comportado, então por conta disso me acostumei com sua beleza.",
+  "warns_description": "Obtém as advertências do usuário.",
+  "warns_count_string": "O usuário {target_user} tem {warns_count} advertências."
 }
