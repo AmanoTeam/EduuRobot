@@ -1,8 +1,8 @@
 {
-  "resetwelcome_description": "Redefine a mensagem de boas-vindas para a padrão do bot.",
-  "setwelcome_description": "Define a mensagem de boas-vindas com a mensagem especificada.",
+  "resetwelcome_description": "Fazer as regras ficarem mais confortáveis ao leitor, usando o padrão do bot.",
+  "setwelcome_description": "Define as regras do grupo usando seus critérios.",
   "welcome_default": "Roi {first_name} né? bem vindo ao {chat_title}!",
-  "welcome_description": "Ativa/desativa a mensagem de boas vindas.",
+  "welcome_description": "Ativar ou desativar a mensagem de saudação.",
   "welcome_mode_disable": "Opa a mensagem de bem vindo acaba de ser ligada.",
   "welcome_mode_enable": "Opa, acabei de desligar a mensagem se bem vindo do grupo.",
   "welcome_mode_invalid": "Hey, tá errado isso aí, mande <code>/welcome off/on</code>.",
