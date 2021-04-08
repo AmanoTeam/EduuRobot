@@ -55,8 +55,9 @@ async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
         target_user = m.reply_to_message.from_user
     else:
+        msg_entities = (m.entities[1] if m.text.startswith("/") else m.entities[0])
         target_user = await c.get_users(
-            int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+           msg_entities.user.id if msg_entities.type == "text_mention" else int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
         )
     return target_user
 
