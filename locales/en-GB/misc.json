@@ -7,5 +7,7 @@
   "mark_usage": "<b>Usage:</b> <code>/mark **text** in __markdown__</code> - Formats the provided text with the Markdown syntax.",
   "token_description": "Get information from the provided bot token.",
   "urldecode_description": "Encode the provided text with URL-safe encoding.",
-  "urlencode_description": "Decode the provided text from URL-safe encoding."
+  "urlencode_description": "Decode the provided text from URL-safe encoding.",
+  "donate_string": "here the string.",
+  "donate_description": "here the description."
 }
