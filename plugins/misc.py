@@ -136,9 +136,16 @@ async def button_parse_helper(c: Client, m: Message):
         )
 
 
+@Client.on_message(filters.command("donate", prefix))
+@use_chat_lang()
+async def donatecmd(c: Client, m: Message, strings):
+    await m.reply_text(strings("donate_string"))
+
+
 commands.add_command("mark", "general")
 commands.add_command("html", "general")
 commands.add_command("admins", "general")
 commands.add_command("token", "general")
 commands.add_command("urlencode", "general")
 commands.add_command("urldecode", "general")
+commands.add_command("donate", "general")
