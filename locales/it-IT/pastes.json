@@ -1,1 +1,5 @@
-{}
+{
+  "dogbin_description": "Incolla il testo/documento risposto su del.dog.",
+  "hastebin_description": "Incolla il testo/documento risposto su hastebin.com.",
+  "reply_to_document_or_text": "Rispondi al testo o al documento per incollare il loro contenuto."
+}
