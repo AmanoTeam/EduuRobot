@@ -9,7 +9,7 @@ from utils import commands
 
 @Client.on_message(filters.command("paste", prefix))
 @use_chat_lang(context="pastes")
-async def dogbin(c: Client, m: Message, strings):
+async def nekobin(c: Client, m: Message, strings):
     if m.reply_to_message:
         if m.reply_to_message.document:
             tfile = m.reply_to_message
@@ -19,9 +19,9 @@ async def dogbin(c: Client, m: Message, strings):
         if m.reply_to_message.text:
             mean = m.reply_to_message.text
 
-        url = "https://del.dog/documents"
-        r = await http.post(url, data=mean.encode("UTF-8"))
-        url = f"https://del.dog/{r.json()['key']}"
+        url = "https://nekobin.com/api/documents"
+        r = await http.post(url, data={"content": mean})
+        url = f"https://nekobin.com/{r.json()['result']['key']}"
         await m.reply_text(url, disable_web_page_preview=True)
     else:
         await m.reply_text(strings("reply_to_document_or_text"))
