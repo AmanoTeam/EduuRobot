@@ -27,4 +27,4 @@ async def nekobin(c: Client, m: Message, strings):
         await m.reply_text(strings("reply_to_document_or_text"))
 
 
-commands.add_command("paste", "tools", "dogbin_description", context_location="pastes")
+commands.add_command("paste", "tools", "nekobin_description", context_location="pastes")
