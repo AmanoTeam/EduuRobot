@@ -318,17 +318,17 @@ async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             toggle_del_service(m.chat.id, True)
-            await m.reply_text(strings("cleanservice_disabled"))
+            await m.reply_text(strings("cleanservice_enabled"))
         elif m.command[1] == "off":
             toggle_del_service(m.chat.id, None)
-            await m.reply_text(strings("cleanservice_enabled"))
+            await m.reply_text(strings("cleanservice_disabled"))
         else:
             await m.reply_text(strings("cleanservice_invalid_arg"))
     else:
         check_delservice = check_if_del_service(m.chat.id)
         if check_delservice is None:
             await m.reply_text(strings("cleanservice_status_disabled"))
-        if check_delservice is True:
+        elif check_delservice is not None:
             await m.reply_text(strings("cleanservice_status_enabled"))
 
 
