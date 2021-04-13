@@ -55,9 +55,13 @@ async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
         target_user = m.reply_to_message.from_user
     else:
-        msg_entities = (m.entities[1] if m.text.startswith("/") else m.entities[0])
+        msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
         target_user = await c.get_users(
-           msg_entities.user.id if msg_entities.type == "text_mention" else int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+            msg_entities.user.id
+            if msg_entities.type == "text_mention"
+            else int(m.command[1])
+            if m.command[1].isdecimal()
+            else m.command[1]
         )
     return target_user
 
@@ -148,14 +152,18 @@ async def kick(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def unban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-
+    reason = await get_reason_text(c, m)
     await m.chat.unban_member(target_user.id)
-    await m.reply_text(
-        strings("unban_success").format(
-            user=target_user.mention,
-            admin=m.from_user.mention,
-        )
+    text = strings("unban_success").format(
+        user=target_user.mention,
+        admin=m.from_user.mention,
     )
+    if reason:
+        await m.reply_text(
+            text + "\n" + strings("reason_string").format(reason_text=reason)
+        )
+    else:
+        await m.reply_text(text)
 
 
 @Client.on_message(filters.command("mute", prefix))
@@ -188,14 +196,18 @@ async def mute(c: Client, m: Message, strings):
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-
+    reason = await get_reason_text(c, m)
     await m.chat.unban_member(target_user.id)
-    await m.reply_text(
-        strings("unmute_success").format(
-            user=target_user.mention,
-            admin=m.from_user.mention,
-        )
+    text = strings("unmute_success").format(
+        user=target_user.mention,
+        admin=m.from_user.mention,
     )
+    if reason:
+        await m.reply_text(
+            text + "\n" + strings("reason_string").format(reason_text=reason)
+        )
+    else:
+        await m.reply_text(text)
 
 
 @Client.on_message(filters.command("tmute", prefix))
