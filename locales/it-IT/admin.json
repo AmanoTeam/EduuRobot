@@ -1,7 +1,7 @@
 {
-  "antichannelpin_description": "Sblocca automaticamente i messaggi provenienti dal canale collegato alla chat.",
-  "antichannelpin_disabled": "Il pin Anti canale per questa chat è ora disabilitato.",
-  "antichannelpin_enabled": "Il pin Anti canale per questa chat è ora abilitato.",
+  "antichannelpin_description": "Toglie automaticamente i messaggi provenienti dal canale collegato alla chat.",
+  "antichannelpin_disabled": "L'antifissaggio per questa chat è stato disattivato.",
+  "antichannelpin_enabled": "L'antifissaggio per questa chat è stato attivato.",
   "antichannelpin_invalid_arg": "Argomento non valido. Usa <code>/antichannelpin off/on</code>.",
   "antichannelpin_status_disabled": "Il pin Anti canale è attualmente disabilitato in questa chat.",
   "antichannelpin_status_enabled": "Il pin Anti canale è attualmente abilitato in questa chat.",
