@@ -1,1 +1,7 @@
-{}
+{
+  "resetwarns_description": "Ripristina gli avvertimenti dell'utente.",
+  "setwarnslimit_description": "Imposta il limite di avvertimenti nella chat.",
+  "user_warned": "L'utente {target_user} ha {warn_count} avvertimenti su {warn_limit}.",
+  "warn_banned": "L'utente {target_user} è stato rimosso perché è stato avvertito {warn_count} volte.",
+  "warn_cant_admin": "Non posso avvertire gli amministratori."
+}
