@@ -1,0 +1,4 @@
+{
+  "get_sticker_id_string": "The id of this sticker is \n <code>{stickerid}</code>",
+  "animated_not_supported": "Animated stickers are not supported."
+}
