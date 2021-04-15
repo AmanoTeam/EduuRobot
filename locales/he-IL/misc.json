@@ -8,5 +8,6 @@
   "token_description": "קבל פרטים מהטוקן שצויין.",
   "urldecode_description": "מקודד את הטקסט.",
   "urlencode_description": "מחזיר את הטקסט לטקסט לא מקודד.",
+  "parsebtn_err": "אתה צריך לציין את כתובת הurl והטקסט, \n לדוגמה: <code>/parsebutton https://google.com טקסט</code>.",
   "parsebutton_description": "עוזר לך לעצב כפתור."
 }
