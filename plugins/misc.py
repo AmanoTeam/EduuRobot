@@ -41,22 +41,20 @@ async def mentionadmins(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("token"))
-async def getbotinfo(c: Client, m: Message):
+@use_chat_lang()
+async def getbotinfo(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
-            "Specify a bot token", reply_to_message_id=m.message_id
+            strings("no_bot_token"), reply_to_message_id=m.message_id
         )
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
     if not fullres["ok"]:
-        await m.reply("Invalid bot token")
+        await m.reply(strings("bot_token_invalid"))
     else:
         res = fullres["result"]
-        get_bot_info_text = """<b>Name</b> : <code>{botname}</code>
-<b>Username</b> : <code>{botusername}</code>
-<b>ID</b> : <code>{botid}</code>
-    """
+        get_bot_info_text = strings("bot_token_info")
     await m.reply(
         get_bot_info_text.format(
             botname=res["first_name"], botusername=res["username"], botid=res["id"]
