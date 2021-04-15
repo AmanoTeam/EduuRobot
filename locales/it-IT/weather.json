@@ -3,6 +3,6 @@
   "location_not_found": "Posizione non trovata.",
   "measurement_unit": "m",
   "weather_language": "it-IT",
-  "weather_description": "Ottieni info meteorologiche sulla posizione o sulla città fornita.",
+  "weather_description": "Fornisce info meteorologiche sulla posizione o sulla città fornita.",
   "weather_usage": "<b>Uso:</b> <code>/weather posizione o città</code> - Ottieni info meteorologiche su <i>posizione o città</i>."
 }
