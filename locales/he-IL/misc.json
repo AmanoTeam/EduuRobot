@@ -7,5 +7,6 @@
   "mark_usage": "<b>שימוש:</b> <code>/mark **טקסט** in __markdown__</code> - מחזיר את הטקסט בפורמט Markdown.",
   "token_description": "קבל פרטים מהטוקן שצויין.",
   "urldecode_description": "מקודד את הטקסט.",
-  "urlencode_description": "מחזיר את הטקסט לטקסט לא מקודד."
+  "urlencode_description": "מחזיר את הטקסט לטקסט לא מקודד.",
+  "parsebutton_description": "עוזר לך לעצב כפתור."
 }
