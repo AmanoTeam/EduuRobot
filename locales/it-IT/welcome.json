@@ -1,4 +1,4 @@
 {
   "setwelcome_description": "Imposta il messaggio di benvenuto al messaggio specificato.",
-  "welcome_default": "Ehi {first_name}, benvenuto su {chat_title}!"
+  "welcome_default": "Ehi {first_name}, benvenuto/a in {chat_title}!"
 }
