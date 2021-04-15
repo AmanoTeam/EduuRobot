@@ -5,7 +5,7 @@
   "html_usage": "<b>Uso:</b> <code>/html &lt;b&gt;testo&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code> - Formatta il testo fornito con la sintassi HTML.",
   "mark_description": "Formatta il testo fornito con la sintassi Markdown.",
   "mark_usage": "<b>Uso:</b> <code>/html </code>**testo** in __Markdown__ - Formatta il testo fornito con la sintassi Markdown.",
-  "token_description": "Ottieni info sul token bot fornito.",
+  "token_description": "Fornisce info sul token bot fornito.",
   "no_bot_token": "Specifica un token bot",
   "bot_token_invalid": "Token bot non valido",
   "bot_token_info": "<b>Nome</b>: <code>{botname}</code>\n<b>Username</b>: <code>{botusername}</code>\n<b>ID</b>: <code>{botid}</code>",
