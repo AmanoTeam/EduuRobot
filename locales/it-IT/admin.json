@@ -36,7 +36,7 @@
   "unpin_description": "Toglie il messaggio a cui si sta rispondendo nella chat.",
   "unpinall_description": "Toglie tutti i messaggi nella chat.",
   "reason_string": "Motivo: {reason_text}",
-  "i_cant_ban_admins": "Non posso bannare gli amministratori.",
+  "i_cant_ban_admins": "Non posso rimuovere gli amministratori.",
   "i_cant_mute_admins": "Non posso mutare gli amministratori.",
-  "i_cant_kick_admins": "Non posso kickare gli amministratori."
+  "i_cant_kick_admins": "Non posso cacciare gli amministratori."
 }
