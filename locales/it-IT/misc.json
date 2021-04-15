@@ -1,1 +1,7 @@
-{}
+{
+  "admins_description": "Mostra un elenco con gli amministratori della chat.",
+  "admins_list": "Amministratori nella chat {chat_title}:\n{admins_list}",
+  "html_description": "Formatta il testo fornito con la sintassi HTML.",
+  "html_usage": "<b>Uso:</b> <code>/html &lt;b&gt;testo&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code> - Formatta il testo fornito con la sintassi HTML.",
+  "mark_description": "Formatta il testo fornito con la sintassi markdown."
+}
