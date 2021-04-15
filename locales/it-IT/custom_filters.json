@@ -1,7 +1,7 @@
 {
   "add_filter_success": "Aggiunto il filtro <b>{trigger}</b>.",
   "add_filter_empty": "Specifica un contenuto per il filtro.",
-  "delfilter_description": "Rimuovi un filtro da questa chat.",
+  "delfilter_description": "Rimuove un filtro da questa chat.",
   "filter_description": "Crea un filtro per questa chat.",
   "filters_description": "Mostra i filtri attuali in questa chat.",
   "filters_list": "Filtri in questa chat:\n\n",
