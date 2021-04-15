@@ -9,4 +9,4 @@ from localization import use_chat_lang
 async def getstickerid(c: Client, m: Message, strings):
     if m.reply_to_message.sticker:
         stickerid = m.reply_to_message.sticker.file_id
-        await m.reply_text(strings("sticker_id_strings").format(stickerid=stickerid))
+        await m.reply_text(strings("sticker_id_string").format(stickerid=stickerid))
