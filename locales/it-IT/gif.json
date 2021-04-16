@@ -1,4 +1,4 @@
 {
-  "gif_description": "Invia un GIF casuale dal risultato di ricerca.",
-  "gif_usage": "<b>Uso:</b> <code>/gif termine di ricerca</code> - Invia un GIF casuale dai risultati di ricerca."
+  "gif_description": "Invia una GIF casuale dai risultati di ricerca.",
+  "gif_usage": "<b>Uso:</b> <code>/gif termine di ricerca</code> - Invia una GIF casuale dai risultati di ricerca."
 }
