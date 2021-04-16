@@ -2,5 +2,5 @@
   "git_description": "Obtém informação de um user no GitHub.",
   "info_git_user": "<b>O</b> : <code>{name}</code> \n <b>tem o nome de usuário</b> : <code>{username}</code> \n <b>e mota na</b> : <code>{location}</code> \n <b>com o tipo</b> : <code>{type}</code> \n <b>e a bio dele é</b> : <code>{bio}</code>",
   "not_found_user": "Ih, não ache esse usuário não, desculpe",
-  "no_username_err": "Ow especifique o usuário que você gostaria que eu pesquise"
+  "no_username_err": "Ow, você fez errado, especifique o usuário que você gostaria que eu pesquise"
 }
