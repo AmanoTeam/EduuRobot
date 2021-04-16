@@ -3,5 +3,6 @@
   "package_home_page": "Домашняя страница пакета",
   "package_not_found": "Не удается найти <b>{package_name}</b> в PyPI (Код (Returned был {http_status}).",
   "not_specified": "Не указан",
+  "pypi_description": "Ищите пакет в индексе пакетов Python (PyPI).",
   "pypi_usage": "<b>Использование:</b> <code>/pypi package_name</code> - Ищите пакет в индексе пакетов Python (PyPI)."
 }
