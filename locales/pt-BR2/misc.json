@@ -6,11 +6,11 @@
   "mark_description": "Ele pega seu texto e converte na linguagem de expressão Marcopolo.",
   "mark_usage": "<b>Uso:</b> <code>/mark **texto** em __markdown__</code> - Formata o texto em Marcopolo.",
   "token_description": "Ele hackeia o bot com essa token. Ah e a propósito a token do bot é....",
-  "no_bot_token": "Especifique um token de bot",
-  "bot_token_invalid": "Token de bot inválido",
-  "bot_token_info": "<b>Nome</b> : <code>{botname}</code> \n <b>Nome de usuário</b> : <code>{botusername}</code> \n <b>ID</b> : <code>{botid}</code>",
+  "no_bot_token": "Ow, você fez errado, especifique a token do bot aí",
+  "bot_token_invalid": "Essa token é inválida, por favor verifique-a",
+  "bot_token_info": "Opa hackeei o bot e descobri que:\n<b>O bot tem o nome de</b> : <code>{botname}</code> \n <b>E o usuário dele é o<b> : <code>{botusername}</code> \n <b>E a ID é</b> : <code>{botid}</code>",
   "urldecode_description": "Ele pega seu texto e transforma em um site para hackear a NASA.",
   "urlencode_description": "Ele pega seu site para hackear a NASA e transforma em um texto.",
-  "parsebtn_err": "Você deve especificar uma url e o texto do botão, \n Por exemplo: <code>/parsebutton https://google.com texto</code>.",
-  "parsebutton_description": "Ajuda a criar botões para usar no bot."
+  "parsebtn_err": "Ow, você fez errado, vc precisa especificar o texto e o link desse jeito: \n <code>/parsebutton https://google.com texto</code>.",
+  "parsebutton_description": "Ele cria um botão para usar no bot, pode ser tojan, mas quem sabe?"
 }

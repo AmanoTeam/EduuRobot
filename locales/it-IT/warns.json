@@ -1,5 +1,5 @@
 {
-  "resetwarns_description": "Rimuove tutte le ammonizioni dell'utente.",
+  "resetwarns_description": "Ripristina le ammonizioni dell'utente.",
   "setwarnslimit_description": "Imposta il limite di ammonizioni nella chat.",
   "user_warned": "L'utente {target_user} ha {warn_count} ammonizioni su {warn_limit}.",
   "warn_banned": "L'utente {target_user} è stato rimosso perché è stato ammonito {warn_count} volte.",
@@ -9,7 +9,7 @@
   "warn_limit_help": "È necessario specificare un numero di ammonizioni, ad esempio: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Il numero fornito non è valido.",
   "warn_reason_text": "Motivo dell'ammonizione: {reason_text}",
-  "warn_reset": "Le amministrazioni di {target_user} sono state rimosse con successo.",
-  "warns_description": "Fornisce le amministrazioni dell'utente.",
+  "warn_reset": "Le ammonizioni di {target_user} sono state ripristinate con successo.",
+  "warns_description": "Fornisce le ammonizioni dell'utente.",
   "warns_count_string": "L'utente {target_user} ha {warns_count} ammonizioni."
 }
