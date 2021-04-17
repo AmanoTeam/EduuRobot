@@ -20,5 +20,5 @@ async def getstickeraspng(c: Client, m: Message, strings):
             await m.reply_text(strings("animated_not_supported"))
         if not m.reply_to_message.sticker.is_animated:
             thesticker = await m.reply_to_message.download(file_name="sticker.png")
-            await m.reply_to_message.reply_photo(thesticker)
+            await m.reply_to_message.reply_document(thesticker)
             os.remove(thesticker)
