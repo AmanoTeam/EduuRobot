@@ -58,7 +58,8 @@ async def kang_sticker(c: Client, m: Message, strings):
         if len(m.command) > 1:
             if m.command[1].isdigit() and int(m.command[1]) > 0:
                 # provide pack number to kang in desired pack
-                packname = f"{pack_prefix}{m.command.pop(1)}_{m.from_user.id}_by_{bot_username}"
+                packnum = m.command.pop(1)
+                packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{bot_username}"
             if len(m.command) > 1:
                 # matches all valid emojis in input
                 sticker_emoji = (
@@ -92,7 +93,8 @@ async def kang_sticker(c: Client, m: Message, strings):
         if len(m.command) > 2:
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
-                packname = f"a{m.command.pop(2)}_{m.from_user.id}_by_{bot_username}"
+                packnum = m.command.pop(2)
+                packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"
             if len(m.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
@@ -130,7 +132,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                     mime_type=c.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                message=f"#Sticker_Kang by User ID -> {m.from_user.id}",
+                message=f"#Sticker kang by UserID -> {m.from_user.id}",
                 random_id=c.rnd_id(),
             )
         )
@@ -160,7 +162,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             stkr_title = f"{u_name}'s "
             if animated:
                 stkr_title += "Anim. "
-            stkr_title += "EduPack"
+            stkr_title += "EduuPack"
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
