@@ -24,7 +24,7 @@ from utils import EMOJI_PATTERN
 @Client.on_message(filters.command(["kang", "kibe", "steal"], prefix))
 @use_chat_lang()
 async def kang_sticker(c: Client, m: Message, strings):
-    prog_msg = await m.reply_text("<code>Kanging sticker ...</code>")
+    prog_msg = await m.reply_text(strings("kanging_sticker_msg"))
     bot_username = (await c.get_me()).username
     sticker_emoji = "🤔"
     packnum = 0
@@ -45,16 +45,14 @@ async def kang_sticker(c: Client, m: Message, strings):
                 animated = True
         elif reply.sticker:
             if not reply.sticker.file_name:
-                return await prog_msg.edit_text(
-                    "<b>ERROR</b>: <code>This sticker doesn't a have filename !</code>"
-                )
+                return await prog_msg.edit_text(strings("err_sticker_no_file_name"))
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
             if not reply.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-            return await prog_msg.edit_text("<b>ERROR:</b> <code>Media Invalid<code>")
+            return await prog_msg.edit_text(strings("invalid_media_string"))
         pack_prefix = "anim" if animated else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
@@ -127,7 +125,7 @@ async def kang_sticker(c: Client, m: Message, strings):
     )
     stkr_file = media.updates[-1].message.media.document
     if packname_found:
-        await prog_msg.edit_text("<code>Using existing sticker pack ...</code>")
+        await prog_msg.edit_text(strings("use_existing_pack"))
         await c.send(
             AddStickerToSet(
                 stickerset=InputStickerSetShortName(short_name=packname),
@@ -142,13 +140,12 @@ async def kang_sticker(c: Client, m: Message, strings):
             )
         )
     else:
-        await prog_msg.edit_text("✨ Creating a new stickerpack")
+        await prog_msg.edit_text(strings("create_new_pack_string"))
         try:
             await create_new_pack(c, stkr_file, user, packname, sticker_emoji, animated)
         except PeerIdInvalid:
             return await prog_msg.edit_text(
-                "😬 Oops, Looks like I don't have enough permissions to create sticker pack for you !"
-                "\n<b>Please start the bot first</b>",
+                strings("cant_create_sticker_pack_string"),
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -160,11 +157,17 @@ async def kang_sticker(c: Client, m: Message, strings):
                 ),
             )
     markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("View", url=f"t.me/addstickers/{packname}")]]
+        [
+            [
+                InlineKeyboardButton(
+                    strings("view_sticker_pack_btn"), url=f"t.me/addstickers/{packname}"
+                )
+            ]
+        ]
     )
-    kanged_success_msg = "Sticker <b>successfully</b> added to pack\nEmoji: {}"
+    kanged_success_msg = strings("sticker_kanged_string")
     await prog_msg.edit_text(
-        kanged_success_msg.format(sticker_emoji), reply_markup=markup
+        kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup
     )
     # Cleanup
     try:
