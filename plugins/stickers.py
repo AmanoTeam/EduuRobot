@@ -80,6 +80,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 img_url = m.text[y.offset : (y.offset + y.length)]
                 break
         if not img_url:
+            await prog_msg.delete()
             return logging.error(f" {__name__} - kang - no media or image url found.")
         try:
             r = await http.get(img_url)
@@ -99,7 +100,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 )
             resize = True
     else:
-        return
+        return await prog_msg.delete()
     try:
         if resize:
             filename = resize_image(filename)
