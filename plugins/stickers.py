@@ -73,6 +73,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             return logging.error(f" {__name__} - kang - Failed to Download media.")
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
+        pack_prefix = "a"
         # searching if image_url is given
         img_url = None
         filename = "sticker.png"
