@@ -1,4 +1,7 @@
 {
   "get_sticker_id_string": "ה-id של המדבקה הזאת הוא \n <code>{stickerid}</code>",
-  "animated_not_supported": "מדבקות מונפשות לא נתמכות."
+  "animated_not_supported": "מדבקות מונפשות לא נתמכות.",
+  "kanging_sticker_msg": "<code>שומר את הסטיקר לחבילה שלך ...</code>",
+  "view_sticker_pack_btn": "לחץ כאן לצפייה",
+  "create_new_pack_string": "✨ יוצר חבילת סטיקרים חדשה"
 }
