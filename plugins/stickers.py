@@ -156,11 +156,12 @@ async def kang_sticker(c: Client, m: Message, strings):
                 u_name = f"@{u_name}"
             else:
                 u_name = str(m.from_user.id)
-            stkr_title = f"{u_name}'s EduuRobot "
+            stkr_title = f"{u_name}'s "
             if animated:
                 stkr_title += "Anim. "
-            stkr_title += "Sticker Pack"
-
+            stkr_title += "EduPack"
+            if packnum != 0:
+                stkr_title += f" v{packnum}"
             try:
                 await c.send(
                     CreateStickerSet(
