@@ -68,7 +68,8 @@ async def kang_sticker(c: Client, m: Message, strings):
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                     or sticker_emoji
                 )
-        if not (filename := await c.download_media(m.reply_to_message)):
+        filename = await c.download_media(m.reply_to_message)
+        if not filename:
             # Failed to download
             await prog_msg.delete()
             print("#Sticker - Kang - Failed to Download media.")
