@@ -5,7 +5,7 @@ import time
 from functools import wraps, partial
 from typing import Union, Tuple, Optional, List
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardButton, CallbackQuery
 
 from config import sudoers
@@ -19,6 +19,7 @@ BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\)
 SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
+_EMOJI_REGEXP = None
 
 
 def add_chat(chat_id, chat_type):
@@ -312,3 +313,28 @@ class BotCommands:
 
 
 commands = BotCommands()
+
+
+def get_emoji_regex():
+    global _EMOJI_REGEXP
+    if not _EMOJI_REGEXP:
+        e_list = [
+            getattr(emoji, e).encode("unicode-escape").decode("ASCII")
+            for e in dir(emoji)
+            if not e.startswith("_")
+        ]
+        # to avoid re.error excluding char that start with '*'
+        e_sort = sorted([x for x in e_list if not x.startswith("*")], reverse=True)
+        # Sort emojis by length to make sure multi-character emojis are
+        # matched first
+        pattern_ = f"({'|'.join(e_sort)})"
+        _EMOJI_REGEXP = re.compile(pattern_)
+    return _EMOJI_REGEXP
+
+
+EMOJI_PATTERN = get_emoji_regex()
+
+
+def deEmojify(text: str) -> str:
+    """Remove emojis and other non-safe characters from string"""
+    return EMOJI_PATTERN.sub("", text)
