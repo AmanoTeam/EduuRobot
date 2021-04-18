@@ -4,7 +4,7 @@ from urllib.request import urlretrieve
 from config import log_chat, prefix
 from localization import use_chat_lang
 from PIL import Image
-from pyrogram import Client, emoji, filters
+from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
