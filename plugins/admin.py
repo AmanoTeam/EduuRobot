@@ -94,7 +94,7 @@ async def unpin(c: Client, m: Message):
     await c.unpin_chat_message(m.chat.id, m.reply_to_message.message_id)
 
 
-@Client.on_message(filters.command("unpinall", prefix))
+@Client.on_message(filters.command(["unpinall", "unpin all"], prefix))
 @require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpinall(c: Client, m: Message):
     await c.unpin_all_chat_messages(m.chat.id)
