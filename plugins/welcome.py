@@ -107,9 +107,13 @@ async def greet_new_members(c: Client, m: Message, strings):
     members = m.new_chat_members
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))
-    full_name = ", ".join(map(lambda a: a.first_name + " " + (a.last_name or ""), members))
+    full_name = ", ".join(
+        map(lambda a: a.first_name + " " + (a.last_name or ""), members)
+    )
     user_id = ", ".join(map(lambda a: str(a.id), members))
-    username = ", ".join(map(lambda a: "@" + a.username if a.username else a.mention, members))
+    username = ", ".join(
+        map(lambda a: "@" + a.username if a.username else a.mention, members)
+    )
     if not m.from_user.is_bot:
         welcome, welcome_enabled = get_welcome(m.chat.id)
         if welcome_enabled:

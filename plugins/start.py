@@ -30,15 +30,17 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
                 [
                     InlineKeyboardButton(
                         strings("commands_btn"), callback_data="commands"
-                    )
-                ]
-                + [InlineKeyboardButton(strings("infos_btn"), callback_data="infos")],
-                [InlineKeyboardButton(strings("language_btn"), callback_data="chlang")]
-                + [
+                    ),
+                    InlineKeyboardButton(strings("infos_btn"), callback_data="infos"),
+                ],
+                [
+                    InlineKeyboardButton(
+                        strings("language_btn"), callback_data="chlang"
+                    ),
                     InlineKeyboardButton(
                         strings("add_chat_btn"),
                         url=f"https://t.me/{c._bot_username}?startgroup=new",
-                    )
+                    ),
                 ],
             ]
         )

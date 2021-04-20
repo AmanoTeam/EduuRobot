@@ -21,7 +21,9 @@ async def git(c: Client, m: Message, strings):
     res = req.json()
 
     if not res.get("login"):
-        return await m.reply_text(strings("not_found_user"), reply_to_message_id=m.message_id)
+        return await m.reply_text(
+            strings("not_found_user"), reply_to_message_id=m.message_id
+        )
 
     avatar = res["avatar_url"]
 
