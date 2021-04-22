@@ -2,8 +2,12 @@ import html
 
 from gpytranslate import Translator
 from pyrogram import Client, filters
-from pyrogram.types import Message
-
+from pyrogram.types import (
+    Message,
+    InlineQuery,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+)
 from config import prefix
 from localization import use_chat_lang
 from utils import commands
@@ -85,6 +89,23 @@ async def translate(c: Client, m: Message, strings):
         strings("translation").format(
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
+    )
+
+
+@Client.on_inline_query()
+async def tr_inline(c: Client, q: InlineQuery):
+    to_tr = q.query.lower().split(None, 1)[1]
+    source_language = await tr.detect(q.query.lower().split(None, 1)[1])
+    to_language = q.query.lower().split()[0]
+    translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title=f"Translate from {source_language} to {to_language}",
+                description=f"{translation.text}",
+                input_message_content=InputTextMessageContent(f"{translation.text}"),
+            )
+        ]
     )
 
 
