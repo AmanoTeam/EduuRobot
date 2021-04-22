@@ -92,11 +92,11 @@ async def translate(c: Client, m: Message, strings):
     )
 
 
-@Client.on_inline_query()
+@Client.on_inline_query(filters.regex(r"^tr"))
 async def tr_inline(c: Client, q: InlineQuery):
-    to_tr = q.query.lower().split(None, 1)[1]
-    source_language = await tr.detect(q.query.lower().split(None, 1)[1])
-    to_language = q.query.lower().split()[0]
+    to_tr = q.query.lower().split(None, 2)[1]
+    source_language = await tr.detect(q.query.lower().split(None, 2)[1])
+    to_language = q.query.lower().split()[1]
     translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
     await q.answer(
         [
