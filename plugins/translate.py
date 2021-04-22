@@ -94,19 +94,22 @@ async def translate(c: Client, m: Message, strings):
 
 @Client.on_inline_query(filters.regex(r"^tr"))
 async def tr_inline(c: Client, q: InlineQuery):
-    to_tr = q.query.lower().split(None, 2)[1]
-    source_language = await tr.detect(q.query.lower().split(None, 2)[1])
-    to_language = q.query.lower().split()[1]
-    translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
-    await q.answer(
-        [
-            InlineQueryResultArticle(
-                title=f"Translate from {source_language} to {to_language}",
-                description=f"{translation.text}",
-                input_message_content=InputTextMessageContent(f"{translation.text}"),
-            )
-        ]
-    )
+    try:
+        to_tr = q.query.split(None, 2)[2]
+        source_language = await tr.detect(q.query.split(None, 2)[2])
+        to_language = q.query.lower().split()[1]
+        translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
+        await q.answer(
+            [
+                InlineQueryResultArticle(
+                    title=f"Translate from {source_language} to {to_language}",
+                    description=f"{translation.text}",
+                    input_message_content=InputTextMessageContent(f"{translation.text}"),
+                )
+            ]
+        )
+    except IndexError:
+        return
 
 
 commands.add_command("tr", "tools")
