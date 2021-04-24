@@ -34,10 +34,10 @@ dbc.execute(
 
 dbc.execute(
     """CREATE TABLE IF NOT EXISTS notes (chat_id INTEGER ,
-                                           note_name,
-                                           raw_data,
-                                           file_id,
-                                           note_type)"""
+                                         note_name,
+                                         raw_data,
+                                         file_id,
+                                         note_type)"""
 )
 
 dbc.execute("""CREATE TABLE IF NOT EXISTS channels (chat_id INTEGER PRIMARY KEY)""")
