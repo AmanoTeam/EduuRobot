@@ -51,7 +51,7 @@ def check_for_notes(chat_id, trigger):
 @require_admin(allow_in_private=True)
 @use_chat_lang()
 async def save_note(c: Client, m: Message, strings):
-    args = m.text.markdown.split(maxsplit=1)
+    args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
@@ -62,7 +62,7 @@ async def save_note(c: Client, m: Message, strings):
     if m.reply_to_message and m.reply_to_message.photo:
         file_id = m.reply_to_message.photo.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
+            m.reply_to_message.caption.html
             if m.reply_to_message.caption is not None
             else None
         )
@@ -70,7 +70,7 @@ async def save_note(c: Client, m: Message, strings):
     elif m.reply_to_message and m.reply_to_message.document:
         file_id = m.reply_to_message.document.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
+            m.reply_to_message.caption.html
             if m.reply_to_message.caption is not None
             else None
         )
@@ -78,7 +78,7 @@ async def save_note(c: Client, m: Message, strings):
     elif m.reply_to_message and m.reply_to_message.video:
         file_id = m.reply_to_message.video.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
+            m.reply_to_message.caption.html
             if m.reply_to_message.caption is not None
             else None
         )
@@ -86,7 +86,7 @@ async def save_note(c: Client, m: Message, strings):
     elif m.reply_to_message and m.reply_to_message.audio:
         file_id = m.reply_to_message.audio.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
+            m.reply_to_message.caption.html
             if m.reply_to_message.caption is not None
             else None
         )
@@ -94,7 +94,7 @@ async def save_note(c: Client, m: Message, strings):
     elif m.reply_to_message and m.reply_to_message.animation:
         file_id = m.reply_to_message.animation.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
+            m.reply_to_message.caption.html
             if m.reply_to_message.caption is not None
             else None
         )
@@ -121,7 +121,7 @@ async def save_note(c: Client, m: Message, strings):
 @require_admin(allow_in_private=True)
 @use_chat_lang()
 async def delete_note(c: Client, m: Message, strings):
-    args = m.text.markdown.split(maxsplit=1)
+    args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
     check_note = check_for_notes(chat_id, trigger)
