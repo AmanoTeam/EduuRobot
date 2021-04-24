@@ -1,6 +1,18 @@
 {
+  "antichannelpin_description": "خۆکارانە ئەو پەیامانە لێبکەرەوە کە لە کەناڵە پێوەبەستراوەکەوە دێن.",
+  "antichannelpin_disabled": "دژە هەڵواسینی کەناڵ ناچالاککرا.",
+  "antichannelpin_enabled": "دژە هەڵواسینی کەناڵ چالاککرا.",
+  "antichannelpin_invalid_arg": "بەکارهێنان: <code>/antichannelpin off/on</code>",
+  "antichannelpin_status_disabled": "دژە هەڵواسینی کەناڵ ناچالاکە.",
+  "antichannelpin_status_enabled": "دژە هەڵواسینی کەناڵ چالاکە.",
   "ban_description": "بەکارهێنەر قەدەغەدەکات.",
   "ban_success": "بەکارهێنەر {user} لەلایەن {admin} قەدەغەکرا.",
+  "cleanservice_description": "پەیامی خزمەتگوزاری (نمووبە: کاتێک یەکێک دێتە ناو وتووێژەکە) بسڕەوە.",
+  "cleanservice_disabled": "سڕینەوەی پەیامی خزمەتگوزاری ناچالاککرا.",
+  "cleanservice_enabled": "سڕینەوەی پەیامی خزمەتگوزاری چالاککرا.",
+  "cleanservice_invalid_arg": "بەکارهێنان: <code>/cleanservice off/on</code>",
+  "cleanservice_status_disabled": "سڕینەوەی پەیامی خزمەتگوزاری ناچالاکە.",
+  "cleanservice_status_enabled": "سڕینەوەی پەیامی خزمەتگوزاری چالاکە.",
   "error_must_specify_time": "دوای فەرمانەکە دەبێت کاتێک دیاریبکەیت. نموونە: <code>/{command} 7d</code>.",
   "kick_description": "بەکارهێنەر دەردەکات.",
   "kick_success": "بەکارهێنەر {user} لەلایەن {admin} دەرکرا.",
@@ -22,5 +34,9 @@
   "unmute_description": "ڕێ بە بەکارهێنەر دەدات قسەبکاتەوە.",
   "unmute_success": "بەکارهێنەر {user} لەلایەن {admin} مافی قسەکردنی پێبەخشرایەوە.",
   "unpin_description": "پەیامە هەڵواسراوەکە لێدەکاتەوە.",
-  "unpinall_description": "هەموو پەیامە هەڵواسراوەکان لێدەکاتەوە."
+  "unpinall_description": "هەموو پەیامە هەڵواسراوەکان لێدەکاتەوە.",
+  "reason_string": "هۆکار: {reason_text}",
+  "i_cant_ban_admins": "ناتوانم بەرێوەبەر قەدەغەبکەم.",
+  "i_cant_mute_admins": "ناتوانم بەرێوەبەر بێدەنگبکەم.",
+  "i_cant_kick_admins": "ناتوانم بەرێوەبەر دەربکەم."
 }
