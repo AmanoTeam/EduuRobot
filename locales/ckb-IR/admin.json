@@ -12,6 +12,7 @@
   "cleanservice_enabled": "سڕینەوەی پەیامی خزمەتگوزاری چالاککرا.",
   "cleanservice_invalid_arg": "بەکارهێنان: <code>/cleanservice off/on</code>",
   "cleanservice_status_disabled": "سڕینەوەی پەیامی خزمەتگوزاری ناچالاکە.",
+  "cleanservice_status_enabled": "سڕینەوەی پەیامی خزمەتگوزاری چالاکە.",
   "error_must_specify_time": "دوای فەرمانەکە دەبێت کاتێک دیاریبکەیت. نموونە: <code>/{command} 7d</code>.",
   "kick_description": "بەکارهێنەر دەردەکات.",
   "kick_success": "بەکارهێنەر {user} لەلایەن {admin} دەرکرا.",
