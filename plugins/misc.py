@@ -82,22 +82,19 @@ async def urldecodecmd(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("bug", prefix))
-async def bug_report_cmd(c: Client, m: Message):
+@use_chat_lang()
+async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         try:
             await c.send_message(
                 log_chat,
                 f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>",
             )
-            await m.reply_text("the bug was successfully reported")
+            await m.reply_text(strings("bug_reported_success_to_bot_admins"))
         except BadRequest:
-            await m.reply_text(
-                "error, i cant send the bug report to the admins of the bot"
-            )
+            await m.reply_text(strings("err_cant_send_bug_report_to_bot_admins"))
     else:
-        await m.reply(
-            "You must specify the bug to report, E.g.: <code>/bug (here the bug)</code>."
-        )
+        await m.reply(strings("err_no_bug_to_report"))
 
 
 @Client.on_message(filters.command("request", prefix))

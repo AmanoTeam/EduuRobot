@@ -10,10 +10,12 @@ from pyrogram.types import (
 
 from config import prefix
 from consts import http
+from localization import use_chat_lang
 
 
 @Client.on_message(filters.command("ip", prefix))
-async def ip_cmd(c: Client, m: Message):
+@use_chat_lang()
+async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
         if text.startswith("http"):
@@ -27,9 +29,7 @@ async def ip_cmd(c: Client, m: Message):
             x += "<b>{}</b>: <code>{}</code>\n".format(i.title(), req[i])
         await m.reply_text(x, parse_mode="html")
     else:
-        await m.reply_text(
-            "You must specify the url, E.g.: <code>/ip example.com</code>"
-        )
+        await m.reply_text(strings("ip_err_no_ip"))
 
 
 @Client.on_inline_query(filters.regex(r"^ip"))
