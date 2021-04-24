@@ -22,5 +22,9 @@
   "unmute_description": "ڕێ بە بەکارهێنەر دەدات قسەبکاتەوە.",
   "unmute_success": "بەکارهێنەر {user} لەلایەن {admin} مافی قسەکردنی پێبەخشرایەوە.",
   "unpin_description": "پەیامە هەڵواسراوەکە لێدەکاتەوە.",
-  "unpinall_description": "هەموو پەیامە هەڵواسراوەکان لێدەکاتەوە."
+  "unpinall_description": "هەموو پەیامە هەڵواسراوەکان لێدەکاتەوە.",
+  "reason_string": "هۆکار: {reason_text}",
+  "i_cant_ban_admins": "ناتوانم بەرێوەبەر قەدەغەبکەم.",
+  "i_cant_mute_admins": "ناتوانم بەرێوەبەر بێدەنگبکەم.",
+  "i_cant_kick_admins": "ناتوانم بەرێوەبەر دەربکەم."
 }
