@@ -35,7 +35,6 @@ def rm_note(chat_id, trigger):
 def get_all_notes(chat_id):
     dbc.execute("SELECT * FROM notes WHERE chat_id = ?", (chat_id,))
 
-    db.commit()
     return dbc.fetchall()
 
 
