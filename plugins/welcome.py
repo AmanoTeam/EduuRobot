@@ -2,12 +2,12 @@ from typing import Optional, Tuple
 
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup
 
 from config import prefix
 from dbh import dbc, db
 from localization import use_chat_lang
-from utils import require_admin, commands
+from utils import require_admin, commands, button_parser
 
 
 def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
@@ -130,7 +130,16 @@ async def greet_new_members(c: Client, m: Message, strings):
                 title=chat_title,
                 chat_title=chat_title,
             )
-            await m.reply_text(welcome, disable_web_page_preview=True)
+            welcome, welcome_buttons = button_parser(welcome)
+            await m.reply_text(
+                welcome,
+                disable_web_page_preview=True,
+                reply_markup=(
+                    InlineKeyboardMarkup(welcome_buttons)
+                    if len(welcome_buttons) != 0
+                    else None
+                ),
+            )
 
 
 commands.add_command("resetwelcome", "admin")
