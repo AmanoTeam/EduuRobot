@@ -1,7 +1,8 @@
 {
   "get_sticker_id_string": "L'ID di questo sticker è \n <code>{stickerid}</code>",
   "animated_not_supported": "Gli sticker animati non sono supportati.",
-  "kanging_sticker_msg": "<code>Sticker del bot...</code>",
-  "sticker_kanged_string": "Sticker aggiunto <b>correttamente</b> al pacchetto\nEmoji: {sticker_emoji}",
+  "kanging_sticker_msg": "<code>Sticker rubati...</code>",
+  "sticker_kanged_string": "Sticker rubato <b>correttamente</b>\nEmoji: {sticker_emoji}",
+  "use_existing_pack": "<code>Usa un pacchetto di sticker esistente...</code>",
   "cant_create_sticker_pack_string": "😬 Ops, sembra che io non abbia il permesso di creare un pacchetto di sticker per te!\n<b>Avvia prima il bot</b>"
 }
