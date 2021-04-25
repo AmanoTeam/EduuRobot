@@ -7,3 +7,4 @@ httpx[http2]>=0.16.1,<1.0.0
 regex
 telegraph
 Pillow==8.2.0
+pytio
