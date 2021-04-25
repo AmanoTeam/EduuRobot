@@ -7,5 +7,6 @@
   "err_sticker_no_file_name": "<b>ERRORE:</b> <code>Il file di questo sticker non ha un nome!</code>",
   "view_sticker_pack_btn": "Vedi",
   "create_new_pack_string": "✨ Creazione di un nuovo pacchetto di sticker",
+  "invalid_media_string": "<b>ERRORE:</b> <code>Media non valido<code>",
   "cant_create_sticker_pack_string": "😬 Ops, sembra che io non abbia il permesso di creare un pacchetto di sticker per te!\n<b>Avvia prima il bot</b>"
 }
