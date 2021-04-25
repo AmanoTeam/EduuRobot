@@ -1,3 +1,4 @@
 {
+  "code_exec_tio_res_string": "<b>שפה:</b>\n\n<code>{langformat}</code>\n\n<b>קוד:</b>\n\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n\n<code>{resformat}</code>\n\n<b>שגיאות:</b>\n\n<code>{errformat}</code>",
   "code_exec_err_string": "שגיאה: השפה <b>{langformat}</b> לא נמצאה, רשימת השפות הנתמכות: https://nekobin.com/tavijipafa"
 }
