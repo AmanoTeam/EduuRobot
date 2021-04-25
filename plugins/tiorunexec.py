@@ -7,6 +7,7 @@ from pyrogram.types import (
     InputTextMessageContent,
 )
 from config import prefix
+from localization import use_chat_lang
 
 tio = Tio()
 
@@ -16,20 +17,17 @@ def getlangs():
 
 
 @Client.on_message(filters.command("exec_code", prefix))
-async def exec_tio_run_code(c: Client, m: Message):
+@use_chat_lang()
+async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
     langslist = getlangs()
     codetoexec = m.text.split(None, 2)[2]
     if execlanguage in langslist:
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
         sendtioreq = tio.send(tioreq)
-        await m.reply_text(
-            f"language:\n\n<code>{execlanguage}</code>\n\ncode:\n\n<code>{codetoexec}</code>\n\nresults:\n\n<code>{sendtioreq.result}</code>\n\n errors:\n\n<code>{sendtioreq.error}</code>"
-        )
+        await m.reply_text(strings("code_exec_tio_res_string").format(langformat=execlanguage, codeformat=codetoexec, resformat=sendtioreq.result, errformat=sendtioreq.error)
     else:
-        await m.reply_text(
-            f"error: the language {execlanguage} not found, the supported languages list: https://nekobin.com/tavijipafa"
-        )
+        await m.reply_text(strings("code_exec_err_string").format(langformat=execlanguage))
 
 
 @Client.on_inline_query(filters.regex(r"^exec"))
