@@ -50,9 +50,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"language: {execlanguage} code:  {codetoexec}",
+                    title=f"Language: {execlanguage} - Code:  {codetoexec}",
                     input_message_content=InputTextMessageContent(
-                        f"<b>language:</b>\n\n<code>{execlanguage}</code>\n\n<b>code:</b>\n\n<code>{codetoexec}</code>\n\n<b>results:</b>\n\n<code>{sendtioreq.result}</code>\n\n<b>errors:</b>\n\n<code>{sendtioreq.error}</code>"
+                        f"<b>Language:</b>\n\n<code>{execlanguage}</code>\n\n<b>Code:</b>\n\n<code>{codetoexec}</code>\n\n<b>Results:</b>\n\n<code>{sendtioreq.result}</code>\n\n<b>Errors:</b>\n\n<code>{sendtioreq.error}</code>"
                     ),
                 )
             ]
@@ -61,9 +61,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"error: the language {execlanguage} not found, the supported languages list: https://nekobin.com/tavijipafa",
+                    title="Language {execlanguage} not found.",
                     input_message_content=InputTextMessageContent(
-                        f"error: the language {execlanguage} not found, the supported languages list: https://nekobin.com/tavijipafa"
+                        f"Error: The language {execlanguage} was not found. Supported languages list: https://nekobin.com/tavijipafa"
                     ),
                 )
             ]
