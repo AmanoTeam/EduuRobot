@@ -1,1 +1,4 @@
-{}
+{
+  "add_note_success": "Nota <b>{trigger}</b> aggiunta.",
+  "add_note_empty": "Specifica un contenuto per la nota."
+}
