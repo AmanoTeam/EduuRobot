@@ -1,3 +1,4 @@
+import asyncio
 from pytio import Tio, TioRequest
 from pyrogram import Client, filters
 from pyrogram.types import (
@@ -12,20 +13,18 @@ from localization import use_chat_lang
 tio = Tio()
 
 
-def getlangs():
-    langs = tio.query_languages()
-    return langs
+langslist = tio.query_languages()
 
 
 @Client.on_message(filters.command("exec_code", prefix))
 @use_chat_lang()
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
-    langslist = getlangs()
     codetoexec = m.text.split(None, 2)[2]
     if execlanguage in langslist:
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
-        sendtioreq = tio.send(tioreq)
+        loop = asyncio.get_event_loop()
+        sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
         await m.reply_text(
             strings("code_exec_tio_res_string").format(
                 langformat=execlanguage,
@@ -44,10 +43,10 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
     codetoexec = q.query.split(None, 2)[2]
     execlanguage = q.query.lower().split()[1]
-    langslist = getlangs()
     if execlanguage in langslist:
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
-        sendtioreq = tio.send(tioreq)
+        loop = asyncio.get_event_loop()
+        sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
         await q.answer(
             [
                 InlineQueryResultArticle(
