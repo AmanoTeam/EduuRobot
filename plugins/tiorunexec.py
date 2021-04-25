@@ -38,10 +38,12 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
     execlanguage = q.query.lower().split()[1]
     langslist = getlangs()
     if execlanguage in langslist:
+        tioreq = TioRequest(lang=execlanguage, code=codetoexec)
+        sendtioreq = tio.send(tioreq)
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"language:\n\n<code>{execlanguage}</code>\n\ncode:\n\n<code>{codetoexec}</code>\n\nresults:\n\n<code>{sendtioreq.result}</code>\n\n errors:\n\n<code>{sendtioreq.error}</code>",
+                    title=f"language: {execlanguage} code:  {codetoexec}",
                     input_message_content=InputTextMessageContent(
                         f"language:\n\n<code>{execlanguage}</code>\n\ncode:\n\n<code>{codetoexec}</code>\n\nresults:\n\n<code>{sendtioreq.result}</code>\n\n errors:\n\n<code>{sendtioreq.error}</code>"
                     ),
