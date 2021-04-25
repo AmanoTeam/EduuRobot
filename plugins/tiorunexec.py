@@ -1,6 +1,7 @@
 from pytio import Tio, TioRequest
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from config import prefix
 
 tio = Tio()
 
@@ -10,7 +11,7 @@ def getlangs():
     return langs
 
 
-@Client.on_message(filters.command("exec_code"))
+@Client.on_message(filters.command("exec_code", prefix))
 async def exec_tio_run_code(c: Client, m: Message):
     execlanguage = m.command[1]
     langslist = getlangs()
