@@ -13,5 +13,7 @@
   "urlencode_description": "Decodifica o texto fornecido com caracteres seguros para URL.",
   "parsebtn_err": "Você deve especificar uma url e o texto do botão, \n Por exemplo: <code>/parsebutton https://google.com texto</code>.",
   "parsebutton_description": "Ajuda a criar botões para usar no bot.",
+  "bug_reported_success_to_bot_admins": "O bug foi reportado com sucesso.",
+  "err_cant_send_bug_report_to_bot_admins": "Erro, não consegui enviar o relatório de bug aos administradores do bot.",
   "err_no_bug_to_report": "Você deve especificar o bug para reportar, por exemplo: <code>/bug (aqui o bug)</code>."
 }
