@@ -1,0 +1,3 @@
+{
+  "code_exec_tio_res_string": "שפה:\n\n<code>{langformat}</code>\n\nקוד:\n\n<code>{codeformat}</code>\n\nתוצאה:\n\n<code>{resformat}</code>\n\n שגיאות:\n\n<code>{errformat}</code>"
+}
