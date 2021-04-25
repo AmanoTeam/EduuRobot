@@ -12,5 +12,8 @@
   "urldecode_description": "Ele pega seu texto e transforma em um site para hackear a NASA.",
   "urlencode_description": "Ele pega seu site para hackear a NASA e transforma em um texto.",
   "parsebtn_err": "Ow, você fez errado, vc precisa especificar o texto e o link desse jeito: \n <code>/parsebutton https://google.com texto</code>.",
-  "parsebutton_description": "Ele cria um botão para usar no bot, pode ser tojan, mas quem sabe?"
+  "parsebutton_description": "Ele cria um botão para usar no bot, pode ser tojan, mas quem sabe?",
+  "bug_reported_success_to_bot_admins": "O bug foi reportado com sucesso.",
+  "err_cant_send_bug_report_to_bot_admins": "Erro, não consegui enviar o relatório de bug aos administradores do bot.",
+  "err_no_bug_to_report": "Você deve especificar o bug para reportar, por exemplo: <code>/bug (aqui o bug)</code>."
 }
