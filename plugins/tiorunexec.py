@@ -25,7 +25,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
     if execlanguage in langslist:
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
         sendtioreq = tio.send(tioreq)
-        await m.reply_text(strings("code_exec_tio_res_string").format(langformat=execlanguage, codeformat=codetoexec, resformat=sendtioreq.result, errformat=sendtioreq.error)
+        await m.reply_text(strings("code_exec_tio_res_string").format(langformat=execlanguage, codeformat=codetoexec, resformat=sendtioreq.result, errformat=sendtioreq.error))
     else:
         await m.reply_text(strings("code_exec_err_string").format(langformat=execlanguage))
 
