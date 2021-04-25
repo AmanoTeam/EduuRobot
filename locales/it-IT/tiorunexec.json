@@ -1,1 +1,4 @@
-{}
+{
+  "code_exec_tio_res_string": "lingua:\n\n<code>{langformat}</code>\n\ncodice:\n\n<code>{codeformat}</code>\n\nrisultati:\n\n<code>{resformat}</code>\n\nerrori:\n\n<code>{errformat}</code>",
+  "code_exec_err_string": "Errore: il linguaggio <b>{langformat}</b> non è stato trovato, lista dei linguaggi supportati: https://nekobin.com/tavijipafa"
+}
