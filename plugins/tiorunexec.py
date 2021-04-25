@@ -34,7 +34,7 @@ async def exec_tio_run_code(c: Client, m: Message):
 
 
 @Client.on_inline_query(filters.regex(r"^exec"))
-async def tr_inline(c: Client, q: InlineQuery):
+async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
     codetoexec = q.query.split(None, 2)[2]
     execlanguage = q.query.lower().split()[1]
     langslist = getlangs()
