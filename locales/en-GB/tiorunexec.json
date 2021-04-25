@@ -1,4 +1,4 @@
 {
-  "code_exec_tio_res_string": "language:\n\n<code>{langformat}</code>\n\ncode:\n\n<code>{codeformat}</code>\n\nresults:\n\n<code>{resformat}</code>\n\n errors:\n\n<code>{errformat}</code>",
+  "code_exec_tio_res_string": "<b>language:</b>\n\n<code>{langformat}</code>\n\n<b>code:</b>\n\n<code>{codeformat}</code>\n\n<b>results:</b>\n\n<code>{resformat}</code>\n\n<b>errors:</b>\n\n<code>{errformat}</code>",
   "code_exec_err_string": "Error: the language <b>{langformat}</b> not found, the supported languages list: https://nekobin.com/tavijipafa"
 }
