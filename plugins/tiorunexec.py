@@ -43,7 +43,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
                 InlineQueryResultArticle(
                     title=f"language: {execlanguage} code:  {codetoexec}",
                     input_message_content=InputTextMessageContent(
-                        f"language:\n\n<code>{execlanguage}</code>\n\ncode:\n\n<code>{codetoexec}</code>\n\nresults:\n\n<code>{sendtioreq.result}</code>\n\n errors:\n\n<code>{sendtioreq.error}</code>"
+                        f"<b>language:</b>\n\n<code>{execlanguage}</code>\n\n<b>code:</b>\n\n<code>{codetoexec}</code>\n\n<b>results:</b>\n\n<code>{sendtioreq.result}</code>\n\n<b>errors:</b>\n\n<code>{sendtioreq.error}</code>"
                     ),
                 )
             ]
