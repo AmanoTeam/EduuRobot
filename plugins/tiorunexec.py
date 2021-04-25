@@ -10,7 +10,6 @@ from config import prefix
 
 tio = Tio()
 
-# for testing
 def getlangs():
     langs = tio.query_languages()
     return langs
