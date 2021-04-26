@@ -183,7 +183,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 )
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
-async def get_user_warns_cmd(c: Client, m: Message, strings):
+async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "ban":
             warn_action_txt = "ban"
