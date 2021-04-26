@@ -183,26 +183,15 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 @use_chat_lang()
 async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
-        if m.command[1] == "ban":
-            warn_action_txt = "ban"
-            set_warn_action(m.chat.id, warn_action_txt)
-            await m.reply_text(
-                strings("warns_action_set_string").format(action=warn_action_txt)
-            )
-        elif m.command[1] == "mute":
-            warn_action_txt = "mute"
-            set_warn_action(m.chat.id, warn_action_txt)
-            await m.reply_text(
-                strings("warns_action_set_string").format(action=warn_action_txt)
-            )
-        elif m.command[1] == "kick":
-            warn_action_txt = "kick"
-            set_warn_action(m.chat.id, warn_action_txt)
-            await m.reply_text(
-                strings("warns_action_set_string").format(action=warn_action_txt)
-            )
+        if not m.command[1] in ("ban", "mute", "kick"):
+            return await m.reply_text(strings("warns_action_set_invlaid"))
         else:
-            await m.reply_text(strings("warns_action_set_invlaid"))
+            warn_action_txt = m.command[1]
+
+        set_warn_action(m.chat.id, warn_action_txt)
+        await m.reply_text(
+            strings("warns_action_set_string").format(action=warn_action_txt)
+        )
     else:
         await m.reply_text(
             strings("warn_action_status").format(action=get_warn_action(m.chat.id))
