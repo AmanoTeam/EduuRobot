@@ -14,8 +14,8 @@
   "cleanservice_status_disabled": "I messaggi di servizio in questa chat attualmente non vengono eliminati automaticamente.",
   "cleanservice_status_enabled": "Eliminare i messaggi di servizio è attualmente abilitato in questa chat.",
   "error_must_specify_time": "Devi specificare un tempo dopo il comando. Ad esempio: <code>/{command} 7d</code>.",
-  "kick_description": "Caccia un utente dalla chat.",
-  "kick_success": "{user} è stato cacciato da {admin}.",
+  "kick_description": "Espelle un utente dalla chat.",
+  "kick_success": "{user} è stato espulso da {admin}.",
   "mute_description": "Muta un utente nella chat.",
   "mute_success": "{user} è stato mutato da {admin}.",
   "no_admin_error": "Devi essere un amministratore per usare questo comando.",
@@ -38,5 +38,5 @@
   "reason_string": "Motivo: {reason_text}",
   "i_cant_ban_admins": "Non posso rimuovere gli amministratori.",
   "i_cant_mute_admins": "Non posso mutare gli amministratori.",
-  "i_cant_kick_admins": "Non posso cacciare gli amministratori."
+  "i_cant_kick_admins": "Non posso espellere gli amministratori."
 }
