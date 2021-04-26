@@ -102,27 +102,25 @@ async def warn_user(c: Client, m: Message, strings):
         add_warns(m.chat.id, target_user.id, 1)
         user_warns = get_warns(m.chat.id, target_user.id)
         if user_warns >= warns_limit:
-            if warn_action == (None or "ban"):
+            if warn_action == "ban":
                 await c.kick_chat_member(m.chat.id, target_user.id)
-                warn_text = strings("warn_banned").format(
-                    target_user=target_user.mention, warn_count=user_warns
-                )
-                reset_warns(m.chat.id, target_user.id)
+                warn_string = strings("warn_banned")
             elif warn_action == "mute":
                 await c.restrict_chat_member(
                     m.chat.id, target_user.id, ChatPermissions(can_send_messages=False)
                 )
-                warn_text = strings("warn_muted").format(
-                    target_user=target_user.mention, warn_count=user_warns
-                )
-                reset_warns(m.chat.id, target_user.id)
+                warn_string = strings("warn_muted")
             elif warn_action == "kick":
                 await c.kick_chat_member(m.chat.id, target_user.id)
                 await c.unban_chat_member(m.chat.id, target_user.id)
-                warn_text = strings("warn_kicked").format(
-                    target_user=target_user.mention, warn_count=user_warns
-                )
-                reset_warns(m.chat.id, target_user.id)
+                warn_string = strings("warn_kicked")
+            else:
+                return
+
+            warn_text = warn_string.format(
+                target_user=target_user.mention, warn_count=user_warns
+            )
+            reset_warns(m.chat.id, target_user.id)
         else:
             warn_text = strings("user_warned").format(
                 target_user=target_user.mention,
