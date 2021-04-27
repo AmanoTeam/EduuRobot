@@ -1,10 +1,10 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup
 
 from config import prefix
 from dbh import dbc, db
 from localization import use_chat_lang
-from utils import require_admin, commands
+from utils import require_admin, commands, button_parser
 
 
 def get_rules(chat_id):
@@ -42,11 +42,13 @@ async def delete_rules(c: Client, m: Message, strings):
 @Client.on_message(filters.command("rules", prefix) & filters.group)
 @use_chat_lang()
 async def show_rules(c: Client, m: Message, strings):
-    rules = get_rules(m.chat.id)
+    gettherules = get_rules(m.chat.id)
+    rulestxt, rules_buttons = button_parser(gettherules)
     if rules:
         # TODO: Send rules in private plus a toggle for that.
         await m.reply_text(
-            strings("rules_message").format(chat_title=m.chat.title, rules=rules)
+            strings("rules_message").format(chat_title=m.chat.title, rules=rulestxt),
+            reply_markup=(InlineKeyboardMarkup(rules_buttons) if len(rules_buttons) != 0 else None),
         )
     else:
         await m.reply_text(strings("rules_empty"))
