@@ -4,12 +4,12 @@ from urllib.parse import quote, unquote
 
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup
 
 from config import prefix, log_chat
 from consts import http
 from localization import use_chat_lang
-from utils import commands
+from utils import commands, button_parser
 
 
 @Client.on_message(filters.command("mark", prefix))
@@ -17,7 +17,13 @@ from utils import commands
 async def mark(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("mark_usage"))
-    await m.reply(m.text.split(None, 1)[1], parse_mode="markdown")
+    txt = m.text.split(None, 1)[1]
+    msgtxt, buttons = button_parser(txt)
+    await m.reply(
+        msgtxt,
+        parse_mode="markdown",
+        reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
+    )
 
 
 @Client.on_message(filters.command("html", prefix))
@@ -25,7 +31,13 @@ async def mark(c: Client, m: Message, strings):
 async def html(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("html_usage"))
-    await m.reply(m.text.split(None, 1)[1], parse_mode="html")
+    txt = m.text.split(None, 1)[1]
+    msgtxt, buttons = button_parser(txt)
+    await m.reply(
+        msgtxt,
+        parse_mode="html",
+        reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
+    )
 
 
 @Client.on_message(filters.command("admins", prefix) & filters.group)
