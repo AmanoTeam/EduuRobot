@@ -44,7 +44,7 @@ async def delete_rules(c: Client, m: Message, strings):
 async def show_rules(c: Client, m: Message, strings):
     gettherules = get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(gettherules)
-    if rules:
+    if gettherules:
         # TODO: Send rules in private plus a toggle for that.
         await m.reply_text(
             strings("rules_message").format(chat_title=m.chat.title, rules=rulestxt),
