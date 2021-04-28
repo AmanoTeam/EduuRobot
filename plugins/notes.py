@@ -239,7 +239,7 @@ async def serve_note(c: Client, m: Message, txt):
     group=2,
 )
 async def note_by_hashtag(c: Client, m: Message):
-    note_data = m.text.replace("#", "")
+    note_data = m.text[1:]
     await serve_note(c, m, txt=note_data)
 
 
