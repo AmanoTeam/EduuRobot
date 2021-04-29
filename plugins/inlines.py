@@ -70,7 +70,7 @@ async def markdown_inline(c: Client, q: InlineQuery):
                 input_message_content=InputTextMessageContent(
                     querytxt,
                     parse_mode="markdown",
-                    reply_markup=InlineKeyboardMarkup(querybtns),
+                    reply_markup=(InlineKeyboardMarkup(querybtns) if len(querybtns) != 0 else None),
                 ),
             )
         ]
@@ -88,7 +88,7 @@ async def html_inline(c: Client, q: InlineQuery):
                 input_message_content=InputTextMessageContent(
                     querytxt,
                     parse_mode="html",
-                    reply_markup=InlineKeyboardMarkup(querybtns),
+                    reply_markup=(InlineKeyboardMarkup(querybtns) if len(querybtns) != 0 else None),
                 ),
             )
         ]
