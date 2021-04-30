@@ -16,5 +16,6 @@
   "bug_reported_success_to_bot_admins": "התקלה דווחה בהצלחה",
   "err_cant_send_bug_report_to_bot_admins": "שגיאה, אני לא יכול לדווח על התקלה למנהלים של הבוט",
   "err_no_bug_to_report": "אתה צריך לציין את התקלה בשביל לדווח עליה, לדוגמה: <code>/bug (כאן את התקלה)</code>.",
-  "donate_description": "קבלת פרטים על תרומות."
+  "donate_description": "קבלת פרטים על תרומות.",
+  "donatecmdstring": "אם אתה אוהב את הפרויקט ורוצה שהוא ימשיך לפעול ובחינם, אתה יכול לתמוך בזה על ידי תרומה על ידי לחיצה על הקישור למטה. כל סכום מוערך. תודה!\n\nhttps://amanoteam.com/donate"
 }
