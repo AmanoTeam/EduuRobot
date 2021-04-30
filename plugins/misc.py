@@ -143,6 +143,12 @@ async def button_parse_helper(c: Client, m: Message, strings):
         await m.reply_text(strings("parsebtn_err"))
 
 
+@Client.on_message(filters.command("donate", prefix))
+@use_chat_lang()
+async def donatecmd(c: Client, m: Message, strings):
+    await m.reply(strings("donatecmdstring"))
+
+
 commands.add_command("mark", "general")
 commands.add_command("html", "general")
 commands.add_command("admins", "general")
@@ -150,3 +156,4 @@ commands.add_command("token", "general")
 commands.add_command("urlencode", "general")
 commands.add_command("urldecode", "general")
 commands.add_command("parsebutton", "general")
+commands.add_command("donate", "general")
