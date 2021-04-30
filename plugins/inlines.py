@@ -4,7 +4,9 @@ from pyrogram.types import (
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent,
+    InlineKeyboardMarkup,
 )
+from utils import button_parser
 
 
 @Client.on_inline_query(filters.regex(r"^face"))
@@ -59,12 +61,19 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 @Client.on_inline_query(filters.regex(r"^markdown"))
 async def markdown_inline(c: Client, q: InlineQuery):
+    queryinputres = q.query.lower().split(None, 1)[1]
+    querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(
         [
             InlineQueryResultArticle(
                 title="click here to send the text in markdown format",
                 input_message_content=InputTextMessageContent(
-                    q.query.lower().split(None, 1)[1], parse_mode="markdown"
+                    querytxt, parse_mode="markdown"
+                ),
+                reply_markup=(
+                    InlineKeyboardMarkup(querybuttons)
+                    if len(querybuttons) != 0
+                    else None
                 ),
             )
         ]
@@ -73,12 +82,19 @@ async def markdown_inline(c: Client, q: InlineQuery):
 
 @Client.on_inline_query(filters.regex(r"^html"))
 async def html_inline(c: Client, q: InlineQuery):
+    queryinputres = q.query.lower().split(None, 1)[1]
+    querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(
         [
             InlineQueryResultArticle(
                 title="click here to send the text in html format",
                 input_message_content=InputTextMessageContent(
-                    q.query.lower().split(None, 1)[1], parse_mode="html"
+                    querytxt, parse_mode="html"
+                ),
+                reply_markup=(
+                    InlineKeyboardMarkup(querybuttons)
+                    if len(querybuttons) != 0
+                    else None
                 ),
             )
         ]
