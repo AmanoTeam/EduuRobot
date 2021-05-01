@@ -45,7 +45,7 @@ async def html(c: Client, m: Message, strings):
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
-        if not i.user.is_deleted:
+        if not (i.user.is_deleted or i.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
         m.chat.id,
