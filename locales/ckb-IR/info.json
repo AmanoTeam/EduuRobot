@@ -1,1 +1,12 @@
-{}
+{
+  "info_description": "زانیاری دەربارەی بەکارهێنەرێک وەربگرە.",
+  "info_header": "<b>زانیاریی بەکارهێنەر:</b>",
+  "info_id": "\nناسنامە: <code>{id}</code>",
+  "info_first_name": "\nناوی یەکەم: {first_name}",
+  "info_last_name": "\nناوی دووەم: {last_name}",
+  "info_username": "\nناوی بەکارهێنەر: @{username}",
+  "info_userlink": "\nبەستەر: {link}",
+  "info_chat_admin": "ئەم بەکارهێنەرە لەم گروپە <b>بەڕێوەبەرە</b>.",
+  "info_chat_creator": "ئەم بەکارهێنەرە <b>خاوەنی</b> ئەم گروپەیە.",
+  "user_not_found": "\nهیچ بەکارهێنەرێک بۆ <code>{user}</code> نەدۆزرایەوە."
+}
