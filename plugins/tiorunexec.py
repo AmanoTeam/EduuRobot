@@ -1,4 +1,4 @@
-import asyncio
+import asyncio, html
 from pytio import Tio, TioRequest
 from pyrogram import Client, filters
 from pyrogram.types import (
@@ -52,7 +52,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
                 InlineQueryResultArticle(
                     title=f"Language: {execlanguage} - Code:  {codetoexec}",
                     input_message_content=InputTextMessageContent(
-                        f"<b>Language:</b>\n\n<code>{execlanguage}</code>\n\n<b>Code:</b>\n\n<code>{codetoexec}</code>\n\n<b>Results:</b>\n\n<code>{sendtioreq.result}</code>\n\n<b>Errors:</b>\n\n<code>{sendtioreq.error}</code>"
+                        f"<b>Language:</b>\n\n<code>{execlanguage}</code>\n\n<b>Code:</b>\n\n<code>{html.escape(codetoexec)}</code>\n\n<b>Results:</b>\n\n<code>{html.escape(sendtioreq.result)}</code>\n\n<b>Errors:</b>\n\n<code>{html.escape(sendtioreq.error)}</code>"
                     ),
                 )
             ]
