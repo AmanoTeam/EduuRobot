@@ -42,7 +42,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 @Client.on_inline_query(filters.regex(r"^exec"))
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
     codetoexec = q.query.split(None, 2)[2]
-    execlanguage = q.query.split()[1]
+    execlanguage = q.query.lower().split()[1]
     if execlanguage in langslist:
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
         loop = asyncio.get_event_loop()
