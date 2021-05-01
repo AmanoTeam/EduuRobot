@@ -47,12 +47,14 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
         loop = asyncio.get_event_loop()
         sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
+        tioerrres = sendtioreq.error or "None"
+        tiores = sendtioreq.result or "None"
         await q.answer(
             [
                 InlineQueryResultArticle(
                     title=f"Language: {execlanguage} - Code:  {codetoexec}",
                     input_message_content=InputTextMessageContent(
-                        f"<b>Language:</b>\n\n<code>{execlanguage}</code>\n\n<b>Code:</b>\n\n<code>{html.escape(codetoexec)}</code>\n\n<b>Results:</b>\n\n<code>{html.escape(sendtioreq.result)}</code>\n\n<b>Errors:</b>\n\n<code>{html.escape(sendtioreq.error)}</code>"
+                        f"<b>Language:</b>\n\n<code>{execlanguage}</code>\n\n<b>Code:</b>\n\n<code>{html.escape(codetoexec)}</code>\n\n<b>Results:</b>\n\n<code>{html.escape(tiores)}</code>\n\n<b>Errors:</b>\n\n<code>{html.escape(tioerrres)}</code>"
                     ),
                 )
             ]
