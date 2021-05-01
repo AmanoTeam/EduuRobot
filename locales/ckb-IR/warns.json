@@ -1,1 +1,7 @@
-{}
+{
+  "resetwarns_description": "ئاگادارکردنەوەکانی بەکارهێنەرێک لابە.",
+  "setwarnslimit_description": "سنووری ئاگادارکردنەوە دەستنیشان بکە.",
+  "user_warned": "ئاگادارکردنەوەکانی بەکارهێنەر {target_user}:\n{warn_count}/{warn_limit}",
+  "warn_banned": "بەکارهێنەر {target_user} قەدەغەکرا لەبەر ئەوەی ژمارەی ئاگادارکردنەوەکانی گەیشتە {warn_count} ئاگادارکردنەوە.",
+  "warn_kicked": "بەکارهێنەر {target_user} دەرکرا لەبەر ئەوەی ژمارەی ئاگادارکردنەوەکانی گەیشتە {warn_count} ئاگادارکردنەوە."
+}
