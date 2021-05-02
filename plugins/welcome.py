@@ -71,8 +71,19 @@ async def set_welcome_message(c: Client, m: Message, strings):
 )
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
-    await m.reply_text(strings("welcome_mode_invalid"))
+async def invlaid_welcome__arg_or_show_welcome(c: Client, m: Message, strings):
+    if len(m.text.split()) > 1 and m.command[1] == "noformat":
+        welcome, welcome_enabled = get_welcome(m.chat.id)
+        if welcome_enabled:
+            if welcome is None:
+                welcomemsg = strings("welcome_default")
+            else:
+                welcomemsg = welcome
+            await m.reply_text(welcomemsg, parse_mode="None")
+        else:
+            await m.reply_text("None")
+    else:
+        await m.reply_text(strings("welcome_mode_invalid"))
 
 
 @Client.on_message(filters.command("welcome on", prefix) & filters.group)
