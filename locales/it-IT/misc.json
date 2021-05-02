@@ -15,5 +15,7 @@
   "parsebutton_description": "Ti aiuta a realizzare un pulsante inline nel bot.",
   "bug_reported_success_to_bot_admins": "Il bug è stato segnalato correttamente",
   "err_cant_send_bug_report_to_bot_admins": "Errore: impossibile inviare la segnalazione di bug agli amministratori del bot",
-  "err_no_bug_to_report": "È necessario specificare il bug da segnalare, ad esempio: <code>/bug (qui il bug)</code>."
+  "err_no_bug_to_report": "È necessario specificare il bug da segnalare, ad esempio: <code>/bug (qui il bug)</code>.",
+  "donate_description": "Mostra le informazioni sulle donazioni.",
+  "donatecmdstring": "Se ti piace il progetto e vuoi che continui ad esistere senza alcun costo, per favore mostra il tuo supporto donando utilizzando il link sotto. Ogni cifra è apprezzata.\nGrazie!\n\nhttps://amanoteam.com/donate"
 }
