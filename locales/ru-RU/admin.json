@@ -27,6 +27,9 @@
   "purge_success": "Удалено <b>{count}</b> сообщений.",
   "tban_success": "{user} временно забанен {admin} на <b>{time}</b>.",
   "tmute_success": "{user} временно заблокирован пользователем {admin} за <b>{time}</b>.",
+  "unban_description": "Снимает бан с пользователя в этом чате.",
   "unban_success": "{user} был разбанен {admin}.",
-  "unmute_success": "{user} был размучен {admin}."
+  "unmute_description": "Снять заглушение пользователя в этом чате.",
+  "unmute_success": "{user} был размучен {admin}.",
+  "unpin_description": "Открепляет отвеченное сообщение в чате."
 }
