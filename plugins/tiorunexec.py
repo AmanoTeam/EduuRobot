@@ -26,7 +26,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
         loop = asyncio.get_event_loop()
         sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
         tioexeccodestats = sendtioreq.debug.decode()
-        if error is None:
+        if sendtioreq.error is None:
             await m.reply_text(
                 strings("code_exec_tio_res_string_no_err").format(
                     langformat=execlanguage,
