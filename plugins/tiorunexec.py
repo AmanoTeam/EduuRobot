@@ -63,7 +63,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title="Language {execlanguage} not found.",
+                    title=f"Language {execlanguage} not found.",
                     input_message_content=InputTextMessageContent(
                         f"Error: The language {execlanguage} was not found. Supported languages list: https://nekobin.com/tavijipafa"
                     ),
