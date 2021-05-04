@@ -25,12 +25,14 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
         tioreq = TioRequest(lang=execlanguage, code=codetoexec)
         loop = asyncio.get_event_loop()
         sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
+        tioexeccodestats = sendtioreq.debug.decode()
         await m.reply_text(
             strings("code_exec_tio_res_string").format(
                 langformat=execlanguage,
                 codeformat=codetoexec,
                 resformat=sendtioreq.result,
                 errformat=sendtioreq.error,
+                statsformat=tioexeccodestats,
             )
         )
     else:
