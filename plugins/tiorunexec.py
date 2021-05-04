@@ -49,7 +49,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
         sendtioreq = await loop.run_in_executor(None, tio.send, tioreq)
         tioerrres = sendtioreq.error or "None"
         tiores = sendtioreq.result or "None"
-        tioresstats = sendtioreq.debug or "None"
+        tioresstats = sendtioreq.debug.decode() or "None"
         await q.answer(
             [
                 InlineQueryResultArticle(
