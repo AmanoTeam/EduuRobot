@@ -1,3 +1,5 @@
+name: Check commit name
+
 on:
   push:
     branches: [main, master, rewrite]
