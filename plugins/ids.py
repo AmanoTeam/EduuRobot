@@ -1,10 +1,10 @@
 import html
 
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions import BadRequest
 from pyrogram.types import Message
 
-from config import prefix
 from localization import use_chat_lang
 from utils import commands
 

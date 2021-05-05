@@ -1,14 +1,14 @@
 import inspect
 import json
 import os.path
-from functools import wraps, partial
+from functools import partial, wraps
 from glob import glob
-from typing import List, Dict
+from typing import Dict, List
 
 from pyrogram.types import CallbackQuery
 
 from consts import group_types
-from dbh import dbc, db
+from dbh import db, dbc
 
 enabled_locales = [
     "ar-SA",  # Arabic

@@ -1,13 +1,13 @@
 import asyncio
 from typing import Optional
 
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
 
-from config import prefix
-from dbh import dbc, db
+from dbh import db, dbc
 from localization import use_chat_lang
-from utils import require_admin, time_extract, commands
+from utils import commands, require_admin, time_extract
 
 
 async def get_reason_text(c: Client, m: Message) -> Message:
@@ -266,7 +266,7 @@ async def tban(c: Client, m: Message, strings):
 @require_admin(permissions=["can_delete_messages"], allow_in_private=True)
 @use_chat_lang()
 async def purge(c: Client, m: Message, strings):
-    """ purge upto the replied message """
+    """purge upto the replied message"""
     status_message = await m.reply_text(strings("purge_in_progress"), quote=True)
     await m.delete()
     message_ids = []

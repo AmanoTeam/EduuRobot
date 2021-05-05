@@ -1,6 +1,5 @@
 import sqlite3
 
-
 db = sqlite3.connect("eduu.db")
 dbc = db.cursor()
 

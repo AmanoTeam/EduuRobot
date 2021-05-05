@@ -1,8 +1,8 @@
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from telegraph import upload_file
 
-from config import prefix
 from localization import use_chat_lang
 
 

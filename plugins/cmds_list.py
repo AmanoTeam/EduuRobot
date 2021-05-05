@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import (
     CallbackQuery,
-    InlineKeyboardMarkup,
     InlineKeyboardButton,
+    InlineKeyboardMarkup,
     Message,
 )
 

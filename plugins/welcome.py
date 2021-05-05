@@ -1,13 +1,13 @@
 from typing import Optional, Tuple
 
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
-from pyrogram.types import Message, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardMarkup, Message
 
-from config import prefix
-from dbh import dbc, db
+from dbh import db, dbc
 from localization import use_chat_lang
-from utils import require_admin, commands, button_parser
+from utils import button_parser, commands, require_admin
 
 
 def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
@@ -75,13 +75,16 @@ async def set_welcome_message(c: Client, m: Message, strings):
 async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_mode_invalid"))
 
+
 @Client.on_message(filters.command("getwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def getwelcomemsg(c: Client, m: Message, strings):
     welcome, welcome_enabled = get_welcome(m.chat.id)
     if welcome_enabled:
-        await m.reply_text(strings("welcome_default") if welcome is None else welcome, parse_mode=None)
+        await m.reply_text(
+            strings("welcome_default") if welcome is None else welcome, parse_mode=None
+        )
     else:
         await m.reply_text("None")
 

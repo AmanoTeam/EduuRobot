@@ -1,14 +1,15 @@
 import html
 
+from config import prefix
 from gpytranslate import Translator
 from pyrogram import Client, filters
 from pyrogram.types import (
-    Message,
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent,
+    Message,
 )
-from config import prefix
+
 from localization import use_chat_lang
 from utils import commands
 
