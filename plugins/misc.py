@@ -12,6 +12,9 @@ from localization import use_chat_lang
 from utils import commands, button_parser
 
 
+admin_status = ["creator", "administrator"]
+
+
 @Client.on_message(filters.command("mark", prefix))
 @use_chat_lang()
 async def mark(c: Client, m: Message, strings):
@@ -51,6 +54,21 @@ async def mentionadmins(c: Client, m: Message, strings):
         m.chat.id,
         strings("admins_list").format(chat_title=m.chat.title, admins_list=mention),
     )
+
+
+@Client.on_message((filters.command("report", prefix) | filters.regex("^@admin")) & filters.group filters.reply)
+@use_chat_lang()
+async def mentionadmins(c: Client, m: Message, strings):
+    if m.reply_to_message.from_user:
+        check_admin = await c.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+        if  check_admin.status not in admin_status:
+        mention = ""
+        async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
+            if not (i.user.is_deleted or i.is_anonymous):
+                mention += f"{i.user.mention}\n"
+        await m.reply_to_message.reply_text(
+            strings("report_admns").format(admins_list=mention, reported_user=m.reply_to_message.from_user.mention()),
+        )
 
 
 @Client.on_message(filters.command("token"))
