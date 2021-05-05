@@ -9,7 +9,7 @@ from utils import commands
 
 @Client.on_message(filters.command("dog", prefix))
 @use_chat_lang()
-async def dog(c: Client, m: Message, strings):
+async def dog(_, m: Message, strings):
     r = await http.get("https://random.dog/woof.json")
     rj = r.json()
 

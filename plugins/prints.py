@@ -11,7 +11,7 @@ from utils import commands
 
 @Client.on_message(filters.command("print", prefix))
 @use_chat_lang()
-async def prints(c: Client, m: Message, strings):
+async def prints(_, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
             strings("print_usage"), reply_to_message_id=m.message_id

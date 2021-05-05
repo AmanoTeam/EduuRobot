@@ -17,7 +17,7 @@ admin_status = ["creator", "administrator"]
 
 @Client.on_message(filters.command("mark", prefix))
 @use_chat_lang()
-async def mark(c: Client, m: Message, strings):
+async def mark(_, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("mark_usage"))
     txt = m.text.split(None, 1)[1]
@@ -31,7 +31,7 @@ async def mark(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("html", prefix))
 @use_chat_lang()
-async def html(c: Client, m: Message, strings):
+async def html(_, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("html_usage"))
     txt = m.text.split(None, 1)[1]
@@ -82,7 +82,7 @@ async def reportadmins(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("token"))
 @use_chat_lang()
-async def getbotinfo(c: Client, m: Message, strings):
+async def getbotinfo(_, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
             strings("no_bot_token"), reply_to_message_id=m.message_id
@@ -104,19 +104,19 @@ async def getbotinfo(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
-async def rtcommand(c: Client, m: Message):
+async def rtcommand(_, m: Message):
     await m.reply(
         f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>"
     )
 
 
 @Client.on_message(filters.command("urlencode", prefix))
-async def urlencodecmd(c: Client, m: Message):
+async def urlencodecmd(_, m: Message):
     await m.reply_text(quote(m.text.split(None, 1)[1]))
 
 
 @Client.on_message(filters.command("urldecode", prefix))
-async def urldecodecmd(c: Client, m: Message):
+async def urldecodecmd(_, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
 
 
@@ -137,7 +137,7 @@ async def bug_report_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("request", prefix))
-async def request_cmd(c: Client, m: Message):
+async def request_cmd(_, m: Message):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
         if re.match(r"^(https?)://", text):
@@ -161,7 +161,7 @@ async def request_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("parsebutton"))
 @use_chat_lang()
-async def button_parse_helper(c: Client, m: Message, strings):
+async def button_parse_helper(_, m: Message, strings):
     if len(m.text.split()) > 2:
         await m.reply_text(
             f"[{m.text.split(None, 2)[2]}](buttonurl:{m.command[1]})", parse_mode=None
@@ -172,7 +172,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("donate", prefix))
 @use_chat_lang()
-async def donatecmd(c: Client, m: Message, strings):
+async def donatecmd(_, m: Message, strings):
     await m.reply(strings("donatecmdstring"))
 
 

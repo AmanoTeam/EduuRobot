@@ -9,7 +9,7 @@ from utils import require_admin, commands
 from .admin import get_target_user
 
 
-async def get_warn_reason_text(c: Client, m: Message) -> Message:
+async def get_warn_reason_text(_, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
     if not reply and len(spilt_text()) >= 3:
@@ -142,7 +142,7 @@ async def warn_user(c: Client, m: Message, strings):
 @Client.on_message(filters.command("setwarnslimit", prefix) & filters.group)
 @require_admin(permissions=["can_restrict_members", "can_change_info"])
 @use_chat_lang()
-async def warns_limit(c: Client, m: Message, strings):
+async def warns_limit(_, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("warn_limit_help"))
     try:
@@ -181,7 +181,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 )
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
-async def set_warns_action_cmd(c: Client, m: Message, strings):
+async def set_warns_action_cmd(_, m: Message, strings):
     if len(m.text.split()) > 1:
         if not m.command[1] in ("ban", "mute", "kick"):
             return await m.reply_text(strings("warns_action_set_invlaid"))

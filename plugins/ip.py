@@ -15,7 +15,7 @@ from localization import use_chat_lang
 
 @Client.on_message(filters.command("ip", prefix))
 @use_chat_lang()
-async def ip_cmd(c: Client, m: Message, strings):
+async def ip_cmd(_, m: Message, strings):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
         if text.startswith("http"):

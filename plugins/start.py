@@ -61,7 +61,7 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
 
 @Client.on_callback_query(filters.regex("^infos$"))
 @use_chat_lang()
-async def infos(c: Client, m: CallbackQuery, strings):
+async def infos(_, m: CallbackQuery, strings):
     res = strings("info_page").format(version=version)
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[

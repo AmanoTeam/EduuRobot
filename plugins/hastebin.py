@@ -9,7 +9,7 @@ from utils import commands
 
 @Client.on_message(filters.command("hastebin", prefix))
 @use_chat_lang(context="pastes")
-async def hastebin(c: Client, m: Message, strings):
+async def hastebin(_, m: Message, strings):
     if m.reply_to_message:
         if m.reply_to_message.document:
             tfile = m.reply_to_message

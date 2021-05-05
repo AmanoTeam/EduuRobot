@@ -20,13 +20,13 @@ prefix = "!"
 
 
 @Client.on_message(filters.command("sudos", prefix) & sudofilter)
-async def sudos(c: Client, m: Message):
+async def sudos(_, m: Message):
     await m.reply_text("Test")
 
 
 @Client.on_message(filters.command("cmd", prefix) & sudofilter)
 @use_chat_lang()
-async def run_cmd(c: Client, m: Message, strings):
+async def run_cmd(_, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
         res = strings("forbidden_command")
@@ -53,7 +53,7 @@ async def run_cmd(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang()
-async def upgrade(c: Client, m: Message, strings):
+async def upgrade(_, m: Message, strings):
     sm = await m.reply_text("Upgrading sources...")
     proc = await asyncio.create_subprocess_shell(
         "git pull --no-edit",
@@ -113,7 +113,7 @@ async def execs(c: Client, m: Message):
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
 @use_chat_lang()
-async def test_speed(c: Client, m: Message, strings):
+async def test_speed(_, m: Message, strings):
     string = strings("speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
@@ -139,7 +139,7 @@ async def test_speed(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
 @use_chat_lang()
-async def restart(c: Client, m: Message, strings):
+async def restart(_, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
     set_restarted(sent.chat.id, sent.message_id)
     os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
@@ -180,18 +180,18 @@ async def del_message(c: Client, m: Message):
     & ~filters.edited
     & ~filters.via_bot
 )
-async def backupcmd(c: Client, m: Message):
+async def backupcmd(_, m: Message):
     await m.reply_document("eduu.db")
 
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)
-async def uploadfile(c: Client, m: Message):
+async def uploadfile(_, m: Message):
     await m.reply_to_message.reply_text("Uploading the Document.")
     await m.reply_to_message.download()
 
 
 @Client.on_message(filters.command("doc", prefix) & sudofilter)
-async def downloadfile(c: Client, m: Message):
+async def downloadfile(_, m: Message):
     if len(m.text.split()) > 1:
         await m.reply_document(f"downloads/{m.command[1]}")
     else:

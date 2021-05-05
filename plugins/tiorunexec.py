@@ -18,7 +18,7 @@ langslist = tio.query_languages()
 
 @Client.on_message(filters.command("exec_code", prefix))
 @use_chat_lang()
-async def exec_tio_run_code(c: Client, m: Message, strings):
+async def exec_tio_run_code(_, m: Message, strings):
     execlanguage = m.command[1]
     codetoexec = m.text.split(None, 2)[2]
     if execlanguage in langslist:
@@ -51,7 +51,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^exec"))
-async def exec_tio_run_code_inline(c: Client, q: InlineQuery):
+async def exec_tio_run_code_inline(_, q: InlineQuery):
     codetoexec = q.query.split(None, 2)[2]
     execlanguage = q.query.lower().split()[1]
     if execlanguage in langslist:

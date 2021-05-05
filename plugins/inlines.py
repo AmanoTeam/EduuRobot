@@ -10,7 +10,7 @@ from utils import button_parser
 
 
 @Client.on_inline_query(filters.regex(r"^face"))
-async def faces_inline(c: Client, q: InlineQuery):
+async def faces_inline(_, q: InlineQuery):
     faces_list = [
         "¯\\_(ツ)_/¯",
         "( ͡° ͜ʖ ͡°)",
@@ -60,7 +60,7 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^markdown"))
-async def markdown_inline(c: Client, q: InlineQuery):
+async def markdown_inline(_, q: InlineQuery):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(
@@ -81,7 +81,7 @@ async def markdown_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^html"))
-async def html_inline(c: Client, q: InlineQuery):
+async def html_inline(_, q: InlineQuery):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(

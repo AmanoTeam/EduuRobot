@@ -8,7 +8,7 @@ from localization import use_chat_lang
 
 @Client.on_message(filters.command("telegraph", prefix))
 @use_chat_lang()
-async def telegraph(c: Client, m: Message, strings):
+async def telegraph(_, m: Message, strings):
     if m.reply_to_message:
         if (
             m.reply_to_message.photo
