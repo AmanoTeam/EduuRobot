@@ -58,7 +58,7 @@ async def mentionadmins(c: Client, m: Message, strings):
 
 @Client.on_message((filters.command("report", prefix) | filters.regex("^@admin")) & filters.group filters.reply)
 @use_chat_lang()
-async def mentionadmins(c: Client, m: Message, strings):
+async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
         check_admin = await c.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
         if  check_admin.status not in admin_status:
