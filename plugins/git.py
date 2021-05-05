@@ -11,7 +11,7 @@ from localization import use_chat_lang
 
 @Client.on_message(filters.command("git", prefix))
 @use_chat_lang()
-async def git(_, m: Message, strings):
+async def git(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
             strings("no_username_err"), reply_to_message_id=m.message_id

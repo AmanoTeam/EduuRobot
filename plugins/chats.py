@@ -8,7 +8,7 @@ from utils import chat_exists, add_chat
 
 
 @Client.on_message(group=-1)
-async def check_chat(_, m: Message):
+async def check_chat(c: Client, m: Message):
     chat_id = m.chat.id
     chat_type = m.chat.type
 

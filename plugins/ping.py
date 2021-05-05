@@ -8,7 +8,7 @@ from utils import commands
 
 
 @Client.on_message(filters.command("ping", prefix))
-async def ping(_, m: Message):
+async def ping(c: Client, m: Message):
     first = datetime.now()
     sent = await m.reply_text("<b>Pong!</b>")
     second = datetime.now()

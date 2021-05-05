@@ -10,7 +10,7 @@ from localization import use_chat_lang
 from utils import require_admin, time_extract, commands
 
 
-async def get_reason_text(_, m: Message) -> Message:
+async def get_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
     if not reply and len(spilt_text()) >= 3:
@@ -295,7 +295,7 @@ async def purge(c: Client, m: Message, strings):
 @Client.on_message(filters.command("antichannelpin", prefix))
 @require_admin(permissions=["can_pin_messages"])
 @use_chat_lang()
-async def setantichannelpin(_, m: Message, strings):
+async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             toggle_antichannelpin(m.chat.id, True)
@@ -326,7 +326,7 @@ async def acp_action(c: Client, m: Message):
 @Client.on_message(filters.command("cleanservice", prefix))
 @require_admin(permissions=["can_delete_messages"])
 @use_chat_lang()
-async def delservice(_, m: Message, strings):
+async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             toggle_del_service(m.chat.id, True)

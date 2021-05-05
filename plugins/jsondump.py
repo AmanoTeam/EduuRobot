@@ -10,7 +10,7 @@ from utils import commands
 
 
 @Client.on_message(filters.command("jsondump", prefix))
-async def jsondump(_, m: Message):
+async def jsondump(c: Client, m: Message):
     params = m.text.split()
     # Remove the command and -f flag from list.
     params.pop(0)

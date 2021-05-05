@@ -50,7 +50,7 @@ def check_for_notes(chat_id, trigger):
 @Client.on_message(filters.command(["note", "savenote"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
-async def save_note(_, m: Message, strings):
+async def save_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
@@ -120,7 +120,7 @@ async def save_note(_, m: Message, strings):
 @Client.on_message(filters.command(["delnote", "rmnote"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
-async def delete_note(_, m: Message, strings):
+async def delete_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -138,7 +138,7 @@ async def delete_note(_, m: Message, strings):
 
 @Client.on_message(filters.command("notes", prefix))
 @use_chat_lang()
-async def get_all_chat_note(_, m: Message, strings):
+async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")
     all_notes = get_all_notes(chat_id)
@@ -152,7 +152,7 @@ async def get_all_chat_note(_, m: Message, strings):
         await m.reply_text(reply_text, quote=True)
 
 
-async def serve_note(_, m: Message, txt):
+async def serve_note(c: Client, m: Message, txt):
     chat_id = m.chat.id
     text = txt
 

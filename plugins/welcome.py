@@ -32,7 +32,7 @@ def toggle_welcome(chat_id: int, mode: bool):
 @Client.on_message(filters.command("setwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def set_welcome_message(_, m: Message, strings):
+async def set_welcome_message(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
         try:
@@ -72,14 +72,13 @@ async def set_welcome_message(_, m: Message, strings):
 )
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def invlaid_welcome_status_arg(_, m: Message, strings):
+async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_mode_invalid"))
-
 
 @Client.on_message(filters.command("getwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def getwelcomemsg(_, m: Message, strings):
+async def getwelcomemsg(c: Client, m: Message, strings):
     welcome, welcome_enabled = get_welcome(m.chat.id)
     if welcome_enabled:
         await m.reply_text(strings("welcome_default") if welcome is None else welcome, parse_mode=None)
@@ -90,7 +89,7 @@ async def getwelcomemsg(_, m: Message, strings):
 @Client.on_message(filters.command("welcome on", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def enable_welcome_message(_, m: Message, strings):
+async def enable_welcome_message(c: Client, m: Message, strings):
     toggle_welcome(m.chat.id, True)
     await m.reply_text(strings("welcome_mode_enable").format(chat_title=m.chat.title))
 
@@ -98,7 +97,7 @@ async def enable_welcome_message(_, m: Message, strings):
 @Client.on_message(filters.command("welcome off", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def disable_welcome_message(_, m: Message, strings):
+async def disable_welcome_message(c: Client, m: Message, strings):
     toggle_welcome(m.chat.id, False)
     await m.reply_text(strings("welcome_mode_disable").format(chat_title=m.chat.title))
 
@@ -108,14 +107,14 @@ async def disable_welcome_message(_, m: Message, strings):
 )
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def reset_welcome_message(_, m: Message, strings):
+async def reset_welcome_message(c: Client, m: Message, strings):
     set_welcome(m.chat.id, None)
     await m.reply_text(strings("welcome_reset").format(chat_title=m.chat.title))
 
 
 @Client.on_message(filters.new_chat_members & filters.group)
 @use_chat_lang()
-async def greet_new_members(_, m: Message, strings):
+async def greet_new_members(c: Client, m: Message, strings):
     members = m.new_chat_members
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))

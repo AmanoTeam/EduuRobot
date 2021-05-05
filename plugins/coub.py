@@ -11,7 +11,7 @@ from utils import commands
 
 @Client.on_message(filters.command("coub", prefix))
 @use_chat_lang()
-async def coub(_, m: Message, strings):
+async def coub(c: Client, m: Message, strings):
     text = m.text[6:]
     r = await http.get("https://coub.com/api/v2/search/coubs", params=dict(q=text))
     rjson = r.json()

@@ -51,7 +51,7 @@ def check_for_filters(chat_id, trigger):
 @Client.on_message(filters.command(["filter", "savefilter"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
-async def save_filter(_, m: Message, strings):
+async def save_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
@@ -123,7 +123,7 @@ async def save_filter(_, m: Message, strings):
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
-async def delete_filter(_, m: Message, strings):
+async def delete_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -141,7 +141,7 @@ async def delete_filter(_, m: Message, strings):
 
 @Client.on_message(filters.command("filters", prefix))
 @use_chat_lang()
-async def get_all_filter(_, m: Message, strings):
+async def get_all_filter(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("filters_list")
     all_filters = get_all_filters(chat_id)
@@ -158,7 +158,7 @@ async def get_all_filter(_, m: Message, strings):
 @Client.on_message(
     (filters.group | filters.private) & filters.text & filters.incoming, group=1
 )
-async def serve_filter(_, m: Message):
+async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text
 

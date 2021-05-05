@@ -17,7 +17,7 @@ headers = {"User-Agent": "curl/7.72.0"}
 
 @Client.on_message(filters.command(["clima", "weather"], prefix))
 @use_chat_lang()
-async def weather(_, m: Message, strings):
+async def weather(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("weather_usage"))
 

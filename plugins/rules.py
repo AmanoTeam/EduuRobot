@@ -23,7 +23,7 @@ def set_rules(chat_id, rules):
 @Client.on_message(filters.command("setrules", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def settherules(_, m: Message, strings):
+async def settherules(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         set_rules(m.chat.id, m.text.split(None, 1)[1])
         await m.reply_text(strings("rules_set_success").format(chat_title=m.chat.title))
@@ -34,14 +34,14 @@ async def settherules(_, m: Message, strings):
 @Client.on_message(filters.command("resetrules", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
-async def delete_rules(_, m: Message, strings):
+async def delete_rules(c: Client, m: Message, strings):
     set_rules(m.chat.id, None)
     await m.reply_text(strings("rules_deleted"))
 
 
 @Client.on_message(filters.command("rules", prefix) & filters.group)
 @use_chat_lang()
-async def show_rules(_, m: Message, strings):
+async def show_rules(c: Client, m: Message, strings):
     gettherules = get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(gettherules)
     if rulestxt:
@@ -57,7 +57,7 @@ async def show_rules(_, m: Message, strings):
 
 @Client.on_message(filters.regex("^/start rules_") & filters.private)
 @use_chat_lang()
-async def show_rules_pvt(_, m: Message, strings):
+async def show_rules_pvt(c: Client, m: Message, strings):
     chat_id = m.text.split("_")[-1]
     if not chat_id.isnumeric():
         return

@@ -31,7 +31,7 @@ def gen_categories_kb(strings_manager):
 
 @Client.on_callback_query(filters.regex("^commands$"))
 @use_chat_lang()
-async def cmds_list(_, m: CallbackQuery, strings):
+async def cmds_list(c: Client, m: CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_categories_kb(strings),
@@ -77,7 +77,7 @@ async def show_help(c: Client, m: Message, strings):
 
 @Client.on_callback_query(filters.regex("^view_category .+"))
 @use_chat_lang()
-async def get_category(_, m: CallbackQuery, strings):
+async def get_category(c: Client, m: CallbackQuery, strings):
     msg = commands.get_commands_message(strings, m.data.split(maxsplit=1)[1])
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
