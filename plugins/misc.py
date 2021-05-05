@@ -13,6 +13,7 @@ from utils import commands, button_parser
 
 
 admin_status = ["creator", "administrator"]
+char = html.unescape('&#8204;')
 
 
 @Client.on_message(filters.command("mark", prefix))
@@ -67,7 +68,7 @@ async def reportadmins(c: Client, m: Message, strings):
                 if not (i.user.is_deleted or i.is_anonymous):
                     mention += f"{i.user.mention}\n"
             await m.reply_to_message.reply_text(
-                strings("report_admns").format(admins_list=mention, reported_user=m.reply_to_message.from_user.mention()),
+                strings("report_admns").format(admins_list=mention, reported_user=m.reply_to_message.from_user.mention(char)),
             )
 
 
