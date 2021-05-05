@@ -1,5 +1,5 @@
 import re
-from html import escape, unescape
+from html import escape
 from urllib.parse import quote, unquote
 
 from pyrogram import Client, filters
@@ -13,7 +13,7 @@ from utils import commands, button_parser
 
 
 admin_status = ["creator", "administrator"]
-char = unescape('&#8204;')
+char = "\u2063"
 
 
 @Client.on_message(filters.command("mark", prefix))
