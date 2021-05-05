@@ -1,9 +1,9 @@
 import random
 
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import prefix
 from consts import http
 from localization import use_chat_lang
 from utils import commands

@@ -1,10 +1,10 @@
 import logging
 
+from config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
 from pyrogram import Client, idle
 from pyrogram.errors.exceptions.bad_request_400 import BadRequest
 
-from config import TOKEN, disabled_plugins, log_chat, API_ID, API_HASH
-from utils import get_restarted, del_restarted
+from utils import del_restarted, get_restarted
 
 with open("version.txt") as f:
     version = f.read().strip()

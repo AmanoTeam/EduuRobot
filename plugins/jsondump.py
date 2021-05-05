@@ -2,10 +2,10 @@ import html
 import io
 import json
 
+from config import prefix
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import prefix
 from utils import commands
 
 

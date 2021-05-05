@@ -1,19 +1,19 @@
 from typing import Union
 
+from config import prefix, version
 from pyrogram import Client, filters
 from pyrogram.types import (
     CallbackQuery,
-    InlineKeyboardMarkup,
     InlineKeyboardButton,
+    InlineKeyboardMarkup,
     Message,
 )
 
-from config import prefix, version
 from localization import use_chat_lang
 from utils import commands
 
 
-@Client.on_message(filters.command("start", prefix) &~ filters.regex("^/start rules"))
+@Client.on_message(filters.command("start", prefix) & ~filters.regex("^/start rules"))
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang()
 async def start(c: Client, m: Union[Message, CallbackQuery], strings):

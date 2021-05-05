@@ -1,9 +1,9 @@
 import logging
 
+from config import TENOR_API_KEY, prefix
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import TENOR_API_KEY, prefix
 from consts import http
 from localization import use_chat_lang
 from utils import commands

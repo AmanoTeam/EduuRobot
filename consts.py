@@ -1,6 +1,5 @@
 import httpx
 
-
 group_types = ("group", "supergroup")
 
 timeout = httpx.Timeout(40, pool=None)

@@ -1,10 +1,10 @@
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup
-
 from config import prefix
-from dbh import dbc, db
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, Message
+
+from dbh import db, dbc
 from localization import use_chat_lang
-from utils import require_admin, commands, button_parser
+from utils import button_parser, commands, require_admin
 
 
 def get_rules(chat_id):
