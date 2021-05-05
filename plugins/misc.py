@@ -56,18 +56,27 @@ async def mentionadmins(c: Client, m: Message, strings):
     )
 
 
-@Client.on_message((filters.command("report", prefix) | filters.regex("^@admin")) & filters.group & filters.reply)
+@Client.on_message(
+    (filters.command("report", prefix) | filters.regex("^@admin"))
+    & filters.group
+    & filters.reply
+)
 @use_chat_lang()
 async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
-        check_admin = await c.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-        if  check_admin.status not in admin_status:
+        check_admin = await c.get_chat_member(
+            m.chat.id, m.reply_to_message.from_user.id
+        )
+        if check_admin.status not in admin_status:
             mention = ""
             async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
-                if not (i.user.is_deleted or i.is_anonymous):
-                    mention += f"{i.user.mention}\n"
+                if not (i.user.is_deleted or i.is_anonymous or i.user.is_bot):
+                    mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
             await m.reply_to_message.reply_text(
-                strings("report_admns").format(admins_list=mention, reported_user=m.reply_to_message.from_user.mention("\u2063")),
+                strings("report_admns").format(
+                    admins_list=mention,
+                    reported_user=m.reply_to_message.from_user.mention(),
+                ),
             )
 
 
