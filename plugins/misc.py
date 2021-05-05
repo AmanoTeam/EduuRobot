@@ -56,7 +56,7 @@ async def mentionadmins(c: Client, m: Message, strings):
     )
 
 
-@Client.on_message((filters.command("report", prefix) | filters.regex("^@admin")) & filters.group filters.reply)
+@Client.on_message((filters.command("report", prefix) | filters.regex("^@admin")) & filters.group & filters.reply)
 @use_chat_lang()
 async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
