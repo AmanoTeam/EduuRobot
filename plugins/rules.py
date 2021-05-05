@@ -58,14 +58,20 @@ async def show_rules(c: Client, m: Message, strings):
 @Client.on_message(filters.regex("^/start rules_") & filters.private)
 @use_chat_lang()
 async def show_rules_pvt(c: Client, m: Message, strings):
-    cid_one = m.text.split("_")[1]
-    gettherules = get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")
-    rulestxt, rules_buttons = button_parser(gettherules)
-    if rulestxt:
+    chat_id = m.text.split("_")[-1]
+    if not chat_id.isnumeric():
+        return
+    elif not chat_id.startswith('-100'):
+        if chat_id.startswith('100'):
+            chat_id = '-' + chat_id
+        else:
+            chat_id = '-100' + chat_id
+    rules, buttons = button_parser(get_rules(chat_id))
+    if rules:
         await m.reply_text(
-            rulestxt,
+            rules,
             reply_markup=(
-                InlineKeyboardMarkup(rules_buttons) if len(rules_buttons) != 0 else None
+                InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None
             ),
         )
     else:
