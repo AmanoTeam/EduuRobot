@@ -104,9 +104,25 @@ async def getbotinfo(c: Client, m: Message, strings):
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
 async def rtcommand(c: Client, m: Message):
-    await m.reply(
-        f"🔃 <b>{m.from_user.first_name}</b> retweeted: \n\n 👤 <b>{m.reply_to_message.from_user.first_name}</b>: <i>{m.reply_to_message.text}</i>"
-    )
+    rt_text = None
+    if m.reply_to_message.media:
+        rt_text = m.reply_to_message.caption
+    else:
+        rt_text = m.reply_to_message.text
+
+    if rt_text is None:
+        return
+
+    if not re.match("🔃 .* retweeted:\n\n👤 .*", rt_text):
+        text = f"🔃 <b>{escape(m.from_user.first_name)}</b> retweeted:\n\n"
+        text += f"👤 <b>{escape(m.reply_to_message.from_user.first_name)}</b>:"
+        text += f" <i>{escape(rt_text)}</i>"
+
+        await m.reply_to_message.reply_text(
+            text,
+            disable_web_page_preview=True,
+            disable_notification=True,
+        )
 
 
 @Client.on_message(filters.command("urlencode", prefix))
