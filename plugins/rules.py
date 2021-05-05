@@ -48,7 +48,26 @@ async def show_rules(c: Client, m: Message, strings):
         # TODO: Send rules in private plus a toggle for that.
         await m.reply_text(
             strings("rules_message").format(chat_title=m.chat.title, rules=rulestxt),
-            reply_markup=(InlineKeyboardMarkup(rules_buttons) if len(rules_buttons) != 0 else None),
+            reply_markup=(
+                InlineKeyboardMarkup(rules_buttons) if len(rules_buttons) != 0 else None
+            ),
+        )
+    else:
+        await m.reply_text(strings("rules_empty"))
+
+
+@Client.on_message(filters.regex("^/start rules_") & filters.private)
+@use_chat_lang()
+async def show_rules_pvt(c: Client, m: Message, strings):
+    cid_one = m.text.split("_")[1]
+    gettherules = get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")
+    rulestxt, rules_buttons = button_parser(gettherules)
+    if rulestxt:
+        await m.reply_text(
+            rulestxt,
+            reply_markup=(
+                InlineKeyboardMarkup(rules_buttons) if len(rules_buttons) != 0 else None
+            ),
         )
     else:
         await m.reply_text(strings("rules_empty"))
