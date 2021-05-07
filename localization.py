@@ -106,7 +106,7 @@ def get_locale_string(
 
 
 def get_lang(message) -> str:
-    if message == (Message or CallbackQuery):
+    if isinstance(message, (Message, CallbackQuery))
         if isinstance(message, CallbackQuery):
             chat = message.message.chat
         else:
