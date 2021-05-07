@@ -5,7 +5,7 @@ from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
 
-from pyrogram.types import CallbackQuery, Message
+from pyrogram.types import CallbackQuery, Message, InlineQuery
 
 from consts import group_types
 from dbh import db, dbc
@@ -106,13 +106,14 @@ def get_locale_string(
 
 
 def get_lang(message) -> str:
-    if isinstance(message, (Message, CallbackQuery)):
-        if isinstance(message, CallbackQuery):
-            chat = message.message.chat
-        else:
-            chat = message.chat
-    else:
+    if isinstance(message, CallbackQuery):
+        chat = message.message.chat
+    elif isinstance(message, Message):
+        chat = message.chat
+    elif isinstance(message, InlineQuery):
         chat, chat.type = message.from_user, "private"
+    else:
+        raise TypeError(f"Update type '{message.__name__}' is not supported.")
 
     lang = get_db_lang(chat.id, chat.type)
 
