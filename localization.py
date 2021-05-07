@@ -148,3 +148,41 @@ def use_chat_lang(context=None):
         return wrapper
 
     return decorator
+
+
+def get_lang_inline(query) -> str:
+
+    lang = get_db_lang(query.from_user.id, chat_type="private")
+
+    lang = lang or query.from_user.language_code or default_language
+    # User has a language_code without hyphen
+    if len(lang.split("-")) == 1:
+        # Try to find a language that starts with the provided language_code
+        for locale_ in enabled_locales:
+            if locale_.startswith(lang):
+                lang = locale_
+    elif lang.split("-")[1].islower():
+        lang = lang.split("-")
+        lang[1] = lang[1].upper()
+        lang = "-".join(lang)
+    return lang if lang in enabled_locales else default_language
+
+
+def use_chat_lang_inline(context=None):
+    if not context:
+        frame = inspect.stack()[1]
+        context = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
+
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(client, query):
+            lang = get_lang_inline(query)
+
+            dic = langdict.get(lang, langdict[default_language])
+
+            lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
+            return await func(client, query, lfunc)
+
+        return wrapper
+
+    return decorator
