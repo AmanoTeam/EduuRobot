@@ -112,8 +112,7 @@ def get_lang(message) -> str:
         else:
             chat = message.chat
     else:
-        chat = message.from_user
-        chat.type = "private"
+        chat, chat.type = message.from_user, "private"
 
     lang = get_db_lang(chat.id, chat.type)
 
