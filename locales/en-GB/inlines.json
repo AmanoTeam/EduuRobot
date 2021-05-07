@@ -1,7 +1,7 @@
 {
   "markdown_send_inline": "Click here to send the text in markdown format.",
   "html_send_inline": "Click here to send the text in html format.",
-  "user_info_inline_cant_found_user": "I cant found the user.",
+  "user_info_inline_cant_found_user": "User not found.",
   "user_info_inline_send": "Click here to get the information about the user.",
-  "user_info_inline_string": "username: {usernameformat}\nid: {useridformat}\ndc: {userdcformat}\nlink to the user: {usermentionformat}"
+  "user_info_inline_string": "Username: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nUser link: {usermentionformat}"
 }
