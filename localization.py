@@ -5,7 +5,7 @@ from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
 
-from pyrogram.types import CallbackQuery, Message, InlineQuery
+from pyrogram.types import CallbackQuery, Message
 
 from consts import group_types
 from dbh import db, dbc
