@@ -106,12 +106,19 @@ def get_locale_string(
 
 
 def get_lang(message) -> str:
-    if isinstance(message, CallbackQuery):
-        chat = message.message.chat
+    if message == (Message or CallbackQuery):
+        if isinstance(message, CallbackQuery):
+            chat = message.message.chat
+        else:
+            chat = message.chat
     else:
-        chat = message.chat
+        chat = message.from_user
+        chat.type = "private"
 
-    lang = get_db_lang(chat.id, chat.type)
+    if message == (Message or CallbackQuery):
+        lang = get_db_lang(chat.id, chat.type)
+    else:
+        lang = get_db_lang(chat.id, chat_type="private")
 
     if chat.type == "private":
         lang = lang or message.from_user.language_code or default_language
@@ -138,7 +145,8 @@ def use_chat_lang(context=None):
     def decorator(func):
         @wraps(func)
         async def wrapper(client, message):
-            lang = get_lang(message) if message == (Message or CallbackQuery) else get_lang_inline(message)
+            lang = get_lang(message)
+
             dic = langdict.get(lang, langdict[default_language])
 
             lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
@@ -147,21 +155,3 @@ def use_chat_lang(context=None):
         return wrapper
 
     return decorator
-
-
-def get_lang_inline(query) -> str:
-
-    lang = get_db_lang(query.from_user.id, chat_type="private")
-
-    lang = lang or query.from_user.language_code or default_language
-    # User has a language_code without hyphen
-    if len(lang.split("-")) == 1:
-        # Try to find a language that starts with the provided language_code
-        for locale_ in enabled_locales:
-            if locale_.startswith(lang):
-                lang = locale_
-    elif lang.split("-")[1].islower():
-        lang = lang.split("-")
-        lang[1] = lang[1].upper()
-        lang = "-".join(lang)
-    return lang if lang in enabled_locales else default_language
