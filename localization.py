@@ -5,7 +5,7 @@ from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
 
-from pyrogram.types import CallbackQuery
+from pyrogram.types import CallbackQuery, Message, InlineQuery
 
 from consts import group_types
 from dbh import db, dbc
@@ -138,8 +138,7 @@ def use_chat_lang(context=None):
     def decorator(func):
         @wraps(func)
         async def wrapper(client, message):
-            lang = get_lang(message)
-
+            lang = get_lang(message) if message == (Message or CallbackQuery) else get_lang_inline(message)
             dic = langdict.get(lang, langdict[default_language])
 
             lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
@@ -166,23 +165,3 @@ def get_lang_inline(query) -> str:
         lang[1] = lang[1].upper()
         lang = "-".join(lang)
     return lang if lang in enabled_locales else default_language
-
-
-def use_chat_lang_inline(context=None):
-    if not context:
-        frame = inspect.stack()[1]
-        context = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
-
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(client, query):
-            lang = get_lang_inline(query)
-
-            dic = langdict.get(lang, langdict[default_language])
-
-            lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
-            return await func(client, query, lfunc)
-
-        return wrapper
-
-    return decorator
