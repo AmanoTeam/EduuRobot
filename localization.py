@@ -115,10 +115,7 @@ def get_lang(message) -> str:
         chat = message.from_user
         chat.type = "private"
 
-    if message == (Message or CallbackQuery):
-        lang = get_db_lang(chat.id, chat.type)
-    else:
-        lang = get_db_lang(chat.id, chat_type="private")
+    lang = get_db_lang(chat.id, chat.type)
 
     if chat.type == "private":
         lang = lang or message.from_user.language_code or default_language
