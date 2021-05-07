@@ -2,5 +2,6 @@
   "code_exec_tio_res_string_no_err": "<b>שפה:</b>\n\n<code>{langformat}</code>\n\n<b>קוד:</b>\n\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n\n<code>{resformat}</code>\n\n<b>סטטיסטיקה:</b>\n\n<code>{statsformat}</code>",
   "code_exec_tio_res_string_err": "<b>שפה:</b>\n\n<code>{langformat}</code>\n\n<b>קוד:</b>\n\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n\n<code>{resformat}</code>\n\n<b>שגיאות:</b>\n\n<code>{errformat}</code>",
   "code_exec_err_string": "שגיאה: השפה <b>{langformat}</b> לא נמצאה, רשימת השפות הנתמכות: https://nekobin.com/tavijipafa",
-  "code_exec_inline_send": "שפה: {langformat} - קוד:  {codeformat}"
+  "code_exec_inline_send": "שפה: {langformat} - קוד:  {codeformat}",
+  "code_exec_err_inline_send_string": "שפה {langformat} לא נמצא."
 }
