@@ -1,1 +1,7 @@
-{}
+{
+  "markdown_send_inline": "Clique aqui para enviar o texto no formato markdown.",
+  "html_send_inline": "Clique aqui para enviar o texto no formato html.",
+  "user_info_inline_cant_found_user": "Usuário não encontrado.",
+  "user_info_inline_send": "Clique aqui para obter informações do usuário.",
+  "user_info_inline_string": "Nome de usuário: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nlink do usuário: {usermentionformat}"
+}
