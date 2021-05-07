@@ -1,5 +1,7 @@
 {
   "code_exec_tio_res_string_no_err": "<b>Linguagem:</b>\n\n<code>{langformat}</code>\n\n<b>Código:</b>\n\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n\n<code>{resformat}</code>\n\n<b>Estatísticas:</b>\n\n<code>{statsformat}</code>",
   "code_exec_tio_res_string_err": "<b>Linguagem:</b>\n\n<code>{langformat}</code>\n\n<b>Código:</b>\n\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n\n<code>{resformat}</code>\n\n<b>Erros:</b>\n\n<code>{errformat}</code>",
-  "code_exec_err_string": "Erro: A linguagem <b>{langformat}</b> não foi encontrada. Lista de linguagens suportadas: https://nekobin.com/tavijipafa"
+  "code_exec_err_string": "Erro: A linguagem <b>{langformat}</b> não foi encontrada. Lista de linguagens suportadas: https://nekobin.com/tavijipafa",
+  "code_exec_inline_send": "Idioma: {langformat} - Código:  {codeformat}",
+  "code_exec_err_inline_send_string": "Idioma {langformat} não encontrado."
 }

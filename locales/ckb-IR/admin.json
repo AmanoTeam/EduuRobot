@@ -7,7 +7,7 @@
   "antichannelpin_status_enabled": "دژە هەڵواسینی کەناڵ چالاکە.",
   "ban_description": "بەکارهێنەر قەدەغەدەکات.",
   "ban_success": "بەکارهێنەر {user} لەلایەن {admin} قەدەغەکرا.",
-  "cleanservice_description": "پەیامی خزمەتگوزاری (نمووبە: کاتێک یەکێک دێتە ناو وتووێژەکە) بسڕەوە.",
+  "cleanservice_description": "پەیامی خزمەتگوزاری (نمووبە: کاتێک یەکێک دێتە ناو گروپەکە) بسڕەوە.",
   "cleanservice_disabled": "سڕینەوەی پەیامی خزمەتگوزاری ناچالاککرا.",
   "cleanservice_enabled": "سڕینەوەی پەیامی خزمەتگوزاری چالاککرا.",
   "cleanservice_invalid_arg": "بەکارهێنان: <code>/cleanservice off/on</code>",
