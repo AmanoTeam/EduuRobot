@@ -1,11 +1,11 @@
 {
   "add_filter_success": "وەڵامدانەوە بۆ <b>{trigger}</b> زیادکرا.",
   "add_filter_empty": "تکایە ناوەڕۆکێک بۆ وەڵامدانەوەکە دەستنیشان بکە.",
-  "delfilter_description": "وەڵامدانەوەیەک لەم چاتە لاببە.",
-  "filter_description": "وەڵامدانەوەیەک لەم چاتە زیادبکە.",
-  "filters_description": "وەڵامدانەوەکانی ئەم چاتە ببینە.",
-  "filters_list": "وەڵامدانەوەکان لەم چاتە:",
-  "filters_list_empty": "لە ئێستادا هیچ وەڵامدانەوەیەک لەم چاتەدا نییە.",
+  "delfilter_description": "وەڵامدانەوەیەک لەم گروپە لاببە.",
+  "filter_description": "وەڵامدانەوەیەک لەم گروپە زیادبکە.",
+  "filters_description": "وەڵامدانەوەکانی ئەم گروپە ببینە.",
+  "filters_list": "وەڵامدانەوەکان لەم گروپە:",
+  "filters_list_empty": "لە ئێستادا هیچ وەڵامدانەوەیەک لەم گروپەدا نییە.",
   "no_filter_with_name": "وەڵامدانەی <b>{trigger}</b> نییە.",
   "remove_filter_success": "وەڵامدانەوەی <b>{trigger}</b> لابرا."
 }
