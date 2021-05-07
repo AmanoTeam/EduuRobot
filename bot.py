@@ -2,7 +2,7 @@ import logging
 
 from config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
 from pyrogram import Client, idle
-from pyrogram.errors.exceptions.bad_request_400 import BadRequest
+from pyrogram.errors import BadRequest
 
 from utils import del_restarted, get_restarted
 
@@ -26,10 +26,12 @@ with client:
         del_restarted()
         try:
             client.send_message(
-                log_chat, "<b>Bot started</b>\n\n" f"<b>Version:</b> {version}"
+                log_chat,
+                ("<b>Bot started</b>\n\n" f"<b>Version:</b> <code>{version}</code>"),
             )
             if wr:
-                client.edit_message_text(wr[0], wr[1], "Restarted successfully.")
+                client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
         except BadRequest:
             logging.warning("Unable to send message to log_chat.")
+            pass
         idle()

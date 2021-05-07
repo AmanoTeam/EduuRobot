@@ -166,8 +166,7 @@ async def time_extract(m: Message, t: str) -> int:
         unit = t[-1]
         num = t[:-1]
         if not num.isdigit():
-            await m.reply_text("Invalid Amount specified")
-            return
+            return await m.reply_text("Invalid Amount specified")
 
         if unit == "m":
             t_time = int(num) * 60
@@ -217,8 +216,7 @@ def split_quotes(text: str) -> List:
         if not key:
             key = text[0] + text[0]
         return list(filter(None, [key, rest]))
-    else:
-        return text.split(None, 1)
+    return text.split(None, 1)
 
 
 def button_parser(markdown_note):
@@ -252,8 +250,8 @@ def button_parser(markdown_note):
         else:
             note_data += markdown_note[prev:to_check]
             prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
+
+    note_data += markdown_note[prev:]
 
     return note_data, buttons
 
