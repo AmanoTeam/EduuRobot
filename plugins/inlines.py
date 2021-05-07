@@ -8,6 +8,7 @@ from pyrogram.types import (
 )
 
 from utils import button_parser
+from localization import use_chat_lang_inline
 
 
 @Client.on_inline_query(filters.regex(r"^face"))
@@ -61,13 +62,14 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^markdown"))
-async def markdown_inline(c: Client, q: InlineQuery):
+@use_chat_lang_inline()
+async def markdown_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(
         [
             InlineQueryResultArticle(
-                title="click here to send the text in markdown format",
+                title=strings("markdown_send_inline"),
                 input_message_content=InputTextMessageContent(
                     querytxt, parse_mode="markdown"
                 ),
@@ -82,13 +84,14 @@ async def markdown_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^html"))
-async def html_inline(c: Client, q: InlineQuery):
+@use_chat_lang_inline()
+async def html_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer(
         [
             InlineQueryResultArticle(
-                title="click here to send the text in html format",
+                title=strings("html_send_inline"),
                 input_message_content=InputTextMessageContent(
                     querytxt, parse_mode="html"
                 ),
@@ -103,7 +106,8 @@ async def html_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^info"))
-async def info_inline(c: Client, q: InlineQuery):
+@use_chat_lang_inline()
+async def info_inline(c: Client, q: InlineQuery, strings):
     try:
         if q.query == "info":
             user = q.from_user
@@ -114,9 +118,9 @@ async def info_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title="i cant found the user",
+                    title=strings("user_info_inline_cant_found_user"),
                     input_message_content=InputTextMessageContent(
-                        "i cant found the user"
+                        strings("user_info_inline_cant_found_user")
                     ),
                 )
             ]
@@ -124,9 +128,14 @@ async def info_inline(c: Client, q: InlineQuery):
     await q.answer(
         [
             InlineQueryResultArticle(
-                title="click here to get the information about the user",
+                title=strings("user_info_inline_send"),
                 input_message_content=InputTextMessageContent(
-                    f"username: {user.username}\nid: {user.id}\ndc: {user.dc_id}\nlink to the user: {user.mention()}",
+                    strings("user_info_inline_string").format(
+                        usernameformat=user.username,
+                        useridformat=user.id,
+                        userdcformat=user.dc_id,
+                        usermentionformat=user.mention(),
+                    ),
                 ),
             )
         ]
