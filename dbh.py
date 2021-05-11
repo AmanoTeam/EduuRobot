@@ -9,8 +9,6 @@ dbc.execute(
                                           welcome,
                                           welcome_enabled INTEGER,
                                           rules,
-                                          goodbye,
-                                          goodbye_enabled INTEGER,
                                           warns_limit INTEGER,
                                           chat_lang,
                                           cached_admins,
