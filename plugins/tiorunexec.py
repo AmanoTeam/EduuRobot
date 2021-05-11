@@ -72,8 +72,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                 [
                     InlineQueryResultArticle(
                         title=strings("code_exec_inline_send").format(
-                            langformat=execlanguage, codeformat=codetoexec
+                            langformat=execlanguage
                         ),
+                        description=tiores,
                         input_message_content=InputTextMessageContent(
                             strings("code_exec_tio_res_string_no_err").format(
                                 langformat=execlanguage,
@@ -83,15 +84,17 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                             )
                         ),
                     )
-                ]
+                ],
+                cache_time=0,
             )
         else:
             await q.answer(
                 [
                     InlineQueryResultArticle(
                         title=strings("code_exec_inline_send").format(
-                            langformat=execlanguage, codeformat=codetoexec
+                            langformat=execlanguage
                         ),
+                        description=tiores,
                         input_message_content=InputTextMessageContent(
                             strings("code_exec_tio_res_string_err").format(
                                 langformat=execlanguage,
@@ -101,7 +104,8 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                             )
                         ),
                     )
-                ]
+                ],
+                cache_time=0,
             )
     else:
         await q.answer(
