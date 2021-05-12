@@ -1,0 +1,9 @@
+{
+  "noresfound": "No results found.",
+  "ytdlgetvidinfo": "Getting the info about the video...",
+  "ytdlerrmsg": "An error has occurred.\n\n{errmsg}",
+  "ytdldownloadmainmsg": "Downloading <code>{dwnldname}</code> from YouTube...\n({thedownloadsize})",
+  "ytdlsendaudiomsg": "Sending audio...",
+  "ytdlerrfiletoobig": "The file size is more than my file size limit(200mb) ({downloadsizeformat}).",
+  "ytdlusemsg": "*Usage:* /ytdl Video URL or name"
+}
