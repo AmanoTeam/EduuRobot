@@ -2,7 +2,7 @@ import datetime, os, re, tempfile, time, async_files, youtube_dl
 from pyromod.helpers import ikb
 from consts import http
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, CallbackQuery
 from pyrogram.errors import BadRequest, ImageProcessFailed
 from localization import use_chat_lang
 from typing import Callable, Coroutine
