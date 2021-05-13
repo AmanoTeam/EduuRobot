@@ -1,4 +1,4 @@
-import datetime, os, re, tempfile, time, async_files, youtube_dl, asyncio
+import datetime, os, re, tempfile, time, async_files, youtube_dl, asyncio, math
 from pyromod.helpers import ikb
 from consts import http
 from pyrogram import Client, filters
