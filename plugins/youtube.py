@@ -1,11 +1,12 @@
 import datetime
+import io
+import functools
 import os
 import re
+import time
 import shutil
 import tempfile
-import time
 
-import async_files
 import youtube_dl
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
@@ -54,7 +55,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
     for f in yt["formats"]:
         if f["format_id"] == "140":
             afsize = f["filesize"] or 0
-        if f["ext"] == "mp4" and not f["filesize"] is None:
+        if f["ext"] == "mp4" and f["filesize"] is not None:
             vfsize = f["filesize"] or 0
             vformat = f["format_id"]
 
@@ -103,6 +104,23 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     await cq.message.edit(strings("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
+    last_edit = 0
+
+    def progress(m, d):
+        nonlocal last_edit
+
+        if d["status"] == "finished":
+            return
+        if d["status"] == "downloading":
+            if last_edit + 1 < int(time.time()):
+                percent = d["_percent_str"]
+                try:
+                    m.edit(f"{strings('ytdl_downloading')} {percent}")
+                except BaseException:
+                    pass
+                finally:
+                    last_edit = int(time.time())
+
     if "vid" in data:
         ydl = youtube_dl.YoutubeDL(
             {
@@ -116,9 +134,11 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
             {
                 "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
                 "format": "140",
+                "extractaudio": True,
                 "noplaylist": True,
             }
         )
+    ydl.add_progress_hook(functools.partial(progress, cq.message))
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
@@ -126,11 +146,8 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         return
     await cq.message.edit(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
-    ctime = time.time()
-    r = await http.get(yt["thumbnail"])
-    async with async_files.FileIO(f"{path}/{ctime}.png", "wb") as f:
-        await f.write(r.read())
-        await f.close()
+    thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
+    thumb.name = "thumbnail.png"
     if "vid" in data:
         try:
             await c.send_video(
@@ -140,7 +157,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 height=1080,
                 caption=yt["title"],
                 duration=yt["duration"],
-                thumb=f"{path}/{ctime}.png",
+                thumb=thumb,
                 reply_to_message_id=int(mid),
             )
         except BadRequest as e:
@@ -162,7 +179,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 title=title,
                 performer=performer,
                 duration=yt["duration"],
-                thumb=f"{path}/{ctime}.png",
+                thumb=thumb,
                 reply_to_message_id=int(mid),
             )
         except BadRequest as e:
