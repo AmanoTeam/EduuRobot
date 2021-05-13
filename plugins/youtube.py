@@ -2,6 +2,7 @@ import asyncio
 import datetime
 import os
 import re
+import shutil
 import tempfile
 import time
 from functools import partial, wraps
@@ -183,7 +184,5 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
             )
             pass
         await c.delete_messages(chat_id=int(cid), message_ids=cq.message.message_id)
-    try:
-        os.system(f"rm -rf {tempdir}")
-    except BaseException:
-        return
+
+    shutil.rmtree(tempdir, ignore_errors=True)
