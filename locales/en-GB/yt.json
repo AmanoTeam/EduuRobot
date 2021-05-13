@@ -6,5 +6,5 @@
   "ytdlerrmsg": "<b>Error!</b>\n<code>{errmsg}</code>",
   "ytdlerrcantsndvidmsg": "Sorry! I was unable to send the video because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
   "ytdlerrcantsndaudmsg": "Sorry! I was unable to send the audio because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
-  "ytdldownloadmainmsg": "Downloading...",
+  "ytdldownloadmainmsg": "Downloading..."
 }
