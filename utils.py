@@ -21,6 +21,15 @@ START_CHAR = ("'", '"', SMART_OPEN)
 _EMOJI_REGEXP = None
 
 
+def pretty_size(size):
+    units = ["B", "KB", "MB", "GB"]
+    unit = 0
+    while size >= 1024:
+        size /= 1024
+        unit += 1
+    return "%0.2f %s" % (size, units[unit])
+
+
 def add_chat(chat_id, chat_type):
     if chat_type == "private":
         dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
