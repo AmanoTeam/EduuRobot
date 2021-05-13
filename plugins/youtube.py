@@ -11,8 +11,8 @@ import async_files
 import youtube_dl
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
+from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
-from pyromod.helpers import ikb
 
 from config import prefix
 from consts import http
