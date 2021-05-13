@@ -1,9 +1,10 @@
 {
-  "noresfound": "No results found.",
-  "ytdlgetvidinfo": "Getting the info about the video...",
-  "ytdlerrmsg": "An error has occurred.\n\n{errmsg}",
-  "ytdldownloadmainmsg": "Downloading <code>{dwnldname}</code> from YouTube...\n({thedownloadsize})",
-  "ytdlsendaudiomsg": "Sending audio...",
-  "ytdlerrfiletoobig": "The file size is more than my file size limit(200mb) ({downloadsizeformat}).",
-  "ytdlusemsg": "*Usage:* /ytdl Video URL or name"
+  "ytdlplspectxt": "Please reply to a YouTube link or text.",
+  "ytdlaudbtn": "💿 Audio",
+  "ytdlvidbtn": "🎬 Video",
+  "ut": "Sorry! I cannot download this media because it exceeds my 200MB upload limit.",
+  "ytdlerrmsg": "<b>Error!</b>\n<code>{errmsg}</code>",
+  "ytdlerrcantsndvidmsg": "Sorry! I was unable to send the video because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
+  "ytdlerrcantsndaudmsg": "Sorry! I was unable to send the audio because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
+  "ytdldownloadmainmsg": "Downloading...",
 }
