@@ -7,7 +7,7 @@ from pyrogram.errors import BadRequest, ImageProcessFailed
 from localization import use_chat_lang
 from typing import Callable, Coroutine
 from functools import partial, wraps
-from cofnig import prefix
+from config import prefix
 from utils import pretty_size
 
 
