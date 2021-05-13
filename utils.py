@@ -1,10 +1,11 @@
+import asyncio
 import inspect
 import math
 import os.path
 import re
 import time
 from functools import partial, wraps
-from typing import List, Optional, Tuple, Union
+from typing import Callable, Coroutine, List, Optional, Tuple, Union
 
 from pyrogram import Client, emoji, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
@@ -30,6 +31,17 @@ def pretty_size(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return "%s %s" % (s, size_name[i])
+
+
+def aiowrap(func: Callable) -> Coroutine:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
 
 
 def add_chat(chat_id, chat_type):

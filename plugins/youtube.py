@@ -1,12 +1,9 @@
-import asyncio
 import datetime
 import os
 import re
 import shutil
 import tempfile
 import time
-from functools import partial, wraps
-from typing import Callable, Coroutine
 
 import async_files
 import youtube_dl
@@ -18,18 +15,7 @@ from pyrogram.types import CallbackQuery, Message
 from config import prefix
 from consts import http
 from localization import use_chat_lang
-from utils import pretty_size
-
-
-def aiowrap(func: Callable) -> Coroutine:
-    @wraps(func)
-    async def run(*args, loop=None, executor=None, **kwargs):
-        if loop is None:
-            loop = asyncio.get_event_loop()
-        pfunc = partial(func, *args, **kwargs)
-        return await loop.run_in_executor(executor, pfunc)
-
-    return run
+from utils import aiowrap, pretty_size
 
 
 @aiowrap
