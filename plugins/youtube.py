@@ -158,7 +158,6 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 text=(strings("ytdlerrcantsndvidmsg").format(errmsg=e)),
                 reply_to_message_id=int(mid),
             )
-            pass
         await c.delete_messages(chat_id=int(cid), message_ids=cq.message.message_id)
     else:
         if " - " in yt["title"]:
@@ -182,7 +181,6 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 text=(strings("ytdlerrcantsndaudmsg").format(errmsg=e)),
                 reply_to_message_id=int(mid),
             )
-            pass
         await c.delete_messages(chat_id=int(cid), message_ids=cq.message.message_id)
 
     shutil.rmtree(tempdir, ignore_errors=True)
