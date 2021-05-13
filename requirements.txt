@@ -10,3 +10,5 @@ telegraph
 Pillow==8.2.0
 pytio
 youtube-dl
+async_files
+pyromod
