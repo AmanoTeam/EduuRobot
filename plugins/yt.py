@@ -3,7 +3,7 @@ from pyromod.helpers import ikb
 from consts import http
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery
-from pyrogram.errors import BadRequest, ImageProcessFailed
+from pyrogram.errors import BadRequest
 from localization import use_chat_lang
 from typing import Callable, Coroutine
 from functools import partial, wraps
