@@ -6,6 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import prefix
 from localization import use_chat_lang
+from utils import pretty_size
 
 
 ydl = youtube_dl.YoutubeDL(
@@ -13,15 +14,6 @@ ydl = youtube_dl.YoutubeDL(
 )
 
 yt_headers = {"x-youtube-client-name": "1", "x-youtube-client-version": "2.20200827"}
-
-
-def pretty_size(size):
-    units = ["B", "KB", "MB", "GB"]
-    unit = 0
-    while size >= 1024:
-        size /= 1024
-        unit += 1
-    return "%0.2f %s" % (size, units[unit])
 
 
 async def search_yt(query):
