@@ -47,7 +47,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text(strings("plspectxt"))
+        await m.reply_text(strings("ytdl_missing_argument"))
         return
 
     ydl = youtube_dl.YoutubeDL(
@@ -75,11 +75,11 @@ async def ytdlcmd(c: Client, m: Message, strings):
     keyboard = [
         [
             (
-                strings("ytdlaudbtn"),
+                strings("ytdl_audio_button"),
                 f'_aud.{yt["id"]}|{afsize}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
             ),
             (
-                strings("ytdlvidbtn"),
+                strings("ytdl_video_button"),
                 f'_vid.{yt["id"]}|{vfsize}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
             ),
         ]
@@ -92,7 +92,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
         title = yt["title"]
 
     text = f"🎧 <b>{performer}</b> - <i>{title}</i>\n"
-    text += f"💾 <code>{pretty_size(afsize)}</code> (audio) / <code>{pretty_size(int(vfsize))}</code> (vídeo)\n"
+    text += f"💾 <code>{pretty_size(afsize)}</code> (audio) / <code>{pretty_size(int(vfsize))}</code> (video)\n"
     text += f"⏳ <code>{datetime.timedelta(seconds=yt.get('duration'))}</code>"
 
     await m.reply_text(text, reply_markup=ikb(keyboard))
@@ -103,16 +103,18 @@ async def ytdlcmd(c: Client, m: Message, strings):
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, vformat, cid, userid, mid = cq.data.split("|")
     if not cq.from_user.id == int(userid):
-        return await cq.answer("This button is not for you!", cache_time=60)
+        return await cq.answer(
+            strings("ytdl_button_denied"), cache_time=60, is_personal=True
+        )
     if int(fsize) > 200000000:
         return await cq.answer(
-            (strings("ytdlerrfiletoobigmsg")),
+            strings("ytdl_file_too_big"),
             show_alert=True,
             cache_time=60,
         )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = "https://www.youtube.com/watch?v=" + vid
-    await cq.message.edit(strings("ytdldownloadmainmsg"))
+    await cq.message.edit(strings("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
     if "vid" in data:
@@ -134,7 +136,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
-        await cq.message.edit(strings("ytdlerrmsg").format(errmsg=e))
+        await cq.message.edit(strings("ytdl_download_error").format(errmsg=e))
         return
     await cq.message.edit(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
@@ -158,10 +160,9 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         except BadRequest as e:
             await c.send_message(
                 chat_id=int(cid),
-                text=(strings("ytdlerrcantsndvidmsg").format(errmsg=e)),
+                text=strings("ytdl_send_error").format(errmsg=e),
                 reply_to_message_id=int(mid),
             )
-        await c.delete_messages(chat_id=int(cid), message_ids=cq.message.message_id)
     else:
         if " - " in yt["title"]:
             performer, title = yt["title"].rsplit(" - ", 1)
@@ -181,9 +182,9 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         except BadRequest as e:
             await c.send_message(
                 chat_id=int(cid),
-                text=(strings("ytdlerrcantsndaudmsg").format(errmsg=e)),
+                text=strings("ytdl_send_error").format(errmsg=e),
                 reply_to_message_id=int(mid),
             )
-        await c.delete_messages(chat_id=int(cid), message_ids=cq.message.message_id)
+    await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
