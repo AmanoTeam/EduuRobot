@@ -40,15 +40,16 @@ def extract_info(instance, url, download=True):
 @Client.on_message(filters.command("ytdl", prefix))
 @use_chat_lang()
 async def ytdlcmd(c: Client, m: Message, strings):
-    args = m.text.split(None, 1)[1]
     user = m.from_user.id
+
     if m.reply_to_message and m.reply_to_message.text:
         url = m.reply_to_message.text
-    elif m.text and args:
-        url = args
+    elif len(m.command) > 1:
+        url = m.text.split(None, 1)[1]
     else:
         await m.reply_text(strings("plspectxt"))
         return
+
     ydl = youtube_dl.YoutubeDL(
         {"outtmpl": "dls/%(title)s-%(id)s.%(ext)s", "format": "mp4", "noplaylist": True}
     )
@@ -57,17 +58,20 @@ async def ytdlcmd(c: Client, m: Message, strings):
         url,
         re.M,
     )
+
     if not rege:
         yt = await extract_info(ydl, "ytsearch:" + url, download=False)
         yt = yt["entries"][0]
     else:
         yt = await extract_info(ydl, rege.group(), download=False)
+
     for f in yt["formats"]:
         if f["format_id"] == "140":
             afsize = f["filesize"] or 0
         if f["ext"] == "mp4" and not f["filesize"] is None:
             vfsize = f["filesize"] or 0
             vformat = f["format_id"]
+
     keyboard = [
         [
             (
@@ -80,6 +84,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
             ),
         ]
     ]
+
     if " - " in yt["title"]:
         performer, title = yt["title"].rsplit(" - ", 1)
     else:
@@ -108,7 +113,6 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = "https://www.youtube.com/watch?v=" + vid
     await cq.message.edit(strings("ytdldownloadmainmsg"))
-    await cq.answer("wait", cache_time=0)
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
     if "vid" in data:
@@ -132,8 +136,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     except BaseException as e:
         await cq.message.edit(strings("ytdlerrmsg").format(errmsg=e))
         return
-    a = "Sending..."
-    await cq.message.edit(a)
+    await cq.message.edit(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     ctime = time.time()
     r = await http.get(yt["thumbnail"])
