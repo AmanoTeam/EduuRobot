@@ -80,7 +80,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
     text += f"💾 <code>{pretty_size(afsize)}</code> (audio) / <code>{pretty_size(int(vfsize))}</code> (vídeo)\n"
     text += f"⏳ <code>{datetime.timedelta(seconds=yt.get('duration'))}</code>"
 
-    await m.reply_text(text, reply_markup=c.ikb(keyboard))
+    await m.reply_text(text, reply_markup=ikb(keyboard))
 
 
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
