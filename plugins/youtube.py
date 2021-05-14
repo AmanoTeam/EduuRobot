@@ -90,9 +90,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, vformat, cid, userid, mid = cq.data.split("|")
     if not cq.from_user.id == int(userid):
-        return await cq.answer(
-            strings("ytdl_button_denied"), cache_time=60, is_personal=True
-        )
+        return await cq.answer(strings("ytdl_button_denied"), cache_time=60)
     if int(fsize) > 200000000:
         return await cq.answer(
             strings("ytdl_file_too_big"),
