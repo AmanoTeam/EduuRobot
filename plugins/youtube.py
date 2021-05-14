@@ -116,7 +116,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 percent = d["_percent_str"]
                 try:
                     m.edit(f"{strings('ytdl_downloading')} {percent}")
-                except BaseException:
+                except BadRequest:
                     pass
                 finally:
                     last_edit = int(time.time())
@@ -142,7 +142,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
-        await cq.message.edit(strings("ytdl_download_error").format(errmsg=e))
+        await cq.message.edit(strings("ytdl_send_error").format(errmsg=e))
         return
     await cq.message.edit(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
