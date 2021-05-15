@@ -1,14 +1,16 @@
+import asyncio
 import inspect
+import math
 import os.path
 import re
 import time
 from functools import partial, wraps
-from typing import List, Optional, Tuple, Union
+from typing import Callable, Coroutine, List, Optional, Tuple, Union
 
-from config import sudoers
 from pyrogram import Client, emoji, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
 
+from config import sudoers
 from consts import group_types
 from dbh import db, dbc
 from localization import default_language, get_lang, get_locale_string, langdict
@@ -19,6 +21,27 @@ SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 _EMOJI_REGEXP = None
+
+
+def pretty_size(size_bytes):
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
+
+
+def aiowrap(func: Callable) -> Coroutine:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
 
 
 def add_chat(chat_id, chat_type):
