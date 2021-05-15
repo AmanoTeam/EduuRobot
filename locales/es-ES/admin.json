@@ -1,9 +1,14 @@
 {
   "antichannelpin_description": "Desanclar automáticamente los mensajes procedentes del canal vinculado al chat.",
-  "antichannelpin_disabled": "Anti pin de canal para este chat está deshabilitado.",
   "antichannelpin_invalid_arg": "Argumento inválido. Usa <code>/antichannelpin off/on</code>.",
   "ban_description": "Banea a un usuario del chat.",
   "ban_success": "{user} fue baneado por {admin}.",
+  "cleanservice_description": "Mensajes de servicio limpio (E.g.: Cuando un usuario se une al chat) del chat.",
+  "cleanservice_disabled": "Borrar mensajes de servicio para este chat está ahora deshabilitado.",
+  "cleanservice_enabled": "Borrar mensajes de servicio para este chat está ahora habilitado.",
+  "cleanservice_invalid_arg": "Argumento inválido. Usa <code>/cleanservice off/on</code>.",
+  "cleanservice_status_disabled": "Eliminar mensajes de servicio está deshabilitado en este chat.",
+  "cleanservice_status_enabled": "Eliminar mensajes de servicio está habilitado en este chat.",
   "error_must_specify_time": "Debes especificar una hora después del comando. E.g.: <code>/{command} 7d</code>.",
   "kick_description": "Expulsa un usuario del chat.",
   "kick_success": "{user} fue expulsado por {admin}.",
@@ -25,5 +30,9 @@
   "unmute_description": "Quita el silencio de un usuario en el chat.",
   "unmute_success": "{user} fue dessilenciado por {admin}.",
   "unpin_description": "Quita el mensaje respondido en el chat.",
-  "unpinall_description": "Quita todos los mensajes en el chat."
+  "unpinall_description": "Quita todos los mensajes en el chat.",
+  "reason_string": "Motivo: {reason_text}",
+  "i_cant_ban_admins": "No puedo banear administradores.",
+  "i_cant_mute_admins": "No puedo silenciar administradores.",
+  "i_cant_kick_admins": "No puedo expulsar administradores."
 }
