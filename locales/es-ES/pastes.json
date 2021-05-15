@@ -1,1 +1,5 @@
-{}
+{
+  "nekobin_description": "Pega el texto/documento respondido a nekobin.com.",
+  "hastebin_description": "Pega el texto/documento respondido a hastebin.com.",
+  "reply_to_document_or_text": "Por favor, responda al texto o documento para pegar su contenido."
+}
