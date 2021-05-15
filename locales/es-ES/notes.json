@@ -1,4 +1,6 @@
 {
+  "add_note_success": "Nota añadida <b>{trigger}</b>.",
+  "add_note_empty": "Por favor, especifique un contenido para la nota.",
   "delnote_description": "Eliminar una nota de este chat.",
   "note_description": "Crear una nota para este chat.",
   "notes_description": "Mostrar las notas actuales de este chat.",
