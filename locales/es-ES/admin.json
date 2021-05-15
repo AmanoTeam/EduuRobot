@@ -1,4 +1,7 @@
 {
+  "antichannelpin_description": "Desanclar automáticamente los mensajes procedentes del canal vinculado al chat.",
+  "antichannelpin_disabled": "Anti pin de canal para este chat está deshabilitado.",
+  "antichannelpin_invalid_arg": "Argumento inválido. Usa <code>/antichannelpin off/on</code>.",
   "ban_description": "Banea a un usuario del chat.",
   "ban_success": "{user} fue baneado por {admin}.",
   "error_must_specify_time": "Debes especificar una hora después del comando. E.g.: <code>/{command} 7d</code>.",
