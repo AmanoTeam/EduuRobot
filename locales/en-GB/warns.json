@@ -15,7 +15,7 @@
   "warns_description": "Get the warns of the user.",
   "warns_count_string": "The user {target_user} has {warns_count} warnings.",
   "warns_action_set_string": "The warn action was setted to {action}.",
-  "warns_action_set_invlaid": "Invalid argument. Use <code>/setwarnsaction (ban/mute/kick)</code>.",
+  "warns_action_set_invlaid": "Invalid argument. Use <code>/setwarnsaction ban/mute/kick</code>.",
   "warn_action_status": "The warns action for this chat is {action}.",
   "setwarnsaction_description": "Set the warns actions for the chat, you can use the arguments <code>ban/mute/kick</code>."
 }
