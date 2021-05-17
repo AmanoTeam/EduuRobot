@@ -39,7 +39,7 @@ async def main():
                 await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
         except BadRequest:
             logging.warning("Unable to send message to log_chat.")
-            pass
+
         await idle()
 
     await http.aclose()

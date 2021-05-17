@@ -1,7 +1,5 @@
-import logging
 import os
 
-from config import log_chat, prefix
 from PIL import Image
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, StickersetInvalid
@@ -16,6 +14,7 @@ from pyrogram.raw.types import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
+from config import log_chat, prefix
 from consts import http
 from localization import use_chat_lang
 from utils import EMOJI_PATTERN
@@ -71,7 +70,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         if not filename:
             # Failed to download
             await prog_msg.delete()
-            return logging.error(f" {__name__} - kang - Failed to Download media.")
+            return
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
@@ -84,7 +83,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 break
         if not img_url:
             await prog_msg.delete()
-            return logging.error(f" {__name__} - kang - no media or image url found.")
+            return
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
