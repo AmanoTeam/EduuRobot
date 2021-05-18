@@ -1,5 +1,9 @@
 {
   "add_filter_success": "إضافة فلتر <b>{trigger}</b>.",
-  "add_filter_empty": "الرجاء تحديد محتوى للتصفية.",
-  "delfilter_description": "إزالة عامل التصفية من هذه المحادثة."
+  "add_filter_empty": "الرجاء تحديد محتوى للفلتر.",
+  "delfilter_description": "إزالة الفلتر من هذه المحادثة.",
+  "filter_description": "إنشاء فلتر لهذه المحادثة.",
+  "filters_description": "إظهار الفلاتر الحالية لهذه المحادثة.",
+  "filters_list": "الفلاتر في هذه المحادثة:\n\n",
+  "filters_list_empty": "حاليا لا توجد فلاتر في هذه المحادثة."
 }
