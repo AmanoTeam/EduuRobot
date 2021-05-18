@@ -7,5 +7,7 @@
   "antichannelpin_status_enabled": "مكافحة ثثبيت القناة مفعل حاليًا في هذه الدردشة.",
   "ban_description": "حظر مستخدم من الدرشة.",
   "ban_success": "{user} تم حظره من قبل {admin}.",
-  "cleanservice_description": "تنظيف رسائل الأحداث (مثلاً: عندما ينضم عضو للمحادثة) من المحادثة."
+  "cleanservice_description": "تنظيف رسائل الأحداث (مثلاً: عندما ينضم عضو للمحادثة) من المحادثة.",
+  "cleanservice_disabled": "حذف رسائل الأحداث لهذه المحادثة معطل الآن.",
+  "cleanservice_enabled": "حذف رسائل الأحداث لهذه المحادثة مفعل الآن."
 }
