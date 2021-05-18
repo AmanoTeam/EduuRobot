@@ -1,1 +1,5 @@
-{}
+{
+  "admins_description": "إظهار قائمة مع مشرفي المحادثة.",
+  "admins_list": "المشرفون في المحادثة {chat_title}:\n{admins_list}",
+  "html_description": "ينسق النص المقدم باستخدام بنية HTML."
+}
