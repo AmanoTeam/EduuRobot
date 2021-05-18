@@ -2,12 +2,18 @@
   "antichannelpin_description": "إلغاء تثبيت الرسائل القادمة من القناة المرتبطة بالدردشة تلقائياً.",
   "antichannelpin_disabled": "تم تعطيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
   "antichannelpin_enabled": "تم تفعيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
-  "antichannelpin_invalid_arg": "حجة غير صالحة. استخدم <code>/antichannelpin off/on</code>.",
+  "antichannelpin_invalid_arg": "قيمة غير صالحة. استخدم <code>/antichannelpin off/on</code>.",
   "antichannelpin_status_disabled": "مكافحة ثثبيت القناة معطل حاليًا في هذه الدردشة.",
   "antichannelpin_status_enabled": "مكافحة ثثبيت القناة مفعل حاليًا في هذه الدردشة.",
   "ban_description": "حظر مستخدم من الدرشة.",
   "ban_success": "{user} تم حظره من قبل {admin}.",
   "cleanservice_description": "تنظيف رسائل الأحداث (مثلاً: عندما ينضم عضو للمحادثة) من المحادثة.",
-  "cleanservice_disabled": "حذف رسائل الأحداث لهذه المحادثة معطل الآن.",
-  "cleanservice_enabled": "حذف رسائل الأحداث لهذه المحادثة مفعل الآن."
+  "cleanservice_disabled": "تم الآن تعطيل حذف رسائل الاحداث لهذه المحادثة.",
+  "cleanservice_enabled": "حذف رسائل الأحداث لهذه المحادثة مفعل الآن.",
+  "cleanservice_invalid_arg": "قيمة غير صالحة. استخدم <code>/cleanservice off/on</code>.",
+  "cleanservice_status_disabled": "حذف رسائل الأحداث معطل حاليا في هذه المحادثة.",
+  "cleanservice_status_enabled": "حذف رسائل الأحداث مفعل حاليا في هذه المحادثة.",
+  "error_must_specify_time": "يجب عليك تحديد الوقت بعد الأمر. على سبيل المثال: <code>/{command} 7d</code>.",
+  "kick_description": "طرد مستخدم من المحادثة.",
+  "kick_success": "{user} تم طرده من قبل {admin}."
 }
