@@ -1,1 +1,5 @@
-{}
+{
+  "add_filter_success": "إضافة فلتر <b>{trigger}</b>.",
+  "add_filter_empty": "الرجاء تحديد محتوى للتصفية.",
+  "delfilter_description": "إزالة عامل التصفية من هذه المحادثة."
+}
