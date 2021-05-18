@@ -1,9 +1,11 @@
 {
-  "add_filter_success": "إضافة فلتر <b>{trigger}</b>.",
+  "add_filter_success": "تمت إضافة فلتر <b>{trigger}</b>.",
   "add_filter_empty": "الرجاء تحديد محتوى للفلتر.",
-  "delfilter_description": "إزالة الفلتر من هذه المحادثة.",
+  "delfilter_description": "إزالة فلتر من هذه المحادثة.",
   "filter_description": "إنشاء فلتر لهذه المحادثة.",
   "filters_description": "إظهار الفلاتر الحالية لهذه المحادثة.",
   "filters_list": "الفلاتر في هذه المحادثة:\n\n",
-  "filters_list_empty": "حاليا لا توجد فلاتر في هذه المحادثة."
+  "filters_list_empty": "حاليا لا توجد فلاتر في هذه المحادثة.",
+  "no_filter_with_name": "لا يوجد فلتر باسم <b>{trigger}</b>.",
+  "remove_filter_success": "تمت إزالة <b>{trigger}</b> من الفلاتر."
 }
