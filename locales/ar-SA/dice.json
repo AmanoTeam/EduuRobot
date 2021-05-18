@@ -1,3 +1,4 @@
 {
-  "dice_description": "إرسال نرد ورقمه."
+  "dice_description": "إرسال نرد ورقمه.",
+  "result": "🎲 توقف النرد عند الرقم: {number}"
 }
