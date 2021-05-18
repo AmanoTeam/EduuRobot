@@ -1,5 +1,7 @@
 {
   "antichannelpin_description": "إلغاء تثبيت الرسائل القادمة من القناة المرتبطة بالدردشة تلقائياً.",
-  "antichannelpin_disabled": "تم تعطيل الغاء تثبيت القناة لهذه الدردشة الآن.",
-  "antichannelpin_enabled": "تم تفعيل الغاء تثبيت القناة لهذه الدردشة الآن."
+  "antichannelpin_disabled": "تم تعطيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
+  "antichannelpin_enabled": "تم تفعيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
+  "antichannelpin_invalid_arg": "حجة غير صالحة. استخدم <code>/antichannelpin off/on</code>.",
+  "antichannelpin_status_disabled": "مكافحة ثثبيت القناة معطل حاليًا في هذه الدردشة."
 }
