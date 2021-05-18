@@ -1,4 +1,4 @@
-gpytranslate==0.3.1
+gpytranslate==1.0.3
 git+https://github.com/AmanoTeam/pyrogram.git#egg=Pyrogram
 git+https://github.com/aio-libs/async-lru.git#egg=async_lru
 meval==2.5
