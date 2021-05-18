@@ -3,5 +3,9 @@
   "antichannelpin_disabled": "تم تعطيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
   "antichannelpin_enabled": "تم تفعيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
   "antichannelpin_invalid_arg": "حجة غير صالحة. استخدم <code>/antichannelpin off/on</code>.",
-  "antichannelpin_status_disabled": "مكافحة ثثبيت القناة معطل حاليًا في هذه الدردشة."
+  "antichannelpin_status_disabled": "مكافحة ثثبيت القناة معطل حاليًا في هذه الدردشة.",
+  "antichannelpin_status_enabled": "مكافحة ثثبيت القناة مفعل حاليًا في هذه الدردشة.",
+  "ban_description": "حظر مستخدم من الدرشة.",
+  "ban_success": "{user} تم حظره من قبل {admin}.",
+  "cleanservice_description": "تنظيف رسائل الأحداث (مثلاً: عندما ينضم عضو للمحادثة) من المحادثة."
 }
