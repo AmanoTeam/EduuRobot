@@ -31,5 +31,12 @@
   "tmute_success": "{user} تم كتمه مؤقتا من قبل {admin} لـ <b>{time}</b>.",
   "unban_description": "فك الحظر عن المستخدم في المحادثة.",
   "unban_success": "{user} تم فك حظره من قبل {admin}.",
-  "unmute_description": "الغاء الكتم عن عضو في المحادثة."
+  "unmute_description": "الغاء الكتم عن عضو في المحادثة.",
+  "unmute_success": "{user} تم إلغاء كتمه بواسطة {admin}.",
+  "unpin_description": "إلغاء تثبيت الرسالة التي تم الرد عليها في المحادثة.",
+  "unpinall_description": "إلغاء تثبيت جميع الرسائل في المحادثة.",
+  "reason_string": "السبب: {reason_text}",
+  "i_cant_ban_admins": "لا يمكنني حظر المشرفين.",
+  "i_cant_mute_admins": "لا يمكنني كتم المشرفين.",
+  "i_cant_kick_admins": "لا يمكنني طرد المشرفين."
 }
