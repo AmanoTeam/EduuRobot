@@ -2,5 +2,10 @@
   "info_description": "الحصول على معلومات حول المستخدم.",
   "info_header": "<b>معلومات المستخدم:</b>",
   "info_id": "\nالمعرف: <code>{id}</code>",
-  "info_first_name": "\nالاسم الأول: {first_name}"
+  "info_first_name": "\nالاسم الأول: {first_name}",
+  "info_last_name": "\nالإسم الأخير: {last_name}",
+  "info_username": "\nاسم المستخدم: @{username}",
+  "info_userlink": "\nرابط المستخدم: {link}",
+  "info_chat_admin": "\nهذا المستخدم لديه '<b>صلاحية المشرف</b>' في هذه المحادثة.",
+  "info_chat_creator": "\nهذا المستخدم هو '<b>المالك</b>' لهذه المحادثة."
 }
