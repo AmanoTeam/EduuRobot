@@ -1,1 +1,4 @@
-{}
+{
+  "id_description": "الحصول على معلومات حول المحادثة.",
+  "info_private": "<b>معلومات:</b>\n<b>الاسم:</b> <code>{first_name} {last_name}</code>\n<b>اسم المستخدم:</b> {username}\n<b>المعرف:</b> <code>{user_id}</code>\n<b>مركز البيانات:</b> <code>{user_dc}</code>\n<b>اللغة:</b> <code>{lang}</code>\n<b>نوع المحادثة:</b> <code>{chat_type}</code>"
+}
