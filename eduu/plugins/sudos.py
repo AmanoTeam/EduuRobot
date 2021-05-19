@@ -68,7 +68,8 @@ async def upgrade(c: Client, m: Message, strings):
         else:
             await sm.edit_text(strings("restarting"))
             set_restarted(sm.chat.id, sm.message_id)
-            os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
+            args = [sys.executable, "-m", "eduu"]
+            os.execl(sys.executable, args)  # skipcq: BAN-B606
     else:
         await sm.edit_text(
             f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}"
@@ -143,7 +144,8 @@ async def test_speed(c: Client, m: Message, strings):
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
     set_restarted(sent.chat.id, sent.message_id)
-    os.execl(sys.executable, sys.executable, *sys.argv)  # skipcq: BAN-B606
+    args = [sys.executable, "-m", "eduu"]
+    os.execv(sys.executable, args)  # skipcq: BAN-B606
 
 
 @Client.on_message(filters.command("leave", prefix) & sudofilter)

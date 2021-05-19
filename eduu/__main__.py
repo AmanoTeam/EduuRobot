@@ -2,6 +2,7 @@ import asyncio
 import logging
 import sys
 
+import pyrogram
 from pyrogram import Client, idle
 from pyrogram.errors import BadRequest
 
@@ -31,11 +32,15 @@ async def main():
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()
+
+        start_message = (
+            "<b>EduuRobot started!</b>\n\n"
+            f"<b>Version:</b> <code>{version}</code>\n"
+            f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
+        )
+
         try:
-            await client.send_message(
-                log_chat,
-                ("<b>Bot started!</b>\n\n" f"<b>Version:</b> <code>{version}</code>"),
-            )
+            await client.send_message(chat_id=log_chat, text=start_message)
             if wr:
                 await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
         except BadRequest:
