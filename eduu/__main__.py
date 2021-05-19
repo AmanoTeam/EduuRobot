@@ -14,7 +14,8 @@ with open("./eduu/version.txt") as f:
 
 
 client = Client(
-    "bot",
+    session_name="bot",
+    app_version=f"EduuRobot {version}",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=TOKEN,
