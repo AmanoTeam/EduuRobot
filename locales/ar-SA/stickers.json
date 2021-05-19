@@ -1,1 +1,4 @@
-{}
+{
+  "get_sticker_id_string": "معرف هذا الملصق هو \n <code>{stickerid}</code>",
+  "animated_not_supported": "الملصقات المتحركة غير مدعومة."
+}
