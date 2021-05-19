@@ -1,6 +1,7 @@
 {
   "get_sticker_id_string": "معرف هذا الملصق هو \n <code>{stickerid}</code>",
   "animated_not_supported": "الملصقات المتحركة غير مدعومة.",
+  "kanging_sticker_msg": "<code>ملصق الكانجين...</code>",
   "sticker_kanged_string": "تمت إضافة الملصق <b>بنجاح</b> إلى الحزمة\nالرموز التعبيرية: {sticker_emoji}",
   "use_existing_pack": "<code>استخدام حزمة الملصقات الموجودة ...</code>",
   "err_sticker_no_file_name": "<b>خطأ</b>: <code>هذا الملصق ليس له اسم ملف!</code>",
