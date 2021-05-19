@@ -1,1 +1,11 @@
-{}
+{
+  "commands_btn": "📚 الأوامر",
+  "infos_btn": "ℹ️ حول",
+  "language_btn": "🌐 اللغة",
+  "add_chat_btn": "➕ إضافة إلى محادثة",
+  "private": "مرحبًا! أنا EduuRobot. لاكتشاف المزيد عن وظائفي، انقر على الأزرار أدناه.",
+  "start_chat": "🤖 بدء محادثة",
+  "group": "مرحبا! أنا EduuRobot. لاكتشاف وظائفي ، ابدأ محادثة معي.",
+  "info_page": "• EduuRobot\n\nالإصدار: {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">الشفرة المصدرية</a>\nالمطورين: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nالشراكة:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2021 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_description": "ابدأ البوت."
+}
