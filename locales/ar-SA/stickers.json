@@ -1,4 +1,5 @@
 {
   "get_sticker_id_string": "معرف هذا الملصق هو \n <code>{stickerid}</code>",
-  "animated_not_supported": "الملصقات المتحركة غير مدعومة."
+  "animated_not_supported": "الملصقات المتحركة غير مدعومة.",
+  "sticker_kanged_string": "تمت إضافة الملصق <b>بنجاح</b> إلى الحزمة\nالرموز التعبيرية: {sticker_emoji}"
 }
