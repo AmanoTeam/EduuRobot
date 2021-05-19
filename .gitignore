@@ -4,10 +4,20 @@ eduu/plugins/__pycache__/
 eduu/database/__pycache__/
 eduu/utils/__pycache__/
 
-.spyproject/
-.vscode/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyCharm project
 .idea/
-.venv/
+
+# Visual Studio Code workspace settings
+.vscode
 
 # Session files
 eduu/*.session-journal
@@ -23,3 +33,4 @@ eduu/config.py
 # Misc
 unknown_errors.txt
 eduu/downloads/
+.spyproject/
