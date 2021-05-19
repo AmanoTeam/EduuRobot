@@ -25,13 +25,13 @@ Setup
 
 2. Install the required modules from the requirements.txt with ``pip3 install -Ur requirements.txt``.
 3. Go to https://my.telegram.org/apps and create a new app.
-4. Create a new ``config.py`` file from the ``config.py.example`` file (``cp config.py.example config.py``).
+4. Create a new ``config.py`` file from the ``config.py.example`` file (``cp eduu/config.py.example eduu/config.py``).
 5. Place your token, IDs and api keys to your config.py file.
 
 
 Running
 -------
-- To run the bot you just need to run ``python3 bot.py``. In case you installed from a virtualenv, run ``. .venv/bin/activate`` before this.
+- To run the bot you just need to run ``python3 -m eduu``. In case you installed from a virtualenv, run ``. .venv/bin/activate`` before this.
 - Running it on `screen <https://en.wikipedia.org/wiki/GNU_Screen>`__ or `tmux <https://en.wikipedia.org/wiki/Tmux>`__ is highly recommended if you want to keep the bot running on a server.
 
 
