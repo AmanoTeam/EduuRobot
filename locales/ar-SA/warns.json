@@ -1,7 +1,7 @@
 {
   "resetwarns_description": "إعادة تعيين تحذيرات المستخدم.",
   "setwarnslimit_description": "تعيين حد التحذيرات في المحادثة.",
-  "user_warned": "المستخدم {target_user} لديه {warn_count} من {warn_limit} التحذيرات.",
+  "user_warned": "المستخدم {target_user} لديه {warn_count} من {warn_limit} من التحذيرات.",
   "warn_banned": "تم حظر المستخدم {target_user} لأنه تم تحذيره {warn_count} مرات.",
   "warn_kicked": "تم طرد المستخدم {target_user} لأنه تم تحذيره {warn_count} مرات.",
   "warn_muted": "تم كتم المستخدم {target_user} لأنه تم تحذيره {warn_count} مرات.",
@@ -12,5 +12,9 @@
   "warn_limit_invalid": "الرقم المقدم غير صالح.",
   "warn_reason_text": "سبب هذا التحذير: {reason_text}",
   "warn_reset": "تمت إزالة التحذيرات {target_user} بنجاح.",
-  "warns_description": "إعطاء تحذيرات للمستخدم."
+  "warns_description": "إعطاء تحذيرات للمستخدم.",
+  "warns_count_string": "المستخدم {target_user} لديه {warns_count} من التحذيرات.",
+  "warns_action_set_string": "تم ضبط إجراء التحذير على {action}.",
+  "warns_action_set_invlaid": "قيمة غير صالحة. استخدم <code>/setwarnsaction (ban/mute/kick)</code>.",
+  "warn_action_status": "إجراء التحذير لهذه المحادثة هو {action}."
 }
