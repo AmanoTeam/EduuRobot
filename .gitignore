@@ -1,8 +1,5 @@
 # Cache
-eduu/__pycache__/
-eduu/plugins/__pycache__/
-eduu/database/__pycache__/
-eduu/utils/__pycache__/
+__pycache__/
 
 # Environments
 .env
@@ -20,8 +17,7 @@ venv.bak/
 .vscode
 
 # Session files
-eduu/*.session-journal
-eduu/*.session
+eduu/*.session*
 
 # Database
 eduu/database/*.db
