@@ -6,17 +6,14 @@ import pyrogram
 from pyrogram import Client, idle
 from pyrogram.errors import BadRequest
 
+import eduu
 from eduu.config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
-from eduu.utils import del_restarted, get_restarted
+from eduu.utils import del_restarted, get_restarted, shell_exec
 from eduu.utils.consts import http
-
-with open("./eduu/version.txt") as f:
-    version = f.read().strip()
-
 
 client = Client(
     session_name="bot",
-    app_version=f"EduuRobot {version}",
+    app_version=f"EduuRobot v{eduu.__version__}",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=TOKEN,
@@ -29,13 +26,16 @@ client = Client(
 async def main():
     await client.start()
 
+    # Saving commit number
+    client.version_code = int((await shell_exec("git rev-list --count HEAD"))[0])
+
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()
 
         start_message = (
             "<b>EduuRobot started!</b>\n\n"
-            f"<b>Version:</b> <code>{version}</code>\n"
+            f"<b>Version:</b> <code>v{eduu.__version__} ({client.version_code})</code>\n"
             f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
         )
 

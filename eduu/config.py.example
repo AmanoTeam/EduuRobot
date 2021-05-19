@@ -25,8 +25,3 @@ disabled_plugins: List[str] = []
 
 # API keys
 TENOR_API_KEY: str = ""
-
-
-# Bot version, do not touch this
-with open("eduu/version.txt") as f:
-    version = f.read().strip()
