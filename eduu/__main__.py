@@ -20,7 +20,7 @@ client = Client(
     bot_token=TOKEN,
     workers=24,
     parse_mode="html",
-    plugins=dict(root="eduu/plugins", exclude=disabled_plugins),
+    plugins=dict(root="eduu.plugins", exclude=disabled_plugins),
 )
 
 
@@ -33,7 +33,7 @@ async def main():
         try:
             await client.send_message(
                 log_chat,
-                f"<b>Bot started</b>\n\n<b>Version:</b> <code>{version}</code>",
+                ("<b>Bot started!</b>\n\n" f"<b>Version:</b> <code>{version}</code>"),
             )
             if wr:
                 await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")

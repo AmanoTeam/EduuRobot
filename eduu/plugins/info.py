@@ -44,7 +44,7 @@ async def user_info(c: Client, m: Message, strings):
             text += strings("info_chat_admin")
         elif member.status in ["creator"]:
             text += strings("info_chat_creator")
-    except UserNotParticipant:
+    except (UserNotParticipant, ValueError):
         pass
 
     await m.reply_text(text)
