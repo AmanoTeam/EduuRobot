@@ -1,1 +1,6 @@
-{}
+{
+  "resetwarns_description": "إعادة تعيين تحذيرات المستخدم.",
+  "setwarnslimit_description": "تعيين حد التحذيرات في المحادثة.",
+  "user_warned": "المستخدم {target_user} لديه {warn_count} من {warn_limit} التحذيرات.",
+  "warn_banned": "تم حظر المستخدم {target_user} لأنه تم تحذيره {warn_count} مرات."
+}
