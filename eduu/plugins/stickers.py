@@ -2,6 +2,8 @@
 # Copyright (c) 2018-2021 Amano Team
 
 import os
+import shutil
+import tempfile
 
 from PIL import Image
 from pyrogram import Client, filters
@@ -254,10 +256,23 @@ async def getstickerid(c: Client, m: Message, strings):
 @Client.on_message(filters.command("getsticker", prefix) & filters.reply)
 @use_chat_lang()
 async def getstickeraspng(c: Client, m: Message, strings):
-    if m.reply_to_message.sticker:
-        if m.reply_to_message.sticker.is_animated:
+    sticker = m.reply_to_message.sticker
+    if sticker:
+        if sticker.is_animated:
             await m.reply_text(strings("animated_not_supported"))
-        if not m.reply_to_message.sticker.is_animated:
-            thesticker = await m.reply_to_message.download(file_name="sticker.png")
-            await m.reply_to_message.reply_document(thesticker)
-            os.remove(thesticker)
+        elif not sticker.is_animated:
+            with tempfile.TemporaryDirectory() as tempdir:
+                path = os.path.join(tempdir, "getsticker")
+            sticker_file = await c.download_media(
+                message=m.reply_to_message,
+                file_name=f"{path}/{sticker.set_name}.png",
+            )
+            await m.reply_to_message.reply_document(
+                document=sticker_file,
+                caption=strings("sticker_info").format(
+                    emoji=sticker.emoji, id=sticker.file_id
+                ),
+            )
+            shutil.rmtree(tempdir, ignore_errors=True)
+    else:
+        await m.reply_text(strings("not_sticker"))
