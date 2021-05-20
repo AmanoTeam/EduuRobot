@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2021 Amano Team
 
 import asyncio
-from typing import List, Optional
+from typing import Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User

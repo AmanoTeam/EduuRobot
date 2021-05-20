@@ -70,7 +70,7 @@ async def show_help(c: Client, m: Message, strings):
                 [
                     InlineKeyboardButton(
                         strings("start_chat", context="start"),
-                        url=f"https://t.me/{c._bot_username}?start=help",
+                        url=f"https://t.me/{c.me.username}?start=help",
                     )
                 ]
             ]

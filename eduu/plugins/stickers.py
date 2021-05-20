@@ -29,7 +29,7 @@ from eduu.utils.localization import use_chat_lang
 @use_chat_lang()
 async def kang_sticker(c: Client, m: Message, strings):
     prog_msg = await m.reply_text(strings("kanging_sticker_msg"))
-    bot_username = c._bot_username
+    bot_username = c.me.username
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
