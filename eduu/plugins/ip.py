@@ -37,7 +37,6 @@ async def ip_cmd(c: Client, m: Message, strings):
 
 @Client.on_inline_query(filters.regex(r"^ip"))
 async def ip_inline(c: Client, q: InlineQuery):
-    getme = await c.get_me()
     if len(q.query.split()) > 1:
         text = q.query.split(maxsplit=1)[1]
         if text.startswith("http"):
@@ -63,7 +62,7 @@ async def ip_inline(c: Client, q: InlineQuery):
                 InlineQueryResultArticle(
                     title="You must specify the url",
                     input_message_content=InputTextMessageContent(
-                        f"You must specify the url, E.g.: <code>@{getme.username} ip example.com</code>",
+                        f"You must specify the url, E.g.: <code>@{c.me.username} ip example.com</code>",
                         parse_mode="html",
                     ),
                 )

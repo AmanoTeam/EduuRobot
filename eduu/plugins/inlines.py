@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
+from typing import Dict, List
+
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import (
@@ -16,7 +18,7 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_inline_query(filters.regex(r"^face"))
 async def faces_inline(c: Client, q: InlineQuery):
-    faces_list = [
+    faces_list: List[str] = [
         "¯\\_(ツ)_/¯",
         "( ͡° ͜ʖ ͡°)",
         "( ͡~ ͜ʖ ͡°)",
@@ -54,7 +56,7 @@ async def faces_inline(c: Client, q: InlineQuery):
         "(◕‿◕✿)",
         "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
     ]
-    results = []
+    results: Dict = []
     for i in faces_list:
         results.append(
             InlineQueryResultArticle(
