@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
+from typing import List
+
 from .utils import (
     EMOJI_PATTERN,
     add_chat,
@@ -23,7 +25,7 @@ from .utils import (
     time_extract,
 )
 
-__all__ = [
+__all__: List[str] = [
     "commands",
     "shell_exec",
     "deEmojify",

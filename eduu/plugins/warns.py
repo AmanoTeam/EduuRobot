@@ -9,6 +9,7 @@ from pyrogram.types import ChatPermissions, Message
 from eduu.config import prefix
 from eduu.database import db, dbc
 from eduu.utils import commands, require_admin
+from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
 from .admin import get_target_user
@@ -44,8 +45,6 @@ dbc.execute(
                                               chat_id INTEGER,
                                               count INTEGER)"""
 )
-
-admin_status = ["creator", "administrator"]
 
 
 def get_warns(chat_id, user_id):

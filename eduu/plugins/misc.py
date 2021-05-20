@@ -11,10 +11,8 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import log_chat, prefix
 from eduu.utils import button_parser, commands
-from eduu.utils.consts import http
+from eduu.utils.consts import admin_status, http
 from eduu.utils.localization import use_chat_lang
-
-admin_status = ["creator", "administrator"]
 
 
 @Client.on_message(filters.command("mark", prefix))

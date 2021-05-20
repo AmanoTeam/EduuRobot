@@ -26,7 +26,7 @@ client = Client(
 )
 
 
-async def main():
+async def main() -> None:
     await client.start()
 
     # Saving commit number
