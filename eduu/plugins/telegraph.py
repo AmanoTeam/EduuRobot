@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2018-2021 Amano Team
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from telegraph import upload_file
