@@ -1,8 +1,13 @@
-gpytranslate==1.0.3
+# Using AmanoTeam Pyrogram's
 git+https://github.com/AmanoTeam/pyrogram.git#egg=Pyrogram
+tgcrypto  # To increase Pyrogram speed
+
+# Using async-lru from git for Python3.10 compatibility
 git+https://github.com/aio-libs/async-lru.git#egg=async_lru
+
+# Plugins Deps
+gpytranslate==1.0.3
 meval==2.5
-tgcrypto
 speedtest-cli
 httpx[http2]>=0.16.1,<1.0.0
 regex

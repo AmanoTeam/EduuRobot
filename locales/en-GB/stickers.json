@@ -1,6 +1,8 @@
 {
   "get_sticker_id_string": "The id of this sticker is \n <code>{stickerid}</code>",
   "animated_not_supported": "Animated stickers are not supported.",
+  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker ID:</b> <code>{id}</code>",
+  "not_sticker": "That's not a sticker",
   "kanging_sticker_msg": "<code>Kanging sticker ...</code>",
   "sticker_kanged_string": "Sticker <b>successfully</b> added to pack\nEmoji: {sticker_emoji}",
   "use_existing_pack": "<code>Using existing sticker pack ...</code>",
