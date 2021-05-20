@@ -9,6 +9,7 @@ import re
 import sys
 import traceback
 from contextlib import redirect_stdout
+from typing import Union
 
 import speedtest
 from meval import meval
@@ -20,7 +21,7 @@ from eduu.database import dbc
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
 
-prefix = "!"
+prefix: Union[list, str] = "!"
 
 
 @Client.on_message(filters.command("sudos", prefix) & sudofilter)

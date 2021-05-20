@@ -13,7 +13,7 @@ from pyrogram.types import CallbackQuery, InlineQuery, Message
 from eduu.database import db, dbc
 from eduu.utils.consts import group_types
 
-enabled_locales = [
+enabled_locales: List[str] = [
     "ar-SA",  # Arabic
     "ckb-IR",  # Sorani (Kurdish)
     "de-DE",  # German
@@ -39,7 +39,7 @@ enabled_locales = [
     "zh-CN",  # Chinese (Simplified)
 ]
 
-default_language = "en-GB"
+default_language: str = "en-GB"
 
 
 def set_db_lang(chat_id: int, chat_type: str, lang_code: str):

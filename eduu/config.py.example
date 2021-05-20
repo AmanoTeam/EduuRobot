@@ -1,9 +1,10 @@
-from typing import List
+from typing import List, Optional
 
 # Bot token from Bot Father
 TOKEN: str = "YOUR_TOKEN_HERE"
 
-# Your API ID and Hash from https://my.telegram.org/apps
+# Your API ID and API HASH
+# Get it from https://my.telegram.org/apps
 API_ID: int = 123123
 API_HASH: str = ""
 
@@ -14,7 +15,7 @@ log_chat: int = 123456789
 # Sudoers and super sudoers
 super_sudoers: List[int] = [123456789]
 sudoers: List[int] = [987654321]
-sudoers += super_sudoers
+sudoers.append(super_sudoers)
 
 # Prefixes for commands
 # e.g: /command and !command
@@ -23,5 +24,5 @@ prefix: List[str] = ["/", "!"]
 # List of disabled plugins
 disabled_plugins: List[str] = []
 
-# API keys
-TENOR_API_KEY: str = ""
+# API Keys (Optional)
+TENOR_API_KEY: Optional[str] = ""
