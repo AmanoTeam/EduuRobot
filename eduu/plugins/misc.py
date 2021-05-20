@@ -6,7 +6,7 @@ from html import escape
 from urllib.parse import quote, unquote
 
 from pyrogram import Client, filters
-from pyrogram.errors.exceptions.bad_request_400 import BadRequest
+from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import log_chat, prefix
@@ -141,9 +141,17 @@ async def urldecodecmd(c: Client, m: Message):
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         try:
+            bug_report = (
+                "<b>Bug Report</b>\n"
+                f"User: {m.from_user.mention}\n"
+                f"ID: <code>{m.from_user.id}</code>\n\n"
+                "The content of the report:\n"
+                f"<code>{escape(m.text.split(None, 1)[1])}</code>"
+            )
             await c.send_message(
-                log_chat,
-                f"<b>bug report</b> \n\n from the user {m.from_user.mention} \n ID <code>{m.from_user.id}</code> \n the content of the report: \n <code>{m.text.split(None, 1)[1]}</code>",
+                chat_id=log_chat,
+                text=bug_report,
+                disable_web_page_preview=True,
             )
             await m.reply_text(strings("bug_reported_success_to_bot_admins"))
         except BadRequest:
