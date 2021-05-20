@@ -32,6 +32,8 @@ async def main() -> None:
     # Saving commit number
     client.version_code = int((await shell_exec("git rev-list --count HEAD"))[0])
 
+    client.me = await client.get_me()
+
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()

@@ -43,7 +43,7 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
                     ),
                     InlineKeyboardButton(
                         strings("add_chat_btn"),
-                        url=f"https://t.me/{c._bot_username}?startgroup=new",
+                        url=f"https://t.me/{c.me.username}?startgroup=new",
                     ),
                 ],
             ]
@@ -55,7 +55,7 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
                 [
                     InlineKeyboardButton(
                         strings("start_chat"),
-                        url=f"https://t.me/{c._bot_username}?start=start",
+                        url=f"https://t.me/{c.me.username}?start=start",
                     )
                 ]
             ]
