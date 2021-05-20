@@ -18,11 +18,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Set up configuration
       run: |
-        curl https://nekobin.com/raw/ribemororo -o config.py
+        curl https://nekobin.com/raw/ribemororo -o eduu/config.py
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Start the bot
       run: |
-        python bot.py test
+        python -m eduu test

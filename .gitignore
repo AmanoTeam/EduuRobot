@@ -1,12 +1,25 @@
-__pycache__/
+# Cache
+eduu/__pycache__/
+eduu/plugins/__pycache__/
+eduu/database/__pycache__/
+eduu/utils/__pycache__/
+
 .spyproject/
 .vscode/
 .idea/
 .venv/
-*.session-journal
-*.session
-*.db
-config.ini
-config.py
+
+# Session files
+eduu/*.session-journal
+eduu/*.session
+
+# Database
+eduu/database/*.db
+
+# Bot personal config file
+eduu/config.ini
+eduu/config.py
+
+# Misc
 unknown_errors.txt
-downloads/
+eduu/downloads/
