@@ -5,6 +5,5 @@
   "add_chat_btn": "➕ 添加到聊天",
   "private": "你好！我是EduuRobot。要发现更多关于我的功能，请点击下面的按钮。",
   "start_chat": "🤖 开始聊天",
-  "group": "你好！我是EduuRobot。要发现我的功能，请与我开始对话。",
-  "info_page": "• EduuRobot\n\n版本： {version}\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代码</a>\n开发者： <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\n伙伴关系：\n » <a href=\"https://t.me/hpxlist\">HPXList - 通过usernein</a>\n\n©2021 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>"
+  "group": "你好！我是EduuRobot。要发现我的功能，请与我开始对话。"
 }
