@@ -48,14 +48,12 @@ dbc.execute(
 
 
 def get_warns(chat_id, user_id):
-    try:
-        dbc.execute(
-            "SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?",
-            (chat_id, user_id),
-        )
-        return dbc.fetchone()[0]
-    except TypeError:
-        return "0"
+    dbc.execute(
+        "SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?",
+        (chat_id, user_id),
+    )
+    r = dbc.fetchone()
+    return r[0] if r else 0
 
 
 def add_warns(chat_id, user_id, number):
