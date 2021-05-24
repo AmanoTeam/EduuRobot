@@ -53,7 +53,7 @@ def get_warns(chat_id, user_id):
         (chat_id, user_id),
     )
     r = dbc.fetchone()
-    return r[0] if r else 0
+    return r[0] if r is not None else 0
 
 
 def add_warns(chat_id, user_id, number):
