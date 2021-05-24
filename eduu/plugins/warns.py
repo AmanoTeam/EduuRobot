@@ -52,7 +52,8 @@ def get_warns(chat_id, user_id):
         "SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?",
         (chat_id, user_id),
     )
-    return dbc.fetchone()[0]
+    r = dbc.fetchone()
+    return r[0] if r else 0
 
 
 def add_warns(chat_id, user_id, number):
