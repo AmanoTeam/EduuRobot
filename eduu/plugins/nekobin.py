@@ -23,7 +23,7 @@ async def nekobin(c: Client, m: Message, strings):
             mean = m.reply_to_message.text
 
         url = "https://nekobin.com/api/documents"
-        r = await http.post(url, data={"content": mean})
+        r = await http.post(url, json={"content": mean})
         url = f"https://nekobin.com/{r.json()['result']['key']}"
         await m.reply_text(url, disable_web_page_preview=True)
     else:
