@@ -1,9 +1,11 @@
 {
   "resetwelcome_description": "Restablecer el mensaje de bienvenida al mensaje de bienvenida por defecto del bot.",
+  "setwelcome_description": "Establezca el mensaje de bienvenida al mensaje especificado. Para ayuda de formateo consulte /welcomeformat.",
   "welcome_default": "Hola {first_name}, ¡bienvenido a {chat_title}!",
   "welcome_description": "Activa o desactiva el mensaje de bienvenida.",
   "welcome_mode_disable": "El mensaje de bienvenida para {chat_title} está ahora deshabilitado.",
   "welcome_mode_enable": "El mensaje de bienvenida para {chat_title} está ahora habilitado.",
   "welcome_mode_invalid": "Argumento inválido. Usa <code>/welcome off/on</code>.",
-  "welcome_reset": "El mensaje de bienvenida para {chat_title} se estableció de nuevo al mensaje de bienvenida por defecto del bot."
+  "welcome_reset": "El mensaje de bienvenida para {chat_title} se estableció de nuevo al mensaje de bienvenida por defecto del bot.",
+  "welcomeformat_description": "Ayúdale a formatear el mensaje de bienvenida."
 }
