@@ -32,7 +32,7 @@ def toggle_welcome(chat_id: int, mode: bool):
     db.commit()
 
 
-@Client.on_message(filters.command("welcomeformat"))
+@Client.on_message(filters.command(["welcomeformat", "start welcome_format_help"]))
 @use_chat_lang()
 async def welcome_format_message_help(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_format_help_msg"))
