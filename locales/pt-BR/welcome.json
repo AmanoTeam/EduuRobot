@@ -1,5 +1,6 @@
 {
   "resetwelcome_description": "Redefine a mensagem de boas-vindas para a padrão do bot.",
+  "setwelcome_description": "Define a mensagem de boas-vindas com a mensagem especificada. Para obter ajuda com a formatação, veja /welcomeformat.",
   "welcome_default": "Olá {first_name}, seja bem-vindo(a) a {chat_title}!",
   "welcome_description": "Ativa/desativa a mensagem de boas vindas.",
   "welcome_mode_disable": "A mensagem de boas-vindas para {chat_title} foi desativada.",
