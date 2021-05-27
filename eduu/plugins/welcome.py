@@ -77,7 +77,8 @@ async def set_welcome_message(c: Client, m: Message, strings):
             )
     else:
         await m.reply_text(
-            strings("welcome_set_empty").format(bot_username=c.me.username)
+            strings("welcome_set_empty").format(bot_username=c.me.username),
+            disable_web_page_preview=True,
         )
 
 
