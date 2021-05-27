@@ -32,6 +32,16 @@ def toggle_welcome(chat_id: int, mode: bool):
     db.commit()
 
 
+@Client.on_message(
+    filters.command(["welcomeformat", "start welcome_format_help"], prefix)
+)
+@use_chat_lang()
+async def welcome_format_message_help(c: Client, m: Message, strings):
+    await m.reply_text(strings("welcome_format_help_msg"))
+
+    await m.stop_propagation()
+
+
 @Client.on_message(filters.command("setwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
@@ -66,7 +76,10 @@ async def set_welcome_message(c: Client, m: Message, strings):
                 strings("welcome_set_success").format(chat_title=m.chat.title)
             )
     else:
-        await m.reply_text(strings("welcome_set_empty"))
+        await m.reply_text(
+            strings("welcome_set_empty").format(bot_username=c.me.username),
+            disable_web_page_preview=True,
+        )
 
 
 @Client.on_message(
@@ -164,3 +177,4 @@ async def greet_new_members(c: Client, m: Message, strings):
 commands.add_command("resetwelcome", "admin")
 commands.add_command("setwelcome", "admin")
 commands.add_command("welcome", "admin")
+commands.add_command("welcomeformat", "admin")

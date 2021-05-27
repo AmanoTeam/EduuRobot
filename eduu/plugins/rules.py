@@ -74,6 +74,8 @@ async def show_rules_pvt(c: Client, m: Message, strings):
     else:
         await m.reply_text(strings("rules_empty"))
 
+    await m.stop_propagation()
+
 
 commands.add_command("setrules", "admin")
 commands.add_command("resetrules", "admin")
