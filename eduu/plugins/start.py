@@ -17,7 +17,8 @@ from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("start", prefix) & ~filters.regex("^/start rules"))
+# Using a low priority group so deeplinks will run before this and stop the propagation.
+@Client.on_message(filters.command("start", prefix), group=2)
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang()
 async def start(c: Client, m: Union[Message, CallbackQuery], strings):
