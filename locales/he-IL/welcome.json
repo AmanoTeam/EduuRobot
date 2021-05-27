@@ -1,5 +1,6 @@
 {
   "resetwelcome_description": "מאפס את הודעת הברוכים הבאים להודעת ברירת המחדל של הבוט.",
+  "setwelcome_description": "מגדיר את הודעת הברוכים הבאים. לעזרה בעיצוב תשתמש בפקודה /welcomeformat.",
   "welcome_default": "היי {first_name}, ברוך הבא ל {chat_title}!",
   "welcome_description": "משבית או מפעיל את הודעת הברוכים הבאים.",
   "welcome_mode_disable": "הודעת הברוכים הבאים ל {chat_title} מושבתת עכשיו.",
@@ -7,5 +8,6 @@
   "welcome_mode_invalid": "משתנה לא חוקי. תשתמש ב <code>/welcome off/on</code>.",
   "welcome_reset": "הודעות הברוכים הבאים ל {chat_title} אופסו להודעת ברירת המחדל של הבוט.",
   "welcome_set_error": "התרחשה שגיאה והודעת הברוכים ההבאים לא הוגדרה. השגיאה: {error}",
-  "welcome_set_success": "הודעת הברוכים הבאים לצ'אט {chat_title} הוגדרו בהצלחה."
+  "welcome_set_success": "הודעת הברוכים הבאים לצ'אט {chat_title} הוגדרו בהצלחה.",
+  "welcomeformat_description": "עוזר לעצב את הודעת הברוכים הבאים."
 }
