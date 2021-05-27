@@ -76,7 +76,9 @@ async def set_welcome_message(c: Client, m: Message, strings):
                 strings("welcome_set_success").format(chat_title=m.chat.title)
             )
     else:
-        await m.reply_text(strings("welcome_set_empty"))
+        await m.reply_text(
+            strings("welcome_set_empty").format(bot_username=c.me.username)
+        )
 
 
 @Client.on_message(
