@@ -1,1 +1,3 @@
-{}
+{
+  "code_exec_err_string": "خطأ: لم يتم العثور على اللغة <b> {langformat} </b>. قائمة اللغات المدعومة: {langslistlink}"
+}
