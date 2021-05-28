@@ -20,6 +20,7 @@ tio = Tio()
 
 
 langslist = tio.query_languages()
+langs_list_link = "https://nekobin.com/bemidirufo"
 
 
 @Client.on_message(filters.command("exec_code", prefix))
@@ -54,7 +55,9 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
             )
     else:
         await m.reply_text(
-            strings("code_exec_err_string").format(langformat=execlanguage)
+            strings("code_exec_err_string").format(
+                langformat=execlanguage, langslistlink=langs_list_link
+            )
         )
 
 
@@ -118,7 +121,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                         langformat=execlanguage
                     ),
                     input_message_content=InputTextMessageContent(
-                        strings("code_exec_err_string").format(langformat=execlanguage)
+                        strings("code_exec_err_string").format(
+                            langformat=execlanguage, langslistlink=langs_list_link
+                        )
                     ),
                 )
             ]
