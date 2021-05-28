@@ -6,7 +6,7 @@ tgcrypto  # To increase Pyrogram speed
 git+https://github.com/aio-libs/async-lru.git#egg=async_lru
 
 # Plugins Deps
-gpytranslate==1.0.3
+gpytranslate==1.1.0
 meval==2.5
 speedtest-cli
 httpx[http2]>=0.16.1,<1.0.0
