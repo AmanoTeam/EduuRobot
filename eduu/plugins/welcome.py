@@ -62,6 +62,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
                     # title and chat_title are the same
                     title=m.chat.title,
                     chat_title=m.chat.title,
+                    count=(await c.get_chat_members_count(m.chat.id)),
                 )
             )
         except (KeyError, BadRequest) as e:
@@ -145,6 +146,7 @@ async def greet_new_members(c: Client, m: Message, strings):
         map(lambda a: "@" + a.username if a.username else a.mention, members)
     )
     mention = ", ".join(map(lambda a: a.mention, members))
+    count = await c.get_chat_members_count(m.chat.id)
     if not m.from_user.is_bot:
         welcome, welcome_enabled = get_welcome(m.chat.id)
         if welcome_enabled:
@@ -161,6 +163,7 @@ async def greet_new_members(c: Client, m: Message, strings):
                 # title and chat_title are the same
                 title=chat_title,
                 chat_title=chat_title,
+                count=count,
             )
             welcome, welcome_buttons = button_parser(welcome)
             await m.reply_text(
