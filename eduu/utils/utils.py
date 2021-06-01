@@ -382,5 +382,5 @@ async def shell_exec(code, treat=True):
 
 
 def get_format_keys(string: str) -> List[str]:
-    """Return a list of formatting keys present in string"""
+    """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
