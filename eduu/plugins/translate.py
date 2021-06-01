@@ -84,7 +84,7 @@ async def translate(c: Client, m: Message, strings):
     else:
         langs["targetlang"] = lang
 
-    trres = await tr(text, **langs)
+    trres = await tr.translate(text, **langs)
     text = trres.text
 
     res = html.escape(text)
