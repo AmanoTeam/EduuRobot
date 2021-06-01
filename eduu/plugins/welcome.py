@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
 from eduu.database import db, dbc
-from eduu.utils import button_parser, commands, require_admin
+from eduu.utils import button_parser, commands, get_format_keys, require_admin
 from eduu.utils.localization import use_chat_lang
 
 
@@ -146,12 +146,17 @@ async def greet_new_members(c: Client, m: Message, strings):
         map(lambda a: "@" + a.username if a.username else a.mention, members)
     )
     mention = ", ".join(map(lambda a: a.mention, members))
-    count = await c.get_chat_members_count(m.chat.id)
     if not m.from_user.is_bot:
         welcome, welcome_enabled = get_welcome(m.chat.id)
         if welcome_enabled:
             if welcome is None:
                 welcome = strings("welcome_default")
+
+            if "count" in get_format_keys(welcome):
+                count = await c.get_chat_members_count(m.chat.id)
+            else:
+                count = 0
+
             welcome = welcome.format(
                 id=user_id,
                 username=username,
