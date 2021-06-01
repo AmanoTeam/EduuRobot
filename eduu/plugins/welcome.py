@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
 from eduu.database import db, dbc
-from eduu.utils import button_parser, commands, require_admin
+from eduu.utils import button_parser, commands, get_format_keys, require_admin
 from eduu.utils.localization import use_chat_lang
 
 
@@ -62,6 +62,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
                     # title and chat_title are the same
                     title=m.chat.title,
                     chat_title=m.chat.title,
+                    count=(await c.get_chat_members_count(m.chat.id)),
                 )
             )
         except (KeyError, BadRequest) as e:
@@ -150,6 +151,12 @@ async def greet_new_members(c: Client, m: Message, strings):
         if welcome_enabled:
             if welcome is None:
                 welcome = strings("welcome_default")
+
+            if "count" in get_format_keys(welcome):
+                count = await c.get_chat_members_count(m.chat.id)
+            else:
+                count = 0
+
             welcome = welcome.format(
                 id=user_id,
                 username=username,
@@ -161,6 +168,7 @@ async def greet_new_members(c: Client, m: Message, strings):
                 # title and chat_title are the same
                 title=chat_title,
                 chat_title=chat_title,
+                count=count,
             )
             welcome, welcome_buttons = button_parser(welcome)
             await m.reply_text(

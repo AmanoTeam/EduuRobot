@@ -8,6 +8,7 @@ import os.path
 import re
 import time
 from functools import partial, wraps
+from string import Formatter
 from typing import Callable, Coroutine, List, Optional, Tuple, Union
 
 from pyrogram import Client, emoji, filters
@@ -378,3 +379,8 @@ async def shell_exec(code, treat=True):
     if treat:
         stdout = stdout.decode().strip()
     return stdout, process
+
+
+def get_format_keys(string: str) -> List[str]:
+    """Return a list of formatting keys present in string."""
+    return [i[1] for i in Formatter().parse(string) if i[1] is not None]
