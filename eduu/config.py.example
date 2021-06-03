@@ -15,7 +15,6 @@ log_chat: int = 123456789
 # Sudoers and super sudoers
 super_sudoers: List[int] = [123456789]
 sudoers: List[int] = [987654321]
-sudoers.append(super_sudoers)
 
 # Prefixes for commands
 # e.g: /command and !command
@@ -26,3 +25,6 @@ disabled_plugins: List[str] = []
 
 # API Keys (Optional)
 TENOR_API_KEY: Optional[str] = ""
+
+# All super sudoers should be sudoers as well
+sudoers.extend(super_sudoers)
