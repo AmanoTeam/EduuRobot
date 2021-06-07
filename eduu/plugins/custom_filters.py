@@ -164,6 +164,7 @@ async def get_all_filter(c: Client, m: Message, strings):
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text
+    reply_or_reply_to_msg = m.reply_to_message if m.reply_to_message else m
 
     all_filters = get_all_filters(chat_id)
     for filter_s in all_filters:
@@ -172,7 +173,7 @@ async def serve_filter(c: Client, m: Message):
         if re.search(pattern, text, flags=re.IGNORECASE):
             data, button = button_parser(filter_s[2])
             if filter_s[4] == "text":
-                await m.reply_text(
+                await reply_or_reply_to_msg.reply_text(
                     data,
                     quote=True,
                     parse_mode="md",
@@ -181,7 +182,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "photo":
-                await m.reply_photo(
+                await reply_or_reply_to_msg.reply_photo(
                     filter_s[3],
                     quote=True,
                     caption=data if not None else None,
@@ -191,7 +192,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "document":
-                await m.reply_document(
+                await reply_or_reply_to_msg.reply_document(
                     filter_s[3],
                     quote=True,
                     caption=data if not None else None,
@@ -201,7 +202,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "video":
-                await m.reply_video(
+                await reply_or_reply_to_msg.reply_video(
                     filter_s[3],
                     quote=True,
                     caption=data if not None else None,
@@ -211,7 +212,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "audio":
-                await m.reply_audio(
+                await reply_or_reply_to_msg.reply_audio(
                     filter_s[3],
                     quote=True,
                     caption=data if not None else None,
@@ -221,7 +222,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "animation":
-                await m.reply_animation(
+                await reply_or_reply_to_msg.reply_animation(
                     filter_s[3],
                     quote=True,
                     caption=data if not None else None,
@@ -231,7 +232,7 @@ async def serve_filter(c: Client, m: Message):
                     else None,
                 )
             elif filter_s[4] == "sticker":
-                await m.reply_sticker(
+                await reply_or_reply_to_msg.reply_sticker(
                     filter_s[3],
                     quote=True,
                     reply_markup=InlineKeyboardMarkup(button)
