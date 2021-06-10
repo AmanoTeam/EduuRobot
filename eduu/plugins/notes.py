@@ -243,7 +243,8 @@ async def serve_note(c: Client, m: Message, txt):
 )
 async def note_by_hashtag(c: Client, m: Message):
     note_data = m.text[1:]
-    await serve_note(c, m, txt=note_data)
+    targeted_message = m.reply_to_message or m
+    await serve_note(c, targeted_message, txt=note_data)
 
 
 @Client.on_message(
@@ -255,7 +256,8 @@ async def note_by_hashtag(c: Client, m: Message):
 )
 async def note_by_get_command(c: Client, m: Message):
     note_data = " ".join(m.command[1:])
-    await serve_note(c, m, txt=note_data)
+    targeted_message = m.reply_to_message or m
+    await serve_note(c, targeted_message, txt=note_data)
 
 
 commands.add_command("delnote", "admin")
