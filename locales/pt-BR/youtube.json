@@ -5,5 +5,6 @@
   "ytdl_video_button": "🎬 Vídeo",
   "ytdl_file_too_big": "Desculpe! Não posso baixar esta mídia porque ela excede o meu limite de upload de 200MB.",
   "ytdl_send_error": "Desculpe! Não foi possível enviar o vídeo devido a um erro.\n<b>Erro:</b> <code>{errmsg}</code>",
-  "ytdl_downloading": "Baixando..."
+  "ytdl_downloading": "Baixando...",
+  "ytdl_button_denied": "Este botão não é para você."
 }
