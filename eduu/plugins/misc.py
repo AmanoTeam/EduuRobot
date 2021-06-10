@@ -170,7 +170,9 @@ async def request_cmd(c: Client, m: Message):
             url = "http://" + text
         req = await http.get(url)
         headers = "<b>{}</b> <code>{} {}</code>\n".format(
-            req.extensions.get("http_version"), req.status_code, req.extensions.get("reason", "")
+            req.extensions.get("http_version").decode(),
+            req.status_code,
+            req.extensions.get("reason_phrase", b"").decode(),
         )
         headers += "\n".join(
             "<b>{}:</b> <code>{}</code>".format(x.title(), escape(req.headers[x]))
