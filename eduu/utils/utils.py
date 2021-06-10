@@ -365,7 +365,7 @@ EMOJI_PATTERN = get_emoji_regex()
 
 
 def deEmojify(text: str) -> str:
-    """Remove emojis and other non-safe characters from string"""
+    """Remove emojis and other non-safe characters from string."""
     return EMOJI_PATTERN.sub("", text)
 
 

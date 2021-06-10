@@ -267,7 +267,7 @@ async def tban(c: Client, m: Message, strings):
 @require_admin(permissions=["can_delete_messages"], allow_in_private=True)
 @use_chat_lang()
 async def purge(c: Client, m: Message, strings):
-    """purge upto the replied message"""
+    """Purge upto the replied message."""
     status_message = await m.reply_text(strings("purge_in_progress"), quote=True)
     await m.delete()
     message_ids = []
