@@ -9,7 +9,7 @@ git+https://github.com/aio-libs/async-lru.git#egg=async_lru
 gpytranslate==1.2.0
 meval==2.5
 speedtest-cli
-httpx[http2]>=0.16.1,<1.0.0
+httpx[http2]>=0.18.1,<1.0.0
 regex
 telegraph
 Pillow==8.2.0
