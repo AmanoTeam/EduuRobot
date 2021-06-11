@@ -20,7 +20,7 @@ tio = Tio()
 
 
 langslist = tio.query_languages()
-langs_list_link = "https://nekobin.com/bemidirufo"
+langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 
 @Client.on_message(filters.command("exec_code", prefix))
