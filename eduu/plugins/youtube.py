@@ -58,7 +58,7 @@ async def yt_search_cmd(c: Client, m: Message):
         '{}: <a href="{}">{}</a>'.format(num + 1, i["url"], i["title"])
         for num, i in enumerate(await search_yt(m.text.split(None, 1)[1]))
     ]
-    await m.reply_text("\n".join(vids) if vids else "¯\_(ツ)_/¯")
+    await m.reply_text("\n".join(vids) if vids else r"¯\_(ツ)_/¯")
 
 
 @Client.on_message(filters.command("ytdl", prefix))
