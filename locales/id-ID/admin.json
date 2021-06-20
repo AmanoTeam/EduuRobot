@@ -5,5 +5,10 @@
   "antichannelpin_invalid_arg": "Argumen tidak valid. Gunakan <code>/antichannelpin off/on</code>.",
   "antichannelpin_status_disabled": "Anti penyematan dari channel saat ini nonaktif untuk obrolan ini.",
   "antichannelpin_status_enabled": "Anti penyematan dari channel saat ini aktif untuk obrolan ini.",
-  "ban_description": "Blokir pengguna dari obrolan."
+  "ban_description": "Blokir pengguna dari obrolan.",
+  "ban_success": "{user} telah diblokir oleh {admin}.",
+  "cleanservice_description": "Pembersihan pesan layanan (Cth.: Ketika pengguna gabung ke obrolan) dari obrolan.",
+  "cleanservice_disabled": "Hapus pesan layanan untuk obrolan ini sekarang nonaktif.",
+  "cleanservice_enabled": "Hapus pesan layanan untuk obrolan ini sekarang aktif.",
+  "cleanservice_invalid_arg": "Argumen tidak valid. Gunakan <code>/cleanservice off/on</code>."
 }
