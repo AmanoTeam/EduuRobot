@@ -1,1 +1,9 @@
-{}
+{
+  "antichannelpin_description": "Otomatis melepas sematan yang datang dari obrolan yang tersambung dengan channel.",
+  "antichannelpin_disabled": "Anti penyematan dari channel untuk obrolan ini sekarang nonaktif.",
+  "antichannelpin_enabled": "Anti penyematan dari channel untuk obrolan ini sekarang aktif.",
+  "antichannelpin_invalid_arg": "Argumen tidak valid. Gunakan <code>/antichannelpin off/on</code>.",
+  "antichannelpin_status_disabled": "Anti penyematan dari channel saat ini nonaktif untuk obrolan ini.",
+  "antichannelpin_status_enabled": "Anti penyematan dari channel saat ini aktif untuk obrolan ini.",
+  "ban_description": "Blokir pengguna dari obrolan."
+}
