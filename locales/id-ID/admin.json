@@ -35,5 +35,8 @@
   "unmute_success": "{user} telah dibunyikan oleh {admin}.",
   "unpin_description": "Lepas sematan pesan yang dibalas dalam obrolan.",
   "unpinall_description": "Lepas semua pesan tersemat dalam obrolan.",
-  "reason_string": "Alasan: {reason_text}"
+  "reason_string": "Alasan: {reason_text}",
+  "i_cant_ban_admins": "Saya tidak bisa memblokir admin.",
+  "i_cant_mute_admins": "Saya tidak bisa membisukan admin.",
+  "i_cant_kick_admins": "Saya tidak bisa menendang admin."
 }
