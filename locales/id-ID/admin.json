@@ -18,5 +18,7 @@
   "kick_success": "{user} telah ditendang oleh {admin}.",
   "mute_description": "Membisukan pengguna dalam obrolan.",
   "mute_success": "{user} telah dibisukan oleh {admin}.",
-  "no_admin_error": "Anda harus merupakan administrator untuk menggunakan perintah ini."
+  "no_admin_error": "Anda harus merupakan administrator untuk menggunakan perintah ini.",
+  "no_permission_error": "Maaf, tapi anda tidak memiliki izin yang diperlukan untuk menjalankan perintah ini. Izin yang hilang: {permissions}",
+  "private_not_allowed": "Perintah ini tidak dapat digunakan dalam obrolan pribadi, Jika anda membutuhkan bantuan, mohon gunakan perintah <code>/help</code>."
 }
