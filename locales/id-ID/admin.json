@@ -10,5 +10,13 @@
   "cleanservice_description": "Pembersihan pesan layanan (Cth.: Ketika pengguna gabung ke obrolan) dari obrolan.",
   "cleanservice_disabled": "Hapus pesan layanan untuk obrolan ini sekarang nonaktif.",
   "cleanservice_enabled": "Hapus pesan layanan untuk obrolan ini sekarang aktif.",
-  "cleanservice_invalid_arg": "Argumen tidak valid. Gunakan <code>/cleanservice off/on</code>."
+  "cleanservice_invalid_arg": "Argumen tidak valid. Gunakan <code>/cleanservice off/on</code>.",
+  "cleanservice_status_disabled": "Hapus pesan layanan saat ini nonaktif untuk obrolan ini.",
+  "cleanservice_status_enabled": "Hapus pesan layanan saat ini aktif untuk obrolan ini.",
+  "error_must_specify_time": "Anda harus menentukan waktu setelah perintah. Cth.: <code>/{command} 7d</code>.",
+  "kick_description": "Menendang pengguna dari obrolan.",
+  "kick_success": "{user} telah ditendang oleh {admin}.",
+  "mute_description": "Membisukan pengguna dalam obrolan.",
+  "mute_success": "{user} telah dibisukan oleh {admin}.",
+  "no_admin_error": "Anda harus merupakan administrator untuk menggunakan perintah ini."
 }
