@@ -20,5 +20,13 @@
   "mute_success": "{user} telah dibisukan oleh {admin}.",
   "no_admin_error": "Anda harus merupakan administrator untuk menggunakan perintah ini.",
   "no_permission_error": "Maaf, tapi anda tidak memiliki izin yang diperlukan untuk menjalankan perintah ini. Izin yang hilang: {permissions}",
-  "private_not_allowed": "Perintah ini tidak dapat digunakan dalam obrolan pribadi, Jika anda membutuhkan bantuan, mohon gunakan perintah <code>/help</code>."
+  "private_not_allowed": "Perintah ini tidak dapat digunakan dalam obrolan pribadi, Jika anda membutuhkan bantuan, mohon gunakan perintah <code>/help</code>.",
+  "pin_description": "Semat dengan membalas ke pesan dalam obrolan. <code>loud</code> dapat digunakan untuk mengaktifkan notifikasi.",
+  "purge_in_progress": "Membersihkan pesan...",
+  "purge_description": "Membersihkan riwayat hingga ke pesan yang dibalas.",
+  "purge_success": "Menghapus <b>{count}</b> pesan.",
+  "tban_description": "Blokir pengguna dari obrolan dalam waktu yang ditentukan.",
+  "tban_success": "{user} telah diblokir sementara oleh {admin} selama <b>{time}</b>.",
+  "tmute_description": "Membisukan pengguna di obrolan dalam waktu yang ditentukan.",
+  "tmute_success": "{user} telah dibisukan sementara oleh {admin} selama <b>{time}</b>."
 }
