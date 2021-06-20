@@ -1,1 +1,12 @@
-{}
+{
+  "info_description": "Dapatkan informasi tentang pengguna.",
+  "info_header": "<b>Info pengguna:</b>",
+  "info_id": "\nID: <code>{id}</code>",
+  "info_first_name": "\nNama depan: {first_name}",
+  "info_last_name": "\nNama belakang: {last_name}",
+  "info_username": "\nUsername: @{username}",
+  "info_userlink": "\nTautan pengguna: {link}",
+  "info_chat_admin": "\nPengguna ini memiliki '<b>hak admin</b>' dalam obrolan ini.",
+  "info_chat_creator": "\nPengguna ini merupakan '<b>pemilik</b>' dari obrolan ini.",
+  "user_not_found": "\nTidak ada pengguna yang ditemukan untuk '<code>{user}</code>'."
+}
