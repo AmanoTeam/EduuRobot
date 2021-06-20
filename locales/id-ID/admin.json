@@ -28,5 +28,12 @@
   "tban_description": "Blokir pengguna dari obrolan dalam waktu yang ditentukan.",
   "tban_success": "{user} telah diblokir sementara oleh {admin} selama <b>{time}</b>.",
   "tmute_description": "Membisukan pengguna di obrolan dalam waktu yang ditentukan.",
-  "tmute_success": "{user} telah dibisukan sementara oleh {admin} selama <b>{time}</b>."
+  "tmute_success": "{user} telah dibisukan sementara oleh {admin} selama <b>{time}</b>.",
+  "unban_description": "Lepas blokir pengguna dari obrolan.",
+  "unban_success": "{user} telah dilepas dari blokiran oleh {admin}.",
+  "unmute_description": "Bunyikan pengguna dalam obrolan.",
+  "unmute_success": "{user} telah dibunyikan oleh {admin}.",
+  "unpin_description": "Lepas sematan pesan yang dibalas dalam obrolan.",
+  "unpinall_description": "Lepas semua pesan tersemat dalam obrolan.",
+  "reason_string": "Alasan: {reason_text}"
 }
