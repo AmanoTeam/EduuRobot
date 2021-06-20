@@ -16,5 +16,7 @@
   "bug_reported_success_to_bot_admins": "Bug telah berhasil dilaporkan.",
   "err_cant_send_bug_report_to_bot_admins": "Galat, saya tidak bisa mengirim laporan bug ke admin bot.",
   "err_no_bug_to_report": "Anda harus menentukan spesifik bug untuk dilaporkan, Cth.: <code>/bug (ini bug nya)</code>.",
-  "donate_description": "Dapatkan informasi tentang donasi."
+  "donate_description": "Dapatkan informasi tentang donasi.",
+  "donatecmdstring": "Jika anda menyukai proyek dan ingin melanjutkan secara gratis dan tetap bertahan daring nya, silakan tunjukkan dukungan anda dengan melakukan berdonasi dengan mengklik tautan dibawah ini. Berapapun nilainya sangat dihargai. Terima kasih!\n\nhttps://amanoteam.com/donate",
+  "report_admns": "{admins_list}{reported_user} Melaporkan kepada admin."
 }
