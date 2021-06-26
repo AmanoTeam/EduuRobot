@@ -130,7 +130,7 @@ async def check_perms(
         permissions = [permissions]
 
     for permission in permissions:
-        if not user.__getattribute__(permission):
+        if not getattr(user, permission):
             missing_perms.append(permission)
 
     if not missing_perms:
