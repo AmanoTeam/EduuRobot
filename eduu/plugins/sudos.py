@@ -218,16 +218,20 @@ async def backupcmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)
 async def uploadfile(c: Client, m: Message):
-    await m.reply_to_message.reply_text("Uploading the Document.")
-    await m.reply_to_message.download()
+    if not m.reply_to_message:
+        await m.reply_text("You must reply to a file to upload.")
+
+    sent = await m.reply_to_message.reply_text("Uploading file...")
+    file_path = await m.reply_to_message.download(m.command[1] if len(m.command) > 1 else "")
+    await sent.edit_text(f"File successfully saved to {file_path}.")
 
 
 @Client.on_message(filters.command("doc", prefix) & sudofilter)
 async def downloadfile(c: Client, m: Message):
     if len(m.text.split()) > 1:
-        await m.reply_document(f"downloads/{m.command[1]}")
+        await m.reply_document(m.command[1])
     else:
-        await m.reply_text("You must specify the document.")
+        await m.reply_text("You must specify the document path.")
 
 
 @Client.on_message(filters.command("chat", prefix) & sudofilter)
