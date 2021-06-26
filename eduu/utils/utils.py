@@ -9,7 +9,7 @@ import re
 import time
 from functools import partial, wraps
 from string import Formatter
-from typing import Callable, Coroutine, List, Optional, Tuple, Union
+from typing import Callable, List, Optional, Tuple, Union
 
 from pyrogram import Client, emoji, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
@@ -42,7 +42,7 @@ def pretty_size(size_bytes):
     return "%s %s" % (s, size_name[i])
 
 
-def aiowrap(func: Callable) -> Coroutine:
+def aiowrap(func: Callable) -> Callable:
     @wraps(func)
     async def run(*args, loop=None, executor=None, **kwargs):
         if loop is None:
