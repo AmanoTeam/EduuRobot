@@ -98,7 +98,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 title=strings("html_send_inline"),
                 input_message_content=InputTextMessageContent(
-                    querytxt, parse_mode="html"
+                    querytxt,
                 ),
                 reply_markup=(
                     InlineKeyboardMarkup(querybuttons)

@@ -222,7 +222,9 @@ async def uploadfile(c: Client, m: Message):
         await m.reply_text("You must reply to a file to upload.")
 
     sent = await m.reply_to_message.reply_text("Uploading file...")
-    file_path = await m.reply_to_message.download(m.command[1] if len(m.command) > 1 else "")
+    file_path = await m.reply_to_message.download(
+        m.command[1] if len(m.command) > 1 else ""
+    )
     await sent.edit_text(f"File successfully saved to {file_path}.")
 
 
