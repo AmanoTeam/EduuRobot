@@ -47,6 +47,10 @@ dbc.execute(
     """CREATE TABLE IF NOT EXISTS was_restarted_at (chat_id INTEGER,
                                                     message_id INTEGER)"""
 )
-
+dbc.execute(
+    """CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
+                                              chat_id INTEGER,
+                                              count INTEGER)"""
+)
 
 db.commit()
