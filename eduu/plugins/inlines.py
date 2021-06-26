@@ -56,7 +56,7 @@ async def faces_inline(c: Client, q: InlineQuery):
         "(◕‿◕✿)",
         "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
     ]
-    results: Dict = []
+    results: List[InlineQueryResultArticle] = []
     for i in faces_list:
         results.append(
             InlineQueryResultArticle(
