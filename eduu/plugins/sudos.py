@@ -213,7 +213,7 @@ async def del_message(c: Client, m: Message):
     & ~filters.via_bot
 )
 async def backupcmd(c: Client, m: Message):
-    await m.reply_document("eduu.db")
+    await m.reply_document("eduu/database/eduu.db")
 
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)
