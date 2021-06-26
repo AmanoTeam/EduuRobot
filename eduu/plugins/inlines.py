@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
-from typing import Dict, List
+from typing import List
 
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid

@@ -14,7 +14,6 @@ from eduu.utils.localization import use_chat_lang
 
 from .admin import get_target_user
 
-
 dbc.execute(
     """
 CREATE TABLE IF NOT EXISTS user_warns(
