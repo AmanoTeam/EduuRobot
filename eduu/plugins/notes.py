@@ -13,11 +13,15 @@ from eduu.utils.localization import use_chat_lang
 
 
 dbc.execute(
-    """CREATE TABLE IF NOT EXISTS notes (chat_id INTEGER ,
-                                         note_name,
-                                         raw_data,
-                                         file_id,
-                                         note_type)"""
+    """
+CREATE TABLE IF NOT EXISTS notes(
+    chat_id INTEGER ,
+    note_name,
+    raw_data,
+    file_id,
+    note_type
+)
+    """
 )
 
 

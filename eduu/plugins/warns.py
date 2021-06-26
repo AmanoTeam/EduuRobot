@@ -16,9 +16,13 @@ from .admin import get_target_user
 
 
 dbc.execute(
-    """CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
-                                              chat_id INTEGER,
-                                              count INTEGER)"""
+    """
+CREATE TABLE IF NOT EXISTS user_warns(
+    user_id INTEGER,
+    chat_id INTEGER,
+    count INTEGER
+)
+    """
 )
 
 
