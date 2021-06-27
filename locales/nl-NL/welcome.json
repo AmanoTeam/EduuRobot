@@ -1,1 +1,13 @@
-{}
+{
+  "resetwelcome_description": "Reset het welkomstbericht naar het standaard welkomstbericht van de bot.",
+  "welcome_default": "Hey {first_name}, welkom bij {chat_title}!",
+  "welcome_description": "Welkomstbericht in- of uitschakelen.",
+  "welcome_mode_disable": "Het welkomstbericht voor {chat_title} is nu uitgeschakeld.",
+  "welcome_mode_enable": "Het welkomstbericht voor {chat_title} is nu ingeschakeld.",
+  "welcome_mode_invalid": "Ongeldig argument. Gebruik <code>/welkom off/on</code>.",
+  "welcome_reset": "Het welkomstbericht voor {chat_title} is opnieuw ingesteld op het standaard welkomstbericht van de bot.",
+  "welcome_set_empty": "Specificeer een welkomstbericht, bijv.: <code>/setwelcome jouw welkomstbericht</code>. Voor hulp bij tekst opmaak, <a href=\"https://t.me/{bot_username}?start=welcome_format_help\">klik hier</a>.",
+  "welcome_set_error": "Er is een fout opgetreden en het welkomstbericht kon niet worden ingesteld. Fout: {error}",
+  "welcome_set_success": "Het welkomstbericht voor {chat_title} is succesvol ingesteld.",
+  "welcomeformat_description": "Help het welkomstbericht op te maken."
+}
