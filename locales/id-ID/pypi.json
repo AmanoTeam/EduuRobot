@@ -1,1 +1,8 @@
-{}
+{
+  "package_details": "<b>{package_name}</b> oleh <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersi: <b>{version}</b>\nLisensi: <b>{license}</b>\nRingkasan: <b>{summary}</b>",
+  "package_home_page": "Halaman beranda paket",
+  "package_not_found": "Tidak menemukan <b>{package_name}</b> di PyPI (Kode yang dikembalikan adalah {http_status}).",
+  "not_specified": "Tidak ditentukan",
+  "pypi_description": "Cari paket di Indeks Paket Python (PyPI).",
+  "pypi_usage": "<b>Penggunaan:</b> <code>/pypi package_name</code> - Cari paket di Indeks Paket Python (PyPI)."
+}
