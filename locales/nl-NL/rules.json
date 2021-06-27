@@ -1,1 +1,10 @@
-{}
+{
+  "resetrules_description": "Reset de chatregels.",
+  "rules_deleted": "De regels van deze chat zijn succesvol verwijderd.",
+  "rules_description": "Toon de chatregels.",
+  "rules_empty": "Er zijn geen regels ingesteld voor deze chat.",
+  "rules_message": "De regels in de chat {chat_title} zijn:\n\n{rules}",
+  "rules_set_empty": "Je moet regels specificeren, bijv.: <code>/setrules (hier de regels)</code>.",
+  "rules_set_success": "De regels voor {chat_title} zijn succesvol ingesteld.",
+  "setrules_description": "Stel de regels van de chat in."
+}
