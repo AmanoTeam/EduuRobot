@@ -3,5 +3,8 @@
   "rules_deleted": "Peraturan untuk obrolan ini berhasil dihapus.",
   "rules_description": "Tampilkan peraturan obrolan.",
   "rules_empty": "Tidak ada peraturan yang ditetapkan untuk obrolan ini.",
-  "rules_message": "Peraturan obrolan ini {chat_title} ialah:\n\n{rules}"
+  "rules_message": "Peraturan obrolan ini {chat_title} ialah:\n\n{rules}",
+  "rules_set_empty": "Anda harus menentukan peraturan, Cth.: <code>/setrules (di sini peraturannya)</code>.",
+  "rules_set_success": "Peraturan obrolan untuk {chat_title} berhasil ditetapkan.",
+  "setrules_description": "Menetapkan peraturan obrolan."
 }
