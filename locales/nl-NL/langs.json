@@ -1,3 +1,5 @@
 {
-  "language_changed_successfully": "Taal succesvol gewijzigd."
+  "language_changed_successfully": "Taal succesvol gewijzigd.",
+  "language_changer_chat": "Hier kun je de taal van de bot veranderen voor de hele chat.\nAls je taal hier niet bij staat en je wilt graag bijdragen, ga dan naar @AmanoChat.",
+  "language_changer_private": "Hier kun je de taal van de bot veranderen voor deze privéchat.\n\nAls je de taal van je groep wilt veranderen, stuur er het <code>/setchatlang</code> commando.\nAls je taal hier niet bij staat en je wilt graag bijdragen, ga dan naar @AmanoChat."
 }
