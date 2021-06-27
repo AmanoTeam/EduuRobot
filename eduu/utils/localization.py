@@ -26,6 +26,7 @@ enabled_locales: List[str] = [
     "id-ID",  # Indonesian
     "it-IT",  # Italian
     "ja-JP",  # Japanese
+    "nl-NL",  # Dutch
     "no-NO",  # Norwegian
     "pl-PL",  # Polish
     "pt-BR",  # Portuguese (Brazil)
