@@ -1,1 +1,7 @@
-{}
+{
+  "resetrules_description": "Set ulang peraturan obrolan.",
+  "rules_deleted": "Peraturan untuk obrolan ini berhasil dihapus.",
+  "rules_description": "Tampilkan peraturan obrolan.",
+  "rules_empty": "Tidak ada peraturan yang ditetapkan untuk obrolan ini.",
+  "rules_message": "Peraturan obrolan ini {chat_title} ialah:\n\n{rules}"
+}
