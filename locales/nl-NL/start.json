@@ -1,9 +1,11 @@
 {
-  "commands_btn": "📚 Commands",
+  "commands_btn": "📚 Commando’s",
   "infos_btn": "ℹ️ Over",
   "language_btn": "🌐 Taal",
   "add_chat_btn": "➕ Voeg toe aan een chat",
   "private": "Hallo! Ik ben EduuRobot. Klik op de knoppen hieronder om meer te weten te komen over mijn functies.",
   "start_chat": "🤖 Start een chat",
-  "group": "Hallo! Ik ben EduuRobot. Om mijn functies te ontdekken begin je een gesprek met mij."
+  "group": "Hallo! Ik ben EduuRobot. Begin een gesprek met me om mijn functies te ontdekken.",
+  "info_page": "• EduuRobot\n\nVersie: {version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Broncode</a>\nOntwikkelaars: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartnerschap:\n » <a href=\"https://t.me/hpxlist\">HPXList - door usernein</a>\n\n©2021 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_description": "Start de bot."
 }
