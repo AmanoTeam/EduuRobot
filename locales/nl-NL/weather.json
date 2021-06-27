@@ -1,7 +1,8 @@
 {
-  "details": "<b>{location}</b>:\n\nTemperatuur: <code>{temperature} °C</code>\nTemperatuur voelt zich als <code>{feels_like} °C</code>\nluchtvochtigheid: <code>{air_humidity}%</code>\nWindsnelheid: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
+  "details": "<b>{location}</b>:\n\nTemperatuur: <code>{temperature} °C</code>\nGevoelstemperatuur: <code>{feels_like} °C</code>\nLuchtvochtigheid: <code>{air_humidity}%</code>\nWindsnelheid: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Locatie niet gevonden.",
   "measurement_unit": "min",
   "weather_language": "nl-NL",
-  "weather_usage": "<b>Gebruik:</b> <code>/weather locatie of stad</code> - Krijg weer informatie van <i>locatie of stad</i>."
+  "weather_description": "Krijg informatie over het weer van de opgegeven locatie of stad.",
+  "weather_usage": "<b>Gebruik:</b> <code>/weather locatie of stad</code> - Krijg informatie over het weer van <i>locatie of stad</i>."
 }

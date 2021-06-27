@@ -1,3 +1,4 @@
 {
-  "gif_usage": "<b>Gebruik:</b> <code>/gif zoek term</code> - Stuurt een willekeurige GIF uit zoekresultaten."
+  "gif_description": "Stuurt een willekeurige GIF uit het zoekresultaat.",
+  "gif_usage": "<b>Gebruik:</b> <code>/gif zoekterm</code> - Stuurt een willekeurige GIF uit zoekresultaten."
 }
