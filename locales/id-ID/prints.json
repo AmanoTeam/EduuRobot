@@ -1,1 +1,5 @@
-{}
+{
+  "print_description": "Ambil cuplikan layar dari situs web yang ditentukan.",
+  "print_usage": "<b>Penggunaan:</b> <code>/print https://example.com</code> - Ambil cuplikan layar dari situs web yang ditentukan.",
+  "taking_screenshot": "Mengambil cuplikan layar..."
+}
