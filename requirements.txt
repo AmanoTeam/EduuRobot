@@ -12,6 +12,6 @@ speedtest-cli
 httpx[http2]>=0.18.1,<1.0.0
 regex
 telegraph
-Pillow==8.2.0
+Pillow==8.3.0
 pytio
 youtube-dl
