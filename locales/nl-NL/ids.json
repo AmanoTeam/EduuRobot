@@ -1,1 +1,6 @@
-{}
+{
+  "id_description": "Krijg informatie over de chat.",
+  "none": "Geen",
+  "unknown": "Onbekend",
+  "user_not_found": "Geen gebruiker gevonden voor '<code>{user}</code>'."
+}
