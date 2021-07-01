@@ -11,5 +11,7 @@
   "tban_success": "{user} is tijdelijk verbannen door {admin} voor <b>{time}</b>.",
   "tmute_success": "{user} is tijdelijk gedempt door {admin} voor <b>{time}</b>.",
   "unban_success": "{user} is gedeblokkeerd door {admin}.",
-  "unmute_success": "{user} werd door {admin} unmuted"
+  "unmute_success": "{user} werd door {admin} unmuted",
+  "i_cant_mute_admins": "Ik kan beheerders niet dempen.",
+  "i_cant_kick_admins": "Ik kan beheerders niet kicken."
 }
