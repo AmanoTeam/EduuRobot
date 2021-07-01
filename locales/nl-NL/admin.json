@@ -34,6 +34,7 @@
   "unmute_description": "Ontdempt een gebruiker in de chat.",
   "unmute_success": "{user} werd door {admin} unmuted",
   "unpin_description": "Maakt het beantwoorde bericht los in de chat.",
+  "unpinall_description": "Maakt alle berichten los in de chat.",
   "reason_string": "Reden: {reason_text}",
   "i_cant_ban_admins": "Ik kan beheerders niet verbannen.",
   "i_cant_mute_admins": "Ik kan beheerders niet dempen.",
