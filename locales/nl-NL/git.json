@@ -1,1 +1,6 @@
-{}
+{
+  "git_description": "Krijg informatie van een profiel op GitHub.",
+  "info_git_user": "<b>Naam</b> : <code>{name}</code> \n <b>Gebruikersnaam</b> : <code>{username}</code> \n <b>Locatie</b> : <code>{location}</code> \n <b>Type</b> : <code>{type}</code> \n <b>Bio</b> : <code>{bio}</code>",
+  "not_found_user": "Gebruiker niet gevonden",
+  "no_username_err": "Specificeer een gebruikersnaam"
+}

@@ -1,1 +1,14 @@
-{}
+{
+  "get_sticker_id_string": "De id van deze sticker is \n <code>{stickerid}</code>",
+  "animated_not_supported": "Geanimeerde stickers worden niet ondersteund.",
+  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker ID:</b> <code>{id}</code>",
+  "not_sticker": "Dat is geen sticker",
+  "kanging_sticker_msg": "<code>Sticker veranderen ...</code>",
+  "sticker_kanged_string": "Sticker <b>succesvol</b> toegevoegd aan pakket\nEmoji: {sticker_emoji}",
+  "use_existing_pack": "<code>Bestaande stickerpakket gebruiken...</code>",
+  "err_sticker_no_file_name": "<b>FOUT</b>: <code>Deze sticker heeft geen bestandsnaam!</code>",
+  "view_sticker_pack_btn": "Weergeven",
+  "create_new_pack_string": "✨ Nieuw stickerpakket maken",
+  "invalid_media_string": "<b>FOUT:</b> <code>Media ongeldig<code>",
+  "cant_create_sticker_pack_string": "😬 Oeps, het lijkt erop dat ik niet genoeg rechten heb om een stickerpakket voor je te maken! \n<b>Start eerst de bot</b>"
+}

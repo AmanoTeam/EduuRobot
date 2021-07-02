@@ -1,1 +1,22 @@
-{}
+{
+  "admins_description": "Toon een lijst met de chatbeheerders.",
+  "admins_list": "Beheerders in de chat {chat_title}:\n{admins_list}",
+  "html_description": "Maakt de opgegeven tekst op met HTML syntax.",
+  "html_usage": "<b>Gebruik:</b> <code>/html &lt;b&gt;tekst&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code> - Maakt de opgegeven tekst op met de HTML syntax.",
+  "mark_description": "Maakt de opgegeven tekst op met Markdown syntax.",
+  "mark_usage": "<b>Gebruik:</b> <code>/mark **tekst** in __markdown__</code> - Maakt de de opgegeven tekst op met de Markdown syntax.",
+  "token_description": "Krijg informatie over de opgegeven bot token.",
+  "no_bot_token": "Specificeer een bot token.",
+  "bot_token_invalid": "Ongeldige bot token.",
+  "bot_token_info": "<b>Naam</b> : <code>{botname}</code> \n <b>Gebruikersnaam</b> : <code>{botusername}</code> \n <b>ID</b> : <code>{botid}</code>",
+  "urldecode_description": "Codeer de opgegeven tekst met URL-veilige codering.",
+  "urlencode_description": "Decodeer de opgegeven tekst vanuit URL-veilige codering.",
+  "parsebtn_err": "Je moet een URL en de tekst van de knop opgeven, \n Bijv.: <code>/parsebutton https://google.com tekst</code>.",
+  "parsebutton_description": "Help om knoppen op te maken.",
+  "bug_reported_success_to_bot_admins": "De bug is succesvol gerapporteerd.",
+  "err_cant_send_bug_report_to_bot_admins": "Fout, het bugrapport kon niet worden verstuurd naar de beheerders van de bot.",
+  "err_no_bug_to_report": "Je moet een bug specificeren, bijv.: <code>/bug (hier de bug)</code>.",
+  "donate_description": "Krijg informatie over donaties.",
+  "donatecmdstring": "Als je het project leuk vindt en wilt dat het gratis en levend blijft, laat dan je waardering zien door op onderstaande link te klikken. Elk bedrag wordt gewaardeerd. Bedankt!\n\nhttps://amanoteam.com/donate",
+  "report_admns": "{admins_list}{reported_user} Gerapporteerd aan de beheerders."
+}

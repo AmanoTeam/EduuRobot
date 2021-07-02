@@ -1,1 +1,12 @@
-{}
+{
+  "info_description": "Krijg informatie over een gebruiker.",
+  "info_header": "<b>Gebruikersinfo:</b>",
+  "info_id": "\nID: <code>{id}</code>",
+  "info_first_name": "\nVoornaam: {first_name}",
+  "info_last_name": "\nAchternaam: {last_name}",
+  "info_username": "\nGebruikersnaam: @{username}",
+  "info_userlink": "\nGebruikerslink: {link}",
+  "info_chat_admin": "\nDeze gebruiker heeft '<b>beheerdersrechten</b>' in deze chat.",
+  "info_chat_creator": "\nDeze gebruiker is de '<b>eigenaar</b>' van deze chat.",
+  "user_not_found": "\nGeen gebruiker gevonden voor '<code>{user}</code>'."
+}
