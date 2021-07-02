@@ -1,1 +1,21 @@
-{}
+{
+  "resetwarns_description": "Reset de waarschuwingen van de gebruiker.",
+  "setwarnslimit_description": "Stel de limiet in van de waarschuwingen in de chat.",
+  "user_warned": "Gebruiker {target_user} heeft {warn_count} van {warn_limit} waarschuwingen.",
+  "warn_banned": "Gebruiker {target_user} is verbannen omdat hij {warn_count} keer gewaarschuwd is.",
+  "warn_kicked": "Gebruiker {target_user} is uit de chat gezet omdat hij {warn_count} keer gewaarschuwd is.",
+  "warn_muted": "Gebruiker {target_user} is gedempt omdat hij {warn_count} keer gewaarschuwd is.",
+  "warn_cant_admin": "Ik kan beheerders niet waarschuwen.",
+  "warn_description": "Waarschuw een gebruiker.",
+  "warn_limit_changed": "De limiet voor waarschuwingen is gewijzigd naar {warn_limit}.",
+  "warn_limit_help": "Je moet een aantal waarschuwingen opgeven, bijv.: <code>/setwarnslimit 5</code>.",
+  "warn_limit_invalid": "Het opgegeven getal is niet geldig.",
+  "warn_reason_text": "De reden voor deze waarschuwing: {reason_text}",
+  "warn_reset": "{target_user} waarschuwingen zijn succesvol verwijderd.",
+  "warns_description": "Krijg de waarschuwingen van de gebruiker.",
+  "warns_count_string": "Gebruiker {target_user} heeft {warns_count} waarschuwingen.",
+  "warns_action_set_string": "De waarschuwingsactie is ingesteld op {action}.",
+  "warns_action_set_invlaid": "Ongeldig argument. Gebruik <code>/setwarnsactie (ban/mute/kick)</code>.",
+  "warn_action_status": "De waarschuwingsactie voor deze chat is {action}.",
+  "setwarnsaction_description": "Stel de waarschuwingsacties in voor de chat, je kunt de argumenten <code>ban/mute/kick</code> gebruiken."
+}
