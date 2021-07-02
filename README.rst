@@ -54,6 +54,8 @@ We only accept pull requests for source language changes (currently en-GB).
 
 Special thanks
 --------------
+* @Halokv: Arabic translation
+* @SGANoud: Dutch translation
 * @iiiiii1wepfj: Hebrew translation
 * @HafitzSetya: Indonesian translation
 * @Pato05: Italian translation
