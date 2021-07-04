@@ -6,5 +6,8 @@
   "sticker_kanged_string": "Sticker <b>erfolgreich</b> zum Set hinzugefügt\nEmoji: {sticker_emoji}",
   "use_existing_pack": "<code>Existierendes Sticker-Set benutzen ...</code>",
   "err_sticker_no_file_name": "<b>FEHLER</b>: <code>Dieser Sticker hat keinen Dateinamen!</code>",
-  "view_sticker_pack_btn": "Anzeigen"
+  "view_sticker_pack_btn": "Anzeigen",
+  "create_new_pack_string": "✨ Neues Sticker-Set wird erstellt",
+  "invalid_media_string": "<b>FEHLER:</b> <code>Medium ungültig<code>",
+  "cant_create_sticker_pack_string": "😬 Ups, es sieht so aus, als hätte ich nicht genug Rechte, um ein Sticker-Set für dich zu erstellen! \n<b>Bitte starte zuerst den Bot</b>"
 }
