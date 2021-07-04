@@ -1,1 +1,10 @@
-{}
+{
+  "resetrules_description": "Chatregeln zurücksetzen.",
+  "rules_deleted": "Die Regeln für diesen Chat wurden erfolgreich gelöscht.",
+  "rules_description": "Chatregeln anzeigen.",
+  "rules_empty": "Es wurden keine Regeln für diesen Chat festgelegt.",
+  "rules_message": "Die Regeln im Chat {chat_title} sind:\n\n{rules}",
+  "rules_set_empty": "Du musst die Regeln angeben, z. B.: <code>/setrules (hier die Regeln)</code>.",
+  "rules_set_success": "Die Regeln für {chat_title} wurden erfolgreich definiert.",
+  "setrules_description": "Regeln für den Chat festlegen."
+}

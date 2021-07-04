@@ -31,5 +31,12 @@
   "tmute_success": "{user} wurde vorübergehend von {admin} für <b>{time}</b> stumm gemacht.",
   "unban_description": "Verbannt einen Nutzer vom Chat.",
   "unban_success": "{user} wurde von {admin} entbannt.",
-  "unmute_success": "{user} wurde von {admin} entmutet."
+  "unmute_description": "Hebt die Stummschaltung eines Benutzers im Chat auf.",
+  "unmute_success": "{user} wurde von {admin} entmutet.",
+  "unpin_description": "Löst die beantwortete Nachricht im Chat.",
+  "unpinall_description": "Löst alle Nachrichten im Chat.",
+  "reason_string": "Grund: {reason_text}",
+  "i_cant_ban_admins": "Ich kann Admins nicht bannen.",
+  "i_cant_mute_admins": "Ich kann Admins nicht stummschalten.",
+  "i_cant_kick_admins": "Ich kann Admins nicht kicken."
 }
