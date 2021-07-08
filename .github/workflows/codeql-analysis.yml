@@ -4,9 +4,11 @@ on:
   push:
     branches-ignore:
       - 'l10n_*'
+      - 'dependabot/**'
   pull_request:
     branches-ignore:
       - 'l10n_*'
+      - 'dependabot/**'
   schedule:
     - cron: '0 19 * * 0'
 
