@@ -2,49 +2,57 @@
 # Copyright (c) 2018-2021 Amano Team
 
 import re
+from typing import Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
-from eduu.database import db, dbc
+from eduu.database import notes
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
 
 
-def add_note(chat_id, trigger, raw_data, file_id, note_type):
-    dbc.execute(
-        "INSERT INTO notes(chat_id, note_name, raw_data, file_id, note_type) VALUES(?, ?, ?, ?, ?)",
-        (chat_id, trigger, raw_data, file_id, note_type),
+async def add_note(
+    chat_id: int,
+    trigger,
+    note_type,
+    raw_data: Optional[str] = None,
+    file_id: Optional[str] = None,
+):
+    await notes.create(
+        chat_id=chat_id,
+        note_name=trigger,
+        raw_data=raw_data,
+        file_id=file_id,
+        note_type=note_type,
     )
-    db.commit()
 
 
-def update_note(chat_id, trigger, raw_data, file_id, note_type):
-    dbc.execute(
-        "UPDATE notes SET raw_data = ?, file_id = ?, note_type = ? WHERE chat_id = ? AND note_name = ?",
-        (raw_data, file_id, note_type, chat_id, trigger),
+async def update_note(
+    chat_id: int,
+    trigger,
+    note_type,
+    raw_data: Optional[str] = None,
+    file_id: Optional[str] = None,
+):
+    await notes.filter(chat_id=chat_id, note_name=trigger).update(
+        raw_data=raw_data, file_id=file_id, note_type=note_type
     )
-    db.commit()
 
 
-def rm_note(chat_id, trigger):
-    dbc.execute(
-        "DELETE from notes WHERE chat_id = ? AND note_name = ?", (chat_id, trigger)
-    )
-    db.commit()
+async def rm_note(chat_id: int, trigger):
+    await notes.filter(chat_id=chat_id, note_name=trigger).delete()
 
 
-def get_all_notes(chat_id):
-    dbc.execute("SELECT * FROM notes WHERE chat_id = ?", (chat_id,))
-
-    return dbc.fetchall()
+async def get_all_notes(chat_id: int):
+    return await notes.filter(chat_id=chat_id)
 
 
-def check_for_notes(chat_id, trigger):
-    all_notes = get_all_notes(chat_id)
+async def check_for_notes(chat_id: int, trigger):
+    all_notes = await get_all_notes(chat_id)
     for keywords in all_notes:
-        keyword = keywords[1]
+        keyword = keywords.note_name
         if trigger == keyword:
             return True
     return False
@@ -112,11 +120,23 @@ async def save_note(c: Client, m: Message, strings):
         note_type = "text"
 
     chat_id = m.chat.id
-    check_note = check_for_notes(chat_id, trigger)
+    check_note = await check_for_notes(chat_id=chat_id, trigger=trigger)
     if check_note:
-        update_note(chat_id, trigger, raw_data, file_id, note_type)
+        await update_note(
+            chat_id=chat_id,
+            trigger=trigger,
+            raw_data=raw_data,
+            file_id=file_id,
+            note_type=note_type,
+        )
     else:
-        add_note(chat_id, trigger, raw_data, file_id, note_type)
+        await add_note(
+            chat_id=chat_id,
+            trigger=trigger,
+            raw_data=raw_data,
+            file_id=file_id,
+            note_type=note_type,
+        )
     await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
 
 
@@ -127,9 +147,9 @@ async def delete_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
-    check_note = check_for_notes(chat_id, trigger)
+    check_note = await check_for_notes(chat_id=chat_id, trigger=trigger)
     if check_note:
-        rm_note(chat_id, trigger)
+        await rm_note(chat_id=chat_id, trigger=trigger)
         await m.reply_text(
             strings("remove_note_success").format(trigger=trigger), quote=True
         )
@@ -144,9 +164,9 @@ async def delete_note(c: Client, m: Message, strings):
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id=chat_id)
     for note_s in all_notes:
-        keyword = note_s[1]
+        keyword = note_s.note_name
         reply_text += f" - {keyword} \n"
 
     if not all_notes:
@@ -159,13 +179,13 @@ async def serve_note(c: Client, m: Message, txt):
     chat_id = m.chat.id
     text = txt
 
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id=chat_id)
     for note_s in all_notes:
-        keyword = note_s[1]
+        keyword = note_s.note_name
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
-            data, button = button_parser(note_s[2])
-            if note_s[4] == "text":
+            data, button = button_parser(note_s.raw_data)
+            if note_s.note_type == "text":
                 await m.reply_text(
                     data,
                     quote=True,
@@ -174,9 +194,9 @@ async def serve_note(c: Client, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-            elif note_s[4] == "photo":
+            elif note_s.note_type == "photo":
                 await m.reply_photo(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -184,9 +204,9 @@ async def serve_note(c: Client, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-            elif note_s[4] == "document":
+            elif note_s.note_type == "document":
                 await m.reply_document(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -194,9 +214,9 @@ async def serve_note(c: Client, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-            elif note_s[4] == "video":
+            elif note_s.note_type == "video":
                 await m.reply_video(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -206,7 +226,7 @@ async def serve_note(c: Client, m: Message, txt):
                 )
             elif note_s[4] == "audio":
                 await m.reply_audio(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -214,9 +234,9 @@ async def serve_note(c: Client, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-            elif note_s[4] == "animation":
+            elif note_s.note_type == "animation":
                 await m.reply_animation(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -224,9 +244,9 @@ async def serve_note(c: Client, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-            elif note_s[4] == "sticker":
+            elif note_s.note_type == "sticker":
                 await m.reply_sticker(
-                    note_s[3],
+                    note_s.file_id,
                     quote=True,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0

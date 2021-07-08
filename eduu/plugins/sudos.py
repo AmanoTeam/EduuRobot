@@ -17,7 +17,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
-from eduu.database import dbc
+from eduu.database import groups, users, notes, filters as dbfilters
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
 
@@ -71,7 +71,7 @@ async def upgrade(c: Client, m: Message, strings):
             await sm.edit_text("There's nothing to upgrade.")
         else:
             await sm.edit_text(strings("restarting"))
-            set_restarted(sm.chat.id, sm.message_id)
+            await set_restarted(sm.chat.id, sm.message_id)
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
@@ -147,7 +147,7 @@ async def test_speed(c: Client, m: Message, strings):
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
-    set_restarted(sent.chat.id, sent.message_id)
+    await set_restarted(sent.chat.id, sent.message_id)
     args = [sys.executable, "-m", "eduu"]
     os.execv(sys.executable, args)  # skipcq: BAN-B606
 
@@ -169,14 +169,10 @@ async def leave_chat(c: Client, m: Message):
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
 async def getbotstats(c: Client, m: Message):
-    users_count = dbc.execute("select count(*) from users")
-    users_count = users_count.fetchone()[0]
-    groups_count = dbc.execute("select count(*) from groups")
-    groups_count = groups_count.fetchone()[0]
-    filters_count = dbc.execute("select count(*) from filters")
-    filters_count = filters_count.fetchone()[0]
-    notes_count = dbc.execute("select count(*) from notes")
-    notes_count = notes_count.fetchone()[0]
+    users_count = await users.count()
+    groups_count = await groups.count()
+    filters_count = await dbfilters.count()
+    notes_count = await notes.count()
 
     await m.reply_text(
         "<b>Bot statistics:</b>\n\n"

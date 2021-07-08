@@ -2,50 +2,57 @@
 # Copyright (c) 2018-2021 Amano Team
 
 import re
+from typing import Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
-from eduu.database import db, dbc
+from eduu.database import filters as filtersdb
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
 
 
-def add_filter(chat_id, trigger, raw_data, file_id, filter_type):
-    dbc.execute(
-        "INSERT INTO filters(chat_id, filter_name, raw_data, file_id, filter_type) VALUES(?, ?, ?, ?, ?)",
-        (chat_id, trigger, raw_data, file_id, filter_type),
+async def add_filter(
+    chat_id: int,
+    trigger,
+    filter_type,
+    raw_data: Optional[str] = None,
+    file_id: Optional[str] = None,
+):
+    await filtersdb.create(
+        chat_id=chat_id,
+        filter_name=trigger,
+        raw_data=raw_data,
+        file_id=file_id,
+        filter_type=filter_type,
     )
-    db.commit()
 
 
-def update_filter(chat_id, trigger, raw_data, file_id, filter_type):
-    dbc.execute(
-        "UPDATE filters SET raw_data = ?, file_id = ?, filter_type = ? WHERE chat_id = ? AND filter_name = ?",
-        (raw_data, file_id, filter_type, chat_id, trigger),
+async def update_filter(
+    chat_id: int,
+    trigger,
+    filter_type,
+    raw_data: Optional[str] = None,
+    file_id: Optional[str] = None,
+):
+    await filtersdb.filter(chat_id=chat_id, filter_name=trigger).update(
+        raw_data=raw_data, file_id=file_id, filter_type=filter_type
     )
-    db.commit()
 
 
-def rm_filter(chat_id, trigger):
-    dbc.execute(
-        "DELETE from filters WHERE chat_id = ? AND filter_name = ?", (chat_id, trigger)
-    )
-    db.commit()
+async def rm_filter(chat_id: int, trigger):
+    await filtersdb.filter(chat_id=chat_id, filter_name=trigger).delete()
 
 
-def get_all_filters(chat_id):
-    dbc.execute("SELECT * FROM filters WHERE chat_id = ?", (chat_id,))
-
-    db.commit()
-    return dbc.fetchall()
+async def get_all_filters(chat_id: int):
+    return await filtersdb.filter(chat_id=chat_id)
 
 
-def check_for_filters(chat_id, trigger):
-    all_filters = get_all_filters(chat_id)
+async def check_for_filters(chat_id: int, trigger):
+    all_filters = await get_all_filters(chat_id)
     for keywords in all_filters:
-        keyword = keywords[1]
+        keyword = keywords.filter_name
         if trigger == keyword:
             return True
     return False
@@ -113,11 +120,23 @@ async def save_filter(c: Client, m: Message, strings):
         filter_type = "text"
 
     chat_id = m.chat.id
-    check_filter = check_for_filters(chat_id, trigger)
+    check_filter = await check_for_filters(chat_id=chat_id, trigger=trigger)
     if check_filter:
-        update_filter(chat_id, trigger, raw_data, file_id, filter_type)
+        await update_filter(
+            chat_id=chat_id,
+            trigger=trigger,
+            raw_data=raw_data,
+            file_id=file_id,
+            filter_type=filter_type,
+        )
     else:
-        add_filter(chat_id, trigger, raw_data, file_id, filter_type)
+        await add_filter(
+            chat_id=chat_id,
+            trigger=trigger,
+            raw_data=raw_data,
+            file_id=file_id,
+            filter_type=filter_type,
+        )
     await m.reply_text(
         strings("add_filter_success").format(trigger=trigger), quote=True
     )
@@ -130,9 +149,9 @@ async def delete_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
-    check_filter = check_for_filters(chat_id, trigger)
+    check_filter = await check_for_filters(chat_id=chat_id, trigger=trigger)
     if check_filter:
-        rm_filter(chat_id, trigger)
+        await rm_filter(chat_id=chat_id, trigger=trigger)
         await m.reply_text(
             strings("remove_filter_success").format(trigger=trigger), quote=True
         )
@@ -147,9 +166,9 @@ async def delete_filter(c: Client, m: Message, strings):
 async def get_all_filter(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("filters_list")
-    all_filters = get_all_filters(chat_id)
+    all_filters = await get_all_filters(chat_id=chat_id)
     for filter_s in all_filters:
-        keyword = filter_s[1]
+        keyword = filter_s.filter_name
         reply_text += f" - {keyword} \n"
 
     if not all_filters:
@@ -166,13 +185,13 @@ async def serve_filter(c: Client, m: Message):
     text = m.text
     targeted_message = m.reply_to_message or m
 
-    all_filters = get_all_filters(chat_id)
+    all_filters = await get_all_filters(chat_id=chat_id)
     for filter_s in all_filters:
-        keyword = filter_s[1]
+        keyword = filter_s.filter_name
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
-            data, button = button_parser(filter_s[2])
-            if filter_s[4] == "text":
+            data, button = button_parser(filter_s.raw_data)
+            if filter_s.filter_type == "text":
                 await targeted_message.reply_text(
                     data,
                     quote=True,
@@ -181,9 +200,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "photo":
+            elif filter_s.filter_type == "photo":
                 await targeted_message.reply_photo(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -191,9 +210,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "document":
+            elif filter_s.filter_type == "document":
                 await targeted_message.reply_document(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -201,9 +220,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "video":
+            elif filter_s.filter_type == "video":
                 await targeted_message.reply_video(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -211,9 +230,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "audio":
+            elif filter_s.filter_type == "audio":
                 await targeted_message.reply_audio(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -221,9 +240,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "animation":
+            elif filter_s.filter_type == "animation":
                 await targeted_message.reply_animation(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     caption=data if not None else None,
                     parse_mode="md",
@@ -231,9 +250,9 @@ async def serve_filter(c: Client, m: Message):
                     if len(button) != 0
                     else None,
                 )
-            elif filter_s[4] == "sticker":
+            elif filter_s.filter_type == "sticker":
                 await targeted_message.reply_sticker(
-                    filter_s[3],
+                    filter_s.file_id,
                     quote=True,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0

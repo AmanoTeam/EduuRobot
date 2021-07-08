@@ -8,7 +8,7 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message, User
 
 from eduu.config import prefix
-from eduu.database import db, dbc
+from eduu.database import groups
 from eduu.utils import commands, require_admin, time_extract
 from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
@@ -26,30 +26,20 @@ async def get_reason_text(c: Client, m: Message) -> Message:
     return reason
 
 
-def check_if_antichannelpin(chat_id):
-    dbc.execute("SELECT antichannelpin FROM groups WHERE chat_id = ?", (chat_id,))
-    res = dbc.fetchone()[0]
-    return res
+async def check_if_antichannelpin(chat_id: int):
+    return (await groups.get(chat_id=chat_id)).antichannelpin
 
 
-def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
-    dbc.execute(
-        "UPDATE groups SET antichannelpin = ? WHERE chat_id = ?", (mode, chat_id)
-    )
-    db.commit()
+async def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
+    await groups.filter(chat_id=chat_id).update(antichannelpin=mode)
 
 
-def check_if_del_service(chat_id):
-    dbc.execute("SELECT delservicemsgs FROM groups WHERE chat_id = ?", (chat_id,))
-    res = dbc.fetchone()[0]
-    return res
+async def check_if_del_service(chat_id: int):
+    return (await groups.get(chat_id=chat_id)).delservicemsgs
 
 
-def toggle_del_service(chat_id: int, mode: Optional[bool]):
-    dbc.execute(
-        "UPDATE groups SET delservicemsgs = ? WHERE chat_id = ?", (mode, chat_id)
-    )
-    db.commit()
+async def toggle_del_service(chat_id: int, mode: Optional[bool]):
+    await groups.filter(chat_id=chat_id).update(delservicemsgs=mode)
 
 
 async def get_target_user(c: Client, m: Message) -> User:
@@ -299,15 +289,15 @@ async def purge(c: Client, m: Message, strings):
 async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
-            toggle_antichannelpin(m.chat.id, True)
+            await toggle_antichannelpin(m.chat.id, True)
             await m.reply_text(strings("antichannelpin_enabled"))
         elif m.command[1] == "off":
-            toggle_antichannelpin(m.chat.id, None)
+            await toggle_antichannelpin(m.chat.id, False)
             await m.reply_text(strings("antichannelpin_disabled"))
         else:
             await m.reply_text(strings("antichannelpin_invalid_arg"))
     else:
-        check_acp = check_if_antichannelpin(m.chat.id)
+        check_acp = await check_if_antichannelpin(m.chat.id)
         if not check_acp:
             await m.reply_text(strings("antichannelpin_status_disabled"))
         else:
@@ -316,7 +306,7 @@ async def setantichannelpin(c: Client, m: Message, strings):
 
 @Client.on_message(filters.linked_channel, group=-1)
 async def acp_action(c: Client, m: Message):
-    get_acp = check_if_antichannelpin(m.chat.id)
+    get_acp = await check_if_antichannelpin(m.chat.id)
     getmychatmember = await c.get_chat_member(m.chat.id, "me")
     if (get_acp and getmychatmember.can_pin_messages) is True:
         await m.unpin()
@@ -330,15 +320,15 @@ async def acp_action(c: Client, m: Message):
 async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
-            toggle_del_service(m.chat.id, True)
+            await toggle_del_service(m.chat.id, True)
             await m.reply_text(strings("cleanservice_enabled"))
         elif m.command[1] == "off":
-            toggle_del_service(m.chat.id, None)
+            await toggle_del_service(m.chat.id, False)
             await m.reply_text(strings("cleanservice_disabled"))
         else:
             await m.reply_text(strings("cleanservice_invalid_arg"))
     else:
-        check_delservice = check_if_del_service(m.chat.id)
+        check_delservice = await check_if_del_service(m.chat.id)
         if check_delservice is None:
             await m.reply_text(strings("cleanservice_status_disabled"))
         elif check_delservice is not None:
@@ -347,7 +337,7 @@ async def delservice(c: Client, m: Message, strings):
 
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
-    get_delservice = check_if_del_service(m.chat.id)
+    get_delservice = await check_if_del_service(m.chat.id)
     getmychatmember = await c.get_chat_member(m.chat.id, "me")
     if (get_delservice and getmychatmember.can_delete_messages) is True:
         await m.delete()

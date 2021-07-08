@@ -5,22 +5,20 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
-from eduu.database import db, dbc
+from eduu.database import groups
 from eduu.utils import button_parser, commands, require_admin
 from eduu.utils.localization import use_chat_lang
 
 
-def get_rules(chat_id):
-    dbc.execute("SELECT rules FROM groups WHERE chat_id = (?)", (chat_id,))
+async def get_rules(chat_id: int):
     try:
-        return dbc.fetchone()[0]
+        return (await groups.get(chat_id=chat_id)).rules
     except IndexError:
         return None
 
 
-def set_rules(chat_id, rules):
-    dbc.execute("UPDATE groups SET rules = ? WHERE chat_id = ?", (rules, chat_id))
-    db.commit()
+async def set_rules(chat_id: int, rules):
+    await groups.filter(chat_id=chat_id).update(rules=rules)
 
 
 @Client.on_message(filters.command("setrules", prefix) & filters.group)
@@ -28,7 +26,7 @@ def set_rules(chat_id, rules):
 @use_chat_lang()
 async def settherules(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
-        set_rules(m.chat.id, m.text.split(None, 1)[1])
+        await set_rules(m.chat.id, m.text.split(None, 1)[1])
         await m.reply_text(strings("rules_set_success").format(chat_title=m.chat.title))
     else:
         await m.reply_text(strings("rules_set_empty"))
@@ -38,14 +36,14 @@ async def settherules(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def delete_rules(c: Client, m: Message, strings):
-    set_rules(m.chat.id, None)
+    await set_rules(m.chat.id, None)
     await m.reply_text(strings("rules_deleted"))
 
 
 @Client.on_message(filters.command("rules", prefix) & filters.group)
 @use_chat_lang()
 async def show_rules(c: Client, m: Message, strings):
-    gettherules = get_rules(m.chat.id)
+    gettherules = await get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(gettherules)
     if rulestxt:
         await m.reply_text(
@@ -62,7 +60,7 @@ async def show_rules(c: Client, m: Message, strings):
 @use_chat_lang()
 async def show_rules_pvt(c: Client, m: Message, strings):
     cid_one = m.text.split("_")[1]
-    gettherules = get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")
+    gettherules = await get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")
     rulestxt, rules_buttons = button_parser(gettherules)
     if rulestxt:
         await m.reply_text(

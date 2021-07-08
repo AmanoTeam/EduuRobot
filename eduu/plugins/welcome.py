@@ -8,28 +8,25 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
-from eduu.database import db, dbc
+from eduu.database import groups
 from eduu.utils import button_parser, commands, get_format_keys, require_admin
 from eduu.utils.localization import use_chat_lang
 
 
-def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
-    dbc.execute(
-        "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
-    )
-    return dbc.fetchone()
+async def get_welcome_status(chat_id: int):
+    return (await groups.get(chat_id=chat_id)).welcome_enabled
 
 
-def set_welcome(chat_id: int, welcome: Optional[str]):
-    dbc.execute("UPDATE groups SET welcome = ? WHERE chat_id = ?", (welcome, chat_id))
-    db.commit()
+async def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
+    return (await groups.get(chat_id=chat_id)).welcome
 
 
-def toggle_welcome(chat_id: int, mode: bool):
-    dbc.execute(
-        "UPDATE groups SET welcome_enabled = ? WHERE chat_id = ?", (mode, chat_id)
-    )
-    db.commit()
+async def set_welcome(chat_id: int, welcome: Optional[str]):
+    await groups.filter(chat_id=chat_id).update(welcome=welcome)
+
+
+async def toggle_welcome(chat_id: int, mode: bool):
+    await groups.filter(chat_id=chat_id).update(welcome_enabled=mode)
 
 
 @Client.on_message(
@@ -72,7 +69,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
                 )
             )
         else:
-            set_welcome(m.chat.id, message)
+            await set_welcome(m.chat.id, message)
             await sent.edit_text(
                 strings("welcome_set_success").format(chat_title=m.chat.title)
             )
@@ -97,8 +94,9 @@ async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def getwelcomemsg(c: Client, m: Message, strings):
-    welcome, welcome_enabled = get_welcome(m.chat.id)
+    welcome_enabled = await get_welcome_status(m.chat.id)
     if welcome_enabled:
+        welcome = await get_welcome(m.chat.id)
         await m.reply_text(
             strings("welcome_default") if welcome is None else welcome, parse_mode=None
         )
@@ -110,7 +108,7 @@ async def getwelcomemsg(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def enable_welcome_message(c: Client, m: Message, strings):
-    toggle_welcome(m.chat.id, True)
+    await toggle_welcome(m.chat.id, True)
     await m.reply_text(strings("welcome_mode_enable").format(chat_title=m.chat.title))
 
 
@@ -118,7 +116,7 @@ async def enable_welcome_message(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def disable_welcome_message(c: Client, m: Message, strings):
-    toggle_welcome(m.chat.id, False)
+    await toggle_welcome(m.chat.id, False)
     await m.reply_text(strings("welcome_mode_disable").format(chat_title=m.chat.title))
 
 
@@ -128,7 +126,7 @@ async def disable_welcome_message(c: Client, m: Message, strings):
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def reset_welcome_message(c: Client, m: Message, strings):
-    set_welcome(m.chat.id, None)
+    await set_welcome(m.chat.id, None)
     await m.reply_text(strings("welcome_reset").format(chat_title=m.chat.title))
 
 
@@ -147,8 +145,9 @@ async def greet_new_members(c: Client, m: Message, strings):
     )
     mention = ", ".join(map(lambda a: a.mention, members))
     if not m.from_user.is_bot:
-        welcome, welcome_enabled = get_welcome(m.chat.id)
+        welcome_enabled = await get_welcome_status(m.chat.id)
         if welcome_enabled:
+            welcome = await get_welcome(m.chat.id)
             if welcome is None:
                 welcome = strings("welcome_default")
 

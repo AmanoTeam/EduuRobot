@@ -15,7 +15,7 @@ from pyrogram import Client, emoji, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
 
 from eduu.config import sudoers
-from eduu.database import db, dbc
+from eduu.database import groups, users, channels, was_restarted_at
 from eduu.utils.consts import group_types
 from eduu.utils.localization import (
     default_language,
@@ -53,49 +53,38 @@ def aiowrap(func: Callable) -> Coroutine:
     return run
 
 
-def add_chat(chat_id, chat_type):
+async def add_chat(chat_id, chat_type):
     if chat_type == "private":
-        dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
-        db.commit()
+        await users.create(user_id=chat_id)
     elif chat_type in group_types:  # groups and supergroups share the same table
-        dbc.execute(
-            "INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True)
-        )
-        db.commit()
+        await groups.create(chat_id=chat_id, welcome_enabled=True)
     elif chat_type == "channel":
-        dbc.execute("INSERT INTO channels (chat_id) values (?)", (chat_id,))
-        db.commit()
+        await channels.create(chat_id=chat_id)
     else:
         raise TypeError("Unknown chat type '%s'." % chat_type)
     return True
 
 
-def chat_exists(chat_id, chat_type):
+async def chat_exists(chat_id, chat_type):
     if chat_type == "private":
-        dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
+        return await users.exists(user_id=chat_id)
     if chat_type in group_types:  # groups and supergroups share the same table
-        dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
-    if chat_type == "channel":
-        dbc.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
+        return await groups.exists(chat_id=chat_id)
+    if chat_type == "channels":
+        return await channels.exists(chat_id=chat_id)
     raise TypeError("Unknown chat type '%s'." % chat_type)
 
 
-def del_restarted():
-    dbc.execute("DELETE FROM was_restarted_at")
-    db.commit()
+async def del_restarted():
+    await was_restarted_at.all().delete()
 
 
-def get_restarted() -> Tuple[int, int]:
-    dbc.execute("SELECT chat_id, message_id FROM was_restarted_at")
-    return dbc.fetchone()
+async def get_restarted() -> Tuple[int, int]:
+    return await was_restarted_at.all()
 
 
-def set_restarted(chat_id: int, message_id: int):
-    dbc.execute("INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id))
-    db.commit()
+async def set_restarted(chat_id: int, message_id: int):
+    await channels.create(chat_id=chat_id, message_id=message_id)
 
 
 async def check_perms(
@@ -152,7 +141,7 @@ def require_admin(
         async def wrapper(
             client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
         ):
-            lang = get_lang(message)
+            lang = await get_lang(message)
             strings = partial(
                 get_locale_string,
                 langdict[lang].get("admin", langdict[default_language]["admin"]),

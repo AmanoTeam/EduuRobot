@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
-import asyncio
 import logging
 import sys
 
@@ -13,6 +12,10 @@ import eduu
 from eduu.config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
 from eduu.utils import del_restarted, get_restarted, shell_exec
 from eduu.utils.consts import http
+from eduu.database import init_database
+
+from tortoise import run_async
+
 
 client = Client(
     session_name="bot",
@@ -28,15 +31,15 @@ client = Client(
 
 async def main() -> None:
     await client.start()
-
+    await init_database()
     # Saving commit number
     client.version_code = int((await shell_exec("git rev-list --count HEAD"))[0])
 
     client.me = await client.get_me()
 
     if "test" not in sys.argv:
-        wr = get_restarted()
-        del_restarted()
+        wr = await get_restarted()
+        await del_restarted()
 
         start_message = (
             "<b>EduuRobot started!</b>\n\n"
@@ -57,6 +60,4 @@ async def main() -> None:
     await client.stop()
 
 
-loop = asyncio.get_event_loop()
-
-loop.run_until_complete(main())
+run_async(main())

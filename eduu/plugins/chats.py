@@ -14,6 +14,7 @@ from eduu.utils import add_chat, chat_exists
 async def check_chat(c: Client, m: Message):
     chat_id = m.chat.id
     chat_type = m.chat.type
+    check_the_chat = await chat_exists(chat_id, chat_type)
 
-    if not chat_exists(chat_id, chat_type):
-        add_chat(chat_id, chat_type)
+    if not check_the_chat:
+        await add_chat(chat_id, chat_type)
