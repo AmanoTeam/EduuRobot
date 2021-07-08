@@ -5,6 +5,10 @@ tgcrypto  # To increase Pyrogram speed
 # Using async-lru from git for Python3.10 compatibility
 git+https://github.com/aio-libs/async-lru.git#egg=async_lru
 
+# Tortoise ORM dependency
+tortoise-orm==0.15.24; python_version <= '3.6'
+tortoise-orm>=0.16.0,<0.18.0; python_version >= '3.7'
+
 # Plugins Deps
 gpytranslate==1.2.0
 meval==2.5
