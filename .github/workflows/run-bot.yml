@@ -25,7 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Set up configuration
       run: |
-        curl https://del.dog/raw/phulollone -o eduu/config.py
+        curl https://pastebin.com/raw/MQVHHXfn -o eduu/config.py
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
