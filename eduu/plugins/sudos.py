@@ -10,6 +10,7 @@ import sys
 import time
 import traceback
 from contextlib import redirect_stdout
+from sqlite3 import OperationalError
 from typing import Union
 
 import humanfriendly
@@ -19,7 +20,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
-from eduu.database import dbc
+from eduu.database import db, dbc
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
 
@@ -143,6 +144,36 @@ async def test_speed(c: Client, m: Message, strings):
             host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul
         )
     )
+
+
+@Client.on_message(filters.command("sql", prefix) & sudofilter)
+async def execsql(c: Client, m: Message):
+    command = m.text.split(maxsplit=1)[1]
+
+    try:
+        ex = dbc.execute(command)
+    except OperationalError as e:
+        return await m.reply_text(f"SQL executed with an error: {e}")
+
+    ret = ex.fetchall()
+    db.commit()
+
+    if ret:
+        res = "|".join([name[0] for name in ex.description]) + "\n"
+        res += "\n".join(
+            ["|".join(str(s) for i, s in enumerate(items)) for items in ret]
+        )
+        if len(res) > 3500:
+            bio = io.BytesIO()
+            bio.name = "output.txt"
+
+            bio.write(res.encode())
+
+            await m.reply_document(bio)
+        else:
+            await m.reply_text(f"<code>{res}</code>")
+    else:
+        await m.reply_text("SQL executed successfully and without any return.")
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
