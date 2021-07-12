@@ -6,7 +6,7 @@ tgcrypto  # To increase Pyrogram speed
 git+https://github.com/aio-libs/async-lru.git#egg=async_lru
 
 # To increase general speed and stability. Ignored under Windows
-uvloop==0.15.2; platform_system != "Windows"
+uvloop>=0.4.0,<0.16.0; platform_system != "Windows"
 
 # Plugins Deps
 gpytranslate==1.2.0
