@@ -85,6 +85,9 @@ async def ytdlcmd(c: Client, m: Message, strings):
         re.M,
     )
 
+    if 't=' in url:
+        temp = url.split('t=')[1].split('&')[0]
+    
     if not rege:
         yt = await extract_info(ydl, "ytsearch:" + url, download=False)
         yt = yt["entries"][0]
@@ -102,11 +105,11 @@ async def ytdlcmd(c: Client, m: Message, strings):
         [
             (
                 strings("ytdl_audio_button"),
-                f'_aud.{yt["id"]}|{afsize}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
+                f'_aud.{yt["id"]}|{afsize}|{temp}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
             ),
             (
                 strings("ytdl_video_button"),
-                f'_vid.{yt["id"]}|{vfsize}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
+                f'_vid.{yt["id"]}|{vfsize}|{temp}|{vformat}|{m.chat.id}|{user}|{m.message_id}',
             ),
         ]
     ]
@@ -127,7 +130,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
 @use_chat_lang()
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
-    data, fsize, vformat, cid, userid, mid = cq.data.split("|")
+    data, fsize, temp, vformat, cid, userid, mid = cq.data.split("|")
     if not cq.from_user.id == int(userid):
         return await cq.answer(strings("ytdl_button_denied"), cache_time=60)
     if int(fsize) > 200000000:
@@ -157,6 +160,10 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                     pass
                 finally:
                     last_edit = int(time.time())
+
+    ttemp = ''
+    if int(temp):
+       ttemp = f'⏰ {datetime.timedelta(seconds=int(temp))} | '
 
     if "vid" in data:
         ydl = youtube_dl.YoutubeDL(
@@ -192,7 +199,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 filename,
                 width=1920,
                 height=1080,
-                caption=yt["title"],
+                caption=ttemp+yt["title"],
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
@@ -215,6 +222,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 filename,
                 title=title,
                 performer=performer,
+                caption=ttemp[:-2],
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
