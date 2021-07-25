@@ -35,7 +35,7 @@ async def main() -> None:
 
     client.me = await client.get_me()
 
-    client.eduurobot_bot_start_time = time.time()
+    client.start_time = time.time()
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()
