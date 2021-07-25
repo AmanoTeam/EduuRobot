@@ -33,7 +33,8 @@ async def ip_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^ip"))
-async def ip_inline(c: Client, q: InlineQuery):
+@use_chat_lang()
+async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) > 1:
         text = q.query.split(maxsplit=1)[1]
         url: str = URL(text).host or text
@@ -46,7 +47,7 @@ async def ip_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"click here to see the ip of {text}",
+                    title=strings("ip_info_inline").format(domain=url),
                     input_message_content=InputTextMessageContent(x),
                 )
             ]
@@ -55,9 +56,9 @@ async def ip_inline(c: Client, q: InlineQuery):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title="You must specify the url",
+                    title=strings("ip_no_url"),
                     input_message_content=InputTextMessageContent(
-                        f"You must specify the url, E.g.: <code>@{c.me.username} ip example.com</code>",
+                        strings("ip_no_url_example").format(bot_username=c.me.username),
                     ),
                 )
             ]
