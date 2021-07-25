@@ -187,7 +187,7 @@ async def getbotstats(c: Client, m: Message):
         f"<b>Users:</b> {users_count}\n"
         f"<b>Groups:</b> {groups_count}\n"
         f"<b>Filters:</b> {filters_count}\n"
-        f"<b>Notes:</b> {notes_count}\n"
+        f"<b>Notes:</b> {notes_count}\n\n"
         f"<b>Uptime:</b> {bot_uptime}"
     )
 
