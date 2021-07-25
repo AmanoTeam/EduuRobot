@@ -14,6 +14,16 @@ from eduu.utils.localization import use_chat_lang
 
 from .admin import get_target_user
 
+dbc.execute(
+    """
+CREATE TABLE IF NOT EXISTS user_warns(
+    user_id INTEGER,
+    chat_id INTEGER,
+    count INTEGER
+)
+    """
+)
+
 
 async def get_warn_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
@@ -38,13 +48,6 @@ def set_warn_action(chat_id: int, action: Optional[str]):
         "UPDATE groups SET warn_action = ? WHERE chat_id = ?", (action, chat_id)
     )
     db.commit()
-
-
-dbc.execute(
-    """CREATE TABLE IF NOT EXISTS user_warns (user_id INTEGER,
-                                              chat_id INTEGER,
-                                              count INTEGER)"""
-)
 
 
 def get_warns(chat_id, user_id):

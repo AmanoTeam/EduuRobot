@@ -11,6 +11,18 @@ from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
 
+dbc.execute(
+    """
+CREATE TABLE IF NOT EXISTS notes(
+    chat_id INTEGER ,
+    note_name,
+    raw_data,
+    file_id,
+    note_type
+)
+    """
+)
+
 
 def add_note(chat_id, trigger, raw_data, file_id, note_type):
     dbc.execute(

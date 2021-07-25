@@ -10,6 +10,7 @@ import sys
 import time
 import traceback
 from contextlib import redirect_stdout
+from sqlite3 import IntegrityError, OperationalError
 from typing import Union
 
 import humanfriendly
@@ -19,7 +20,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
-from eduu.database import dbc
+from eduu.database import db, dbc
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
 
@@ -145,6 +146,38 @@ async def test_speed(c: Client, m: Message, strings):
     )
 
 
+@Client.on_message(filters.command("sql", prefix) & sudofilter)
+async def execsql(c: Client, m: Message):
+    command = m.text.split(maxsplit=1)[1]
+
+    try:
+        ex = dbc.execute(command)
+    except (IntegrityError, OperationalError) as e:
+        return await m.reply_text(
+            f"SQL executed with an error: {e.__class__.__name__}: {e}"
+        )
+
+    ret = ex.fetchall()
+    db.commit()
+
+    if ret:
+        res = "|".join([name[0] for name in ex.description]) + "\n"
+        res += "\n".join(
+            ["|".join(str(s) for i, s in enumerate(items)) for items in ret]
+        )
+        if len(res) > 3500:
+            bio = io.BytesIO()
+            bio.name = "output.txt"
+
+            bio.write(res.encode())
+
+            await m.reply_document(bio)
+        else:
+            await m.reply_text(f"<code>{res}</code>")
+    else:
+        await m.reply_text("SQL executed successfully and without any return.")
+
+
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
@@ -171,13 +204,13 @@ async def leave_chat(c: Client, m: Message):
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
 async def getbotstats(c: Client, m: Message):
-    users_count = dbc.execute("select count(*) from users")
+    users_count = dbc.execute("select count() from users")
     users_count = users_count.fetchone()[0]
-    groups_count = dbc.execute("select count(*) from groups")
+    groups_count = dbc.execute("select count() from groups")
     groups_count = groups_count.fetchone()[0]
-    filters_count = dbc.execute("select count(*) from filters")
+    filters_count = dbc.execute("select count() from filters")
     filters_count = filters_count.fetchone()[0]
-    notes_count = dbc.execute("select count(*) from notes")
+    notes_count = dbc.execute("select count() from notes")
     notes_count = notes_count.fetchone()[0]
     bot_uptime = round(time.time() - c.start_time)
     bot_uptime = humanfriendly.format_timespan(bot_uptime)
@@ -213,21 +246,27 @@ async def del_message(c: Client, m: Message):
     & ~filters.via_bot
 )
 async def backupcmd(c: Client, m: Message):
-    await m.reply_document("eduu.db")
+    await m.reply_document("eduu/database/eduu.db")
 
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)
 async def uploadfile(c: Client, m: Message):
-    await m.reply_to_message.reply_text("Uploading the Document.")
-    await m.reply_to_message.download()
+    if not m.reply_to_message:
+        await m.reply_text("You must reply to a file to upload.")
+
+    sent = await m.reply_to_message.reply_text("Uploading file...")
+    file_path = await m.reply_to_message.download(
+        m.command[1] if len(m.command) > 1 else ""
+    )
+    await sent.edit_text(f"File successfully saved to {file_path}.")
 
 
 @Client.on_message(filters.command("doc", prefix) & sudofilter)
 async def downloadfile(c: Client, m: Message):
     if len(m.text.split()) > 1:
-        await m.reply_document(f"downloads/{m.command[1]}")
+        await m.reply_document(m.command[1])
     else:
-        await m.reply_text("You must specify the document.")
+        await m.reply_text("You must specify the document path.")
 
 
 @Client.on_message(filters.command("chat", prefix) & sudofilter)

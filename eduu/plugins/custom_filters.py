@@ -11,6 +11,18 @@ from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
 
+dbc.execute(
+    """
+CREATE TABLE IF NOT EXISTS filters(
+    chat_id INTEGER ,
+    filter_name TEXT,
+    raw_data TEXT,
+    file_id TEXT,
+    filter_type TEXT
+)
+    """
+)
+
 
 def add_filter(chat_id, trigger, raw_data, file_id, filter_type):
     dbc.execute(

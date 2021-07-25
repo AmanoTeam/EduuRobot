@@ -4,6 +4,6 @@
 
 from typing import List
 
-from .database_handler import db, dbc
+from .common import db, dbc
 
 __all__: List[str] = ["db", "dbc"]

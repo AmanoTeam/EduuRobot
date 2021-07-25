@@ -3,6 +3,7 @@
 
 import asyncio
 import logging
+import platform
 import sys
 import time
 
@@ -14,6 +15,15 @@ import eduu
 from eduu.config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
 from eduu.utils import del_restarted, get_restarted, shell_exec
 from eduu.utils.consts import http
+
+try:
+    import uvloop
+
+    uvloop.install()
+except ImportError:
+    if platform.system() != "Windows":
+        logging.warning("uvloop is not installed and therefore will be disabled.")
+
 
 client = Client(
     session_name="bot",

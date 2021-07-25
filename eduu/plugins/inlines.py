@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
-from typing import Dict, List
+from typing import List
 
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
@@ -56,7 +56,7 @@ async def faces_inline(c: Client, q: InlineQuery):
         "(◕‿◕✿)",
         "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
     ]
-    results: Dict = []
+    results: List[InlineQueryResultArticle] = []
     for i in faces_list:
         results.append(
             InlineQueryResultArticle(
@@ -98,7 +98,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 title=strings("html_send_inline"),
                 input_message_content=InputTextMessageContent(
-                    querytxt, parse_mode="html"
+                    querytxt,
                 ),
                 reply_markup=(
                     InlineKeyboardMarkup(querybuttons)

@@ -15,22 +15,23 @@ from eduu.config import prefix
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
 
+# Regex to match domains inside URLs and emails. Made by @alissonlauffer.
+DOMAIN_RE = re.compile(r"(?i)^(?:[a-z0-9]+:(?://)?)?(?:[^@/:#\?\s]+@)?([^/:#\?\s]+)")
+
 
 @Client.on_message(filters.command("ip", prefix))
 @use_chat_lang()
 async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
-        if text.startswith("http"):
-            url = re.sub("http(s|)://", "", text)
-        else:
-            url = text
+        url: str = DOMAIN_RE.findall(text)[0]
+
         r = await http.get("http://ip-api.com/json/" + url)
         req = r.json()
         x = ""
         for i in req:
             x += "<b>{}</b>: <code>{}</code>\n".format(i.title(), req[i])
-        await m.reply_text(x, parse_mode="html")
+        await m.reply_text(x)
     else:
         await m.reply_text(strings("ip_err_no_ip"))
 
@@ -39,10 +40,8 @@ async def ip_cmd(c: Client, m: Message, strings):
 async def ip_inline(c: Client, q: InlineQuery):
     if len(q.query.split()) > 1:
         text = q.query.split(maxsplit=1)[1]
-        if text.startswith("http"):
-            url = re.sub("http(s|)://", "", text)
-        else:
-            url = text
+        url: str = DOMAIN_RE.findall(text)[0]
+
         r = await http.get("http://ip-api.com/json/" + url)
         req = r.json()
         x = ""
@@ -52,7 +51,7 @@ async def ip_inline(c: Client, q: InlineQuery):
             [
                 InlineQueryResultArticle(
                     title=f"click here to see the ip of {text}",
-                    input_message_content=InputTextMessageContent(x, parse_mode="html"),
+                    input_message_content=InputTextMessageContent(x),
                 )
             ]
         )
@@ -63,7 +62,6 @@ async def ip_inline(c: Client, q: InlineQuery):
                     title="You must specify the url",
                     input_message_content=InputTextMessageContent(
                         f"You must specify the url, E.g.: <code>@{c.me.username} ip example.com</code>",
-                        parse_mode="html",
                     ),
                 )
             ]

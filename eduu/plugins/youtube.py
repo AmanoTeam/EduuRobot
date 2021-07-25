@@ -85,9 +85,9 @@ async def ytdlcmd(c: Client, m: Message, strings):
         re.M,
     )
 
-    if 't=' in url:
-        temp = url.split('t=')[1].split('&')[0]
-    
+    if "t=" in url:
+        temp = url.split("t=")[1].split("&")[0]
+
     if not rege:
         yt = await extract_info(ydl, "ytsearch:" + url, download=False)
         yt = yt["entries"][0]
@@ -161,9 +161,9 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 finally:
                     last_edit = int(time.time())
 
-    ttemp = ''
+    ttemp = ""
     if int(temp):
-       ttemp = f'⏰ {datetime.timedelta(seconds=int(temp))} | '
+        ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | "
 
     if "vid" in data:
         ydl = youtube_dl.YoutubeDL(
@@ -199,7 +199,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 filename,
                 width=1920,
                 height=1080,
-                caption=ttemp+yt["title"],
+                caption=ttemp + yt["title"],
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
