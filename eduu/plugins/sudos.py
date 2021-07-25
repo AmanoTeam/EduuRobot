@@ -7,12 +7,12 @@ import io
 import os
 import re
 import sys
-import traceback
 import time
-import humanfriendly
+import traceback
 from contextlib import redirect_stdout
 from typing import Union
 
+import humanfriendly
 import speedtest
 from meval import meval
 from pyrogram import Client, filters
