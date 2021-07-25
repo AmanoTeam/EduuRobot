@@ -4,6 +4,7 @@
 import asyncio
 import logging
 import sys
+import time
 
 import pyrogram
 from pyrogram import Client, idle
@@ -34,6 +35,7 @@ async def main() -> None:
 
     client.me = await client.get_me()
 
+    client.start_time = time.time()
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()
