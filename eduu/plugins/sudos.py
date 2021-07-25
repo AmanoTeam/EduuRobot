@@ -8,6 +8,8 @@ import os
 import re
 import sys
 import traceback
+import time
+import humanfriendly
 from contextlib import redirect_stdout
 from typing import Union
 
@@ -177,13 +179,16 @@ async def getbotstats(c: Client, m: Message):
     filters_count = filters_count.fetchone()[0]
     notes_count = dbc.execute("select count(*) from notes")
     notes_count = notes_count.fetchone()[0]
+    bot_uptime = round(time.time() - c.eduurobot_bot_start_time)
+    bot_uptime = humanfriendly.format_timespan(bot_uptime)
 
     await m.reply_text(
         "<b>Bot statistics:</b>\n\n"
         f"<b>Users:</b> {users_count}\n"
         f"<b>Groups:</b> {groups_count}\n"
         f"<b>Filters:</b> {filters_count}\n"
-        f"<b>Notes:</b> {notes_count}"
+        f"<b>Notes:</b> {notes_count}\n"
+        f"<b>Uptime:</b> {bot_uptime}"
     )
 
 
