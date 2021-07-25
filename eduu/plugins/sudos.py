@@ -179,7 +179,7 @@ async def getbotstats(c: Client, m: Message):
     filters_count = filters_count.fetchone()[0]
     notes_count = dbc.execute("select count(*) from notes")
     notes_count = notes_count.fetchone()[0]
-    bot_uptime = round(time.time() - c.eduurobot_bot_start_time)
+    bot_uptime = round(time.time() - c.start_time)
     bot_uptime = humanfriendly.format_timespan(bot_uptime)
 
     await m.reply_text(
