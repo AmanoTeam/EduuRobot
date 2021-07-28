@@ -1,10 +1,8 @@
 {
   "info_description": "Fornisce info su un utente.",
   "info_header": "<b>Info utente:</b>",
-  "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nNome: {first_name}",
   "info_last_name": "\nCognome: {last_name}",
-  "info_username": "\nUsername: @{username}",
   "info_userlink": "\nLink: {link}",
   "info_chat_admin": "\nQuesto utente ha i '<b>permessi da amministratore</b>' in questa chat.",
   "info_chat_creator": "\nQuesto utente è il '<b>proprietario</b>' di questa chat.",
