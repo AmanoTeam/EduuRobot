@@ -1,7 +1,6 @@
 {
   "get_sticker_id_string": "De id van deze sticker is \n <code>{stickerid}</code>",
   "animated_not_supported": "Geanimeerde stickers worden niet ondersteund.",
-  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker ID:</b> <code>{id}</code>",
   "not_sticker": "Dat is geen sticker",
   "kanging_sticker_msg": "<code>Sticker veranderen ...</code>",
   "sticker_kanged_string": "Sticker <b>succesvol</b> toegevoegd aan pakket\nEmoji: {sticker_emoji}",
