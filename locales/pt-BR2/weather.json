@@ -1,7 +1,6 @@
 {
   "details": "<b>{location}</b>:\n\nLá tá a: <code>{temperature} °C</code>\nPorém vai parecer: <code>{feels_like} °C</code>\nJogaram água em: <code>{air_humidity}% do ar</code>\nO avião voa a: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Onde fica isso? conheço naum.",
-  "measurement_unit": "m",
   "weather_language": "pt-BR",
   "weather_description": "Saber a velocidade da cidade.",
   "weather_usage": "<b>Você usa assim:</b> <code>/clima Maceió</code> - Você ganha uma viagem <b>de graça</b> para Maceió."
