@@ -1,7 +1,6 @@
 {
   "details": "<b>{location}</b>:\n\n温度: <code>{temperature} °C</code>\n温度感到喜欢: <code>{feels_like} °C</code>\n空气湿度: <code>{air_humidity}%</code>\n风速: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "找不到位置。",
-  "measurement_unit": "m",
   "weather_language": "zh-CN",
   "weather_usage": "<b>用法：</b> <code>/weather 位置或城市</code>-从<i>位置或城市</i>获取天气信息。"
 }
