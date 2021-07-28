@@ -1,8 +1,1 @@
-{
-  "id_description": "Get information about the chat.",
-  "info_private": "<b>Information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Language:</b> <code>{lang}</code>\n<b>Chat type:</b> <code>{chat_type}</code>",
-  "info_group": "<b>User information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Language:</b> <code>{lang}</code>\n\n<b>Chat information:</b>\n<b>Chat name:</b> <code>{chat_title}</code>\n<b>Chat username:</b> {chat_username}\n<b>Chat ID:</b> <code>{chat_id}</code>\n<b>Chat datacenter:</b> <code>{chat_dc}</code>\n<b>Chat type:</b> <code>{chat_type}</code>\n<b>Messages:</b> <code>{message_id}</code>",
-  "none": "None",
-  "unknown": "Unknown",
-  "user_not_found": "No user was found for '<code>{user}</code>'."
-}
+{}
