@@ -1,7 +1,5 @@
 {
   "details": "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</code>\nTemperature feels like: <code>{feels_like} °F</code>\nAir humidity: <code>{air_humidity}%</code>\nWind speed: <code>{wind_speed} mph</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Location not found.",
   "measurement_unit": "e",
-  "weather_language": "en-US",
-  "weather_usage": "<b>Usage:</b> <code>/weather location or city</code> - Get weather information from <i>location or city</i>."
+  "weather_language": "en-US"
 }
