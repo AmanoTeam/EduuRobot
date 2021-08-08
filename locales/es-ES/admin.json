@@ -1,6 +1,10 @@
 {
   "antichannelpin_description": "Desanclar automáticamente los mensajes procedentes del canal vinculado al chat.",
+  "antichannelpin_disabled": "El pin anti canal para este chat está ahora deshabilitado.",
+  "antichannelpin_enabled": "El pin anti canal para este chat está ahora habilitado.",
   "antichannelpin_invalid_arg": "Argumento inválido. Usa <code>/antichannelpin off/on</code>.",
+  "antichannelpin_status_disabled": "El pin anti canal está actualmente deshabilitado en este chat.",
+  "antichannelpin_status_enabled": "El pin anti canal está actualmente habilitado en este chat.",
   "ban_description": "Banea a un usuario del chat.",
   "ban_success": "{user} fue baneado por {admin}.",
   "cleanservice_description": "Mensajes de servicio limpio (E.g.: Cuando un usuario se une al chat) del chat.",
