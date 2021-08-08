@@ -1,6 +1,8 @@
 {
   "ytdl_sending": "Wird gesendet...",
   "ytdl_missing_argument": "Bitte antworten Sie auf einen YouTube-Link oder -Text.",
+  "ytdl_audio_button": "💿 Audio",
+  "ytdl_video_button": "🎬 Video",
   "ytdl_file_too_big": "Sorry! Ich kann dieses Medium nicht herunterladen, da es mein Upload-Limit von 200 MB überschreitet.",
   "ytdl_send_error": "Entschuldigung! Ich konnte das Video aufgrund eines Fehlers nicht senden.\n<b>Fehler:</b> <code>{errmsg}</code>",
   "ytdl_downloading": "Wird heruntergeladen...",
