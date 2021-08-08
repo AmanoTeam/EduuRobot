@@ -3,6 +3,7 @@
   "animated_not_supported": "Animierte Sticker werden nicht unterstützt.",
   "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker-ID:</b> <code>{id}</code>",
   "not_sticker": "Das ist kein Sticker",
+  "kanging_sticker_msg": "<code>Sticker kangen ...</code>",
   "sticker_kanged_string": "Sticker <b>erfolgreich</b> zum Set hinzugefügt\nEmoji: {sticker_emoji}",
   "use_existing_pack": "<code>Existierendes Sticker-Set benutzen ...</code>",
   "err_sticker_no_file_name": "<b>FEHLER</b>: <code>Dieser Sticker hat keinen Dateinamen!</code>",
