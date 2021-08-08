@@ -12,6 +12,7 @@
   "urldecode_description": "Codifica el texto proporcionado con la codificación segura de URL.",
   "urlencode_description": "Decodifica el texto proporcionado de la codificación segura de URL.",
   "parsebtn_err": "Debes especificar una url y el texto del botón, \n E.g.: <code>/parsebutton https://google.com text</code>.",
+  "parsebutton_description": "Ayuda para analizar el botón.",
   "bug_reported_success_to_bot_admins": "El error ha sido reportado con éxito.",
   "err_cant_send_bug_report_to_bot_admins": "Error, no pude enviar el informe de error a los administradores del bot.",
   "err_no_bug_to_report": "Debe especificar el error para reportar, E.g.: <code>/bug (aquí el bug)</code>.",
