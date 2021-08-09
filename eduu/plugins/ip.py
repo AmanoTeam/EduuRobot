@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
-import re
-
 from pyrogram import Client, filters
 from pyrogram.types import (
     InlineQuery,
@@ -10,13 +8,11 @@ from pyrogram.types import (
     InputTextMessageContent,
     Message,
 )
+from yarl import URL
 
 from eduu.config import prefix
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
-
-# Regex to match domains inside URLs and emails. Made by @alissonlauffer.
-DOMAIN_RE = re.compile(r"(?i)^(?:[a-z0-9]+:(?://)?)?(?:[^@/:#\?\s]+@)?([^/:#\?\s]+)")
 
 
 @Client.on_message(filters.command("ip", prefix))
@@ -24,7 +20,7 @@ DOMAIN_RE = re.compile(r"(?i)^(?:[a-z0-9]+:(?://)?)?(?:[^@/:#\?\s]+@)?([^/:#\?\s
 async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
-        url: str = DOMAIN_RE.findall(text)[0]
+        url: str = URL(text).host or text
 
         r = await http.get("http://ip-api.com/json/" + url)
         req = r.json()
@@ -40,7 +36,7 @@ async def ip_cmd(c: Client, m: Message, strings):
 async def ip_inline(c: Client, q: InlineQuery):
     if len(q.query.split()) > 1:
         text = q.query.split(maxsplit=1)[1]
-        url: str = DOMAIN_RE.findall(text)[0]
+        url: str = URL(text).host or text
 
         r = await http.get("http://ip-api.com/json/" + url)
         req = r.json()
