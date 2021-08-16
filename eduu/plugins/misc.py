@@ -132,17 +132,20 @@ async def rtcommand(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("urlencode", prefix))
+@logging_errors
 async def urlencodecmd(c: Client, m: Message):
     await m.reply_text(quote(m.text.split(None, 1)[1]))
 
 
 @Client.on_message(filters.command("urldecode", prefix))
+@logging_errors
 async def urldecodecmd(c: Client, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
 
 
 @Client.on_message(filters.command("bug", prefix))
 @use_chat_lang()
+@logging_errors
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         try:
@@ -193,6 +196,7 @@ async def request_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("parsebutton"))
 @use_chat_lang()
+@logging_errors
 async def button_parse_helper(c: Client, m: Message, strings):
     if len(m.text.split()) > 2:
         await m.reply_text(
@@ -204,6 +208,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("donate", prefix))
 @use_chat_lang()
+@logging_errors
 async def donatecmd(c: Client, m: Message, strings):
     await m.reply(strings("donatecmdstring"))
 
