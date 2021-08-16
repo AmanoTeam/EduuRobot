@@ -24,13 +24,13 @@ def logging_errors(f):
                     )
                     pastereqjson = paste_err.json()["result"]
                     paste_url = f"{nekobin_error_paste_url}/{pastereqjson['key']}"
-                    thefulltrace = f"the full trace: {paste_url}"
+                    thefulltrace = f"{paste_url}"
                 except:
                     thefulltrace = "error has occurred in the paste"
                 try:
                     await c.send_message(
                         log_chat,
-                        f"Error\n\nfile: <code>{f.__module__}</code>\n\nfunction: <code>{f.__name__}</code>\n\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\n{thefulltrace}",
+                        f"<b>An error has occurred:</b>\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\nFile <code>{f.__module__}</code> in <code>{f.__name__}</code>\n<b>Full traceback:</b>{thefulltrace}",
                         disable_web_page_preview=True,
                     )
                 except:
