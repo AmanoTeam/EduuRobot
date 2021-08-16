@@ -87,7 +87,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
         url,
         re.M,
     )
-
+    temp = 0
     if "t=" in url:
         temp = url.split("t=")[1].split("&")[0]
 
