@@ -10,9 +10,11 @@ from pyrogram.types import Message
 
 from eduu.config import prefix
 from eduu.utils import commands
+from eduu.utils.bot_error_log import logging_errors
 
 
 @Client.on_message(filters.command("jsondump", prefix))
+@logging_errors
 async def jsondump(c: Client, m: Message):
     params = m.text.split()
     # Remove the command and -f flag from list.
