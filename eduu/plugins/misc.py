@@ -13,10 +13,12 @@ from eduu.config import log_chat, prefix
 from eduu.utils import button_parser, commands
 from eduu.utils.consts import admin_status, http
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 @Client.on_message(filters.command("mark", prefix))
 @use_chat_lang()
+@logging_errors
 async def mark(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("mark_usage"))
@@ -31,6 +33,7 @@ async def mark(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("html", prefix))
 @use_chat_lang()
+@logging_errors
 async def html(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("html_usage"))
@@ -44,6 +47,7 @@ async def html(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("admins", prefix) & filters.group)
 @use_chat_lang()
+@logging_errors
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
@@ -61,6 +65,7 @@ async def mentionadmins(c: Client, m: Message, strings):
     & filters.reply
 )
 @use_chat_lang()
+@logging_errors
 async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
         check_admin = await c.get_chat_member(
@@ -103,6 +108,7 @@ async def getbotinfo(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
+@logging_errors
 async def rtcommand(c: Client, m: Message):
     rt_text = None
     if m.reply_to_message.media:
@@ -160,6 +166,7 @@ async def bug_report_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("request", prefix))
+@logging_errors
 async def request_cmd(c: Client, m: Message):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]

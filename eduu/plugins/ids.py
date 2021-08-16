@@ -10,10 +10,12 @@ from pyrogram.types import Message
 from eduu.config import prefix
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 @Client.on_message(filters.command("id", prefix) & filters.private)
 @use_chat_lang()
+@logging_errors
 async def ids_private(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:
@@ -43,6 +45,7 @@ async def ids_private(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("id", prefix) & filters.group)
 @use_chat_lang()
+@logging_errors
 async def ids(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:

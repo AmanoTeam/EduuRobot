@@ -20,6 +20,7 @@ from eduu.config import prefix
 from eduu.utils import aiowrap, pretty_size
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 @aiowrap
@@ -53,6 +54,7 @@ async def search_yt(query):
 
 
 @Client.on_message(filters.command("yt", prefix))
+@logging_errors
 async def yt_search_cmd(c: Client, m: Message):
     vids = [
         '{}: <a href="{}">{}</a>'.format(num + 1, i["url"], i["title"])
@@ -65,6 +67,7 @@ async def yt_search_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("ytdl", prefix))
 @use_chat_lang()
+@logging_errors
 async def ytdlcmd(c: Client, m: Message, strings):
     user = m.from_user.id
 
@@ -129,6 +132,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
 @use_chat_lang()
+@logging_errors
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, temp, vformat, cid, userid, mid = cq.data.split("|")
     if not cq.from_user.id == int(userid):

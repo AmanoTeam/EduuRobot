@@ -10,6 +10,7 @@ from eduu.config import prefix
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 dbc.execute(
     """
@@ -66,6 +67,7 @@ def check_for_filters(chat_id, trigger):
 @Client.on_message(filters.command(["filter", "savefilter"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
+@logging_errors
 async def save_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     split_text = split_quotes(args[1])
@@ -138,6 +140,7 @@ async def save_filter(c: Client, m: Message, strings):
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
+@logging_errors
 async def delete_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
@@ -156,6 +159,7 @@ async def delete_filter(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("filters", prefix))
 @use_chat_lang()
+@logging_errors
 async def get_all_filter(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("filters_list")
@@ -173,6 +177,7 @@ async def get_all_filter(c: Client, m: Message, strings):
 @Client.on_message(
     (filters.group | filters.private) & filters.text & filters.incoming, group=1
 )
+@logging_errors
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text

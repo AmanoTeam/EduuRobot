@@ -20,6 +20,9 @@ sudoers: List[int] = [987654321]
 # e.g: /command and !command
 prefix: List[str] = ["/", "!"]
 
+# the nekobin instance url for the pasting the errors
+nekobin_error_paste_url: str = "https://paste.amanoteam.com"
+
 # List of disabled plugins
 disabled_plugins: List[str] = []
 

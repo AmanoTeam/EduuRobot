@@ -15,6 +15,7 @@ from pyrogram.types import (
 from eduu.config import prefix
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 tr = Translator()
 
@@ -61,6 +62,7 @@ def get_tr_lang(text):
 
 @Client.on_message(filters.command("tr", prefix))
 @use_chat_lang()
+@logging_errors
 async def translate(c: Client, m: Message, strings):
     text = m.text[4:]
     lang = get_tr_lang(text)
@@ -97,6 +99,7 @@ async def translate(c: Client, m: Message, strings):
 
 @Client.on_inline_query(filters.regex(r"^tr"))
 @use_chat_lang()
+@logging_errors
 async def tr_inline(c: Client, q: InlineQuery, strings):
     try:
         to_tr = q.query.split(None, 2)[2]

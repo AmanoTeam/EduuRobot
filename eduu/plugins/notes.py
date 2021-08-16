@@ -10,6 +10,7 @@ from eduu.config import prefix
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 dbc.execute(
     """
@@ -65,6 +66,7 @@ def check_for_notes(chat_id, trigger):
 @Client.on_message(filters.command(["note", "savenote"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
+@logging_errors
 async def save_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
@@ -135,6 +137,7 @@ async def save_note(c: Client, m: Message, strings):
 @Client.on_message(filters.command(["delnote", "rmnote"], prefix))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
+@logging_errors
 async def delete_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
@@ -153,6 +156,7 @@ async def delete_note(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("notes", prefix))
 @use_chat_lang()
+@logging_errors
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")
@@ -253,6 +257,7 @@ async def serve_note(c: Client, m: Message, txt):
     & filters.regex(r"^#[^\s]+"),
     group=2,
 )
+@logging_errors
 async def note_by_hashtag(c: Client, m: Message):
     note_data = m.text[1:]
     targeted_message = m.reply_to_message or m
@@ -266,6 +271,7 @@ async def note_by_hashtag(c: Client, m: Message):
     & filters.command("get", prefix),
     group=2,
 )
+@logging_errors
 async def note_by_get_command(c: Client, m: Message):
     note_data = " ".join(m.command[1:])
     targeted_message = m.reply_to_message or m

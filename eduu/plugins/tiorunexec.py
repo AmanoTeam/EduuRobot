@@ -15,6 +15,7 @@ from pytio import Tio, TioRequest
 
 from eduu.config import prefix
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 tio = Tio()
 
@@ -25,6 +26,7 @@ langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 @Client.on_message(filters.command("exec_code", prefix))
 @use_chat_lang()
+@logging_errors
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
     codetoexec = m.text.split(None, 2)[2]

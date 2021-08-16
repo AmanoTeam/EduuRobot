@@ -46,6 +46,7 @@ async def main() -> None:
     client.me = await client.get_me()
 
     client.start_time = time.time()
+    client.log_chat_errors = True
     if "test" not in sys.argv:
         wr = get_restarted()
         del_restarted()
@@ -62,6 +63,7 @@ async def main() -> None:
                 await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
         except BadRequest:
             logging.warning("Unable to send message to log_chat.")
+            client.log_chat_errors = False
 
         await idle()
 

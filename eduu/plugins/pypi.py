@@ -11,6 +11,7 @@ from eduu.config import prefix
 from eduu.utils import commands
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 def cleanhtml(raw_html):
@@ -28,6 +29,7 @@ def escape_definition(definition):
 
 @Client.on_message(filters.command("pypi", prefix))
 @use_chat_lang()
+@logging_errors
 async def pypi(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("pypi_usage"))

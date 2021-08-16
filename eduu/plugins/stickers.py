@@ -23,10 +23,12 @@ from eduu.config import log_chat, prefix
 from eduu.utils import EMOJI_PATTERN
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 @Client.on_message(filters.command(["kang", "kibe", "steal"], prefix))
 @use_chat_lang()
+@logging_errors
 async def kang_sticker(c: Client, m: Message, strings):
     prog_msg = await m.reply_text(strings("kanging_sticker_msg"))
     bot_username = c.me.username
@@ -244,6 +246,7 @@ def resize_image(filename: str) -> str:
 
 @Client.on_message(filters.command("stickerid", prefix) & filters.reply)
 @use_chat_lang()
+@logging_errors
 async def getstickerid(c: Client, m: Message, strings):
     if m.reply_to_message.sticker:
         await m.reply_text(
@@ -255,6 +258,7 @@ async def getstickerid(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("getsticker", prefix) & filters.reply)
 @use_chat_lang()
+@logging_errors
 async def getstickeraspng(c: Client, m: Message, strings):
     sticker = m.reply_to_message.sticker
     if sticker:

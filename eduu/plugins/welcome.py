@@ -11,6 +11,7 @@ from eduu.config import prefix
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, get_format_keys, require_admin
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
@@ -36,6 +37,7 @@ def toggle_welcome(chat_id: int, mode: bool):
     filters.command(["welcomeformat", "start welcome_format_help"], prefix)
 )
 @use_chat_lang()
+@logging_errors
 async def welcome_format_message_help(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_format_help_msg"))
 
@@ -45,6 +47,7 @@ async def welcome_format_message_help(c: Client, m: Message, strings):
 @Client.on_message(filters.command("setwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def set_welcome_message(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
@@ -89,6 +92,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
 )
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_mode_invalid"))
 
@@ -96,6 +100,7 @@ async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
 @Client.on_message(filters.command("getwelcome", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def getwelcomemsg(c: Client, m: Message, strings):
     welcome, welcome_enabled = get_welcome(m.chat.id)
     if welcome_enabled:
@@ -117,6 +122,7 @@ async def enable_welcome_message(c: Client, m: Message, strings):
 @Client.on_message(filters.command("welcome off", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def disable_welcome_message(c: Client, m: Message, strings):
     toggle_welcome(m.chat.id, False)
     await m.reply_text(strings("welcome_mode_disable").format(chat_title=m.chat.title))
@@ -127,6 +133,7 @@ async def disable_welcome_message(c: Client, m: Message, strings):
 )
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def reset_welcome_message(c: Client, m: Message, strings):
     set_welcome(m.chat.id, None)
     await m.reply_text(strings("welcome_reset").format(chat_title=m.chat.title))
@@ -134,6 +141,7 @@ async def reset_welcome_message(c: Client, m: Message, strings):
 
 @Client.on_message(filters.new_chat_members & filters.group)
 @use_chat_lang()
+@logging_errors
 async def greet_new_members(c: Client, m: Message, strings):
     members = m.new_chat_members
     chat_title = m.chat.title

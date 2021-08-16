@@ -11,6 +11,7 @@ from pyrogram.types import (
 
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 def gen_categories_kb(strings_manager):
@@ -50,6 +51,7 @@ async def cmds_list(c: Client, m: CallbackQuery, strings):
 
 @Client.on_message(filters.command(["help", "start help"]))
 @use_chat_lang()
+@logging_errors
 async def show_help(c: Client, m: Message, strings):
     if m.chat.type == "private":
         keyboard = InlineKeyboardMarkup(

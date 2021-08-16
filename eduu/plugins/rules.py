@@ -8,6 +8,7 @@ from eduu.config import prefix
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 
 def get_rules(chat_id):
@@ -26,6 +27,7 @@ def set_rules(chat_id, rules):
 @Client.on_message(filters.command("setrules", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def settherules(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         set_rules(m.chat.id, m.text.split(None, 1)[1])
@@ -37,6 +39,7 @@ async def settherules(c: Client, m: Message, strings):
 @Client.on_message(filters.command("resetrules", prefix) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
+@logging_errors
 async def delete_rules(c: Client, m: Message, strings):
     set_rules(m.chat.id, None)
     await m.reply_text(strings("rules_deleted"))
@@ -44,6 +47,7 @@ async def delete_rules(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("rules", prefix) & filters.group)
 @use_chat_lang()
+@logging_errors
 async def show_rules(c: Client, m: Message, strings):
     gettherules = get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(gettherules)
@@ -60,6 +64,7 @@ async def show_rules(c: Client, m: Message, strings):
 
 @Client.on_message(filters.regex("^/start rules_") & filters.private)
 @use_chat_lang()
+@logging_errors
 async def show_rules_pvt(c: Client, m: Message, strings):
     cid_one = m.text.split("_")[1]
     gettherules = get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")

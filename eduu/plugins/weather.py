@@ -8,6 +8,7 @@ from eduu.config import prefix
 from eduu.utils import commands
 from eduu.utils.consts import http
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.bot_error_log import logging_errors
 
 # Api key used in weather.com's mobile app.
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
@@ -20,6 +21,7 @@ headers = {"User-Agent": "curl/7.72.0"}
 
 @Client.on_message(filters.command(["clima", "weather"], prefix))
 @use_chat_lang()
+@logging_errors
 async def weather(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("weather_usage"))
