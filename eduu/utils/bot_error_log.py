@@ -33,7 +33,7 @@ def logging_errors(f):
                         f"Error\n\nfile: <code>{f.__module__}</code>\n\nfunction: <code>{f.__name__}</code>\n\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\n{thefulltrace}",
                         disable_web_page_preview=True,
                     )
-                except Exception as e:
+                except:
                     pass
 
     return err_log
