@@ -1,5 +1,5 @@
 from pyrogram import Client
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import Message
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 from eduu.config import nekobin_error_paste_url, log_chat
 from eduu.utils.consts import http
@@ -30,18 +30,8 @@ def logging_errors(f):
                 try:
                     await c.send_message(
                         log_chat,
-                        f"Error message\n\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\n{thefulltrace}",
+                        f"Error\n\nfile: <code>{f.__module__}</code>\n\nfunction: <code>{f.__name__}</code>\n\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\n{thefulltrace}",
                         disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton(
-                                        "Delete this message",
-                                        callback_data="delete_error_message_callback",
-                                    )
-                                ],
-                            ]
-                        ),
                     )
                 except Exception as e:
                     pass
