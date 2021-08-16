@@ -30,7 +30,7 @@ def logging_errors(f):
                 try:
                     await c.send_message(
                         log_chat,
-                        f"<b>An error has occurred:</b>\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\nFile <code>{f.__module__}</code> in <code>{f.__name__}</code>\n<b>Full traceback:</b>{thefulltrace}",
+                        f"<b>An error has occurred:</b>\n<code>{type(e).__name__}: {html.escape(str(e))}</code>\n\nFile <code>{f.__module__}</code> in <code>{f.__name__}</code>\n<b>Full traceback:</b> {thefulltrace}",
                         disable_web_page_preview=True,
                     )
                 except:
