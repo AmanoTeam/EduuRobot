@@ -1,6 +1,5 @@
 {
   "package_home_page": "パッケージのホーム ページ",
   "package_not_found": "PyPI に <b>{package_name}</b> が見つかりません (返されたコードは {http_status} でした)。",
-  "not_specified": "指定されていない",
-  "pypi_usage": "<b>Usage:</b> <code>/pypi package_name</code> - Python Package Index (PyPI) でパッケージを探します。"
+  "not_specified": "指定されていない"
 }
