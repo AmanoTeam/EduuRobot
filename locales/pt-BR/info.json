@@ -1,6 +1,7 @@
 {
   "info_description": "Obtém informações sobre um usuário.",
   "info_header": "<b>Informações do usuário:</b>",
+  "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nPrimeiro nome: {first_name}",
   "info_last_name": "\nÚltimo nome: {last_name}",
   "info_username": "\nNome do usuário: @{username}",
