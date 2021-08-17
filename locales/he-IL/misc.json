@@ -6,17 +6,12 @@
   "mark_description": "מציג את הטקסט בפורמט Markdown.",
   "mark_usage": "<b>שימוש:</b> <code>/mark **טקסט** in __markdown__</code> - מחזיר את הטקסט בפורמט Markdown.",
   "token_description": "קבל פרטים מהטוקן שצויין.",
-  "no_bot_token": "תציין טוקן של בוט",
   "bot_token_invalid": "טוקן לא חוקי",
-  "bot_token_info": "<b>שם</b> : <code>{botname}</code> \n <b>שם משתמש</b> : <code>{botusername}</code> \n <b>ID</b> : <code>{botid}</code>",
   "urldecode_description": "מקודד את הטקסט.",
   "urlencode_description": "מחזיר את הטקסט לטקסט לא מקודד.",
-  "parsebtn_err": "אתה צריך לציין את כתובת הurl והטקסט, \n לדוגמה: <code>/parsebutton https://google.com טקסט</code>.",
   "parsebutton_description": "עוזר לך לעצב כפתור.",
   "bug_reported_success_to_bot_admins": "התקלה דווחה בהצלחה",
   "err_cant_send_bug_report_to_bot_admins": "שגיאה, אני לא יכול לדווח על התקלה למנהלים של הבוט",
-  "err_no_bug_to_report": "אתה צריך לציין את התקלה בשביל לדווח עליה, לדוגמה: <code>/bug (כאן את התקלה)</code>.",
-  "donate_description": "קבלת פרטים על תרומות.",
   "donatecmdstring": "אם אתה אוהב את הפרויקט ורוצה שהוא ימשיך לפעול ובחינם, אתה יכול לתמוך בזה על ידי תרומה על ידי לחיצה על הקישור למטה. כל סכום מוערך. תודה!\n\nhttps://amanoteam.com/donate",
   "report_admns": "{admins_list}{reported_user} דווח למנהלים."
 }
