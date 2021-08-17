@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} a fost banat de {admin}.",
   "error_must_specify_time": "Trebuie să specificați o oră după comandă. De exemplu: <code>/{command} 7d</code>.",
-  "kick_success": "{user} a fost dat afară de {admin}.",
-  "mute_success": "{user} a fost amuțit de {admin}.",
   "no_admin_error": "Trebuie să fiți administrator pentru a utiliza această comandă.",
   "no_permission_error": "Îmi pare rău, dar nu ai permisiunile necesare pentru a rula această comandă. Permisiuni lipsă: {permissions}",
   "private_not_allowed": "Această comandă nu poate fi folosită într-o conversație privată. Dacă ai nevoie de ajutor, te rugăm să folosești comanda <code>/help</code>.",
   "purge_in_progress": "Se roagă mesajele...",
-  "purge_success": "Mesaje șterse <b>{count}</b>",
-  "tban_success": "{user} a fost interzis temporar de {admin} pentru <b>{time}</b>.",
-  "tmute_success": "{user} a fost amuțit temporar de {admin} pentru <b>{time}</b>.",
-  "unban_success": "{user} a fost debanat de către {admin}.",
-  "unmute_success": "{user} a fost deblocat de {admin}."
+  "purge_success": "Mesaje șterse <b>{count}</b>"
 }

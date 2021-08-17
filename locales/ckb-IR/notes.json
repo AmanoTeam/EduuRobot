@@ -3,9 +3,7 @@
   "add_note_empty": "تکایە ناوەڕۆکێک بۆ تێبینییەکە دەستنیشان بکە.",
   "delnote_description": "تێبینییەک لەم گروپە لاببە.",
   "note_description": "تێبینییەک لەم گروپە زیادبکە.",
-  "notes_description": "تێبینییەکانی ئەم گروپە ببینە.",
   "notes_list": "تێبینییەکان لەم گروپە:\n\n",
   "notes_list_empty": "لە ئێستادا هیچ تێبینییەک لەم گروپەدا نییە.",
-  "no_note_with_name": "تێبینیی <b>{trigger}</b> نییە.",
   "remove_note_success": "تێبینیی <b>{trigger}</b> لابرا."
 }

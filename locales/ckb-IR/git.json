@@ -1,6 +1,1 @@
-{
-  "git_description": "دەستکەوتنی زانیاری دەربارەی پرۆفایلێکی گیتهەب.",
-  "info_git_user": "<b>ناو</b>: <code>{name}</code>\n<b>ناوی بەکارهێنەر</b>: <code>{username}</code>\n<b>شوێن</b>: <code>{location}</code>\n<b>جۆر</b>: <code>{type}</code>\n<b>ژیاننامە</b>: <code>{bio}</code>",
-  "not_found_user": "بەکارهێنەر نەدۆزرایەوە",
-  "no_username_err": "ناوی بەکارهێنەرێک دیاری بکە"
-}
+{}

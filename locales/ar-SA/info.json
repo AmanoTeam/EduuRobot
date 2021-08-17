@@ -1,5 +1,4 @@
 {
-  "info_description": "الحصول على معلومات حول المستخدم.",
   "info_header": "<b>معلومات المستخدم:</b>",
   "info_id": "\nالمعرف: <code>{id}</code>",
   "info_first_name": "\nالاسم الأول: {first_name}",

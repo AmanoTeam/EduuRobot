@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> de <i>{author_name} {author_email}</i>\nPlatformă: <b>{platform}</b>\nVersiune: <b>{version}</b>\nLicență: <b>{license}</b>\nSummar: <b>{summary}</b>",
   "package_home_page": "Pagina principală a pachetului",
   "package_not_found": "Nu se poate găsi <b>{package_name}</b> în PyPI (Codul reformat a fost {http_status}).",
-  "not_specified": "Nu este specificat",
-  "pypi_usage": "<b>Utilizare:</b> <code>/pypi package_name</code> - Caută un pachet în Indexul Python (PyPI)."
+  "not_specified": "Nu este specificat"
 }

@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} byl zabanován uživatelem {admin}.",
   "error_must_specify_time": "Musíte zadat čas po příkazu. Např.: <code>/{command} 7d</code>.",
-  "kick_success": "{user} byl vyhozen uživatelem {admin}.",
-  "mute_success": "{user} byl umlčen {admin}.",
   "no_admin_error": "Pro použití tohoto příkazu musíte být správcem.",
   "no_permission_error": "Je mi líto, ale nemáte dostatečná oprávnění k provedení tohoto příkazu. Chybějící oprávnění: {permissions}",
   "private_not_allowed": "Tento příkaz nelze použít v soukromém chatu. Pokud potřebujete pomoc, použijte příkaz <code>/help</code>.",
   "purge_in_progress": "Mazání zpráv...",
-  "purge_success": "Smazáno <b>{count}</b> zpráv.",
-  "tban_success": "{user} byl dočasně zabanován {admin} na <b>{time}</b>.",
-  "tmute_success": "{user} byl dočasně umlčen uživatelem {admin} na <b>{time}</b>.",
-  "unban_success": "{user} byl odbanován uživatelem {admin}.",
-  "unmute_success": "{user} byl odtlumený uživatelem {admin}."
+  "purge_success": "Smazáno <b>{count}</b> zpráv."
 }

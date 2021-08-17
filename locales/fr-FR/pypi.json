@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> par <i>{author_name} {author_email}</i>\nPlateforme : <b>{platform}</b>\nVersion : <b>{version}</b>\nLicence : <b>{license}</b>\nRésumé : <b>{summary}</b>",
   "package_home_page": "Page d'accueil du paquet",
   "package_not_found": "Impossible de trouver <b>{package_name}</b> en PyPI (le code retourné était {http_status}).",
-  "not_specified": "Non spécifié",
-  "pypi_usage": "<b>Utilisation :</b> <code>/pypi package_name</code> - Recherche un paquet dans le Python Package Index (PyPI)."
+  "not_specified": "Non spécifié"
 }

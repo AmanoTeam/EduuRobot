@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} został zbanowany przez {admin}.",
   "error_must_specify_time": "Musisz określić czas po komendzie. Np.: <code>/{command} 7d</code>.",
-  "kick_success": "{user} został wyrzucony przez {admin}.",
-  "mute_success": "{user} został wyciszony przez {admin}.",
   "no_admin_error": "Musisz być administratorem, aby użyć tego polecenia.",
   "no_permission_error": "Przykro mi, ale nie masz wymaganych uprawnień do uruchomienia tej komendy. Brakuje uprawnień: {permissions}",
   "private_not_allowed": "Ta komenda nie może być użyta na czacie prywatnym. Jeśli potrzebujesz pomocy, użyj komendy <code>/help</code>.",
   "purge_in_progress": "Czyszczenie wiadomości...",
-  "purge_success": "Usunięto <b>{count}</b> wiadomości.",
-  "tban_success": "{user} został tymczasowo zbanowany przez {admin} na <b>{time}</b>.",
-  "tmute_success": "{user} został tymczasowo wyciszony przez {admin} na <b>{time}</b>.",
-  "unban_success": "{user} został odbanowany przez {admin}.",
-  "unmute_success": "{user} został cofnięty przez {admin}."
+  "purge_success": "Usunięto <b>{count}</b> wiadomości."
 }

@@ -2,7 +2,5 @@
   "package_details": "<b>{package_name}</b> <i>{author_name} {author_email}</i>\nПлатформа: <b>{platform}</b>\nВерсия: <b>{version}</b>\nЛицензия: <b>{license}</b>\nРезюме: <b>{summary}</b>",
   "package_home_page": "Домашняя страница пакета",
   "package_not_found": "Не удается найти <b>{package_name}</b> в PyPI (Код (Returned был {http_status}).",
-  "not_specified": "Не указан",
-  "pypi_description": "Ищите пакет в индексе пакетов Python (PyPI).",
-  "pypi_usage": "<b>Использование:</b> <code>/pypi package_name</code> - Ищите пакет в индексе пакетов Python (PyPI)."
+  "not_specified": "Не указан"
 }

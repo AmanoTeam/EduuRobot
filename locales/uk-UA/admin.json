@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} був забанений {admin}.",
   "error_must_specify_time": "Ви повинні вказати час після команди. Наприклад: <code>/{command} 7d</code>.",
-  "kick_success": "{user} був кіз {admin}.",
-  "mute_success": "{user} був приглушений {admin}.",
   "no_admin_error": "Ви повинні бути адміністратором для використання цієї команди.",
   "no_permission_error": "Вибачте, але у вас немає необхідних дозволів для виконання цієї команди. Відсутні дозволи: {permissions}",
   "private_not_allowed": "Ця команда не може використовуватись у приватному чаті. Якщо вам потрібна допомога, будь ласка, використовуйте команду <code>/help</code>.",
   "purge_in_progress": "Очищення повідомлень...",
-  "purge_success": "Видалено <b>{count}</b> повідомлень.",
-  "tban_success": "{user} був тимчасово заблокований {admin} на <b>{time}</b>.",
-  "tmute_success": "{user} тимчасово приглушений {admin} на <b>{time}</b>.",
-  "unban_success": "{user} був розблокований {admin}.",
-  "unmute_success": "{user} дозволив {admin}."
+  "purge_success": "Видалено <b>{count}</b> повідомлень."
 }

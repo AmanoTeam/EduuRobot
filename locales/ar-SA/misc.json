@@ -6,17 +6,12 @@
   "mark_description": "تنسيق النص المقدم باستخدام بنية Markdown.",
   "mark_usage": "<b>الاستخدام:</b> <code>/mark علامة **النص** في __markdown__</code> - يقوم بتنسيق النص المقدم باستخدام صيغة Markdown.",
   "token_description": "الحصول على معلومات من توكن البوت المقدم.",
-  "no_bot_token": "حدد توكن البوت.",
   "bot_token_invalid": "التوكن غير صحيح.",
-  "bot_token_info": "<b>الاسم</b> : <code>{botname}</code> \n <b>اسم المستخدم</b> : <code>{botusername}</code> \n <b>المعرف</b> : <code>{botid}</code>",
   "urldecode_description": "تشفير النص المقدم بترميز URL-safe.",
   "urlencode_description": "فك تشفير النص المقدم بترميز URL-safe.",
-  "parsebtn_err": "يجب عليك تحديد عنوان Url ونص الزر، \n على سبيل المثال: <code>/parsebutton https://google.com نص</code>.",
   "parsebutton_description": "تساعدك على تحليل الزر.",
   "bug_reported_success_to_bot_admins": "تم الإبلاغ عن الخطأ بنجاح.",
   "err_cant_send_bug_report_to_bot_admins": "خطأ، لم أستطع إرسال تقرير الخطأ إلى مشرفي البوت.",
-  "err_no_bug_to_report": "يجب عليك تحديد الخطأ للتقرير، على سبيل المثال: <code>/bug (هنا الخطأ)</code>.",
-  "donate_description": "الحصول على معلومات حول التبرع.",
   "donatecmdstring": "إذا أعجبك المشروع وتريده أن يستمر مجاناً وعلى قيد الحياة، يرجى إظهار دعمك بالتبرع عبر النقر على الرابط أدناه. أي مبلغ هو موضع تقدير. شكرا!\n\nhttps://amanoteam.com/donate",
   "report_admns": "{admins_list}{reported_user} تم تبليغه للمشرفين."
 }

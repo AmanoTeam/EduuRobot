@@ -1,6 +1,5 @@
 {
   "package_home_page": "Встановити домашню сторінку",
   "package_not_found": "Не вдалося знайти <b>{package_name}</b> в PyPI (Повернений код {http_status}).",
-  "not_specified": "Не вказано",
-  "pypi_usage": "<b>Використання:</b> <code>/pypi package_name</code> - Шукайте пакет в індексі пакетів Python пакетів (PyPI)."
+  "not_specified": "Не вказано"
 }

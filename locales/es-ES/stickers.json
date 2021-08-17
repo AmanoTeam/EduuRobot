@@ -1,14 +1,6 @@
 {
-  "get_sticker_id_string": "El id de este sticker es \n <code>{stickerid}</code>",
   "animated_not_supported": "Los stickers animados no están soportados.",
   "sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID de Sticker:</b> <code>{id}</code>",
-  "not_sticker": "Eso no es un sticker",
-  "kanging_sticker_msg": "<code>Kangando sticker ...</code>",
   "sticker_kanged_string": "Sticker <b>añadido con éxito</b> al pack\nEmoji: {sticker_emoji}",
-  "use_existing_pack": "<code>Utilizando el paquete de sticker existente ...</code>",
-  "err_sticker_no_file_name": "<b>ERROR</b>: <code>Este sticker no tiene nombre de archivo!</code>",
-  "view_sticker_pack_btn": "Ver",
-  "create_new_pack_string": "✨ Creando un nuevo stickerpack",
-  "invalid_media_string": "<b>ERROR:</b> <code>Media inválida<code>",
-  "cant_create_sticker_pack_string": "😬 ¡Vaya, parece que no tengo permisos suficientes para crear un paquete de sticker para ti! \n<b>Por favor, inicia el bot primero</b>"
+  "view_sticker_pack_btn": "Ver"
 }

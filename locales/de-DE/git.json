@@ -1,6 +1,3 @@
 {
-  "git_description": "Informationen aus einem Profil auf GitHub abrufen.",
-  "info_git_user": "<b>Name</b> : <code>{name}</code> \n <b>Benutzername</b> : <code>{username}</code> \n <b>Ort</b> : <code>{location}</code> \n <b>Typ</b> : <code>{type}</code> \n <b>Bio</b> : <code>{bio}</code>",
-  "not_found_user": "Benutzer nicht gefunden",
-  "no_username_err": "Benutzernamen festlegen"
+  "not_found_user": "Benutzer nicht gefunden."
 }

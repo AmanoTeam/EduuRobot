@@ -1,14 +1,6 @@
 {
-  "get_sticker_id_string": "ה-id של המדבקה הזאת הוא \n <code>{stickerid}</code>",
   "animated_not_supported": "מדבקות מונפשות לא נתמכות.",
   "sticker_info": "<b>אימוג'י:</b> {emoji}\n<b>הID של הסטיקר:</b> <code>{id}</code>",
-  "not_sticker": "זה לא סטיקר",
-  "kanging_sticker_msg": "<code>שומר את הסטיקר לחבילה שלך ...</code>",
   "sticker_kanged_string": "הסטיקר <b>נוסף</b> בהצלחה לחבילה\nאימוג'י: {sticker_emoji}",
-  "use_existing_pack": "<code>משתמש בחבילה קיימת ...</code>",
-  "err_sticker_no_file_name": "<b>שגיאה</b>: <code>אין לקובץ של הסטיקר הזה שם !</code>",
-  "view_sticker_pack_btn": "לחץ כאן לצפייה",
-  "create_new_pack_string": "✨ יוצר חבילת סטיקרים חדשה",
-  "invalid_media_string": "<b>שגיאה:</b> <code>סוג מדיה לא חוקי<code>",
-  "cant_create_sticker_pack_string": "😬 אופס, אין לי הרשאה ליצור את הסטיקר בשבילך ! \n<b>בבקשה תתחיל את אותי בפרטי קודם</b>"
+  "view_sticker_pack_btn": "לחץ כאן לצפייה"
 }

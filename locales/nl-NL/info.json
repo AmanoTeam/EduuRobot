@@ -1,7 +1,5 @@
 {
-  "info_description": "Krijg informatie over een gebruiker.",
   "info_header": "<b>Gebruikersinfo:</b>",
-  "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nVoornaam: {first_name}",
   "info_last_name": "\nAchternaam: {last_name}",
   "info_username": "\nGebruikersnaam: @{username}",

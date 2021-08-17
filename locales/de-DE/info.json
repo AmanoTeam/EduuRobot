@@ -1,5 +1,4 @@
 {
-  "info_description": "Informationen über einen Benutzer erhalten.",
   "info_header": "<b>Benutzerinformation:</b>",
   "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nVorname: {first_name}",

@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> tekijältä <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersio: <b>{version}</b>\nLisenssi: <b>{license}</b>\nYhteenveto: <b>{summary}</b>",
   "package_home_page": "Paketin kotisivu",
   "package_not_found": "Ei löydy <b>{package_name}</b> PyPI (Palautettu koodi oli {http_status}).",
-  "not_specified": "Ei määritetty",
-  "pypi_usage": "<b>Käyttö:</b> <code>/pypi package_name</code> - Etsi paketti Python Package Index (PyPI)."
+  "not_specified": "Ei määritetty"
 }

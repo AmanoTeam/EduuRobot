@@ -3,9 +3,7 @@
   "add_note_empty": "Por favor, especifique un contenido para la nota.",
   "delnote_description": "Eliminar una nota de este chat.",
   "note_description": "Crear una nota para este chat.",
-  "notes_description": "Mostrar las notas actuales de este chat.",
   "notes_list": "Notas en este chat:\n\n",
   "notes_list_empty": "Actualmente no hay notas en este chat.",
-  "no_note_with_name": "No hay ninguna nota con el nombre <b>{trigger}</b>.",
   "remove_note_success": "Eliminado <b>{trigger}</b> de las notas."
 }

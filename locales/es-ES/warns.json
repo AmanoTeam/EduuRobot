@@ -1,21 +1,9 @@
 {
-  "resetwarns_description": "Restablecer las advertencias del usuario.",
-  "setwarnslimit_description": "Establece el límite de las advertencias en el chat.",
   "user_warned": "El usuario {target_user} tiene {warn_count} de {warn_limit} advertencias.",
-  "warn_banned": "El usuario {target_user} ha sido baneado porque fue advertido {warn_count} veces.",
-  "warn_kicked": "El usuario {target_user} ha sido expulsado porque fue advertido {warn_count} veces.",
-  "warn_muted": "El usuario {target_user} ha sido silenciado porque fue advertido {warn_count} veces.",
   "warn_cant_admin": "No puedo advertir a los administradores.",
   "warn_description": "Advertir a un usuario.",
   "warn_limit_changed": "El límite de advertencias ha cambiado correctamente a {warn_limit}.",
-  "warn_limit_help": "Debe especificar un número de advertencias, por ejemplo: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "El número proporcionado no es válido.",
-  "warn_reason_text": "La razón de esta advertencia: {reason_text}",
-  "warn_reset": "Las advertencias de {target_user} fueron eliminadas con éxito.",
   "warns_description": "Obtén las advertencias del usuario.",
-  "warns_count_string": "El usuario {target_user} tiene {warns_count} advertencias.",
-  "warns_action_set_string": "La acción de advertencia fue establecida a {action}.",
-  "warns_action_set_invlaid": "Argumento inválido. Usa <code>/setwarnsaction (ban/mute/kick)</code>.",
-  "warn_action_status": "La acción de advertencia para este chat es {action}.",
-  "setwarnsaction_description": "Establece las acciones de advertencia para el chat, puedes usar los argumentos <code>ban/mute/kick</code>."
+  "warns_count_string": "El usuario {target_user} tiene {warns_count} advertencias."
 }

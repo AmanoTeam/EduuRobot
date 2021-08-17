@@ -1,7 +1,5 @@
 {
   "details": "<b>{location}</b>:\n\nTemperatură: <code>{temperature} °C</code>\nTemperatura se simte astfel: <code>{feels_like} °C</code></code>\nUtilitate aeriană: <code>{air_humidity}%</code>\nViteza vântului: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Locaţia nu a fost găsită.",
-  "measurement_unit": "m",
-  "weather_language": "ro-RO",
-  "weather_usage": "<b>Utilizare:</b> <code>/vreme locație sau oraș</code> - Obține informații meteo din <i>locația sau orașul</i>."
+  "weather_language": "ro-RO"
 }

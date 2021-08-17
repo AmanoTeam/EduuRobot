@@ -1,20 +1,9 @@
 {
-  "resetwarns_description": "ئاگادارکردنەوەکانی بەکارهێنەرێک لابە.",
-  "setwarnslimit_description": "سنووری ئاگادارکردنەوە دەستنیشان بکە.",
   "user_warned": "ئاگادارکردنەوەکانی بەکارهێنەر {target_user}:\n{warn_count}/{warn_limit}",
-  "warn_banned": "بەکارهێنەر {target_user} قەدەغەکرا لەبەر ئەوەی ژمارەی ئاگادارکردنەوەکانی گەیشتە {warn_count} ئاگادارکردنەوە.",
-  "warn_kicked": "بەکارهێنەر {target_user} دەرکرا لەبەر ئەوەی ژمارەی ئاگادارکردنەوەکانی گەیشتە {warn_count} ئاگادارکردنەوە.",
-  "warn_muted": "بەکارهێنەر {target_user} بێدەنگکرا لەبەر ئەوەی ژمارەی ئاگادارکردنەوەکانی گەیشتە {warn_count} ئاگادارکردنەوە.",
   "warn_cant_admin": "ناتوانم بەرێوەبەر ئاگاداربکەمەوە.",
   "warn_description": "بەکارهێنەرێک ئاگاداربکەرەوە.",
   "warn_limit_changed": "سنووری ئاگادارکردنەوە کرا بە {warn_limit}.",
-  "warn_limit_help": "دەبێت ژمارەیەک دیاری بکەیت، بۆ نموونە:\n<code>/setwarnslimit 5</code>",
   "warn_limit_invalid": "ژمارە پێدراوەکە دروست نییە.",
-  "warn_reason_text": "هۆکاری ئەم ئاگادارکردنەوەیە: {reason_text}",
-  "warn_reset": "ئاگادارکردنەوەکانی {target_user} لابران.",
   "warns_description": "ئاگادارکردنەوەکانی بەکارهێنەرێک ببینە.",
-  "warns_count_string": "ژمارەی ئاگادارکردنەوەکانی بەکارهێنەر {target_user}: {warns_count}.",
-  "warns_action_set_string": "کاردانەوەی ئاگادارکردنەوەکان کرا بە {action}.",
-  "warns_action_set_invlaid": "پێدراوەکە دروست نییە، بەکارهێنان:\n<code>/setwarnsaction (ban/mute/kick)</code>",
-  "warn_action_status": "کاردانەوەی ئاگادارکردنەوە لەم گروپە: {action}."
+  "warns_count_string": "ژمارەی ئاگادارکردنەوەکانی بەکارهێنەر {target_user}: {warns_count}."
 }

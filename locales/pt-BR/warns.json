@@ -1,21 +1,21 @@
 {
   "resetwarns_description": "Redefine as advertências do usuário.",
-  "setwarnslimit_description": "Define o limite de advertências no chat.",
+  "setwarnslimit_description": "Define o limite de advertências do chat.",
   "user_warned": "O usuário {target_user} tem {warn_count} de {warn_limit} advertências.",
-  "warn_banned": "O usuário {target_user} foi banido pois foi advertido {warn_count} vezes.",
-  "warn_kicked": "O usuário {target_user} foi kickado pois foi advertido {warn_count} vezes.",
-  "warn_muted": "O usuário {target_user} foi silenciado pois foi advertido {warn_count} vezes.",
+  "warn_banned": "O usuário {target_user} foi banido porque ele foi advertido {warn_count} vezes.",
+  "warn_kicked": "O usuário {target_user} foi kickado porque ele foi advertido {warn_count} vezes.",
+  "warn_muted": "O usuário {target_user} foi mutado porque ele foi advertido {warn_count} vezes.",
   "warn_cant_admin": "Eu não posso advertir administradores.",
   "warn_description": "Adverte um usuário.",
   "warn_limit_changed": "O limite de advertências foi alterado para {warn_limit} com sucesso.",
-  "warn_limit_help": "Você deve especificar um número de advertências, por exemplo: <code>/setwarnslimit 5</code>.",
+  "warn_limit_help": "Você deve especificar o número de advertências, por exemplo: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "O número fornecido não é válido.",
   "warn_reason_text": "Motivo da advertência: {reason_text}",
   "warn_reset": "As advertências de {target_user} foram removidas com sucesso.",
   "warns_description": "Obtém as advertências do usuário.",
   "warns_count_string": "O usuário {target_user} tem {warns_count} advertências.",
   "warns_action_set_string": "A ação de advertência foi definida para {action}.",
-  "warns_action_set_invlaid": "Argumento inválido. Use <code>/setwarnsaction (ban/mute/kick)</code>.",
+  "warns_action_set_invlaid": "Argumento inválido. Use <code>/setwarnsaction ban/mute/kick</code>.",
   "warn_action_status": "A ação de advertências para este chat é {action}.",
-  "setwarnsaction_description": "Define as ações de advertências para o chat, você pode usar os argumentos <code>ban/mute/kick</code>."
+  "setwarnsaction_description": "Define a ação de advertências para o chat. Você pode usar os argumentos <code>ban/mute/kick</code>."
 }

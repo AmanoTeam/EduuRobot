@@ -1,5 +1,4 @@
 {
-  "tr_description": "ترجمة النص باللغة المتوفرة (الإعدادات الافتراضية للغة الدردشة الافتراضية).",
   "translate_usage": "<b>الاستخدام:</b> <code>/tr &lt;language&gt; النص للترجمة</code> (يمكن استخدامه أيضا في الرد على رسالة).",
   "translating": "ترجمة...",
   "translation": "<b>اللغة:</b> {from_lang} -> {to_lang}\n<b>الترجمة:</b> <code>{translation}</code>",
