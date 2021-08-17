@@ -1,11 +1,7 @@
 {
-  "resetwelcome_description": "إعادة تعيين رسالة الترحيب إلى رسالة الترحيب الافتراضية للبوت.",
   "welcome_default": "مرحبًا {first_name}، مرحبًا بك في {chat_title}!",
-  "welcome_description": "تشغيل أو إيقاف رسالة الترحيب.",
   "welcome_mode_disable": "رسالة الترحيب لـ {chat_title} معطلة الآن.",
   "welcome_mode_enable": "رسالة الترحيب لـ {chat_title} مفعلة الآن.",
   "welcome_mode_invalid": "قيمة غير صالحة. استخدم <code>/welcome off/on</code>.",
-  "welcome_reset": "تم ضبط رسالة الترحيب الخاصة بـ {chat_title} مرة أخرى على رسالة الترحيب الافتراضية للبوت.",
-  "welcome_set_error": "حدث خطأ ولم يتم تعيين رسالة الترحيب. الخطأ: {error}",
-  "welcome_set_success": "تم تعيين رسالة الترحيب الخاصة بـ {chat_title} بنجاح."
+  "welcome_set_error": "حدث خطأ ولم يتم تعيين رسالة الترحيب. الخطأ: {error}"
 }
