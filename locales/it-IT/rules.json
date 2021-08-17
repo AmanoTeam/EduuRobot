@@ -1,10 +1,8 @@
 {
   "resetrules_description": "Reimposta le regole della chat.",
-  "rules_deleted": "Le regole di questa chat sono state rimosse con successo.",
   "rules_description": "Mostra le regole della chat.",
   "rules_empty": "Nessuna regola impostata per questa chat.",
   "rules_message": "Le regole della chat {chat_title} sono:\n\n{rules}",
-  "rules_set_empty": "È necessario specificare le regole, ad esempio: <code>/setrules (qui le regole)</code>.",
   "rules_set_success": "Le regole per {chat_title} sono state impostate con successo.",
   "setrules_description": "Imposta le regole della chat."
 }
