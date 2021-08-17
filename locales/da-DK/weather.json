@@ -1,6 +1,5 @@
 {
   "details": "<b>{location}</b>:\n\nTemperatur: <code>{temperature} °C</code>\nTemperatur føles som: <code>{feels_like} °C</code>\nLuftfugtighed: <code>{air_humidity}%</code>\nVindhastighed: <code>{wind_speed} km/t</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Placering ikke fundet.",
-  "weather_language": "da-DK",
-  "weather_usage": "<b>Brug:</b> <code>/weather location or city</code> - Get weather information from <i>location or city</i>."
+  "weather_language": "da-DK"
 }
