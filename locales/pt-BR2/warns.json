@@ -1,9 +1,14 @@
 {
+  "resetwarns_description": "Redefine as advertências do usuário.",
+  "setwarnslimit_description": "Define o limite de advertências do chat.",
   "user_warned": "O {target_user} é {warn_count}/{warn_limit}. Mas para ser banido.",
+  "warn_banned": "O usuário {target_user} foi banido porque ele foi advertido {warn_count} vezes.",
+  "warn_kicked": "O usuário {target_user} foi kickado porque ele foi advertido {warn_count} vezes.",
   "warn_cant_admin": "Eu não posso advertir administradores.",
   "warn_description": "Adiciona mais beleza ao usuário.",
   "warn_limit_changed": "Agora o limite é {warn_limit}.",
   "warn_limit_invalid": "Ow isso não é padrão de beleza.",
   "warns_description": "Obtém a beleza do usuário.",
-  "warns_count_string": "O {target_user} tem {warns_count} do nível de beleza."
+  "warns_count_string": "O {target_user} tem {warns_count} do nível de beleza.",
+  "setwarnsaction_description": "Define a ação de advertências para o chat. Você pode usar os argumentos <code>ban/mute/kick</code>."
 }
