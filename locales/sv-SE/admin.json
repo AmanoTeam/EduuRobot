@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} bannlystes av {admin}.",
   "error_must_specify_time": "Du måste ange en tid efter kommandot. T.ex.: <code>/{command} 7d</code>.",
-  "kick_success": "{user} sparkades av {admin}.",
-  "mute_success": "{user} tystad av {admin}.",
   "no_admin_error": "Du måste vara administratör för att använda detta kommando.",
   "no_permission_error": "Jag är ledsen men du har inte de nödvändiga behörigheterna för att köra detta kommando. Behörigheter saknas: {permissions}",
   "private_not_allowed": "Detta kommando kan inte användas i en privat chatt. Om du behöver hjälp, använd <code>/help</code> -kommandot.",
   "purge_in_progress": "Rensar meddelanden...",
-  "purge_success": "Tog bort <b>{count}</b> meddelanden.",
-  "tban_success": "{user} bannlystes tillfälligt av {admin} för <b>{time}</b>.",
-  "tmute_success": "{user} tystades tillfälligt av {admin} för <b>{time}</b>.",
-  "unban_success": "{user} bannlystes av {admin}.",
-  "unmute_success": "{user} avtystades av {admin}."
+  "purge_success": "Tog bort <b>{count}</b> meddelanden."
 }
