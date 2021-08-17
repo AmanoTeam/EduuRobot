@@ -3,8 +3,6 @@
   "ytdl_missing_argument": "Por favor, responda a un enlace de YouTube o texto.",
   "ytdl_audio_button": "💿 Audio",
   "ytdl_video_button": "🎬 Vídeo",
-  "ytdl_file_too_big": "¡Lo siento! No puedo descargar este medio porque excede mi límite de subida de 200MB.",
-  "ytdl_send_error": "¡Lo siento! No he podido enviar el vídeo debido a un error.\n<b>Error:</b> <code>{errmsg}</code>",
   "ytdl_downloading": "Descargando...",
   "ytdl_button_denied": "Este botón no es para usted."
 }
