@@ -1,5 +1,4 @@
 {
-  "info_description": "Krijg informatie over een gebruiker.",
   "info_header": "<b>Gebruikersinfo:</b>",
   "info_first_name": "\nVoornaam: {first_name}",
   "info_last_name": "\nAchternaam: {last_name}",
