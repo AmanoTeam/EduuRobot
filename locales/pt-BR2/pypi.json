@@ -2,7 +2,5 @@
   "package_details": "<b>{package_name}</b> pelo <i>{author_name} {author_email}</i>\nCpu: <b>{platform}</b>\nData Base: <b>{version}</b>\nSegurança: <b>{license}</b>\nU ki é issu: <b>{summary}</b>",
   "package_home_page": "Clique e ganhe!",
   "package_not_found": "Olha só meu cumpadi n achei o <b>{package_name}</b> no no pipi (renornô {http_status}).",
-  "not_specified": "Nao Expessifico",
-  "pypi_description": "Procurar um restaurante no índice do python (Pipi).",
-  "pypi_usage": "Assim ó: <code>/pypi idade</code> - pesquisa no pipi."
+  "not_specified": "Nao Expessifico"
 }
