@@ -3,5 +3,6 @@
   "command_category_title": "Cat do comando <b>{category}</b>:",
   "general": "✨ Geral",
   "select_command_category": "Selecione uma categoria para ver os comandos disponíveis.",
-  "tools": "🔧 Chave inglesa"
+  "tools": "🔧 Chave inglesa",
+  "group_help": "Por favor, use o comando em um chat privado ou clique no botão abaixo para ver os comandos disponíveis."
 }
