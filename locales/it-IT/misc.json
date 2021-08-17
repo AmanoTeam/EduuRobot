@@ -6,16 +6,11 @@
   "mark_description": "Formatta il testo fornito con la sintassi Markdown.",
   "mark_usage": "<b>Uso:</b> <code>/html </code>**testo** in __Markdown__ - Formatta il testo fornito con la sintassi Markdown.",
   "token_description": "Fornisce info sul token bot fornito.",
-  "no_bot_token": "Specifica un token bot",
   "bot_token_invalid": "Token bot non valido",
-  "bot_token_info": "<b>Nome</b>: <code>{botname}</code>\n<b>Username</b>: <code>{botusername}</code>\n<b>ID</b>: <code>{botid}</code>",
   "urldecode_description": "Codifica il testo fornito per renderlo compatibile con gli URL.",
   "urlencode_description": "Decodifica il testo fornito dalla codifica URL.",
-  "parsebtn_err": "Devi specificare un URL e il testo del pulsante, ad esempio: <code>/parsebutton https://google.com testo</code>.",
   "parsebutton_description": "Ti aiuta a realizzare un pulsante inline nel bot.",
   "bug_reported_success_to_bot_admins": "Il bug è stato segnalato correttamente",
   "err_cant_send_bug_report_to_bot_admins": "Errore: impossibile inviare la segnalazione di bug agli amministratori del bot",
-  "err_no_bug_to_report": "È necessario specificare il bug da segnalare, ad esempio: <code>/bug (qui il bug)</code>.",
-  "donate_description": "Mostra le informazioni sulle donazioni.",
   "donatecmdstring": "Se ti piace il progetto e vuoi che continui ad esistere senza alcun costo, per favore mostra il tuo supporto donando utilizzando il link sotto. Ogni cifra è apprezzata.\nGrazie!\n\nhttps://amanoteam.com/donate"
 }
