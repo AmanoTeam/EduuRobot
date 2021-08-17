@@ -1,5 +1,4 @@
 {
   "location_not_found": "ロケーションが見つかりません。",
-  "weather_language": "ja-JP",
-  "weather_usage": "<b>使用法:</b> <code>/weather 場所または都市</code> - <i>場所または都市</i> から天気情報を取得します。"
+  "weather_language": "ja-JP"
 }
