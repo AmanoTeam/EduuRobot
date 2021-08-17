@@ -1,5 +1,5 @@
 {
-  "info_description": "Pegar o número daquela pessoa.",
+  "info_description": "Obtém informações sobre um usuário.",
   "info_header": "<b>Número de telefone:</b>",
   "info_id": "\nCódigo de área: <code>{id}</code>",
   "info_first_name": "\nSalva assim: {first_name}",
