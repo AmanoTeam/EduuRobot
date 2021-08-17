@@ -2,7 +2,5 @@
   "details": "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensación térmica: <code>{feels_like} °C</code>\nhumedad del aire: <code>{air_humidity}%</code>\nVelocidad del viento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Ubicación no encontrada.",
   "measurement_unit": "m",
-  "weather_language": "es-ES",
-  "weather_description": "Obtenga información meteorológica de la ubicación o ciudad proporcionada.",
-  "weather_usage": "<b>Uso:</b> <code>/weather ubicación o ciudad</code> - Obtenga información meteorológica de <i>ubicación o ciudad</i>."
+  "weather_language": "es-ES"
 }
