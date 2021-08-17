@@ -3,6 +3,7 @@
   "ytdl_missing_argument": "Por favor, responda um link do YouTube ou texto.",
   "ytdl_audio_button": "💿 Áudio",
   "ytdl_video_button": "🎬 Vídeo",
+  "ytdl_file_too_big": "Desculpe! Não posso baixar esta mídia porque ela excede o meu limite de upload de 200MB.",
   "ytdl_downloading": "Baixando...",
   "ytdl_button_denied": "Este botão não é para você."
 }
