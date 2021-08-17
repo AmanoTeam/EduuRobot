@@ -1,7 +1,5 @@
 {
   "details": "<b>{location}</b>:\n\nטמפרטורה: <code>{temperature} °C</code>\nמרגיש כמו: <code>{feels_like} °C</code>\nלחות: <code>{air_humidity}%</code>\nמהירות הרוח: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "מיקום לא נמצא.",
-  "weather_language": "he-IL",
-  "weather_description": "מציג את מזג האוויר במיקום הנבחר.",
-  "weather_usage": "<b>שימוש:</b> <code>/weather מיקום </code> - מציג את מזג האוויר <i>מהמיקום ששלחת</i>."
+  "weather_language": "he-IL"
 }
