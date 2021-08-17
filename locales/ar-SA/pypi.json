@@ -2,7 +2,5 @@
   "package_details": "<b>{package_name}</b> بواسطة <i>{author_name} {author_email}</i>\nالمنصة: <b>{platform}</b>\nالإصدار: <b>{version}</b>\nالترخيص: <b>{license}</b>\nالملخص: <b>{summary}</b>",
   "package_home_page": "الصفحة الرئيسية للحزمة",
   "package_not_found": "لا يمكن العثور على <b>{package_name}</b> في PyPI (رمز العودة كان {http_status}).",
-  "not_specified": "غير محدد",
-  "pypi_description": "ابحث عن حزمة في فهرس حزمة بايثون (PyPI).",
-  "pypi_usage": "<b>الاستخدام:</b> <code>/pypi اسم_الحزمة</code> - ابحث عن حزمة في فهرس حزمة بايثون (PyPI)."
+  "not_specified": "غير محدد"
 }
