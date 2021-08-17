@@ -146,22 +146,6 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     await cq.message.edit(strings("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
-    last_edit = 0
-
-    def progress(m, d):
-        nonlocal last_edit
-
-        if d["status"] == "finished":
-            return
-        if d["status"] == "downloading":
-            if last_edit + 1 < int(time.time()):
-                percent = d["_percent_str"]
-                try:
-                    m.edit(f"{strings('ytdl_downloading')} {percent}")
-                except BadRequest:
-                    pass
-                finally:
-                    last_edit = int(time.time())
 
     ttemp = ""
     if int(temp):
@@ -184,7 +168,6 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 "noplaylist": True,
             }
         )
-    ydl.add_progress_hook(functools.partial(progress, cq.message))
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
