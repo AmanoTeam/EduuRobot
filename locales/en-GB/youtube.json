@@ -3,8 +3,8 @@
   "ytdl_missing_argument": "Please reply to a YouTube link or text.",
   "ytdl_audio_button": "💿 Audio",
   "ytdl_video_button": "🎬 Video",
-  "ytdl_file_too_big": "Sorry! I cannot download this media because it exceeds my 200MB upload limit.",
-  "ytdl_send_error": "Sorry! I was unable to send the video because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
+  "ytdl_file_too_big": "Sorry! I can't download this media because it exceeds my 200MB upload limit.",
+  "ytdl_send_error": "Sorry! I couldn't send the video because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
   "ytdl_downloading": "Downloading...",
   "ytdl_button_denied": "This button is not for you."
 }

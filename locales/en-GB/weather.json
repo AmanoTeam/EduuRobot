@@ -3,6 +3,6 @@
   "location_not_found": "Location not found.",
   "measurement_unit": "m",
   "weather_language": "en-GB",
-  "weather_description": "Get weather information from provided location or city.",
-  "weather_usage": "<b>Usage:</b> <code>/weather location or city</code> - Get weather information from <i>location or city</i>."
+  "weather_description": "Get weather information for the given location or city.",
+  "weather_usage": "<b>Usage:</b> <code>/weather location or city</code> - Get information about the weather in <i>location or city</i>."
 }

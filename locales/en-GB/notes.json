@@ -3,9 +3,9 @@
   "add_note_empty": "Please specify a content for note.",
   "delnote_description": "Remove a note from this chat.",
   "note_description": "Create a note for this chat.",
-  "notes_description": "Show the current notes for this chat.",
+  "notes_description": "Show saved notes for this chat.",
   "notes_list": "Notes in this chat:\n\n",
   "notes_list_empty": "Currently there are no notes in this chat.",
-  "no_note_with_name": "There is no note with name <b>{trigger}</b>.",
+  "no_note_with_name": "There is no note with the name <b>{trigger}</b>.",
   "remove_note_success": "Removed <b>{trigger}</b> from notes."
 }

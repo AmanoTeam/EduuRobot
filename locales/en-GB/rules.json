@@ -1,10 +1,10 @@
 {
   "resetrules_description": "Reset the chat rules.",
-  "rules_deleted": "The rules for this chat were deleted successfully.",
+  "rules_deleted": "The rules for this chat have been successfully deleted.",
   "rules_description": "Show the chat rules.",
   "rules_empty": "No rules have been set for this chat.",
   "rules_message": "The rules in the chat {chat_title} are:\n\n{rules}",
-  "rules_set_empty": "You must specify the rules, E.g.: <code>/setrules (here the rules)</code>.",
+  "rules_set_empty": "You must specify the rules, E.g.: <code>/setrules your chat rules</code>.",
   "rules_set_success": "The rules for {chat_title} were set successfully.",
   "setrules_description": "Set the rules of the chat."
 }
