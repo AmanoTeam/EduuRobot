@@ -1,5 +1,4 @@
 {
-  "info_description": "Dapatkan informasi tentang pengguna.",
   "info_header": "<b>Info pengguna:</b>",
   "info_first_name": "\nNama depan: {first_name}",
   "info_last_name": "\nNama belakang: {last_name}",
