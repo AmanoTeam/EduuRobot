@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} は {admin} によってBANされました。",
   "error_must_specify_time": "コマンドの後に時間を指定する必要があります。例えば: <code>/{command} 7d</code>.",
-  "kick_success": "{user} は {admin} によってキックされました。",
-  "mute_success": "{user} は {admin} によってミュートされました。",
   "no_admin_error": "このコマンドを使用するには管理者である必要があります。",
   "no_permission_error": "申し訳ありませんが、このコマンドを実行するために必要な権限がありません。権限がありません: {permissions}",
   "private_not_allowed": "このコマンドはプライベートチャットでは使用できません。何か助けが必要な場合は、 <code>/help</code> コマンドを使用してください。",
   "purge_in_progress": "メッセージを削除しています...",
-  "purge_success": "<b>{count}</b> 件のメッセージを削除しました。",
-  "tban_success": "{user} は {admin} によって <b>{time}</b> で一時的にBANされました。",
-  "tmute_success": "{user} は {admin} によって <b>{time}</b> で一時的にミュートされました。",
-  "unban_success": "{user} は {admin} によってBANを解除されました。",
-  "unmute_success": "{user} は {admin} によってミュート解除されました。"
+  "purge_success": "<b>{count}</b> 件のメッセージを削除しました。"
 }
