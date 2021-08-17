@@ -6,17 +6,12 @@
   "mark_description": "Format teks yang disediakan dengan sintaksis Markdown.",
   "mark_usage": "<b>Penggunaan:</b> <code>/mark **teks** dalam __markdown__</code> - Format teks yang disediakan dengan sintaksis Markdown.",
   "token_description": "Dapatkan informasi dari yang di sediakan token bot.",
-  "no_bot_token": "Tentukan token bot.",
   "bot_token_invalid": "Token bot tidak valid.",
-  "bot_token_info": "<b>Nama</b> : <code>{botname}</code> \n <b>Username</b> : <code>{botusername}</code> \n <b>ID</b> : <code>{botid}</code>",
   "urldecode_description": "Enkode teks yang disediakan dengan pengkodean URL yang aman.",
   "urlencode_description": "Dekode teks yang disediakan dari pengkodean URL yang aman.",
-  "parsebtn_err": "Anda harus menentukan url yang spesifik dan teks dari tombol, \n Cth.: <code>/parsebutton https://google.com teks</code>.",
   "parsebutton_description": "Membantu anda untuk menguraikan tombol.",
   "bug_reported_success_to_bot_admins": "Bug telah berhasil dilaporkan.",
   "err_cant_send_bug_report_to_bot_admins": "Galat, saya tidak bisa mengirim laporan bug ke admin bot.",
-  "err_no_bug_to_report": "Anda harus menentukan spesifik bug untuk dilaporkan, Cth.: <code>/bug (ini bug nya)</code>.",
-  "donate_description": "Dapatkan informasi tentang donasi.",
   "donatecmdstring": "Jika anda menyukai proyek dan ingin melanjutkan secara gratis dan tetap bertahan daring nya, silakan tunjukkan dukungan anda dengan melakukan berdonasi dengan mengklik tautan dibawah ini. Berapapun nilainya sangat dihargai. Terima kasih!\n\nhttps://amanoteam.com/donate",
   "report_admns": "{admins_list}{reported_user} Melaporkan kepada admin."
 }
