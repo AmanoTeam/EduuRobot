@@ -6,10 +6,7 @@
   "mark_description": "بە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
   "mark_usage": "<b>بەکارهێنان:</b>\n<code>/mark **text** in __markdown__</code>\n\nبە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
   "token_description": "زانیاری دەربارەی تۆکنێکی بۆت وەربگرە.",
-  "no_bot_token": "تۆکنێکی بۆتم پێبدە.",
   "bot_token_invalid": "ئەم تۆکنە دروست نییە.",
-  "bot_token_info": "<b>ناو</b>: <code>{botname}</code>\n<b>ناوی بەکارهێنەر</b>: <code>{botusername}</code>\n<b>ناسنامە</b>: <code>{botid}</code>",
   "urldecode_description": "نووسینە پێدراوەکە شفرەبکە.",
-  "urlencode_description": "نووسینە پێدراوەکە ناشفرەبکە.",
-  "parsebtn_err": "دەبێت یو ئاڕ ئێڵێک و نووسینێک بۆ دوگمەکە دیاری بکەیت، بۆ نموونە:\n<code>/parsebutton https://google.com text</code>"
+  "urlencode_description": "نووسینە پێدراوەکە ناشفرەبکە."
 }
