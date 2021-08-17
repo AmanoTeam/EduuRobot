@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> af <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVariation: <b>{version}</b>\nLicens: <b>{license}</b>\nResumé: <b>{summary}</b>",
   "package_home_page": "Pakke hjemmeside",
   "package_not_found": "Kan ikke finde <b>{package_name}</b> i PyPI (Returneret kode var {http_status}).",
-  "not_specified": "Ikke angivet",
-  "pypi_usage": "<b>Brug:</b> <code>/pypi package_name</code> - Søg efter en pakke i Python Package Index (PyPI)."
+  "not_specified": "Ikke angivet"
 }
