@@ -1,15 +1,8 @@
 {
-  "ban_success": "{user} oli porttikiellossa {admin}.",
   "error_must_specify_time": "Sinun on määritettävä aika komennon jälkeen. Esimerkiksi: <code>/{command} 7d</code>.",
-  "kick_success": "{user} potkittiin {admin} toimesta.",
-  "mute_success": "{user} mykisti {admin}.",
   "no_admin_error": "Sinun täytyy olla järjestelmänvalvoja käyttääksesi tätä komentoa.",
   "no_permission_error": "Anteeksi, mutta sinulla ei ole vaadittuja oikeuksia tämän komennon suorittamiseen. Puuttuvat oikeudet: {permissions}",
   "private_not_allowed": "Tätä komentoa ei voi käyttää yksityisessä keskustelussa. Jos tarvitset apua, käytä komentoa <code>/help</code>",
   "purge_in_progress": "Puhdistetaan viestejä...",
-  "purge_success": "Poistettiin <b>{count}</b> viestiä.",
-  "tban_success": "{user} sai väliaikaisesti porttikiellon {admin} <b>{time}</b>.",
-  "tmute_success": "{user} mykisti väliaikaisesti {admin} <b>{time}</b>.",
-  "unban_success": "{user} poisti porttikiellon {admin} toimesta.",
-  "unmute_success": "{user} poisti mykistyksen {admin}."
+  "purge_success": "Poistettiin <b>{count}</b> viestiä."
 }
