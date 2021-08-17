@@ -87,6 +87,8 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
     if "t=" in url:
         temp = url.split("t=")[1].split("&")[0]
+    else:
+        temp = 0
 
     if not rege:
         yt = await extract_info(ydl, "ytsearch:" + url, download=False)
