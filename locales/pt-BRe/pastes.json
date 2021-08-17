@@ -1,4 +1,5 @@
 {
   "nekobin_description": "Envia o texto/documento respondido para o nekobin.com.",
-  "hastebin_description": "Envia o texto/documento respondido para o hastebin.com."
+  "hastebin_description": "Envia o texto/documento respondido para o hastebin.com.",
+  "reply_to_document_or_text": "Por favor, responda a um texto ou documento para colar o conteúdo."
 }
