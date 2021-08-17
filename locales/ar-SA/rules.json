@@ -1,10 +1,8 @@
 {
   "resetrules_description": "إعادة تعيين قواعد المحادثة.",
-  "rules_deleted": "تم حذف القواعد لهذه المحادثة بنجاح.",
   "rules_description": "إظهار قواعد المحادثة.",
   "rules_empty": "لم يتم تحديد قواعد لهذه المحادثة.",
   "rules_message": "القواعد في المحادثة {chat_title} هي:\n\n{rules}",
-  "rules_set_empty": "يجب عليك تحديد القواعد، على سبيل المثال: <code>/setrules (هنا القواعد)</code>.",
   "rules_set_success": "تم تعيين قواعد {chat_title} بنجاح.",
   "setrules_description": "تعيين قواعد المحادثة."
 }
