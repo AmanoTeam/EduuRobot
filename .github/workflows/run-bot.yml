@@ -8,10 +8,6 @@ on:
     branches-ignore:
       - 'l10n_*'
 
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   test:
     runs-on: ubuntu-latest
