@@ -1,5 +1,4 @@
 {
-  "tr_description": "Aprender um indioma (o principal é do chat).",
   "translate_usage": "<b>Ow vc usa assim:</b> <del>/tr &lt;indioma&gt; e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara</del> aprende o indioma.",
   "translating": "Já aprendeu o indioma?",
   "translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>",
