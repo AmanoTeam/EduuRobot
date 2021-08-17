@@ -1,8 +1,6 @@
 {
   "ytdl_sending": "Verzenden...",
   "ytdl_missing_argument": "Antwoord op een YouTube-link of -tekst.",
-  "ytdl_file_too_big": "Sorry! Ik kan deze media niet downloaden omdat het mijn uploadlimiet van 200MB overschrijdt.",
-  "ytdl_send_error": "Sorry! Ik kon de video niet verzenden vanwege een fout.\n<b>Fout:</b> <code>{errmsg}</code>",
   "ytdl_downloading": "Downloaden...",
   "ytdl_button_denied": "Deze knop is niet voor jou."
 }
