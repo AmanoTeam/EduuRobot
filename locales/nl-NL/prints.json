@@ -1,5 +1,3 @@
 {
-  "print_description": "Maak een schermafbeelding van een website.",
-  "print_usage": "<b>Gebruik:</b> <code>/print https://voorbeeld.com</code> - Neem een screenshot van de opgegeven website.",
   "taking_screenshot": "Schermafdruk maken..."
 }

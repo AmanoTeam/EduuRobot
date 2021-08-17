@@ -2,7 +2,5 @@
   "package_details": "‮<b>{package_name}</b> لەلایەن <i>{author_name} {author_email}</i>\nپلاتفۆرم: <b>{platform}</b>\nوەشان: <b>{version}</b>\nبڕوانامە: <b>{license}</b>\nکورتە: <b>{summary}</b>",
   "package_home_page": "پەڕەی ماڵەوە",
   "package_not_found": "ناتوانم <b>{package_name}</b> لە PyPi بدۆزمەوە (کۆدی وەڵامدانەوەکە بریتیبوو لە {http_status}).",
-  "not_specified": "دیارینەکراوە",
-  "pypi_description": "گەڕان لە PyPi.",
-  "pypi_usage": "<b>بەکارهێنان:</b>\n<code>/pypi package_name</code>\n\nبۆ پاکجێک لە PyPi بگەڕێ."
+  "not_specified": "دیارینەکراوە"
 }

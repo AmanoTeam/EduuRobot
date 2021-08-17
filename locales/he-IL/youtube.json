@@ -3,8 +3,6 @@
   "ytdl_missing_argument": "בבקשה תשיב או שתציין קישור ליוטיוב.",
   "ytdl_audio_button": "💿 אודיו",
   "ytdl_video_button": "🎬 וידאו",
-  "ytdl_file_too_big": "מצטער! אני לא יכול להוריד את המדיה בגלל שזה חורג ממגבלת ה200MB שלי.",
-  "ytdl_send_error": "מצטער! אני לא יכול לשלוח את המדיה בגלל השגיאה.\n<b>השגיאה:</b> <code>{errmsg}</code>",
   "ytdl_downloading": "מוריד...",
   "ytdl_button_denied": "הכפתור הזה הוא לא בשבילך."
 }

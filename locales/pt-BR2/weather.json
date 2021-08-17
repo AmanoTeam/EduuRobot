@@ -3,6 +3,5 @@
   "location_not_found": "Onde fica isso? conheço naum.",
   "measurement_unit": "m",
   "weather_language": "pt-BR",
-  "weather_description": "Saber a velocidade da cidade.",
-  "weather_usage": "<b>Você usa assim:</b> <code>/clima Maceió</code> - Você ganha uma viagem <b>de graça</b> para Maceió."
+  "weather_description": "Obtém informações sobre o clima na localização ou cidade especificada."
 }

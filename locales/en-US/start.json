@@ -1,10 +1,1 @@
-{
-  "commands_btn": "📚 Commands",
-  "infos_btn": "ℹ️ About",
-  "language_btn": "🌐 Language",
-  "add_chat_btn": "➕ Add to a chat",
-  "private": "Hello! I'm EduuRobot. To discover more about my functions, click on the buttons below.",
-  "start_chat": "🤖 Start a chat",
-  "group": "Hello! I'm EduuRobot. To discover my functions start a conversation with me.",
-  "start_description": "Start the bot."
-}
+{}

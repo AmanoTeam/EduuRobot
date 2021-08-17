@@ -1,21 +1,9 @@
 {
-  "resetwarns_description": "Die Warnungen des Benutzers zurücksetzen.",
-  "setwarnslimit_description": "Das Limit für die Warnungen im Chat festlegen.",
   "user_warned": "Der Benutzer {target_user} hat {warn_count} von {warn_limit} Warnungen.",
-  "warn_banned": "Der Benutzer {target_user} wurde gebannt, weil er {warn_count}-mal verwarnt wurde.",
-  "warn_kicked": "Der Benutzer {target_user} wurde gekickt, weil er {warn_count}-mal verwarnt wurde.",
-  "warn_muted": "Der Benutzer {target_user} wurde stummgeschaltet, weil er {warn_count}-mal verwarnt wurde.",
   "warn_cant_admin": "Ich kann keine Admins warnen.",
   "warn_description": "Einen Benutzer warnen.",
   "warn_limit_changed": "Warnungslimit erfolgreich auf {warn_limit} geändert.",
-  "warn_limit_help": "Du musst eine Anzahl von Warnungen angeben, z. B.: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Die eingegebene Zahl ist nicht gültig.",
-  "warn_reason_text": "Der Grund für diese Warnung: {reason_text}",
-  "warn_reset": "Die Warnungen von {target_user} wurden erfolgreich entfernt.",
   "warns_description": "Warnungen des Benutzers abrufen.",
-  "warns_count_string": "Der Benutzer {target_user} hat {warns_count} Warnungen.",
-  "warns_action_set_string": "Die Warnaktion wurde auf {action} gesetzt.",
-  "warns_action_set_invlaid": "Ungültiges Argument. Verwende <code>/setwarnsaction (ban/mute/kick)</code>.",
-  "warn_action_status": "Die Warnaktion für diesen Chat ist {action}.",
-  "setwarnsaction_description": "Die Warnungen für den Chat setzen. Du kannst die Argumente <code>ban/mute/kick</code> verwenden."
+  "warns_count_string": "Der Benutzer {target_user} hat {warns_count} Warnungen."
 }

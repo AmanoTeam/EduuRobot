@@ -1,6 +1,3 @@
 {
-  "git_description": "מציג מידע על משתמש ב github.",
-  "info_git_user": "<b>שם</b> : <code>{name}</code> \n <b>שם משתמש</b> : <code>{username}</code> \n <b>מיקום</b> : <code>{location}</code> \n <b>סוג</b> : <code>{type}</code> \n <b>אודות</b> : <code>{bio}</code>",
-  "not_found_user": "המשתמש לא נמצא",
-  "no_username_err": "ציין שם משתמש"
+  "not_found_user": "המשתמש לא נמצא."
 }

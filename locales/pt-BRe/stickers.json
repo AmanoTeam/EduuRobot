@@ -1,14 +1,14 @@
 {
-  "get_sticker_id_string": "O id deste sticker é \n <code>{stickerid}</code>",
+  "get_sticker_id_string": "O id deste sticker é: <code>{stickerid}</code>",
   "animated_not_supported": "Stickers animados não são suportados.",
   "sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID do Sticker:</b> <code>{id}</code>",
-  "not_sticker": "Isto não é um sticker",
+  "not_sticker": "Isto não é um sticker.",
   "kanging_sticker_msg": "<code>Kibando o sticker...</code>",
   "sticker_kanged_string": "Sticker adicionado <b>com sucesso</b> ao pacote\nEmoji: {sticker_emoji}",
   "use_existing_pack": "<code>Usando o pacote de stickers existente...</code>",
-  "err_sticker_no_file_name": "<b>ERRO</b>: <code>Este sticker não possui um nome!</code>",
+  "err_sticker_no_file_name": "<b>Erro</b>: <code>Este sticker não possui um nome de arquivo!</code>",
   "view_sticker_pack_btn": "Visualizar",
-  "create_new_pack_string": "✨ Criando um novo pacote de stickers",
-  "invalid_media_string": "<b>ERRO:</b> <code>Mídia inválida<code>",
-  "cant_create_sticker_pack_string": "😬 Oops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você! \n<b>Por favor, inicie o bot primeiro</b>"
+  "create_new_pack_string": "Criando um novo pacote de stickers...",
+  "invalid_media_string": "<b>Erro:</b> <code>Mídia inválida<code>",
+  "cant_create_sticker_pack_string": "Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você! \n<b>Por favor, inicie o bot primeiro.</b>"
 }

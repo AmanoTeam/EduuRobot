@@ -1,5 +1,4 @@
 {
-  "id_description": "Dapatkan informasi tentang obrolan.",
   "info_private": "<b>Informasi:</b>\n<b>Nama:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Bahasa:</b> <code>{lang}</code>\n<b>Tipe obrolan:</b> <code>{chat_type}</code>",
   "info_group": "<b>Informasi pengguna:</b>\n<b>Nama:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Bahasa:</b> <code>{lang}</code>\n\n<b>Informasi obrolan:</b>\n<b>Nama obrolan:</b> <code>{chat_title}</code>\n<b>Username obrolan:</b> {chat_username}\n<b>ID obrolan:</b> <code>{chat_id}</code>\n<b>Datacenter obrolan:</b> <code>{chat_dc}</code>\n<b>Tipe obrolan:</b> <code>{chat_type}</code>\n<b>Pesan:</b> <code>{message_id}</code>",
   "none": "Tidak ada",

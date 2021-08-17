@@ -6,16 +6,12 @@
   "mark_description": "Formatea el texto proporcionado con la sintaxis Markdown.",
   "mark_usage": "<b>Uso:</b> <code>/mark **texto** en __markdown__</code> - Formatea el texto proporcionado con la sintaxis Markdown.",
   "token_description": "Obtén información del token de bot proporcionado.",
-  "no_bot_token": "Especifique un token de bot.",
   "bot_token_invalid": "Bot token inválido.",
-  "bot_token_info": "<b>Nombre</b> : <code>{botname}</code> \n <b>Nombre de usuario</b> : <code>{botusername}</code> \n <b>ID</b> : <code>{botid}</code>",
   "urldecode_description": "Codifica el texto proporcionado con la codificación segura de URL.",
   "urlencode_description": "Decodifica el texto proporcionado de la codificación segura de URL.",
-  "parsebtn_err": "Debes especificar una url y el texto del botón, \n E.g.: <code>/parsebutton https://google.com text</code>.",
+  "parsebutton_description": "Ayuda para analizar el botón.",
   "bug_reported_success_to_bot_admins": "El error ha sido reportado con éxito.",
   "err_cant_send_bug_report_to_bot_admins": "Error, no pude enviar el informe de error a los administradores del bot.",
-  "err_no_bug_to_report": "Debe especificar el error para reportar, E.g.: <code>/bug (aquí el bug)</code>.",
-  "donate_description": "Obtener información sobre donaciones.",
   "donatecmdstring": "Si te gusta el proyecto y quieres que continúe libre y vivo, por favor muestra tu apoyo donando haciendo clic en el siguiente enlace. Cualquier valor es apreciado. ¡Gracias!\n\nhttps://amanoteam.com/donate",
   "report_admns": "{admins_list}{reported_user} Reportado a los administradores."
 }

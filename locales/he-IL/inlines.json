@@ -2,6 +2,5 @@
   "markdown_send_inline": "לחץ כאן בשביל לשלוח את הטקסט בפורמט markdown.",
   "html_send_inline": "לחץ כאן בשביל לשלוח את הטקסט בפורמט html.",
   "user_info_inline_cant_found_user": "המשתמש לא נמצא.",
-  "user_info_inline_send": "לחץ כאן בשביל לקבל את המידע של המשתמש.",
   "user_info_inline_string": "שם משתמש: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nקישור למשתמש: {usermentionformat}"
 }

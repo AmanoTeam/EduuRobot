@@ -1,8 +1,8 @@
 {
-  "resetwelcome_description": "Redefine a mensagem de boas-vindas para a padrão do bot.",
-  "setwelcome_description": "Define a mensagem de boas-vindas com a mensagem especificada. Para obter ajuda com a formatação, veja /welcomeformat.",
+  "resetwelcome_description": "Redefine a mensagem de boas-vindas para a mensagem de boas-vindas padrão do bot.",
+  "setwelcome_description": "Define a mensagem de boas-vindas para a mensagem especificada. Para ajuda na formatação, veja /welcomeformat.",
   "welcome_default": "Olá {first_name}, seja bem-vindo(a) a {chat_title}!",
-  "welcome_description": "Ativa/desativa a mensagem de boas vindas.",
+  "welcome_description": "Ativa/desativa a mensagem de boas-vindas.",
   "welcome_mode_disable": "A mensagem de boas-vindas para {chat_title} foi desativada.",
   "welcome_mode_enable": "A mensagem de boas-vindas para {chat_title} foi ativada.",
   "welcome_mode_invalid": "Argumento inválido. Use <code>/welcome off/on</code>.",
@@ -11,5 +11,5 @@
   "welcome_set_error": "Ocorreu um erro e a mensagem de boas-vindas não pôde ser definida. Erro: {error}",
   "welcome_set_success": "A mensagem de boas-vindas para {chat_title} foi definida com sucesso.",
   "welcome_format_help_msg": "A mensagem pode ser formatada no formato html ou no formato de texto embutido no Telegram. Você pode usar o comando /html para verificar se seu html está correto.\n\nVocê pode usar esses argumentos para a mensagem de boas vindas:\n - <code>{id}</code> para mostrar o ID de usuário na mensagem de boas-vindas.\n - <code>{username}</code> para exibir o nome de usuário na mensagem de boas-vindas. se o usuário não tiver um nome de usuário o bot mostrará uma menção.\n - <code>{first_name}</code> para exibir o nome do usuário na mensagem de boas vindas.\n - <code>{full_name}</code> ou <code>{name}</code> para exibir o nome completo do usuário na mensagem de boas vindas.\n - <code>{mention}</code> menciona o usuário na mensagem de boas-vindas.\n - <code>{chat_title}</code> ou <code>{title}</code> para mostrar o título do bate-papo na mensagem de boas-vindas.\n - <code>{count}</code> para exibir a contagem de membros do chat na mensagem de boas-vindas.\n\nPara adicionar botões, você pode usar <code>[texto do botão](buttonurl:link)</code>. Para adicionar mais botões na mesma linha, você pode adicionar :same após o link, como este: <code>[texto do botão](buttonurl:link:same)</code>.",
-  "welcomeformat_description": "Ajuda a formatar a mensagem de boas-vindas."
+  "welcomeformat_description": "Te ajuda a formatar a mensagem de boas-vindas."
 }

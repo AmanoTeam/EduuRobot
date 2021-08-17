@@ -1,5 +1,5 @@
 {
-  "language_changed_successfully": "Você colocou o melhor indioma!",
-  "language_changer_chat": "É o seguinte parceiro, caso você não esteja gostando desse indioma você pode facilmente trocar.\nCaso seu indioma n esteja listado, vá até @AmanoChat.",
-  "language_changer_private": "Assim vc pode trocar seu indioma usado aqui.\n\nSe você deseja alterar o idioma do seu grupo, por favor, execute o comando <code>/setchatlang</code> nele.\nSe o seu indioma não está listado aqui e você gostaria de contribuir, vá até @AmanoChat."
+  "language_changed_successfully": "O idioma foi alterado com sucesso.",
+  "language_changer_chat": "Aqui você pode alterar o idioma usado pelo bot durante o bate-papo.\nSe o seu idioma não está listado aqui e gostaria de contribuir, vá para @AmanoChat.",
+  "language_changer_private": "Aqui você pode alterar o idioma usado para o bot no chat privado.\n\nSe você quiser mudar o idioma do seu grupo, por favor execute o comando <code>/setchatlang</code> nele.\nSe o seu idioma não estiver listado aqui e você gostaria de contribuir, vá para @AmanoChat."
 }

@@ -3,6 +3,5 @@
   "location_not_found": "Localização não encontrada.",
   "measurement_unit": "m",
   "weather_language": "pt-BR",
-  "weather_description": "Obtém informações de clima na localização ou cidade fornecida.",
-  "weather_usage": "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obtém informações sobre o clima em <i>localização ou cidade</i>."
+  "weather_description": "Obtém informações sobre o clima na localização ou cidade especificada."
 }

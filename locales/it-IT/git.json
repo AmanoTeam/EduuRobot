@@ -1,6 +1,1 @@
-{
-  "git_description": "Fornisce info su un profilo GitHub.",
-  "info_git_user": "<b>Nome</b>: <code>{name}</code>\n<b>Username</b>: <code>{username}</code>\n<b>Posizione</b>: <code>{location}</code>\n<b>Tipo</b>: <code>{type}</code>\n<b>Bio</b>: <code>{bio}</code>",
-  "not_found_user": "Utente non trovato",
-  "no_username_err": "Specifica un username"
-}
+{}

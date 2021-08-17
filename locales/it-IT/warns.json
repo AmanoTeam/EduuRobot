@@ -1,21 +1,9 @@
 {
-  "resetwarns_description": "Ripristina le ammonizioni dell'utente.",
-  "setwarnslimit_description": "Imposta il limite di ammonizioni nella chat.",
   "user_warned": "L'utente {target_user} ha {warn_count} ammonizioni su {warn_limit}.",
-  "warn_banned": "L'utente {target_user} è stato rimosso perché è stato ammonito {warn_count} volte.",
-  "warn_kicked": "L'utente {target_user} è stato espulso perché è stato ammonito {warn_count} volte.",
-  "warn_muted": "L'utente {target_user} è stato mutato perché è stato ammonito {warn_count} volte.",
   "warn_cant_admin": "Non posso ammonire gli amministratori.",
   "warn_description": "Ammonisce un utente.",
   "warn_limit_changed": "Limite di ammonizioni cambiato con successo in {warn_limit}.",
-  "warn_limit_help": "È necessario specificare un numero di ammonizioni, ad esempio: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Il numero fornito non è valido.",
-  "warn_reason_text": "Motivo dell'ammonizione: {reason_text}",
-  "warn_reset": "Le ammonizioni di {target_user} sono state ripristinate con successo.",
   "warns_description": "Fornisce le ammonizioni dell'utente.",
-  "warns_count_string": "L'utente {target_user} ha {warns_count} ammonizioni.",
-  "warns_action_set_string": "L'azione delle ammonizioni è stata impostata a {action}.",
-  "warns_action_set_invlaid": "Argomento non valido. Usa <code>/setwarnsaction (ban/mute/kick)</code>.",
-  "warn_action_status": "L'azione delle ammonizioni per questa chat è {action}.",
-  "setwarnsaction_description": "Imposta l'azione delle ammonizioni per la chat, puoi usare gli argomenti <code>ban</code>/<code>mute</code>/<code>kick</code>."
+  "warns_count_string": "L'utente {target_user} ha {warns_count} ammonizioni."
 }

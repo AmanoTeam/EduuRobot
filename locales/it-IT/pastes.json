@@ -1,5 +1,4 @@
 {
   "nekobin_description": "Incolla il testo o documento del messaggio a cui si sta rispondendo su nekobin.com.",
-  "hastebin_description": "Incolla il testo o documento a cui si sta rispondendo su hastebin.com.",
-  "reply_to_document_or_text": "Rispondi a un testo o a un documento per incollarne il contenuto."
+  "hastebin_description": "Incolla il testo o documento a cui si sta rispondendo su hastebin.com."
 }

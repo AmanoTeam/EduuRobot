@@ -1,5 +1,5 @@
 {
-  "print_description": "Tirar print, mas n sei do que.",
-  "print_usage": "<b>Uso:</b> <code>/print https://example.com</code> - derrubar esse site com ataque DDOS.",
+  "print_description": "Tira uma captura de tela do site especificado.",
+  "print_usage": "<b>Uso:</b> <code>/print https://example.com</code> - Tira uma captura de tela do site especificado.",
   "taking_screenshot": "Hackeando..."
 }

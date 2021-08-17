@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> 由 <i>{author_name} {author_email}</i>\n平台： <b>{platform}</b>\n版本： <b>{version}</b>\n许可： <b>{license}</b>\n摘要： <b>{summary}</b>",
   "package_home_page": "软件包主页",
   "package_not_found": "在 PyPI 中找不到 <b>{package_name}</b> (返回的代码是 {http_status})。",
-  "not_specified": "未指定",
-  "pypi_usage": "<b>用法：</b> <code>/pypi package_name</code> - 在 Python 软件包索引(PyPI) 中查找一个软件包。"
+  "not_specified": "未指定"
 }

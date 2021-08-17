@@ -1,7 +1,5 @@
 {
   "details": "<b>{location}</b>:\n\nTeplota: <code>{temperature} °C</code>\nTeplota se cítí: <code>{feels_like} °C</code>\nSvětlá vlhkost vzduchu: <code>{air_humidity}%</code>\nRychlost větru: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Poloha nebyla nalezena.",
-  "measurement_unit": "m",
-  "weather_language": "cs-CZ",
-  "weather_usage": "<b>Použití:</b> <code>/weather location or city</code> - Získejte informace o počasí z <i>polohy nebo z města</i>."
+  "weather_language": "cs-CZ"
 }

@@ -3,9 +3,7 @@
   "add_note_empty": "Silakan menentukan isi konten untuk catatan.",
   "delnote_description": "Catatan dihapus dari obrolan ini.",
   "note_description": "Catatan dibuat untuk obrolan ini.",
-  "notes_description": "Menampilkan catatan saat ini untuk obrolan ini.",
   "notes_list": "Catatan dalam obrolan ini:\n\n",
   "notes_list_empty": "Saat ini tidak ada catatan dalam obrolan ini.",
-  "no_note_with_name": "Tidak ada catatan dengan nama <b>{trigger}</b>.",
   "remove_note_success": "<b>{trigger}</b> dihapus dari catatan."
 }

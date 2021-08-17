@@ -2,7 +2,5 @@
   "package_details": "<b>{package_name}</b> door <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersie: <b>{version}</b>\nLicentie: <b>{license}</b>\nSummary: <b>{summary}</b>",
   "package_home_page": "Startpagina van het pakket",
   "package_not_found": "Kan <b>{package_name}</b> niet vinden in PyPI (Geretourneerde code was {http_status}).",
-  "not_specified": "Niet gespecificeerd",
-  "pypi_description": "Zoek een pakket in de Python Pakket Index (PyPI).",
-  "pypi_usage": "<b>Gebruik:</b> <code>/pypi package_name</code> - Zoek op een pakket in de Python Package Index (PyPI)."
+  "not_specified": "Niet gespecificeerd"
 }

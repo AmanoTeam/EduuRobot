@@ -2,17 +2,10 @@
   "antichannelpin_description": "Désépingler automatiquement les messages provenant du chaîne lié au chat.",
   "antichannelpin_disabled": "Le pin anti-chaîne pour ce chat est maintenant désactivée.",
   "antichannelpin_enabled": "Le pin anti-chaîne pour ce chat est maintenant activée.",
-  "ban_success": "{user} a été banni par {admin}.",
   "error_must_specify_time": "Vous devez spécifier une heure après la commande. Ex. : <code>/{command} 7d</code>.",
-  "kick_success": "{user} a été éjecté par {admin}.",
-  "mute_success": "{user} a été rendu muet par {admin}.",
   "no_admin_error": "Vous devez être administrateur pour utiliser cette commande.",
   "no_permission_error": "Je suis désolé mais vous n'avez pas les permissions requises pour exécuter cette commande. Autorisations manquantes: {permissions}",
   "private_not_allowed": "Cette commande ne peut pas être utilisée dans un chat privé. Si vous avez besoin d'aide, veuillez utiliser la commande <code>/help</code>.",
   "purge_in_progress": "Purge des messages...",
-  "purge_success": "Messages <b>{count}</b> supprimés.",
-  "tban_success": "{user} a été temporairement banni par {admin} pour <b>{time}</b>.",
-  "tmute_success": "{user} a été temporairement rendu muet par {admin} pour <b>{time}</b>.",
-  "unban_success": "{user} a été débanni par {admin}.",
-  "unmute_success": "{user} a été rendu muet par {admin}."
+  "purge_success": "Messages <b>{count}</b> supprimés."
 }

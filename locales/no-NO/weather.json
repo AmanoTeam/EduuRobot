@@ -2,6 +2,5 @@
   "details": "<b>{location}</b>:\n\nTemperatur: <code>{temperature} °C</code>\nTemperatur følelse: <code>{feels_like} °C</code>\nLuftfuktighet: <code>{air_humidity}%</code>\nVindhastighet: <code>{wind_speed} km/t</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Fant ikke plassering.",
   "measurement_unit": "min",
-  "weather_language": "nb-NO",
-  "weather_usage": "<b>Bruk:</b> <code>/weather location or city</code> - Få værinformasjon fra <i>plassering eller by</i>."
+  "weather_language": "nb-NO"
 }

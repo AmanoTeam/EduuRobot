@@ -2,6 +2,5 @@
   "package_details": "<b>{package_name}</b> od <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVerze: <b>{version}</b>\nLicence: <b>{license}</b>\nShrnutí: <b>{summary}</b>",
   "package_home_page": "Domovská stránka balíčku",
   "package_not_found": "V PyPI nelze najít <b>{package_name}</b> (eturned kód byl {http_status}).",
-  "not_specified": "Neuvedeno",
-  "pypi_usage": "<b>Použití:</b> <code>/pypi package_name</code> - Hledat balíček v indexu balíku Python (PyPI)."
+  "not_specified": "Neuvedeno"
 }

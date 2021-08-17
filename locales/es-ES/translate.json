@@ -1,5 +1,4 @@
 {
-  "tr_description": "Traduce texto en el idioma proporcionado (por defecto al idioma predeterminado del chat).",
   "translate_usage": "<b>Uso:</b> <code>/tr &lt;idioma&gt; texto para traducir</code> (También se puede utilizar en respuesta a un mensaje).",
   "translating": "Traduciendo...",
   "translation": "<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Traducción:</b> <code>{translation}</code>",
