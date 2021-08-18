@@ -75,6 +75,7 @@ async def upgrade(c: Client, m: Message, strings):
         else:
             await sm.edit_text(strings("restarting"))
             set_restarted(sm.chat.id, sm.message_id)
+            db.commit()
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
@@ -183,6 +184,7 @@ async def execsql(c: Client, m: Message):
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
     set_restarted(sent.chat.id, sent.message_id)
+    db.commit()
     args = [sys.executable, "-m", "eduu"]
     os.execv(sys.executable, args)  # skipcq: BAN-B606
 
