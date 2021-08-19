@@ -1,5 +1,7 @@
 {
   "antichannelpin_description": "チャットリンクされたチャンネルからのメッセージのピン留めを自動的に解除します。",
+  "antichannelpin_enabled": "このチャットのアンチチャンネルピンが有効になりました。",
+  "antichannelpin_status_disabled": "このチャットでアンチチャンネルピンは現在無効になっています。",
   "error_must_specify_time": "コマンドの後に時間を指定する必要があります。例えば: <code>/{command} 7d</code>.",
   "no_admin_error": "このコマンドを使用するには管理者である必要があります。",
   "no_permission_error": "申し訳ありませんが、このコマンドを実行するために必要な権限がありません。権限がありません: {permissions}",
