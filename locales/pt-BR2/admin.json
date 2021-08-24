@@ -26,7 +26,7 @@
   "purge_description": "Apagar todas as mensagens, ignorando totalmente as mensagens, seja importante ou não até a mensagem respondida, TOME CUIDADO!!!",
   "purge_success": "Deletei <b>{count}</b> grupos inteiros.",
   "tban_description": "Dar um ban no time.",
-  "tban_success": "{user} foi banido temporariamente por {admin} por <b>{time}</b>.",
+  "tban_success": "{user} baniu {admin} por <b>{time}</b> anos.",
   "tmute_description": "Passar fita na boca do user por tempo eixpecificado.",
   "tmute_success": "{user} foi mutado temporariamente por {admin} por <b>{time}</b>.",
   "unban_description": "Apagar o user (da lista de ban).",
