@@ -277,7 +277,7 @@ async def getchatcmd(c: Client, m: Message):
         targetchat = await c.get_chat(m.command[1])
         if targetchat.type != "private":
             await m.reply_text(
-                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Link:</b> {targetchat.invite_link}\n<b>Members:</b> {targetchat.members_count}"
+                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
             )
         else:
             await m.reply_text("This is a private Chat.")
