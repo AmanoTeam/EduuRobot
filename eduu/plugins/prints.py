@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (c) 2018-2021 Amano Team
 
-import ujson as json
-
 from httpx import HTTPError
 
 from pyrogram import Client, filters
@@ -82,12 +80,12 @@ async def cssworker_url(target_url: str):
     target_url = target_url.lstrip("https://")
     target_url = target_url.rstrip("http://")
 
-    data = json.dumps({"html": "", "console_mode": "", "url": target_url, "css": "", "selector": "", "ms_delay": "",
+    data = {"html": "", "console_mode": "", "url": target_url, "css": "", "selector": "", "ms_delay": "",
                     "render_when_ready": "false", "viewport_height": "", "viewport_width": "",
-                    "google_fonts": "", "device_scale": ""})
+                    "google_fonts": "", "device_scale": ""}
 
     try:
-        resp = await http.post(url, data=data, headers=my_headers)
+        resp = await http.post(url, headers=my_headers, json=data)
         return resp.json()
     except HTTPError:
         return None
