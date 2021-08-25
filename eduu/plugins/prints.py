@@ -51,7 +51,7 @@ async def prints(c: Client, message: Message, strings):
             try:
                 await message.reply_photo(image_url)
                 await sent.delete()
-            except:
+            except BaseException:
                 # if failed to send the message, it's not API's
                 # fault.
                 # most probably there are some other kind of problem,
