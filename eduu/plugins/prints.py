@@ -52,8 +52,12 @@ async def prints(c: Client, message: Message, strings):
                 await message.reply_photo(image_url)
                 await sent.delete()
             except:
+                # if failed to send the message, it's not API's
+                # fault.
+                # most probably there are some other kind of problem,
+                # for example it failed to delete its message.
+                # or the bot doesn't have access to send media in the chat.
                 return
-                
         else:
             await message.reply("couldn't get url value, most probably API is not accessible.")
     else:
@@ -61,7 +65,7 @@ async def prints(c: Client, message: Message, strings):
 
 
 
-async def cssworker_url(self, target_url: str):
+async def cssworker_url(target_url: str):
     url = "https://htmlcsstoimage.com/demo_run"
     my_headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0',
