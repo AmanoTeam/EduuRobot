@@ -32,7 +32,7 @@ async def prints(c: Client, message: Message, strings):
         the_url = the_url[1]
 
     if wrong:
-        await message.reply_text("Format : [!, /]print < your url > (or reply to a message)")
+        await message.reply_text(strings("print_usage"))
         return
 
     try:
