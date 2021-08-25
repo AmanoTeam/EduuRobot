@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2021 Amano Team
 
 from httpx import HTTPError
-
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -57,39 +56,49 @@ async def prints(c: Client, message: Message, strings):
                 # or the bot doesn't have access to send media in the chat.
                 return
         else:
-            await message.reply("couldn't get url value, most probably API is not accessible.")
+            await message.reply(
+                "couldn't get url value, most probably API is not accessible."
+            )
     else:
         await message.reply("Failed, because API is not responding, try it later.")
-
 
 
 async def cssworker_url(target_url: str):
     url = "https://htmlcsstoimage.com/demo_run"
     my_headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0',
-        'Accept': '*/*',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Referer': 'https://htmlcsstoimage.com/',
-        'Content-Type': 'application/json',
-        'Origin': 'https://htmlcsstoimage.com',
-        'Alt-Used': 'htmlcsstoimage.com',
-        'Connection': 'keep-alive',
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0",
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Referer": "https://htmlcsstoimage.com/",
+        "Content-Type": "application/json",
+        "Origin": "https://htmlcsstoimage.com",
+        "Alt-Used": "htmlcsstoimage.com",
+        "Connection": "keep-alive",
     }
 
     # remove 'https' prefixes to avoid bugging out api
     target_url = target_url.lstrip("https://")
     target_url = target_url.rstrip("http://")
 
-    data = {"html": "", "console_mode": "", "url": target_url, "css": "", "selector": "", "ms_delay": "",
-                    "render_when_ready": "false", "viewport_height": "", "viewport_width": "",
-                    "google_fonts": "", "device_scale": ""}
+    data = {
+        "html": "",
+        "console_mode": "",
+        "url": target_url,
+        "css": "",
+        "selector": "",
+        "ms_delay": "",
+        "render_when_ready": "false",
+        "viewport_height": "",
+        "viewport_width": "",
+        "google_fonts": "",
+        "device_scale": "",
+    }
 
     try:
         resp = await http.post(url, headers=my_headers, json=data)
         return resp.json()
     except HTTPError:
         return None
-
 
 
 commands.add_command("print", "tools")
