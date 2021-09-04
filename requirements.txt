@@ -15,7 +15,7 @@ speedtest-cli
 httpx[http2]>=0.18.1,<1.0.0
 regex
 telegraph
-Pillow==8.3.1
+Pillow==8.3.2
 pytio
 youtube-dl
 humanfriendly
