@@ -25,19 +25,18 @@ except ImportError:
         logging.warning("uvloop is not installed and therefore will be disabled.")
 
 
-client = Client(
-    session_name="bot",
-    app_version=f"EduuRobot v{eduu.__version__}",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=TOKEN,
-    workers=24,
-    parse_mode="html",
-    plugins=dict(root="eduu.plugins", exclude=disabled_plugins),
-)
-
-
 async def main() -> None:
+    client = Client(
+        session_name="bot",
+        app_version=f"EduuRobot v{eduu.__version__}",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        bot_token=TOKEN,
+        workers=24,
+        parse_mode="html",
+        plugins=dict(root="eduu.plugins", exclude=disabled_plugins),
+    )
+
     await client.start()
 
     # Saving commit number
@@ -69,6 +68,6 @@ async def main() -> None:
     await client.stop()
 
 
-loop = asyncio.get_event_loop()
-
-loop.run_until_complete(main())
+event_policy = asyncio.get_event_loop_policy()
+event_loop = event_policy.new_event_loop()
+event_loop.run_until_complete(main())
