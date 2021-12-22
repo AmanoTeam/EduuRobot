@@ -76,10 +76,6 @@ async def cssworker_url(target_url: str):
         "Connection": "keep-alive",
     }
 
-    # remove 'https' prefixes to avoid bugging out api
-    target_url = target_url.lstrip("https://")
-    target_url = target_url.rstrip("http://")
-
     data = {
         "html": "",
         "console_mode": "",
