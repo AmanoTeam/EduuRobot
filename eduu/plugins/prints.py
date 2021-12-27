@@ -38,7 +38,7 @@ async def prints(c: Client, message: Message, strings):
         sent = await message.reply_text(strings("taking_screenshot"))
         res_json = await cssworker_url(target_url=the_url)
     except BaseException as e:
-        await message.reply(f"**Failed due to:** `{e}`")
+        await message.reply(f"<b>Failed due to:</b> <code>{e}</code>")
         return
 
     if res_json:
@@ -57,37 +57,24 @@ async def prints(c: Client, message: Message, strings):
                 return
         else:
             await message.reply(
-                "couldn't get url value, most probably API is not accessible."
+                "Couldn't get url value, most probably API is not accessible."
             )
     else:
-        await message.reply("Failed, because API is not responding, try it later.")
+        await message.reply("Failed because API is not responding, try again later.")
 
 
 async def cssworker_url(target_url: str):
     url = "https://htmlcsstoimage.com/demo_run"
     my_headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0",
-        "Accept": "*/*",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Referer": "https://htmlcsstoimage.com/",
-        "Content-Type": "application/json",
-        "Origin": "https://htmlcsstoimage.com",
-        "Alt-Used": "htmlcsstoimage.com",
-        "Connection": "keep-alive",
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0",
     }
 
     data = {
-        "html": "",
-        "console_mode": "",
         "url": target_url,
-        "css": "",
-        "selector": "",
-        "ms_delay": "",
-        "render_when_ready": "false",
-        "viewport_height": "",
-        "viewport_width": "",
-        "google_fonts": "",
-        "device_scale": "",
+        "render_when_ready": False,
+        "viewport_width": 1280,
+        "viewport_height": 720,
+        "device_scale": 1,
     }
 
     try:
