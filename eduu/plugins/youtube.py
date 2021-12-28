@@ -2,13 +2,11 @@
 # Copyright (c) 2018-2021 Amano Team
 
 import datetime
-import functools
 import io
 import os
 import re
 import shutil
 import tempfile
-import time
 
 import yt_dlp
 from pyrogram import Client, filters
