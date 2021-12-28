@@ -17,6 +17,6 @@ regex
 telegraph
 Pillow==8.4.0
 pytio
-yt-dlp==2021.12.1
+yt-dlp==2021.12.27
 humanfriendly
 yarl
