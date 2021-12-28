@@ -2,9 +2,6 @@
 git+https://github.com/AmanoTeam/pyrogram.git#egg=Pyrogram
 tgcrypto  # To increase Pyrogram speed
 
-# Using async-lru from git for Python3.10 compatibility
-git+https://github.com/aio-libs/async-lru.git#egg=async_lru
-
 # To increase general speed and stability. Ignored under Windows
 uvloop>=0.4.0,<0.16.0; platform_system != "Windows"
 
