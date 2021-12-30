@@ -3,7 +3,7 @@ git+https://github.com/AmanoTeam/pyrogram.git#egg=Pyrogram
 tgcrypto  # To increase Pyrogram speed
 
 # To increase general speed and stability. Ignored under Windows
-uvloop>=0.4.0,<0.16.0; platform_system != "Windows"
+uvloop>=0.4.0,<0.17.0; platform_system != "Windows"
 
 # Plugins Deps
 gpytranslate==1.3.0
