@@ -3,15 +3,9 @@
 
 from typing import List
 
-import httpx
-
 group_types: List[str] = ("group", "supergroup")
 
 admin_status: List[str] = ["creator", "administrator"]
-
-timeout = httpx.Timeout(40, pool=None)
-
-http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
 class Permissions:

@@ -10,8 +10,8 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import log_chat, prefix
-from eduu.utils import button_parser, commands
-from eduu.utils.consts import admin_status, http
+from eduu.utils import button_parser, commands, http
+from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
 

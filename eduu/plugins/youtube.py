@@ -15,8 +15,7 @@ from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 
 from eduu.config import prefix
-from eduu.utils import aiowrap, pretty_size
-from eduu.utils.consts import http
+from eduu.utils import aiowrap, http, pretty_size
 from eduu.utils.localization import use_chat_lang
 
 

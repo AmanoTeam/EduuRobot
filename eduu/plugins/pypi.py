@@ -8,8 +8,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from eduu.config import prefix
-from eduu.utils import commands
-from eduu.utils.consts import http
+from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 

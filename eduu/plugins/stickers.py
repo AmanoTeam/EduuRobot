@@ -20,8 +20,7 @@ from pyrogram.raw.types import (
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from eduu.config import log_chat, prefix
-from eduu.utils import EMOJI_PATTERN
-from eduu.utils.consts import http
+from eduu.utils import EMOJI_PATTERN, http
 from eduu.utils.localization import use_chat_lang
 
 
