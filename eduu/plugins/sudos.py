@@ -193,7 +193,7 @@ async def restart(c: Client, m: Message, strings):
 async def leave_chat(c: Client, m: Message):
     if len(m.command) == 1:
         try:
-            await c.leave_chat(m.chat.id)
+            await m.chat.leave()
         except RPCError as e:
             print(e)
     else:

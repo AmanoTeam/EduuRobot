@@ -273,15 +273,11 @@ async def purge(c: Client, m: Message, strings):
         for a_s_message_id in range(m.reply_to_message.message_id, m.message_id):
             message_ids.append(a_s_message_id)
             if len(message_ids) == 100:
-                await c.delete_messages(
-                    chat_id=m.chat.id, message_ids=message_ids, revoke=True
-                )
+                await c.delete_messages(chat_id=m.chat.id, message_ids=message_ids)
                 count_del_etion_s += len(message_ids)
                 message_ids = []
         if len(message_ids) > 0:
-            await c.delete_messages(
-                chat_id=m.chat.id, message_ids=message_ids, revoke=True
-            )
+            await c.delete_messages(chat_id=m.chat.id, message_ids=message_ids)
             count_del_etion_s += len(message_ids)
     await status_message.edit_text(
         strings("purge_success").format(count=count_del_etion_s)
@@ -345,7 +341,7 @@ async def delservice(c: Client, m: Message, strings):
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
     get_delservice = check_if_del_service(m.chat.id)
-    getmychatmember = await c.chat.get_member("me")
+    getmychatmember = await m.chat.get_member("me")
     if (get_delservice and getmychatmember.can_delete_messages) is True:
         await m.delete()
     else:
