@@ -6,6 +6,6 @@
   "private": "Halo! Saya EduuRobot. Untuk mengetahui lebih lanjut tentang fungsi saya, klik tombol di bawah.",
   "start_chat": "🤖 Mulailah obrolan",
   "group": "Halo! Saya EduuRobot. Untuk menemukan fungsi saya, mulailah percakapan dengan saya.",
-  "info_page": "• EduuRobot\n\nVersi: {version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kode Sumber</a>\nPengembang: <a href=\"https://github.com/AmanoTeam\">Tim Amano</a>\n\nKemitraan:\n » <a href=\"https://t.me/hpxlist\">HPXList - oleh usernein</a>\n\n©2021 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "info_page": "• EduuRobot\n\nVersi: {version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kode Sumber</a>\nPengembang: <a href=\"https://github.com/AmanoTeam\">Tim Amano</a>\n\nKemitraan:\n » <a href=\"https://t.me/hpxlist\">HPXList - oleh usernein</a>\n\n©2022 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_description": "Mulai bot."
 }

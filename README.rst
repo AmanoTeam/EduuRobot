@@ -63,7 +63,7 @@ Special thanks
 * And many other people I couldn't list here.
 
 
-©2021 - `AmanoTeam™ <https://amanoteam.com>`__
+©2022 - `AmanoTeam™ <https://amanoteam.com>`__
 
 .. Badges
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
