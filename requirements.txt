@@ -12,7 +12,6 @@ speedtest-cli
 httpx[http2]>=0.18.1,<1.0.0
 regex
 Pillow>=8.4.0,<=9.0.0
-git+https://github.com/aiogram/aiograph#egg=aiograph
 pytio
 yt-dlp==2021.12.27
 humanfriendly
