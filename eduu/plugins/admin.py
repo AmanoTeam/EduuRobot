@@ -107,9 +107,9 @@ async def unpinall(c: Client, m: Message):
 async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
-    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status not in admin_status:
-        await c.kick_chat_member(m.chat.id, target_user.id)
+        await m.chat.ban_member(target_user.id)
         text = strings("ban_success").format(
             user=target_user.mention,
             admin=m.from_user.mention,
@@ -130,9 +130,9 @@ async def ban(c: Client, m: Message, strings):
 async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
-    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status not in admin_status:
-        await c.kick_chat_member(m.chat.id, target_user.id)
+        await m.chat.ban_member(target_user.id)
         await m.chat.unban_member(target_user.id)
         text = strings("kick_success").format(
             user=target_user.mention,
@@ -173,10 +173,10 @@ async def unban(c: Client, m: Message, strings):
 async def mute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
-    check_admin = await c.get_chat_member(m.chat.id, target_user.id)
+    check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status not in admin_status:
-        await c.restrict_chat_member(
-            m.chat.id, target_user.id, ChatPermissions(can_send_messages=False)
+        await m.chat.restrict_member(
+            target_user.id, ChatPermissions(can_send_messages=False)
         )
         text = strings("mute_success").format(
             user=target_user.mention,
@@ -223,8 +223,7 @@ async def tmute(c: Client, m: Message, strings):
     mute_time = await time_extract(m, split_time[1])
     if not mute_time:
         return
-    await c.restrict_chat_member(
-        m.chat.id,
+    await m.chat.restrict_member(
         m.reply_to_message.from_user.id,
         ChatPermissions(can_send_messages=False),
         until_date=mute_time,
@@ -250,9 +249,7 @@ async def tban(c: Client, m: Message, strings):
     ban_time = await time_extract(m, split_time[1])
     if not ban_time:
         return
-    await c.kick_chat_member(
-        m.chat.id, m.reply_to_message.from_user.id, until_date=ban_time
-    )
+    await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)
 
     await m.reply_text(
         strings("tban_success").format(
@@ -317,7 +314,7 @@ async def setantichannelpin(c: Client, m: Message, strings):
 @Client.on_message(filters.linked_channel, group=-1)
 async def acp_action(c: Client, m: Message):
     get_acp = check_if_antichannelpin(m.chat.id)
-    getmychatmember = await c.get_chat_member(m.chat.id, "me")
+    getmychatmember = await m.chat.get_member("me")
     if (get_acp and getmychatmember.can_pin_messages) is True:
         await m.unpin()
     else:
@@ -348,7 +345,7 @@ async def delservice(c: Client, m: Message, strings):
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
     get_delservice = check_if_del_service(m.chat.id)
-    getmychatmember = await c.get_chat_member(m.chat.id, "me")
+    getmychatmember = await c.chat.get_member("me")
     if (get_delservice and getmychatmember.can_delete_messages) is True:
         await m.delete()
     else:

@@ -63,12 +63,10 @@ async def mentionadmins(c: Client, m: Message, strings):
 @use_chat_lang()
 async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
-        check_admin = await c.get_chat_member(
-            m.chat.id, m.reply_to_message.from_user.id
-        )
+        check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
         if check_admin.status not in admin_status:
             mention = ""
-            async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
+            async for i in m.chat.iter_members(filter="administrators"):
                 if not (i.user.is_deleted or i.is_anonymous or i.user.is_bot):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
             await m.reply_to_message.reply_text(

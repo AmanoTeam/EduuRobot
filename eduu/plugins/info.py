@@ -42,7 +42,7 @@ async def user_info(c: Client, m: Message, strings):
     text += strings("info_userlink").format(link=user.mention("link", style="html"))
 
     try:
-        member = await c.get_chat_member(chat_id=m.chat.id, user_id=user.id)
+        member = await m.chat.get_member(user.id)
         if member.status in ["administrator"]:
             text += strings("info_chat_admin")
         elif member.status in ["creator"]:

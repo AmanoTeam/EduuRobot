@@ -112,7 +112,7 @@ async def check_perms(
         sender = message.reply_text
         chat = message.chat
     # TODO: Cache all admin permissions in db.
-    user = await client.get_chat_member(chat.id, message.from_user.id)
+    user = await chat.get_member(message.from_user.id)
     if user.status == "creator":
         return True
 
