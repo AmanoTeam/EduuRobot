@@ -24,7 +24,7 @@ def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
 
 @Client.on_message(filters.command("antichannelpin", prefix))
 @require_admin(permissions=["can_pin_messages"])
-@use_chat_lang()
+@use_chat_lang(context="admin")
 async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
