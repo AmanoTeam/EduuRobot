@@ -1,5 +1,5 @@
 {
-  "speedtest": "<b>Snelheidstest</b>\n\n<b>🌐 Host:</b> <code> {host} </code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
+  "speedtest": "<b>Snelheidstest</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "Verboden commando.",
   "restarting": "Herstarten..."
 }
