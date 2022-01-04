@@ -28,7 +28,7 @@ def toggle_del_service(chat_id: int, mode: Optional[bool]):
 
 @Client.on_message(filters.command("purge", prefix))
 @require_admin(permissions=["can_delete_messages"], allow_in_private=True)
-@use_chat_lang(context="admin")
+@use_chat_lang()
 async def purge(c: Client, m: Message, strings):
     """Purge upto the replied message."""
     status_message = await m.reply_text(strings("purge_in_progress"), quote=True)
@@ -54,7 +54,7 @@ async def purge(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("cleanservice", prefix))
 @require_admin(permissions=["can_delete_messages"])
-@use_chat_lang(context="admin")
+@use_chat_lang()
 async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
@@ -83,5 +83,5 @@ async def delservice_action(c: Client, m: Message):
         pass
 
 
-commands.add_command("cleanservice", "admin", context_location="admin")
-commands.add_command("purge", "admin", context_location="admin")
+commands.add_command("cleanservice", "admin")
+commands.add_command("purge", "admin")

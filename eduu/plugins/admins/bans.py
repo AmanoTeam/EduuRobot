@@ -14,7 +14,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("ban", prefix))
-@use_chat_lang(context="admin")
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -37,7 +37,7 @@ async def ban(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("kick", prefix))
-@use_chat_lang(context="admin")
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -61,7 +61,7 @@ async def kick(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("unban", prefix))
-@use_chat_lang(context="admin")
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def unban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -80,7 +80,7 @@ async def unban(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("tban", prefix))
-@use_chat_lang(context="admin")
+@use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
@@ -102,7 +102,7 @@ async def tban(c: Client, m: Message, strings):
     )
 
 
-commands.add_command("ban", "admin", context_location="admin")
-commands.add_command("kick", "admin", context_location="admin")
-commands.add_command("tban", "admin", context_location="admin")
-commands.add_command("unban", "admin", context_location="admin")
+commands.add_command("ban", "admin")
+commands.add_command("kick", "admin")
+commands.add_command("tban", "admin")
+commands.add_command("unban", "admin")

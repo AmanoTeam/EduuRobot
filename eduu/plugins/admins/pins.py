@@ -24,7 +24,7 @@ def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
 
 @Client.on_message(filters.command("antichannelpin", prefix))
 @require_admin(permissions=["can_pin_messages"])
-@use_chat_lang(context="admin")
+@use_chat_lang()
 async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
@@ -78,7 +78,7 @@ async def unpinall(c: Client, m: Message):
     await c.unpin_all_chat_messages(m.chat.id)
 
 
-commands.add_command("antichannelpin", "admin", context_location="admin")
-commands.add_command("pin", "admin", context_location="admin")
-commands.add_command("unpin", "admin", context_location="admin")
-commands.add_command("unpinall", "admin", context_location="admin")
+commands.add_command("antichannelpin", "admin")
+commands.add_command("pin", "admin")
+commands.add_command("unpin", "admin")
+commands.add_command("unpinall", "admin")

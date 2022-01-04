@@ -165,9 +165,9 @@ def require_admin(
             lang = get_lang(message)
             strings = partial(
                 get_locale_string,
-                langdict[lang].get("admin", langdict[default_language]["admin"]),
+                langdict[lang].get("admins", langdict[default_language]["admins"]),
                 lang,
-                "admin",
+                "admins",
             )
 
             if isinstance(message, CallbackQuery):
@@ -309,12 +309,19 @@ class BotCommands:
         description_key: str = None,
         context_location: str = None,
     ):
-        if context_location is None:
+        if not context_location:
             # If context_location is not defined, get context from file name who added the command
+
+            cwd = os.getcwd()
             frame = inspect.stack()[1]
-            context_location = (
-                frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
-            )
+
+            fname = frame.filename
+
+            if fname.startswith(cwd):
+                fname = fname[len(cwd) + 1 :]
+            context_location = fname.split(os.path.sep)[2].split(".")[
+                0
+            ]  # eduu/plugins/<context>.py
         if description_key is None:
             description_key = command + "_description"
         if self.commands.get(category) is None:
