@@ -2,7 +2,13 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from eduu.config import prefix
-from eduu.utils import get_reason_text, get_target_user, require_admin, time_extract
+from eduu.utils import (
+    commands,
+    get_reason_text,
+    get_target_user,
+    require_admin,
+    time_extract,
+)
 from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
@@ -75,3 +81,8 @@ async def tmute(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
+
+
+commands.add_command("mute", "admin")
+commands.add_command("tmute", "admin")
+commands.add_command("unmute", "admin")
