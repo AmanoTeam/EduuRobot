@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2022 Amano Team
 
-from typing import List
+from typing import Iterable, List
 
 from pyrogram import Client, filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
@@ -15,47 +15,48 @@ from pyrogram.types import (
 from eduu.utils import button_parser
 from eduu.utils.localization import use_chat_lang
 
+faces_list: Iterable[str] = (
+    "¯\\_(ツ)_/¯",
+    "( ͡° ͜ʖ ͡°)",
+    "( ͡~ ͜ʖ ͡°)",
+    "( ͡◐ ͜ʖ ͡◑))",
+    "( ͡◔ ͜ʖ ͡◔)",
+    "( ͡⚆ ͜ʖ ͡⚆)",
+    "( ͡ʘ ͜ʖ ͡ʘ)",
+    "ヽ༼ຈل͜ຈ༽ﾉ",
+    "༼ʘ̚ل͜ʘ̚༽",
+    "(╯°□°）╯",
+    "(ﾉ◕ヮ◕)ﾉ",
+    "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+    "(◕‿◕)",
+    "(｡◕‿‿◕｡)",
+    "(っ◕‿◕)っ",
+    "(づ｡◕‿‿◕｡)づ",
+    "༼ つ ◕_◕ ༽つ",
+    "(ง ͠° ͟ل͜ ͡°)ง",
+    "(ง'̀-'́)ง",
+    "ᕙ(⇀‸↼‶)ᕗ",
+    "(҂⌣̀_⌣́)",
+    "ᕦ(ò_óˇ)ᕤ",
+    "╚(ಠ_ಠ)=┐",
+    "ლ(ಠ益ಠლ)",
+    "\\_(ʘ_ʘ)_/",
+    "( ⚆ _ ⚆ )",
+    "(ಥ﹏ಥ)",
+    "﴾͡๏̯͡๏﴿",
+    "(◔̯◔)",
+    "(ಠ_ಠ)",
+    "(ಠ‿ಠ)",
+    "(¬_¬)",
+    "(¬‿¬)",
+    "\\ (•◡•) /",
+    "(◕‿◕✿)",
+    "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
+)
+
 
 @Client.on_inline_query(filters.regex(r"^face"))
 async def faces_inline(c: Client, q: InlineQuery):
-    faces_list: List[str] = [
-        "¯\\_(ツ)_/¯",
-        "( ͡° ͜ʖ ͡°)",
-        "( ͡~ ͜ʖ ͡°)",
-        "( ͡◐ ͜ʖ ͡◑))",
-        "( ͡◔ ͜ʖ ͡◔)",
-        "( ͡⚆ ͜ʖ ͡⚆)",
-        "( ͡ʘ ͜ʖ ͡ʘ)",
-        "ヽ༼ຈل͜ຈ༽ﾉ",
-        "༼ʘ̚ل͜ʘ̚༽",
-        "(╯°□°）╯",
-        "(ﾉ◕ヮ◕)ﾉ",
-        "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
-        "(◕‿◕)",
-        "(｡◕‿‿◕｡)",
-        "(っ◕‿◕)っ",
-        "(づ｡◕‿‿◕｡)づ",
-        "༼ つ ◕_◕ ༽つ",
-        "(ง ͠° ͟ل͜ ͡°)ง",
-        "(ง'̀-'́)ง",
-        "ᕙ(⇀‸↼‶)ᕗ",
-        "(҂⌣̀_⌣́)",
-        "ᕦ(ò_óˇ)ᕤ",
-        "╚(ಠ_ಠ)=┐",
-        "ლ(ಠ益ಠლ)",
-        "\\_(ʘ_ʘ)_/",
-        "( ⚆ _ ⚆ )",
-        "(ಥ﹏ಥ)",
-        "﴾͡๏̯͡๏﴿",
-        "(◔̯◔)",
-        "(ಠ_ಠ)",
-        "(ಠ‿ಠ)",
-        "(¬_¬)",
-        "(¬‿¬)",
-        "\\ (•◡•) /",
-        "(◕‿◕✿)",
-        "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
-    ]
     results: List[InlineQueryResultArticle] = []
     for i in faces_list:
         results.append(
