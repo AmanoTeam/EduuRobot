@@ -1,7 +1,7 @@
 {
   "code_exec_tio_res_string_no_err": "<b>اللغة:</b> <code>{langformat}</code>\n\n<b>الكود:</b>\n<code>{codeformat}</code>\n\n<b>النتائج:</b>\n<code>{resformat}</code>\n\n<b>إحصائيات:</b><code>{statsformat}</code>",
   "code_exec_tio_res_string_err": "<b>اللغة:</b> <code>{langformat}</code>\n\n<b>الكود:</b>\n<code>{codeformat}</code>\n\n<b>النتائج:</b>\n<code>{resformat}</code>\n\n<b>أخطاء:</b>\n<code>{errformat}</code>",
-  "code_exec_err_string": "خطأ: لم يتم العثور على اللغة <b> {langformat} </b>. قائمة اللغات المدعومة: {langslistlink}",
+  "code_exec_err_string": "خطأ: لم يتم العثور على اللغة <b>{langformat}</b>. قائمة اللغات المدعومة: {langslistlink}",
   "code_exec_inline_send": "اللغة: {langformat}",
   "code_exec_err_inline_send_string": "اللغة {langformat} غير موجودة."
 }

@@ -2,6 +2,7 @@
 # Copyright (c) 2018-2022 Amano Team
 
 import asyncio
+import atexit
 import inspect
 import math
 import os.path
@@ -11,8 +12,9 @@ from functools import partial, wraps
 from string import Formatter
 from typing import Callable, List, Optional, Tuple, Union
 
+import httpx
 from pyrogram import Client, emoji, filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import sudoers
 from eduu.database import db, dbc
@@ -29,7 +31,16 @@ BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\)
 SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
-_EMOJI_REGEXP = None
+
+
+timeout = httpx.Timeout(40, pool=None)
+
+http = httpx.AsyncClient(http2=True, timeout=timeout)
+
+
+def run_async(func, *args, **kwargs):
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(func(*args, **kwargs))
 
 
 def pretty_size(size_bytes):
@@ -99,7 +110,6 @@ def set_restarted(chat_id: int, message_id: int):
 
 
 async def check_perms(
-    client: Client,
     message: Union[CallbackQuery, Message],
     permissions: Optional[Union[list, str]],
     complain_missing_perms: bool,
@@ -155,9 +165,9 @@ def require_admin(
             lang = get_lang(message)
             strings = partial(
                 get_locale_string,
-                langdict[lang].get("admin", langdict[default_language]["admin"]),
+                langdict[lang].get("admins", langdict[default_language]["admins"]),
                 lang,
-                "admin",
+                "admins",
             )
 
             if isinstance(message, CallbackQuery):
@@ -179,7 +189,7 @@ def require_admin(
             if msg.chat.type == "channel":
                 return await func(client, message, *args, *kwargs)
             has_perms = await check_perms(
-                client, message, permissions, complain_missing_perms, strings
+                message, permissions, complain_missing_perms, strings
             )
             if has_perms:
                 return await func(client, message, *args, *kwargs)
@@ -299,12 +309,19 @@ class BotCommands:
         description_key: str = None,
         context_location: str = None,
     ):
-        if context_location is None:
+        if not context_location:
             # If context_location is not defined, get context from file name who added the command
+
+            cwd = os.getcwd()
             frame = inspect.stack()[1]
-            context_location = (
-                frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
-            )
+
+            fname = frame.filename
+
+            if fname.startswith(cwd):
+                fname = fname[len(cwd) + 1 :]
+            context_location = fname.split(os.path.sep)[2].split(".")[
+                0
+            ]  # eduu/plugins/<context>.py
         if description_key is None:
             description_key = command + "_description"
         if self.commands.get(category) is None:
@@ -345,28 +362,47 @@ commands = BotCommands()
 
 
 def get_emoji_regex():
-    global _EMOJI_REGEXP
-    if not _EMOJI_REGEXP:
-        e_list = [
-            getattr(emoji, e).encode("unicode-escape").decode("ASCII")
-            for e in dir(emoji)
-            if not e.startswith("_")
-        ]
-        # to avoid re.error excluding char that start with '*'
-        e_sort = sorted([x for x in e_list if not x.startswith("*")], reverse=True)
-        # Sort emojis by length to make sure multi-character emojis are
-        # matched first
-        pattern_ = f"({'|'.join(e_sort)})"
-        _EMOJI_REGEXP = re.compile(pattern_)
-    return _EMOJI_REGEXP
+    e_list = [
+        getattr(emoji, e).encode("unicode-escape").decode("ASCII")
+        for e in dir(emoji)
+        if not e.startswith("_")
+    ]
+    # to avoid re.error excluding char that start with '*'
+    e_sort = sorted([x for x in e_list if not x.startswith("*")], reverse=True)
+    # Sort emojis by length to make sure multi-character emojis are
+    # matched first
+    pattern_ = f"({'|'.join(e_sort)})"
+    return re.compile(pattern_)
+
+
+async def get_target_user(c: Client, m: Message) -> User:
+    if m.reply_to_message:
+        target_user = m.reply_to_message.from_user
+    else:
+        msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
+        target_user = await c.get_users(
+            msg_entities.user.id
+            if msg_entities.type == "text_mention"
+            else int(m.command[1])
+            if m.command[1].isdecimal()
+            else m.command[1]
+        )
+    return target_user
+
+
+async def get_reason_text(c: Client, m: Message) -> Message:
+    reply = m.reply_to_message
+    spilt_text = m.text.split
+    if not reply and len(spilt_text()) >= 3:
+        reason = spilt_text(None, 2)[2]
+    elif reply and len(spilt_text()) >= 2:
+        reason = spilt_text(None, 1)[1]
+    else:
+        reason = None
+    return reason
 
 
 EMOJI_PATTERN = get_emoji_regex()
-
-
-def deEmojify(text: str) -> str:
-    """Remove emojis and other non-safe characters from string."""
-    return EMOJI_PATTERN.sub("", text)
 
 
 # Thank github.com/usernein for shell_exec
@@ -384,3 +420,6 @@ async def shell_exec(code, treat=True):
 def get_format_keys(string: str) -> List[str]:
     """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
+
+
+atexit.register(run_async, http.aclose)

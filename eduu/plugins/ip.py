@@ -11,7 +11,7 @@ from pyrogram.types import (
 from yarl import URL
 
 from eduu.config import prefix
-from eduu.utils.consts import http
+from eduu.utils import http
 from eduu.utils.localization import use_chat_lang
 
 

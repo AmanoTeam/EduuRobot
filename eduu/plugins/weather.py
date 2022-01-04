@@ -5,8 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from eduu.config import prefix
-from eduu.utils import commands
-from eduu.utils.consts import http
+from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 # Api key used in weather.com's mobile app.
@@ -15,7 +14,9 @@ weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 get_coords = "https://api.weather.com/v3/location/search"
 url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current"
 
-headers = {"User-Agent": "curl/7.72.0"}
+headers = {
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)"
+}
 
 
 @Client.on_message(filters.command(["clima", "weather"], prefix))

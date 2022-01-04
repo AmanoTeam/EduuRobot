@@ -11,7 +11,6 @@ meval==2.5
 speedtest-cli
 httpx[http2]>=0.18.1,<1.0.0
 regex
-telegraph
 Pillow>=8.4.0,<=9.0.0
 pytio
 yt-dlp==2021.12.27

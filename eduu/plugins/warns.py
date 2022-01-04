@@ -8,11 +8,9 @@ from pyrogram.types import ChatPermissions, Message
 
 from eduu.config import prefix
 from eduu.database import db, dbc
-from eduu.utils import commands, require_admin
+from eduu.utils import commands, get_target_user, require_admin
 from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
-
-from .admin import get_target_user
 
 dbc.execute(
     """

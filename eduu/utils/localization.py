@@ -138,10 +138,16 @@ def get_lang(message) -> str:
     return lang if lang in enabled_locales else default_language
 
 
-def use_chat_lang(context=None):
+def use_chat_lang(context: str = None):
     if not context:
+        cwd = os.getcwd()
         frame = inspect.stack()[1]
-        context = frame[0].f_code.co_filename.split(os.path.sep)[-1].split(".")[0]
+
+        fname = frame.filename
+
+        if fname.startswith(cwd):
+            fname = fname[len(cwd) + 1 :]
+        context = fname.split(os.path.sep)[2].split(".")[0]  # eduu/plugins/<context>.py
 
     def decorator(func):
         @wraps(func)

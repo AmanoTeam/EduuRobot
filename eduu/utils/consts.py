@@ -1,17 +1,11 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2022 Amano Team
 
-from typing import List
+from typing import Iterable
 
-import httpx
+group_types: Iterable[str] = ("group", "supergroup")
 
-group_types: List[str] = ("group", "supergroup")
-
-admin_status: List[str] = ["creator", "administrator"]
-
-timeout = httpx.Timeout(40, pool=None)
-
-http = httpx.AsyncClient(http2=True, timeout=timeout)
+admin_status: Iterable[str] = ("creator", "administrator")
 
 
 class Permissions:

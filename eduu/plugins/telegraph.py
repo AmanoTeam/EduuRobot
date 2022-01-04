@@ -3,9 +3,9 @@
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from telegraph import upload_file
 
 from eduu.config import prefix
+from eduu.utils import http
 from eduu.utils.localization import use_chat_lang
 
 
@@ -19,8 +19,10 @@ async def telegraph(c: Client, m: Message, strings):
             or m.reply_to_message.animation
         ):
             d_file = await m.reply_to_message.download()
-            media_urls = upload_file(d_file)
-            tele_link = "https://telegra.ph" + media_urls[0]
+            response = await http.post(
+                "https://telegra.ph/upload", files={"upload-file": open(d_file, "rb")}
+            )
+            tele_link = "https://telegra.ph" + response.json()[0]["src"]
             await m.reply_text(tele_link)
     else:
         await m.reply_text(strings("telegraph_err_no_reply"))

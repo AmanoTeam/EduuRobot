@@ -14,7 +14,6 @@ from pyrogram.errors import BadRequest
 import eduu
 from eduu.config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
 from eduu.utils import del_restarted, get_restarted, shell_exec
-from eduu.utils.consts import http
 
 try:
     import uvloop
@@ -64,7 +63,6 @@ async def main() -> None:
 
         await idle()
 
-    await http.aclose()
     await client.stop()
 
 
