@@ -14,7 +14,7 @@ from typing import Callable, List, Optional, Tuple, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import sudoers
 from eduu.database import db, dbc
@@ -366,6 +366,33 @@ def get_emoji_regex():
     # matched first
     pattern_ = f"({'|'.join(e_sort)})"
     return re.compile(pattern_)
+
+
+async def get_target_user(c: Client, m: Message) -> User:
+    if m.reply_to_message:
+        target_user = m.reply_to_message.from_user
+    else:
+        msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
+        target_user = await c.get_users(
+            msg_entities.user.id
+            if msg_entities.type == "text_mention"
+            else int(m.command[1])
+            if m.command[1].isdecimal()
+            else m.command[1]
+        )
+    return target_user
+
+
+async def get_reason_text(c: Client, m: Message) -> Message:
+    reply = m.reply_to_message
+    spilt_text = m.text.split
+    if not reply and len(spilt_text()) >= 3:
+        reason = spilt_text(None, 2)[2]
+    elif reply and len(spilt_text()) >= 2:
+        reason = spilt_text(None, 1)[1]
+    else:
+        reason = None
+    return reason
 
 
 EMOJI_PATTERN = get_emoji_regex()
