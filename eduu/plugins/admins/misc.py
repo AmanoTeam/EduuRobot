@@ -13,19 +13,6 @@ from eduu.utils import commands, require_admin
 from eduu.utils.localization import use_chat_lang
 
 
-def check_if_antichannelpin(chat_id):
-    dbc.execute("SELECT antichannelpin FROM groups WHERE chat_id = ?", (chat_id,))
-    res = dbc.fetchone()[0]
-    return res
-
-
-def toggle_antichannelpin(chat_id: int, mode: Optional[bool]):
-    dbc.execute(
-        "UPDATE groups SET antichannelpin = ? WHERE chat_id = ?", (mode, chat_id)
-    )
-    db.commit()
-
-
 def check_if_del_service(chat_id):
     dbc.execute("SELECT delservicemsgs FROM groups WHERE chat_id = ?", (chat_id,))
     res = dbc.fetchone()[0]
@@ -65,37 +52,6 @@ async def purge(c: Client, m: Message, strings):
     await status_message.delete()
 
 
-@Client.on_message(filters.command("antichannelpin", prefix))
-@require_admin(permissions=["can_pin_messages"])
-@use_chat_lang()
-async def setantichannelpin(c: Client, m: Message, strings):
-    if len(m.text.split()) > 1:
-        if m.command[1] == "on":
-            toggle_antichannelpin(m.chat.id, True)
-            await m.reply_text(strings("antichannelpin_enabled"))
-        elif m.command[1] == "off":
-            toggle_antichannelpin(m.chat.id, None)
-            await m.reply_text(strings("antichannelpin_disabled"))
-        else:
-            await m.reply_text(strings("antichannelpin_invalid_arg"))
-    else:
-        check_acp = check_if_antichannelpin(m.chat.id)
-        if not check_acp:
-            await m.reply_text(strings("antichannelpin_status_disabled"))
-        else:
-            await m.reply_text(strings("antichannelpin_status_enabled"))
-
-
-@Client.on_message(filters.linked_channel, group=-1)
-async def acp_action(c: Client, m: Message):
-    get_acp = check_if_antichannelpin(m.chat.id)
-    getmychatmember = await m.chat.get_member("me")
-    if (get_acp and getmychatmember.can_pin_messages) is True:
-        await m.unpin()
-    else:
-        pass
-
-
 @Client.on_message(filters.command("cleanservice", prefix))
 @require_admin(permissions=["can_delete_messages"])
 @use_chat_lang()
@@ -127,6 +83,5 @@ async def delservice_action(c: Client, m: Message):
         pass
 
 
-commands.add_command("antichannelpin", "admin")
 commands.add_command("cleanservice", "admin")
 commands.add_command("purge", "admin")
