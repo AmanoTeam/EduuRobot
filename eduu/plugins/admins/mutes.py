@@ -83,6 +83,6 @@ async def tmute(c: Client, m: Message, strings):
     )
 
 
-commands.add_command("mute", "admin")
-commands.add_command("tmute", "admin")
-commands.add_command("unmute", "admin")
+commands.add_command("mute", "admin", context_location="admin")
+commands.add_command("tmute", "admin", context_location="admin")
+commands.add_command("unmute", "admin", context_location="admin")

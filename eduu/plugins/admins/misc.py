@@ -83,5 +83,5 @@ async def delservice_action(c: Client, m: Message):
         pass
 
 
-commands.add_command("cleanservice", "admin")
-commands.add_command("purge", "admin")
+commands.add_command("cleanservice", "admin", context_location="admin")
+commands.add_command("purge", "admin", context_location="admin")
