@@ -1,1 +1,4 @@
-{}
+{
+  "add_filter_success": "添加了過濾器 <b>{trigger}</b>。",
+  "add_filter_empty": "請指定過濾內容。"
+}
