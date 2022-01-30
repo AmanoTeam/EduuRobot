@@ -1,1 +1,17 @@
-{}
+{
+  "antichannelpin_description": "自動取消來自鏈接聊天頻道的消息。",
+  "antichannelpin_disabled": "此聊天的反頻道 pin 現在已禁用。",
+  "antichannelpin_enabled": "此聊天的反頻道 pin 現已啟用。",
+  "antichannelpin_invalid_arg": "無效的論點。 使用 <code>/antichannelpin 關閉/打開</code>。",
+  "antichannelpin_status_disabled": "此聊天中當前禁用了反通道 pin。",
+  "antichannelpin_status_enabled": "此聊天中當前啟用了反頻道 pin。",
+  "ban_description": "禁止用戶聊天。",
+  "ban_success": "{user} 已被 {admin} 禁止。",
+  "cleanservice_description": "清除聊天中的服務消息（例如：當用戶加入聊天時）。",
+  "cleanservice_disabled": "刪除此聊天的服務消息現已禁用。",
+  "cleanservice_enabled": "刪除此聊天的服務消息現已啟用。",
+  "cleanservice_invalid_arg": "無效的論點。 使用 <code>/cleanservice 關閉/開啟</code>。",
+  "cleanservice_status_disabled": "此聊天中當前禁用刪除服務消息。",
+  "cleanservice_status_enabled": "此聊天中當前啟用了刪除服務消息。",
+  "error_must_specify_time": "您必須在命令之後指定時間。 例如：<code>/{command} 7d</code>。"
+}
