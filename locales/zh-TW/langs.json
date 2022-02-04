@@ -1,1 +1,5 @@
-{}
+{
+  "language_changed_successfully": "語言已成功更改。",
+  "language_changer_chat": "在這裡，您可以在整個聊天過程中更改機器人使用的語言。\n如果您的語言未在此處列出並且您想做出貢獻，請轉到 @AmanoChat。",
+  "language_changer_private": "您可以在此處更改此私人聊天中機器人使用的語言。\n\n如果您想更改群組的語言，請在其上運行命令 <code>/setchatlang</code>。\n如果您的語言未在此處列出並且您想做出貢獻，請轉到 @AmanoChat。"
+}

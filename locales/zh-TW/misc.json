@@ -1,1 +1,22 @@
-{}
+{
+  "admins_description": "顯示與聊天管理員的列表。",
+  "admins_list": "聊天 {chat_title} 中的管理員：\n{admins_list}",
+  "html_description": "使用 HTML 語法格式化提供的文本。",
+  "html_usage": "<b>用法：</b> <code>/html &lt;b&gt;text&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code> - 使用 HTML 語法格式化提供的文本。",
+  "mark_description": "Formats the provided text with the Markdown syntax.",
+  "mark_usage": "<b>用法：</b> <code>/mark **text** in __markdown__</code> - 使用 Markdown 語法格式化提供的文本。",
+  "token_description": "從提供的機器人令牌中獲取信息。",
+  "no_bot_token": "請指定機器人令牌。",
+  "bot_token_invalid": "機器人令牌無效。",
+  "bot_token_info": "<b>名稱</b>：<code>{botname}</code>\n<b>用戶名</b>：<code>{botusername}</code>\n<b>ID</b>：<code>{botid}</code>",
+  "urldecode_description": "使用 URL 安全編碼對提供的文本進行編碼。",
+  "urlencode_description": "從 URL 安全編碼中解碼提供的文本。",
+  "parsebtn_err": "您必須指定 url 和按鈕的文本，例如：<code>/parsebutton https://google.com text</code>。",
+  "parsebutton_description": "幫助您解析按鈕。",
+  "bug_reported_success_to_bot_admins": "該錯誤已成功報告。",
+  "err_cant_send_bug_report_to_bot_admins": "錯誤，我無法將錯誤報告發送給機器人的管理員。",
+  "err_no_bug_to_report": "您必須指定要報告的錯誤，例如：<code>/bug your bug</code>。",
+  "donate_description": "獲取有關如何捐贈的信息。",
+  "donatecmdstring": "如果您喜歡該項目並希望它繼續免費和活躍，請通過單擊下面的鏈接來表示您的支持。 任何價值都值得讚賞。 謝謝！\n\nhttps://amanoteam.com/donate",
+  "report_admns": "{admins_list}{reported_user} 向管理員報告。"
+}

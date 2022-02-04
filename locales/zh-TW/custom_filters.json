@@ -1,1 +1,11 @@
-{}
+{
+  "add_filter_success": "添加了過濾器 <b>{trigger}</b>。",
+  "add_filter_empty": "請指定過濾內容。",
+  "delfilter_description": "從此聊天中刪除過濾器。",
+  "filter_description": "為此聊天創建過濾器。",
+  "filters_description": "顯示此聊天的當前過濾器。",
+  "filters_list": "此聊天中的過濾器：",
+  "filters_list_empty": "目前此聊天中沒有過濾器。",
+  "no_filter_with_name": "沒有名稱為 <b>{trigger}</b> 的過濾器。",
+  "remove_filter_success": "從過濾器中刪除了 <b>{trigger}</b>。"
+}
