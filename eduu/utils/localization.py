@@ -38,6 +38,7 @@ enabled_locales: List[str] = [
     "tr-TR",  # Turkish
     "uk-UA",  # Ukranian
     "zh-CN",  # Chinese (Simplified)
+    "zh-TW",  # Chinese (Traditional)
 ]
 
 default_language: str = "en-GB"
