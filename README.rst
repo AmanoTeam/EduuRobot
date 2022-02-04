@@ -46,10 +46,9 @@ If you find any bugs/issues with the bot you have three options:
 
 Translations
 ------------
-All translations must be done in our `Crowdin project <https://crowdin.com/project/eduurobot>`__.
-Direct pull requests will be closed.
-
-We only accept pull requests for source language changes (currently en-GB).
+Translations should be done in our `Crowdin project <https://crowdin.com/project/eduurobot>`__,
+as Crowdin checks for grammar issues, provides improved context about the string being translated and so on,
+thus possibly providing better quality translations. But you can also submit a pull request if you prefer translating that way.
 
 
 Special thanks
