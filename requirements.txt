@@ -13,6 +13,6 @@ httpx[http2]>=0.18.1,<1.0.0
 regex
 Pillow>=8.4.0,<10.0.0
 pytio
-yt-dlp==2022.1.21
+yt-dlp==2022.2.4
 humanfriendly
 yarl
