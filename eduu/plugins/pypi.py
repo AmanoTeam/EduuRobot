@@ -32,7 +32,7 @@ async def pypi(c: Client, m: Message, strings):
         return await m.reply_text(strings("pypi_usage"))
 
     text = m.text.split(maxsplit=1)[1]
-    r = await http.get(f"https://pypi.org/pypi/{text}/json")
+    r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
     if r.status_code == 200:
         json = r.json()
         pypi_info = escape_definition(json["info"])
