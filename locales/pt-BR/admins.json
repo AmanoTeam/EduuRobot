@@ -1,7 +1,7 @@
 {
-  "antichannelpin_description": "Automaticamente desafixa as mensagens vindas do canal vinculado ao grupo\n.",
-  "antichannelpin_disabled": "Anti fixagem de canais agora está desabilitada para este grupo.",
-  "antichannelpin_enabled": "Anti fixagem de canais agora está habilitada para este grupo.",
+  "antichannelpin_description": "Automaticamente desafixa as mensagens vindas do canal vinculado ao chat.",
+  "antichannelpin_disabled": "Anti fixagem de canais agora está desabilitada para este chat.",
+  "antichannelpin_enabled": "Anti fixagem de canais agora está habilitada para este chat.",
   "antichannelpin_invalid_arg": "Argumento inválido. Use <code>/antichannelpin off/on</code>.",
   "antichannelpin_status_disabled": "A anti fixagem de canais está desativada neste chat.",
   "antichannelpin_status_enabled": "A anti fixagem de canais está ativada neste chat.",
