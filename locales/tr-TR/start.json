@@ -1,11 +1,11 @@
 {
-  "commands_btn": "📚 Komutlar",
-  "infos_btn": "ℹ️ Hakkında",
-  "language_btn": "🌐 Dil",
-  "add_chat_btn": "➕ Gruba ekleyin",
-  "private": "Merhaba! Ben EduuRobot. Komutlarımı görmek için butonları kullanabilirsiniz.",
-  "start_chat": "🤖 Bir konuşma başlat",
-  "group": "Merhaba! Ben EduuRobot. Komutlarımı görmek için özelden yazınız.",
-  "info_page": "• EduuRobot\n\nVersion: {version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Source Code</a>\nDevelopers: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartnerships:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2022 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
-  "start_description": "Start the bot."
+  "commands_btn": "📚 Commands",
+  "infos_btn": "ℹ️ About",
+  "language_btn": "🌐 Language",
+  "add_chat_btn": "➕ Add to a chat",
+  "private": "Hello! I'm EduuRobot. To discover more about my functions, click on the buttons below.",
+  "start_chat": "🤖 Start a chat",
+  "group": "Hello! I'm EduuRobot. To discover my functions start a conversation with me.",
+  "info_page": "• EduuRobot\n\nSürüm: {version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kaynak Kodu</a>\nGeliştiriciler: <a href=\"https://github.com/AmanoTeam\">Amano Ekibi</a>\n\nOrtaklıklar:\n » <",
+  "start_description": "Botu başlatın."
 }
