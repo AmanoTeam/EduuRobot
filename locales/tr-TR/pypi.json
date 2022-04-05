@@ -4,5 +4,5 @@
   "package_not_found": "PyPI'de <b>{package_name}</b> bulunamıyor (döndürülen kod şuydu: {http_status}).",
   "not_specified": "Belirtilmemiş",
   "pypi_description": "Python Paket Dizini'nde (PyPI) bir paket arar.",
-  "pypi_usage": "<b>Usage:</b> <code>/pypi package_name</code> - Searches for a package in the Python Package Index (PyPI)."
+  "pypi_usage": "<b>Kullanım:</b> <code>/pypi paket_adı</code> - Python Paket Dizininde (PyPI) bir paket arar."
 }
