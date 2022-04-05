@@ -1,1 +1,4 @@
-{}
+{
+  "add_filter_success": "Added filter <b>{trigger}</b>.",
+  "add_filter_empty": "Please specify a content for filter."
+}
