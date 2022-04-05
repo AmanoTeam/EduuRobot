@@ -1,10 +1,10 @@
 {
-  "ytdl_sending": "Sending...",
-  "ytdl_missing_argument": "Please reply to a YouTube link or text.",
-  "ytdl_audio_button": "💿 Audio",
-  "ytdl_video_button": "🎬 Video",
-  "ytdl_file_too_big": "Sorry! I can't download this media because it exceeds my 200MB upload limit.",
-  "ytdl_send_error": "Sorry! I couldn't send the video because of an error.\n<b>Error:</b> <code>{errmsg}</code>",
-  "ytdl_downloading": "Downloading...",
-  "ytdl_button_denied": "This button is not for you."
+  "ytdl_sending": "Gönderiliyor...",
+  "ytdl_missing_argument": "Lütfen bir YouTube bağlantısını veya metnini yanıtlayın.",
+  "ytdl_audio_button": "💿 Ses",
+  "ytdl_video_button": "🎬. Video",
+  "ytdl_file_too_big": "Üzgünüm! 200MB yükleme limitimi aştığı için bu medyayı indiremiyorum.",
+  "ytdl_send_error": "Üzgünüm! Bir hata nedeniyle videoyu gönderemedim.\n<b>Hata:</b> <code>{errmsg}</code>",
+  "ytdl_downloading": "İndiriliyor...",
+  "ytdl_button_denied": "Bu beğeni için değil."
 }
