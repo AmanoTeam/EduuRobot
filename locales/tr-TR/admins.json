@@ -35,7 +35,7 @@
   "unmute_success": "{user}, {admin} tarafından açıldı.",
   "unpin_description": "Sohbette yanıtlanan mesajın sabitlemesini kaldırır.",
   "unpinall_description": "Sohbetteki tüm mesajların sabitlemesini kaldırır.",
-  "reason_string": "Reason: {reason_text}",
+  "reason_string": "Sebep: {reason_text}",
   "i_cant_ban_admins": "Yöneticileri yasaklayamam.",
   "i_cant_mute_admins": "Yöneticileri sessize alamıyorum.",
   "i_cant_kick_admins": "Yöneticileri tekmeleyemiyorum."
