@@ -7,7 +7,7 @@
   "mark_usage": "<b>Uso:</b> <code>/mark **texto** em __markdown__</code> - Formata o texto fornecido com a sintaxe Markdown.",
   "token_description": "Obtém informações do token de bot fornecido.",
   "no_bot_token": "Por favor, especifique um token de bot.",
-  "bot_token_invalid": "Token de bot inválido",
+  "bot_token_invalid": "Token de bot inválido.",
   "bot_token_info": "<b>Nome</b>: <code>{botname}</code> \n<b>Nome de usuário</b>: <code>{botusername}</code> \n<b>ID</b>: <code>{botid}</code>",
   "urldecode_description": "Codifica o texto fornecido com caracteres seguros para URL.",
   "urlencode_description": "Decodifica o texto fornecido com caracteres seguros para URL.",

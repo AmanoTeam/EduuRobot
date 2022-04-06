@@ -1,1 +1,11 @@
-{}
+{
+  "add_note_success": "<b>{trigger}</b> notu eklendi.",
+  "add_note_empty": "Lütfen not için bir içerik belirtin.",
+  "delnote_description": "Bu sohbetten bir notu kaldırın.",
+  "note_description": "Bu sohbet için bir not oluşturun.",
+  "notes_description": "Bu sohbet için kaydedilmiş notları göster.",
+  "notes_list": "Bu sohbetteki notlar:\n\n",
+  "notes_list_empty": "Şu anda bu sohbette not yok.",
+  "no_note_with_name": "<b>{trigger}</b> adında bir not yok.",
+  "remove_note_success": "Notlardan <b>{trigger}</b> kaldırıldı."
+}

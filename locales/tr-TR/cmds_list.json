@@ -1,1 +1,8 @@
-{}
+{
+  "admin": "👮‍♂️ Idare",
+  "command_category_title": "<b>{category}</b> kategorisindeki komutlar:",
+  "general": "✨ General",
+  "select_command_category": "Mevcut komutları görmek için lütfen bir kategori seçin.",
+  "tools": "🔧 Araçları",
+  "group_help": "Lütfen komutu özel bir sohbette kullanın veya mevcut komutları görmek için aşağıdaki düğmeyi tıklayın."
+}
