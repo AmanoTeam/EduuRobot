@@ -4,7 +4,7 @@
   "rules_description": "Sohbet kurallarını göster.",
   "rules_empty": "Bu sohbet için herhangi bir kural belirlenmedi.",
   "rules_message": "{chat_title} sohbetindeki kurallar:\n\n{rules}",
-  "rules_set_empty": "Kuralları belirtmelisiniz, Ör.: <code>/sohbet kurallarınızı ayarlar</code>.",
+  "rules_set_empty": "Kuralları belirtmelisiniz, Ör.: <code>/setrules kurallarınızı ayarlar</code>.",
   "rules_set_success": "{chat_title} için kurallar başarıyla belirlendi.",
   "setrules_description": "Sohbetin kurallarını belirleyin."
 }
