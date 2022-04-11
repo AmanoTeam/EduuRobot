@@ -1,1 +1,7 @@
-{}
+{
+  "code_exec_tio_res_string_no_err": "<b>Язык:</b> <code>{langformat}</code>\n\n<b>Код:</b>\n<code>{codeformat}</code>\n\n<b>Результат:</b>\n<code>{resformat}</code>\n\n<b>Статистика:</b><code>{statsformat}</code>",
+  "code_exec_tio_res_string_err": "<b>Язык:</b> <code>{langformat}</code>\n\n<b>Код:</b>\n<code>{codeformat}</code>\n\n<b>Результат:</b>\n<code>{resformat}</code>\n\n<b>Ошибка:</b>\n<code>{errformat}</code>",
+  "code_exec_err_string": "Ошибка: Язык <b>{langformat}</b> не найден. Поддерживаемый список языков: {langslistlink}",
+  "code_exec_inline_send": "Язык: {langformat}",
+  "code_exec_err_inline_send_string": "Язык {langformat} не найден."
+}
