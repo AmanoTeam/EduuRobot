@@ -26,9 +26,17 @@
   "purge_description": "Очищает историю до отвеченного сообщения.",
   "purge_success": "Удалено <b>{count}</b> сообщений.",
   "tban_description": "Банит пользователя в чате на указанное время.",
+  "tban_success": "{user} был временно забанен {admin} на <b>{time}</b>.",
+  "tmute_description": "Заглушает пользователя в чате на указанное время.",
+  "tmute_success": "{user} был временно замьючен админом {admin} на <b>{time}</b>.",
   "unban_description": "Снимает бан с пользователя в этом чате.",
+  "unban_success": "{user} был разбанен админом {admin}.",
   "unmute_description": "Снять заглушение пользователя в этом чате.",
+  "unmute_success": "{user} был размьючен админом {admin}.",
   "unpin_description": "Открепляет отвеченное сообщение в чате.",
+  "unpinall_description": "Открепить все сообщения в чате.",
+  "reason_string": "Причина: {reason_text}",
+  "i_cant_ban_admins": "Я не могу забанить админа.",
   "i_cant_mute_admins": "Я не могу замьютить админа.",
   "i_cant_kick_admins": "Я не могу кикнуть админа."
 }
