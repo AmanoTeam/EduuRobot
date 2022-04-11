@@ -1,1 +1,5 @@
-{}
+{
+  "markdown_send_inline": "Нажмите здесь что бы отправить текст в  markdown формате.",
+  "html_send_inline": "Нажмите здесь, чтобы отправить текст в html формате.",
+  "user_info_inline_cant_found_user": "Пользователь не найден."
+}
