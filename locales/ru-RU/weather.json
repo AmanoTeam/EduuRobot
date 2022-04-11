@@ -1,5 +1,7 @@
 {
   "details": "<b>{location}</b>:\n\nТемпература: <code>{temperature} °C</code>\nТемпература чувствует себя так: <code>{feels_like} °C</code>\nвоздух влажность: <code>{air_humidity}%</code>\nСкорость ветра: <code>{wind_speed} км/ч</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Местоположение не найдено.",
-  "weather_language": "ru-RU"
+  "weather_language": "ru-RU",
+  "weather_description": "Получить информацию о погоде для указанного местоположения или города.",
+  "weather_usage": "<b>Применение:</b> <code>/weather местоположение или город</code> - Получить информацию о погоде от <i> текущего местоположения или другого города</i>."
 }
