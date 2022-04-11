@@ -1,1 +1,4 @@
-{}
+{
+  "admins_description": "Показать список администраторов в чате.",
+  "admins_list": "Администраторы в чате {chat_title}:\n{admins_list}"
+}
