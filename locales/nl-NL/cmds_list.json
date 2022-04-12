@@ -1,5 +1,6 @@
 {
   "admin": "👮‍♂️ Administratie",
   "command_category_title": "Commando's in de categorie <b>{category}</b>:",
-  "general": "✨ Algemeen"
+  "general": "✨ Algemeen",
+  "tools": "🔧 Tools"
 }
