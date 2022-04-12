@@ -1,5 +1,7 @@
 {
   "animated_not_supported": "Geanimeerde stickers worden niet ondersteund.",
+  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker ID:</b> <code>{id}</code>",
+  "not_sticker": "Dat is geen sticker.",
   "sticker_kanged_string": "Sticker <b>succesvol</b> toegevoegd aan pakket\nEmoji: {sticker_emoji}",
   "view_sticker_pack_btn": "Weergeven"
 }
