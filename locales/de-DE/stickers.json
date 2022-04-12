@@ -1,6 +1,7 @@
 {
   "animated_not_supported": "Animierte Sticker werden nicht unterstützt.",
   "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker-ID:</b> <code>{id}</code>",
+  "not_sticker": "Das ist kein Sticker.",
   "sticker_kanged_string": "Sticker <b>erfolgreich</b> zum Set hinzugefügt\nEmoji: {sticker_emoji}",
   "view_sticker_pack_btn": "Anzeigen"
 }
