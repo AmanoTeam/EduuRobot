@@ -1,5 +1,6 @@
 {
   "info_header": "<b>פרטי המשתמש:</b>",
+  "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nשם פרטי: {first_name}",
   "info_last_name": "\nשם משפחה: {last_name}",
   "info_username": "\nשם משתמש: {username}",
