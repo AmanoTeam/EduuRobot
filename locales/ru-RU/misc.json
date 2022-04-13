@@ -1,1 +1,22 @@
-{}
+{
+  "admins_description": "Показать список администраторов в чате.",
+  "admins_list": "Администраторы в чате {chat_title}:\n{admins_list}",
+  "html_description": "Форматирует предоставленный текст с помощью синтаксиса HTML.",
+  "html_usage": "<b>Применение:</b> <code>/html &lt;b&gt;текст&lt;/b&gt; в &lt;i&gt;html&lt;/i&gt;</code> - Форматирует предоставленный текст с синтаксисом HTML.",
+  "mark_description": "Форматирует предоставленный текст с помощью синтаксиса Markdown.",
+  "mark_usage": "<b>Применение:</b> <code>/mark **текст** in  __markdown__</code> - Форматирует предоставленный текст с помощью синтаксиса Markdown.",
+  "token_description": "Получите информацию из предоставленного токена бота.",
+  "no_bot_token": "Пожалуйста, укажите токен бота.",
+  "bot_token_invalid": "Неверный токен бота.",
+  "bot_token_info": "<b>Имя</b>: <code>{botname}</code>\n<b>Ник</b>: <code>{botusername}</code>\n<b>ID</b>: <code>{botid}</code>",
+  "urldecode_description": "Закодируйте предоставленный текст с помощью безопасной для URL кодировки.",
+  "urlencode_description": "Расшифруйте предоставленный текст с помощью кодировки, безопасной для URL.",
+  "parsebtn_err": "Вы должны указать URL-адрес и текст кнопки, Например.: <code>/parsebutton https://google.com text</code>.",
+  "parsebutton_description": "Поможет вам разобрать кнопку.",
+  "bug_reported_success_to_bot_admins": "Сообщение об ошибке было успешно отправлено.",
+  "err_cant_send_bug_report_to_bot_admins": "Ошибка, я не смог отправить отчет об ошибке администраторам бота.",
+  "err_no_bug_to_report": "Вы должны указать ошибку, о которой нужно сообщить, например.: <code>/bug ваш баг</code>.",
+  "donate_description": "Получите информацию о том, как сделать пожертвование.",
+  "donatecmdstring": "Если вам нравится проект и вы хотите, чтобы он оставался бесплатным и живым, пожалуйста, покажите свою поддержку, сделав пожертвование, перейдя по ссылке ниже. Любая ценность приветствуется. Спасибо!\n\nhttps://amanoteam.com/donate",
+  "report_admns": "{admins_list}{reported_user} Кинул репорт админам."
+}

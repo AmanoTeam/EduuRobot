@@ -10,5 +10,5 @@
   "view_sticker_pack_btn": "Visualizar",
   "create_new_pack_string": "Criando um novo pacote de stickers...",
   "invalid_media_string": "<b>Erro:</b> <code>Mídia inválida<code>",
-  "cant_create_sticker_pack_string": "Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você! \n<b>Por favor, inicie o bot primeiro.</b>"
+  "cant_create_sticker_pack_string": "Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você!\n<b>Por favor, inicie o bot primeiro.</b>"
 }

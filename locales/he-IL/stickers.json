@@ -1,6 +1,7 @@
 {
   "animated_not_supported": "מדבקות מונפשות לא נתמכות.",
   "sticker_info": "<b>אימוג'י:</b> {emoji}\n<b>הID של הסטיקר:</b> <code>{id}</code>",
+  "not_sticker": "זה לא סטיקר.",
   "sticker_kanged_string": "הסטיקר <b>נוסף</b> בהצלחה לחבילה\nאימוג'י: {sticker_emoji}",
   "view_sticker_pack_btn": "לחץ כאן לצפייה"
 }

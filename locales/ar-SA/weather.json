@@ -1,5 +1,6 @@
 {
   "details": "<b>{location}</b>:\n\nدرجة الحرارة: <code>{temperature} °C</code>\nتبدو درجة الحرارة مثل: <code>{feels_like} °C</code>\nرطوبة الجو: <code>{air_humidity}%</code>\nسرعة الرياح: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "لم يتم العثور على الموقع.",
+  "measurement_unit": "m",
   "weather_language": "ar-SA"
 }

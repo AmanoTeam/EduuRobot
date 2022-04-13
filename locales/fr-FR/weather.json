@@ -1,5 +1,6 @@
 {
   "details": "<b>{location}</b>:\n\nTempérature: <code>{temperature} °C</code>\nSensation thermique: <code>{feels_like} °C</code>\nHumidité de l'air: <code>{air_humidity}%</code>\nVitesse du vent: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "location_not_found": "Lieu introuvable.",
+  "measurement_unit": "m",
   "weather_language": "fr-FR"
 }

@@ -1,1 +1,11 @@
-{}
+{
+  "info_description": "Получить информацию о пользователе.",
+  "info_header": "<b>Информация о пользователе:</b>",
+  "info_first_name": "\nИмя: {first_name}",
+  "info_last_name": "\nФамилия: {last_name}",
+  "info_username": "\nНик пользователя: @{username}",
+  "info_userlink": "\nСсылка на пользователя: {link}",
+  "info_chat_admin": "\nУ этого пользователя есть '<b>права админа</b>' в этом чате.",
+  "info_chat_creator": "\nЭтот пользователь является '<b>владельцем</b>' этого чата.",
+  "user_not_found": "\nПользователь не найден для '<code>{user}</code>'."
+}
