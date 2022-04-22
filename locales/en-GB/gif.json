@@ -1,4 +1,4 @@
 {
-  "gif_description": "Sends a random GIF from search result.",
+  "gif_description": "Sends a random GIF from search results.",
   "gif_usage": "<b>Usage:</b> <code>/gif search term</code> - Sends a random GIF from search results."
 }
