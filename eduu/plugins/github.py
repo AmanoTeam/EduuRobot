@@ -15,24 +15,20 @@ from eduu.utils.localization import use_chat_lang
 @use_chat_lang()
 async def git(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(
-            strings("github_usage"), reply_to_message_id=m.message_id
-        )
+        return await m.reply_text(strings("github_usage"))
 
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.github.com/users/{text}")
     res = req.json()
 
     if not res.get("login"):
-        return await m.reply_text(
-            strings("github_user_not_found"), reply_to_message_id=m.message_id
-        )
+        return await m.reply_text(strings("github_user_not_found"))
 
     avatar = res["avatar_url"]
 
     anticache = quote_plus((await http.head(avatar)).headers["Last-Modified"])
 
-    caption_text = strings("info_git_user")
+    caption_text = strings("github_user_info")
     await m.reply_photo(
         avatar + anticache,
         caption=caption_text.format(
@@ -42,7 +38,6 @@ async def git(c: Client, m: Message, strings):
             type=res["type"],
             bio=res["bio"],
         ),
-        reply_to_message_id=m.message_id,
     )
 
 
