@@ -11,20 +11,21 @@ from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("git", prefix))
+@Client.on_message(filters.command(["github", "gh", "git"], prefix))
 @use_chat_lang()
 async def git(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
-            strings("no_username_err"), reply_to_message_id=m.message_id
+            strings("github_usage"), reply_to_message_id=m.message_id
         )
+
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.github.com/users/{text}")
     res = req.json()
 
     if not res.get("login"):
         return await m.reply_text(
-            strings("not_found_user"), reply_to_message_id=m.message_id
+            strings("github_user_not_found"), reply_to_message_id=m.message_id
         )
 
     avatar = res["avatar_url"]
@@ -45,4 +46,4 @@ async def git(c: Client, m: Message, strings):
     )
 
 
-commands.add_command("git", "tools")
+commands.add_command("github", "tools")
