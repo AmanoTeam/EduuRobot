@@ -12,6 +12,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
 from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
+from urllib.parse import parse_qs, urlsplit
 from yt_dlp import YoutubeDL
 
 from eduu.config import prefix
@@ -86,8 +87,9 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
     match = YOUTUBE_REGEX.match(url)
 
-    if "?t=" in url:
-        temp = url.split("t=")[1].split("&")[0]
+    t = parse_qs(urlsplit(url).query).get("t")
+    if t:
+        temp = re.search(r"[0-9]+", str(t)).group()
     else:
         temp = 0
 
