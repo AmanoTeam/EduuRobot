@@ -12,7 +12,6 @@ from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
 from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
-from urllib.parse import parse_qs, urlsplit
 from yt_dlp import YoutubeDL
 
 from eduu.config import prefix
@@ -22,6 +21,8 @@ from eduu.utils.localization import use_chat_lang
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
 )
+
+TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
 MAX_FILESIZE = 200000000
 
@@ -87,11 +88,8 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
     match = YOUTUBE_REGEX.match(url)
 
-    t = parse_qs(urlsplit(url).query).get("t")
-    if t:
-        temp = re.search(r"[0-9]+", str(t)).group()
-    else:
-        temp = 0
+    t = TIME_REGEX.search(url)
+    temp = t.group(1) if t else 0
 
     if match:
         yt = await extract_info(ydl, match.group(), download=False)
