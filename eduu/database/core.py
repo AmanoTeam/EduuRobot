@@ -5,13 +5,15 @@ import logging
 
 import aiosqlite
 
-log = logging.getLogger(__name__)
+from eduu.config import DATABASE_PATH
+
+logger = logging.getLogger(__name__)
 
 
 class Database(object):
     def __init__(self):
         self.conn: aiosqlite.Connection = None
-        self.path: str = "./eduu/database/edu.db"
+        self.path: str = DATABASE_PATH
         self.is_connected: bool = False
 
     async def connect(self):
@@ -86,7 +88,7 @@ class Database(object):
         self.conn = conn
         self.is_connected: bool = True
 
-        log.info("The database has been connected.")
+        logger.info("The database has been connected.")
 
     async def close(self):
         # Close the connection
@@ -94,7 +96,7 @@ class Database(object):
 
         self.is_connected: bool = False
 
-        log.info("The database was closed.")
+        logger.info("The database was closed.")
 
     def get_conn(self) -> aiosqlite.Connection:
         if not self.is_connected:
