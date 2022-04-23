@@ -26,6 +26,7 @@ from eduu.database import database
 from eduu.database.restarted import set_restarted
 from eduu.utils import sudofilter
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.utils import shell_exec
 
 prefix: Union[list, str] = "!"
 
@@ -44,23 +45,12 @@ async def run_cmd(c: Client, m: Message, strings):
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
         res = strings("forbidden_command")
     else:
-        proc = await asyncio.create_subprocess_shell(
-            cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-        )
-        stdout, stderr = await proc.communicate()
+        stdout, stderr = await shell_exec(cmd)
         res = (
-            "<b>Output:</b>\n<code>{}</code>".format(
-                html.escape(stdout.decode().strip())
-            )
+            "<b>Output:</b>\n<code>{}</code>".format(html.escape(stdout))
             if stdout
             else ""
-        ) + (
-            "\n<b>Errors:</b>\n<code>{}</code>".format(
-                html.escape(stderr.decode().strip())
-            )
-            if stderr
-            else ""
-        )
+        ) + ("\n<b>Errors:</b>\n<code>{}</code>".format(stderr) if stderr else "")
     await m.reply_text(res)
 
 
@@ -68,18 +58,13 @@ async def run_cmd(c: Client, m: Message, strings):
 @use_chat_lang()
 async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources...")
-    proc = await asyncio.create_subprocess_shell(
-        "git pull --no-edit",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.STDOUT,
-    )
-    stdout = (await proc.communicate())[0]
+    stdout, proc = await shell_exec("git pull --no-edit")
     if proc.returncode == 0:
-        if "Already up to date." in stdout.decode():
+        if "Already up to date." in stdout:
             await sm.edit_text("There's nothing to upgrade.")
         else:
             await sm.edit_text(strings("restarting"))
-            set_restarted(sm.chat.id, sm.id)
+            await set_restarted(sm.chat.id, sm.id)
             await conn.commit()
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
@@ -96,13 +81,13 @@ async def evals(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     try:
         res = await meval(text, globals(), **locals())
-    except:  # skipcq
+    except BaseException:  # skipcq
         ev = traceback.format_exc()
         await m.reply_text(f"<code>{html.escape(ev)}</code>")
     else:
         try:
             await m.reply_text(f"<code>{html.escape(str(res))}</code>")
-        except Exception as e:  # skipcq
+        except BaseException as e:  # skipcq
             await m.reply_text(str(e))
 
 
@@ -116,7 +101,7 @@ async def execs(c: Client, m: Message):
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)
-        except:  # skipcq
+        except BaseException:  # skipcq
             return await m.reply_text(html.escape(traceback.format_exc()))
 
     if strio.getvalue().strip():
@@ -234,14 +219,17 @@ async def getbotstats(c: Client, m: Message):
 
 @Client.on_message(filters.command("del", prefix) & sudofilter)
 async def del_message(c: Client, m: Message):
+    err = ""
     try:
         await c.delete_messages(m.chat.id, m.reply_to_message.id)
     except RPCError as e:
-        print(e)
+        err += e
     try:
         await c.delete_messages(m.chat.id, m.id)
     except RPCError as e:
-        print(e)
+        err += e
+
+    await m.reply_text(err)
 
 
 @Client.on_message(

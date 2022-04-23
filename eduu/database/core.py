@@ -10,7 +10,7 @@ from eduu.config import DATABASE_PATH
 logger = logging.getLogger(__name__)
 
 
-class Database(object):
+class Database:
     def __init__(self):
         self.conn: aiosqlite.Connection = None
         self.path: str = DATABASE_PATH

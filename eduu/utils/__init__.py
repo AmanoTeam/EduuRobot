@@ -26,10 +26,8 @@ from .utils import (
 
 __all__: List[str] = [
     "EMOJI_PATTERN",
-    "add_chat",
     "aiowrap",
     "button_parser",
-    "chat_exists",
     "check_perms",
     "commands",
     "get_emoji_regex",
