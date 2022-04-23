@@ -22,6 +22,8 @@ YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
 )
 
+TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
+
 MAX_FILESIZE = 200000000
 
 
@@ -86,10 +88,8 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
     match = YOUTUBE_REGEX.match(url)
 
-    if "t=" in url:
-        temp = url.split("t=")[1].split("&")[0]
-    else:
-        temp = 0
+    t = TIME_REGEX.search(url)
+    temp = t.group(1) if t else 0
 
     if match:
         yt = await extract_info(ydl, match.group(), download=False)
