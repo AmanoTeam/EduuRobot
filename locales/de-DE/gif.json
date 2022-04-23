@@ -1,4 +1,3 @@
 {
-  "gif_description": "Sendet ein zufälliges GIF vom Suchergebnis.",
   "gif_usage": "<b>Aufruf:</b> <code>/gif Suchbegriff</code> - Sendet ein zufälliges GIF aus Suchergebnissen."
 }
