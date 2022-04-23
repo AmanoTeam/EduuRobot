@@ -86,7 +86,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
     match = YOUTUBE_REGEX.match(url)
 
-    if "t=" in url:
+    if "?t=" in url:
         temp = url.split("t=")[1].split("&")[0]
     else:
         temp = 0
