@@ -21,12 +21,13 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
-from eduu.config import DATABASE_PATH
-from eduu.database import db, dbc
+from eduu.database import database
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
 
 prefix: Union[list, str] = "!"
+
+conn = database.get_conn()
 
 
 @Client.on_message(filters.command("sudos", prefix) & sudofilter)
@@ -77,7 +78,7 @@ async def upgrade(c: Client, m: Message, strings):
         else:
             await sm.edit_text(strings("restarting"))
             set_restarted(sm.chat.id, sm.id)
-            db.commit()
+            await conn.commit()
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
@@ -154,14 +155,14 @@ async def execsql(c: Client, m: Message):
     command = m.text.split(maxsplit=1)[1]
 
     try:
-        ex = dbc.execute(command)
+        ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
         return await m.reply_text(
             f"SQL executed with an error: {e.__class__.__name__}: {e}"
         )
 
-    ret = ex.fetchall()
-    db.commit()
+    ret = await ex.fetchall()
+    await conn.commit()
 
     if ret:
         res = "|".join([name[0] for name in ex.description]) + "\n"
@@ -186,7 +187,7 @@ async def execsql(c: Client, m: Message):
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
     set_restarted(sent.chat.id, sent.id)
-    db.commit()
+    await conn.commit()
     args = [sys.executable, "-m", "eduu"]
     os.execv(sys.executable, args)  # skipcq: BAN-B606
 
@@ -208,14 +209,14 @@ async def leave_chat(c: Client, m: Message):
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
 async def getbotstats(c: Client, m: Message):
-    users_count = dbc.execute("select count() from users")
-    users_count = users_count.fetchone()[0]
-    groups_count = dbc.execute("select count() from groups")
-    groups_count = groups_count.fetchone()[0]
-    filters_count = dbc.execute("select count() from filters")
-    filters_count = filters_count.fetchone()[0]
-    notes_count = dbc.execute("select count() from notes")
-    notes_count = notes_count.fetchone()[0]
+    users_count = await conn.execute("select count() from users")
+    users_count = await users_count.fetchone()[0]
+    groups_count = await conn.execute("select count() from groups")
+    groups_count = await groups_count.fetchone()[0]
+    filters_count = await conn.execute("select count() from filters")
+    filters_count = await filters_count.fetchone()[0]
+    notes_count = await conn.execute("select count() from notes")
+    notes_count = await notes_count.fetchone()[0]
     bot_uptime = round(time.time() - c.start_time)
     bot_uptime = humanfriendly.format_timespan(bot_uptime)
 

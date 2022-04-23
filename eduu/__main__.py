@@ -4,17 +4,11 @@
 import asyncio
 import logging
 import platform
-import sys
-import time
 
-import pyrogram
-from pyrogram import Client, idle
-from pyrogram.enums import ParseMode
-from pyrogram.errors import BadRequest
+import httpx
 
-import eduu
-from eduu.config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
-from eduu.utils import del_restarted, get_restarted, shell_exec
+from eduu.bot import Eduu
+from eduu.database import database
 
 try:
     import uvloop
@@ -25,48 +19,21 @@ except ImportError:
         logging.warning("uvloop is not installed and therefore will be disabled.")
 
 
-async def main() -> None:
-    client = Client(
-        name="bot",
-        app_version=f"EduuRobot v{eduu.__version__}",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        bot_token=TOKEN,
-        workers=WORKERS,
-        parse_mode=ParseMode.HTML,
-        plugins=dict(root="eduu.plugins", exclude=DISABLED_PLUGINS),
-    )
-
-    await client.start()
-
-    # Saving commit number
-    client.version_code = int((await shell_exec("git rev-list --count HEAD"))[0])
-
-    client.me = await client.get_me()
-
-    client.start_time = time.time()
-    if "test" not in sys.argv:
-        wr = get_restarted()
-        del_restarted()
-
-        start_message = (
-            "<b>EduuRobot started!</b>\n\n"
-            f"<b>Version:</b> <code>v{eduu.__version__} ({client.version_code})</code>\n"
-            f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
-        )
-
-        try:
-            await client.send_message(chat_id=LOG_CHAT, text=start_message)
-            if wr:
-                await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
-        except BadRequest:
-            logging.warning("Unable to send message to log_chat.")
-
-        await idle()
-
-    await client.stop()
-
-
-event_policy = asyncio.get_event_loop_policy()
-event_loop = event_policy.new_event_loop()
-event_loop.run_until_complete(main())
+if __name__ == "__main__":
+    # open new asyncio event loop
+    event_policy = asyncio.get_event_loop_policy()
+    event_loop = event_policy.new_event_loop()
+    try:
+        # start the bot
+        event_loop.run_until_complete(database.connect())
+        Eduu().run()
+    except KeyboardInterrupt:
+        # exit gracefully
+        logging.warning("Forced stop... Bye!")
+    finally:
+        # close https connections and the DB if open
+        event_loop.run_until_complete(httpx.aclose())
+        if database.is_connected:
+            event_loop.run_until_complete(database.close())
+        # close asyncio event loop
+        event_loop.close()

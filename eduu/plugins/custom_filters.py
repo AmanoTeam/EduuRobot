@@ -8,55 +8,18 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import PREFIXES
-from eduu.database import db, dbc
+from eduu.database.custom_filters import (
+    add_filter,
+    get_all_filters,
+    rm_filter,
+    update_filter,
+)
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
 
-dbc.execute(
-    """
-CREATE TABLE IF NOT EXISTS filters(
-    chat_id INTEGER ,
-    filter_name TEXT,
-    raw_data TEXT,
-    file_id TEXT,
-    filter_type TEXT
-)
-    """
-)
 
-
-def add_filter(chat_id, trigger, raw_data, file_id, filter_type):
-    dbc.execute(
-        "INSERT INTO filters(chat_id, filter_name, raw_data, file_id, filter_type) VALUES(?, ?, ?, ?, ?)",
-        (chat_id, trigger, raw_data, file_id, filter_type),
-    )
-    db.commit()
-
-
-def update_filter(chat_id, trigger, raw_data, file_id, filter_type):
-    dbc.execute(
-        "UPDATE filters SET raw_data = ?, file_id = ?, filter_type = ? WHERE chat_id = ? AND filter_name = ?",
-        (raw_data, file_id, filter_type, chat_id, trigger),
-    )
-    db.commit()
-
-
-def rm_filter(chat_id, trigger):
-    dbc.execute(
-        "DELETE from filters WHERE chat_id = ? AND filter_name = ?", (chat_id, trigger)
-    )
-    db.commit()
-
-
-def get_all_filters(chat_id):
-    dbc.execute("SELECT * FROM filters WHERE chat_id = ?", (chat_id,))
-
-    db.commit()
-    return dbc.fetchall()
-
-
-def check_for_filters(chat_id, trigger):
-    all_filters = get_all_filters(chat_id)
+async def check_for_filters(chat_id, trigger):
+    all_filters = await get_all_filters(chat_id)
     for keywords in all_filters:
         keyword = keywords[1]
         if trigger == keyword:
@@ -126,11 +89,11 @@ async def save_filter(c: Client, m: Message, strings):
         filter_type = "text"
 
     chat_id = m.chat.id
-    check_filter = check_for_filters(chat_id, trigger)
+    check_filter = await check_for_filters(chat_id, trigger)
     if check_filter:
-        update_filter(chat_id, trigger, raw_data, file_id, filter_type)
+        await update_filter(chat_id, trigger, raw_data, file_id, filter_type)
     else:
-        add_filter(chat_id, trigger, raw_data, file_id, filter_type)
+        await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
     await m.reply_text(
         strings("add_filter_success").format(trigger=trigger), quote=True
     )
@@ -143,9 +106,9 @@ async def delete_filter(c: Client, m: Message, strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
-    check_filter = check_for_filters(chat_id, trigger)
+    check_filter = await check_for_filters(chat_id, trigger)
     if check_filter:
-        rm_filter(chat_id, trigger)
+        await rm_filter(chat_id, trigger)
         await m.reply_text(
             strings("remove_filter_success").format(trigger=trigger), quote=True
         )
@@ -160,7 +123,7 @@ async def delete_filter(c: Client, m: Message, strings):
 async def get_all_filter(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("filters_list")
-    all_filters = get_all_filters(chat_id)
+    all_filters = await get_all_filters(chat_id)
     for filter_s in all_filters:
         keyword = filter_s[1]
         reply_text += f" - {keyword} \n"
@@ -179,7 +142,7 @@ async def serve_filter(c: Client, m: Message):
     text = m.text
     targeted_message = m.reply_to_message or m
 
-    all_filters = get_all_filters(chat_id)
+    all_filters = await get_all_filters(chat_id)
     for filter_s in all_filters:
         keyword = filter_s[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"

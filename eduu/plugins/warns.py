@@ -1,26 +1,22 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2022 Amano Team
 
-from typing import Optional, Tuple
-
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from eduu.config import PREFIXES
-from eduu.database import db, dbc
+from eduu.database.warns import (
+    add_warns,
+    get_warn_action,
+    get_warns,
+    get_warns_limit,
+    reset_warns,
+    set_warn_action,
+    set_warns_limit,
+)
 from eduu.utils import commands, get_target_user, require_admin
 from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
-
-dbc.execute(
-    """
-CREATE TABLE IF NOT EXISTS user_warns(
-    user_id INTEGER,
-    chat_id INTEGER,
-    count INTEGER
-)
-    """
-)
 
 
 async def get_warn_reason_text(c: Client, m: Message) -> Message:
@@ -35,78 +31,18 @@ async def get_warn_reason_text(c: Client, m: Message) -> Message:
     return warn_reason
 
 
-def get_warn_action(chat_id: int) -> Tuple[Optional[str], bool]:
-    dbc.execute("SELECT warn_action FROM groups WHERE chat_id = (?)", (chat_id,))
-    res = dbc.fetchone()[0]
-    return "ban" if res is None else res
-
-
-def set_warn_action(chat_id: int, action: Optional[str]):
-    dbc.execute(
-        "UPDATE groups SET warn_action = ? WHERE chat_id = ?", (action, chat_id)
-    )
-    db.commit()
-
-
-def get_warns(chat_id, user_id):
-    dbc.execute(
-        "SELECT count FROM user_warns WHERE chat_id = ? AND user_id = ?",
-        (chat_id, user_id),
-    )
-    r = dbc.fetchone()
-    return r[0] if r else 0
-
-
-def add_warns(chat_id, user_id, number):
-    dbc.execute(
-        "SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
-    )
-    if dbc.fetchone():
-        dbc.execute(
-            "UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?",
-            (number, chat_id, user_id),
-        )
-        db.commit()
-    else:
-        dbc.execute(
-            "INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)",
-            (user_id, chat_id, number),
-        )
-        db.commit()
-
-
-def reset_warns(chat_id, user_id):
-    dbc.execute(
-        "DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
-    )
-    db.commit()
-
-
-def get_warns_limit(chat_id):
-    dbc.execute("SELECT warns_limit FROM groups WHERE chat_id = ?", (chat_id,))
-    res = dbc.fetchone()[0]
-    return 3 if res is None else res
-
-
-def set_warns_limit(chat_id, warns_limit):
-    dbc.execute(
-        "UPDATE groups SET warns_limit = ? WHERE chat_id = ?", (warns_limit, chat_id)
-    )
-    db.commit()
-
-
 @Client.on_message(filters.command("warn", PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
 async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-    warns_limit = get_warns_limit(m.chat.id)
+    warns_limit = await get_warns_limit(m.chat.id)
     check_admin = await m.chat.get_member(target_user.id)
     reason = await get_warn_reason_text(c, m)
-    warn_action = get_warn_action(m.chat.id)
+    warn_action = await get_warn_action(m.chat.id)
     if check_admin.status not in admin_status:
-        add_warns(m.chat.id, target_user.id, 1)
-        user_warns = get_warns(m.chat.id, target_user.id)
+        await add_warns(m.chat.id, target_user.id, 1)
+        user_warns = await get_warns(m.chat.id, target_user.id)
         if user_warns >= warns_limit:
             if warn_action == "ban":
                 await m.chat.ban_member(target_user.id)
@@ -126,7 +62,7 @@ async def warn_user(c: Client, m: Message, strings):
             warn_text = warn_string.format(
                 target_user=target_user.mention, warn_count=user_warns
             )
-            reset_warns(m.chat.id, target_user.id)
+            await reset_warns(m.chat.id, target_user.id)
         else:
             warn_text = strings("user_warned").format(
                 target_user=target_user.mention,
@@ -165,7 +101,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
 @use_chat_lang()
 async def unwarn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-    reset_warns(m.chat.id, target_user.id)
+    await reset_warns(m.chat.id, target_user.id)
     await m.reply_text(strings("warn_reset").format(target_user=target_user.mention))
 
 
@@ -174,7 +110,7 @@ async def unwarn_user(c: Client, m: Message, strings):
 @use_chat_lang()
 async def get_user_warns_cmd(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-    user_warns = get_warns(m.chat.id, target_user.id)
+    user_warns = await get_warns(m.chat.id, target_user.id)
     await m.reply_text(
         strings("warns_count_string").format(
             target_user=target_user.mention, warns_count=user_warns
@@ -194,14 +130,13 @@ async def set_warns_action_cmd(c: Client, m: Message, strings):
 
         warn_action_txt = m.command[1]
 
-        set_warn_action(m.chat.id, warn_action_txt)
+        await set_warn_action(m.chat.id, warn_action_txt)
         await m.reply_text(
             strings("warns_action_set_string").format(action=warn_action_txt)
         )
     else:
-        await m.reply_text(
-            strings("warn_action_status").format(action=get_warn_action(m.chat.id))
-        )
+        warn_act = await get_warn_action(m.chat.id)
+        await m.reply_text(strings("warn_action_status").format(action=warn_act))
 
 
 commands.add_command("warn", "admin")
