@@ -14,7 +14,8 @@ from eduu.database.custom_filters import (
     rm_filter,
     update_filter,
 )
-from eduu.utils import button_parser, commands, require_admin, split_quotes
+from eduu.utils import button_parser, commands, split_quotes
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 

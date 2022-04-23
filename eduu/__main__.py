@@ -5,10 +5,22 @@ import asyncio
 import logging
 import platform
 
-import httpx
+from httpx import AsyncClient
 
 from eduu.bot import Eduu
 from eduu.database import database
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(name)s.%(funcName)s | %(levelname)s | %(message)s",
+    datefmt="[%X]",
+)
+
+# To avoid some annoying log
+logging.getLogger("pyrogram.syncer").setLevel(logging.WARNING)
+logging.getLogger("pyrogram.client").setLevel(logging.WARNING)
+
+logger = logging.getLogger(__name__)
 
 try:
     import uvloop
@@ -16,7 +28,7 @@ try:
     uvloop.install()
 except ImportError:
     if platform.system() != "Windows":
-        logging.warning("uvloop is not installed and therefore will be disabled.")
+        logger.warning("uvloop is not installed and therefore will be disabled.")
 
 
 if __name__ == "__main__":
@@ -29,10 +41,10 @@ if __name__ == "__main__":
         Eduu().run()
     except KeyboardInterrupt:
         # exit gracefully
-        logging.warning("Forced stop... Bye!")
+        logger.warning("Forced stop... Bye!")
     finally:
         # close https connections and the DB if open
-        event_loop.run_until_complete(httpx.aclose())
+        event_loop.run_until_complete(AsyncClient().aclose())
         if database.is_connected:
             event_loop.run_until_complete(database.close())
         # close asyncio event loop

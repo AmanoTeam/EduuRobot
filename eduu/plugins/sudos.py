@@ -21,8 +21,10 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
+from eduu.config import DATABASE_PATH
 from eduu.database import database
-from eduu.utils import set_restarted, sudofilter
+from eduu.database.restarted import set_restarted
+from eduu.utils import sudofilter
 from eduu.utils.localization import use_chat_lang
 
 prefix: Union[list, str] = "!"
@@ -186,7 +188,7 @@ async def execsql(c: Client, m: Message):
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
-    set_restarted(sent.chat.id, sent.id)
+    await set_restarted(sent.chat.id, sent.id)
     await conn.commit()
     args = [sys.executable, "-m", "eduu"]
     os.execv(sys.executable, args)  # skipcq: BAN-B606
@@ -210,22 +212,22 @@ async def leave_chat(c: Client, m: Message):
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
 async def getbotstats(c: Client, m: Message):
     users_count = await conn.execute("select count() from users")
-    users_count = await users_count.fetchone()[0]
+    users_count = await users_count.fetchone()
     groups_count = await conn.execute("select count() from groups")
-    groups_count = await groups_count.fetchone()[0]
+    groups_count = await groups_count.fetchone()
     filters_count = await conn.execute("select count() from filters")
-    filters_count = await filters_count.fetchone()[0]
+    filters_count = await filters_count.fetchone()
     notes_count = await conn.execute("select count() from notes")
-    notes_count = await notes_count.fetchone()[0]
+    notes_count = await notes_count.fetchone()
     bot_uptime = round(time.time() - c.start_time)
     bot_uptime = humanfriendly.format_timespan(bot_uptime)
 
     await m.reply_text(
         "<b>Bot statistics:</b>\n\n"
-        f"<b>Users:</b> {users_count}\n"
-        f"<b>Groups:</b> {groups_count}\n"
-        f"<b>Filters:</b> {filters_count}\n"
-        f"<b>Notes:</b> {notes_count}\n\n"
+        f"<b>Users:</b> {users_count[0]}\n"
+        f"<b>Groups:</b> {groups_count[0]}\n"
+        f"<b>Filters:</b> {filters_count[0]}\n"
+        f"<b>Notes:</b> {notes_count[0]}\n\n"
         f"<b>Uptime:</b> {bot_uptime}"
     )
 

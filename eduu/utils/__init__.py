@@ -6,10 +6,8 @@ from typing import List
 
 from .utils import (
     EMOJI_PATTERN,
-    add_chat,
     aiowrap,
     button_parser,
-    chat_exists,
     check_perms,
     commands,
     get_emoji_regex,
@@ -19,7 +17,6 @@ from .utils import (
     http,
     pretty_size,
     remove_escapes,
-    require_admin,
     run_async,
     shell_exec,
     split_quotes,
@@ -42,7 +39,6 @@ __all__: List[str] = [
     "http",
     "pretty_size",
     "remove_escapes",
-    "require_admin",
     "run_async",
     "shell_exec",
     "split_quotes",

@@ -13,8 +13,9 @@ from pyrogram.raw.all import layer
 
 import eduu
 from eduu.config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
-from eduu.database.restarted import del_restarted, get_restarted
 from eduu.utils.utils import shell_exec
+
+logger = logging.getLogger(__name__)
 
 
 class Eduu(Client):
@@ -36,15 +37,11 @@ class Eduu(Client):
     async def start(self):
         await super().start()
 
-        # Saving commit number
         self.version_code = int((await shell_exec("git rev-list --count HEAD"))[0])
-
         self.me = await self.get_me()
-
         self.start_time = time.time()
 
-        self.me = await self.get_me()
-        logging.info(
+        logger.info(
             "Eduu running with Pyrogram v%s (Layer %s) started on @%s. Hi!",
             __version__,
             layer,
@@ -52,6 +49,8 @@ class Eduu(Client):
         )
 
         if "test" not in sys.argv:
+            from eduu.database.restarted import del_restarted, get_restarted
+
             wr = await get_restarted()
             await del_restarted()
 
@@ -65,11 +64,11 @@ class Eduu(Client):
                 await self.send_message(chat_id=LOG_CHAT, text=start_message)
                 if wr:
                     await self.edit_message_text(
-                        wr[0], wr[1], "Restarted successfully!"
+                        wr[0], wr[1], text="Restarted successfully!"
                     )
             except BadRequest:
-                logging.warning("Unable to send message to LOG_CHAT.")
+                logger.warning("Unable to send message to LOG_CHAT.")
 
     async def stop(self):
         await super().stop()
-        logging.warning("Eduu stopped. Bye!")
+        logger.warning("Eduu stopped. Bye!")

@@ -18,12 +18,6 @@ from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import SUDOERS
-from eduu.utils.localization import (
-    default_language,
-    get_lang,
-    get_locale_string,
-    langdict,
-)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
@@ -104,53 +98,6 @@ async def check_perms(
             strings("no_permission_error").format(permissions=", ".join(missing_perms))
         )
     return False
-
-
-def require_admin(
-    permissions: Union[list, str] = None,
-    allow_in_private: bool = False,
-    complain_missing_perms: bool = True,
-):
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
-        ):
-            lang = get_lang(message)
-            strings = partial(
-                get_locale_string,
-                langdict[lang].get("admins", langdict[default_language]["admins"]),
-                lang,
-                "admins",
-            )
-
-            if isinstance(message, CallbackQuery):
-                sender = partial(message.answer, show_alert=True)
-                msg = message.message
-            elif isinstance(message, Message):
-                sender = message.reply_text
-                msg = message
-            else:
-                raise NotImplementedError(
-                    f"require_admin can't process updates with the type '{message.__name__}' yet."
-                )
-
-            # We don't actually check private and channel chats.
-            if msg.chat.type == ChatType.PRIVATE:
-                if allow_in_private:
-                    return await func(client, message, *args, *kwargs)
-                return await sender(strings("private_not_allowed"))
-            if msg.chat.type == ChatType.CHANNEL:
-                return await func(client, message, *args, *kwargs)
-            has_perms = await check_perms(
-                message, permissions, complain_missing_perms, strings
-            )
-            if has_perms:
-                return await func(client, message, *args, *kwargs)
-
-        return wrapper
-
-    return decorator
 
 
 sudofilter = filters.user(SUDOERS)

@@ -9,7 +9,8 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import PREFIXES
 from eduu.database.notes import add_note, get_all_notes, rm_note, update_note
-from eduu.utils import button_parser, commands, require_admin, split_quotes
+from eduu.utils import button_parser, commands, split_quotes
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 
@@ -116,7 +117,7 @@ async def delete_note(c: Client, m: Message, strings):
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id)
     for note_s in all_notes:
         keyword = note_s[1]
         reply_text += f" - {keyword} \n"
@@ -131,7 +132,7 @@ async def serve_note(c: Client, m: Message, txt):
     chat_id = m.chat.id
     text = txt
 
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id)
     for note_s in all_notes:
         keyword = note_s[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"

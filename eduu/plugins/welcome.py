@@ -8,7 +8,8 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import PREFIXES
 from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome
-from eduu.utils import button_parser, commands, get_format_keys, require_admin
+from eduu.utils import button_parser, commands, get_format_keys
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 

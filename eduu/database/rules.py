@@ -11,8 +11,8 @@ async def get_rules(chat_id):
         "SELECT rules FROM groups WHERE chat_id = (?)", (chat_id,)
     )
     try:
-        row = await cursor.fetchone()[0]
-        return row
+        row = await cursor.fetchone()
+        return row[0]
     except IndexError:
         return None
 

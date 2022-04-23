@@ -8,7 +8,8 @@ from pyrogram.types import Message
 
 from eduu.config import PREFIXES
 from eduu.database.admins import check_if_del_service, toggle_del_service
-from eduu.utils import commands, require_admin
+from eduu.utils import commands
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 

@@ -14,8 +14,9 @@ from eduu.database.warns import (
     set_warn_action,
     set_warns_limit,
 )
-from eduu.utils import commands, get_target_user, require_admin
+from eduu.utils import commands, get_target_user
 from eduu.utils.consts import admin_status
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 

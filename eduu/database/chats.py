@@ -31,18 +31,18 @@ async def chat_exists(chat_id, chat_type):
         cursor = await conn.execute(
             "SELECT user_id FROM users where user_id = ?", (chat_id,)
         )
-        row = await cursor.fetchone()[0]
+        row = await cursor.fetchone()
         return bool(row)
     if chat_type in group_types:  # groups and supergroups share the same table
         cursor = await conn.execute(
             "SELECT chat_id FROM groups where chat_id = ?", (chat_id,)
         )
-        row = await cursor.fetchone()[0]
+        row = await cursor.fetchone()
         return bool(row)
     if chat_type == ChatType.CHANNEL:
         cursor = conn.execute(
             "SELECT chat_id FROM channels where chat_id = ?", (chat_id,)
         )
-        row = await cursor.fetchone()[0]
+        row = await cursor.fetchone()
         return bool(row)
     raise TypeError("Unknown chat type '%s'." % chat_type)
