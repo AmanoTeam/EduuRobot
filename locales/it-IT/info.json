@@ -6,6 +6,5 @@
   "info_username": "\nUsername: @{username}",
   "info_userlink": "\nLink: {link}",
   "info_chat_admin": "\nQuesto utente ha i '<b>permessi da amministratore</b>' in questa chat.",
-  "info_chat_owner": "\nQuesto utente è il '<b>proprietario</b>' di questa chat.",
   "user_not_found": "\nNessun utente trovato per '<code>{user}</code>'."
 }
