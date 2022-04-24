@@ -4,6 +4,7 @@
 from typing import Iterable, List
 
 from pyrogram import Client, filters
+from pyrogram.enums import ParseMode
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import (
     InlineKeyboardMarkup,
@@ -77,7 +78,7 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 title=strings("markdown_send_inline"),
                 input_message_content=InputTextMessageContent(
-                    querytxt, parse_mode="markdown"
+                    querytxt, parse_mode=ParseMode.MARKDOWN
                 ),
                 reply_markup=(
                     InlineKeyboardMarkup(querybuttons)

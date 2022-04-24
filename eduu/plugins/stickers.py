@@ -114,7 +114,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
-                stickerset = await c.send(
+                stickerset = await c.invoke(
                     GetStickerSet(
                         stickerset=InputStickerSetShortName(short_name=packname),
                         hash=0,
@@ -130,7 +130,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             except StickersetInvalid:
                 break
         file = await c.save_file(filename)
-        media = await c.send(
+        media = await c.invoke(
             SendMedia(
                 peer=(await c.resolve_peer(log_chat)),
                 media=InputMediaUploadedDocument(
@@ -145,7 +145,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         stkr_file = media.updates[-1].message.media.document
         if packname_found:
             await prog_msg.edit_text(strings("use_existing_pack"))
-            await c.send(
+            await c.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
                     sticker=InputStickerSetItem(
@@ -172,7 +172,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
-                await c.send(
+                await c.invoke(
                     CreateStickerSet(
                         user_id=user,
                         title=stkr_title,

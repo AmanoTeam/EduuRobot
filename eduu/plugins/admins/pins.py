@@ -60,7 +60,7 @@ async def pin(c: Client, m: Message):
 
     await c.pin_chat_message(
         m.chat.id,
-        m.reply_to_message.message_id,
+        m.reply_to_message.id,
         disable_notification=disable_notifications,
         both_sides=True,
     )
@@ -69,7 +69,7 @@ async def pin(c: Client, m: Message):
 @Client.on_message(filters.command("unpin", prefix))
 @require_admin(permissions=["can_pin_messages"], allow_in_private=True)
 async def unpin(c: Client, m: Message):
-    await c.unpin_chat_message(m.chat.id, m.reply_to_message.message_id)
+    await c.unpin_chat_message(m.chat.id, m.reply_to_message.id)
 
 
 @Client.on_message(filters.command(["unpinall", "unpin all"], prefix))

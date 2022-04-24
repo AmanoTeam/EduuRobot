@@ -14,6 +14,7 @@ from typing import Callable, List, Optional, Tuple, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
+from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import sudoers
@@ -65,7 +66,7 @@ def aiowrap(func: Callable) -> Callable:
 
 
 def add_chat(chat_id, chat_type):
-    if chat_type == "private":
+    if chat_type == ChatType.PRIVATE:
         dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
         db.commit()
     elif chat_type in group_types:  # groups and supergroups share the same table
@@ -73,7 +74,7 @@ def add_chat(chat_id, chat_type):
             "INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True)
         )
         db.commit()
-    elif chat_type == "channel":
+    elif chat_type == ChatType.CHANNEL:
         dbc.execute("INSERT INTO channels (chat_id) values (?)", (chat_id,))
         db.commit()
     else:
@@ -82,13 +83,13 @@ def add_chat(chat_id, chat_type):
 
 
 def chat_exists(chat_id, chat_type):
-    if chat_type == "private":
+    if chat_type == ChatType.PRIVATE:
         dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
         return bool(dbc.fetchone())
     if chat_type in group_types:  # groups and supergroups share the same table
         dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
         return bool(dbc.fetchone())
-    if chat_type == "channel":
+    if chat_type == ChatType.CHANNEL:
         dbc.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
         return bool(dbc.fetchone())
     raise TypeError("Unknown chat type '%s'." % chat_type)
@@ -123,15 +124,15 @@ async def check_perms(
         chat = message.chat
     # TODO: Cache all admin permissions in db.
     user = await chat.get_member(message.from_user.id)
-    if user.status == "creator":
+    if user.status == ChatMemberStatus.OWNER:
         return True
 
     missing_perms = []
 
     # No permissions specified, accept being an admin.
-    if not permissions and user.status == "administrator":
+    if not permissions and user.status == ChatMemberStatus.ADMINISTRATOR:
         return True
-    if user.status != "administrator":
+    if user.status != ChatMemberStatus.ADMINISTRATOR:
         if complain_missing_perms:
             await sender(strings("no_admin_error"))
         return False
@@ -182,11 +183,11 @@ def require_admin(
                 )
 
             # We don't actually check private and channel chats.
-            if msg.chat.type == "private":
+            if msg.chat.type == ChatType.PRIVATE:
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
                 return await sender(strings("private_not_allowed"))
-            if msg.chat.type == "channel":
+            if msg.chat.type == ChatType.CHANNEL:
                 return await func(client, message, *args, *kwargs)
             has_perms = await check_perms(
                 message, permissions, complain_missing_perms, strings

@@ -2,6 +2,7 @@
 # Copyright (c) 2018-2022 Amano Team
 
 from pyrogram import Client, filters
+from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -51,7 +52,7 @@ async def cmds_list(c: Client, m: CallbackQuery, strings):
 @Client.on_message(filters.command(["help", "start help"]))
 @use_chat_lang()
 async def show_help(c: Client, m: Message, strings):
-    if m.chat.type == "private":
+    if m.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
                 *gen_categories_kb(strings),

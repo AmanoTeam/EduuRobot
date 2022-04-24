@@ -6,6 +6,6 @@
   "info_username": "\nناوی بەکارهێنەر: @{username}",
   "info_userlink": "\nبەستەر: {link}",
   "info_chat_admin": "ئەم بەکارهێنەرە لەم گروپە <b>بەڕێوەبەرە</b>.",
-  "info_chat_creator": "ئەم بەکارهێنەرە <b>خاوەنی</b> ئەم گروپەیە.",
+  "info_chat_owner": "ئەم بەکارهێنەرە <b>خاوەنی</b> ئەم گروپەیە.",
   "user_not_found": "\nهیچ بەکارهێنەرێک بۆ <code>{user}</code> نەدۆزرایەوە."
 }

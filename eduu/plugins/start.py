@@ -4,6 +4,7 @@
 from typing import Union
 
 from pyrogram import Client, filters
+from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -29,7 +30,7 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
         msg = m
         method = msg.reply_text
 
-    if msg.chat.type == "private":
+    if msg.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
                 [

@@ -73,7 +73,7 @@ async def ids(c: Client, m: Message, strings):
             chat_id=m.chat.id,
             chat_dc=m.chat.dc_id or strings("unknown"),
             chat_type=m.chat.type,
-            message_id=m.message_id + 1,
+            message_id=m.id + 1,
         )
     )
 

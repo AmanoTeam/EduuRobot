@@ -9,6 +9,7 @@ import time
 
 import pyrogram
 from pyrogram import Client, idle
+from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 
 import eduu
@@ -26,13 +27,13 @@ except ImportError:
 
 async def main() -> None:
     client = Client(
-        session_name="bot",
+        name="bot",
         app_version=f"EduuRobot v{eduu.__version__}",
         api_id=API_ID,
         api_hash=API_HASH,
         bot_token=TOKEN,
         workers=24,
-        parse_mode="html",
+        parse_mode=ParseMode.HTML,
         plugins=dict(root="eduu.plugins", exclude=disabled_plugins),
     )
 
