@@ -1,12 +1,12 @@
 {
   "info_description": "獲取有關用戶的信息。",
   "info_header": "<b>用戶信息：</b>",
-  "info_id": "ID：<code>{id}</code>",
-  "info_first_name": "名： {first_name}",
-  "info_last_name": "姓氏：{last_name}",
-  "info_username": "用戶名：@{username}",
-  "info_userlink": "用戶鏈接：{link}",
-  "info_chat_admin": "此用戶在此聊天中擁有“<b>管理員權限</b>”。",
-  "info_chat_owner": "此用戶是此聊天的“<b>所有者</b>”。",
-  "user_not_found": "未找到“<code>{user}</code>”的用戶。"
+  "info_id": "\nID：<code>{id}</code>",
+  "info_first_name": "\n名： {first_name}",
+  "info_last_name": "\n姓氏：{last_name}",
+  "info_username": "\n用戶名：@{username}",
+  "info_userlink": "\n用戶鏈接：{link}",
+  "info_chat_admin": "\n此用戶在此聊天中擁有“<b>管理員權限</b>”。",
+  "info_chat_owner": "\n此用戶是此聊天的“<b>所有者</b>”。",
+  "user_not_found": "\n未找到“<code>{user}</code>”的用戶。"
 }
