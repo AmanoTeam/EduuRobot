@@ -7,5 +7,6 @@
   "info_username": "\nDono do: @{username}",
   "info_userlink": "\nSite: {link}",
   "info_chat_admin": "\nEle pode fazer isso '<b>direitos de administrador</b>' neste hospício.",
+  "info_chat_owner": "\nCuidado Ele É O '<b>ADM</b>' Supremo 😳.",
   "user_not_found": "\nÓia parceiro n achei nenhum menó com esse '<code>{user}</code>'."
 }
