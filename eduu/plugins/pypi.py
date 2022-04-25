@@ -7,7 +7,7 @@ import re
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
@@ -25,7 +25,7 @@ def escape_definition(definition):
     return definition
 
 
-@Client.on_message(filters.command("pypi", prefix))
+@Client.on_message(filters.command("pypi", PREFIXES))
 @use_chat_lang()
 async def pypi(c: Client, m: Message, strings):
     if len(m.command) == 1:

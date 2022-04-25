@@ -7,7 +7,7 @@ from typing import Optional
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.database import db, dbc
 from eduu.utils import commands, require_admin
 from eduu.utils.localization import use_chat_lang
@@ -26,7 +26,7 @@ def toggle_del_service(chat_id: int, mode: Optional[bool]):
     db.commit()
 
 
-@Client.on_message(filters.command("purge", prefix))
+@Client.on_message(filters.command("purge", PREFIXES))
 @require_admin(permissions=["can_delete_messages"], allow_in_private=True)
 @use_chat_lang()
 async def purge(c: Client, m: Message, strings):
@@ -52,7 +52,7 @@ async def purge(c: Client, m: Message, strings):
     await status_message.delete()
 
 
-@Client.on_message(filters.command("cleanservice", prefix))
+@Client.on_message(filters.command("cleanservice", PREFIXES))
 @require_admin(permissions=["can_delete_messages"])
 @use_chat_lang()
 async def delservice(c: Client, m: Message, strings):

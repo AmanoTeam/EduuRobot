@@ -8,12 +8,12 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import BadRequest, UserNotParticipant
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("info", prefix))
+@Client.on_message(filters.command("info", PREFIXES))
 @use_chat_lang()
 async def user_info(c: Client, m: Message, strings):
     if len(m.command) == 2:

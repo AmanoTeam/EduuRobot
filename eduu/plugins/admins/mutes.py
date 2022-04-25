@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import (
     commands,
     get_reason_text,
@@ -13,7 +13,7 @@ from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("mute", prefix))
+@Client.on_message(filters.command("mute", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def mute(c: Client, m: Message, strings):
@@ -38,7 +38,7 @@ async def mute(c: Client, m: Message, strings):
         await m.reply_text(strings("i_cant_mute_admins"))
 
 
-@Client.on_message(filters.command("unmute", prefix))
+@Client.on_message(filters.command("unmute", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(c: Client, m: Message, strings):
@@ -57,7 +57,7 @@ async def unmute(c: Client, m: Message, strings):
         await m.reply_text(text)
 
 
-@Client.on_message(filters.command("tmute", prefix))
+@Client.on_message(filters.command("tmute", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def tmute(c: Client, m: Message, strings):

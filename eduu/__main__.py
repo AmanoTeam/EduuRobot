@@ -13,7 +13,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 
 import eduu
-from eduu.config import API_HASH, API_ID, TOKEN, disabled_plugins, log_chat
+from eduu.config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
 from eduu.utils import del_restarted, get_restarted, shell_exec
 
 try:
@@ -32,9 +32,9 @@ async def main() -> None:
         api_id=API_ID,
         api_hash=API_HASH,
         bot_token=TOKEN,
-        workers=24,
+        workers=WORKERS,
         parse_mode=ParseMode.HTML,
-        plugins=dict(root="eduu.plugins", exclude=disabled_plugins),
+        plugins=dict(root="eduu.plugins", exclude=DISABLED_PLUGINS),
     )
 
     await client.start()
@@ -56,7 +56,7 @@ async def main() -> None:
         )
 
         try:
-            await client.send_message(chat_id=log_chat, text=start_message)
+            await client.send_message(chat_id=LOG_CHAT, text=start_message)
             if wr:
                 await client.edit_message_text(wr[0], wr[1], "Restarted successfully!")
         except BadRequest:

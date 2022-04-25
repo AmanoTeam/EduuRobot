@@ -6,11 +6,11 @@ from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands
 
 
-@Client.on_message(filters.command("ping", prefix))
+@Client.on_message(filters.command("ping", PREFIXES))
 async def ping(c: Client, m: Message):
     first = datetime.now()
     sent = await m.reply_text("<b>Pong!</b>")

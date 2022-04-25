@@ -17,7 +17,7 @@ from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
-from eduu.config import sudoers
+from eduu.config import SUDOERS
 from eduu.database import db, dbc
 from eduu.utils.consts import group_types
 from eduu.utils.localization import (
@@ -200,7 +200,7 @@ def require_admin(
     return decorator
 
 
-sudofilter = filters.user(sudoers)
+sudofilter = filters.user(SUDOERS)
 
 
 async def time_extract(m: Message, t: str) -> int:

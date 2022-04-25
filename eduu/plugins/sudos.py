@@ -21,6 +21,7 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
+from eduu.config import DATABASE_PATH
 from eduu.database import db, dbc
 from eduu.utils import set_restarted, sudofilter
 from eduu.utils.localization import use_chat_lang
@@ -248,7 +249,7 @@ async def del_message(c: Client, m: Message):
     & ~filters.via_bot
 )
 async def backupcmd(c: Client, m: Message):
-    await m.reply_document(os.path.join("eduu", "database", "eduu.db"))
+    await m.reply_document(DATABASE_PATH)
 
 
 @Client.on_message(filters.command("upload", prefix) & sudofilter)

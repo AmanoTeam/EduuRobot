@@ -4,12 +4,12 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("telegraph", prefix))
+@Client.on_message(filters.command("telegraph", PREFIXES))
 @use_chat_lang()
 async def telegraph(c: Client, m: Message, strings):
     if m.reply_to_message:

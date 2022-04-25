@@ -6,7 +6,7 @@ from typing import Optional, Tuple
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.database import db, dbc
 from eduu.utils import commands, get_target_user, require_admin
 from eduu.utils.consts import admin_status
@@ -95,7 +95,7 @@ def set_warns_limit(chat_id, warns_limit):
     db.commit()
 
 
-@Client.on_message(filters.command("warn", prefix) & filters.group)
+@Client.on_message(filters.command("warn", PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
 async def warn_user(c: Client, m: Message, strings):
@@ -145,7 +145,7 @@ async def warn_user(c: Client, m: Message, strings):
         await m.reply_text(strings("warn_cant_admin"))
 
 
-@Client.on_message(filters.command("setwarnslimit", prefix) & filters.group)
+@Client.on_message(filters.command("setwarnslimit", PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members", "can_change_info"])
 @use_chat_lang()
 async def on_set_warns_limit(c: Client, m: Message, strings):
@@ -160,7 +160,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
         await m.reply(strings("warn_limit_changed").format(warn_limit=warns_limit))
 
 
-@Client.on_message(filters.command(["resetwarns", "unwarn"], prefix) & filters.group)
+@Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
 async def unwarn_user(c: Client, m: Message, strings):
@@ -169,7 +169,7 @@ async def unwarn_user(c: Client, m: Message, strings):
     await m.reply_text(strings("warn_reset").format(target_user=target_user.mention))
 
 
-@Client.on_message(filters.command("warns", prefix) & filters.group)
+@Client.on_message(filters.command("warns", PREFIXES) & filters.group)
 @require_admin()
 @use_chat_lang()
 async def get_user_warns_cmd(c: Client, m: Message, strings):
@@ -183,7 +183,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_message(
-    filters.command(["setwarnsaction", "warnsaction"], prefix) & filters.group
+    filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group
 )
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()

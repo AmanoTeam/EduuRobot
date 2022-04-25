@@ -7,12 +7,12 @@ from pyrogram import Client, filters
 from pyrogram.errors.exceptions import BadRequest
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("id", prefix) & filters.private)
+@Client.on_message(filters.command("id", PREFIXES) & filters.private)
 @use_chat_lang()
 async def ids_private(c: Client, m: Message, strings):
     if len(m.command) == 2:
@@ -41,7 +41,7 @@ async def ids_private(c: Client, m: Message, strings):
     )
 
 
-@Client.on_message(filters.command("id", prefix) & filters.group)
+@Client.on_message(filters.command("id", PREFIXES) & filters.group)
 @use_chat_lang()
 async def ids(c: Client, m: Message, strings):
     if len(m.command) == 2:

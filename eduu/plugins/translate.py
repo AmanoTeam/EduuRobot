@@ -12,7 +12,7 @@ from pyrogram.types import (
     Message,
 )
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands
 from eduu.utils.localization import use_chat_lang
 
@@ -59,7 +59,7 @@ def get_tr_lang(text):
     return lang
 
 
-@Client.on_message(filters.command("tr", prefix))
+@Client.on_message(filters.command("tr", PREFIXES))
 @use_chat_lang()
 async def translate(c: Client, m: Message, strings):
     text = m.text[4:]

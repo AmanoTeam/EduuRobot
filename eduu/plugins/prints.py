@@ -5,12 +5,12 @@ from httpx import HTTPError
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("print", prefix))
+@Client.on_message(filters.command("print", PREFIXES))
 @use_chat_lang()
 async def prints(c: Client, message: Message, strings):
     msg = message.text

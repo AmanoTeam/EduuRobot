@@ -7,7 +7,7 @@ from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin, split_quotes
 from eduu.utils.localization import use_chat_lang
@@ -63,7 +63,7 @@ def check_for_notes(chat_id, trigger):
     return False
 
 
-@Client.on_message(filters.command(["note", "savenote"], prefix))
+@Client.on_message(filters.command(["note", "savenote"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
 async def save_note(c: Client, m: Message, strings):
@@ -133,7 +133,7 @@ async def save_note(c: Client, m: Message, strings):
     await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
 
 
-@Client.on_message(filters.command(["delnote", "rmnote"], prefix))
+@Client.on_message(filters.command(["delnote", "rmnote"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang()
 async def delete_note(c: Client, m: Message, strings):
@@ -152,7 +152,7 @@ async def delete_note(c: Client, m: Message, strings):
         )
 
 
-@Client.on_message(filters.command("notes", prefix))
+@Client.on_message(filters.command("notes", PREFIXES))
 @use_chat_lang()
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
@@ -264,7 +264,7 @@ async def note_by_hashtag(c: Client, m: Message):
     (filters.group | filters.private)
     & filters.text
     & filters.incoming
-    & filters.command("get", prefix),
+    & filters.command("get", PREFIXES),
     group=2,
 )
 async def note_by_get_command(c: Client, m: Message):

@@ -10,13 +10,13 @@ from pyrogram.enums import ChatMembersFilter, ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from eduu.config import log_chat, prefix
+from eduu.config import LOG_CHAT, PREFIXES
 from eduu.utils import button_parser, commands, http
 from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("mark", prefix))
+@Client.on_message(filters.command("mark", PREFIXES))
 @use_chat_lang()
 async def mark(c: Client, m: Message, strings):
     if len(m.command) == 1:
@@ -30,7 +30,7 @@ async def mark(c: Client, m: Message, strings):
     )
 
 
-@Client.on_message(filters.command("html", prefix))
+@Client.on_message(filters.command("html", PREFIXES))
 @use_chat_lang()
 async def html(c: Client, m: Message, strings):
     if len(m.command) == 1:
@@ -44,7 +44,7 @@ async def html(c: Client, m: Message, strings):
     )
 
 
-@Client.on_message(filters.command("admins", prefix) & filters.group)
+@Client.on_message(filters.command("admins", PREFIXES) & filters.group)
 @use_chat_lang()
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
@@ -60,7 +60,7 @@ async def mentionadmins(c: Client, m: Message, strings):
 
 
 @Client.on_message(
-    (filters.command("report", prefix) | filters.regex("^@admin"))
+    (filters.command("report", PREFIXES) | filters.regex("^@admin"))
     & filters.group
     & filters.reply
 )
@@ -125,17 +125,17 @@ async def rtcommand(c: Client, m: Message):
         )
 
 
-@Client.on_message(filters.command("urlencode", prefix))
+@Client.on_message(filters.command("urlencode", PREFIXES))
 async def urlencodecmd(c: Client, m: Message):
     await m.reply_text(quote(m.text.split(None, 1)[1]))
 
 
-@Client.on_message(filters.command("urldecode", prefix))
+@Client.on_message(filters.command("urldecode", PREFIXES))
 async def urldecodecmd(c: Client, m: Message):
     await m.reply_text(unquote(m.text.split(None, 1)[1]))
 
 
-@Client.on_message(filters.command("bug", prefix))
+@Client.on_message(filters.command("bug", PREFIXES))
 @use_chat_lang()
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
@@ -148,7 +148,7 @@ async def bug_report_cmd(c: Client, m: Message, strings):
                 f"<code>{escape(m.text.split(None, 1)[1])}</code>"
             )
             await c.send_message(
-                chat_id=log_chat,
+                chat_id=LOG_CHAT,
                 text=bug_report,
                 disable_web_page_preview=True,
             )
@@ -159,7 +159,7 @@ async def bug_report_cmd(c: Client, m: Message, strings):
         await m.reply(strings("err_no_bug_to_report"))
 
 
-@Client.on_message(filters.command("request", prefix))
+@Client.on_message(filters.command("request", PREFIXES))
 async def request_cmd(c: Client, m: Message):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
@@ -196,7 +196,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
         await m.reply_text(strings("parsebtn_err"))
 
 
-@Client.on_message(filters.command("donate", prefix))
+@Client.on_message(filters.command("donate", PREFIXES))
 @use_chat_lang()
 async def donatecmd(c: Client, m: Message, strings):
     await m.reply(strings("donatecmdstring"))

@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import (
     commands,
     get_reason_text,
@@ -13,7 +13,7 @@ from eduu.utils.consts import admin_status
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("ban", prefix))
+@Client.on_message(filters.command("ban", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def ban(c: Client, m: Message, strings):
@@ -36,7 +36,7 @@ async def ban(c: Client, m: Message, strings):
         await m.reply_text(strings("i_cant_ban_admins"))
 
 
-@Client.on_message(filters.command("kick", prefix))
+@Client.on_message(filters.command("kick", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def kick(c: Client, m: Message, strings):
@@ -60,7 +60,7 @@ async def kick(c: Client, m: Message, strings):
         await m.reply_text(strings("i_cant_kick_admins"))
 
 
-@Client.on_message(filters.command("unban", prefix))
+@Client.on_message(filters.command("unban", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def unban(c: Client, m: Message, strings):
@@ -79,7 +79,7 @@ async def unban(c: Client, m: Message, strings):
         await m.reply_text(text)
 
 
-@Client.on_message(filters.command("tban", prefix))
+@Client.on_message(filters.command("tban", PREFIXES))
 @use_chat_lang()
 @require_admin(permissions=["can_restrict_members"])
 async def tban(c: Client, m: Message, strings):

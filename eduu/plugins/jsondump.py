@@ -8,11 +8,11 @@ import json
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands
 
 
-@Client.on_message(filters.command("jsondump", prefix))
+@Client.on_message(filters.command("jsondump", PREFIXES))
 async def jsondump(c: Client, m: Message):
     params = m.text.split()
     # Remove the command and -f flag from list.

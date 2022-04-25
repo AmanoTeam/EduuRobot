@@ -13,7 +13,7 @@ from pyrogram.types import (
 )
 from pytio import Tio, TioRequest
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils.localization import use_chat_lang
 
 tio = Tio()
@@ -23,7 +23,7 @@ langslist = tio.query_languages()
 langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 
-@Client.on_message(filters.command("exec_code", prefix))
+@Client.on_message(filters.command("exec_code", PREFIXES))
 @use_chat_lang()
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]

@@ -6,12 +6,12 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("coub", prefix))
+@Client.on_message(filters.command("coub", PREFIXES))
 @use_chat_lang()
 async def coub(c: Client, m: Message, strings):
     if len(m.command) == 1:

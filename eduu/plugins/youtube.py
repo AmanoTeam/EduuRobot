@@ -14,7 +14,7 @@ from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import aiowrap, http, pretty_size
 from eduu.utils.localization import use_chat_lang
 
@@ -57,7 +57,7 @@ async def search_yt(query):
     return list_videos
 
 
-@Client.on_message(filters.command("yt", prefix))
+@Client.on_message(filters.command("yt", PREFIXES))
 async def yt_search_cmd(c: Client, m: Message):
     vids = [
         '{}: <a href="{}">{}</a>'.format(num + 1, i["url"], i["title"])
@@ -68,7 +68,7 @@ async def yt_search_cmd(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.command("ytdl", prefix))
+@Client.on_message(filters.command("ytdl", PREFIXES))
 @use_chat_lang()
 async def ytdlcmd(c: Client, m: Message, strings):
     user = m.from_user.id

@@ -10,12 +10,12 @@ from pyrogram.types import (
 )
 from yarl import URL
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("ip", prefix))
+@Client.on_message(filters.command("ip", PREFIXES))
 @use_chat_lang()
 async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:

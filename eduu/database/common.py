@@ -3,7 +3,9 @@
 
 import sqlite3
 
-db = sqlite3.connect("eduu/database/eduu.db")
+from eduu.config import DATABASE_PATH
+
+db = sqlite3.connect(DATABASE_PATH)
 dbc = db.cursor()
 
 

@@ -6,7 +6,7 @@ import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import TENOR_API_KEY, prefix
+from eduu.config import PREFIXES, TENOR_API_KEY
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
@@ -16,7 +16,7 @@ if not TENOR_API_KEY:
     )
 
 
-@Client.on_message(filters.command("gif", prefix))
+@Client.on_message(filters.command("gif", PREFIXES))
 @use_chat_lang()
 async def gif(c: Client, m: Message, strings):
     if len(m.command) == 1:

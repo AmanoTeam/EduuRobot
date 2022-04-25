@@ -4,7 +4,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.database import db, dbc
 from eduu.utils import button_parser, commands, require_admin
 from eduu.utils.localization import use_chat_lang
@@ -23,7 +23,7 @@ def set_rules(chat_id, rules):
     db.commit()
 
 
-@Client.on_message(filters.command("setrules", prefix) & filters.group)
+@Client.on_message(filters.command("setrules", PREFIXES) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def settherules(c: Client, m: Message, strings):
@@ -34,7 +34,7 @@ async def settherules(c: Client, m: Message, strings):
         await m.reply_text(strings("rules_set_empty"))
 
 
-@Client.on_message(filters.command("resetrules", prefix) & filters.group)
+@Client.on_message(filters.command("resetrules", PREFIXES) & filters.group)
 @require_admin(permissions=["can_change_info"])
 @use_chat_lang()
 async def delete_rules(c: Client, m: Message, strings):
@@ -42,7 +42,7 @@ async def delete_rules(c: Client, m: Message, strings):
     await m.reply_text(strings("rules_deleted"))
 
 
-@Client.on_message(filters.command("rules", prefix) & filters.group)
+@Client.on_message(filters.command("rules", PREFIXES) & filters.group)
 @use_chat_lang()
 async def show_rules(c: Client, m: Message, strings):
     gettherules = get_rules(m.chat.id)

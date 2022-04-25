@@ -4,12 +4,12 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import prefix
+from eduu.config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(filters.command("cat", prefix))
+@Client.on_message(filters.command("cat", PREFIXES))
 @use_chat_lang()
 async def cat(c: Client, m: Message, strings):
     r = await http.get("https://api.thecatapi.com/v1/images/search")
