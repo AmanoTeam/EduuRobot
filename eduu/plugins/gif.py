@@ -10,9 +10,11 @@ from eduu.config import PREFIXES, TENOR_API_KEY
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
 
+logger = logging.getLogger(__name__)
+
 if not TENOR_API_KEY:
-    logging.warning(
-        f"[{__name__}] You need to fill TENOR_API_KEY in your config file in order to use this plugin."
+    logger.warning(
+        "You need to fill TENOR_API_KEY in your config file in order to use this plugin."
     )
 
 

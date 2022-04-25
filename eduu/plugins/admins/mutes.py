@@ -1,15 +1,13 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2018-2022 Amano Team
+
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from eduu.config import PREFIXES
-from eduu.utils import (
-    commands,
-    get_reason_text,
-    get_target_user,
-    require_admin,
-    time_extract,
-)
+from eduu.utils import commands, get_reason_text, get_target_user, time_extract
 from eduu.utils.consts import admin_status
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 

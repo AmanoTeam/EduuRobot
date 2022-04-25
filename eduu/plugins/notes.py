@@ -8,54 +8,14 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from eduu.config import PREFIXES
-from eduu.database import db, dbc
-from eduu.utils import button_parser, commands, require_admin, split_quotes
+from eduu.database.notes import add_note, get_all_notes, rm_note, update_note
+from eduu.utils import button_parser, commands, split_quotes
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
-dbc.execute(
-    """
-CREATE TABLE IF NOT EXISTS notes(
-    chat_id INTEGER ,
-    note_name,
-    raw_data,
-    file_id,
-    note_type
-)
-    """
-)
 
-
-def add_note(chat_id, trigger, raw_data, file_id, note_type):
-    dbc.execute(
-        "INSERT INTO notes(chat_id, note_name, raw_data, file_id, note_type) VALUES(?, ?, ?, ?, ?)",
-        (chat_id, trigger, raw_data, file_id, note_type),
-    )
-    db.commit()
-
-
-def update_note(chat_id, trigger, raw_data, file_id, note_type):
-    dbc.execute(
-        "UPDATE notes SET raw_data = ?, file_id = ?, note_type = ? WHERE chat_id = ? AND note_name = ?",
-        (raw_data, file_id, note_type, chat_id, trigger),
-    )
-    db.commit()
-
-
-def rm_note(chat_id, trigger):
-    dbc.execute(
-        "DELETE from notes WHERE chat_id = ? AND note_name = ?", (chat_id, trigger)
-    )
-    db.commit()
-
-
-def get_all_notes(chat_id):
-    dbc.execute("SELECT * FROM notes WHERE chat_id = ?", (chat_id,))
-
-    return dbc.fetchall()
-
-
-def check_for_notes(chat_id, trigger):
-    all_notes = get_all_notes(chat_id)
+async def check_for_notes(chat_id, trigger):
+    all_notes = await get_all_notes(chat_id)
     for keywords in all_notes:
         keyword = keywords[1]
         if trigger == keyword:
@@ -125,11 +85,11 @@ async def save_note(c: Client, m: Message, strings):
         note_type = "text"
 
     chat_id = m.chat.id
-    check_note = check_for_notes(chat_id, trigger)
+    check_note = await check_for_notes(chat_id, trigger)
     if check_note:
-        update_note(chat_id, trigger, raw_data, file_id, note_type)
+        await update_note(chat_id, trigger, raw_data, file_id, note_type)
     else:
-        add_note(chat_id, trigger, raw_data, file_id, note_type)
+        await add_note(chat_id, trigger, raw_data, file_id, note_type)
     await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
 
 
@@ -140,9 +100,9 @@ async def delete_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
-    check_note = check_for_notes(chat_id, trigger)
+    check_note = await check_for_notes(chat_id, trigger)
     if check_note:
-        rm_note(chat_id, trigger)
+        await rm_note(chat_id, trigger)
         await m.reply_text(
             strings("remove_note_success").format(trigger=trigger), quote=True
         )
@@ -157,7 +117,7 @@ async def delete_note(c: Client, m: Message, strings):
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id)
     for note_s in all_notes:
         keyword = note_s[1]
         reply_text += f" - {keyword} \n"
@@ -172,7 +132,7 @@ async def serve_note(c: Client, m: Message, txt):
     chat_id = m.chat.id
     text = txt
 
-    all_notes = get_all_notes(chat_id)
+    all_notes = await get_all_notes(chat_id)
     for note_s in all_notes:
         keyword = note_s[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"

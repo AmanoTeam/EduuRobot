@@ -14,12 +14,12 @@ from pyrogram.types import (
 )
 
 from eduu.config import PREFIXES
-from eduu.utils import require_admin
+from eduu.database.localization import set_db_lang
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import (
     default_language,
     get_locale_string,
     langdict,
-    set_db_lang,
     use_chat_lang,
 )
 
@@ -88,7 +88,7 @@ async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
 @use_chat_lang()
 async def set_chat_lang(c: Client, m: CallbackQuery, strings):
     lang = m.data.split()[1]
-    set_db_lang(m.message.chat.id, m.message.chat.type, lang)
+    await set_db_lang(m.message.chat.id, m.message.chat.type, lang)
 
     strings = partial(
         get_locale_string,

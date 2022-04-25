@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2022 Amano Team
 
 import asyncio
-import atexit
 import inspect
 import math
 import os.path
@@ -10,22 +9,14 @@ import re
 import time
 from functools import partial, wraps
 from string import Formatter
-from typing import Callable, List, Optional, Tuple, Union
+from typing import Callable, List, Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
-from pyrogram.enums import ChatMemberStatus, ChatType
+from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import SUDOERS
-from eduu.database import db, dbc
-from eduu.utils.consts import group_types
-from eduu.utils.localization import (
-    default_language,
-    get_lang,
-    get_locale_string,
-    langdict,
-)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
@@ -63,51 +54,6 @@ def aiowrap(func: Callable) -> Callable:
         return await loop.run_in_executor(executor, pfunc)
 
     return run
-
-
-def add_chat(chat_id, chat_type):
-    if chat_type == ChatType.PRIVATE:
-        dbc.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
-        db.commit()
-    elif chat_type in group_types:  # groups and supergroups share the same table
-        dbc.execute(
-            "INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True)
-        )
-        db.commit()
-    elif chat_type == ChatType.CHANNEL:
-        dbc.execute("INSERT INTO channels (chat_id) values (?)", (chat_id,))
-        db.commit()
-    else:
-        raise TypeError("Unknown chat type '%s'." % chat_type)
-    return True
-
-
-def chat_exists(chat_id, chat_type):
-    if chat_type == ChatType.PRIVATE:
-        dbc.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
-    if chat_type in group_types:  # groups and supergroups share the same table
-        dbc.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
-    if chat_type == ChatType.CHANNEL:
-        dbc.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
-        return bool(dbc.fetchone())
-    raise TypeError("Unknown chat type '%s'." % chat_type)
-
-
-def del_restarted():
-    dbc.execute("DELETE FROM was_restarted_at")
-    db.commit()
-
-
-def get_restarted() -> Tuple[int, int]:
-    dbc.execute("SELECT chat_id, message_id FROM was_restarted_at")
-    return dbc.fetchone()
-
-
-def set_restarted(chat_id: int, message_id: int):
-    dbc.execute("INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id))
-    db.commit()
 
 
 async def check_perms(
@@ -151,53 +97,6 @@ async def check_perms(
             strings("no_permission_error").format(permissions=", ".join(missing_perms))
         )
     return False
-
-
-def require_admin(
-    permissions: Union[list, str] = None,
-    allow_in_private: bool = False,
-    complain_missing_perms: bool = True,
-):
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
-        ):
-            lang = get_lang(message)
-            strings = partial(
-                get_locale_string,
-                langdict[lang].get("admins", langdict[default_language]["admins"]),
-                lang,
-                "admins",
-            )
-
-            if isinstance(message, CallbackQuery):
-                sender = partial(message.answer, show_alert=True)
-                msg = message.message
-            elif isinstance(message, Message):
-                sender = message.reply_text
-                msg = message
-            else:
-                raise NotImplementedError(
-                    f"require_admin can't process updates with the type '{message.__name__}' yet."
-                )
-
-            # We don't actually check private and channel chats.
-            if msg.chat.type == ChatType.PRIVATE:
-                if allow_in_private:
-                    return await func(client, message, *args, *kwargs)
-                return await sender(strings("private_not_allowed"))
-            if msg.chat.type == ChatType.CHANNEL:
-                return await func(client, message, *args, *kwargs)
-            has_perms = await check_perms(
-                message, permissions, complain_missing_perms, strings
-            )
-            if has_perms:
-                return await func(client, message, *args, *kwargs)
-
-        return wrapper
-
-    return decorator
 
 
 sudofilter = filters.user(SUDOERS)
@@ -421,6 +320,3 @@ async def shell_exec(code, treat=True):
 def get_format_keys(string: str) -> List[str]:
     """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
-
-
-atexit.register(run_async, http.aclose)

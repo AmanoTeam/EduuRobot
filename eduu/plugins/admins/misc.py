@@ -2,28 +2,15 @@
 # Copyright (c) 2018-2022 Amano Team
 
 import asyncio
-from typing import Optional
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from eduu.config import PREFIXES
-from eduu.database import db, dbc
-from eduu.utils import commands, require_admin
+from eduu.database.admins import check_if_del_service, toggle_del_service
+from eduu.utils import commands
+from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
-
-
-def check_if_del_service(chat_id):
-    dbc.execute("SELECT delservicemsgs FROM groups WHERE chat_id = ?", (chat_id,))
-    res = dbc.fetchone()[0]
-    return res
-
-
-def toggle_del_service(chat_id: int, mode: Optional[bool]):
-    dbc.execute(
-        "UPDATE groups SET delservicemsgs = ? WHERE chat_id = ?", (mode, chat_id)
-    )
-    db.commit()
 
 
 @Client.on_message(filters.command("purge", PREFIXES))
@@ -58,15 +45,15 @@ async def purge(c: Client, m: Message, strings):
 async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
-            toggle_del_service(m.chat.id, True)
+            await toggle_del_service(m.chat.id, True)
             await m.reply_text(strings("cleanservice_enabled"))
         elif m.command[1] == "off":
-            toggle_del_service(m.chat.id, None)
+            await toggle_del_service(m.chat.id, None)
             await m.reply_text(strings("cleanservice_disabled"))
         else:
             await m.reply_text(strings("cleanservice_invalid_arg"))
     else:
-        check_delservice = check_if_del_service(m.chat.id)
+        check_delservice = await check_if_del_service(m.chat.id)
         if check_delservice is None:
             await m.reply_text(strings("cleanservice_status_disabled"))
         elif check_delservice is not None:
@@ -75,7 +62,7 @@ async def delservice(c: Client, m: Message, strings):
 
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
-    get_delservice = check_if_del_service(m.chat.id)
+    get_delservice = await check_if_del_service(m.chat.id)
     getmychatmember = await m.chat.get_member("me")
     if (get_delservice and getmychatmember.can_delete_messages) is True:
         await m.delete()

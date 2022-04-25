@@ -22,11 +22,15 @@ from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
 from eduu.config import DATABASE_PATH
-from eduu.database import db, dbc
-from eduu.utils import set_restarted, sudofilter
+from eduu.database import database
+from eduu.database.restarted import set_restarted
+from eduu.utils import sudofilter
 from eduu.utils.localization import use_chat_lang
+from eduu.utils.utils import shell_exec
 
 prefix: Union[list, str] = "!"
+
+conn = database.get_conn()
 
 
 @Client.on_message(filters.command("sudos", prefix) & sudofilter)
@@ -41,23 +45,12 @@ async def run_cmd(c: Client, m: Message, strings):
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
         res = strings("forbidden_command")
     else:
-        proc = await asyncio.create_subprocess_shell(
-            cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-        )
-        stdout, stderr = await proc.communicate()
+        stdout, stderr = await shell_exec(cmd)
         res = (
-            "<b>Output:</b>\n<code>{}</code>".format(
-                html.escape(stdout.decode().strip())
-            )
+            "<b>Output:</b>\n<code>{}</code>".format(html.escape(stdout))
             if stdout
             else ""
-        ) + (
-            "\n<b>Errors:</b>\n<code>{}</code>".format(
-                html.escape(stderr.decode().strip())
-            )
-            if stderr
-            else ""
-        )
+        ) + ("\n<b>Errors:</b>\n<code>{}</code>".format(stderr) if stderr else "")
     await m.reply_text(res)
 
 
@@ -65,19 +58,14 @@ async def run_cmd(c: Client, m: Message, strings):
 @use_chat_lang()
 async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources...")
-    proc = await asyncio.create_subprocess_shell(
-        "git pull --no-edit",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.STDOUT,
-    )
-    stdout = (await proc.communicate())[0]
+    stdout, proc = await shell_exec("git pull --no-edit")
     if proc.returncode == 0:
-        if "Already up to date." in stdout.decode():
+        if "Already up to date." in stdout:
             await sm.edit_text("There's nothing to upgrade.")
         else:
             await sm.edit_text(strings("restarting"))
-            set_restarted(sm.chat.id, sm.id)
-            db.commit()
+            await set_restarted(sm.chat.id, sm.id)
+            await conn.commit()
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
@@ -93,13 +81,13 @@ async def evals(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     try:
         res = await meval(text, globals(), **locals())
-    except:  # skipcq
+    except BaseException:  # skipcq
         ev = traceback.format_exc()
         await m.reply_text(f"<code>{html.escape(ev)}</code>")
     else:
         try:
             await m.reply_text(f"<code>{html.escape(str(res))}</code>")
-        except Exception as e:  # skipcq
+        except BaseException as e:  # skipcq
             await m.reply_text(str(e))
 
 
@@ -113,7 +101,7 @@ async def execs(c: Client, m: Message):
     with redirect_stdout(strio):
         try:
             await locals()["__ex"](c, m)
-        except:  # skipcq
+        except BaseException:  # skipcq
             return await m.reply_text(html.escape(traceback.format_exc()))
 
     if strio.getvalue().strip():
@@ -154,14 +142,14 @@ async def execsql(c: Client, m: Message):
     command = m.text.split(maxsplit=1)[1]
 
     try:
-        ex = dbc.execute(command)
+        ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
         return await m.reply_text(
             f"SQL executed with an error: {e.__class__.__name__}: {e}"
         )
 
-    ret = ex.fetchall()
-    db.commit()
+    ret = await ex.fetchall()
+    await conn.commit()
 
     if ret:
         res = "|".join([name[0] for name in ex.description]) + "\n"
@@ -185,8 +173,8 @@ async def execsql(c: Client, m: Message):
 @use_chat_lang()
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
-    set_restarted(sent.chat.id, sent.id)
-    db.commit()
+    await set_restarted(sent.chat.id, sent.id)
+    await conn.commit()
     args = [sys.executable, "-m", "eduu"]
     os.execv(sys.executable, args)  # skipcq: BAN-B606
 
@@ -208,37 +196,40 @@ async def leave_chat(c: Client, m: Message):
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
 async def getbotstats(c: Client, m: Message):
-    users_count = dbc.execute("select count() from users")
-    users_count = users_count.fetchone()[0]
-    groups_count = dbc.execute("select count() from groups")
-    groups_count = groups_count.fetchone()[0]
-    filters_count = dbc.execute("select count() from filters")
-    filters_count = filters_count.fetchone()[0]
-    notes_count = dbc.execute("select count() from notes")
-    notes_count = notes_count.fetchone()[0]
+    users_count = await conn.execute("select count() from users")
+    users_count = await users_count.fetchone()
+    groups_count = await conn.execute("select count() from groups")
+    groups_count = await groups_count.fetchone()
+    filters_count = await conn.execute("select count() from filters")
+    filters_count = await filters_count.fetchone()
+    notes_count = await conn.execute("select count() from notes")
+    notes_count = await notes_count.fetchone()
     bot_uptime = round(time.time() - c.start_time)
     bot_uptime = humanfriendly.format_timespan(bot_uptime)
 
     await m.reply_text(
         "<b>Bot statistics:</b>\n\n"
-        f"<b>Users:</b> {users_count}\n"
-        f"<b>Groups:</b> {groups_count}\n"
-        f"<b>Filters:</b> {filters_count}\n"
-        f"<b>Notes:</b> {notes_count}\n\n"
+        f"<b>Users:</b> {users_count[0]}\n"
+        f"<b>Groups:</b> {groups_count[0]}\n"
+        f"<b>Filters:</b> {filters_count[0]}\n"
+        f"<b>Notes:</b> {notes_count[0]}\n\n"
         f"<b>Uptime:</b> {bot_uptime}"
     )
 
 
 @Client.on_message(filters.command("del", prefix) & sudofilter)
 async def del_message(c: Client, m: Message):
+    err = ""
     try:
         await c.delete_messages(m.chat.id, m.reply_to_message.id)
     except RPCError as e:
-        print(e)
+        err += e
     try:
         await c.delete_messages(m.chat.id, m.id)
     except RPCError as e:
-        print(e)
+        err += e
+
+    await m.reply_text(err)
 
 
 @Client.on_message(

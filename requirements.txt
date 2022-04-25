@@ -5,6 +5,9 @@ tgcrypto  # To increase Pyrogram speed
 # To increase general speed and stability. Ignored under Windows
 uvloop>=0.4.0,<0.17.0; platform_system != "Windows"
 
+# Database
+aiosqlite==0.17.0
+
 # Plugins Deps
 gpytranslate==1.4.0
 meval==2.5
