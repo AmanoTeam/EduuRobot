@@ -27,7 +27,7 @@ def require_admin(
         async def wrapper(
             client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
         ):
-            lang = get_lang(message)
+            lang = await get_lang(message)
             strings = partial(
                 get_locale_string,
                 langdict[lang].get("admins", langdict[default_language]["admins"]),
