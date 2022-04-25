@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2022 Amano Team
 
 import logging
-import sys
 import time
 
 import pyrogram
@@ -48,26 +47,25 @@ class Eduu(Client):
             self.me.username,
         )
 
-        if "test" not in sys.argv:
-            from eduu.database.restarted import del_restarted, get_restarted
+        from eduu.database.restarted import del_restarted, get_restarted
 
-            wr = await get_restarted()
-            await del_restarted()
+        wr = await get_restarted()
+        await del_restarted()
 
-            start_message = (
-                "<b>EduuRobot started!</b>\n\n"
-                f"<b>Version:</b> <code>v{eduu.__version__} ({self.version_code})</code>\n"
-                f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
-            )
+        start_message = (
+            "<b>EduuRobot started!</b>\n\n"
+            f"<b>Version:</b> <code>v{eduu.__version__} ({self.version_code})</code>\n"
+            f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
+        )
 
-            try:
-                await self.send_message(chat_id=LOG_CHAT, text=start_message)
-                if wr:
-                    await self.edit_message_text(
-                        wr[0], wr[1], text="Restarted successfully!"
-                    )
-            except BadRequest:
-                logger.warning("Unable to send message to LOG_CHAT.")
+        try:
+            await self.send_message(chat_id=LOG_CHAT, text=start_message)
+            if wr:
+                await self.edit_message_text(
+                    wr[0], wr[1], text="Restarted successfully!"
+                )
+        except BadRequest:
+            logger.warning("Unable to send message to LOG_CHAT.")
 
     async def stop(self):
         await super().stop()

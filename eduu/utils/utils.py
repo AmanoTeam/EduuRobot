@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2022 Amano Team
 
 import asyncio
-import atexit
 import inspect
 import math
 import os.path
@@ -14,7 +13,7 @@ from typing import Callable, List, Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
-from pyrogram.enums import ChatMemberStatus, ChatType
+from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from eduu.config import SUDOERS
@@ -321,6 +320,3 @@ async def shell_exec(code, treat=True):
 def get_format_keys(string: str) -> List[str]:
     """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
-
-
-atexit.register(run_async, http.aclose)

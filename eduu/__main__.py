@@ -4,11 +4,13 @@
 import asyncio
 import logging
 import platform
+import sys
 
-from httpx import AsyncClient
+from pyrogram import idle
 
 from eduu.bot import Eduu
 from eduu.database import database
+from eduu.utils import http
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,21 +33,35 @@ except ImportError:
         logger.warning("uvloop is not installed and therefore will be disabled.")
 
 
-if __name__ == "__main__":
-    # open new asyncio event loop
-    event_policy = asyncio.get_event_loop_policy()
-    event_loop = event_policy.new_event_loop()
+async def main():
+    eduu = Eduu()
+
     try:
         # start the bot
-        event_loop.run_until_complete(database.connect())
-        Eduu().run()
+        await database.connect()
+        await eduu.start()
+
+        if "test" not in sys.argv:
+            await idle()
     except KeyboardInterrupt:
         # exit gracefully
         logger.warning("Forced stop... Bye!")
     finally:
         # close https connections and the DB if open
-        event_loop.run_until_complete(AsyncClient().aclose())
+        await eduu.stop()
+        await http.aclose()
         if database.is_connected:
-            event_loop.run_until_complete(database.close())
-        # close asyncio event loop
-        event_loop.close()
+            await database.close()
+
+
+if __name__ == "__main__":
+    # open new asyncio event loop
+    event_policy = asyncio.get_event_loop_policy()
+    event_loop = event_policy.new_event_loop()
+    asyncio.set_event_loop(event_loop)
+
+    # start the bot
+    event_loop.run_until_complete(main())
+
+    # close asyncio event loop
+    event_loop.close()
