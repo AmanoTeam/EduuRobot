@@ -7,6 +7,7 @@ import tempfile
 
 from PIL import Image
 from pyrogram import Client, filters
+from pyrogram.enums import MessageEntityType
 from pyrogram.errors import PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
@@ -82,7 +83,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         img_url = None
         filename = "sticker.png"
         for y in m.entities:
-            if y.type == "url":
+            if y.type == MessageEntityType.URL:
                 img_url = m.text[y.offset : (y.offset + y.length)]
                 break
         if not img_url:
