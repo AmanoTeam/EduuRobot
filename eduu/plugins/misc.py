@@ -51,7 +51,7 @@ async def mentionadmins(c: Client, m: Message, strings):
     async for i in m.chat.get_members(
         m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
     ):
-        if not (i.user.is_deleted or i.is_anonymous):
+        if not (i.user.is_deleted or i.privileges.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
         m.chat.id,
@@ -71,7 +71,9 @@ async def reportadmins(c: Client, m: Message, strings):
         if check_admin.status not in admin_status:
             mention = ""
             async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
-                if not (i.user.is_deleted or i.is_anonymous or i.user.is_bot):
+                if not (
+                    i.user.is_deleted or i.privileges.is_anonymous or i.user.is_bot
+                ):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
             await m.reply_to_message.reply_text(
                 strings("report_admns").format(

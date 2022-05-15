@@ -63,11 +63,13 @@ async def delservice(c: Client, m: Message, strings):
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
     get_delservice = await check_if_del_service(m.chat.id)
-    getmychatmember = await m.chat.get_member("me")
-    if (get_delservice and getmychatmember.can_delete_messages) is True:
+    if not get_delservice:
+        return
+
+    self_member = await m.chat.get_member("me")
+
+    if self_member.privileges and self_member.privileges.can_delete_messages:
         await m.delete()
-    else:
-        pass
 
 
 commands.add_command("cleanservice", "admin")
