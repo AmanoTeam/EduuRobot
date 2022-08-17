@@ -5,7 +5,7 @@ import logging
 import time
 
 import pyrogram
-from pyrogram import Client, __version__
+from pyrogram import Client
 from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.raw.all import layer
@@ -40,7 +40,7 @@ class Eduu(Client):
 
         logger.info(
             "Eduu running with Pyrogram v%s (Layer %s) started on @%s. Hi!",
-            __version__,
+            pyrogram.__version__,
             layer,
             self.me.username,
         )
