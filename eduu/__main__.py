@@ -8,9 +8,9 @@ import sys
 
 from pyrogram import idle
 
-from eduu.bot import Eduu
-from eduu.database import database
-from eduu.utils import http
+from .bot import Eduu
+from .database import database
+from .utils import http
 
 logging.basicConfig(
     level=logging.INFO,

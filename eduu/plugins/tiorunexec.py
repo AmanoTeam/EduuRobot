@@ -13,8 +13,8 @@ from pyrogram.types import (
 )
 from pytio import Tio, TioRequest
 
-from eduu.config import PREFIXES
-from eduu.utils.localization import use_chat_lang
+from ..config import PREFIXES
+from ..utils.localization import use_chat_lang
 
 tio = Tio()
 

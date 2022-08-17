@@ -4,9 +4,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import PREFIXES
-from eduu.utils import http
-from eduu.utils.localization import use_chat_lang
+from ..config import PREFIXES
+from ..utils import http
+from ..utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("telegraph", PREFIXES))

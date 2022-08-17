@@ -12,10 +12,10 @@ from pyrogram.types import (
     Message,
 )
 
-import eduu
-from eduu.config import PREFIXES
-from eduu.utils import commands
-from eduu.utils.localization import use_chat_lang
+from .. import __version__, __version_code__
+from ..config import PREFIXES
+from ..utils import commands
+from ..utils.localization import use_chat_lang
 
 
 # Using a low priority group so deeplinks will run before this and stop the propagation.
@@ -69,7 +69,8 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
 @use_chat_lang()
 async def infos(c: Client, m: CallbackQuery, strings):
     res = strings("info_page").format(
-        version=eduu.__version__, version_code=c.version_code
+        version=__version__,
+        version_code=__version_code__,
     )
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[

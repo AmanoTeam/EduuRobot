@@ -16,7 +16,7 @@ from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
-from eduu.config import SUDOERS
+from ..config import SUDOERS
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 

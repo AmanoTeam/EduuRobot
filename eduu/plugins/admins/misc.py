@@ -6,11 +6,11 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from eduu.config import PREFIXES
-from eduu.database.admins import check_if_del_service, toggle_del_service
-from eduu.utils import commands
-from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from ...config import PREFIXES
+from ...database.admins import check_if_del_service, toggle_del_service
+from ...utils import commands
+from ...utils.decorators import require_admin
+from ...utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("purge", PREFIXES))

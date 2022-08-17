@@ -14,9 +14,9 @@ from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
-from eduu.config import PREFIXES
-from eduu.utils import aiowrap, http, pretty_size
-from eduu.utils.localization import use_chat_lang
+from ..config import PREFIXES
+from ..utils import aiowrap, http, pretty_size
+from ..utils.localization import use_chat_lang
 
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"

@@ -5,7 +5,7 @@ import logging
 
 import aiosqlite
 
-from eduu.config import DATABASE_PATH
+from ..config import DATABASE_PATH
 
 logger = logging.getLogger(__name__)
 

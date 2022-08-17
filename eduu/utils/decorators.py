@@ -8,13 +8,8 @@ from pyrogram import Client
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, Message
 
-from eduu.utils.localization import (
-    default_language,
-    get_lang,
-    get_locale_string,
-    langdict,
-)
-from eduu.utils.utils import check_perms
+from ..utils.localization import default_language, get_lang, get_locale_string, langdict
+from ..utils.utils import check_perms
 
 
 def require_admin(

@@ -4,11 +4,11 @@
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
-from eduu.config import PREFIXES
-from eduu.utils import commands, get_reason_text, get_target_user, time_extract
-from eduu.utils.consts import admin_status
-from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from ...config import PREFIXES
+from ...utils import commands, get_reason_text, get_target_user, time_extract
+from ...utils.consts import admin_status
+from ...utils.decorators import require_admin
+from ...utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("mute", PREFIXES))
