@@ -70,7 +70,7 @@ async def upgrade(c: Client, m: Message, strings):
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
         await sm.edit_text(
-            f"Upgrade failed (process exited with {proc.returncode}):\n{stdout.decode()}"
+            f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}"
         )
         proc = await asyncio.create_subprocess_shell("git merge --abort")
         await proc.communicate()

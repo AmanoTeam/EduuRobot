@@ -306,14 +306,12 @@ EMOJI_PATTERN = get_emoji_regex()
 
 
 # Thank github.com/usernein for shell_exec
-async def shell_exec(code, treat=True):
+async def shell_exec(code):
     process = await asyncio.create_subprocess_shell(
         code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
     )
 
-    stdout = (await process.communicate())[0]
-    if treat:
-        stdout = stdout.decode().strip()
+    stdout = (await process.communicate())[0].decode().strip()
     return stdout, process
 
 
