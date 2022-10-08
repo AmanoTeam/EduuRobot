@@ -38,7 +38,7 @@ def limitLength(title):
 
 @Client.on_message(filters.command("reddit", PREFIXES))
 @use_chat_lang()
-async def reddit(m: Message, strings):
+async def reddit(c: Client, m: Message, strings):
     text_command = m.text.split(" ", 1)
     if text_command.__len__() > 1:
         subreddit = text_command[1]
