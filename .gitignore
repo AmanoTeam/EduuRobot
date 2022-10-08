@@ -21,6 +21,8 @@ eduu/*.session*
 
 # Database
 eduu/database/*.db
+eduu/database/*.db-shm
+eduu/database/*.db-wal
 
 # Bot personal config file
 eduu/config.ini

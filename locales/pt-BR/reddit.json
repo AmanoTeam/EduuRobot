@@ -1,0 +1,7 @@
+{
+  "reddit_description": "Veja os últimos posts do seu Subreddit preferido",
+  "reddit_not_found": "Subreddit não encontrado",
+  "reddit_error": "Não foi possível obter os posts do Subreddit",
+  "command_not_found": "Comando incorreto. Use <code>/reddit subreddit</code> para obter os últimos posts",
+  "reddit_comment": "Comentário(s) : {0}"
+}

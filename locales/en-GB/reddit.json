@@ -1,0 +1,7 @@
+{
+  "reddit_description": "See the latest posts from your favorite Subreddit",
+  "reddit_not_found": "Subreddit not found",
+  "reddit_error": "Error loading Subreddit",
+  "command_not_found": "Command incorrect, use <code>/reddit subreddit</code> to get the latest posts",
+  "reddit_comment": "Comment {0}"
+}
