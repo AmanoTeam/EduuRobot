@@ -1,9 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2022 Amano Team
 
-from datetime import datetime
-from re import TEMPLATE
-
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.enums import ParseMode
@@ -41,7 +38,7 @@ def limitLength(title):
 
 @Client.on_message(filters.command("reddit", PREFIXES))
 @use_chat_lang()
-async def reddit(c: Client, m: Message, strings):
+async def reddit(m: Message, strings):
     text_command = m.text.split(" ", 1)
     if text_command.__len__() > 1:
         subreddit = text_command[1]
@@ -73,7 +70,7 @@ async def reddit(c: Client, m: Message, strings):
                     feed=feed
                 )
                 await m.reply_text(post_formatted, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
-            elif response.status_code == 404 or response.status_code == 403:
+            elif response.status_code in (404, 403):
                 await m.reply_text(strings("reddit_not_found"))
             else:
                 await m.reply_text(strings("reddit_error"))
