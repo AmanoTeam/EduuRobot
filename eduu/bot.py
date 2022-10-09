@@ -35,7 +35,6 @@ class Eduu(Client):
     async def start(self):
         await super().start()
 
-        self.me = await self.get_me()
         self.start_time = time.time()
 
         logger.info(
