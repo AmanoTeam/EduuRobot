@@ -42,7 +42,7 @@ def pretty_size(size_bytes):
     i = int(math.floor(math.log(size_bytes, 1024)))
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
-    return "%s %s" % (s, size_name[i])
+    return f"{s} {size_name[i]}"
 
 
 def aiowrap(func: Callable) -> Callable:
@@ -73,8 +73,6 @@ async def check_perms(
     if user.status == ChatMemberStatus.OWNER:
         return True
 
-    missing_perms = []
-
     # No permissions specified, accept being an admin.
     if not permissions and user.status == ChatMemberStatus.ADMINISTRATOR:
         return True
@@ -86,9 +84,11 @@ async def check_perms(
     if isinstance(permissions, str):
         permissions = [permissions]
 
-    for permission in permissions:
-        if not getattr(user.privileges, permission):
-            missing_perms.append(permission)
+    missing_perms = [
+        permission
+        for permission in permissions
+        if not getattr(user.privileges, permission)
+    ]
 
     if not missing_perms:
         return True
@@ -124,41 +124,39 @@ async def time_extract(m: Message, t: str) -> Optional[datetime]:
 
 
 def remove_escapes(text: str) -> str:
-    counter = 0
     res = ""
     is_escaped = False
-    while counter < len(text):
+    for char in text:
         if is_escaped:
-            res += text[counter]
+            res += char
             is_escaped = False
-        elif text[counter] == "\\":
+        elif char == "\\":
             is_escaped = True
         else:
-            res += text[counter]
-        counter += 1
+            res += char
     return res
 
 
 def split_quotes(text: str) -> List:
-    if any(text.startswith(char) for char in START_CHAR):
-        counter = 1  # ignore first char -> is some kind of quote
-        while counter < len(text):
-            if text[counter] == "\\":
-                counter += 1
-            elif text[counter] == text[0] or (
-                text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
-            ):
-                break
+    if not any(text.startswith(char) for char in START_CHAR):
+        return text.split(None, 1)
+    counter = 1  # ignore first char -> is some kind of quote
+    while counter < len(text):
+        if text[counter] == "\\":
             counter += 1
-        else:
-            return text.split(None, 1)
+        elif text[counter] == text[0] or (
+            text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
+        ):
+            break
+        counter += 1
+    else:
+        return text.split(None, 1)
 
-        key = remove_escapes(text[1:counter].strip())
-        rest = text[counter + 1 :].strip()
-        if not key:
-            key = text[0] + text[0]
-        return list(filter(None, [key, rest]))
-    return text.split(None, 1)
+    key = remove_escapes(text[1:counter].strip())
+    rest = text[counter + 1 :].strip()
+    if not key:
+        key = text[0] + text[0]
+    return list(filter(None, [key, rest]))
 
 
 def button_parser(markdown_note):
@@ -223,7 +221,7 @@ class BotCommands:
                 0
             ]  # eduu/plugins/<context>.py
         if description_key is None:
-            description_key = command + "_description"
+            description_key = f"{command}_description"
         if self.commands.get(category) is None:
             self.commands[category] = []
         self.commands[category].append(
@@ -277,29 +275,26 @@ def get_emoji_regex():
 
 async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
-        target_user = m.reply_to_message.from_user
-    else:
-        msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
-        target_user = await c.get_users(
-            msg_entities.user.id
-            if msg_entities.type == MessageEntityType.TEXT_MENTION
-            else int(m.command[1])
-            if m.command[1].isdecimal()
-            else m.command[1]
-        )
-    return target_user
+        return m.reply_to_message.from_user
+    msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
+    return await c.get_users(
+        msg_entities.user.id
+        if msg_entities.type == MessageEntityType.TEXT_MENTION
+        else int(m.command[1])
+        if m.command[1].isdecimal()
+        else m.command[1]
+    )
 
 
 async def get_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
     if not reply and len(spilt_text()) >= 3:
-        reason = spilt_text(None, 2)[2]
+        return spilt_text(None, 2)[2]
     elif reply and len(spilt_text()) >= 2:
-        reason = spilt_text(None, 1)[1]
+        return spilt_text(None, 1)[1]
     else:
-        reason = None
-    return reason
+        return None
 
 
 EMOJI_PATTERN = get_emoji_regex()

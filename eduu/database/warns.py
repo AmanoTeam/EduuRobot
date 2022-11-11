@@ -42,13 +42,13 @@ async def add_warns(chat_id, user_id, number):
             "UPDATE user_warns SET count = count + ? WHERE chat_id = ? AND user_id = ?",
             (number, chat_id, user_id),
         )
-        await conn.commit()
     else:
         await conn.execute(
             "INSERT INTO user_warns (user_id, chat_id, count) VALUES (?,?,?)",
             (user_id, chat_id, number),
         )
-        await conn.commit()
+
+    await conn.commit()
 
 
 async def reset_warns(chat_id, user_id):

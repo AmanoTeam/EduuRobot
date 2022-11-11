@@ -38,15 +38,19 @@ async def kang_sticker(c: Client, m: Message, strings):
     reply = m.reply_to_message
     user = await c.resolve_peer(m.from_user.username or m.from_user.id)
     if reply and reply.media:
-        if reply.photo:
+        if (
+            not reply.photo
+            and reply.document
+            and "image" in reply.document.mime_type
+            or reply.photo
+        ):
+            # mime_type: image/webp
             resize = True
+        elif reply.document and "tgsticker" in reply.document.mime_type:
+            # mime_type: application/x-tgsticker
+            animated = True
         elif reply.document:
-            if "image" in reply.document.mime_type:
-                # mime_type: image/webp
-                resize = True
-            elif "tgsticker" in reply.document.mime_type:
-                # mime_type: application/x-tgsticker
-                animated = True
+            pass
         elif reply.sticker:
             if not reply.sticker.file_name:
                 return await prog_msg.edit_text(strings("err_sticker_no_file_name"))
@@ -60,17 +64,16 @@ async def kang_sticker(c: Client, m: Message, strings):
         pack_prefix = "anim" if animated else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
+        if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
+            # provide pack number to kang in desired pack
+            packnum = m.command.pop(1)
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{bot_username}"
         if len(m.command) > 1:
-            if m.command[1].isdigit() and int(m.command[1]) > 0:
-                # provide pack number to kang in desired pack
-                packnum = m.command.pop(1)
-                packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{bot_username}"
-            if len(m.command) > 1:
-                # matches all valid emojis in input
-                sticker_emoji = (
-                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
-                    or sticker_emoji
-                )
+            # matches all valid emojis in input
+            sticker_emoji = (
+                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
+                or sticker_emoji
+            )
         filename = await c.download_media(m.reply_to_message)
         if not filename:
             # Failed to download
@@ -79,13 +82,16 @@ async def kang_sticker(c: Client, m: Message, strings):
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
-        # searching if image_url is given
-        img_url = None
         filename = "sticker.png"
-        for y in m.entities:
-            if y.type == MessageEntityType.URL:
-                img_url = m.text[y.offset : (y.offset + y.length)]
-                break
+        img_url = next(
+            (
+                m.text[y.offset : (y.offset + y.length)]
+                for y in m.entities
+                if y.type == MessageEntityType.URL
+            ),
+            None,
+        )
+
         if not img_url:
             await prog_msg.delete()
             return
@@ -162,10 +168,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         else:
             await prog_msg.edit_text(strings("create_new_pack_string"))
             u_name = m.from_user.username
-            if u_name:
-                u_name = f"@{u_name}"
-            else:
-                u_name = str(m.from_user.id)
+            u_name = f"@{u_name}" if u_name else str(m.from_user.id)
             stkr_title = f"{u_name}'s "
             if animated:
                 stkr_title += "Anim. "
@@ -261,7 +264,7 @@ async def getstickeraspng(c: Client, m: Message, strings):
     if sticker:
         if sticker.is_animated:
             await m.reply_text(strings("animated_not_supported"))
-        elif not sticker.is_animated:
+        else:
             with tempfile.TemporaryDirectory() as tempdir:
                 path = os.path.join(tempdir, "getsticker")
             sticker_file = await c.download_media(

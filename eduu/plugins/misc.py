@@ -165,20 +165,15 @@ async def bug_report_cmd(c: Client, m: Message, strings):
 async def request_cmd(c: Client, m: Message):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
-        if re.match(r"^(https?)://", text):
-            url = text
-        else:
-            url = "http://" + text
+        url = text if re.match(r"^(https?)://", text) else f"http://{text}"
         req = await http.get(url)
-        headers = "<b>{}</b> <code>{} {}</code>\n".format(
-            req.extensions.get("http_version").decode(),
-            req.status_code,
-            req.extensions.get("reason_phrase", b"").decode(),
-        )
+        headers = f'<b>{req.extensions.get("http_version").decode()}</b> <code>{req.status_code} {req.extensions.get("reason_phrase", b"").decode()}</code>\n'
+
         headers += "\n".join(
-            "<b>{}:</b> <code>{}</code>".format(x.title(), escape(req.headers[x]))
+            f"<b>{x.title()}:</b> <code>{escape(req.headers[x])}</code>"
             for x in req.headers
         )
+
         await m.reply_text(f"<b>Headers:</b>\n{headers}")
     else:
         await m.reply_text(

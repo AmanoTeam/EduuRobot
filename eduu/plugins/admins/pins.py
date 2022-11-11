@@ -38,8 +38,6 @@ async def acp_action(c: Client, m: Message):
     getmychatmember = await m.chat.get_member("me")
     if (get_acp and getmychatmember.can_pin_messages) is True:
         await m.unpin()
-    else:
-        pass
 
 
 @Client.on_message(filters.command("pin", PREFIXES))

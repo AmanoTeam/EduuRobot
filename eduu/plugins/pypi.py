@@ -14,8 +14,7 @@ from ..utils.localization import use_chat_lang
 
 def cleanhtml(raw_html):
     cleanr = re.compile("<.*?>")
-    cleantext = re.sub(cleanr, "", raw_html)
-    return cleantext
+    return re.sub(cleanr, "", raw_html)
 
 
 def escape_definition(definition):

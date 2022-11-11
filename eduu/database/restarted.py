@@ -15,8 +15,7 @@ async def del_restarted():
 
 async def get_restarted() -> Tuple[int, int]:
     cursor = await conn.execute("SELECT chat_id, message_id FROM was_restarted_at")
-    row = await cursor.fetchone()
-    return row
+    return await cursor.fetchone()
 
 
 async def set_restarted(chat_id: int, message_id: int):

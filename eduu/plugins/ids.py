@@ -30,7 +30,7 @@ async def ids_private(c: Client, m: Message, strings):
         strings("info_private").format(
             first_name=user_data.first_name,
             last_name=user_data.last_name or "",
-            username="@" + user_data.username
+            username=f"@{user_data.username}"
             if user_data.username
             else strings("none"),
             user_id=user_data.id,
@@ -62,14 +62,14 @@ async def ids(c: Client, m: Message, strings):
         strings("info_group").format(
             first_name=html.escape(user_data.first_name),
             last_name=html.escape(user_data.last_name or ""),
-            username="@" + user_data.username
+            username=f"@{user_data.username}"
             if user_data.username
             else strings("none"),
             user_id=user_data.id,
             user_dc=user_data.dc_id or strings("unknown"),
             lang=user_data.language_code or strings("unknown"),
             chat_title=m.chat.title,
-            chat_username="@" + m.chat.username if m.chat.username else strings("none"),
+            chat_username=f"@{m.chat.username}" if m.chat.username else strings("none"),
             chat_id=m.chat.id,
             chat_dc=m.chat.dc_id or strings("unknown"),
             chat_type=m.chat.type,

@@ -18,11 +18,9 @@ async def sed(c: Client, m: Message, strings):
     replace_with = exp[2].replace(r"\/", "/")
     flags = exp[3] if len(exp) > 3 else ""
 
-    count = 1
     rflags = 0
 
-    if "g" in flags:
-        count = 0
+    count = 0 if "g" in flags else 1
     if "i" in flags and "s" in flags:
         rflags = regex.I | regex.S
     elif "i" in flags:

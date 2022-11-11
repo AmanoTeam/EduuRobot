@@ -31,5 +31,4 @@ async def rm_note(chat_id, trigger):
 
 async def get_all_notes(chat_id):
     cursor = await conn.execute("SELECT * FROM notes WHERE chat_id = ?", (chat_id,))
-    row = await cursor.fetchall()
-    return row
+    return await cursor.fetchall()

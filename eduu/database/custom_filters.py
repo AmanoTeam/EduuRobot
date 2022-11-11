@@ -31,5 +31,4 @@ async def rm_filter(chat_id, trigger):
 
 async def get_all_filters(chat_id):
     cursor = await conn.execute("SELECT * FROM filters WHERE chat_id = ?", (chat_id,))
-    row = await cursor.fetchall()
-    return row
+    return await cursor.fetchall()

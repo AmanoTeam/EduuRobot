@@ -19,15 +19,17 @@ def gen_categories_kb(strings_manager):
     kb = []
     while categories:
         name = strings_manager(categories[0], context="cmds_list")
-        a = [InlineKeyboardButton(name, callback_data="view_category " + categories[0])]
+        a = [InlineKeyboardButton(name, callback_data=f"view_category {categories[0]}")]
+
         categories.pop(0)
         if categories:
             name = strings_manager(categories[0], context="cmds_list")
             a.append(
                 InlineKeyboardButton(
-                    name, callback_data="view_category " + categories[0]
+                    name, callback_data=f"view_category {categories[0]}"
                 )
             )
+
             categories.pop(0)
         kb.append(a)
     return kb

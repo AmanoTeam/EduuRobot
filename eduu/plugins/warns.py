@@ -24,12 +24,11 @@ async def get_warn_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
     if not reply and len(spilt_text()) >= 3:
-        warn_reason = spilt_text(None, 2)[2]
+        return spilt_text(None, 2)[2]
     elif reply and len(spilt_text()) >= 2:
-        warn_reason = spilt_text(None, 1)[1]
+        return spilt_text(None, 1)[1]
     else:
-        warn_reason = None
-    return warn_reason
+        return None
 
 
 @Client.on_message(filters.command("warn", PREFIXES) & filters.group)
@@ -126,7 +125,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 @use_chat_lang()
 async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
-        if not m.command[1] in ("ban", "mute", "kick"):
+        if m.command[1] not in ("ban", "mute", "kick"):
             return await m.reply_text(strings("warns_action_set_invlaid"))
 
         warn_action_txt = m.command[1]

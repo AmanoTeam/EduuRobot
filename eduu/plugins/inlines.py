@@ -58,13 +58,13 @@ faces_list: Iterable[str] = (
 
 @Client.on_inline_query(filters.regex(r"^face"))
 async def faces_inline(c: Client, q: InlineQuery):
-    results: List[InlineQueryResultArticle] = []
-    for i in faces_list:
-        results.append(
-            InlineQueryResultArticle(
-                title=i, input_message_content=InputTextMessageContent(i)
-            )
+    results: List[InlineQueryResultArticle] = [
+        InlineQueryResultArticle(
+            title=i, input_message_content=InputTextMessageContent(i)
         )
+        for i in faces_list
+    ]
+
     await q.answer(results)
 
 

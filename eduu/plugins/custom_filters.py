@@ -162,52 +162,57 @@ async def serve_filter(c: Client, m: Message):
                 await targeted_message.reply_photo(
                     filter_s[3],
                     quote=True,
-                    caption=data if not None else None,
+                    caption=data,
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
                 )
+
             elif filter_s[4] == "document":
                 await targeted_message.reply_document(
                     filter_s[3],
                     quote=True,
-                    caption=data if not None else None,
+                    caption=data,
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
                 )
+
             elif filter_s[4] == "video":
                 await targeted_message.reply_video(
                     filter_s[3],
                     quote=True,
-                    caption=data if not None else None,
+                    caption=data,
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
                 )
+
             elif filter_s[4] == "audio":
                 await targeted_message.reply_audio(
                     filter_s[3],
                     quote=True,
-                    caption=data if not None else None,
+                    caption=data,
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
                 )
+
             elif filter_s[4] == "animation":
                 await targeted_message.reply_animation(
                     filter_s[3],
                     quote=True,
-                    caption=data if not None else None,
+                    caption=data,
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
                 )
+
             elif filter_s[4] == "sticker":
                 await targeted_message.reply_sticker(
                     filter_s[3],

@@ -12,8 +12,7 @@ async def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
     cursor = await conn.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
     )
-    row = await cursor.fetchone()
-    return row
+    return await cursor.fetchone()
 
 
 async def set_welcome(chat_id: int, welcome: Optional[str]):

@@ -56,7 +56,7 @@ async def delservice(c: Client, m: Message, strings):
         check_delservice = await check_if_del_service(m.chat.id)
         if check_delservice is None:
             await m.reply_text(strings("cleanservice_status_disabled"))
-        elif check_delservice is not None:
+        else:
             await m.reply_text(strings("cleanservice_status_enabled"))
 
 

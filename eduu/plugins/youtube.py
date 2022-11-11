@@ -60,9 +60,10 @@ async def search_yt(query):
 @Client.on_message(filters.command("yt", PREFIXES))
 async def yt_search_cmd(c: Client, m: Message):
     vids = [
-        '{}: <a href="{}">{}</a>'.format(num + 1, i["url"], i["title"])
+        f'{num + 1}: <a href="{i["url"]}">{i["title"]}</a>'
         for num, i in enumerate(await search_yt(m.text.split(None, 1)[1]))
     ]
+
     await m.reply_text(
         "\n".join(vids) if vids else r"¯\_(ツ)_/¯", disable_web_page_preview=True
     )
@@ -94,7 +95,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
     if match:
         yt = await extract_info(ydl, match.group(), download=False)
     else:
-        yt = await extract_info(ydl, "ytsearch:" + url, download=False)
+        yt = await extract_info(ydl, f"ytsearch:{url}", download=False)
         yt = yt["entries"][0]
 
     for f in yt["formats"]:
@@ -133,7 +134,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 @use_chat_lang()
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
-    if not cq.from_user.id == int(userid):
+    if cq.from_user.id != int(userid):
         return await cq.answer(strings("ytdl_button_denied"), cache_time=60)
     if int(fsize) > MAX_FILESIZE:
         return await cq.answer(
@@ -142,15 +143,12 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
             cache_time=60,
         )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
-    url = "https://www.youtube.com/watch?v=" + vid
+    url = f"https://www.youtube.com/watch?v={vid}"
     await cq.message.edit(strings("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
 
-    ttemp = ""
-    if int(temp):
-        ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | "
-
+    ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
     if "vid" in data:
         ydl = YoutubeDL(
             {
