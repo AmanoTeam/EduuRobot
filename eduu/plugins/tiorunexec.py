@@ -23,7 +23,7 @@ langslist = tio.query_languages()
 langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 
-@Client.on_message(filters.command("exec_code", PREFIXES))
+@Client.on_message(filters.command(["run", "exec_code"], PREFIXES))
 @use_chat_lang()
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
