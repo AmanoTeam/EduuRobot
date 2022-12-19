@@ -109,9 +109,9 @@ async def screenshot_page(target_url: str) -> str:
         )
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
-        raise "Screenshot API returned an invalid response." from e
+        raise Exception("Screenshot API returned an invalid response.") from e
     except (KeyError, HTTPError) as e:
-        raise "Screenshot API seems offline. Try again later." from e
+        raise Exception("Screenshot API seems offline. Try again later.") from e
 
 
 commands.add_command("print", "tools")
