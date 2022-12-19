@@ -67,14 +67,14 @@ async def prints(c: Client, m: Message, strings):
     if response:
         try:
             await m.reply_photo(response)
-            await sent.delete()
-        except BaseException:
-            # if failed to send the message, it's not API's
-            # fault.
+        except BaseException as e:
+            # if failed to send the message, it's not API's fault.
             # most probably there are some other kind of problem,
             # for example it failed to delete its message.
             # or the bot doesn't have access to send media in the chat.
-            return
+            await sent.edit_text(f"Failed to send the screenshot due to: {str(e)}")
+        else:
+            await sent.delete()
     else:
         await m.reply_text(
             "Couldn't get url value, most probably API is not accessible."
@@ -110,7 +110,7 @@ async def screenshot_page(target_url: str) -> str:
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
         raise Exception("Screenshot API returned an invalid response.") from e
-    except (KeyError, HTTPError) as e:
+    except (HTTPError) as e:
         raise Exception("Screenshot API seems offline. Try again later.") from e
 
 
