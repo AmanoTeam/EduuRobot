@@ -21,20 +21,30 @@ async def prints(c: Client, m: Message, strings):
     # If there is no URL, try to get an URL from the replied message.
     # If there is no URL in the replied message, fail.
 
-    for entity in m.entities:
+    for entity in m.entities or m.caption_entities:
         if entity.type == MessageEntityType.URL:
-            target_url = m.text[entity.offset : entity.offset + entity.length]
+            if m.text:
+                target_url = m.text[entity.offset : entity.offset + entity.length]
+            else:
+                target_url = m.caption[entity.offset : entity.offset + entity.length]
             break
         if entity.type == MessageEntityType.TEXT_LINK:
             target_url = entity.url
             break
     else:
         if m.reply_to_message:
-            for entity in m.reply_to_message.entities:
+            for entity in (
+                m.reply_to_message.entities or m.reply_to_message.caption_entities
+            ):
                 if entity.type == MessageEntityType.URL:
-                    target_url = m.reply_to_message.text[
-                        entity.offset : entity.offset + entity.length
-                    ]
+                    if m.reply_to_message.text:
+                        target_url = m.reply_to_message.text[
+                            entity.offset : entity.offset + entity.length
+                        ]
+                    else:
+                        target_url = m.reply_to_message.caption[
+                            entity.offset : entity.offset + entity.length
+                        ]
                     break
                 if entity.type == MessageEntityType.TEXT_LINK:
                     target_url = entity.url
