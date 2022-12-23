@@ -1,11 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2022 Amano Team
 
-import os
-import shutil
-import tempfile
+import io
 
-from PIL import Image
+from PIL import Image, ImageOps
 from pyrogram import Client, filters
 from pyrogram.enums import MessageEntityType
 from pyrogram.errors import PeerIdInvalid, StickersetInvalid
@@ -74,15 +72,14 @@ async def kang_sticker(c: Client, m: Message, strings):
                 "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                 or sticker_emoji
             )
-        filename = await c.download_media(m.reply_to_message)
-        if not filename:
+        file = await c.download_media(m.reply_to_message, in_memory=True)
+        if not file:
             # Failed to download
             await prog_msg.delete()
             return
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
-        filename = "sticker.png"
         img_url = next(
             (
                 m.text[y.offset : (y.offset + y.length)]
@@ -98,10 +95,10 @@ async def kang_sticker(c: Client, m: Message, strings):
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
-                with open(filename, mode="wb") as f:
-                    f.write(r.read())
+                file = io.BytesIO(r.content)
+                file.name = "sticker.png"
         except Exception as r_e:
-            return await prog_msg.edit_text(f"{r_e.__class__.__name__} : {r_e}")
+            return await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
         if len(m.command) > 2:
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
@@ -117,7 +114,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         return await prog_msg.delete()
     try:
         if resize:
-            filename = resize_image(filename)
+            file = resize_image(file)
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
@@ -136,14 +133,14 @@ async def kang_sticker(c: Client, m: Message, strings):
                     packname_found = True
             except StickersetInvalid:
                 break
-        file = await c.save_file(filename)
+        ufile = await c.save_file(file)
         media = await c.invoke(
             SendMedia(
                 peer=(await c.resolve_peer(LOG_CHAT)),
                 media=InputMediaUploadedDocument(
-                    file=file,
-                    mime_type=c.guess_mime_type(filename),
-                    attributes=[DocumentAttributeFilename(file_name=filename)],
+                    file=ufile,
+                    mime_type="image/png",
+                    attributes=[DocumentAttributeFilename(file_name="sticker.png")],
                 ),
                 message=f"#Sticker kang by UserID -> {m.from_user.id}",
                 random_id=c.rnd_id(),
@@ -224,26 +221,14 @@ async def kang_sticker(c: Client, m: Message, strings):
         await prog_msg.edit_text(
             kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup
         )
-        # Cleanup
-        try:
-            os.remove(filename)
-        except OSError:
-            pass
 
 
-def resize_image(filename: str) -> str:
-    im = Image.open(filename)
-    maxsize = 512
-    scale = maxsize / max(im.width, im.height)
-    sizenew = (int(im.width * scale), int(im.height * scale))
-    im = im.resize(sizenew, Image.NEAREST)
-    downpath, f_name = os.path.split(filename)
-    # not hardcoding png_image as "sticker.png"
-    png_image = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.png")
-    im.save(png_image, "PNG")
-    if png_image != filename:
-        os.remove(filename)
-    return png_image
+def resize_image(file: str) -> io.BytesIO:
+    im = Image.open(file)
+    im = ImageOps.contain(im, (512, 512), method=Image.ANTIALIAS)
+    image = io.BytesIO()
+    im.save(image, "PNG")
+    return image
 
 
 @Client.on_message(filters.command("stickerid", PREFIXES) & filters.reply)
@@ -265,11 +250,8 @@ async def getstickeraspng(c: Client, m: Message, strings):
         if sticker.is_animated:
             await m.reply_text(strings("animated_not_supported"))
         else:
-            with tempfile.TemporaryDirectory() as tempdir:
-                path = os.path.join(tempdir, "getsticker")
-            sticker_file = await c.download_media(
-                message=m.reply_to_message,
-                file_name=f"{path}/{sticker.set_name}.png",
+            sticker_file = await m.reply_to_message.download(
+                in_memory=True,
             )
             await m.reply_to_message.reply_document(
                 document=sticker_file,
@@ -277,6 +259,5 @@ async def getstickeraspng(c: Client, m: Message, strings):
                     emoji=sticker.emoji, id=sticker.file_id
                 ),
             )
-            shutil.rmtree(tempdir, ignore_errors=True)
     else:
         await m.reply_text(strings("not_sticker"))
