@@ -227,6 +227,7 @@ def resize_image(file: str) -> io.BytesIO:
     im = Image.open(file)
     im = ImageOps.contain(im, (512, 512), method=Image.ANTIALIAS)
     image = io.BytesIO()
+    image.name = "sticker.png"
     im.save(image, "PNG")
     return image
 

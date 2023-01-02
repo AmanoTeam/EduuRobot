@@ -40,7 +40,7 @@ async def chat_exists(chat_id, chat_type):
         row = await cursor.fetchone()
         return bool(row)
     if chat_type == ChatType.CHANNEL:
-        cursor = conn.execute(
+        cursor = await conn.execute(
             "SELECT chat_id FROM channels where chat_id = ?", (chat_id,)
         )
         row = await cursor.fetchone()
