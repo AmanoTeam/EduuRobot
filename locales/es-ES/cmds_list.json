@@ -2,5 +2,7 @@
   "admin": "👮‍♂️ Administración",
   "command_category_title": "Comandos en la categoría <b>{category}</b>:",
   "general": "✨ General",
-  "tools": "🔧 Herramientas"
+  "select_command_category": "Por favor seleccione una categoría para ver los comandos disponibles.",
+  "tools": "🔧 Herramientas",
+  "group_help": "Por favor use el comando en un chat privado o haga clic en el botón de abajo para ver los comandos disponibles."
 }
