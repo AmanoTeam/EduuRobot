@@ -6,6 +6,5 @@
   "private": "Oi! Sou eu, o <del>Chapolin Colorado</del> EduuRobot. Eu acabei de salvar <b>sua vida</b>, para continuar salvo navegue pelos botões abaixo.",
   "start_chat": "🤖 Ser salvo",
   "group": "Oi! Sou eu, o <del>Chapolin Colorado</del> EduuRobot, para poder ser salvo por mim aperte no botão abaixo.",
-  "info_page": "• EduuRobot\n\nNúmero de versão: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Código Fonte</a>\nDesenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nParcerias:\n » <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>\n\n©2023 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_description": "Salvar o mundo."
 }
