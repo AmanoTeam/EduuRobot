@@ -6,6 +6,6 @@
   "private": "你好！ 我是EduuRobot。 要了解有關我的功能的更多信息，請單擊下面的按鈕。",
   "start_chat": "🤖 開始聊天",
   "group": "你好！ 我是EduuRobot。 要發現我的功能，請與我交談。",
-  "info_page": "• EduuRobot\n\n版本：{version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代碼</a>\n開發者：<a href=\"https://github.com/AmanoTeam\">天野團隊</a>\n\n合作夥伴：\n  » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2022 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "info_page": "• EduuRobot\n\n版本：{version} ({version_code})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代碼</a>\n開發者：<a href=\"https://github.com/AmanoTeam\">天野團隊</a>\n\n合作夥伴：\n  » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2023 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_description": "啟動機器人。"
 }

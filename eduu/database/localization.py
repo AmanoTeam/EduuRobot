@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2022 Amano Team
+# Copyright (c) 2018-2023 Amano LLC
 
 from pyrogram.enums import ChatType
 
@@ -26,7 +26,7 @@ async def set_db_lang(chat_id: int, chat_type: str, lang_code: str):
         )
         await conn.commit()
     else:
-        raise TypeError("Unknown chat type '%s'." % chat_type)
+        raise TypeError(f"Unknown chat type '{chat_type}'.")
 
 
 async def get_db_lang(chat_id: int, chat_type: str) -> str:
@@ -46,5 +46,5 @@ async def get_db_lang(chat_id: int, chat_type: str) -> str:
         )
         ul = await cursor.fetchone()
     else:
-        raise TypeError("Unknown chat type '%s'." % chat_type)
+        raise TypeError(f"Unknown chat type '{chat_type}'.")
     return ul[0] if ul else None
