@@ -23,9 +23,9 @@ Setup
    - ``python3 -m venv .venv`` (You don't need to run it again)
    - ``. .venv/bin/activate`` (You must run this every time you open the project in a new shell)
 
-2. Install the required modules from the requirements.txt with ``pip3 install -Ur requirements.txt``.
+2. Install the required modules from the requirements.txt with ``pip3 install -Ue .``.
 3. Go to https://my.telegram.org/apps and create a new app.
-4. Create a new ``config.py`` file from the ``config.py.example`` file (``cp eduu/config.py.example eduu/config.py``).
+4. Create a new ``config.py`` file from the ``config.py.example`` file (``cp config.py.example config.py``).
 5. Place your token, IDs and api keys to your config.py file.
 
 

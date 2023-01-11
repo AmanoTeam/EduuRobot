@@ -25,11 +25,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Set up configuration
       run: |
-        curl https://pastebin.com/raw/iu4nu94C -o eduu/config.py
+        curl https://pastebin.com/raw/iu4nu94C -o config.py
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip wheel
-        pip install -r requirements.txt
+        pip install --upgrade pip wheel
+        pip install -e .
     - name: Start the bot
       run: |
         python -m eduu test
