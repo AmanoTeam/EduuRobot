@@ -10,8 +10,9 @@ from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.raw.all import layer
 
-from . import __version__, __version_code__
-from .config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
+from config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
+
+from . import __commit__, __version_number__
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +23,7 @@ class Eduu(Client):
 
         super().__init__(
             name=name,
-            app_version=f"EduuRobot v{__version__}",
+            app_version=f"EduuRobot r{__version_number__} ({__commit__})",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=TOKEN,
@@ -51,7 +52,7 @@ class Eduu(Client):
 
         start_message = (
             "<b>EduuRobot started!</b>\n\n"
-            f"<b>Version:</b> <code>v{__version__} ({__version_code__})</code>\n"
+            f"<b>Version number:</b> <code>r{__version_number__} ({__commit__})</code>\n"
             f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
         )
 

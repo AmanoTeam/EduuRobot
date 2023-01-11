@@ -10,7 +10,8 @@ from pyrogram.types import (
 )
 from yarl import URL
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..utils import http
 from ..utils.localization import use_chat_lang
 

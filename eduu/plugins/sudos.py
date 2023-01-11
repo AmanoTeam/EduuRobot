@@ -21,7 +21,8 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
-from ..config import DATABASE_PATH
+from config import DATABASE_PATH
+
 from ..database import database
 from ..database.restarted import set_restarted
 from ..utils import sudofilter

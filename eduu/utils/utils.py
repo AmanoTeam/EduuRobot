@@ -16,7 +16,7 @@ from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
-from ..config import SUDOERS
+from config import SUDOERS
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
@@ -313,3 +313,10 @@ async def shell_exec(code):
 def get_format_keys(string: str) -> List[str]:
     """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
+
+
+def linkify_commit(commit: str) -> str:
+    """Return a link to a commit."""
+    return (
+        f'<a href="https://github.com/AmanoTeam/EduuRobot/commit/{commit}">{commit}</a>'
+    )

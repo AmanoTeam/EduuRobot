@@ -6,7 +6,8 @@ from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..database.welcome import get_welcome, set_welcome, toggle_welcome
 from ..utils import button_parser, commands, get_format_keys
 from ..utils.decorators import require_admin

@@ -4,7 +4,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..database.warns import (
     add_warns,
     get_warn_action,

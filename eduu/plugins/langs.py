@@ -13,7 +13,8 @@ from pyrogram.types import (
     Message,
 )
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..database.localization import set_db_lang
 from ..utils.decorators import require_admin
 from ..utils.localization import (

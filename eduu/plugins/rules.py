@@ -4,7 +4,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..database.rules import get_rules, set_rules
 from ..utils import button_parser, commands
 from ..utils.decorators import require_admin

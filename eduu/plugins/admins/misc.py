@@ -6,7 +6,8 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from ...config import PREFIXES
+from config import PREFIXES
+
 from ...database.admins import check_if_del_service, toggle_del_service
 from ...utils import commands
 from ...utils.decorators import require_admin

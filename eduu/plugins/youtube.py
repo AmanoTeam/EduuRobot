@@ -14,7 +14,8 @@ from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..utils import aiowrap, http, pretty_size
 from ..utils.localization import use_chat_lang
 

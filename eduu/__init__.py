@@ -4,8 +4,14 @@
 
 from subprocess import run
 
-__version__ = "2.1.0"
-__version_code__ = (
+__commit__ = (
+    run(["git", "rev-parse", "--short", "HEAD"], capture_output=True)
+    .stdout.decode()
+    .strip()
+    or "None"
+)
+
+__version_number__ = (
     run(["git", "rev-list", "--count", "HEAD"], capture_output=True)
     .stdout.decode()
     .strip()

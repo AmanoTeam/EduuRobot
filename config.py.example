@@ -1,5 +1,4 @@
 from typing import List
-import os.path
 
 # This is a template configuration file for EduuRobot.
 # You can use this file as a base for your own config file by
@@ -36,7 +35,7 @@ SUDOERS.extend(SUPER_SUDOERS)
 # Other settings
 
 # Database file path
-DATABASE_PATH = os.path.join("eduu", "database", "eduu.db")
+DATABASE_PATH = "eduu.db"
 
 # Number of updates that can be processed in parallel
 WORKERS = 24

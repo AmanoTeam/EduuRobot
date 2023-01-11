@@ -12,9 +12,10 @@ from pyrogram.types import (
     Message,
 )
 
-from .. import __version__, __version_code__
-from ..config import PREFIXES
-from ..utils import commands
+from config import PREFIXES
+
+from .. import __commit__, __version_number__
+from ..utils import commands, linkify_commit
 from ..utils.localization import use_chat_lang
 
 
@@ -69,8 +70,8 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
 @use_chat_lang()
 async def infos(c: Client, m: CallbackQuery, strings):
     res = strings("info_page").format(
-        version=__version__,
-        version_code=__version_code__,
+        version_number=f"r{__version_number__}",
+        commit_hash=linkify_commit(__commit__),
     )
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[

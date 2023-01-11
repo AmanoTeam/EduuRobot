@@ -4,7 +4,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
-from ...config import PREFIXES
+from config import PREFIXES
+
 from ...utils import commands, get_reason_text, get_target_user, time_extract
 from ...utils.consts import admin_status
 from ...utils.decorators import require_admin

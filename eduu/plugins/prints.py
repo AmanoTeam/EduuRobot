@@ -9,7 +9,8 @@ from pyrogram import Client, filters
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
 

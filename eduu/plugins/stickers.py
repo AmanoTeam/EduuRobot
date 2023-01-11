@@ -18,7 +18,8 @@ from pyrogram.raw.types import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from ..config import LOG_CHAT, PREFIXES
+from config import LOG_CHAT, PREFIXES
+
 from ..utils import EMOJI_PATTERN, http
 from ..utils.localization import use_chat_lang
 

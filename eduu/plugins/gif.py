@@ -6,7 +6,8 @@ import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from ..config import PREFIXES, TENOR_API_KEY
+from config import PREFIXES, TENOR_API_KEY
+
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
 

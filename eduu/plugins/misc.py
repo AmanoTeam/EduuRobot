@@ -10,7 +10,8 @@ from pyrogram.enums import ChatMembersFilter, ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ..config import LOG_CHAT, PREFIXES
+from config import LOG_CHAT, PREFIXES
+
 from ..utils import button_parser, commands, http
 from ..utils.consts import admin_status
 from ..utils.localization import use_chat_lang

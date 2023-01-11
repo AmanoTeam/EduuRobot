@@ -20,11 +20,10 @@ venv.bak/
 eduu/*.session*
 
 # Database
-eduu/database/*.db
+*.db
 
 # Bot personal config file
-eduu/config.ini
-eduu/config.py
+config.py
 
 # Misc
 unknown_errors.txt

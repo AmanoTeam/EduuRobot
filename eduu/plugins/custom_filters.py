@@ -7,7 +7,8 @@ from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..database.custom_filters import (
     add_filter,
     get_all_filters,

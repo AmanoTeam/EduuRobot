@@ -12,7 +12,8 @@ from pyrogram.types import (
     Message,
 )
 
-from ..config import PREFIXES
+from config import PREFIXES
+
 from ..utils import commands
 from ..utils.localization import use_chat_lang
 
