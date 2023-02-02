@@ -26,7 +26,7 @@
   "purge_description": "مسح السجل حتى الرسالة التي تم الرد عليها.",
   "purge_success": "تم حذف <b>{count}</b> رسائل.",
   "tban_description": "حظر عضو من المحادثة لوقت المحدد.",
-  "tban_success": "{user}{admin}{time}.",
+  "tban_success": "{user} تم حظر حظره مؤقتا من قبل {admin} لـ <b>{time}</b>.",
   "tmute_description": "كتم عضو من المحادثة لوقت المحدد.",
   "unban_description": "فك الحظر عن المستخدم في المحادثة.",
   "unmute_description": "الغاء الكتم عن عضو في المحادثة.",
