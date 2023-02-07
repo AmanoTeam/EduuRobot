@@ -1,12 +1,11 @@
 name: Run bot
 
 on:
+  pull_request:
   push:
     branches-ignore:
       - 'l10n_*'
-  pull_request:
-    branches-ignore:
-      - 'l10n_*'
+      - 'dependabot/**'
 
 jobs:
   test:
