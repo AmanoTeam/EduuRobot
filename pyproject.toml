@@ -5,7 +5,7 @@ description = "A multipurpose Telegram Bot made with Pyrogram and asynchronous p
 readme = "README.rst"
 
 dependencies = [
-    "gpytranslate==1.4.0",
+    "gpytranslate==1.5.1",
     "httpx[http2]>=0.18.1,<1.0.0",
     "humanfriendly",
     "meval==2.5",
