@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Iterable
+from collections.abc import Iterable
 
 from pyrogram.enums import ChatMemberStatus, ChatType
 

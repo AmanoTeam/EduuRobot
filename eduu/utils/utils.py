@@ -9,7 +9,7 @@ import re
 from datetime import datetime, timedelta
 from functools import partial, wraps
 from string import Formatter
-from typing import Callable, List, Optional, Union
+from typing import Callable, Optional, Union
 
 import httpx
 from config import SUDOERS
@@ -136,7 +136,7 @@ def remove_escapes(text: str) -> str:
     return res
 
 
-def split_quotes(text: str) -> List:
+def split_quotes(text: str) -> list:
     if not any(text.startswith(char) for char in START_CHAR):
         return text.split(None, 1)
     counter = 1  # ignore first char -> is some kind of quote
@@ -309,7 +309,7 @@ async def shell_exec(code):
     return stdout, process
 
 
-def get_format_keys(string: str) -> List[str]:
+def get_format_keys(string: str) -> list[str]:
     """Return a list of formatting keys present in string."""
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
 
