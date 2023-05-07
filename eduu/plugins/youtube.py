@@ -8,19 +8,18 @@ import re
 import shutil
 import tempfile
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
 from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
-from config import PREFIXES
-
 from ..utils import aiowrap, http, pretty_size
 from ..utils.localization import use_chat_lang
 
 YOUTUBE_REGEX = re.compile(
-    r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
+    r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?",
 )
 
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
@@ -37,7 +36,7 @@ async def search_yt(query):
     page = (
         await http.get(
             "https://www.youtube.com/results",
-            params=dict(search_query=query, pbj="1"),
+            params={"search_query": query, "pbj": "1"},
             headers={
                 "x-youtube-client-name": "1",
                 "x-youtube-client-version": "2.20200827",
@@ -66,7 +65,7 @@ async def yt_search_cmd(c: Client, m: Message):
     ]
 
     await m.reply_text(
-        "\n".join(vids) if vids else r"¯\_(ツ)_/¯", disable_web_page_preview=True
+        "\n".join(vids) if vids else r"¯\_(ツ)_/¯", disable_web_page_preview=True,
     )
 
 
@@ -115,7 +114,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
                 strings("ytdl_video_button"),
                 f'_vid.{yt["id"]}|{vfsize}|{temp}|{m.chat.id}|{user}|{m.id}',
             ),
-        ]
+        ],
     ]
 
     if " - " in yt["title"]:
@@ -157,7 +156,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 "format": "best[ext=mp4]",
                 "max_filesize": MAX_FILESIZE,
                 "noplaylist": True,
-            }
+            },
         )
     else:
         ydl = YoutubeDL(
@@ -166,13 +165,13 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 "format": "bestaudio[ext=m4a]",
                 "max_filesize": MAX_FILESIZE,
                 "noplaylist": True,
-            }
+            },
         )
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
         await cq.message.edit(strings("ytdl_send_error").format(errmsg=e))
-        return
+        return None
     await cq.message.edit(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
@@ -211,3 +210,4 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
+    return None

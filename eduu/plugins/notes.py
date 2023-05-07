@@ -3,11 +3,10 @@
 
 import re
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
-
-from config import PREFIXES
 
 from ..database.notes import add_note, get_all_notes, rm_note, update_note
 from ..utils import button_parser, commands, split_quotes
@@ -105,11 +104,11 @@ async def delete_note(c: Client, m: Message, strings):
     if check_note:
         await rm_note(chat_id, trigger)
         await m.reply_text(
-            strings("remove_note_success").format(trigger=trigger), quote=True
+            strings("remove_note_success").format(trigger=trigger), quote=True,
         )
     else:
         await m.reply_text(
-            strings("no_note_with_name").format(trigger=trigger), quote=True
+            strings("no_note_with_name").format(trigger=trigger), quote=True,
         )
 
 

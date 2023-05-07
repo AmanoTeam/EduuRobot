@@ -24,7 +24,7 @@ async def update_filter(chat_id, trigger, raw_data, file_id, filter_type):
 
 async def rm_filter(chat_id, trigger):
     await conn.execute(
-        "DELETE from filters WHERE chat_id = ? AND filter_name = ?", (chat_id, trigger)
+        "DELETE from filters WHERE chat_id = ? AND filter_name = ?", (chat_id, trigger),
     )
     await conn.commit()
 

@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ...utils import commands, get_reason_text, get_target_user, time_extract
 from ...utils.consts import admin_status
@@ -27,7 +26,7 @@ async def ban(c: Client, m: Message, strings):
         )
         if reason:
             await m.reply_text(
-                text + "\n" + strings("reason_string").format(reason_text=reason)
+                text + "\n" + strings("reason_string").format(reason_text=reason),
             )
         else:
             await m.reply_text(text)
@@ -51,7 +50,7 @@ async def kick(c: Client, m: Message, strings):
         )
         if reason:
             await m.reply_text(
-                text + "\n" + strings("reason_string").format(reason_text=reason)
+                text + "\n" + strings("reason_string").format(reason_text=reason),
             )
         else:
             await m.reply_text(text)
@@ -72,7 +71,7 @@ async def unban(c: Client, m: Message, strings):
     )
     if reason:
         await m.reply_text(
-            text + "\n" + strings("reason_string").format(reason_text=reason)
+            text + "\n" + strings("reason_string").format(reason_text=reason),
         )
     else:
         await m.reply_text(text)
@@ -84,12 +83,12 @@ async def unban(c: Client, m: Message, strings):
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
-            strings("error_must_specify_time").format(command=m.command[0])
+            strings("error_must_specify_time").format(command=m.command[0]),
         )
     split_time = m.text.split(None, 1)
     ban_time = await time_extract(m, split_time[1])
     if not ban_time:
-        return
+        return None
     await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)
 
     await m.reply_text(
@@ -97,8 +96,9 @@ async def tban(c: Client, m: Message, strings):
             user=m.reply_to_message.from_user.mention,
             admin=m.from_user.mention,
             time=split_time[1],
-        )
+        ),
     )
+    return None
 
 
 commands.add_command("ban", "admin")

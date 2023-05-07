@@ -12,11 +12,10 @@ from string import Formatter
 from typing import Callable, List, Optional, Union
 
 import httpx
+from config import SUDOERS
 from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
-
-from config import SUDOERS
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
@@ -94,7 +93,7 @@ async def check_perms(
         return True
     if complain_missing_perms:
         await sender(
-            strings("no_permission_error").format(permissions=", ".join(missing_perms))
+            strings("no_permission_error").format(permissions=", ".join(missing_perms)),
         )
     return False
 
@@ -164,7 +163,7 @@ def button_parser(markdown_note):
     buttons = []
     if markdown_note is None:
         return note_data, buttons
-    if markdown_note.startswith("/") or markdown_note.startswith("!"):
+    if markdown_note.startswith(("/", "!")):
         args = markdown_note.split(None, 2)
         markdown_note = args[2]
     prev = 0
@@ -178,11 +177,11 @@ def button_parser(markdown_note):
         if n_escapes % 2 == 0:
             if bool(match.group(4)) and buttons:
                 buttons[-1].append(
-                    InlineKeyboardButton(text=match.group(2), url=match.group(3))
+                    InlineKeyboardButton(text=match.group(2), url=match.group(3)),
                 )
             else:
                 buttons.append(
-                    [InlineKeyboardButton(text=match.group(2), url=match.group(3))]
+                    [InlineKeyboardButton(text=match.group(2), url=match.group(3))],
                 )
             note_data += markdown_note[prev : match.start(1)]
             prev = match.end(1)
@@ -197,7 +196,7 @@ def button_parser(markdown_note):
 
 
 class BotCommands:
-    def __init__(self):
+    def __init__(self) -> None:
         self.commands = {}
 
     def add_command(
@@ -225,11 +224,11 @@ class BotCommands:
         if self.commands.get(category) is None:
             self.commands[category] = []
         self.commands[category].append(
-            dict(
-                command=command,
-                description_key=description_key,
-                context=context_location,
-            )
+            {
+                "command": command,
+                "description_key": description_key,
+                "context": context_location,
+            },
         )
 
     def get_commands_message(self, strings_manager, category: str = None):
@@ -243,7 +242,7 @@ class BotCommands:
 
         res = (
             strings_manager("command_category_title").format(
-                category=strings_manager(category)
+                category=strings_manager(category),
             )
             + "\n\n"
         )
@@ -282,7 +281,7 @@ async def get_target_user(c: Client, m: Message) -> User:
         if msg_entities.type == MessageEntityType.TEXT_MENTION
         else int(m.command[1])
         if m.command[1].isdecimal()
-        else m.command[1]
+        else m.command[1],
     )
 
 
@@ -303,7 +302,7 @@ EMOJI_PATTERN = get_emoji_regex()
 # Thank github.com/usernein for shell_exec
 async def shell_exec(code):
     process = await asyncio.create_subprocess_shell(
-        code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
+        code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT,
     )
 
     stdout = (await process.communicate())[0].decode().strip()

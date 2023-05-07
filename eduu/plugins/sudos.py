@@ -15,13 +15,12 @@ from typing import Union
 
 import humanfriendly
 import speedtest
+from config import DATABASE_PATH
 from meval import meval
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
-
-from config import DATABASE_PATH
 
 from ..database import database
 from ..database.restarted import set_restarted
@@ -70,7 +69,7 @@ async def upgrade(c: Client, m: Message, strings):
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
         await sm.edit_text(
-            f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}"
+            f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}",
         )
         proc = await asyncio.create_subprocess_shell("git merge --abort")
         await proc.communicate()
@@ -96,7 +95,7 @@ async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
     exec(
-        "async def __ex(c, m): " + " ".join("\n " + l for l in code.split("\n"))
+        "async def __ex(c, m): " + " ".join("\n " + l for l in code.split("\n")),
     )  # skipcq: PYL-W0122
     with redirect_stdout(strio):
         try:
@@ -109,6 +108,7 @@ async def execs(c: Client, m: Message):
     else:
         out = "Command executed."
     await m.reply_text(out)
+    return None
 
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
@@ -120,20 +120,20 @@ async def test_speed(c: Client, m: Message, strings):
     bs = s.get_best_server()
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload=""
-        )
+            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="",
+        ),
     )
     dl = round(s.download() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=""
-        )
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="",
+        ),
     )
     ul = round(s.upload() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul
-        )
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul,
+        ),
     )
 
 
@@ -145,7 +145,7 @@ async def execsql(c: Client, m: Message):
         ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
         return await m.reply_text(
-            f"SQL executed with an error: {e.__class__.__name__}: {e}"
+            f"SQL executed with an error: {e.__class__.__name__}: {e}",
         )
 
     ret = await ex.fetchall()
@@ -161,10 +161,13 @@ async def execsql(c: Client, m: Message):
             bio.write(res.encode())
 
             await m.reply_document(bio)
+            return None
         else:
             await m.reply_text(f"<code>{res}</code>")
+            return None
     else:
         await m.reply_text("SQL executed successfully and without any return.")
+        return None
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
@@ -211,7 +214,7 @@ async def getbotstats(c: Client, m: Message):
         f"<b>Groups:</b> {groups_count[0]}\n"
         f"<b>Filters:</b> {filters_count[0]}\n"
         f"<b>Notes:</b> {notes_count[0]}\n\n"
-        f"<b>Uptime:</b> {bot_uptime}"
+        f"<b>Uptime:</b> {bot_uptime}",
     )
 
 
@@ -235,7 +238,7 @@ async def del_message(c: Client, m: Message):
     & sudofilter
     & ~filters.forwarded
     & ~filters.group
-    & ~filters.via_bot
+    & ~filters.via_bot,
 )
 async def backupcmd(c: Client, m: Message):
     await m.reply_document(DATABASE_PATH)
@@ -248,7 +251,7 @@ async def uploadfile(c: Client, m: Message):
 
     sent = await m.reply_to_message.reply_text("Uploading file...")
     file_path = await m.reply_to_message.download(
-        m.command[1] if len(m.command) > 1 else ""
+        m.command[1] if len(m.command) > 1 else "",
     )
     await sent.edit_text(f"File successfully saved to {file_path}.")
 
@@ -267,7 +270,7 @@ async def getchatcmd(c: Client, m: Message):
         targetchat = await c.get_chat(m.command[1])
         if targetchat.type != ChatType.PRIVATE:
             await m.reply_text(
-                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
+                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}",
             )
         else:
             await m.reply_text("This is a private Chat.")

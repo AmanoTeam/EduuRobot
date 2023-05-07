@@ -4,14 +4,13 @@
 import logging
 
 import aiosqlite
-
 from config import DATABASE_PATH
 
 logger = logging.getLogger(__name__)
 
 
 class Database:
-    def __init__(self):
+    def __init__(self) -> None:
         self.conn: aiosqlite.Connection = None
         self.path: str = DATABASE_PATH
         self.is_connected: bool = False
@@ -71,7 +70,7 @@ class Database:
             chat_id INTEGER,
             count INTEGER
         );
-        """
+        """,
         )
 
         # Enable VACUUM
@@ -100,7 +99,8 @@ class Database:
 
     def get_conn(self) -> aiosqlite.Connection:
         if not self.is_connected:
-            raise RuntimeError("The database is not connected.")
+            msg = "The database is not connected."
+            raise RuntimeError(msg)
 
         return self.conn
 

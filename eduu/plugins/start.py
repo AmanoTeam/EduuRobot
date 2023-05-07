@@ -3,6 +3,7 @@
 
 from typing import Union
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import (
@@ -11,8 +12,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
-
-from config import PREFIXES
 
 from .. import __commit__, __version_number__
 from ..utils import commands, linkify_commit
@@ -36,20 +35,20 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
             inline_keyboard=[
                 [
                     InlineKeyboardButton(
-                        strings("commands_btn"), callback_data="commands"
+                        strings("commands_btn"), callback_data="commands",
                     ),
                     InlineKeyboardButton(strings("infos_btn"), callback_data="infos"),
                 ],
                 [
                     InlineKeyboardButton(
-                        strings("language_btn"), callback_data="chlang"
+                        strings("language_btn"), callback_data="chlang",
                     ),
                     InlineKeyboardButton(
                         strings("add_chat_btn"),
                         url=f"https://t.me/{c.me.username}?startgroup=new",
                     ),
                 ],
-            ]
+            ],
         )
         await method(strings("private"), reply_markup=keyboard)
     else:
@@ -59,9 +58,9 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
                     InlineKeyboardButton(
                         strings("start_chat"),
                         url=f"https://t.me/{c.me.username}?start=start",
-                    )
-                ]
-            ]
+                    ),
+                ],
+            ],
         )
         await method(strings("group"), reply_markup=keyboard)
 
@@ -77,10 +76,10 @@ async def infos(c: Client, m: CallbackQuery, strings):
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
-            ]
-        ]
+                    strings("back_btn", context="general"), callback_data="start_back",
+                ),
+            ],
+        ],
     )
     await m.message.edit_text(res, reply_markup=keyboard, disable_web_page_preview=True)
 

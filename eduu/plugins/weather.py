@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
@@ -16,7 +15,7 @@ get_coords = "https://api.weather.com/v3/location/search"
 url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current"
 
 headers = {
-    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)"
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)",
 }
 
 status_emojis = {
@@ -84,28 +83,29 @@ async def weather(c: Client, m: Message, strings):
     r = await http.get(
         get_coords,
         headers=headers,
-        params=dict(
-            apiKey=weather_apikey,
-            format="json",
-            language=strings("weather_language"),
-            query=m.text.split(maxsplit=1)[1],
-        ),
+        params={
+            "apiKey": weather_apikey,
+            "format": "json",
+            "language": strings("weather_language"),
+            "query": m.text.split(maxsplit=1)[1],
+        },
     )
     loc_json = r.json()
     if not loc_json.get("location"):
         await m.reply_text(strings("location_not_found"))
+        return None
     else:
         pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
         r = await http.get(
             url,
             headers=headers,
-            params=dict(
-                apiKey=weather_apikey,
-                format="json",
-                language=strings("weather_language"),
-                geocode=pos,
-                units=strings("measurement_unit"),
-            ),
+            params={
+                "apiKey": weather_apikey,
+                "format": "json",
+                "language": strings("weather_language"),
+                "geocode": pos,
+                "units": strings("measurement_unit"),
+            },
         )
         res_json = r.json()
 
@@ -121,6 +121,7 @@ async def weather(c: Client, m: Message, strings):
         )
 
         await m.reply_text(res)
+        return None
 
 
 commands.add_command("weather", "tools")

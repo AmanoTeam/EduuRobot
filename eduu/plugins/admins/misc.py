@@ -3,10 +3,9 @@
 
 import asyncio
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ...database.admins import check_if_del_service, toggle_del_service
 from ...utils import commands
@@ -34,7 +33,7 @@ async def purge(c: Client, m: Message, strings):
             await c.delete_messages(chat_id=m.chat.id, message_ids=message_ids)
             count_del_etion_s += len(message_ids)
     await status_message.edit_text(
-        strings("purge_success").format(count=count_del_etion_s)
+        strings("purge_success").format(count=count_del_etion_s),
     )
     await asyncio.sleep(5)
     await status_message.delete()

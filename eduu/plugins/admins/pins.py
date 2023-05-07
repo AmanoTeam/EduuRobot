@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ...database.admins import check_if_antichannelpin, toggle_antichannelpin
 from ...utils import commands

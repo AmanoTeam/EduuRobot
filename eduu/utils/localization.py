@@ -11,7 +11,7 @@ from typing import Dict, List
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
 
-from ..database.localization import get_db_lang
+from eduu.database.localization import get_db_lang
 
 enabled_locales: List[str] = [
     "en-GB",  # English (United Kingdom)
@@ -64,7 +64,7 @@ langdict = cache_localizations(jsons)
 
 
 def get_locale_string(
-    dic: dict, language: str, default_context: str, key: str, context: str = None
+    dic: dict, language: str, default_context: str, key: str, context: str = None,
 ) -> str:
     if context:
         default_context = context
@@ -83,7 +83,8 @@ async def get_lang(message) -> str:
     elif isinstance(message, InlineQuery):
         chat, chat.type = message.from_user, ChatType.PRIVATE
     else:
-        raise TypeError(f"Update type '{message.__name__}' is not supported.")
+        msg = f"Update type '{message.__name__}' is not supported."
+        raise TypeError(msg)
 
     lang = await get_db_lang(chat.id, chat.type)
 

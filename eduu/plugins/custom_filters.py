@@ -3,11 +3,10 @@
 
 import re
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
-
-from config import PREFIXES
 
 from ..database.custom_filters import (
     add_filter,
@@ -97,7 +96,7 @@ async def save_filter(c: Client, m: Message, strings):
     else:
         await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
     await m.reply_text(
-        strings("add_filter_success").format(trigger=trigger), quote=True
+        strings("add_filter_success").format(trigger=trigger), quote=True,
     )
 
 
@@ -112,11 +111,11 @@ async def delete_filter(c: Client, m: Message, strings):
     if check_filter:
         await rm_filter(chat_id, trigger)
         await m.reply_text(
-            strings("remove_filter_success").format(trigger=trigger), quote=True
+            strings("remove_filter_success").format(trigger=trigger), quote=True,
         )
     else:
         await m.reply_text(
-            strings("no_filter_with_name").format(trigger=trigger), quote=True
+            strings("no_filter_with_name").format(trigger=trigger), quote=True,
         )
 
 
@@ -137,7 +136,7 @@ async def get_all_filter(c: Client, m: Message, strings):
 
 
 @Client.on_message(
-    (filters.group | filters.private) & filters.text & filters.incoming, group=1
+    (filters.group | filters.private) & filters.text & filters.incoming, group=1,
 )
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id

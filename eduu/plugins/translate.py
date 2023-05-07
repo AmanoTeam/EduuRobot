@@ -3,6 +3,7 @@
 
 import html
 
+from config import PREFIXES
 from gpytranslate import Translator
 from pyrogram import Client, filters
 from pyrogram.types import (
@@ -11,8 +12,6 @@ from pyrogram.types import (
     InputTextMessageContent,
     Message,
 )
-
-from config import PREFIXES
 
 from ..utils import commands
 from ..utils.localization import use_chat_lang
@@ -89,9 +88,10 @@ async def translate(c: Client, m: Message, strings):
     res = html.escape(text)
     await sent.edit_text(
         strings("translation").format(
-            from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
-        )
+            from_lang=trres.lang, to_lang=langs["targetlang"], translation=res,
+        ),
     )
+    return None
 
 
 @Client.on_inline_query(filters.regex(r"^tr"))
@@ -102,20 +102,20 @@ async def tr_inline(c: Client, q: InlineQuery, strings):
         source_language = await tr.detect(q.query.split(None, 2)[2])
         to_language = q.query.lower().split()[1]
         translation = await tr(
-            to_tr, sourcelang=source_language, targetlang=to_language
+            to_tr, sourcelang=source_language, targetlang=to_language,
         )
         await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("translate_inline_send").format(
-                        srclangformat=source_language, tolangformat=to_language
+                        srclangformat=source_language, tolangformat=to_language,
                     ),
                     description=f"{translation.text}",
                     input_message_content=InputTextMessageContent(
-                        f"{translation.text}"
+                        f"{translation.text}",
                     ),
-                )
-            ]
+                ),
+            ],
         )
     except IndexError:
         return

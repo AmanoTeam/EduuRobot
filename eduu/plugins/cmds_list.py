@@ -26,8 +26,8 @@ def gen_categories_kb(strings_manager):
             name = strings_manager(categories[0], context="cmds_list")
             a.append(
                 InlineKeyboardButton(
-                    name, callback_data=f"view_category {categories[0]}"
-                )
+                    name, callback_data=f"view_category {categories[0]}",
+                ),
             )
 
             categories.pop(0)
@@ -43,10 +43,10 @@ async def cmds_list(c: Client, m: CallbackQuery, strings):
             *gen_categories_kb(strings),
             [
                 InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
+                    strings("back_btn", context="general"), callback_data="start_back",
+                ),
             ],
-        ]
+        ],
     )
     await m.message.edit_text(strings("select_command_category"), reply_markup=keyboard)
 
@@ -62,9 +62,9 @@ async def show_help(c: Client, m: Message, strings):
                     InlineKeyboardButton(
                         strings("back_btn", context="general"),
                         callback_data="start_back",
-                    )
+                    ),
                 ],
-            ]
+            ],
         )
         await m.reply_text(strings("select_command_category"), reply_markup=keyboard)
     else:
@@ -74,9 +74,9 @@ async def show_help(c: Client, m: Message, strings):
                     InlineKeyboardButton(
                         strings("start_chat", context="start"),
                         url=f"https://t.me/{c.me.username}?start=help",
-                    )
-                ]
-            ]
+                    ),
+                ],
+            ],
         )
         await m.reply_text(strings("group_help"), reply_markup=keyboard)
 
@@ -89,9 +89,9 @@ async def get_category(c: Client, m: CallbackQuery, strings):
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="commands"
-                )
-            ]
-        ]
+                    strings("back_btn", context="general"), callback_data="commands",
+                ),
+            ],
+        ],
     )
     await m.message.edit_text(msg, reply_markup=keyboard)

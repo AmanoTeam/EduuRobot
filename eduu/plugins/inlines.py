@@ -26,7 +26,7 @@ faces_list: Iterable[str] = (
     "( ͡ʘ ͜ʖ ͡ʘ)",
     "ヽ༼ຈل͜ຈ༽ﾉ",
     "༼ʘ̚ل͜ʘ̚༽",
-    "(╯°□°）╯",
+    "(╯°□°)╯",
     "(ﾉ◕ヮ◕)ﾉ",
     "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
     "(◕‿◕)",
@@ -43,8 +43,8 @@ faces_list: Iterable[str] = (
     "ლ(ಠ益ಠლ)",
     "\\_(ʘ_ʘ)_/",
     "( ⚆ _ ⚆ )",
-    "(ಥ﹏ಥ)",
-    "﴾͡๏̯͡๏﴿",
+    "(ಥ_ಥ)",
+    "(͡๏̯͡๏)",
     "(◔̯◔)",
     "(ಠ_ಠ)",
     "(ಠ‿ಠ)",
@@ -60,7 +60,7 @@ faces_list: Iterable[str] = (
 async def faces_inline(c: Client, q: InlineQuery):
     results: List[InlineQueryResultArticle] = [
         InlineQueryResultArticle(
-            title=i, input_message_content=InputTextMessageContent(i)
+            title=i, input_message_content=InputTextMessageContent(i),
         )
         for i in faces_list
     ]
@@ -78,15 +78,15 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 title=strings("markdown_send_inline"),
                 input_message_content=InputTextMessageContent(
-                    querytxt, parse_mode=ParseMode.MARKDOWN
+                    querytxt, parse_mode=ParseMode.MARKDOWN,
                 ),
                 reply_markup=(
                     InlineKeyboardMarkup(querybuttons)
                     if len(querybuttons) != 0
                     else None
                 ),
-            )
-        ]
+            ),
+        ],
     )
 
 
@@ -107,8 +107,8 @@ async def html_inline(c: Client, q: InlineQuery, strings):
                     if len(querybuttons) != 0
                     else None
                 ),
-            )
-        ]
+            ),
+        ],
     )
 
 
@@ -127,10 +127,10 @@ async def info_inline(c: Client, q: InlineQuery, strings):
                 InlineQueryResultArticle(
                     title=strings("user_info_inline_cant_found_user"),
                     input_message_content=InputTextMessageContent(
-                        strings("user_info_inline_cant_found_user")
+                        strings("user_info_inline_cant_found_user"),
                     ),
-                )
-            ]
+                ),
+            ],
         )
     await q.answer(
         [
@@ -144,6 +144,6 @@ async def info_inline(c: Client, q: InlineQuery, strings):
                         usermentionformat=user.mention(),
                     ),
                 ),
-            )
-        ]
+            ),
+        ],
     )

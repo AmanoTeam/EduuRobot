@@ -5,12 +5,11 @@ import logging
 import time
 
 import pyrogram
+from config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.raw.all import layer
-
-from config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
 
 from . import __commit__, __version_number__
 
@@ -18,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class Eduu(Client):
-    def __init__(self):
+    def __init__(self) -> None:
         name = self.__class__.__name__.lower()
 
         super().__init__(
@@ -29,7 +28,7 @@ class Eduu(Client):
             bot_token=TOKEN,
             parse_mode=ParseMode.HTML,
             workers=WORKERS,
-            plugins=dict(root="eduu.plugins", exclude=DISABLED_PLUGINS),
+            plugins={"root": "eduu.plugins", "exclude": DISABLED_PLUGINS},
             sleep_threshold=180,
         )
 
@@ -60,7 +59,7 @@ class Eduu(Client):
             await self.send_message(chat_id=LOG_CHAT, text=start_message)
             if wr:
                 await self.edit_message_text(
-                    wr[0], wr[1], text="Restarted successfully!"
+                    wr[0], wr[1], text="Restarted successfully!",
                 )
         except BadRequest:
             logger.warning("Unable to send message to LOG_CHAT.")

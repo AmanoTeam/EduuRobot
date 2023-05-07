@@ -3,12 +3,11 @@
 
 import html
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import BadRequest, UserNotParticipant
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands
 from ..utils.localization import use_chat_lang
@@ -20,11 +19,11 @@ async def user_info(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:
             user = await c.get_users(
-                int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+                int(m.command[1]) if m.command[1].isdecimal() else m.command[1],
             )
         except BadRequest:
             return await m.reply_text(
-                strings("user_not_found").format(user=m.command[1])
+                strings("user_not_found").format(user=m.command[1]),
             )
     elif m.reply_to_message:
         user = m.reply_to_message.from_user
@@ -53,6 +52,7 @@ async def user_info(c: Client, m: Message, strings):
         pass
 
     await m.reply_text(text)
+    return None
 
 
 commands.add_command("info", "tools")

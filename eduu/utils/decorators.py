@@ -8,8 +8,13 @@ from pyrogram import Client
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, Message
 
-from ..utils.localization import default_language, get_lang, get_locale_string, langdict
-from ..utils.utils import check_perms
+from eduu.utils.localization import (
+    default_language,
+    get_lang,
+    get_locale_string,
+    langdict,
+)
+from eduu.utils.utils import check_perms
 
 
 def require_admin(
@@ -20,7 +25,7 @@ def require_admin(
     def decorator(func):
         @wraps(func)
         async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
+            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs,
         ):
             lang = await get_lang(message)
             strings = partial(
@@ -38,7 +43,7 @@ def require_admin(
                 msg = message
             else:
                 raise NotImplementedError(
-                    f"require_admin can't process updates with the type '{message.__name__}' yet."
+                    f"require_admin can't process updates with the type '{message.__name__}' yet.",
                 )
 
             # We don't actually check private and channel chats.
@@ -49,10 +54,11 @@ def require_admin(
             if msg.chat.type == ChatType.CHANNEL:
                 return await func(client, message, *args, *kwargs)
             has_perms = await check_perms(
-                message, permissions, complain_missing_perms, strings
+                message, permissions, complain_missing_perms, strings,
             )
             if has_perms:
                 return await func(client, message, *args, *kwargs)
+            return None
 
         return wrapper
 

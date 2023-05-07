@@ -3,10 +3,9 @@
 
 from urllib.parse import quote_plus
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
@@ -40,6 +39,7 @@ async def git(c: Client, m: Message, strings):
         ),
         reply_to_message_id=m.id,
     )
+    return None
 
 
 commands.add_command("git", "tools")

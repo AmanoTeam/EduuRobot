@@ -4,10 +4,9 @@
 import html
 import re
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-
-from config import PREFIXES
 
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
@@ -56,19 +55,21 @@ async def pypi(c: Client, m: Message, strings):
                         InlineKeyboardButton(
                             text=strings("package_home_page"),
                             url=pypi_info["home_page"],
-                        )
-                    ]
-                ]
+                        ),
+                    ],
+                ],
             )
         else:
             kb = None
         await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
+        return None
     else:
         await m.reply_text(
             strings("package_not_found").format(
-                package_name=text, http_status=r.status_code
-            )
+                package_name=text, http_status=r.status_code,
+            ),
         )
+        return None
 
 
 commands.add_command("pypi", "tools")

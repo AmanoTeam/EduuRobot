@@ -4,12 +4,11 @@
 import uuid
 from json import JSONDecodeError
 
+from config import PREFIXES
 from httpx import HTTPError
 from pyrogram import Client, filters
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands, http
 from ..utils.localization import use_chat_lang
@@ -78,18 +77,16 @@ async def prints(c: Client, m: Message, strings):
             await sent.delete()
     else:
         await m.reply_text(
-            "Couldn't get url value, most probably API is not accessible."
+            "Couldn't get url value, most probably API is not accessible.",
         )
 
 
 async def screenshot_page(target_url: str) -> str:
-    """
-    This function is used to get a screenshot of a website using htmlcsstoimage.com API.
+    """This function is used to get a screenshot of a website using htmlcsstoimage.com API.
 
     :param target_url: The URL of the website to get a screenshot of.
     :return: The URL of the screenshot.
     """
-
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
     }
@@ -106,13 +103,15 @@ async def screenshot_page(target_url: str) -> str:
 
     try:
         resp = await http.post(
-            "https://htmlcsstoimage.com/demo_run", headers=headers, json=data
+            "https://htmlcsstoimage.com/demo_run", headers=headers, json=data,
         )
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
-        raise Exception("Screenshot API returned an invalid response.") from e
+        msg = "Screenshot API returned an invalid response."
+        raise Exception(msg) from e
     except HTTPError as e:
-        raise Exception("Screenshot API seems offline. Try again later.") from e
+        msg = "Screenshot API seems offline. Try again later."
+        raise Exception(msg) from e
 
 
 commands.add_command("print", "tools")

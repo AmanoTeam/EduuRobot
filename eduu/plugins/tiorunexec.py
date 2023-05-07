@@ -4,6 +4,7 @@
 import asyncio
 import html
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import (
     InlineQuery,
@@ -12,8 +13,6 @@ from pyrogram.types import (
     Message,
 )
 from pytio import Tio, TioRequest
-
-from config import PREFIXES
 
 from ..utils.localization import use_chat_lang
 
@@ -43,7 +42,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
                     codeformat=html.escape(codetoexec),
                     resformat=html.escape(tiores),
                     statsformat=tioresstats,
-                )
+                ),
             )
         else:
             await m.reply_text(
@@ -52,13 +51,13 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
                     codeformat=html.escape(codetoexec),
                     resformat=html.escape(tiores),
                     errformat=html.escape(tioerrres),
-                )
+                ),
             )
     else:
         await m.reply_text(
             strings("code_exec_err_string").format(
-                langformat=execlanguage, langslistlink=langs_list_link
-            )
+                langformat=execlanguage, langslistlink=langs_list_link,
+            ),
         )
 
 
@@ -79,7 +78,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                 [
                     InlineQueryResultArticle(
                         title=strings("code_exec_inline_send").format(
-                            langformat=execlanguage
+                            langformat=execlanguage,
                         ),
                         description=tiores,
                         input_message_content=InputTextMessageContent(
@@ -88,9 +87,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                                 codeformat=html.escape(codetoexec),
                                 resformat=html.escape(tiores),
                                 statsformat=tioresstats,
-                            )
+                            ),
                         ),
-                    )
+                    ),
                 ],
                 cache_time=0,
             )
@@ -99,7 +98,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                 [
                     InlineQueryResultArticle(
                         title=strings("code_exec_inline_send").format(
-                            langformat=execlanguage
+                            langformat=execlanguage,
                         ),
                         description=tiores,
                         input_message_content=InputTextMessageContent(
@@ -108,9 +107,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                                 codeformat=html.escape(codetoexec),
                                 resformat=html.escape(tiores),
                                 errformat=html.escape(tioerrres),
-                            )
+                            ),
                         ),
-                    )
+                    ),
                 ],
                 cache_time=0,
             )
@@ -119,13 +118,13 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
             [
                 InlineQueryResultArticle(
                     title=strings("code_exec_err_inline_send_string").format(
-                        langformat=execlanguage
+                        langformat=execlanguage,
                     ),
                     input_message_content=InputTextMessageContent(
                         strings("code_exec_err_string").format(
-                            langformat=execlanguage, langslistlink=langs_list_link
-                        )
+                            langformat=execlanguage, langslistlink=langs_list_link,
+                        ),
                     ),
-                )
-            ]
+                ),
+            ],
         )

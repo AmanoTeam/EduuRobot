@@ -24,7 +24,7 @@ async def update_note(chat_id, trigger, raw_data, file_id, note_type):
 
 async def rm_note(chat_id, trigger):
     await conn.execute(
-        "DELETE from notes WHERE chat_id = ? AND note_name = ?", (chat_id, trigger)
+        "DELETE from notes WHERE chat_id = ? AND note_name = ?", (chat_id, trigger),
     )
     await conn.commit()
 

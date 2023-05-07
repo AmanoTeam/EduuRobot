@@ -3,10 +3,9 @@
 
 from datetime import datetime
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands
 
@@ -17,7 +16,7 @@ async def ping(c: Client, m: Message):
     sent = await m.reply_text("<b>Pong!</b>")
     second = datetime.now()
     await sent.edit_text(
-        f"<b>Pong!</b> <code>{(second - first).microseconds / 1000}</code>ms"
+        f"<b>Pong!</b> <code>{(second - first).microseconds / 1000}</code>ms",
     )
 
 

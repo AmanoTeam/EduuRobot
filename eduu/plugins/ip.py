@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import (
     InlineQuery,
@@ -9,8 +10,6 @@ from pyrogram.types import (
     Message,
 )
 from yarl import URL
-
-from config import PREFIXES
 
 from ..utils import http
 from ..utils.localization import use_chat_lang
@@ -46,10 +45,10 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 InlineQueryResultArticle(
                     title=strings("ip_info_inline").format(domain=url),
                     input_message_content=InputTextMessageContent(
-                        await get_ip_info(url)
+                        await get_ip_info(url),
                     ),
-                )
-            ]
+                ),
+            ],
         )
     else:
         await q.answer(
@@ -59,6 +58,6 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                     input_message_content=InputTextMessageContent(
                         strings("ip_no_url_example").format(bot_username=c.me.username),
                     ),
-                )
-            ]
+                ),
+            ],
         )

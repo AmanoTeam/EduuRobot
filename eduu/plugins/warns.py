@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
-
-from config import PREFIXES
 
 from ..database.warns import (
     add_warns,
@@ -50,7 +49,7 @@ async def warn_user(c: Client, m: Message, strings):
                 warn_string = strings("warn_banned")
             elif warn_action == "mute":
                 await m.chat.restrict_member(
-                    target_user.id, ChatPermissions(can_send_messages=False)
+                    target_user.id, ChatPermissions(can_send_messages=False),
                 )
                 warn_string = strings("warn_muted")
             elif warn_action == "kick":
@@ -61,7 +60,7 @@ async def warn_user(c: Client, m: Message, strings):
                 return
 
             warn_text = warn_string.format(
-                target_user=target_user.mention, warn_count=user_warns
+                target_user=target_user.mention, warn_count=user_warns,
             )
             await reset_warns(m.chat.id, target_user.id)
         else:
@@ -74,7 +73,7 @@ async def warn_user(c: Client, m: Message, strings):
             await m.reply_text(
                 warn_text
                 + "\n"
-                + strings("warn_reason_text").format(reason_text=reason)
+                + strings("warn_reason_text").format(reason_text=reason),
             )
         else:
             await m.reply_text(warn_text)
@@ -114,13 +113,13 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
     user_warns = await get_warns(m.chat.id, target_user.id)
     await m.reply_text(
         strings("warns_count_string").format(
-            target_user=target_user.mention, warns_count=user_warns
-        )
+            target_user=target_user.mention, warns_count=user_warns,
+        ),
     )
 
 
 @Client.on_message(
-    filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group
+    filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group,
 )
 @require_admin(permissions=["can_restrict_members"])
 @use_chat_lang()
@@ -133,11 +132,13 @@ async def set_warns_action_cmd(c: Client, m: Message, strings):
 
         await set_warn_action(m.chat.id, warn_action_txt)
         await m.reply_text(
-            strings("warns_action_set_string").format(action=warn_action_txt)
+            strings("warns_action_set_string").format(action=warn_action_txt),
         )
+        return None
     else:
         warn_act = await get_warn_action(m.chat.id)
         await m.reply_text(strings("warn_action_status").format(action=warn_act))
+        return None
 
 
 commands.add_command("warn", "admin")

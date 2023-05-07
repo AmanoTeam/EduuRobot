@@ -4,6 +4,7 @@
 from functools import partial
 from typing import Union
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import (
@@ -12,8 +13,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
-
-from config import PREFIXES
 
 from ..database.localization import set_db_lang
 from ..utils.decorators import require_admin
@@ -34,7 +33,7 @@ def gen_langs_kb():
             InlineKeyboardButton(
                 f"{lang['language_flag']} {lang['language_name']}",
                 callback_data=f"set_lang {langs[0]}",
-            )
+            ),
         ]
 
         langs.pop(0)
@@ -44,7 +43,7 @@ def gen_langs_kb():
                 InlineKeyboardButton(
                     f"{lang['language_flag']} {lang['language_name']}",
                     callback_data=f"set_lang {langs[0]}",
-                )
+                ),
             )
 
             langs.pop(0)
@@ -54,7 +53,7 @@ def gen_langs_kb():
 
 @Client.on_callback_query(filters.regex("^chlang$"))
 @Client.on_message(
-    filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group
+    filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group,
 )
 @require_admin(allow_in_private=True)
 @use_chat_lang()
@@ -64,10 +63,10 @@ async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
             *gen_langs_kb(),
             [
                 InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
+                    strings("back_btn", context="general"), callback_data="start_back",
+                ),
             ],
-        ]
+        ],
     )
 
     if isinstance(m, CallbackQuery):
@@ -107,12 +106,12 @@ async def set_chat_lang(c: Client, m: CallbackQuery, strings):
                     InlineKeyboardButton(
                         strings("back_btn", context="general"),
                         callback_data="start_back",
-                    )
-                ]
-            ]
+                    ),
+                ],
+            ],
         )
     else:
         keyboard = None
     await m.message.edit_text(
-        strings("language_changed_successfully"), reply_markup=keyboard
+        strings("language_changed_successfully"), reply_markup=keyboard,
     )

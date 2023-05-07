@@ -5,12 +5,11 @@ import re
 from html import escape
 from urllib.parse import quote, unquote
 
+from config import LOG_CHAT, PREFIXES
 from pyrogram import Client, filters
 from pyrogram.enums import ChatMembersFilter, ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
-
-from config import LOG_CHAT, PREFIXES
 
 from ..utils import button_parser, commands, http
 from ..utils.consts import admin_status
@@ -29,6 +28,7 @@ async def mark(c: Client, m: Message, strings):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("html", PREFIXES))
@@ -43,6 +43,7 @@ async def html(c: Client, m: Message, strings):
         parse_mode=ParseMode.HTML,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
@@ -50,7 +51,7 @@ async def html(c: Client, m: Message, strings):
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in m.chat.get_members(
-        m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+        m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS,
     ):
         if not (i.user.is_deleted or i.privileges.is_anonymous):
             mention += f"{i.user.mention}\n"
@@ -63,7 +64,7 @@ async def mentionadmins(c: Client, m: Message, strings):
 @Client.on_message(
     (filters.command("report", PREFIXES) | filters.regex("^@admin"))
     & filters.group
-    & filters.reply
+    & filters.reply,
 )
 @use_chat_lang()
 async def reportadmins(c: Client, m: Message, strings):
@@ -99,10 +100,11 @@ async def getbotinfo(c: Client, m: Message, strings):
         get_bot_info_text = strings("bot_token_info")
     await m.reply(
         get_bot_info_text.format(
-            botname=res["first_name"], botusername=res["username"], botid=res["id"]
+            botname=res["first_name"], botusername=res["username"], botid=res["id"],
         ),
         reply_to_message_id=m.id,
     )
+    return None
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
@@ -178,7 +180,7 @@ async def request_cmd(c: Client, m: Message):
         await m.reply_text(f"<b>Headers:</b>\n{headers}")
     else:
         await m.reply_text(
-            "You must specify the url, E.g.: <code>/request https://example.com</code>"
+            "You must specify the url, E.g.: <code>/request https://example.com</code>",
         )
 
 

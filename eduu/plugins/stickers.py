@@ -3,6 +3,7 @@
 
 import io
 
+from config import LOG_CHAT, PREFIXES
 from PIL import Image, ImageOps
 from pyrogram import Client, filters
 from pyrogram.enums import MessageEntityType
@@ -17,8 +18,6 @@ from pyrogram.raw.types import (
     InputStickerSetShortName,
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-
-from config import LOG_CHAT, PREFIXES
 
 from ..utils import EMOJI_PATTERN, http
 from ..utils.localization import use_chat_lang
@@ -43,10 +42,8 @@ async def kang_sticker(c: Client, m: Message, strings):
             and "image" in reply.document.mime_type
             or reply.photo
         ):
-            # mime_type: image/webp
             resize = True
         elif reply.document and "tgsticker" in reply.document.mime_type:
-            # mime_type: application/x-tgsticker
             animated = True
         elif reply.document:
             pass
@@ -77,7 +74,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         if not file:
             # Failed to download
             await prog_msg.delete()
-            return
+            return None
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
@@ -92,7 +89,7 @@ async def kang_sticker(c: Client, m: Message, strings):
 
         if not img_url:
             await prog_msg.delete()
-            return
+            return None
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
@@ -101,7 +98,6 @@ async def kang_sticker(c: Client, m: Message, strings):
         except Exception as r_e:
             return await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
         if len(m.command) > 2:
-            # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
                 packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"
@@ -123,7 +119,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                     GetStickerSet(
                         stickerset=InputStickerSetShortName(short_name=packname),
                         hash=0,
-                    )
+                    ),
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
@@ -145,7 +141,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 ),
                 message=f"#Sticker kang by UserID -> {m.from_user.id}",
                 random_id=c.rnd_id(),
-            )
+            ),
         )
         stkr_file = media.updates[-1].message.media.document
         if packname_found:
@@ -161,7 +157,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                         ),
                         emoji=sticker_emoji,
                     ),
-                )
+                ),
             )
         else:
             await prog_msg.edit_text(strings("create_new_pack_string"))
@@ -187,10 +183,10 @@ async def kang_sticker(c: Client, m: Message, strings):
                                     file_reference=stkr_file.file_reference,
                                 ),
                                 emoji=sticker_emoji,
-                            )
+                            ),
                         ],
                         animated=animated,
-                    )
+                    ),
                 )
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
@@ -199,10 +195,10 @@ async def kang_sticker(c: Client, m: Message, strings):
                         [
                             [
                                 InlineKeyboardButton(
-                                    "/start", url=f"https://t.me/{bot_username}?start"
-                                )
-                            ]
-                        ]
+                                    "/start", url=f"https://t.me/{bot_username}?start",
+                                ),
+                            ],
+                        ],
                     ),
                 )
     except Exception as all_e:
@@ -214,13 +210,13 @@ async def kang_sticker(c: Client, m: Message, strings):
                     InlineKeyboardButton(
                         strings("view_sticker_pack_btn"),
                         url=f"t.me/addstickers/{packname}",
-                    )
-                ]
-            ]
+                    ),
+                ],
+            ],
         )
         kanged_success_msg = strings("sticker_kanged_string")
         await prog_msg.edit_text(
-            kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup
+            kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup,
         )
 
 
@@ -239,8 +235,8 @@ async def getstickerid(c: Client, m: Message, strings):
     if m.reply_to_message.sticker:
         await m.reply_text(
             strings("get_sticker_id_string").format(
-                stickerid=m.reply_to_message.sticker.file_id
-            )
+                stickerid=m.reply_to_message.sticker.file_id,
+            ),
         )
 
 
@@ -258,7 +254,7 @@ async def getstickeraspng(c: Client, m: Message, strings):
             await m.reply_to_message.reply_document(
                 document=sticker_file,
                 caption=strings("sticker_info").format(
-                    emoji=sticker.emoji, id=sticker.file_id
+                    emoji=sticker.emoji, id=sticker.file_id,
                 ),
             )
     else:

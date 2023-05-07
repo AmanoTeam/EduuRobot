@@ -10,7 +10,7 @@ conn = database.get_conn()
 
 async def get_warn_action(chat_id: int) -> Tuple[Optional[str], bool]:
     cursor = await conn.execute(
-        "SELECT warn_action FROM groups WHERE chat_id = (?)", (chat_id,)
+        "SELECT warn_action FROM groups WHERE chat_id = (?)", (chat_id,),
     )
     res = await cursor.fetchone()[0]
     return "ban" if res is None else res
@@ -18,7 +18,7 @@ async def get_warn_action(chat_id: int) -> Tuple[Optional[str], bool]:
 
 async def set_warn_action(chat_id: int, action: Optional[str]):
     await conn.execute(
-        "UPDATE groups SET warn_action = ? WHERE chat_id = ?", (action, chat_id)
+        "UPDATE groups SET warn_action = ? WHERE chat_id = ?", (action, chat_id),
     )
     await conn.commit()
 
@@ -34,7 +34,7 @@ async def get_warns(chat_id, user_id):
 
 async def add_warns(chat_id, user_id, number):
     await conn.execute(
-        "SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
+        "SELECT * FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id),
     )
     row = await conn.fetchone()
     if row:
@@ -53,14 +53,14 @@ async def add_warns(chat_id, user_id, number):
 
 async def reset_warns(chat_id, user_id):
     await conn.execute(
-        "DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id)
+        "DELETE FROM user_warns WHERE chat_id = ? AND user_id = ?", (chat_id, user_id),
     )
     await conn.commit()
 
 
 async def get_warns_limit(chat_id):
     cursor = await conn.execute(
-        "SELECT warns_limit FROM groups WHERE chat_id = ?", (chat_id,)
+        "SELECT warns_limit FROM groups WHERE chat_id = ?", (chat_id,),
     )
     res = await cursor.fetchone()[0]
     return 3 if res is None else res
@@ -68,6 +68,6 @@ async def get_warns_limit(chat_id):
 
 async def set_warns_limit(chat_id, warns_limit):
     await conn.execute(
-        "UPDATE groups SET warns_limit = ? WHERE chat_id = ?", (warns_limit, chat_id)
+        "UPDATE groups SET warns_limit = ? WHERE chat_id = ?", (warns_limit, chat_id),
     )
     await conn.commit()

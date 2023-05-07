@@ -3,11 +3,10 @@
 
 import html
 
+from config import PREFIXES
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions import BadRequest
 from pyrogram.types import Message
-
-from config import PREFIXES
 
 from ..utils import commands
 from ..utils.localization import use_chat_lang
@@ -19,11 +18,11 @@ async def ids_private(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:
             user_data = await c.get_users(
-                int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+                int(m.command[1]) if m.command[1].isdecimal() else m.command[1],
             )
         except BadRequest:
             return await m.reply_text(
-                strings("user_not_found").format(user=m.command[1])
+                strings("user_not_found").format(user=m.command[1]),
             )
     else:
         user_data = m.from_user
@@ -38,8 +37,9 @@ async def ids_private(c: Client, m: Message, strings):
             user_dc=user_data.dc_id or strings("unknown"),
             lang=user_data.language_code or strings("unknown"),
             chat_type=m.chat.type,
-        )
+        ),
     )
+    return None
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.group)
@@ -48,11 +48,11 @@ async def ids(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:
             user_data = await c.get_users(
-                int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
+                int(m.command[1]) if m.command[1].isdecimal() else m.command[1],
             )
         except BadRequest:
             return await m.reply_text(
-                strings("user_not_found").format(user=m.command[1])
+                strings("user_not_found").format(user=m.command[1]),
             )
     elif m.reply_to_message:
         user_data = m.reply_to_message.from_user
@@ -75,8 +75,9 @@ async def ids(c: Client, m: Message, strings):
             chat_dc=m.chat.dc_id or strings("unknown"),
             chat_type=m.chat.type,
             message_id=m.id + 1,
-        )
+        ),
     )
+    return None
 
 
 commands.add_command("id", "tools")
