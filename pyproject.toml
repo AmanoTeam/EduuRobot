@@ -40,11 +40,11 @@ homepage = "https://github.com/AmanoTeam/EduuRobot"
 
 [tool.ruff]
 src = ["eduu"]
-target-version = "py39"
+target-version = "py310"
 select = [
   "ALL",
 ]
 
 [tool.black]
 line-length = 89
-target-version = ["py39"]
+target-version = ["py310"]

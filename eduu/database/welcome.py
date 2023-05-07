@@ -1,21 +1,20 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Optional
 
 from .core import database
 
 conn = database.get_conn()
 
 
-async def get_welcome(chat_id: int) -> tuple[Optional[str], bool]:
+async def get_welcome(chat_id: int) -> tuple[str | None, bool]:
     cursor = await conn.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,),
     )
     return await cursor.fetchone()
 
 
-async def set_welcome(chat_id: int, welcome: Optional[str]):
+async def set_welcome(chat_id: int, welcome: str | None):
     await conn.execute(
         "UPDATE groups SET welcome = ? WHERE chat_id = ?", (welcome, chat_id),
     )

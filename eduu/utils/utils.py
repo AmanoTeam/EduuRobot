@@ -6,10 +6,10 @@ import inspect
 import math
 import os.path
 import re
+from collections.abc import Callable
 from datetime import datetime, timedelta
 from functools import partial, wraps
 from string import Formatter
-from typing import Callable, Optional, Union
 
 import httpx
 from config import SUDOERS
@@ -56,8 +56,8 @@ def aiowrap(func: Callable) -> Callable:
 
 
 async def check_perms(
-    message: Union[CallbackQuery, Message],
-    permissions: Optional[Union[list, str]],
+    message: CallbackQuery | Message,
+    permissions: list | str | None,
     complain_missing_perms: bool,
     strings,
 ) -> bool:
@@ -101,7 +101,7 @@ async def check_perms(
 sudofilter = filters.user(SUDOERS)
 
 
-async def time_extract(m: Message, t: str) -> Optional[datetime]:
+async def time_extract(m: Message, t: str) -> datetime | None:
     if t[-1] in ["m", "h", "d"]:
         unit = t[-1]
         num = t[:-1]

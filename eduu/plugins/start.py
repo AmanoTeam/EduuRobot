@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Union
 
 from config import PREFIXES
 from pyrogram import Client, filters
@@ -22,7 +21,7 @@ from ..utils.localization import use_chat_lang
 @Client.on_message(filters.command("start", PREFIXES), group=2)
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang()
-async def start(c: Client, m: Union[Message, CallbackQuery], strings):
+async def start(c: Client, m: Message | CallbackQuery, strings):
     if isinstance(m, CallbackQuery):
         msg = m.message
         method = msg.edit_text

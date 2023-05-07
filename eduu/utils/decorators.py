@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from functools import partial, wraps
-from typing import Union
 
 from pyrogram import Client
 from pyrogram.enums import ChatType
@@ -18,14 +17,14 @@ from eduu.utils.utils import check_perms
 
 
 def require_admin(
-    permissions: Union[list, str] = None,
+    permissions: list | str = None,
     allow_in_private: bool = False,
     complain_missing_perms: bool = True,
 ):
     def decorator(func):
         @wraps(func)
         async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs,
+            client: Client, message: CallbackQuery | Message, *args, **kwargs,
         ):
             lang = await get_lang(message)
             strings = partial(

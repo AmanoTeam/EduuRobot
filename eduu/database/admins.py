@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Optional
 
 from .core import database
 
@@ -17,7 +16,7 @@ async def check_if_del_service(chat_id: int) -> bool:
     return row[0]
 
 
-async def toggle_del_service(chat_id: int, mode: Optional[bool]) -> None:
+async def toggle_del_service(chat_id: int, mode: bool | None) -> None:
     await conn.execute(
         "UPDATE groups SET delservicemsgs = ? WHERE chat_id = ?", (mode, chat_id),
     )
@@ -33,7 +32,7 @@ async def check_if_antichannelpin(chat_id: int) -> bool:
     return row[0]
 
 
-async def toggle_antichannelpin(chat_id: int, mode: Optional[bool]) -> None:
+async def toggle_antichannelpin(chat_id: int, mode: bool | None) -> None:
     await conn.execute(
         "UPDATE groups SET antichannelpin = ? WHERE chat_id = ?", (mode, chat_id),
     )
