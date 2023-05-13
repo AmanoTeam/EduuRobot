@@ -88,18 +88,15 @@ async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
 
 @Client.on_callback_query(filters.regex("^set_lang "))
 @require_admin(allow_in_private=True)
-@use_chat_lang()
-async def set_chat_lang(c: Client, m: CallbackQuery, strings):
+async def set_chat_lang(c: Client, m: CallbackQuery):
     lang = m.data.split()[1]
     await set_db_lang(m.message.chat.id, m.message.chat.type, lang)
 
-    strings = partial(
-        get_locale_string,
-        langdict[lang].get("langs", langdict[default_language]["langs"]),
-        lang,
-        "langs",
-    )
+    await set_chat_lang_edit(c, m)
 
+
+@use_chat_lang()
+async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
     if m.message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
