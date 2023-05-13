@@ -1,0 +1,8 @@
+{
+  "comments": "Comments: {0}",
+  "error": "Error loading Subreddit",
+  "no_results": "This Subreddit has no posts",
+  "not_found": "Subreddit not found",
+  "reddit_description": "See the latest posts from the specified Subreddit",
+  "reddit_usage": "<b>Usage</b>: <code>/reddit subreddit</code> - See the latest posts from the specified Subreddit"
+}
