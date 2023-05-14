@@ -23,7 +23,7 @@ async def mark(c: Client, m: Message, strings):
         return await m.reply_text(strings("mark_usage"))
     txt = m.text.split(None, 1)[1]
     msgtxt, buttons = button_parser(txt)
-    await m.reply(
+    await m.reply_text(
         msgtxt,
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
@@ -37,7 +37,7 @@ async def html(c: Client, m: Message, strings):
         return await m.reply_text(strings("html_usage"))
     txt = m.text.split(None, 1)[1]
     msgtxt, buttons = button_parser(txt)
-    await m.reply(
+    await m.reply_text(
         msgtxt,
         parse_mode=ParseMode.HTML,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
@@ -92,11 +92,11 @@ async def getbotinfo(c: Client, m: Message, strings):
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
     if not fullres["ok"]:
-        await m.reply(strings("bot_token_invalid"))
+        await m.reply_text(strings("bot_token_invalid"))
     else:
         res = fullres["result"]
         get_bot_info_text = strings("bot_token_info")
-    await m.reply(
+    await m.reply_text(
         get_bot_info_text.format(
             botname=res["first_name"], botusername=res["username"], botid=res["id"]
         ),
@@ -158,7 +158,7 @@ async def bug_report_cmd(c: Client, m: Message, strings):
         except BadRequest:
             await m.reply_text(strings("err_cant_send_bug_report_to_bot_admins"))
     else:
-        await m.reply(strings("err_no_bug_to_report"))
+        await m.reply_text(strings("err_no_bug_to_report"))
 
 
 @Client.on_message(filters.command("request", PREFIXES))
@@ -196,7 +196,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
 @Client.on_message(filters.command("donate", PREFIXES))
 @use_chat_lang()
 async def donatecmd(c: Client, m: Message, strings):
-    await m.reply(strings("donatecmdstring"))
+    await m.reply_text(strings("donatecmdstring"))
 
 
 commands.add_command("mark", "general")

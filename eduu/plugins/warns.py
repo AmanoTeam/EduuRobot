@@ -93,7 +93,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
         await m.reply_text(strings("warn_limit_invalid"))
     else:
         set_warns_limit(m.chat.id, warns_limit)
-        await m.reply(strings("warn_limit_changed").format(warn_limit=warns_limit))
+        await m.reply_text(strings("warn_limit_changed").format(warn_limit=warns_limit))
 
 
 @Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)

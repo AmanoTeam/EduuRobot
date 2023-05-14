@@ -9,7 +9,7 @@ import re
 import sys
 import time
 import traceback
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, suppress
 from sqlite3 import IntegrityError, OperationalError
 from typing import Union
 
@@ -179,16 +179,12 @@ async def restart(c: Client, m: Message, strings):
 @Client.on_message(filters.command("leave", prefix) & sudofilter)
 async def leave_chat(c: Client, m: Message):
     if len(m.command) == 1:
-        try:
+        with suppress(RPCError):
             await m.chat.leave()
-        except RPCError as e:
-            print(e)
     else:
         chat_id = m.text.split(maxsplit=1)[1]
-        try:
+        with suppress(RPCError):
             await c.leave_chat(int(chat_id))
-        except RPCError as e:
-            print(e)
 
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
