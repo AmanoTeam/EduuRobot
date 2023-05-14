@@ -7,9 +7,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
-
-from ..utils import commands, http
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands, http
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("coub", PREFIXES))
@@ -19,7 +18,7 @@ async def coub(c: Client, m: Message, strings):
         return await m.reply_text(strings("coub_usage"))
 
     text = m.text.split(maxsplit=1)[1]
-    r = await http.get("https://coub.com/api/v2/search/coubs", params=dict(q=text))
+    r = await http.get("https://coub.com/api/v2/search/coubs", params={"q": text})
     rjson = r.json()
     try:
         content = random.choice(rjson["coubs"])

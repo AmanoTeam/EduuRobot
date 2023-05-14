@@ -11,9 +11,8 @@ from pyrogram.types import (
 from yarl import URL
 
 from config import PREFIXES
-
-from ..utils import http
-from ..utils.localization import use_chat_lang
+from eduu.utils import http
+from eduu.utils.localization import use_chat_lang
 
 
 async def get_ip_info(ip: str) -> str:

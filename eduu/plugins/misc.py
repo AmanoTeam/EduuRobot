@@ -11,10 +11,9 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import LOG_CHAT, PREFIXES
-
-from ..utils import button_parser, commands, http
-from ..utils.consts import admin_status
-from ..utils.localization import use_chat_lang
+from eduu.utils import button_parser, commands, http
+from eduu.utils.consts import admin_status
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("mark", PREFIXES))

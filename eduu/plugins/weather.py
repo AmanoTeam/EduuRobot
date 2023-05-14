@@ -5,9 +5,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
-
-from ..utils import commands, http
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands, http
+from eduu.utils.localization import use_chat_lang
 
 # Api key used in weather.com's mobile app.
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
@@ -84,12 +83,12 @@ async def weather(c: Client, m: Message, strings):
     r = await http.get(
         get_coords,
         headers=headers,
-        params=dict(
-            apiKey=weather_apikey,
-            format="json",
-            language=strings("weather_language"),
-            query=m.text.split(maxsplit=1)[1],
-        ),
+        params={
+            "apiKey": weather_apikey,
+            "format": "json",
+            "language": strings("weather_language"),
+            "query": m.text.split(maxsplit=1)[1],
+        },
     )
     loc_json = r.json()
     if not loc_json.get("location"):
@@ -99,13 +98,13 @@ async def weather(c: Client, m: Message, strings):
         r = await http.get(
             url,
             headers=headers,
-            params=dict(
-                apiKey=weather_apikey,
-                format="json",
-                language=strings("weather_language"),
-                geocode=pos,
-                units=strings("measurement_unit"),
-            ),
+            params={
+                "apiKey": weather_apikey,
+                "format": "json",
+                "language": strings("weather_language"),
+                "geocode": pos,
+                "units": strings("measurement_unit"),
+            },
         )
         res_json = r.json()
 

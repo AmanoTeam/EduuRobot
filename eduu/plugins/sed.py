@@ -7,7 +7,7 @@ import regex
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from ..utils.localization import use_chat_lang
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)

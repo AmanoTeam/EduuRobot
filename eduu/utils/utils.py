@@ -164,7 +164,7 @@ def button_parser(markdown_note):
     buttons = []
     if markdown_note is None:
         return note_data, buttons
-    if markdown_note.startswith("/") or markdown_note.startswith("!"):
+    if markdown_note.startswith(("/", "!")):
         args = markdown_note.split(None, 2)
         markdown_note = args[2]
     prev = 0
@@ -225,11 +225,11 @@ class BotCommands:
         if self.commands.get(category) is None:
             self.commands[category] = []
         self.commands[category].append(
-            dict(
-                command=command,
-                description_key=description_key,
-                context=context_location,
-            )
+            {
+                "command": command,
+                "description_key": description_key,
+                "context": context_location,
+            }
         )
 
     def get_commands_message(self, strings_manager, category: str = None):

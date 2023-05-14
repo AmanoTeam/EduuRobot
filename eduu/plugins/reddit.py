@@ -7,9 +7,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
+from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
-
-from ..utils import commands, http
 
 CHARACTER_LIMIT = 25
 

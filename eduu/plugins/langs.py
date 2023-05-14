@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from functools import partial
 from typing import Union
 
 from pyrogram import Client, filters
@@ -14,15 +13,9 @@ from pyrogram.types import (
 )
 
 from config import PREFIXES
-
-from ..database.localization import set_db_lang
-from ..utils.decorators import require_admin
-from ..utils.localization import (
-    default_language,
-    get_locale_string,
-    langdict,
-    use_chat_lang,
-)
+from eduu.database.localization import set_db_lang
+from eduu.utils.decorators import require_admin
+from eduu.utils.localization import langdict, use_chat_lang
 
 
 def gen_langs_kb():

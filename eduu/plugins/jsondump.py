@@ -9,8 +9,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
-
-from ..utils import commands
+from eduu.utils import commands
 
 
 @Client.on_message(filters.command("jsondump", PREFIXES))

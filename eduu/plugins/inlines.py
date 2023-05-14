@@ -13,8 +13,8 @@ from pyrogram.types import (
     InputTextMessageContent,
 )
 
-from ..utils import button_parser
-from ..utils.localization import use_chat_lang
+from eduu.utils import button_parser
+from eduu.utils.localization import use_chat_lang
 
 faces_list: Iterable[str] = (
     "¯\\_(ツ)_/¯",

@@ -11,7 +11,7 @@ from typing import Dict, List
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
 
-from ..database.localization import get_db_lang
+from eduu.database.localization import get_db_lang
 
 enabled_locales: List[str] = [
     "en-GB",  # English (United Kingdom)

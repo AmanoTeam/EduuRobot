@@ -22,12 +22,11 @@ from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
 from config import DATABASE_PATH
-
-from ..database import database
-from ..database.restarted import set_restarted
-from ..utils import sudofilter
-from ..utils.localization import use_chat_lang
-from ..utils.utils import shell_exec
+from eduu.database import database
+from eduu.database.restarted import set_restarted
+from eduu.utils import sudofilter
+from eduu.utils.localization import use_chat_lang
+from eduu.utils.utils import shell_exec
 
 prefix: Union[list, str] = "!"
 

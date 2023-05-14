@@ -15,9 +15,8 @@ from pyrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
 from config import PREFIXES
-
-from ..utils import aiowrap, http, pretty_size
-from ..utils.localization import use_chat_lang
+from eduu.utils import aiowrap, http, pretty_size
+from eduu.utils.localization import use_chat_lang
 
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
@@ -37,7 +36,7 @@ async def search_yt(query):
     page = (
         await http.get(
             "https://www.youtube.com/results",
-            params=dict(search_query=query, pbj="1"),
+            params={"search_query": query, "pbj": "1"},
             headers={
                 "x-youtube-client-name": "1",
                 "x-youtube-client-version": "2.20200827",

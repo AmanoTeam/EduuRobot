@@ -14,8 +14,7 @@ from pyrogram.types import (
 from pytio import Tio, TioRequest
 
 from config import PREFIXES
-
-from ..utils.localization import use_chat_lang
+from eduu.utils.localization import use_chat_lang
 
 tio = Tio()
 
