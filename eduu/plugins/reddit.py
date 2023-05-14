@@ -15,7 +15,7 @@ CHARACTER_LIMIT = 25
 
 def limit_length(title: str):
     if len(title) > CHARACTER_LIMIT:
-        return title[:CHARACTER_LIMIT].rstrip() + "..."
+        return title[:CHARACTER_LIMIT].rstrip() + "…"
     else:
         return title
 

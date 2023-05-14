@@ -3,6 +3,6 @@
   "no_admin_error": "您必须是管理员才能使用此命令。",
   "no_permission_error": "很抱歉，您没有运行此命令所需的权限。缺少权限： {permissions}",
   "private_not_allowed": "此命令不能在私聊中使用。如果您需要任何帮助，请使用 <code>/help</code> 命令。",
-  "purge_in_progress": "正在清除消息...",
+  "purge_in_progress": "正在清除消息…",
   "purge_success": "已删除 <b>{count}</b> 条信息。"
 }

@@ -1,5 +1,5 @@
 {
   "translate_usage": "<b>使用法:</b> <code>/tr &lt;言語&gt; 翻訳</code> (メッセージへの返信にも使用できます)",
-  "translating": "翻訳中...",
+  "translating": "翻訳中…",
   "translation": "<b>言語:</b> {from_lang} -> {to_lang}\n<b>翻訳:</b> <code>{translation}</code>"
 }

@@ -56,7 +56,7 @@ async def run_cmd(c: Client, m: Message, strings):
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang()
 async def upgrade(c: Client, m: Message, strings):
-    sm = await m.reply_text("Upgrading sources...")
+    sm = await m.reply_text("Upgrading sources…")
     stdout, proc = await shell_exec("git pull --no-edit")
     if proc.returncode == 0:
         if "Already up to date." in stdout:
@@ -245,7 +245,7 @@ async def uploadfile(c: Client, m: Message):
     if not m.reply_to_message:
         await m.reply_text("You must reply to a file to upload.")
 
-    sent = await m.reply_to_message.reply_text("Uploading file...")
+    sent = await m.reply_to_message.reply_text("Uploading file…")
     file_path = await m.reply_to_message.download(
         m.command[1] if len(m.command) > 1 else ""
     )

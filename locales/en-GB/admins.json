@@ -22,7 +22,7 @@
   "no_permission_error": "I'm sorry but you don't have the required permissions to run this command. Missing permissions: {permissions}",
   "private_not_allowed": "This command can't be used in a private chat. If you need any help, please use the <code>/help</code> command.",
   "pin_description": "Pins the replied message in chat. <code>loud</code> can be used to enable notification.",
-  "purge_in_progress": "Purging messages...",
+  "purge_in_progress": "Purging messages…",
   "purge_description": "Purges the history up to the replied message.",
   "purge_success": "Deleted <b>{count}</b> messages.",
   "tban_description": "Bans a user from chat for the specified time.",

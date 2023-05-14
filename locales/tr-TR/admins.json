@@ -22,7 +22,7 @@
   "no_permission_error": "Üzgünüm ama bu komutu çalıştırmak için gerekli izinlere sahip değilsiniz. Eksik izinler: {permissions}",
   "private_not_allowed": "Bu komut özel sohbette kullanılamaz. Herhangi bir yardıma ihtiyacınız olursa, lütfen <code>/help</code> komutunu kullanın.",
   "pin_description": "Cevaplanan mesajı sohbette sabitler. <code>yüksek sesle</code> bildirimi etkinleştirmek için kullanılabilir.",
-  "purge_in_progress": "Mesajlar siliniyor...",
+  "purge_in_progress": "Mesajlar siliniyor…",
   "purge_description": "Yanıtlanan iletiye kadar olan geçmişi temizler.",
   "purge_success": "<b>{count}</b> ileti silindi.",
   "tban_description": "Bir kullanıcıyı belirtilen süre boyunca sohbetten yasaklar.",
