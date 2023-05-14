@@ -1,8 +1,15 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from typing import Union
+
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import (
+    InlineQuery,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+    Message,
+)
 
 from config import PREFIXES
 from eduu.utils import commands, http
@@ -75,10 +82,25 @@ def get_status_emoji(status_code: int) -> str:
 
 
 @Client.on_message(filters.command(["clima", "weather"], PREFIXES))
+@Client.on_inline_query(filters.regex(r"^(clima|weather)"))
 @use_chat_lang()
-async def weather(c: Client, m: Message, strings):
-    if len(m.command) == 1:
-        return await m.reply_text(strings("weather_usage"))
+async def weather(c: Client, m: Union[InlineQuery, Message], strings):
+    text = m.text if isinstance(m, Message) else m.query
+    if len(text.split(maxsplit=1)) == 1:
+        if isinstance(m, Message):
+            return await m.reply_text(strings("weather_usage"))
+
+        return await m.answer(
+            [
+                InlineQueryResultArticle(
+                    title=strings("no_location"),
+                    input_message_content=InputTextMessageContent(
+                        message_text=strings("weather_no_location"),
+                    ),
+                )
+            ],
+            cache_time=0,
+        )
 
     r = await http.get(
         get_coords,
@@ -87,39 +109,74 @@ async def weather(c: Client, m: Message, strings):
             "apiKey": weather_apikey,
             "format": "json",
             "language": strings("weather_language"),
-            "query": m.text.split(maxsplit=1)[1],
+            "query": text.split(maxsplit=1)[1],
         },
     )
     loc_json = r.json()
     if not loc_json.get("location"):
-        await m.reply_text(strings("location_not_found"))
-    else:
-        pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
-        r = await http.get(
-            url,
-            headers=headers,
-            params={
-                "apiKey": weather_apikey,
-                "format": "json",
-                "language": strings("weather_language"),
-                "geocode": pos,
-                "units": strings("measurement_unit"),
-            },
-        )
-        res_json = r.json()
+        if isinstance(m, Message):
+            return await m.reply_text(strings("location_not_found"))
 
-        obs_dict = res_json["v3-wx-observations-current"]
-
-        res = strings("details").format(
-            location=loc_json["location"]["address"][0],
-            temperature=obs_dict["temperature"],
-            feels_like=obs_dict["temperatureFeelsLike"],
-            air_humidity=obs_dict["relativeHumidity"],
-            wind_speed=obs_dict["windSpeed"],
-            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+        return await m.answer(
+            [
+                InlineQueryResultArticle(
+                    title=strings("location_not_found"),
+                    input_message_content=InputTextMessageContent(
+                        message_text=strings("location_not_found"),
+                    ),
+                )
+            ],
+            cache_time=0,
         )
 
+    pos = (
+        f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
+    )
+    r = await http.get(
+        url,
+        headers=headers,
+        params={
+            "apiKey": weather_apikey,
+            "format": "json",
+            "language": strings("weather_language"),
+            "geocode": pos,
+            "units": strings("measurement_unit"),
+        },
+    )
+    res_json = r.json()
+
+    obs_dict = res_json["v3-wx-observations-current"]
+
+    res = strings("details").format(
+        location=loc_json["location"]["address"][0],
+        temperature=obs_dict["temperature"],
+        feels_like=obs_dict["temperatureFeelsLike"],
+        air_humidity=obs_dict["relativeHumidity"],
+        wind_speed=obs_dict["windSpeed"],
+        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+    )
+
+    if isinstance(m, Message):
         await m.reply_text(res)
+    else:
+        await m.answer(
+            [
+                InlineQueryResultArticle(
+                    title=loc_json["location"]["address"][0],
+                    description=strings("inline_details").format(
+                        temperature=obs_dict["temperature"],
+                        feels_like=obs_dict["temperatureFeelsLike"],
+                        air_humidity=obs_dict["relativeHumidity"],
+                        wind_speed=obs_dict["windSpeed"],
+                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+                    ),
+                    input_message_content=InputTextMessageContent(
+                        message_text=res,
+                    ),
+                )
+            ],
+            cache_time=0,
+        )
 
 
 commands.add_command("weather", "tools")
