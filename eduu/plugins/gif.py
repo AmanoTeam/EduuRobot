@@ -7,9 +7,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES, TENOR_API_KEY
-
-from ..utils import commands, http
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands, http
+from eduu.utils.localization import use_chat_lang
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +27,7 @@ async def gif(c: Client, m: Message, strings):
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(
         "https://api.tenor.com/v1/random",
-        params=dict(q=text, key=TENOR_API_KEY, limit=1),
+        params={"q": text, "key": TENOR_API_KEY, "limit": 1},
     )
     rjson = r.json()
     if rjson["results"]:

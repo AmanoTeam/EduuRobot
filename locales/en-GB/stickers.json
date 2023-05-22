@@ -3,12 +3,12 @@
   "animated_not_supported": "Animated stickers are not supported.",
   "sticker_info": "<b>Emoji:</b> {emoji}\n<b>Sticker ID:</b> <code>{id}</code>",
   "not_sticker": "That's not a sticker.",
-  "kanging_sticker_msg": "<code>Kanging sticker...</code>",
+  "kanging_sticker_msg": "<code>Kanging sticker…</code>",
   "sticker_kanged_string": "Sticker <b>successfully</b> added to pack\nEmoji: {sticker_emoji}",
-  "use_existing_pack": "<code>Using existing sticker pack...</code>",
+  "use_existing_pack": "<code>Using existing sticker pack…</code>",
   "err_sticker_no_file_name": "<b>Error</b>: <code>This sticker doesn't a have filename!</code>",
   "view_sticker_pack_btn": "View",
-  "create_new_pack_string": "Creating a new sticker pack...",
+  "create_new_pack_string": "Creating a new sticker pack…",
   "invalid_media_string": "<b>Error:</b> <code>Invalid media<code>",
   "cant_create_sticker_pack_string": "Oops, looks like I don't have enough permissions to create sticker pack for you!\n<b>Please start the bot first.</b>"
 }

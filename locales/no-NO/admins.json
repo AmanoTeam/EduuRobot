@@ -3,6 +3,6 @@
   "no_admin_error": "Du må være administrator for å bruke denne kommandoen.",
   "no_permission_error": "Beklager, men du har ikke de nødvendige tillatelsene for å kjøre denne kommandoen. Mangler tillatelser: {permissions}",
   "private_not_allowed": "Denne kommandoen kan ikke brukes i en privat chat. Hvis du trenger hjelp, kan du bruke kommandoen <code>/help</code>",
-  "purge_in_progress": "Sletter meldinger...",
+  "purge_in_progress": "Sletter meldinger…",
   "purge_success": "Slettet <b>{count}</b> meldinger."
 }

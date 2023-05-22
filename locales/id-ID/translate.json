@@ -1,4 +1,4 @@
 {
-  "translating": "Menerjemahkan...",
+  "translating": "Menerjemahkan…",
   "translation": "<b>Bahasa:</b> {from_lang} -> {to_lang}\n<b>Terjemahan:</b> <code>{translation}</code>"
 }

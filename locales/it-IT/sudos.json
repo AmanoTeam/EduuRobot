@@ -1,5 +1,5 @@
 {
   "speedtest": "<b>Test della velocità di Internet</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latenza:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "Comando non consentito.",
-  "restarting": "Riavvio in corso..."
+  "restarting": "Riavvio in corso…"
 }

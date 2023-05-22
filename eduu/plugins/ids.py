@@ -8,9 +8,8 @@ from pyrogram.errors.exceptions import BadRequest
 from pyrogram.types import Message
 
 from config import PREFIXES
-
-from ..utils import commands
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.private)

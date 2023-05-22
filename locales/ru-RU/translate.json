@@ -1,7 +1,7 @@
 {
   "tr_description": "Переводит текст на предоставленный язык (по умолчанию язык чата).",
   "translate_usage": "<b>Использование:</b> <code>/tr &lt;язык&gt; текст для перевода</code> (Также будет использован в ответ на сообщение).",
-  "translating": "Идет перевод...",
+  "translating": "Идет перевод…",
   "translation": "<b>Язык:</b> {from_lang} -> {to_lang}\n<b>Перевод:</b> <code>{translation}</code>",
   "translate_inline_send": "Перевести с {srclangformat} на {tolangformat}"
 }

@@ -13,10 +13,9 @@ from pyrogram.types import (
 )
 
 from config import PREFIXES
-
-from .. import __commit__, __version_number__
-from ..utils import commands, linkify_commit
-from ..utils.localization import use_chat_lang
+from eduu import __commit__, __version_number__
+from eduu.utils import commands, linkify_commit
+from eduu.utils.localization import use_chat_lang
 
 
 # Using a low priority group so deeplinks will run before this and stop the propagation.

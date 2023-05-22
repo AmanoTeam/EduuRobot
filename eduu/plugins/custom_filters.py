@@ -8,16 +8,15 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import PREFIXES
-
-from ..database.custom_filters import (
+from eduu.database.custom_filters import (
     add_filter,
     get_all_filters,
     rm_filter,
     update_filter,
 )
-from ..utils import button_parser, commands, split_quotes
-from ..utils.decorators import require_admin
-from ..utils.localization import use_chat_lang
+from eduu.utils import button_parser, commands, split_quotes
+from eduu.utils.decorators import require_admin
+from eduu.utils.localization import use_chat_lang
 
 
 async def check_for_filters(chat_id, trigger):

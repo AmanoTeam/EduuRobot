@@ -10,9 +10,8 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 
 from config import PREFIXES
-
-from ..utils import commands, http
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands, http
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("print", PREFIXES))
@@ -73,7 +72,7 @@ async def prints(c: Client, m: Message, strings):
             # most probably there are some other kind of problem,
             # for example it failed to delete its message.
             # or the bot doesn't have access to send media in the chat.
-            await sent.edit_text(f"Failed to send the screenshot due to: {str(e)}")
+            await sent.edit_text(f"Failed to send the screenshot due to: {e!s}")
         else:
             await sent.delete()
     else:
@@ -83,13 +82,11 @@ async def prints(c: Client, m: Message, strings):
 
 
 async def screenshot_page(target_url: str) -> str:
-    """
-    This function is used to get a screenshot of a website using htmlcsstoimage.com API.
+    """This function is used to get a screenshot of a website using htmlcsstoimage.com API.
 
     :param target_url: The URL of the website to get a screenshot of.
     :return: The URL of the screenshot.
     """
-
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
     }

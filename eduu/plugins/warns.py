@@ -5,8 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions, Message
 
 from config import PREFIXES
-
-from ..database.warns import (
+from eduu.database.warns import (
     add_warns,
     get_warn_action,
     get_warns,
@@ -15,10 +14,10 @@ from ..database.warns import (
     set_warn_action,
     set_warns_limit,
 )
-from ..utils import commands, get_target_user
-from ..utils.consts import admin_status
-from ..utils.decorators import require_admin
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands, get_target_user
+from eduu.utils.consts import admin_status
+from eduu.utils.decorators import require_admin
+from eduu.utils.localization import use_chat_lang
 
 
 async def get_warn_reason_text(c: Client, m: Message) -> Message:
@@ -94,7 +93,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
         await m.reply_text(strings("warn_limit_invalid"))
     else:
         set_warns_limit(m.chat.id, warns_limit)
-        await m.reply(strings("warn_limit_changed").format(warn_limit=warns_limit))
+        await m.reply_text(strings("warn_limit_changed").format(warn_limit=warns_limit))
 
 
 @Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)

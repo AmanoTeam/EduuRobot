@@ -29,7 +29,7 @@ class Eduu(Client):
             bot_token=TOKEN,
             parse_mode=ParseMode.HTML,
             workers=WORKERS,
-            plugins=dict(root="eduu.plugins", exclude=DISABLED_PLUGINS),
+            plugins={"root": "eduu.plugins", "exclude": DISABLED_PLUGINS},
             sleep_threshold=180,
         )
 

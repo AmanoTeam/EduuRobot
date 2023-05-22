@@ -3,8 +3,8 @@
 
 from pyrogram.enums import ChatType
 
-from ..database import database
-from ..utils.consts import group_types
+from eduu.database import database
+from eduu.utils.consts import group_types
 
 conn = database.get_conn()
 

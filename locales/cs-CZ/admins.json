@@ -3,6 +3,6 @@
   "no_admin_error": "Pro použití tohoto příkazu musíte být správcem.",
   "no_permission_error": "Je mi líto, ale nemáte dostatečná oprávnění k provedení tohoto příkazu. Chybějící oprávnění: {permissions}",
   "private_not_allowed": "Tento příkaz nelze použít v soukromém chatu. Pokud potřebujete pomoc, použijte příkaz <code>/help</code>.",
-  "purge_in_progress": "Mazání zpráv...",
+  "purge_in_progress": "Mazání zpráv…",
   "purge_success": "Smazáno <b>{count}</b> zpráv."
 }

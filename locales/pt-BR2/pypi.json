@@ -4,5 +4,5 @@
   "package_not_found": "Olha só meu cumpadi n achei o <b>{package_name}</b> no no pipi (renornô {http_status}).",
   "not_specified": "Nao Expessifico",
   "pypi_description": "Procura por um pacote no Python Package Index (PyPI).",
-  "pypi_usage": "<b>Uso:</b> <code>/pypi nome_do_pacote</code> - Procura por um pacote no Python Package Index (PyPI)."
+  "pypi_usage": "<b>Uso:</b> <code>/pypi nome_do_pacote</code> — Procura por um pacote no Python Package Index (PyPI)."
 }

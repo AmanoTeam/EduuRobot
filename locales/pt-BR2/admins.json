@@ -22,7 +22,7 @@
   "no_permission_error": "Ow, vc não tem todas as premiações, pede para o dono te dar um: {permissions}",
   "private_not_allowed": "Ei esse comando não funciona aqui não em, c é Loko?",
   "pin_description": "Deixa a mensagem fixa ali em cima. Vc também poderia usar <code>loud</code> para notificar todo mundo e te xingarem.",
-  "purge_in_progress": "To apagando a porra toda...",
+  "purge_in_progress": "To apagando a porra toda…",
   "purge_description": "Apagar todas as mensagens, ignorando totalmente as mensagens, seja importante ou não até a mensagem respondida, TOME CUIDADO!!!",
   "purge_success": "Deletei <b>{count}</b> grupos inteiros.",
   "tban_description": "Dar um ban no time.",

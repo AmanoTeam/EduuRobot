@@ -9,7 +9,7 @@ import re
 import sys
 import time
 import traceback
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, suppress
 from sqlite3 import IntegrityError, OperationalError
 from typing import Union
 
@@ -22,12 +22,11 @@ from pyrogram.errors import RPCError
 from pyrogram.types import Message
 
 from config import DATABASE_PATH
-
-from ..database import database
-from ..database.restarted import set_restarted
-from ..utils import sudofilter
-from ..utils.localization import use_chat_lang
-from ..utils.utils import shell_exec
+from eduu.database import database
+from eduu.database.restarted import set_restarted
+from eduu.utils import sudofilter
+from eduu.utils.localization import use_chat_lang
+from eduu.utils.utils import shell_exec
 
 prefix: Union[list, str] = "!"
 
@@ -57,7 +56,7 @@ async def run_cmd(c: Client, m: Message, strings):
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang()
 async def upgrade(c: Client, m: Message, strings):
-    sm = await m.reply_text("Upgrading sources...")
+    sm = await m.reply_text("Upgrading sources…")
     stdout, proc = await shell_exec("git pull --no-edit")
     if proc.returncode == 0:
         if "Already up to date." in stdout:
@@ -180,16 +179,12 @@ async def restart(c: Client, m: Message, strings):
 @Client.on_message(filters.command("leave", prefix) & sudofilter)
 async def leave_chat(c: Client, m: Message):
     if len(m.command) == 1:
-        try:
+        with suppress(RPCError):
             await m.chat.leave()
-        except RPCError as e:
-            print(e)
     else:
         chat_id = m.text.split(maxsplit=1)[1]
-        try:
+        with suppress(RPCError):
             await c.leave_chat(int(chat_id))
-        except RPCError as e:
-            print(e)
 
 
 @Client.on_message(filters.command(["bot_stats", "stats"], prefix) & sudofilter)
@@ -246,7 +241,7 @@ async def uploadfile(c: Client, m: Message):
     if not m.reply_to_message:
         await m.reply_text("You must reply to a file to upload.")
 
-    sent = await m.reply_to_message.reply_text("Uploading file...")
+    sent = await m.reply_to_message.reply_text("Uploading file…")
     file_path = await m.reply_to_message.download(
         m.command[1] if len(m.command) > 1 else ""
     )

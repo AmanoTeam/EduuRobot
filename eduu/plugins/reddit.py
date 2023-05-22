@@ -7,16 +7,15 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
+from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
-
-from ..utils import commands, http
 
 CHARACTER_LIMIT = 25
 
 
 def limit_length(title: str):
     if len(title) > CHARACTER_LIMIT:
-        return title[:CHARACTER_LIMIT].rstrip() + "..."
+        return title[:CHARACTER_LIMIT].rstrip() + "…"
     else:
         return title
 

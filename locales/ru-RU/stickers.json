@@ -3,12 +3,12 @@
   "animated_not_supported": "Анимированные стикеры не поддерживаются.",
   "sticker_info": "<b>Эмодзи:</b> <code>{emoji}</code>\n<b>ID стикера:</b> <code>{id}</code>",
   "not_sticker": "Это не стикер.",
-  "kanging_sticker_msg": "<code>Добавление в набор...</code>",
+  "kanging_sticker_msg": "<code>Добавление в набор…</code>",
   "sticker_kanged_string": "Стикер <b>успешно</b> добавлен в набор\nЭмодзи: {sticker_emoji}",
-  "use_existing_pack": "<code>Использование существующего стикера...</code>",
+  "use_existing_pack": "<code>Использование существующего стикера…</code>",
   "err_sticker_no_file_name": "<b>Ошибка</b>: <code>Этот стикер не имеет имя файла!</code>",
   "view_sticker_pack_btn": "Посмотреть",
-  "create_new_pack_string": "Создание нового стикерпака...",
+  "create_new_pack_string": "Создание нового стикерпака…",
   "invalid_media_string": "<b>Ошибка:</b> <code>Недопустимый медиа-файл<code>",
   "cant_create_sticker_pack_string": "Ой, похоже, у меня недостаточно прав для создания стикерпака для вас!\n<b>Пожалуйста, сначала запустите бота.</b>"
 }

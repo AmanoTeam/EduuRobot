@@ -13,9 +13,8 @@ from pyrogram.types import (
 )
 
 from config import PREFIXES
-
-from ..utils import commands
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands
+from eduu.utils.localization import use_chat_lang
 
 tr = Translator()
 

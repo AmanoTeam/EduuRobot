@@ -22,7 +22,7 @@
   "no_permission_error": "很抱歉，您沒有運行此命令所需的權限。 缺少權限：{permissions}",
   "private_not_allowed": "此命令不能在私人聊天中使用。 如果您需要任何幫助，請使用 <code>/help</code> 命令。",
   "pin_description": "在聊天中固定回复的消息。 <code>ayumifofa</code> 可用於啟用通知。",
-  "purge_in_progress": "正在清除消息...",
+  "purge_in_progress": "正在清除消息…",
   "purge_description": "清除已回复消息的歷史記錄。",
   "purge_success": "已刪除 <b>{count}</b> 條消息。",
   "tban_description": "禁止用戶在指定時間內聊天。",

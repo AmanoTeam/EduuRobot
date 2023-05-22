@@ -4,5 +4,5 @@
   "package_not_found": "Can't find <b>{package_name}</b> in PyPI (Returned code was {http_status}).",
   "not_specified": "Not specified",
   "pypi_description": "Searches for a package in the Python Package Index (PyPI).",
-  "pypi_usage": "<b>Usage:</b> <code>/pypi package_name</code> - Searches for a package in the Python Package Index (PyPI)."
+  "pypi_usage": "<b>Usage:</b> <code>/pypi package_name</code> — Searches for a package in the Python Package Index (PyPI)."
 }

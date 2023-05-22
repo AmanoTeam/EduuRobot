@@ -1,5 +1,5 @@
 {
   "speedtest": "<b>Teste de lerdeza</b>\n\n<b>🌐 Houst:</b> <code>{host}</code>\n\n<b>🏓 Raquete:</b> <code>{ping} ms</code>\n<b>⬇️ Seta para baixo:</b> <code>{download} Mbps</code>\n<b>⬆️ Seta para cima:</b> <code>{upload} Mbps</code>",
   "forbidden_command": "Ow vacilau, isso é proíbido.",
-  "restarting": "Apagando a porra toda..."
+  "restarting": "Apagando a porra toda…"
 }

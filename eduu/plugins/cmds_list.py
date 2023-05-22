@@ -10,8 +10,8 @@ from pyrogram.types import (
     Message,
 )
 
-from ..utils import commands
-from ..utils.localization import use_chat_lang
+from eduu.utils import commands
+from eduu.utils.localization import use_chat_lang
 
 
 def gen_categories_kb(strings_manager):

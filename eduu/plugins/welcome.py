@@ -7,11 +7,10 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import PREFIXES
-
-from ..database.welcome import get_welcome, set_welcome, toggle_welcome
-from ..utils import button_parser, commands, get_format_keys
-from ..utils.decorators import require_admin
-from ..utils.localization import use_chat_lang
+from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome
+from eduu.utils import button_parser, commands, get_format_keys
+from eduu.utils.decorators import require_admin
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(
@@ -49,7 +48,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
         except (KeyError, BadRequest) as e:
             await m.reply_text(
                 strings("welcome_set_error").format(
-                    error=f"{e.__class__.__name__}: {str(e)}"
+                    error=f"{e.__class__.__name__}: {e!s}"
                 )
             )
 
@@ -122,17 +121,13 @@ async def greet_new_members(c: Client, m: Message, strings):
         return
     welcome, welcome_enabled = await get_welcome(m.chat.id)
     members = m.new_chat_members
-    mention = ", ".join(map(lambda a: a.mention, members))
-    username = ", ".join(
-        map(lambda a: f"@{a.username}" if a.username else a.mention, members)
-    )
+    mention = ", ".join(a.mention for a in members)
+    username = ", ".join(f"@{a.username}" if a.username else a.mention for a in members)
 
-    user_id = ", ".join(map(lambda a: str(a.id), members))
-    full_name = ", ".join(
-        map(lambda a: f"{a.first_name} " + ((a.last_name or "")), members)
-    )
+    user_id = ", ".join(str(a.id) for a in members)
+    full_name = ", ".join(f"{a.first_name} " + (a.last_name or "") for a in members)
 
-    first_name = ", ".join(map(lambda a: a.first_name, members))
+    first_name = ", ".join(a.first_name for a in members)
     if welcome_enabled:
         if welcome is None:
             welcome = strings("welcome_default")

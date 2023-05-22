@@ -45,7 +45,7 @@ async def main():
             await idle()
     except KeyboardInterrupt:
         # exit gracefully
-        logger.warning("Forced stop... Bye!")
+        logger.warning("Forced stop… Bye!")
     finally:
         # close https connections and the DB if open
         await eduu.stop()

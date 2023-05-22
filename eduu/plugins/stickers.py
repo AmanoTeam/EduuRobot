@@ -19,9 +19,8 @@ from pyrogram.raw.types import (
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import LOG_CHAT, PREFIXES
-
-from ..utils import EMOJI_PATTERN, http
-from ..utils.localization import use_chat_lang
+from eduu.utils import EMOJI_PATTERN, http
+from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command(["kang", "kibe", "steal"], PREFIXES))
@@ -43,10 +42,8 @@ async def kang_sticker(c: Client, m: Message, strings):
             and "image" in reply.document.mime_type
             or reply.photo
         ):
-            # mime_type: image/webp
             resize = True
         elif reply.document and "tgsticker" in reply.document.mime_type:
-            # mime_type: application/x-tgsticker
             animated = True
         elif reply.document:
             pass
@@ -101,7 +98,6 @@ async def kang_sticker(c: Client, m: Message, strings):
         except Exception as r_e:
             return await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
         if len(m.command) > 2:
-            # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
                 packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"

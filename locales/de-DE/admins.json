@@ -19,7 +19,7 @@
   "no_permission_error": "Es tut mir leid, aber Sie haben nicht die erforderlichen Berechtigungen, um diesen Befehl auszuführen. Fehlende Berechtigungen: {permissions}",
   "private_not_allowed": "Dieser Befehl kann nicht in einem privaten Chat verwendet werden. Wenn Sie Hilfe benötigen, benutzen Sie bitte den <code>/help</code> Befehl.",
   "pin_description": "Pinnt die geantwortete Nachricht im Chat an. <code>loud</code> kann verwendet werden, um die Benachrichtigung zu aktivieren.",
-  "purge_in_progress": "Lösche Nachrichten...",
+  "purge_in_progress": "Lösche Nachrichten…",
   "purge_description": "Löscht den Verlauf bis zur geantworteten Nachricht.",
   "purge_success": "<b>{count}</b> Nachrichten gelöscht.",
   "tban_description": "Sperrt einen Chat-Benutzer für die angegebene Zeit.",
