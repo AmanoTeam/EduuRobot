@@ -1,5 +1,4 @@
 {
   "speedtest": "<b>Speedtest</b>\n\n<b>🌐 Vert:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Nedlasting:</b> <code>{download} Mbps</code>\n<b>⬆️ Opplasting:</b> <code><code>{upload} Mbps</code>",
-  "forbidden_command": "Forbudt kommando.",
-  "restarting": "Restarter…"
+  "forbidden_command": "Forbudt kommando."
 }
