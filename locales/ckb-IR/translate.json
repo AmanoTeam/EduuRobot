@@ -1,4 +1,5 @@
 {
   "translate_usage": "<b>بەکارهێنان:</b>\n<code>/tr &lt;language&gt; text for translation</code>\n\nدەتوانیت وەڵامی پەیامێکیش بدەیتەوە.",
+  "translating": "وەردەگێڕرێت…",
   "translation": "<b>زمان:</b> {from_lang} بۆ {to_lang}\n<b>وەرگێڕان:</b> <code>{translation}</code>"
 }
