@@ -7,9 +7,9 @@ import math
 import os.path
 import re
 from datetime import datetime, timedelta
-from functools import partial, wraps
+from functools import partial
 from string import Formatter
-from typing import Callable, List, Optional, Union
+from typing import List, Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
@@ -43,17 +43,6 @@ def pretty_size(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return f"{s} {size_name[i]}"
-
-
-def aiowrap(func: Callable) -> Callable:
-    @wraps(func)
-    async def run(*args, loop=None, executor=None, **kwargs):
-        if loop is None:
-            loop = asyncio.get_event_loop()
-        pfunc = partial(func, *args, **kwargs)
-        return await loop.run_in_executor(executor, pfunc)
-
-    return run
 
 
 async def check_perms(

@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+import asyncio
 from functools import partial, wraps
-from typing import Union
+from typing import Callable, Union
 
-from pyrogram import Client
+from pyrogram import Client, StopPropagation
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, Message
 
@@ -15,6 +16,17 @@ from eduu.utils.localization import (
     langdict,
 )
 from eduu.utils.utils import check_perms
+
+
+def aiowrap(func: Callable) -> Callable:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
 
 
 def require_admin(
@@ -62,3 +74,13 @@ def require_admin(
         return wrapper
 
     return decorator
+
+
+def stop_here(func: Callable) -> Callable:
+    async def wrapper(*args, **kwargs):
+        try:
+            await func(*args, **kwargs)
+        finally:
+            raise StopPropagation
+
+    return wrapper

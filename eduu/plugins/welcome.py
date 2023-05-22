@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 from config import PREFIXES
 from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome
 from eduu.utils import button_parser, commands, get_format_keys
-from eduu.utils.decorators import require_admin
+from eduu.utils.decorators import require_admin, stop_here
 from eduu.utils.localization import use_chat_lang
 
 
@@ -17,10 +17,9 @@ from eduu.utils.localization import use_chat_lang
     filters.command(["welcomeformat", "start welcome_format_help"], PREFIXES)
 )
 @use_chat_lang()
+@stop_here
 async def welcome_format_message_help(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_format_help_msg"))
-
-    await m.stop_propagation()
 
 
 @Client.on_message(filters.command("setwelcome", PREFIXES) & filters.group)

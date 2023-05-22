@@ -6,7 +6,6 @@ from typing import List
 
 from .utils import (
     EMOJI_PATTERN,
-    aiowrap,
     button_parser,
     check_perms,
     commands,
@@ -27,7 +26,6 @@ from .utils import (
 
 __all__: List[str] = [
     "EMOJI_PATTERN",
-    "aiowrap",
     "button_parser",
     "check_perms",
     "commands",
