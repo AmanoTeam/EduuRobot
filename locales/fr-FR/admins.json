@@ -6,6 +6,5 @@
   "no_admin_error": "Vous devez être administrateur pour utiliser cette commande.",
   "no_permission_error": "Je suis désolé mais vous n'avez pas les permissions requises pour exécuter cette commande. Autorisations manquantes: {permissions}",
   "private_not_allowed": "Cette commande ne peut pas être utilisée dans un chat privé. Si vous avez besoin d'aide, veuillez utiliser la commande <code>/help</code>.",
-  "purge_in_progress": "Purge des messages…",
   "purge_success": "Messages <b>{count}</b> supprimés."
 }
