@@ -1,3 +1,4 @@
 {
-  "forbidden_command": "禁止的命令。"
+  "forbidden_command": "禁止的命令。",
+  "restarting": "正在重新啟動…"
 }
