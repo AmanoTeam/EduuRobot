@@ -1,4 +1,3 @@
 {
-  "nekobin_description": "Pega el texto/documento respondido a nekobin.com.",
-  "hastebin_description": "Pega el texto/documento respondido a hastebin.com."
+  "paste_description": "Pega el texto/documento respondido a nekobin.com."
 }
