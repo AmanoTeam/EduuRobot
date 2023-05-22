@@ -19,6 +19,7 @@
   "no_permission_error": "Non hai i permessi necessari per eseguire questo comando. Permessi mancanti: {permissions}",
   "private_not_allowed": "Questo comando non può essere usato in una chat privata. Se hai bisogno di aiuto, usa il comando <code>/help</code>.",
   "pin_description": "Fissa il messaggio a cui si sta rispondendo in chat. <code>loud</code> può essere usato per abilitare i suoni di notifica.",
+  "purge_in_progress": "Pulizia messaggi…",
   "purge_description": "Pulisce la cronologia fino al messaggio a cui si sta rispondendo.",
   "purge_success": "<b>{count}</b> messaggi eliminati.",
   "tban_description": "Rimuove un utente dalla chat per il tempo specificato.",
