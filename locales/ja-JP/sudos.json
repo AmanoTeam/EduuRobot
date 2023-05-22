@@ -1,3 +1,4 @@
 {
-  "forbidden_command": "禁止されたコマンド"
+  "forbidden_command": "禁止されたコマンド",
+  "restarting": "再起動中…"
 }
