@@ -1,5 +1,4 @@
 {
-  "nekobin_description": "Cevaplanan metni/belgeyi nekobin.com'a yapıştırın.",
-  "hastebin_description": "Cevaplanan metni/belgeyi hastebin.com'a yapıştırın.",
+  "paste_description": "Cevaplanan metni/belgeyi nekobin.com'a yapıştırın.",
   "reply_to_document_or_text": "Lütfen içeriğini yapıştırmak için bir metni veya belgeyi yanıtlayın."
 }
