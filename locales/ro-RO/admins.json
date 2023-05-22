@@ -3,6 +3,5 @@
   "no_admin_error": "Trebuie să fiți administrator pentru a utiliza această comandă.",
   "no_permission_error": "Îmi pare rău, dar nu ai permisiunile necesare pentru a rula această comandă. Permisiuni lipsă: {permissions}",
   "private_not_allowed": "Această comandă nu poate fi folosită într-o conversație privată. Dacă ai nevoie de ajutor, te rugăm să folosești comanda <code>/help</code>.",
-  "purge_in_progress": "Se roagă mesajele…",
   "purge_success": "Mesaje șterse <b>{count}</b>"
 }
