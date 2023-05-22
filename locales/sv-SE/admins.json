@@ -3,6 +3,5 @@
   "no_admin_error": "Du måste vara administratör för att använda detta kommando.",
   "no_permission_error": "Jag är ledsen men du har inte de nödvändiga behörigheterna för att köra detta kommando. Behörigheter saknas: {permissions}",
   "private_not_allowed": "Detta kommando kan inte användas i en privat chatt. Om du behöver hjälp, använd <code>/help</code> -kommandot.",
-  "purge_in_progress": "Rensar meddelanden…",
   "purge_success": "Tog bort <b>{count}</b> meddelanden."
 }
