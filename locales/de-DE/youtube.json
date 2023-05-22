@@ -1,6 +1,8 @@
 {
+  "ytdl_sending": "Wird gesendet…",
   "ytdl_missing_argument": "Bitte antworten Sie auf einen YouTube-Link oder -Text.",
   "ytdl_audio_button": "💿 Audio",
   "ytdl_video_button": "🎬 Video",
+  "ytdl_downloading": "Wird heruntergeladen…",
   "ytdl_button_denied": "Diese Taste ist nicht für Sie."
 }
