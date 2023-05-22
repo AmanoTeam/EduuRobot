@@ -1,8 +1,6 @@
 {
-  "ytdl_sending": "Verzenden…",
   "ytdl_missing_argument": "Antwoord op een YouTube-link of -tekst.",
   "ytdl_audio_button": "💿 Audio",
   "ytdl_video_button": "🎬 Video",
-  "ytdl_downloading": "Downloaden…",
   "ytdl_button_denied": "Deze knop is niet voor jou."
 }
