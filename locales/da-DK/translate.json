@@ -1,4 +1,5 @@
 {
   "translate_usage": "<b>Brug:</b> <code>/tr &lt;language&gt; tekst til oversættelse</code> (Kan også anvendes som svar på en meddelelse).",
+  "translating": "Oversætter…",
   "translation": "<b>Sprog:</b> {from_lang} -> {to_lang}\n<b>Oversættelse:</b> <code>{translation}</code>"
 }
