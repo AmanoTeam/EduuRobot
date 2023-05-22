@@ -1,5 +1,4 @@
 {
   "speedtest": "<b>速度测试</b>\n\n<b>🌐 主机:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ 下载:</b> <code>{download} Mbps</code>\n<b>⬆️ 上传:</b> <code>{upload} Mbps</code>",
-  "forbidden_command": "禁止命令。",
-  "restarting": "正在重启…"
+  "forbidden_command": "禁止命令。"
 }
