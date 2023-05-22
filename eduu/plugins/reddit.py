@@ -59,4 +59,4 @@ async def reddit(c: Client, m: Message, strings):
     )
 
 
-commands.add_command("reddit", "tools")
+commands.add_command("reddit", "tools", aliases=["r"])

@@ -12,7 +12,7 @@ from pyrogram.types import (
 )
 
 from config import PREFIXES
-from eduu.utils import commands, http
+from eduu.utils import commands, http, inline_commands
 from eduu.utils.localization import use_chat_lang
 
 # Api key used in weather.com's mobile app.
@@ -82,7 +82,7 @@ def get_status_emoji(status_code: int) -> str:
 
 
 @Client.on_message(filters.command(["clima", "weather"], PREFIXES))
-@Client.on_inline_query(filters.regex(r"^(clima|weather)"))
+@Client.on_inline_query(filters.regex(r"^(clima|weather) .+"))
 @use_chat_lang
 async def weather(c: Client, m: Union[InlineQuery, Message], strings):
     text = m.text if isinstance(m, Message) else m.query
@@ -179,4 +179,5 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
         )
 
 
-commands.add_command("weather", "tools")
+commands.add_command("weather", "tools", aliases=["clima"])
+inline_commands.add_command("weather <location>", aliases=["clima"])

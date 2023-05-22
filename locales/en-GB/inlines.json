@@ -1,4 +1,8 @@
 {
+  "faces_description": "Shows a list of text faces.",
+  "html_description": "Formats the provided text as html.",
+  "info_description": "Gets information about the provided user.",
+  "markdown_description": "Formats the provided text as markdown.",
   "markdown_send_inline": "Click here to send the text in markdown format.",
   "html_send_inline": "Click here to send the text in html format.",
   "user_info_inline_cant_found_user": "User not found.",

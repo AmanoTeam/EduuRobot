@@ -11,7 +11,7 @@ from pyrogram.types import (
 from yarl import URL
 
 from config import PREFIXES
-from eduu.utils import http
+from eduu.utils import commands, http, inline_commands
 from eduu.utils.localization import use_chat_lang
 
 
@@ -33,7 +33,7 @@ async def ip_cmd(c: Client, m: Message, strings):
         await m.reply_text(strings("ip_err_no_ip"))
 
 
-@Client.on_inline_query(filters.regex(r"^ip"))
+@Client.on_inline_query(filters.regex(r"^ip .+"))
 @use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) > 1:
@@ -61,3 +61,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+
+
+commands.add_command("ip", "tools")
+inline_commands.add_command("ip <host>")

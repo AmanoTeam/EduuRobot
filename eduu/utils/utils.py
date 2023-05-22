@@ -14,7 +14,12 @@ from typing import List, Optional, Union
 import httpx
 from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    Message,
+    User,
+)
 
 from config import SUDOERS
 
@@ -193,35 +198,27 @@ class BotCommands:
         self,
         command: str,
         category: str,
-        description_key: str = None,
-        context_location: str = None,
+        aliases: Optional[list] = None,
     ):
-        if not context_location:
-            # If context_location is not defined, get context from file name who added the command
+        cwd = os.getcwd()
+        fname = inspect.stack()[1].filename
 
-            cwd = os.getcwd()
-            frame = inspect.stack()[1]
+        context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
 
-            fname = frame.filename
+        description_key = f"{command}_description"
 
-            if fname.startswith(cwd):
-                fname = fname[len(cwd) + 1 :]
-            context_location = fname.split(os.path.sep)[2].split(".")[
-                0
-            ]  # eduu/plugins/<context>.py
-        if description_key is None:
-            description_key = f"{command}_description"
         if self.commands.get(category) is None:
             self.commands[category] = []
         self.commands[category].append(
             {
                 "command": command,
                 "description_key": description_key,
-                "context": context_location,
+                "context": context,
+                "aliases": aliases or [],
             }
         )
 
-    def get_commands_message(self, strings_manager, category: str = None):
+    def get_commands_message(self, strings, category: str = None):
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
@@ -231,21 +228,57 @@ class BotCommands:
             cmds_list = self.commands[category]
 
         res = (
-            strings_manager("command_category_title").format(
-                category=strings_manager(category)
-            )
+            strings("command_category_title").format(category=strings(category))
             + "\n\n"
         )
 
         cmds_list.sort(key=lambda k: k["command"])
 
         for cmd in cmds_list:
-            res += f"<b>/{cmd['command']}</b> - <i>{strings_manager(cmd['description_key'], context=cmd['context'])}</i>\n"
+            res += f"<b>/{cmd['command']}</b> - <i>{strings(cmd['description_key'], context=cmd['context'])}</i>\n"
 
         return res
 
 
+class InlineBotCommands:
+    def __init__(self):
+        self.commands = []
+
+    def add_command(
+        self,
+        command: str,
+        aliases: Optional[list] = None,
+    ):
+        cwd = os.getcwd()
+        fname = inspect.stack()[1].filename
+
+        context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
+
+        description_key = f"{command.split()[0]}_description"
+
+        self.commands.append(
+            {
+                "command": command,
+                "description_key": description_key,
+                "context": context,
+                "aliases": aliases or [],
+            }
+        )
+
+    def search_commands(self, query: str = None):
+        res = []
+        for cmd in sorted(self.commands, key=lambda k: k["command"]):
+            if (
+                not query
+                or query in cmd["command"]
+                or any(query in alias for alias in cmd["aliases"])
+            ):
+                res.append(cmd)
+        return res
+
+
 commands = BotCommands()
+inline_commands = InlineBotCommands()
 
 
 def get_emoji_regex():

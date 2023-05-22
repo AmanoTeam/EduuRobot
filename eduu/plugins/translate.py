@@ -13,7 +13,7 @@ from pyrogram.types import (
 )
 
 from config import PREFIXES
-from eduu.utils import commands
+from eduu.utils import commands, inline_commands
 from eduu.utils.localization import use_chat_lang
 
 tr = Translator()
@@ -98,7 +98,7 @@ async def translate(c: Client, m: Message, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^tr"))
+@Client.on_inline_query(filters.regex(r"^tr .+"))
 @use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, strings):
     try:
@@ -126,3 +126,4 @@ async def tr_inline(c: Client, q: InlineQuery, strings):
 
 
 commands.add_command("tr", "tools")
+inline_commands.add_command("tr <lang> <text>")

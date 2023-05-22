@@ -13,7 +13,7 @@ from pyrogram.types import (
     InputTextMessageContent,
 )
 
-from eduu.utils import button_parser
+from eduu.utils import button_parser, inline_commands
 from eduu.utils.localization import use_chat_lang
 
 faces_list: Iterable[str] = (
@@ -68,7 +68,7 @@ async def faces_inline(c: Client, q: InlineQuery):
     await q.answer(results)
 
 
-@Client.on_inline_query(filters.regex(r"^markdown"))
+@Client.on_inline_query(filters.regex(r"^markdown .+"))
 @use_chat_lang
 async def markdown_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
@@ -90,7 +90,7 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^html"))
+@Client.on_inline_query(filters.regex(r"^html .+"))
 @use_chat_lang
 async def html_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
@@ -112,7 +112,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^info"))
+@Client.on_inline_query(filters.regex(r"^info .+"))
 @use_chat_lang
 async def info_inline(c: Client, q: InlineQuery, strings):
     try:
@@ -147,3 +147,9 @@ async def info_inline(c: Client, q: InlineQuery, strings):
             )
         ]
     )
+
+
+inline_commands.add_command("faces")
+inline_commands.add_command("html <text>")
+inline_commands.add_command("info <username>")
+inline_commands.add_command("markdown <text>")

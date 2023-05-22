@@ -14,6 +14,7 @@ from pyrogram.types import (
 from pytio import Tio, TioRequest
 
 from config import PREFIXES
+from eduu.utils import commands, inline_commands
 from eduu.utils.localization import use_chat_lang
 
 tio = Tio()
@@ -61,7 +62,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
         )
 
 
-@Client.on_inline_query(filters.regex(r"^exec"))
+@Client.on_inline_query(filters.regex(r"^(run|exec)"))
 @use_chat_lang
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     codetoexec = q.query.split(None, 2)[2]
@@ -128,3 +129,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+
+
+commands.add_command("run", "tools")
+inline_commands.add_command("run <lang> <code>", aliases=["exec"])
