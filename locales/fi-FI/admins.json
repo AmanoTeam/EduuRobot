@@ -3,5 +3,6 @@
   "no_admin_error": "Sinun täytyy olla järjestelmänvalvoja käyttääksesi tätä komentoa.",
   "no_permission_error": "Anteeksi, mutta sinulla ei ole vaadittuja oikeuksia tämän komennon suorittamiseen. Puuttuvat oikeudet: {permissions}",
   "private_not_allowed": "Tätä komentoa ei voi käyttää yksityisessä keskustelussa. Jos tarvitset apua, käytä komentoa <code>/help</code>",
+  "purge_in_progress": "Puhdistetaan viestejä…",
   "purge_success": "Poistettiin <b>{count}</b> viestiä."
 }
