@@ -10,7 +10,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("dog", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def dog(c: Client, m: Message, strings):
     r = await http.get("https://random.dog/woof.json")
     rj = r.json()

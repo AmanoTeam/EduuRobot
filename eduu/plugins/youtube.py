@@ -71,7 +71,7 @@ async def yt_search_cmd(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("ytdl", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def ytdlcmd(c: Client, m: Message, strings):
     user = m.from_user.id
 
@@ -132,7 +132,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
 
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
-@use_chat_lang()
+@use_chat_lang
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):

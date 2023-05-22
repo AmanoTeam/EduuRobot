@@ -19,7 +19,7 @@ if not TENOR_API_KEY:
 
 
 @Client.on_message(filters.command("gif", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def gif(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("gif_usage"))

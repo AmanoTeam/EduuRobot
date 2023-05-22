@@ -1,5 +1,4 @@
 {
-  "nekobin_description": "Paste the replied text/document to nekobin.com.",
-  "hastebin_description": "Paste the replied text/document to hastebin.com.",
+  "paste_description": "Paste the replied text/document to nekobin.com.",
   "reply_to_document_or_text": "Please reply to a text or document to paste its content."
 }

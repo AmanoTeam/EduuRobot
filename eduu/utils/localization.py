@@ -4,9 +4,9 @@
 import inspect
 import json
 import os.path
-from functools import partial, wraps
+from functools import partial
 from glob import glob
-from typing import Dict, List
+from typing import Callable, Dict, List
 
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
@@ -104,27 +104,18 @@ async def get_lang(message) -> str:
     return lang if lang in enabled_locales else default_language
 
 
-def use_chat_lang(context: str = None):
-    if not context:
-        cwd = os.getcwd()
-        frame = inspect.stack()[1]
+def use_chat_lang(func: Callable):
+    cwd = os.getcwd()
+    fname = inspect.stack()[1].filename
 
-        fname = frame.filename
+    context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
 
-        if fname.startswith(cwd):
-            fname = fname[len(cwd) + 1 :]
-        context = fname.split(os.path.sep)[2].split(".")[0]  # eduu/plugins/<context>.py
+    async def wrapper(client, message, *args, **kwargs):
+        lang = await get_lang(message)
 
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(client, message):
-            lang = await get_lang(message)
+        dic = langdict.get(lang, langdict[default_language])
 
-            dic = langdict.get(lang, langdict[default_language])
+        lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
+        return await func(client, message, *args, lfunc, **kwargs)
 
-            lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
-            return await func(client, message, lfunc)
-
-        return wrapper
-
-    return decorator
+    return wrapper

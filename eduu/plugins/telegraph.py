@@ -10,7 +10,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("telegraph", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def telegraph(c: Client, m: Message, strings):
     if m.reply_to_message:
         if (

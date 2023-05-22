@@ -83,7 +83,7 @@ def get_status_emoji(status_code: int) -> str:
 
 @Client.on_message(filters.command(["clima", "weather"], PREFIXES))
 @Client.on_inline_query(filters.regex(r"^(clima|weather)"))
-@use_chat_lang()
+@use_chat_lang
 async def weather(c: Client, m: Union[InlineQuery, Message], strings):
     text = m.text if isinstance(m, Message) else m.query
     if len(text.split(maxsplit=1)) == 1:

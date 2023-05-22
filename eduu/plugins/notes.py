@@ -25,7 +25,7 @@ async def check_for_notes(chat_id, trigger):
 
 @Client.on_message(filters.command(["note", "savenote"], PREFIXES))
 @require_admin(allow_in_private=True)
-@use_chat_lang()
+@use_chat_lang
 async def save_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
@@ -95,7 +95,7 @@ async def save_note(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command(["delnote", "rmnote"], PREFIXES))
 @require_admin(allow_in_private=True)
-@use_chat_lang()
+@use_chat_lang
 async def delete_note(c: Client, m: Message, strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
@@ -113,7 +113,7 @@ async def delete_note(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("notes", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id
     reply_text = strings("notes_list")

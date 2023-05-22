@@ -12,7 +12,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("git", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def git(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("no_username_err"), reply_to_message_id=m.id)

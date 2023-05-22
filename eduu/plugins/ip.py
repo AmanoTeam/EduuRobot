@@ -22,7 +22,7 @@ async def get_ip_info(ip: str) -> str:
 
 
 @Client.on_message(filters.command("ip", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
@@ -34,7 +34,7 @@ async def ip_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^ip"))
-@use_chat_lang()
+@use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) > 1:
         text = q.query.split(maxsplit=1)[1]

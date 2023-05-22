@@ -65,7 +65,7 @@ def get_tr_lang(text):
 
 
 @Client.on_message(filters.command("tr", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def translate(c: Client, m: Message, strings):
     text = m.text[4:]
     lang = get_tr_lang(text)
@@ -99,7 +99,7 @@ async def translate(c: Client, m: Message, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^tr"))
-@use_chat_lang()
+@use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, strings):
     try:
         to_tr = q.query.split(None, 2)[2]

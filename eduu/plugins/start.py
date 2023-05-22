@@ -21,7 +21,7 @@ from eduu.utils.localization import use_chat_lang
 # Using a low priority group so deeplinks will run before this and stop the propagation.
 @Client.on_message(filters.command("start", PREFIXES), group=2)
 @Client.on_callback_query(filters.regex("^start_back$"))
-@use_chat_lang()
+@use_chat_lang
 async def start(c: Client, m: Union[Message, CallbackQuery], strings):
     if isinstance(m, CallbackQuery):
         msg = m.message
@@ -66,7 +66,7 @@ async def start(c: Client, m: Union[Message, CallbackQuery], strings):
 
 
 @Client.on_callback_query(filters.regex("^infos$"))
-@use_chat_lang()
+@use_chat_lang
 async def infos(c: Client, m: CallbackQuery, strings):
     res = strings("info_page").format(
         version_number=f"r{__version_number__}",

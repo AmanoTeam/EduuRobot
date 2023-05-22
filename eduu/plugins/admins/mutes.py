@@ -12,7 +12,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("mute", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 @require_admin(permissions=["can_restrict_members"])
 async def mute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -37,7 +37,7 @@ async def mute(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("unmute", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 @require_admin(permissions=["can_restrict_members"])
 async def unmute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -56,7 +56,7 @@ async def unmute(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("tmute", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 @require_admin(permissions=["can_restrict_members"])
 async def tmute(c: Client, m: Message, strings):
     if len(m.command) == 1:

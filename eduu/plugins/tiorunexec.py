@@ -24,7 +24,7 @@ langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 
 @Client.on_message(filters.command(["run", "exec_code"], PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
     codetoexec = m.text.split(None, 2)[2]
@@ -62,7 +62,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^exec"))
-@use_chat_lang()
+@use_chat_lang
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     codetoexec = q.query.split(None, 2)[2]
     execlanguage = q.query.lower().split()[1]

@@ -50,7 +50,7 @@ def gen_langs_kb():
     filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group
 )
 @require_admin(allow_in_private=True)
-@use_chat_lang()
+@use_chat_lang
 async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -88,7 +88,7 @@ async def set_chat_lang(c: Client, m: CallbackQuery):
     await set_chat_lang_edit(c, m)
 
 
-@use_chat_lang()
+@use_chat_lang
 async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
     if m.message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(

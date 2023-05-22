@@ -15,7 +15,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("print", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def prints(c: Client, m: Message, strings):
     # Get the target URl from the message using Telegram entities.
     # If there is no URL, try to get an URL from the replied message.

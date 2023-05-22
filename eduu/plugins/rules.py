@@ -13,7 +13,7 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("setrules", PREFIXES) & filters.group)
 @require_admin(permissions=["can_change_info"])
-@use_chat_lang()
+@use_chat_lang
 async def settherules(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         await set_rules(m.chat.id, m.text.split(None, 1)[1])
@@ -24,14 +24,14 @@ async def settherules(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("resetrules", PREFIXES) & filters.group)
 @require_admin(permissions=["can_change_info"])
-@use_chat_lang()
+@use_chat_lang
 async def delete_rules(c: Client, m: Message, strings):
     await set_rules(m.chat.id, None)
     await m.reply_text(strings("rules_deleted"))
 
 
 @Client.on_message(filters.command("rules", PREFIXES) & filters.group)
-@use_chat_lang()
+@use_chat_lang
 async def show_rules(c: Client, m: Message, strings):
     gettherules = await get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(gettherules)
@@ -47,7 +47,7 @@ async def show_rules(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.regex("^/start rules_") & filters.private)
-@use_chat_lang()
+@use_chat_lang
 @stop_here
 async def show_rules_pvt(c: Client, m: Message, strings):
     cid_one = m.text.split("_")[1]

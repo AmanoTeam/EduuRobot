@@ -15,7 +15,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("info", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def user_info(c: Client, m: Message, strings):
     if len(m.command) == 2:
         try:

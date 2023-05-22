@@ -17,7 +17,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("mark", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def mark(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("mark_usage"))
@@ -31,7 +31,7 @@ async def mark(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("html", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def html(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("html_usage"))
@@ -45,7 +45,7 @@ async def html(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
-@use_chat_lang()
+@use_chat_lang
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
     async for i in m.chat.get_members(
@@ -64,7 +64,7 @@ async def mentionadmins(c: Client, m: Message, strings):
     & filters.group
     & filters.reply
 )
-@use_chat_lang()
+@use_chat_lang
 async def reportadmins(c: Client, m: Message, strings):
     if m.reply_to_message.from_user:
         check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
@@ -84,7 +84,7 @@ async def reportadmins(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("token"))
-@use_chat_lang()
+@use_chat_lang
 async def getbotinfo(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("no_bot_token"), reply_to_message_id=m.id)
@@ -138,7 +138,7 @@ async def urldecodecmd(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("bug", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         try:
@@ -182,7 +182,7 @@ async def request_cmd(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("parsebutton"))
-@use_chat_lang()
+@use_chat_lang
 async def button_parse_helper(c: Client, m: Message, strings):
     if len(m.text.split()) > 2:
         await m.reply_text(
@@ -194,7 +194,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("donate", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def donatecmd(c: Client, m: Message, strings):
     await m.reply_text(strings("donatecmdstring"))
 

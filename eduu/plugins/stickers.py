@@ -24,7 +24,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command(["kang", "kibe", "steal"], PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def kang_sticker(c: Client, m: Message, strings):
     prog_msg = await m.reply_text(strings("kanging_sticker_msg"))
     bot_username = c.me.username
@@ -230,7 +230,7 @@ def resize_image(file: str) -> io.BytesIO:
 
 
 @Client.on_message(filters.command("stickerid", PREFIXES) & filters.reply)
-@use_chat_lang()
+@use_chat_lang
 async def getstickerid(c: Client, m: Message, strings):
     if m.reply_to_message.sticker:
         await m.reply_text(
@@ -241,7 +241,7 @@ async def getstickerid(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("getsticker", PREFIXES) & filters.reply)
-@use_chat_lang()
+@use_chat_lang
 async def getstickeraspng(c: Client, m: Message, strings):
     sticker = m.reply_to_message.sticker
     if sticker:

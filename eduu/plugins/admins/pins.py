@@ -13,7 +13,7 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("antichannelpin", PREFIXES))
 @require_admin(permissions=["can_pin_messages"])
-@use_chat_lang()
+@use_chat_lang
 async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":

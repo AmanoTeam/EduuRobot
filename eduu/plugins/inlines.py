@@ -69,7 +69,7 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 
 @Client.on_inline_query(filters.regex(r"^markdown"))
-@use_chat_lang()
+@use_chat_lang
 async def markdown_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
@@ -91,7 +91,7 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^html"))
-@use_chat_lang()
+@use_chat_lang
 async def html_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
@@ -113,7 +113,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
 
 
 @Client.on_inline_query(filters.regex(r"^info"))
-@use_chat_lang()
+@use_chat_lang
 async def info_inline(c: Client, q: InlineQuery, strings):
     try:
         if q.query == "info":

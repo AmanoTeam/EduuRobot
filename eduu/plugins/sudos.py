@@ -39,7 +39,7 @@ async def sudos(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("cmd", prefix) & sudofilter)
-@use_chat_lang()
+@use_chat_lang
 async def run_cmd(c: Client, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
@@ -54,7 +54,7 @@ async def run_cmd(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
-@use_chat_lang()
+@use_chat_lang
 async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources…")
     stdout, proc = await shell_exec("git pull --no-edit")
@@ -111,7 +111,7 @@ async def execs(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
-@use_chat_lang()
+@use_chat_lang
 async def test_speed(c: Client, m: Message, strings):
     string = strings("speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
@@ -167,7 +167,7 @@ async def execsql(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
-@use_chat_lang()
+@use_chat_lang
 async def restart(c: Client, m: Message, strings):
     sent = await m.reply_text(strings("restarting"))
     await set_restarted(sent.chat.id, sent.id)

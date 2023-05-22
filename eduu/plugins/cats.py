@@ -10,7 +10,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("cat", PREFIXES))
-@use_chat_lang()
+@use_chat_lang
 async def cat(c: Client, m: Message, strings):
     r = await http.get("https://api.thecatapi.com/v1/images/search")
     rj = r.json()

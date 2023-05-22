@@ -33,7 +33,7 @@ async def get_warn_reason_text(c: Client, m: Message) -> Message:
 
 @Client.on_message(filters.command("warn", PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
-@use_chat_lang()
+@use_chat_lang
 async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     warns_limit = await get_warns_limit(m.chat.id)
@@ -83,7 +83,7 @@ async def warn_user(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("setwarnslimit", PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members", "can_change_info"])
-@use_chat_lang()
+@use_chat_lang
 async def on_set_warns_limit(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(strings("warn_limit_help"))
@@ -98,7 +98,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)
 @require_admin(permissions=["can_restrict_members"])
-@use_chat_lang()
+@use_chat_lang
 async def unwarn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     await reset_warns(m.chat.id, target_user.id)
@@ -107,7 +107,7 @@ async def unwarn_user(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("warns", PREFIXES) & filters.group)
 @require_admin()
-@use_chat_lang()
+@use_chat_lang
 async def get_user_warns_cmd(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     user_warns = await get_warns(m.chat.id, target_user.id)
@@ -122,7 +122,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
     filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group
 )
 @require_admin(permissions=["can_restrict_members"])
-@use_chat_lang()
+@use_chat_lang
 async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] not in ("ban", "mute", "kick"):
