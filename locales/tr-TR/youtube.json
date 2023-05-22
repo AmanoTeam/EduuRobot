@@ -1,10 +1,8 @@
 {
-  "ytdl_sending": "Gönderiliyor…",
   "ytdl_missing_argument": "Lütfen bir YouTube bağlantısını veya metnini yanıtlayın.",
   "ytdl_audio_button": "💿 Ses",
   "ytdl_video_button": "🎬. Video",
   "ytdl_file_too_big": "Üzgünüm! 200MB yükleme limitimi aştığı için bu medyayı indiremiyorum.",
   "ytdl_send_error": "Üzgünüm! Bir hata nedeniyle videoyu gönderemedim.\n<b>Hata:</b> <code>{errmsg}</code>",
-  "ytdl_downloading": "İndiriliyor…",
   "ytdl_button_denied": "Bu beğeni için değil."
 }
