@@ -19,7 +19,6 @@
   "no_permission_error": "Het spijt me, maar je hebt niet de vereiste machtigingen om dit commando uit te voeren. Ontbrekende machtigingen: {permissions}",
   "private_not_allowed": "Deze opdracht kan niet worden gebruikt in een privéchat. Als je hulp nodig hebt, gebruik dan het <code>/help</code> commando.",
   "pin_description": "Zet het beantwoorde bericht vast in de chat. <code>loud</code> kan worden gebruikt om meldingen in te schakelen.",
-  "purge_in_progress": "Berichten verwijderen…",
   "purge_description": "Schoont de geschiedenis op tot het beantwoorde bericht.",
   "purge_success": "Verwijderde <b>{count}</b> berichten.",
   "tban_description": "Verbant een gebruiker voor een bepaalde tijd uit de chat.",
