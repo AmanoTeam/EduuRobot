@@ -1,5 +1,6 @@
 {
   "translate_usage": "<b>שימוש:</b> <code>/tr &lt;language&gt; טקסט לתרגום</code> (אפשר גם להשתמש בהשב על הודעה).",
+  "translating": "מתרגם…",
   "translation": "<b>שפה:</b> {from_lang} -> {to_lang}\n<b>תרגום:</b> <code>{translation}</code>",
   "translate_inline_send": "תרגם מ {srclangformat} ל {tolangformat}"
 }
