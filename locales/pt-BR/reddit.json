@@ -3,6 +3,5 @@
   "error": "Erro ao carregar o Subreddit",
   "no_results": "Este Subreddit não possui posts",
   "not_found": "Subreddit não encontrado",
-  "reddit_description": "Veja os últimos posts do Subreddit especificado",
-  "reddit_usage": "<b>Uso</b>: <code>/reddit subreddit</code> — Veja os últimos posts do Subreddit especificado"
+  "reddit_description": "Veja os últimos posts do Subreddit especificado"
 }
