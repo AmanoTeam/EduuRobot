@@ -3,6 +3,5 @@
   "no_admin_error": "Musisz być administratorem, aby użyć tego polecenia.",
   "no_permission_error": "Przykro mi, ale nie masz wymaganych uprawnień do uruchomienia tej komendy. Brakuje uprawnień: {permissions}",
   "private_not_allowed": "Ta komenda nie może być użyta na czacie prywatnym. Jeśli potrzebujesz pomocy, użyj komendy <code>/help</code>.",
-  "purge_in_progress": "Czyszczenie wiadomości…",
   "purge_success": "Usunięto <b>{count}</b> wiadomości."
 }
