@@ -3,5 +3,6 @@
   "package_home_page": "Página inicial do pacote",
   "package_not_found": "Não foi possível encontrar <b>{package_name}</b> no PyPI (O código retornado foi {http_status}).",
   "not_specified": "Não especificado",
-  "pypi_description": "Procura por um pacote no Python Package Index (PyPI)."
+  "pypi_description": "Procura por um pacote no Python Package Index (PyPI).",
+  "pypi_usage": "<b>Uso:</b> <code>/pypi nome_do_pacote</code> — Procura por um pacote no Python Package Index (PyPI)."
 }
