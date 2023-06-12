@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-import inspect
 import json
 import os.path
 from functools import partial
@@ -12,6 +11,7 @@ from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
+from eduu.utils.utils import get_caller_context
 
 enabled_locales: List[str] = [
     "en-GB",  # English (United Kingdom)
@@ -105,10 +105,7 @@ async def get_lang(message) -> str:
 
 
 def use_chat_lang(func: Callable):
-    cwd = os.getcwd()
-    fname = inspect.stack()[1].filename
-
-    context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
+    context = get_caller_context()
 
     async def wrapper(client, message, *args, **kwargs):
         lang = await get_lang(message)

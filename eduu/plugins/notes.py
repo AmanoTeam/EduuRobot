@@ -23,7 +23,9 @@ async def check_for_notes(chat_id, trigger):
     return False
 
 
-@Client.on_message(filters.command(["note", "savenote"], PREFIXES))
+@Client.on_message(
+    filters.command(["note", "savenote", "nota", "salvarnota"], PREFIXES)
+)
 @require_admin(allow_in_private=True)
 @use_chat_lang
 async def save_note(c: Client, m: Message, strings):
@@ -93,7 +95,9 @@ async def save_note(c: Client, m: Message, strings):
     await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
 
 
-@Client.on_message(filters.command(["delnote", "rmnote"], PREFIXES))
+@Client.on_message(
+    filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES)
+)
 @require_admin(allow_in_private=True)
 @use_chat_lang
 async def delete_note(c: Client, m: Message, strings):
@@ -112,7 +116,7 @@ async def delete_note(c: Client, m: Message, strings):
         )
 
 
-@Client.on_message(filters.command("notes", PREFIXES))
+@Client.on_message(filters.command(["notes", "notas"], PREFIXES))
 @use_chat_lang
 async def get_all_chat_note(c: Client, m: Message, strings):
     chat_id = m.chat.id

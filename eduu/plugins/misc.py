@@ -60,7 +60,7 @@ async def mentionadmins(c: Client, m: Message, strings):
 
 
 @Client.on_message(
-    (filters.command("report", PREFIXES) | filters.regex("^@admin"))
+    (filters.command(["report", "reportar"], PREFIXES) | filters.regex("^@admin"))
     & filters.group
     & filters.reply
 )

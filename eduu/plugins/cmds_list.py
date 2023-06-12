@@ -11,6 +11,7 @@ from pyrogram.types import (
 )
 
 from eduu.utils import commands
+from eduu.utils.decorators import stop_here
 from eduu.utils.localization import use_chat_lang
 
 
@@ -53,6 +54,7 @@ async def cmds_list(c: Client, m: CallbackQuery, strings):
 
 @Client.on_message(filters.command(["help", "start help"]))
 @use_chat_lang
+@stop_here
 async def show_help(c: Client, m: Message, strings):
     if m.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(

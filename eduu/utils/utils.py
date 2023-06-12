@@ -4,22 +4,17 @@
 import asyncio
 import inspect
 import math
-import os.path
 import re
 from datetime import datetime, timedelta
 from functools import partial
+from pathlib import Path
 from string import Formatter
 from typing import List, Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    Message,
-    User,
-)
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from config import SUDOERS
 
@@ -190,6 +185,23 @@ def button_parser(markdown_note):
     return note_data, buttons
 
 
+def get_caller_context(depth: int = 2) -> str:
+    """Get the context of the caller of the function calling this function.
+
+    Args:
+    ----
+        depth (int, optional): Depth of the caller. Defaults to 2.
+
+    Returns:
+    -------
+    str: The context of the caller.
+    """
+    fpath = Path(inspect.stack()[depth].filename)
+    cwd = Path.cwd()
+    fpath = fpath.relative_to(cwd)
+    return fpath.parts[2] if len(fpath.parts) == 4 else fpath.stem
+
+
 class BotCommands:
     def __init__(self):
         self.commands = {}
@@ -200,10 +212,7 @@ class BotCommands:
         category: str,
         aliases: Optional[list] = None,
     ):
-        cwd = os.getcwd()
-        fname = inspect.stack()[1].filename
-
-        context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
+        context = get_caller_context()
 
         description_key = f"{command}_description"
 
@@ -249,10 +258,7 @@ class InlineBotCommands:
         command: str,
         aliases: Optional[list] = None,
     ):
-        cwd = os.getcwd()
-        fname = inspect.stack()[1].filename
-
-        context = fname.removeprefix(cwd).split(os.path.sep)[3].split(".")[0]
+        context = get_caller_context()
 
         description_key = f"{command.split()[0]}_description"
 
