@@ -1,11 +1,11 @@
 {
-  "commands_btn": "📚 Comandus",
-  "infos_btn": "ℹ️ Encima",
+  "commands_btn": "📚 Comandos do Bot",
+  "infos_btn": "ℹ️ Sobre mim",
   "language_btn": "🌐 Indioma",
-  "add_chat_btn": "➕ Add em um lixo",
+  "add_chat_btn": "➕ Add a um chat",
   "private": "Oi! Sou eu, o <del>Chapolin Colorado</del> EduuRobot. Eu acabei de salvar <b>sua vida</b>, para continuar salvo navegue pelos botões abaixo.",
-  "start_chat": "🤖 Ser salvo",
-  "group": "Oi! Sou eu, o <del>Chapolin Colorado</del> EduuRobot, para poder ser salvo por mim aperte no botão abaixo.",
-  "info_page": "• EduuRobot\n\nNúmero de versão: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Código Fonte</a>\nDesenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nParcerias:\n » <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>\n\n©2023 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
-  "start_description": "Salvar o mundo."
+  "start_chat": "🤖 Vamos conversar!",
+  "group": "E aí, meu consagrado! Eu sou o EduuRobot, o robô mais topzera da parada! Se você quer saber o que eu posso fazer, é só bater um papo comigo, que eu te mostro do que eu sou capaz! Então, bora trocar uma ideia? Tô aqui na atividade, esperando você!",
+  "info_page": "\nE aí, galera! Aqui quem fala é o EduuRobot, o robô mais irado da área! Se liga só nas minhas specs:\n\n- Número de versão: {version_number} ({commit_hash})\n- Código Fonte: <a href=\"https://github.com/AmanoTeam/EduuRobot\">Manda bala aqui, meu chapa!</a>\n- Desenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nE não para por aí, não! Eu ainda tenho umas parcerias de peso, como a <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>, que é só sucesso!\n\nEntão, se você quer ter o melhor robô do pedaço, é só colar comigo, que eu tô sempre na atividade! Ah, e não esquece: ©2023 - <a href=\"https://amanoteam.com\">AmanoTeam™</a> é nóis na fita!",
+  "start_description": "Clique em mim!"
 }
