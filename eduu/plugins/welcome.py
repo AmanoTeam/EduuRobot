@@ -119,14 +119,6 @@ async def greet_new_members(c: Client, m: Message, strings):
     if m.from_user.is_bot:
         return
     welcome, welcome_enabled = await get_welcome(m.chat.id)
-    members = m.new_chat_members
-    mention = ", ".join(a.mention for a in members)
-    username = ", ".join(f"@{a.username}" if a.username else a.mention for a in members)
-
-    user_id = ", ".join(str(a.id) for a in members)
-    full_name = ", ".join(f"{a.first_name} " + (a.last_name or "") for a in members)
-
-    first_name = ", ".join(a.first_name for a in members)
     if welcome_enabled:
         if welcome is None:
             welcome = strings("welcome_default")
@@ -137,6 +129,16 @@ async def greet_new_members(c: Client, m: Message, strings):
             count = 0
 
         chat_title = m.chat.title
+        members = m.new_chat_members
+        mention = ", ".join(a.mention for a in members)
+        username = ", ".join(
+            f"@{a.username}" if a.username else a.mention for a in members
+        )
+
+        user_id = ", ".join(str(a.id) for a in members)
+        full_name = ", ".join(f"{a.first_name} " + (a.last_name or "") for a in members)
+
+        first_name = ", ".join(a.first_name for a in members)
         welcome = welcome.format(
             id=user_id,
             username=username,

@@ -272,15 +272,15 @@ class InlineBotCommands:
         )
 
     def search_commands(self, query: str = None):
-        res = []
-        for cmd in sorted(self.commands, key=lambda k: k["command"]):
+        return [
+            cmd
+            for cmd in sorted(self.commands, key=lambda k: k["command"])
             if (
                 not query
                 or query in cmd["command"]
                 or any(query in alias for alias in cmd["aliases"])
-            ):
-                res.append(cmd)
-        return res
+            )
+        ]
 
 
 commands = BotCommands()
