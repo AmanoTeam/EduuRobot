@@ -15,7 +15,7 @@ from eduu.database.warns import (
     set_warns_limit,
 )
 from eduu.utils import commands, get_target_user
-from eduu.utils.consts import admin_status
+from eduu.utils.consts import ADMIN_STATUSES
 from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
@@ -40,7 +40,7 @@ async def warn_user(c: Client, m: Message, strings):
     check_admin = await m.chat.get_member(target_user.id)
     reason = await get_warn_reason_text(c, m)
     warn_action = await get_warn_action(m.chat.id)
-    if check_admin.status not in admin_status:
+    if check_admin.status not in ADMIN_STATUSES:
         await add_warns(m.chat.id, target_user.id, 1)
         user_warns = await get_warns(m.chat.id, target_user.id)
         if user_warns >= warns_limit:

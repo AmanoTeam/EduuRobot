@@ -150,20 +150,20 @@ async def execsql(c: Client, m: Message):
     ret = await ex.fetchall()
     await conn.commit()
 
-    if ret:
-        res = "|".join([name[0] for name in ex.description]) + "\n"
-        res += "\n".join(["|".join(str(s) for s in items) for items in ret])
-        if len(res) > 3500:
-            bio = io.BytesIO()
-            bio.name = "output.txt"
+    if not ret:
+        return await m.reply_text("SQL executed successfully and without any return.")
 
-            bio.write(res.encode())
+    res = "|".join([name[0] for name in ex.description]) + "\n"
+    res += "\n".join(["|".join(str(s) for s in items) for items in ret])
+    if len(res) > 3500:
+        bio = io.BytesIO()
+        bio.name = "output.txt"
 
-            await m.reply_document(bio)
-        else:
-            await m.reply_text(f"<code>{res}</code>")
+        bio.write(res.encode())
+
+        await m.reply_document(bio)
     else:
-        await m.reply_text("SQL executed successfully and without any return.")
+        await m.reply_text(f"<code>{res}</code>")
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
@@ -258,13 +258,13 @@ async def downloadfile(c: Client, m: Message):
 
 @Client.on_message(filters.command("chat", prefix) & sudofilter)
 async def getchatcmd(c: Client, m: Message):
-    if len(m.text.split()) > 1:
-        targetchat = await c.get_chat(m.command[1])
-        if targetchat.type != ChatType.PRIVATE:
-            await m.reply_text(
-                f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
-            )
-        else:
-            await m.reply_text("This is a private Chat.")
+    if len(m.text.split()) == 1:
+        return await m.reply_text("You must specify the Chat.")
+
+    targetchat = await c.get_chat(m.command[1])
+    if targetchat.type != ChatType.PRIVATE:
+        await m.reply_text(
+            f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
+        )
     else:
-        await m.reply_text("You must specify the Chat.")
+        await m.reply_text("This is a private Chat.")

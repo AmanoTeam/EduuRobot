@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from itertools import zip_longest
+
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import (
@@ -16,24 +18,17 @@ from eduu.utils.localization import use_chat_lang
 
 
 def gen_categories_kb(strings_manager):
-    categories = list(commands.commands)
-    kb = []
-    while categories:
-        name = strings_manager(categories[0], context="cmds_list")
-        a = [InlineKeyboardButton(name, callback_data=f"view_category {categories[0]}")]
-
-        categories.pop(0)
-        if categories:
-            name = strings_manager(categories[0], context="cmds_list")
-            a.append(
-                InlineKeyboardButton(
-                    name, callback_data=f"view_category {categories[0]}"
-                )
+    return [
+        [
+            InlineKeyboardButton(
+                strings_manager(category, context="cmds_list"),
+                callback_data=f"view_category {category}",
             )
-
-            categories.pop(0)
-        kb.append(a)
-    return kb
+            for category in categories
+            if category
+        ]
+        for categories in zip_longest(*[iter(commands.commands)] * 2)
+    ]
 
 
 @Client.on_callback_query(filters.regex("^commands$"))

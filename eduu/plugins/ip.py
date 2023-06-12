@@ -36,22 +36,8 @@ async def ip_cmd(c: Client, m: Message, strings):
 @Client.on_inline_query(filters.regex(r"^ip .+"))
 @use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
-    if len(q.query.split()) > 1:
-        text = q.query.split(maxsplit=1)[1]
-        url: str = URL(text).host or text
-
-        await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("ip_info_inline").format(domain=url),
-                    input_message_content=InputTextMessageContent(
-                        await get_ip_info(url)
-                    ),
-                )
-            ]
-        )
-    else:
-        await q.answer(
+    if len(q.query.split()) == 1:
+        return await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("ip_no_url"),
@@ -61,6 +47,18 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+
+    text = q.query.split(maxsplit=1)[1]
+    url: str = URL(text).host or text
+
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title=strings("ip_info_inline").format(domain=url),
+                input_message_content=InputTextMessageContent(await get_ip_info(url)),
+            )
+        ]
+    )
 
 
 commands.add_command("ip", "tools")

@@ -4,7 +4,6 @@
 from typing import Union
 
 from pyrogram import Client, filters
-from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -19,50 +18,49 @@ from eduu.utils.localization import use_chat_lang
 
 
 # Using a low priority group so deeplinks will run before this and stop the propagation.
-@Client.on_message(filters.command("start", PREFIXES), group=2)
+@Client.on_message(filters.command("start", PREFIXES) & filters.private, group=2)
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang
-async def start(c: Client, m: Union[Message, CallbackQuery], strings):
+async def start_pvt(c: Client, m: Union[Message, CallbackQuery], strings):
     if isinstance(m, CallbackQuery):
         msg = m.message
-        method = msg.edit_text
+        send = msg.edit_text
     else:
         msg = m
-        method = msg.reply_text
+        send = msg.reply_text
 
-    if msg.chat.type == ChatType.PRIVATE:
-        keyboard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        strings("commands_btn"), callback_data="commands"
-                    ),
-                    InlineKeyboardButton(strings("infos_btn"), callback_data="infos"),
-                ],
-                [
-                    InlineKeyboardButton(
-                        strings("language_btn"), callback_data="chlang"
-                    ),
-                    InlineKeyboardButton(
-                        strings("add_chat_btn"),
-                        url=f"https://t.me/{c.me.username}?startgroup=new",
-                    ),
-                ],
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(strings("commands_btn"), callback_data="commands"),
+                InlineKeyboardButton(strings("infos_btn"), callback_data="infos"),
+            ],
+            [
+                InlineKeyboardButton(strings("language_btn"), callback_data="chlang"),
+                InlineKeyboardButton(
+                    strings("add_chat_btn"),
+                    url=f"https://t.me/{c.me.username}?startgroup=new",
+                ),
+            ],
+        ]
+    )
+    await send(strings("private"), reply_markup=keyboard)
+
+
+@Client.on_message(filters.command("start", PREFIXES) & filters.group, group=2)
+@use_chat_lang
+async def start_grp(c: Client, m: Union[Message, CallbackQuery], strings):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    strings("start_chat"),
+                    url=f"https://t.me/{c.me.username}?start=start",
+                )
             ]
-        )
-        await method(strings("private"), reply_markup=keyboard)
-    else:
-        keyboard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        strings("start_chat"),
-                        url=f"https://t.me/{c.me.username}?start=start",
-                    )
-                ]
-            ]
-        )
-        await method(strings("group"), reply_markup=keyboard)
+        ]
+    )
+    await m.reply_text(strings("group"), reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^infos$"))

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-import io
+from io import BytesIO
 
 from PIL import Image, ImageOps
 from pyrogram import Client, filters
@@ -93,7 +93,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
-                file = io.BytesIO(r.content)
+                file = BytesIO(r.content)
                 file.name = "sticker.png"
         except Exception as r_e:
             return await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
@@ -220,10 +220,10 @@ async def kang_sticker(c: Client, m: Message, strings):
         )
 
 
-def resize_image(file: str) -> io.BytesIO:
+def resize_image(file: str) -> BytesIO:
     im = Image.open(file)
     im = ImageOps.contain(im, (512, 512), method=Image.ANTIALIAS)
-    image = io.BytesIO()
+    image = BytesIO()
     image.name = "sticker.png"
     im.save(image, "PNG")
     return image
@@ -244,18 +244,18 @@ async def getstickerid(c: Client, m: Message, strings):
 @use_chat_lang
 async def getstickeraspng(c: Client, m: Message, strings):
     sticker = m.reply_to_message.sticker
-    if sticker:
-        if sticker.is_animated:
-            await m.reply_text(strings("animated_not_supported"))
-        else:
-            sticker_file = await m.reply_to_message.download(
-                in_memory=True,
-            )
-            await m.reply_to_message.reply_document(
-                document=sticker_file,
-                caption=strings("sticker_info").format(
-                    emoji=sticker.emoji, id=sticker.file_id
-                ),
-            )
+    if not sticker:
+        return await m.reply_text(strings("not_sticker"))
+
+    if sticker.is_animated:
+        await m.reply_text(strings("animated_not_supported"))
     else:
-        await m.reply_text(strings("not_sticker"))
+        sticker_file: BytesIO = await m.reply_to_message.download(
+            in_memory=True,
+        )
+        await m.reply_to_message.reply_document(
+            document=sticker_file,
+            caption=strings("sticker_info").format(
+                emoji=sticker.emoji, id=sticker.file_id
+            ),
+        )

@@ -116,52 +116,51 @@ async def reset_welcome_message(c: Client, m: Message, strings):
 @Client.on_message(filters.new_chat_members & filters.group)
 @use_chat_lang
 async def greet_new_members(c: Client, m: Message, strings):
-    if m.from_user.is_bot:
+    if m.new_chat_members[0].is_bot:
         return
+
     welcome, welcome_enabled = await get_welcome(m.chat.id)
-    if welcome_enabled:
-        if welcome is None:
-            welcome = strings("welcome_default")
+    if not welcome_enabled:
+        return
 
-        if "count" in get_format_keys(welcome):
-            count = await c.get_chat_members_count(m.chat.id)
-        else:
-            count = 0
+    if welcome is None:
+        welcome = strings("welcome_default")
 
-        chat_title = m.chat.title
-        members = m.new_chat_members
-        mention = ", ".join(a.mention for a in members)
-        username = ", ".join(
-            f"@{a.username}" if a.username else a.mention for a in members
-        )
+    if "count" in get_format_keys(welcome):
+        count = await c.get_chat_members_count(m.chat.id)
+    else:
+        count = 0
 
-        user_id = ", ".join(str(a.id) for a in members)
-        full_name = ", ".join(f"{a.first_name} " + (a.last_name or "") for a in members)
+    chat_title = m.chat.title
+    members = m.new_chat_members
+    mention = ", ".join(a.mention for a in members)
+    username = ", ".join(f"@{a.username}" if a.username else a.mention for a in members)
 
-        first_name = ", ".join(a.first_name for a in members)
-        welcome = welcome.format(
-            id=user_id,
-            username=username,
-            mention=mention,
-            first_name=first_name,
-            # full_name and name are the same
-            full_name=full_name,
-            name=full_name,
-            # title and chat_title are the same
-            title=chat_title,
-            chat_title=chat_title,
-            count=count,
-        )
-        welcome, welcome_buttons = button_parser(welcome)
-        await m.reply_text(
-            welcome,
-            disable_web_page_preview=True,
-            reply_markup=(
-                InlineKeyboardMarkup(welcome_buttons)
-                if len(welcome_buttons) != 0
-                else None
-            ),
-        )
+    user_id = ", ".join(str(a.id) for a in members)
+    full_name = ", ".join(f"{a.first_name} " + (a.last_name or "") for a in members)
+
+    first_name = ", ".join(a.first_name for a in members)
+    welcome = welcome.format(
+        id=user_id,
+        username=username,
+        mention=mention,
+        first_name=first_name,
+        # full_name and name are the same
+        full_name=full_name,
+        name=full_name,
+        # title and chat_title are the same
+        title=chat_title,
+        chat_title=chat_title,
+        count=count,
+    )
+    welcome, welcome_buttons = button_parser(welcome)
+    await m.reply_text(
+        welcome,
+        disable_web_page_preview=True,
+        reply_markup=(
+            InlineKeyboardMarkup(welcome_buttons) if len(welcome_buttons) != 0 else None
+        ),
+    )
 
 
 commands.add_command("resetwelcome", "admin")

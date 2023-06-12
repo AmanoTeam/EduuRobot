@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, get_reason_text, get_target_user, time_extract
-from eduu.utils.consts import admin_status
+from eduu.utils.consts import ADMIN_STATUSES
 from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
@@ -18,7 +18,7 @@ async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
-    if check_admin.status not in admin_status:
+    if check_admin.status not in ADMIN_STATUSES:
         await m.chat.ban_member(target_user.id)
         text = strings("ban_success").format(
             user=target_user.mention,
@@ -41,7 +41,7 @@ async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
-    if check_admin.status not in admin_status:
+    if check_admin.status not in ADMIN_STATUSES:
         await m.chat.ban_member(target_user.id)
         await m.chat.unban_member(target_user.id)
         text = strings("kick_success").format(

@@ -1,12 +1,17 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from typing import TYPE_CHECKING
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import use_chat_lang
+
+if TYPE_CHECKING:
+    from io import BytesIO
 
 
 @Client.on_message(filters.command("paste", PREFIXES))
@@ -17,9 +22,8 @@ async def paste(c: Client, m: Message, strings):
 
     if m.reply_to_message.document:
         tfile = m.reply_to_message
-        to_file = await tfile.download()
-        with open(to_file, "rb") as fd:
-            mean = fd.read().decode("UTF-8")
+        out_file: BytesIO = await tfile.download(in_memory=True)
+        out_file.read().decode("UTF-8")
     if m.reply_to_message.text:
         mean = m.reply_to_message.text
 

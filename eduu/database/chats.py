@@ -4,7 +4,7 @@
 from pyrogram.enums import ChatType
 
 from eduu.database import database
-from eduu.utils.consts import group_types
+from eduu.utils.consts import GROUP_TYPES
 
 conn = database.get_conn()
 
@@ -13,7 +13,7 @@ async def add_chat(chat_id, chat_type):
     if chat_type == ChatType.PRIVATE:
         await conn.execute("INSERT INTO users (user_id) values (?)", (chat_id,))
         await conn.commit()
-    elif chat_type in group_types:  # groups and supergroups share the same table
+    elif chat_type in GROUP_TYPES:  # groups and supergroups share the same table
         await conn.execute(
             "INSERT INTO groups (chat_id,welcome_enabled) values (?,?)", (chat_id, True)
         )
@@ -33,7 +33,7 @@ async def chat_exists(chat_id, chat_type):
         )
         row = await cursor.fetchone()
         return bool(row)
-    if chat_type in group_types:  # groups and supergroups share the same table
+    if chat_type in GROUP_TYPES:  # groups and supergroups share the same table
         cursor = await conn.execute(
             "SELECT chat_id FROM groups where chat_id = ?", (chat_id,)
         )

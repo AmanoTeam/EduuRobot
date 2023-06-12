@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
+from itertools import zip_longest
 from typing import Union
 
 from pyrogram import Client, filters
@@ -19,30 +20,17 @@ from eduu.utils.localization import langdict, use_chat_lang
 
 
 def gen_langs_kb():
-    langs = list(langdict)
-    kb = []
-    while langs:
-        lang = langdict[langs[0]]["main"]
-        a = [
+    return [
+        [
             InlineKeyboardButton(
-                f"{lang['language_flag']} {lang['language_name']}",
-                callback_data=f"set_lang {langs[0]}",
+                f"{langdict[lang]['main']['language_flag']} {langdict[lang]['main']['language_name']}",
+                callback_data=f"set_lang {lang}",
             )
+            for lang in langs
+            if lang
         ]
-
-        langs.pop(0)
-        if langs:
-            lang = langdict[langs[0]]["main"]
-            a.append(
-                InlineKeyboardButton(
-                    f"{lang['language_flag']} {lang['language_name']}",
-                    callback_data=f"set_lang {langs[0]}",
-                )
-            )
-
-            langs.pop(0)
-        kb.append(a)
-    return kb
+        for langs in zip_longest(*[iter(langdict)] * 2)
+    ]
 
 
 @Client.on_callback_query(filters.regex("^chlang$"))

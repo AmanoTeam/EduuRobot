@@ -101,28 +101,21 @@ async def translate(c: Client, m: Message, strings):
 @Client.on_inline_query(filters.regex(r"^tr .+"))
 @use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, strings):
-    try:
-        to_tr = q.query.split(None, 2)[2]
-        source_language = await tr.detect(q.query.split(None, 2)[2])
-        to_language = q.query.lower().split()[1]
-        translation = await tr(
-            to_tr, sourcelang=source_language, targetlang=to_language
-        )
-        await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("translate_inline_send").format(
-                        srclangformat=source_language, tolangformat=to_language
-                    ),
-                    description=f"{translation.text}",
-                    input_message_content=InputTextMessageContent(
-                        f"{translation.text}"
-                    ),
-                )
-            ]
-        )
-    except IndexError:
-        return
+    to_tr = q.query.split(None, 2)[2]
+    source_language = await tr.detect(q.query.split(None, 2)[2])
+    to_language = q.query.lower().split()[1]
+    translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title=strings("translate_inline_send").format(
+                    srclangformat=source_language, tolangformat=to_language
+                ),
+                description=f"{translation.text}",
+                input_message_content=InputTextMessageContent(f"{translation.text}"),
+            )
+        ]
+    )
 
 
 commands.add_command("tr", "tools")
