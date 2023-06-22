@@ -227,7 +227,7 @@ class BotCommands:
             }
         )
 
-    def get_commands_message(self, strings, category: str = None):
+    def get_commands_message(self, strings, category: Optional[str] = None):
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
@@ -271,7 +271,7 @@ class InlineBotCommands:
             }
         )
 
-    def search_commands(self, query: str = None):
+    def search_commands(self, query: Optional[str] = None):
         return [
             cmd
             for cmd in sorted(self.commands, key=lambda k: k["command"])

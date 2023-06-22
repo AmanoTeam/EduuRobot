@@ -3,7 +3,7 @@
 
 import asyncio
 from functools import partial, wraps
-from typing import Callable, Union
+from typing import Callable, Optional, Union
 
 from pyrogram import Client, StopPropagation
 from pyrogram.enums import ChatType
@@ -30,7 +30,7 @@ def aiowrap(func: Callable) -> Callable:
 
 
 def require_admin(
-    permissions: Union[list, str] = None,
+    permissions: Optional[Union[list, str]] = None,
     allow_in_private: bool = False,
     complain_missing_perms: bool = True,
 ):

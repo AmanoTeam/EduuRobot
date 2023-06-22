@@ -5,7 +5,7 @@ import json
 import os.path
 from functools import partial
 from glob import glob
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Optional
 
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
@@ -64,7 +64,11 @@ langdict = cache_localizations(jsons)
 
 
 def get_locale_string(
-    dic: dict, language: str, default_context: str, key: str, context: str = None
+    dic: dict,
+    language: str,
+    default_context: str,
+    key: str,
+    context: Optional[str] = None,
 ) -> str:
     if context:
         default_context = context
