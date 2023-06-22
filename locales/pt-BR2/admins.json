@@ -1,5 +1,5 @@
 {
-  "antichannelpin_description": "Sabe as quelas mensagens chagas de quando vc manda uma mensagem no canal vinculado? Isso faz apagar a mensagem automáticamente. Ah errei, n é apagar mensagem e sim desfixar.",
+  "antichannelpin_description": "Sabe aquelas mensagens chatas que aparecem quando você manda algo no canal? Então, agora elas somem sozinhas. Ah, não é apagar mensagem, é desfixar.",
   "antichannelpin_disabled": "Agora as mensagens de um canal serão arrumados.",
   "antichannelpin_enabled": "Agora as mensagens de canal não serão fixados.",
   "antichannelpin_invalid_arg": "Ow, isso está errado. Você usa assim: <code>/antichannelpin off/on</code>.",
