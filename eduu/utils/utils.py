@@ -9,12 +9,18 @@ from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 from string import Formatter
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
 from pyrogram.enums import ChatMemberStatus, MessageEntityType
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
+from pyrogram.types import (
+    CallbackQuery,
+    ChatPrivileges,
+    InlineKeyboardButton,
+    Message,
+    User,
+)
 
 from config import SUDOERS
 
@@ -47,9 +53,9 @@ def pretty_size(size_bytes):
 
 async def check_perms(
     message: Union[CallbackQuery, Message],
-    permissions: Optional[Union[list, str]],
-    complain_missing_perms: bool,
-    strings,
+    permissions: Optional[ChatPrivileges] = None,
+    complain_missing_perms: bool = True,
+    strings=None,
 ) -> bool:
     if isinstance(message, CallbackQuery):
         sender = partial(message.answer, show_alert=True)
@@ -70,13 +76,10 @@ async def check_perms(
             await sender(strings("no_admin_error"))
         return False
 
-    if isinstance(permissions, str):
-        permissions = [permissions]
-
     missing_perms = [
-        permission
-        for permission in permissions
-        if not getattr(user.privileges, permission)
+        perm
+        for perm, value in permissions.__dict__.items()
+        if value and not getattr(user.privileges, perm)
     ]
 
     if not missing_perms:
@@ -91,7 +94,7 @@ async def check_perms(
 sudofilter = filters.user(SUDOERS)
 
 
-async def time_extract(m: Message, t: str) -> Optional[datetime]:
+async def extract_time(m: Message, t: str) -> Optional[datetime]:
     if t[-1] in ["m", "h", "d"]:
         unit = t[-1]
         num = t[:-1]
@@ -148,19 +151,31 @@ def split_quotes(text: str) -> List:
     return list(filter(None, [key, rest]))
 
 
-def button_parser(markdown_note):
+def button_parser(text_note: str) -> Tuple[str, List[InlineKeyboardButton]]:
+    """Parse a string and return the parsed string and buttons.
+
+    Parameters
+    ----------
+    markdown_note: str
+        The string to parse
+
+    Returns
+    -------
+    Tuple[str, List[InlineKeyboardButton]]
+        The parsed string and buttons
+    """
     note_data = ""
     buttons = []
-    if markdown_note is None:
+    if text_note is None:
         return note_data, buttons
-    if markdown_note.startswith(("/", "!")):
-        args = markdown_note.split(None, 2)
-        markdown_note = args[2]
+    if text_note.startswith(("/", "!")):
+        args = text_note.split(None, 2)
+        text_note = args[2]
     prev = 0
-    for match in BTN_URL_REGEX.finditer(markdown_note):
+    for match in BTN_URL_REGEX.finditer(text_note):
         n_escapes = 0
         to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
+        while to_check > 0 and text_note[to_check] == "\\":
             n_escapes += 1
             to_check -= 1
 
@@ -173,14 +188,14 @@ def button_parser(markdown_note):
                 buttons.append(
                     [InlineKeyboardButton(text=match.group(2), url=match.group(3))]
                 )
-            note_data += markdown_note[prev : match.start(1)]
+            note_data += text_note[prev : match.start(1)]
             prev = match.end(1)
 
         else:
-            note_data += markdown_note[prev:to_check]
+            note_data += text_note[prev:to_check]
             prev = match.start(1) - 1
 
-    note_data += markdown_note[prev:]
+    note_data += text_note[prev:]
 
     return note_data, buttons
 
@@ -188,13 +203,15 @@ def button_parser(markdown_note):
 def get_caller_context(depth: int = 2) -> str:
     """Get the context of the caller of the function calling this function.
 
-    Args:
-    ----
-        depth (int, optional): Depth of the caller. Defaults to 2.
+    Parameters
+    ----------
+    depth: int
+        Depth of the caller. Defaults to 2.
 
-    Returns:
+    Returns
     -------
-    str: The context of the caller.
+    str
+        The context of the caller.
     """
     fpath = Path(inspect.stack()[depth].filename)
     cwd = Path.cwd()
@@ -339,7 +356,18 @@ async def shell_exec(code):
 
 
 def get_format_keys(string: str) -> List[str]:
-    """Return a list of formatting keys present in string."""
+    """Return a list of formatting keys present in string.
+
+    Parameters
+    ----------
+    string: str
+        The string to parse.
+
+    Returns
+    -------
+    List[str]
+        A list of formatting keys present in string.
+    """
     return [i[1] for i in Formatter().parse(string) if i[1] is not None]
 
 

@@ -9,6 +9,7 @@ from .utils import (
     button_parser,
     check_perms,
     commands,
+    extract_time,
     get_emoji_regex,
     get_format_keys,
     get_reason_text,
@@ -22,7 +23,6 @@ from .utils import (
     shell_exec,
     split_quotes,
     sudofilter,
-    time_extract,
 )
 
 __all__: List[str] = [
@@ -43,5 +43,5 @@ __all__: List[str] = [
     "shell_exec",
     "split_quotes",
     "sudofilter",
-    "time_extract",
+    "extract_time",
 ]

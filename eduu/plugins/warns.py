@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from pyrogram import Client, filters
-from pyrogram.types import ChatPermissions, Message
+from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 
 from config import PREFIXES
 from eduu.database.warns import (
@@ -32,7 +32,7 @@ async def get_warn_reason_text(c: Client, m: Message) -> Message:
 
 
 @Client.on_message(filters.command("warn", PREFIXES) & filters.group)
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
 async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -82,7 +82,7 @@ async def warn_user(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("setwarnslimit", PREFIXES) & filters.group)
-@require_admin(permissions=["can_restrict_members", "can_change_info"])
+@require_admin(ChatPrivileges(can_restrict_members=True, can_change_info=True))
 @use_chat_lang
 async def on_set_warns_limit(c: Client, m: Message, strings):
     if len(m.command) == 1:
@@ -97,7 +97,7 @@ async def on_set_warns_limit(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
 async def unwarn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
@@ -121,7 +121,7 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 @Client.on_message(
     filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group
 )
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
 async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:

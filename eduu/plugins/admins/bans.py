@@ -2,10 +2,10 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import ChatPrivileges, Message
 
 from config import PREFIXES
-from eduu.utils import commands, get_reason_text, get_target_user, time_extract
+from eduu.utils import commands, extract_time, get_reason_text, get_target_user
 from eduu.utils.consts import ADMIN_STATUSES
 from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
@@ -13,7 +13,7 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("ban", PREFIXES))
 @use_chat_lang
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
@@ -36,7 +36,7 @@ async def ban(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("kick", PREFIXES))
 @use_chat_lang
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
@@ -60,7 +60,7 @@ async def kick(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("unban", PREFIXES))
 @use_chat_lang
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 async def unban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
@@ -79,14 +79,14 @@ async def unban(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("tban", PREFIXES))
 @use_chat_lang
-@require_admin(permissions=["can_restrict_members"])
+@require_admin(ChatPrivileges(can_restrict_members=True))
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
         return await m.reply_text(
             strings("error_must_specify_time").format(command=m.command[0])
         )
     split_time = m.text.split(None, 1)
-    ban_time = await time_extract(m, split_time[1])
+    ban_time = await extract_time(m, split_time[1])
     if not ban_time:
         return
     await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)

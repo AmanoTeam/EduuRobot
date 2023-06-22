@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import ChatPrivileges, InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.database.rules import get_rules, set_rules
@@ -12,7 +12,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command(["setrules", "defregras"], PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def settherules(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
@@ -25,7 +25,7 @@ async def settherules(c: Client, m: Message, strings):
 @Client.on_message(
     filters.command(["resetrules", "resetarregras"], PREFIXES) & filters.group
 )
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def delete_rules(c: Client, m: Message, strings):
     await set_rules(m.chat.id, None)

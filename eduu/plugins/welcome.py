@@ -4,7 +4,7 @@
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import ChatPrivileges, InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome
@@ -23,7 +23,7 @@ async def welcome_format_message_help(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("setwelcome", PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def set_welcome_message(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
@@ -67,14 +67,14 @@ async def set_welcome_message(c: Client, m: Message, strings):
     (filters.command("welcome") & ~filters.command(["welcome on", "welcome off"]))
     & filters.group
 )
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def invlaid_welcome_status_arg(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_mode_invalid"))
 
 
 @Client.on_message(filters.command("getwelcome", PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def getwelcomemsg(c: Client, m: Message, strings):
     welcome, welcome_enabled = await get_welcome(m.chat.id)
@@ -88,7 +88,7 @@ async def getwelcomemsg(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("welcome on", PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def enable_welcome_message(c: Client, m: Message, strings):
     await toggle_welcome(m.chat.id, True)
@@ -96,7 +96,7 @@ async def enable_welcome_message(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("welcome off", PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def disable_welcome_message(c: Client, m: Message, strings):
     await toggle_welcome(m.chat.id, False)
@@ -106,7 +106,7 @@ async def disable_welcome_message(c: Client, m: Message, strings):
 @Client.on_message(
     filters.command(["resetwelcome", "clearwelcome"], PREFIXES) & filters.group
 )
-@require_admin(permissions=["can_change_info"])
+@require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def reset_welcome_message(c: Client, m: Message, strings):
     await set_welcome(m.chat.id, None)

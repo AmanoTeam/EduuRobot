@@ -7,7 +7,7 @@ from typing import Callable, Optional, Union
 
 from pyrogram import Client, StopPropagation
 from pyrogram.enums import ChatType
-from pyrogram.types import CallbackQuery, Message
+from pyrogram.types import CallbackQuery, ChatPrivileges, Message
 
 from eduu.utils.localization import (
     default_language,
@@ -30,10 +30,28 @@ def aiowrap(func: Callable) -> Callable:
 
 
 def require_admin(
-    permissions: Optional[Union[list, str]] = None,
+    permissions: Optional[ChatPrivileges] = None,
     allow_in_private: bool = False,
     complain_missing_perms: bool = True,
 ):
+    """Decorator that checks if the user is an admin in the chat.
+
+    Parameters
+    ----------
+    permissions: ChatPrivileges
+        The permissions to check for.
+    allow_in_private: bool
+        Whether to allow the command in private chats or not.
+    complain_missing_perms: bool
+        Whether to complain about missing permissions or not, otherwise the
+        function will not be called and the user will not be notified.
+
+    Returns
+    -------
+    Callable
+        The decorated function.
+    """
+
     def decorator(func):
         @wraps(func)
         async def wrapper(

@@ -4,10 +4,10 @@
 import json
 from functools import partial
 from pathlib import Path
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, List, Optional, Union
 
 from pyrogram.enums import ChatType
-from pyrogram.types import CallbackQuery, InlineQuery, Message
+from pyrogram.types import CallbackQuery, InlineQuery, Message, User
 
 from eduu.database.localization import get_db_lang
 from eduu.utils.utils import get_caller_context
@@ -48,7 +48,7 @@ def cache_localizations(files: List[Path]) -> Dict[str, Dict[str, Dict[str, str]
     for file in files:
         _, lname, pname = file.parts
         pname = pname.split(".")[0]
-        dic = json.load(file.open("r", encoding="utf8"))
+        dic: dict = json.load(file.open("r", encoding="utf8"))
         dic.update(ldict[lname].get(pname, {}))
         ldict[lname][pname] = dic
     return ldict
@@ -78,19 +78,19 @@ def get_locale_string(
     return res
 
 
-async def get_lang(message) -> str:
+async def get_lang(message: Union[CallbackQuery, Message, InlineQuery]) -> str:
     if isinstance(message, CallbackQuery):
         chat = message.message.chat
     elif isinstance(message, Message):
         chat = message.chat
     elif isinstance(message, InlineQuery):
-        chat, chat.type = message.from_user, ChatType.PRIVATE
+        chat = message.from_user
     else:
         raise TypeError(f"Update type '{message.__name__}' is not supported.")
 
     lang = await get_db_lang(chat.id, chat.type)
 
-    if chat.type == ChatType.PRIVATE:
+    if isinstance(chat, User) or chat.type == ChatType.PRIVATE:
         lang = lang or message.from_user.language_code or default_language
     else:
         lang = lang or default_language
@@ -108,6 +108,7 @@ async def get_lang(message) -> str:
 
 
 def use_chat_lang(func: Callable):
+    """Decorator to get the chat language and pass it to the function."""
     context = get_caller_context()
 
     async def wrapper(client, message, *args, **kwargs):

@@ -4,7 +4,7 @@
 import asyncio
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import ChatPrivileges, Message
 
 from config import PREFIXES
 from eduu.database.admins import check_if_del_service, toggle_del_service
@@ -14,7 +14,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("purge", PREFIXES))
-@require_admin(permissions=["can_delete_messages"], allow_in_private=True)
+@require_admin(ChatPrivileges(can_delete_messages=True), allow_in_private=True)
 @use_chat_lang
 async def purge(c: Client, m: Message, strings):
     """Purge upto the replied message."""
@@ -40,7 +40,7 @@ async def purge(c: Client, m: Message, strings):
 
 
 @Client.on_message(filters.command("cleanservice", PREFIXES))
-@require_admin(permissions=["can_delete_messages"])
+@require_admin(ChatPrivileges(can_delete_messages=True))
 @use_chat_lang
 async def delservice(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:

@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import ChatPrivileges, Message
 
 from config import PREFIXES
 from eduu.database.admins import check_if_antichannelpin, toggle_antichannelpin
@@ -12,7 +12,7 @@ from eduu.utils.localization import use_chat_lang
 
 
 @Client.on_message(filters.command("antichannelpin", PREFIXES))
-@require_admin(permissions=["can_pin_messages"])
+@require_admin(ChatPrivileges(can_pin_messages=True))
 @use_chat_lang
 async def setantichannelpin(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
@@ -41,7 +41,7 @@ async def acp_action(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("pin", PREFIXES))
-@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
+@require_admin(ChatPrivileges(can_pin_messages=True), allow_in_private=True)
 async def pin(c: Client, m: Message):
     disable_notifications = "loud" not in m.text
 
@@ -54,13 +54,13 @@ async def pin(c: Client, m: Message):
 
 
 @Client.on_message(filters.command("unpin", PREFIXES))
-@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
+@require_admin(ChatPrivileges(can_pin_messages=True), allow_in_private=True)
 async def unpin(c: Client, m: Message):
     await c.unpin_chat_message(m.chat.id, m.reply_to_message.id)
 
 
 @Client.on_message(filters.command(["unpinall", "unpin all"], PREFIXES))
-@require_admin(permissions=["can_pin_messages"], allow_in_private=True)
+@require_admin(ChatPrivileges(can_pin_messages=True), allow_in_private=True)
 async def unpinall(c: Client, m: Message):
     await c.unpin_all_chat_messages(m.chat.id)
 
