@@ -3,10 +3,10 @@
 
 import datetime
 import io
-import os
 import re
 import shutil
 import tempfile
+from pathlib import Path
 
 from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
@@ -147,7 +147,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     url = f"https://www.youtube.com/watch?v={vid}"
     await cq.message.edit_text(strings("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
-        path = os.path.join(tempdir, "ytdl")
+        path = Path(tempdir) / "ytdl"
 
     ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
     if "vid" in data:

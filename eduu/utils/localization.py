@@ -2,9 +2,8 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 import json
-import os.path
 from functools import partial
-from glob import glob
+from pathlib import Path
 from typing import Callable, Dict, List, Optional
 
 from pyrogram.enums import ChatType
@@ -44,21 +43,21 @@ enabled_locales: List[str] = [
 default_language: str = "en-GB"
 
 
-def cache_localizations(files: List[str]) -> Dict[str, Dict[str, Dict[str, str]]]:
+def cache_localizations(files: List[Path]) -> Dict[str, Dict[str, Dict[str, str]]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
-        _, lname, pname = file.split(os.path.sep)
+        _, lname, pname = file.parts
         pname = pname.split(".")[0]
-        dic = json.load(open(file, encoding="utf-8"))
+        dic = json.load(file.open("r", encoding="utf8"))
         dic.update(ldict[lname].get(pname, {}))
         ldict[lname][pname] = dic
     return ldict
 
 
-jsons: List[str] = []
+jsons: List[Path] = []
 
 for locale in enabled_locales:
-    jsons += glob(os.path.join("locales", locale, "*.json"))
+    jsons.extend((Path("locales") / locale).glob("*.json"))
 
 langdict = cache_localizations(jsons)
 
