@@ -81,16 +81,19 @@ def get_locale_string(
 async def get_lang(message: Union[CallbackQuery, Message, InlineQuery]) -> str:
     if isinstance(message, CallbackQuery):
         chat = message.message.chat
+        chat_type = message.message.chat.type
     elif isinstance(message, Message):
         chat = message.chat
+        chat_type = message.chat.type
     elif isinstance(message, InlineQuery):
         chat = message.from_user
+        chat_type = message.chat_type
     else:
         raise TypeError(f"Update type '{message.__name__}' is not supported.")
 
-    lang = await get_db_lang(chat.id, chat.type)
+    lang = await get_db_lang(chat.id, chat_type)
 
-    if isinstance(chat, User) or chat.type == ChatType.PRIVATE:
+    if chat_type == ChatType.PRIVATE:
         lang = lang or message.from_user.language_code or default_language
     else:
         lang = lang or default_language
