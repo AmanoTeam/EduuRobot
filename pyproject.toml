@@ -9,7 +9,7 @@ dependencies = [
   "httpx[http2]>=0.18.1,<1.0.0",
   "humanfriendly",
   "meval==2.5",
-  "Pillow>=8.4.0,<10.0.0",
+  "Pillow>=8.4.0,<11.0.0",
   # Using Amano's Pyrogram fork
   "pyrogram @ https://github.com/AmanoTeam/pyrogram/archive/master.zip",
   "pytio",
