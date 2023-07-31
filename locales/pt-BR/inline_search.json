@@ -1,1 +1,4 @@
-{}
+{
+  "no_results": "Nenhum comando chamado '{query}'.",
+  "run_command_button": "🔨 Executar '{query}'"
+}

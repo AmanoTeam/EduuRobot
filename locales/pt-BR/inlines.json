@@ -1,4 +1,8 @@
 {
+  "faces_description": "Exibe uma lista de rostos em texto.",
+  "html_description": "Formata o texto fornecido como html.",
+  "info_description": "Obtém informações sobre o usuário fornecido.",
+  "markdown_description": "Formata o texto fornecido como markdown.",
   "markdown_send_inline": "Clique aqui para enviar o texto no formato markdown.",
   "html_send_inline": "Clique aqui para enviar o texto no formato html.",
   "user_info_inline_cant_found_user": "Usuário não encontrado.",
