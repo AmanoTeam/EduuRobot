@@ -19,7 +19,7 @@ dependencies = [
   # Using uvloop to increase general speed and stability. Ignored under Windows
   "uvloop>=0.10.0,<0.18.0; platform_system != 'Windows'",
   "yarl",
-  "yt-dlp==2023.7.6",
+  "yt-dlp==2023.9.24",
 ]
 requires-python = ">=3.7"
 
