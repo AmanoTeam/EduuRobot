@@ -1,4 +1,5 @@
 {
+  "ip_description": "Obtém informações de IP de um domínio ou endereço IP.",
   "ip_err_no_ip": "Você deve especificar uma url, ex.: <code>/ip example.com</code>",
   "ip_info_inline": "Clique aqui para ver a informação de IP de {domain}.",
   "ip_no_url": "Você deve especificar a url.",
