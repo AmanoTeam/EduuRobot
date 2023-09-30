@@ -100,9 +100,9 @@ async def ytdlcmd(c: Client, m: Message, strings):
         yt = yt["entries"][0]
 
     for f in yt["formats"]:
-        if f["format_id"] == "140":
+        if f["format_id"] == "140" and f.get("filesize") is not None:
             afsize = f["filesize"] or 0
-        if f["ext"] == "mp4" and f["filesize"] is not None:
+        if f["ext"] == "mp4" and f.get("filesize") is not None:
             vfsize = f["filesize"] or 0
 
     keyboard = [
