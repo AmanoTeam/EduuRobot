@@ -188,15 +188,17 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 ),
             )
         ]
-        +[
-            InlineQueryResultArticle(
-                title=ip,
-                input_message_content=InputTextMessageContent(
-                    await format_api_return(await get_api_return(ip), strings),
-                ),
-            )
-            for ip in ips
-        ]
+        articles.extend(
+            [
+                InlineQueryResultArticle(
+                    title=ip,
+                    input_message_content=InputTextMessageContent(
+                        await format_api_return(await get_api_return(ip), strings),
+                    ),
+                )
+                for ip in ips
+            ]
+        )
 
     return await q.answer(
         articles,
