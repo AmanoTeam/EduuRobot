@@ -2,6 +2,7 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 import html
+import re
 
 from gpytranslate import Translator
 from pyrogram import Client, filters
@@ -98,7 +99,7 @@ async def translate(c: Client, m: Message, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^tr .+"))
+@Client.on_inline_query(filters.regex(r"^tr .+", re.I))
 @use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, strings):
     to_tr = q.query.split(None, 2)[2]

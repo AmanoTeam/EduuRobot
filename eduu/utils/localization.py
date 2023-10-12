@@ -80,8 +80,8 @@ def get_locale_string(
 
 async def get_lang(message: Union[CallbackQuery, Message, InlineQuery]) -> str:
     if isinstance(message, CallbackQuery):
-        chat = message.message.chat
-        chat_type = message.message.chat.type
+        chat = message.message.chat if message.message else message.from_user
+        chat_type = message.message.chat.type if message.message else ChatType.PRIVATE
     elif isinstance(message, Message):
         chat = message.chat
         chat_type = message.chat.type

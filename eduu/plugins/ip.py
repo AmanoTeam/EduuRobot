@@ -116,7 +116,7 @@ async def ip_cmd(c: Client, m: Message, strings):
         await m.reply_text(strings("ip_err_no_ip"))
 
 
-@Client.on_callback_query(filters.regex(r"^ip .+", re.I))
+@Client.on_callback_query(filters.regex(r"^ip .+"))
 @use_chat_lang
 async def ip_callback(c: Client, cb: CallbackQuery, strings):
     ip = cb.data.split(maxsplit=1)[1]

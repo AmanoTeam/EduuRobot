@@ -294,8 +294,8 @@ class InlineBotCommands:
             for cmd in sorted(self.commands, key=lambda k: k["command"])
             if (
                 not query
-                or query in cmd["command"]
-                or any(query in alias for alias in cmd["aliases"])
+                or query.lower() in cmd["command"]
+                or any(query.lower() in alias for alias in cmd["aliases"])
             )
         ]
 
