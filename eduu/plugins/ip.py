@@ -146,34 +146,30 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
     ips = await get_ips_from_string(text)
 
     if not ips:
-        return await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("ip_err_no_ips").format(domain=text),
-                    input_message_content=InputTextMessageContent(
-                        strings("ip_err_no_ips").format(domain=text),
-                    ),
-                )
-            ]
-        )
+        articles = [
+            InlineQueryResultArticle(
+                title=strings("ip_err_no_ips").format(domain=text),
+                input_message_content=InputTextMessageContent(
+                    strings("ip_err_no_ips").format(domain=text),
+                ),
+            )
+        ]
 
-    if len(ips) == 1:
+    elif len(ips) == 1:
         api_return = await get_api_return(ips[0])
-        return await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("api_err_bogon_ip_inline").format(ip=ips[0])
-                    if api_return.get("bogon")
-                    else strings("ip_info_inline").format(domain=text),
-                    input_message_content=InputTextMessageContent(
-                        await format_api_return(api_return, strings),
-                    ),
-                )
-            ]
-        )
 
-    return await q.answer(
-        [
+        articles = [
+            InlineQueryResultArticle(
+                title=strings("api_err_bogon_ip_inline").format(ip=ips[0])
+                if api_return.get("bogon")
+                else strings("ip_info_inline").format(domain=text),
+                input_message_content=InputTextMessageContent(
+                    await format_api_return(api_return, strings),
+                ),
+            )
+        ]
+    else:
+        articles = [
             InlineQueryResultArticle(
                 title=strings("ip_select_ip").format(domain=text),
                 input_message_content=InputTextMessageContent(
@@ -192,7 +188,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 ),
             )
         ]
-        + [
+        +[
             InlineQueryResultArticle(
                 title=ip,
                 input_message_content=InputTextMessageContent(
@@ -201,6 +197,10 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
             )
             for ip in ips
         ]
+
+    return await q.answer(
+        articles,
+        cache_time=0,
     )
 
 
