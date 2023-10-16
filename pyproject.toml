@@ -17,9 +17,9 @@ dependencies = [
   "speedtest-cli",
   "tgcrypto",
   # Using uvloop to increase general speed and stability. Ignored under Windows
-  "uvloop>=0.10.0,<0.18.0; platform_system != 'Windows'",
+  "uvloop>=0.10.0,<0.19.0; platform_system != 'Windows'",
   "yarl",
-  "yt-dlp==2023.9.24",
+  "yt-dlp==2023.10.13",
 ]
 requires-python = ">=3.7"
 
