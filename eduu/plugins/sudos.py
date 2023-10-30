@@ -108,6 +108,7 @@ async def execs(c: Client, m: Message):
     else:
         out = "Command executed."
     await m.reply_text(out)
+    return None
 
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
@@ -162,8 +163,10 @@ async def execsql(c: Client, m: Message):
         bio.write(res.encode())
 
         await m.reply_document(bio)
+        return None
     else:
         await m.reply_text(f"<code>{res}</code>")
+        return None
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
@@ -266,5 +269,7 @@ async def getchatcmd(c: Client, m: Message):
         await m.reply_text(
             f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
         )
+        return None
     else:
         await m.reply_text("This is a private Chat.")
+        return None

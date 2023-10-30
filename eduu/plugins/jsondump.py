@@ -45,8 +45,10 @@ async def jsondump(c: Client, m: Message):
         bio = io.BytesIO(obj.encode())
         bio.name = f"dump-{m.chat.id}.json"
         await m.reply_document(bio)
+        return None
     else:
         await m.reply_text(f"<code>{html.escape(obj)}</code>")
+        return None
 
 
 commands.add_command("jsondump", "tools")

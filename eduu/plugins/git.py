@@ -39,6 +39,7 @@ async def git(c: Client, m: Message, strings):
         ),
         reply_to_message_id=m.id,
     )
+    return None
 
 
 commands.add_command("git", "tools")

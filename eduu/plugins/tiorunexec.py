@@ -53,6 +53,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
                 statsformat=tioresstats,
             )
         )
+        return None
     else:
         await m.reply_text(
             strings("code_exec_tio_res_string_err").format(
@@ -62,6 +63,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
                 errformat=html.escape(tioerrres),
             )
         )
+        return None
 
 
 @Client.on_inline_query(filters.regex(r"^(run|exec)", re.I))
@@ -112,6 +114,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
             ],
             cache_time=0,
         )
+        return None
     else:
         await q.answer(
             [
@@ -132,6 +135,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
             ],
             cache_time=0,
         )
+        return None
 
 
 commands.add_command("run", "tools")

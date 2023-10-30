@@ -211,3 +211,4 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
+    return None

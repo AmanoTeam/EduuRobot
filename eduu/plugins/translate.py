@@ -97,6 +97,7 @@ async def translate(c: Client, m: Message, strings):
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
     )
+    return None
 
 
 @Client.on_inline_query(filters.regex(r"^tr .+", re.I))

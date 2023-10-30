@@ -26,3 +26,5 @@ async def telegraph(c: Client, m: Message, strings):
         )
         tele_link = "https://telegra.ph" + response.json()[0]["src"]
         await m.reply_text(tele_link)
+        return None
+    return None

@@ -112,8 +112,10 @@ async def ip_cmd(c: Client, m: Message, strings):
                 ]
             ),
         )
+        return None
     else:
         await m.reply_text(strings("ip_err_no_ip"))
+        return None
 
 
 @Client.on_callback_query(filters.regex(r"^ip .+"))

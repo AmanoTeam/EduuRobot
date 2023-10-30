@@ -51,6 +51,7 @@ async def user_info(c: Client, m: Message, strings):
             text += strings("info_chat_owner")
 
     await m.reply_text(text)
+    return None
 
 
 commands.add_command("info", "tools")

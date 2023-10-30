@@ -28,6 +28,7 @@ async def mark(c: Client, m: Message, strings):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("html", PREFIXES))
@@ -42,6 +43,7 @@ async def html(c: Client, m: Message, strings):
         parse_mode=ParseMode.HTML,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
@@ -104,6 +106,7 @@ async def getbotinfo(c: Client, m: Message, strings):
         ),
         reply_to_message_id=m.id,
     )
+    return None
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
@@ -180,6 +183,7 @@ async def request_cmd(c: Client, m: Message):
     )
 
     await m.reply_text(f"<b>Headers:</b>\n{headers}")
+    return None
 
 
 @Client.on_message(filters.command("parsebutton"))

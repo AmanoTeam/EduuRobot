@@ -134,9 +134,11 @@ async def set_warns_action_cmd(c: Client, m: Message, strings):
         await m.reply_text(
             strings("warns_action_set_string").format(action=warn_action_txt)
         )
+        return None
     else:
         warn_act = await get_warn_action(m.chat.id)
         await m.reply_text(strings("warn_action_status").format(action=warn_act))
+        return None
 
 
 commands.add_command("warn", "admin")

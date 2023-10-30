@@ -88,6 +88,7 @@ def require_admin(
             )
             if has_perms:
                 return await func(client, message, *args, *kwargs)
+            return None
 
         return wrapper
 

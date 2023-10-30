@@ -57,6 +57,7 @@ async def reddit(c: Client, m: Message, strings):
         f"<a href='https://www.reddit.com/r/{subreddit}'>r/{subreddit}</a>\n\n{feed}",
         disable_web_page_preview=True,
     )
+    return None
 
 
 commands.add_command("reddit", "tools", aliases=["r"])

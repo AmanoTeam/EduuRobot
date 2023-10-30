@@ -159,6 +159,7 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
 
     if isinstance(m, Message):
         await m.reply_text(res)
+        return None
     else:
         await m.answer(
             [
@@ -178,6 +179,7 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
             ],
             cache_time=0,
         )
+        return None
 
 
 commands.add_command("weather", "tools", aliases=["clima"])

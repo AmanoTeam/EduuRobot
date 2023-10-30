@@ -61,3 +61,4 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             )
         )
     await q.answer(articles, cache_time=0)
+    return None

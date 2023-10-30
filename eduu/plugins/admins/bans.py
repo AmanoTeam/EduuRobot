@@ -98,6 +98,7 @@ async def tban(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
+    return None
 
 
 commands.add_command("ban", "admin")

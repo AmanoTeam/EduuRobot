@@ -249,6 +249,7 @@ async def getstickeraspng(c: Client, m: Message, strings):
 
     if sticker.is_animated:
         await m.reply_text(strings("animated_not_supported"))
+        return None
     else:
         sticker_file: BytesIO = await m.reply_to_message.download(
             in_memory=True,
@@ -259,3 +260,4 @@ async def getstickeraspng(c: Client, m: Message, strings):
                 emoji=sticker.emoji, id=sticker.file_id
             ),
         )
+        return None

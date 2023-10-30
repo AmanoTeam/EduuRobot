@@ -39,6 +39,7 @@ async def ids_private(c: Client, m: Message, strings):
             chat_type=m.chat.type,
         )
     )
+    return None
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.group)
@@ -76,6 +77,7 @@ async def ids(c: Client, m: Message, strings):
             message_id=m.id + 1,
         )
     )
+    return None
 
 
 commands.add_command("id", "tools")

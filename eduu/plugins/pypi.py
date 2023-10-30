@@ -68,6 +68,7 @@ async def pypi(c: Client, m: Message, strings):
     else:
         kb = None
     await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
+    return None
 
 
 commands.add_command("pypi", "tools")
