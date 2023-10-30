@@ -11,7 +11,6 @@ import time
 import traceback
 from contextlib import redirect_stdout, suppress
 from sqlite3 import IntegrityError, OperationalError
-from typing import Union
 
 import humanfriendly
 import speedtest
@@ -28,7 +27,7 @@ from eduu.utils import sudofilter
 from eduu.utils.localization import use_chat_lang
 from eduu.utils.utils import shell_exec
 
-prefix: Union[list, str] = "!"
+prefix: list | str = "!"
 
 conn = database.get_conn()
 

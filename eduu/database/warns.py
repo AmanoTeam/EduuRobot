@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Optional
 
 from .core import database
 
 conn = database.get_conn()
 
 
-async def get_warn_action(chat_id: int) -> tuple[Optional[str], bool]:
+async def get_warn_action(chat_id: int) -> tuple[str | None, bool]:
     cursor = await conn.execute(
         "SELECT warn_action FROM groups WHERE chat_id = (?)", (chat_id,)
     )
@@ -16,7 +15,7 @@ async def get_warn_action(chat_id: int) -> tuple[Optional[str], bool]:
     return "ban" if res is None else res
 
 
-async def set_warn_action(chat_id: int, action: Optional[str]):
+async def set_warn_action(chat_id: int, action: str | None):
     await conn.execute(
         "UPDATE groups SET warn_action = ? WHERE chat_id = ?", (action, chat_id)
     )

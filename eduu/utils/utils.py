@@ -9,7 +9,6 @@ from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 from string import Formatter
-from typing import Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
@@ -52,8 +51,8 @@ def pretty_size(size_bytes):
 
 
 async def check_perms(
-    message: Union[CallbackQuery, Message],
-    permissions: Optional[ChatPrivileges] = None,
+    message: CallbackQuery | Message,
+    permissions: ChatPrivileges | None = None,
     complain_missing_perms: bool = True,
     strings=None,
 ) -> bool:
@@ -94,7 +93,7 @@ async def check_perms(
 sudofilter = filters.user(SUDOERS)
 
 
-async def extract_time(m: Message, t: str) -> Optional[datetime]:
+async def extract_time(m: Message, t: str) -> datetime | None:
     if t[-1] in ["m", "h", "d"]:
         unit = t[-1]
         num = t[:-1]
@@ -227,7 +226,7 @@ class BotCommands:
         self,
         command: str,
         category: str,
-        aliases: Optional[list] = None,
+        aliases: list | None = None,
     ):
         context = get_caller_context()
 
@@ -244,7 +243,7 @@ class BotCommands:
             }
         )
 
-    def get_commands_message(self, strings, category: Optional[str] = None):
+    def get_commands_message(self, strings, category: str | None = None):
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
@@ -273,7 +272,7 @@ class InlineBotCommands:
     def add_command(
         self,
         command: str,
-        aliases: Optional[list] = None,
+        aliases: list | None = None,
     ):
         context = get_caller_context()
 
@@ -288,7 +287,7 @@ class InlineBotCommands:
             }
         )
 
-    def search_commands(self, query: Optional[str] = None):
+    def search_commands(self, query: str | None = None):
         return [
             cmd
             for cmd in sorted(self.commands, key=lambda k: k["command"])

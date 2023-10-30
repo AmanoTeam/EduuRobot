@@ -2,7 +2,6 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 from itertools import zip_longest
-from typing import Union
 
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
@@ -39,7 +38,7 @@ def gen_langs_kb():
 )
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
+async def chlang(c: Client, m: CallbackQuery | Message, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),

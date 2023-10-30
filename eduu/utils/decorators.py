@@ -2,8 +2,8 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 import asyncio
+from collections.abc import Callable
 from functools import partial, wraps
-from typing import Callable, Optional, Union
 
 from pyrogram import Client, StopPropagation
 from pyrogram.enums import ChatType
@@ -30,7 +30,7 @@ def aiowrap(func: Callable) -> Callable:
 
 
 def require_admin(
-    permissions: Optional[ChatPrivileges] = None,
+    permissions: ChatPrivileges | None = None,
     allow_in_private: bool = False,
     complain_missing_perms: bool = True,
 ):
@@ -55,7 +55,7 @@ def require_admin(
     def decorator(func):
         @wraps(func)
         async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
+            client: Client, message: CallbackQuery | Message, *args, **kwargs
         ):
             lang = await get_lang(message)
             strings = partial(

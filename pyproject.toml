@@ -38,7 +38,7 @@ homepage = "https://github.com/AmanoTeam/EduuRobot"
 
 [tool.ruff]
 src = ["."]
-target-version = "py39"
+target-version = "py310"
 select = [
   "I",    # isort
   "E",    # pycodestyle

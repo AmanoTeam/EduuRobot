@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Union
 
 from pyrogram import Client, filters
 from pyrogram.types import (
@@ -21,7 +20,7 @@ from eduu.utils.localization import use_chat_lang
 @Client.on_message(filters.command("start", PREFIXES) & filters.private, group=2)
 @Client.on_callback_query(filters.regex("^start_back$"))
 @use_chat_lang
-async def start_pvt(c: Client, m: Union[Message, CallbackQuery], strings):
+async def start_pvt(c: Client, m: Message | CallbackQuery, strings):
     if isinstance(m, CallbackQuery):
         msg = m.message
         send = msg.edit_text
@@ -49,7 +48,7 @@ async def start_pvt(c: Client, m: Union[Message, CallbackQuery], strings):
 
 @Client.on_message(filters.command("start", PREFIXES) & filters.group, group=2)
 @use_chat_lang
-async def start_grp(c: Client, m: Union[Message, CallbackQuery], strings):
+async def start_grp(c: Client, m: Message | CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
