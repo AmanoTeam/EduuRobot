@@ -172,7 +172,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
         await cq.message.edit_text(strings("ytdl_send_error").format(errmsg=e))
-        return
+        return None
     await cq.message.edit_text(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)

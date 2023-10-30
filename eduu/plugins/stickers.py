@@ -74,7 +74,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         if not file:
             # Failed to download
             await prog_msg.delete()
-            return
+            return None
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
@@ -89,7 +89,7 @@ async def kang_sticker(c: Client, m: Message, strings):
 
         if not img_url:
             await prog_msg.delete()
-            return
+            return None
         try:
             r = await http.get(img_url)
             if r.status_code == 200:

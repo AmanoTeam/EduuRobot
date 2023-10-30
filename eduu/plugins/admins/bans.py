@@ -88,7 +88,7 @@ async def tban(c: Client, m: Message, strings):
     split_time = m.text.split(None, 1)
     ban_time = await extract_time(m, split_time[1])
     if not ban_time:
-        return
+        return None
     await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)
 
     await m.reply_text(

@@ -66,7 +66,7 @@ async def tmute(c: Client, m: Message, strings):
     split_time = m.text.split(None, 1)
     mute_time = await extract_time(m, split_time[1])
     if not mute_time:
-        return
+        return None
     await m.chat.restrict_member(
         m.reply_to_message.from_user.id,
         ChatPermissions(can_send_messages=False),

@@ -39,15 +39,18 @@ homepage = "https://github.com/AmanoTeam/EduuRobot"
 [tool.ruff]
 src = ["."]
 target-version = "py37"
-select = ["ALL"]
-ignore = [
-  "ANN204", # Missing return type annotation for special method
-  "ARG001", # Unused function argument
-  "COM812", # Trailing comma missing
-  "D100",   # Missing docstring
-  "D103",   # Missing docstring
-  "EM",     # flake8-errmsg
-  "RET502", # Do not implicitly `return None` in function able to return non-`None` value
-  "RET503", # Missing explicit `return` at the end of function able to return non-`None` value
-  "RUF001", # String contains ambiguous unicode character
+select = [
+  "I",    # isort
+  "E",    # pycodestyle
+  "W",    # pycodestyle
+  "UP",   # pyupgrade
+  "F",    # pyflakes
+  "SIM",  # flake8-simplify
+  "RET",  # flake8-return
+  "C4",   # flake8-comprehensions
+  "PTH",  # flake8-use-pathlib
+  "PERF", # perflint
+  "N",    # pep8-naming
+  "RUF",  # ruff
 ]
+ignore = ["RUF001", "RUF002", "RUF003"]
