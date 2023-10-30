@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import List
 
 from .utils import (
     EMOJI_PATTERN,
@@ -25,7 +24,7 @@ from .utils import (
     sudofilter,
 )
 
-__all__: List[str] = [
+__all__: list[str] = [
     "EMOJI_PATTERN",
     "button_parser",
     "check_perms",

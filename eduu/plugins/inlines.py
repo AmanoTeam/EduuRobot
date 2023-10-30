@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2023 Amano LLC
 
 import re
-from typing import Iterable, List
+from collections.abc import Iterable
 
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
@@ -59,7 +59,7 @@ faces_list: Iterable[str] = (
 
 @Client.on_inline_query(filters.regex(r"^face", re.I))
 async def faces_inline(c: Client, q: InlineQuery):
-    results: List[InlineQueryResultArticle] = [
+    results: list[InlineQueryResultArticle] = [
         InlineQueryResultArticle(
             title=i, input_message_content=InputTextMessageContent(i)
         )

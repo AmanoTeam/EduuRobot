@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Tuple
 
 from .core import database
 
@@ -13,7 +12,7 @@ async def del_restarted():
     await conn.commit()
 
 
-async def get_restarted() -> Tuple[int, int]:
+async def get_restarted() -> tuple[int, int]:
     cursor = await conn.execute("SELECT chat_id, message_id FROM was_restarted_at")
     return await cursor.fetchone()
 

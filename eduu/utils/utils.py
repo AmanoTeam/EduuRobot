@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 from string import Formatter
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
@@ -129,7 +129,7 @@ def remove_escapes(text: str) -> str:
     return res
 
 
-def split_quotes(text: str) -> List:
+def split_quotes(text: str) -> list:
     if not any(text.startswith(char) for char in START_CHAR):
         return text.split(None, 1)
     counter = 1  # ignore first char -> is some kind of quote
@@ -151,7 +151,7 @@ def split_quotes(text: str) -> List:
     return list(filter(None, [key, rest]))
 
 
-def button_parser(text_note: str) -> Tuple[str, List[InlineKeyboardButton]]:
+def button_parser(text_note: str) -> tuple[str, list[InlineKeyboardButton]]:
     """Parse a string and return the parsed string and buttons.
 
     Parameters
@@ -355,7 +355,7 @@ async def shell_exec(code):
     return stdout, process
 
 
-def get_format_keys(string: str) -> List[str]:
+def get_format_keys(string: str) -> list[str]:
     """Return a list of formatting keys present in string.
 
     Parameters

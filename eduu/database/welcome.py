@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2023 Amano LLC
 
-from typing import Optional, Tuple
+from typing import Optional
 
 from .core import database
 
 conn = database.get_conn()
 
 
-async def get_welcome(chat_id: int) -> Tuple[Optional[str], bool]:
+async def get_welcome(chat_id: int) -> tuple[Optional[str], bool]:
     cursor = await conn.execute(
         "SELECT welcome, welcome_enabled FROM groups WHERE chat_id = (?)", (chat_id,)
     )

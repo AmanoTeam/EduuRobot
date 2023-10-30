@@ -4,7 +4,7 @@
 import json
 from functools import partial
 from pathlib import Path
-from typing import Callable, Dict, List, Optional, Union
+from typing import Callable, Optional, Union
 
 from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineQuery, Message
@@ -12,7 +12,7 @@ from pyrogram.types import CallbackQuery, InlineQuery, Message
 from eduu.database.localization import get_db_lang
 from eduu.utils.utils import get_caller_context
 
-enabled_locales: List[str] = [
+enabled_locales: list[str] = [
     "en-GB",  # English (United Kingdom)
     "en-US",  # English (United States)
     "pt-BR",  # Portuguese (Brazil)
@@ -43,7 +43,7 @@ enabled_locales: List[str] = [
 default_language: str = "en-GB"
 
 
-def cache_localizations(files: List[Path]) -> Dict[str, Dict[str, Dict[str, str]]]:
+def cache_localizations(files: list[Path]) -> dict[str, dict[str, dict[str, str]]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
         _, lname, pname = file.parts
@@ -54,7 +54,7 @@ def cache_localizations(files: List[Path]) -> Dict[str, Dict[str, Dict[str, str]
     return ldict
 
 
-jsons: List[Path] = []
+jsons: list[Path] = []
 
 for locale in enabled_locales:
     jsons.extend((Path("locales") / locale).glob("*.json"))
