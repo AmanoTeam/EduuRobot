@@ -19,17 +19,13 @@ async def mute(c: Client, m: Message, strings):
     reason = await get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status not in ADMIN_STATUSES:
-        await m.chat.restrict_member(
-            target_user.id, ChatPermissions(can_send_messages=False)
-        )
+        await m.chat.restrict_member(target_user.id, ChatPermissions(can_send_messages=False))
         text = strings("mute_success").format(
             user=target_user.mention,
             admin=m.from_user.mention,
         )
         if reason:
-            await m.reply_text(
-                text + "\n" + strings("reason_string").format(reason_text=reason)
-            )
+            await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
         else:
             await m.reply_text(text)
     else:
@@ -48,9 +44,7 @@ async def unmute(c: Client, m: Message, strings):
         admin=m.from_user.mention,
     )
     if reason:
-        await m.reply_text(
-            text + "\n" + strings("reason_string").format(reason_text=reason)
-        )
+        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
     else:
         await m.reply_text(text)
 
@@ -60,13 +54,11 @@ async def unmute(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def tmute(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(
-            strings("error_must_specify_time").format(command=m.command[0])
-        )
+        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
     split_time = m.text.split(None, 1)
     mute_time = await extract_time(m, split_time[1])
     if not mute_time:
-        return
+        return None
     await m.chat.restrict_member(
         m.reply_to_message.from_user.id,
         ChatPermissions(can_send_messages=False),
@@ -79,6 +71,7 @@ async def tmute(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
+    return None
 
 
 commands.add_command("mute", "admin")

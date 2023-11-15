@@ -51,8 +51,7 @@ async def search_yt(query):
         if video.get("videoRenderer"):
             dic = {
                 "title": video["videoRenderer"]["title"]["runs"][0]["text"],
-                "url": "https://www.youtube.com/watch?v="
-                + video["videoRenderer"]["videoId"],
+                "url": "https://www.youtube.com/watch?v=" + video["videoRenderer"]["videoId"],
             }
             list_videos.append(dic)
     return list_videos
@@ -65,9 +64,7 @@ async def yt_search_cmd(c: Client, m: Message):
         for num, i in enumerate(await search_yt(m.text.split(None, 1)[1]))
     ]
 
-    await m.reply_text(
-        "\n".join(vids) if vids else r"¯\_(ツ)_/¯", disable_web_page_preview=True
-    )
+    await m.reply_text("\n".join(vids) if vids else r"¯\_(ツ)_/¯", disable_web_page_preview=True)
 
 
 @Client.on_message(filters.command("ytdl", PREFIXES))
@@ -172,7 +169,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
         await cq.message.edit_text(strings("ytdl_send_error").format(errmsg=e))
-        return
+        return None
     await cq.message.edit_text(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
@@ -211,3 +208,4 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
+    return None

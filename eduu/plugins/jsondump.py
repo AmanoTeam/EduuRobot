@@ -41,12 +41,14 @@ async def jsondump(c: Client, m: Message):
 
     as_file = force_file or len(obj) > 3000
 
-    if as_file:
-        bio = io.BytesIO(obj.encode())
-        bio.name = f"dump-{m.chat.id}.json"
-        await m.reply_document(bio)
-    else:
+    if not as_file:
         await m.reply_text(f"<code>{html.escape(obj)}</code>")
+        return None
+
+    bio = io.BytesIO(obj.encode())
+    bio.name = f"dump-{m.chat.id}.json"
+    await m.reply_document(bio)
+    return None
 
 
 commands.add_command("jsondump", "tools")

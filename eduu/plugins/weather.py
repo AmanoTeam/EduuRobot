@@ -22,9 +22,7 @@ weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 get_coords = "https://api.weather.com/v3/location/search"
 url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current"
 
-headers = {
-    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)"
-}
+headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)"}
 
 status_emojis = {
     0: "⛈",
@@ -130,9 +128,7 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
             cache_time=0,
         )
 
-    pos = (
-        f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
-    )
+    pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
     r = await http.get(
         url,
         headers=headers,
@@ -159,25 +155,27 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
 
     if isinstance(m, Message):
         await m.reply_text(res)
-    else:
-        await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=loc_json["location"]["address"][0],
-                    description=strings("inline_details").format(
-                        temperature=obs_dict["temperature"],
-                        feels_like=obs_dict["temperatureFeelsLike"],
-                        air_humidity=obs_dict["relativeHumidity"],
-                        wind_speed=obs_dict["windSpeed"],
-                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        message_text=res,
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+        return None
+
+    await m.answer(
+        [
+            InlineQueryResultArticle(
+                title=loc_json["location"]["address"][0],
+                description=strings("inline_details").format(
+                    temperature=obs_dict["temperature"],
+                    feels_like=obs_dict["temperatureFeelsLike"],
+                    air_humidity=obs_dict["relativeHumidity"],
+                    wind_speed=obs_dict["windSpeed"],
+                    overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+                ),
+                input_message_content=InputTextMessageContent(
+                    message_text=res,
+                ),
+            )
+        ],
+        cache_time=0,
+    )
+    return None
 
 
 commands.add_command("weather", "tools", aliases=["clima"])

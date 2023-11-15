@@ -85,33 +85,31 @@ async def check_perms(
     if not missing_perms:
         return True
     if complain_missing_perms:
-        await sender(
-            strings("no_permission_error").format(permissions=", ".join(missing_perms))
-        )
+        await sender(strings("no_permission_error").format(permissions=", ".join(missing_perms)))
     return False
 
 
 sudofilter = filters.user(SUDOERS)
 
 
-async def extract_time(m: Message, t: str) -> Optional[datetime]:
-    if t[-1] in ["m", "h", "d"]:
-        unit = t[-1]
-        num = t[:-1]
-        if not num.isdigit():
-            await m.reply_text("Invalid Amount specified")
-            return None
+async def extract_time(m: Message, time: str) -> Optional[datetime]:
+    if time[-1] not in ["m", "h", "d"]:
+        await m.reply_text("Invalid time format. Use 'h'/'m'/'d' ")
+        return None
 
-        if unit == "m":
-            return datetime.now() + timedelta(minutes=int(num))
-        elif unit == "h":
-            return datetime.now() + timedelta(hours=int(num))
-        elif unit == "d":
-            return datetime.now() + timedelta(days=int(num))
-        else:
-            return None
+    unit = time[-1]
+    num = time[:-1]
+    if not num.isdigit():
+        await m.reply_text("Invalid Amount specified")
+        return None
 
-    await m.reply_text("Invalid time format. Use 'h'/'m'/'d' ")
+    if unit == "m":
+        return datetime.now() + timedelta(minutes=int(num))
+    if unit == "h":
+        return datetime.now() + timedelta(hours=int(num))
+    if unit == "d":
+        return datetime.now() + timedelta(days=int(num))
+
     return None
 
 
@@ -136,9 +134,7 @@ def split_quotes(text: str) -> List:
     while counter < len(text):
         if text[counter] == "\\":
             counter += 1
-        elif text[counter] == text[0] or (
-            text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
-        ):
+        elif text[counter] == text[0] or (text[0] == SMART_OPEN and text[counter] == SMART_CLOSE):
             break
         counter += 1
     else:
@@ -181,13 +177,9 @@ def button_parser(text_note: str) -> Tuple[str, List[InlineKeyboardButton]]:
 
         if n_escapes % 2 == 0:
             if bool(match.group(4)) and buttons:
-                buttons[-1].append(
-                    InlineKeyboardButton(text=match.group(2), url=match.group(3))
-                )
+                buttons[-1].append(InlineKeyboardButton(text=match.group(2), url=match.group(3)))
             else:
-                buttons.append(
-                    [InlineKeyboardButton(text=match.group(2), url=match.group(3))]
-                )
+                buttons.append([InlineKeyboardButton(text=match.group(2), url=match.group(3))])
             note_data += text_note[prev : match.start(1)]
             prev = match.end(1)
 
@@ -253,10 +245,7 @@ class BotCommands:
         else:
             cmds_list = self.commands[category]
 
-        res = (
-            strings("command_category_title").format(category=strings(category))
-            + "\n\n"
-        )
+        res = strings("command_category_title").format(category=strings(category)) + "\n\n"
 
         cmds_list.sort(key=lambda k: k["command"])
 
@@ -334,12 +323,13 @@ async def get_target_user(c: Client, m: Message) -> User:
 async def get_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
+
     if not reply and len(spilt_text()) >= 3:
         return spilt_text(None, 2)[2]
-    elif reply and len(spilt_text()) >= 2:
+    if reply and len(spilt_text()) >= 2:
         return spilt_text(None, 1)[1]
-    else:
-        return None
+
+    return None
 
 
 EMOJI_PATTERN = get_emoji_regex()
@@ -373,6 +363,4 @@ def get_format_keys(string: str) -> List[str]:
 
 def linkify_commit(commit: str) -> str:
     """Return a link to a commit."""
-    return (
-        f'<a href="https://github.com/AmanoTeam/EduuRobot/commit/{commit}">{commit}</a>'
-    )
+    return f'<a href="https://github.com/AmanoTeam/EduuRobot/commit/{commit}">{commit}</a>'

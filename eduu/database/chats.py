@@ -28,21 +28,15 @@ async def add_chat(chat_id, chat_type):
 
 async def chat_exists(chat_id, chat_type):
     if chat_type == ChatType.PRIVATE:
-        cursor = await conn.execute(
-            "SELECT user_id FROM users where user_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT user_id FROM users where user_id = ?", (chat_id,))
         row = await cursor.fetchone()
         return bool(row)
     if chat_type in GROUP_TYPES:  # groups and supergroups share the same table
-        cursor = await conn.execute(
-            "SELECT chat_id FROM groups where chat_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT chat_id FROM groups where chat_id = ?", (chat_id,))
         row = await cursor.fetchone()
         return bool(row)
     if chat_type == ChatType.CHANNEL:
-        cursor = await conn.execute(
-            "SELECT chat_id FROM channels where chat_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT chat_id FROM channels where chat_id = ?", (chat_id,))
         row = await cursor.fetchone()
         return bool(row)
     raise TypeError(f"Unknown chat type '{chat_type}'.")

@@ -54,9 +54,7 @@ def require_admin(
 
     def decorator(func):
         @wraps(func)
-        async def wrapper(
-            client: Client, message: Union[CallbackQuery, Message], *args, **kwargs
-        ):
+        async def wrapper(client: Client, message: Union[CallbackQuery, Message], *args, **kwargs):
             lang = await get_lang(message)
             strings = partial(
                 get_locale_string,
@@ -83,11 +81,10 @@ def require_admin(
                 return await sender(strings("private_not_allowed"))
             if msg.chat.type == ChatType.CHANNEL:
                 return await func(client, message, *args, *kwargs)
-            has_perms = await check_perms(
-                message, permissions, complain_missing_perms, strings
-            )
+            has_perms = await check_perms(message, permissions, complain_missing_perms, strings)
             if has_perms:
                 return await func(client, message, *args, *kwargs)
+            return None
 
         return wrapper
 

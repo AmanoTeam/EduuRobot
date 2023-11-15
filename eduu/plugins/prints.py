@@ -33,9 +33,7 @@ async def prints(c: Client, m: Message, strings):
             break
     else:
         if m.reply_to_message:
-            for entity in (
-                m.reply_to_message.entities or m.reply_to_message.caption_entities
-            ):
+            for entity in m.reply_to_message.entities or m.reply_to_message.caption_entities:
                 if entity.type == MessageEntityType.URL:
                     if m.reply_to_message.text:
                         target_url = m.reply_to_message.text[
@@ -76,9 +74,7 @@ async def prints(c: Client, m: Message, strings):
         else:
             await sent.delete()
     else:
-        await m.reply_text(
-            "Couldn't get url value, most probably API is not accessible."
-        )
+        await m.reply_text("Couldn't get url value, most probably API is not accessible.")
 
 
 async def screenshot_page(target_url: str) -> str:
@@ -102,9 +98,7 @@ async def screenshot_page(target_url: str) -> str:
     }
 
     try:
-        resp = await http.post(
-            "https://htmlcsstoimage.com/demo_run", headers=headers, json=data
-        )
+        resp = await http.post("https://htmlcsstoimage.com/demo_run", headers=headers, json=data)
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
         raise Exception("Screenshot API returned an invalid response.") from e

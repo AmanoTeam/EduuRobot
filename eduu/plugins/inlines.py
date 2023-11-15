@@ -60,9 +60,7 @@ faces_list: Iterable[str] = (
 @Client.on_inline_query(filters.regex(r"^face", re.I))
 async def faces_inline(c: Client, q: InlineQuery):
     results: List[InlineQueryResultArticle] = [
-        InlineQueryResultArticle(
-            title=i, input_message_content=InputTextMessageContent(i)
-        )
+        InlineQueryResultArticle(title=i, input_message_content=InputTextMessageContent(i))
         for i in faces_list
     ]
 
@@ -82,9 +80,7 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
                     querytxt, parse_mode=ParseMode.MARKDOWN
                 ),
                 reply_markup=(
-                    InlineKeyboardMarkup(querybuttons)
-                    if len(querybuttons) != 0
-                    else None
+                    InlineKeyboardMarkup(querybuttons) if len(querybuttons) != 0 else None
                 ),
             )
         ]
@@ -104,9 +100,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
                     querytxt,
                 ),
                 reply_markup=(
-                    InlineKeyboardMarkup(querybuttons)
-                    if len(querybuttons) != 0
-                    else None
+                    InlineKeyboardMarkup(querybuttons) if len(querybuttons) != 0 else None
                 ),
             )
         ]
@@ -148,6 +142,7 @@ async def info_inline(c: Client, q: InlineQuery, strings):
             )
         ]
     )
+    return None
 
 
 inline_commands.add_command("faces")

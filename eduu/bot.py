@@ -59,9 +59,7 @@ class Eduu(Client):
         try:
             await self.send_message(chat_id=LOG_CHAT, text=start_message)
             if wr:
-                await self.edit_message_text(
-                    wr[0], wr[1], text="Restarted successfully!"
-                )
+                await self.edit_message_text(wr[0], wr[1], text="Restarted successfully!")
         except BadRequest:
             logger.warning("Unable to send message to LOG_CHAT.")
 

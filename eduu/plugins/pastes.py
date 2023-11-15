@@ -31,6 +31,7 @@ async def paste(c: Client, m: Message, strings):
     r = await http.post(url, json={"content": mean})
     url = f"https://nekobin.com/{r.json()['result']['key']}"
     await m.reply_text(url, disable_web_page_preview=True)
+    return None
 
 
 commands.add_command("paste", "tools")

@@ -85,35 +85,35 @@ async def get_ips_from_string(hostname: str) -> list[str]:
 @Client.on_message(filters.command("ip", PREFIXES))
 @use_chat_lang
 async def ip_cmd(c: Client, m: Message, strings):
-    if len(m.text.split()) > 1:
-        text = m.text.split(maxsplit=1)[1]
-
-        ips = await get_ips_from_string(text)
-
-        if not ips:
-            return await m.reply_text(strings("ip_err_no_ips").format(domain=text))
-
-        if len(ips) == 1:
-            return await m.reply_text(
-                await format_api_return(await get_api_return(ips[0]), strings)
-            )
-
-        await m.reply_text(
-            strings("ip_select_ip").format(domain=text),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            ip,
-                            callback_data=f"ip {ip}",
-                        )
-                    ]
-                    for ip in ips
-                ]
-            ),
-        )
-    else:
+    if len(m.text.split()) == 1:
         await m.reply_text(strings("ip_err_no_ip"))
+        return None
+
+    text = m.text.split(maxsplit=1)[1]
+
+    ips = await get_ips_from_string(text)
+
+    if not ips:
+        return await m.reply_text(strings("ip_err_no_ips").format(domain=text))
+
+    if len(ips) == 1:
+        return await m.reply_text(await format_api_return(await get_api_return(ips[0]), strings))
+
+    await m.reply_text(
+        strings("ip_select_ip").format(domain=text),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        ip,
+                        callback_data=f"ip {ip}",
+                    )
+                ]
+                for ip in ips
+            ]
+        ),
+    )
+    return None
 
 
 @Client.on_callback_query(filters.regex(r"^ip .+"))
@@ -121,9 +121,7 @@ async def ip_cmd(c: Client, m: Message, strings):
 async def ip_callback(c: Client, cb: CallbackQuery, strings):
     ip = cb.data.split(maxsplit=1)[1]
 
-    await cb.edit_message_text(
-        await format_api_return(await get_api_return(ip), strings)
-    )
+    await cb.edit_message_text(await format_api_return(await get_api_return(ip), strings))
 
 
 @Client.on_inline_query(filters.regex(r"^ip .+", re.I))

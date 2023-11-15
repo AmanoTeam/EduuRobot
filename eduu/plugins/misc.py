@@ -28,6 +28,7 @@ async def mark(c: Client, m: Message, strings):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("html", PREFIXES))
@@ -42,15 +43,14 @@ async def html(c: Client, m: Message, strings):
         parse_mode=ParseMode.HTML,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
+    return None
 
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
 @use_chat_lang
 async def mentionadmins(c: Client, m: Message, strings):
     mention = ""
-    async for i in m.chat.get_members(
-        m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
-    ):
+    async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
         if not (i.user.is_deleted or i.privileges.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
@@ -104,15 +104,13 @@ async def getbotinfo(c: Client, m: Message, strings):
         ),
         reply_to_message_id=m.id,
     )
+    return None
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
 async def rtcommand(c: Client, m: Message):
     rt_text = None
-    if m.reply_to_message.media:
-        rt_text = m.reply_to_message.caption
-    else:
-        rt_text = m.reply_to_message.text
+    rt_text = m.reply_to_message.caption if m.reply_to_message.media else m.reply_to_message.text
 
     if rt_text is None or re.match("🔃 .* retweeted:\n\n👤 .*", rt_text):
         return
@@ -175,11 +173,11 @@ async def request_cmd(c: Client, m: Message):
     headers = f'<b>{req.extensions.get("http_version").decode()}</b> <code>{req.status_code} {req.extensions.get("reason_phrase", b"").decode()}</code>\n'
 
     headers += "\n".join(
-        f"<b>{x.title()}:</b> <code>{escape(req.headers[x])}</code>"
-        for x in req.headers
+        f"<b>{x.title()}:</b> <code>{escape(req.headers[x])}</code>" for x in req.headers
     )
 
     await m.reply_text(f"<b>Headers:</b>\n{headers}")
+    return None
 
 
 @Client.on_message(filters.command("parsebutton"))

@@ -32,19 +32,13 @@ async def set_db_lang(chat_id: int, chat_type: str, lang_code: str):
 
 async def get_db_lang(chat_id: int, chat_type: str) -> str:
     if chat_type == ChatType.PRIVATE:
-        cursor = await conn.execute(
-            "SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = await cursor.fetchone()
     elif chat_type in GROUP_TYPES:  # groups and supergroups share the same table
-        cursor = await conn.execute(
-            "SELECT chat_lang FROM groups WHERE chat_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT chat_lang FROM groups WHERE chat_id = ?", (chat_id,))
         ul = await cursor.fetchone()
     elif chat_type == ChatType.CHANNEL:
-        cursor = await conn.execute(
-            "SELECT chat_lang FROM channels WHERE chat_id = ?", (chat_id,)
-        )
+        cursor = await conn.execute("SELECT chat_lang FROM channels WHERE chat_id = ?", (chat_id,))
         ul = await cursor.fetchone()
     else:
         raise TypeError(f"Unknown chat type '{chat_type}'.")

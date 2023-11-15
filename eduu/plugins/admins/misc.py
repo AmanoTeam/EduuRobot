@@ -32,9 +32,7 @@ async def purge(c: Client, m: Message, strings):
         if len(message_ids) > 0:
             await c.delete_messages(chat_id=m.chat.id, message_ids=message_ids)
             count_del_etion_s += len(message_ids)
-    await status_message.edit_text(
-        strings("purge_success").format(count=count_del_etion_s)
-    )
+    await status_message.edit_text(strings("purge_success").format(count=count_del_etion_s))
     await asyncio.sleep(5)
     await status_message.delete()
 

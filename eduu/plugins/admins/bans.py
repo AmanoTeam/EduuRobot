@@ -25,9 +25,7 @@ async def ban(c: Client, m: Message, strings):
             admin=m.from_user.mention,
         )
         if reason:
-            await m.reply_text(
-                text + "\n" + strings("reason_string").format(reason_text=reason)
-            )
+            await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
         else:
             await m.reply_text(text)
     else:
@@ -49,9 +47,7 @@ async def kick(c: Client, m: Message, strings):
             admin=m.from_user.mention,
         )
         if reason:
-            await m.reply_text(
-                text + "\n" + strings("reason_string").format(reason_text=reason)
-            )
+            await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
         else:
             await m.reply_text(text)
     else:
@@ -70,9 +66,7 @@ async def unban(c: Client, m: Message, strings):
         admin=m.from_user.mention,
     )
     if reason:
-        await m.reply_text(
-            text + "\n" + strings("reason_string").format(reason_text=reason)
-        )
+        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
     else:
         await m.reply_text(text)
 
@@ -82,13 +76,11 @@ async def unban(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(
-            strings("error_must_specify_time").format(command=m.command[0])
-        )
+        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
     split_time = m.text.split(None, 1)
     ban_time = await extract_time(m, split_time[1])
     if not ban_time:
-        return
+        return None
     await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)
 
     await m.reply_text(
@@ -98,6 +90,7 @@ async def tban(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
+    return None
 
 
 commands.add_command("ban", "admin")

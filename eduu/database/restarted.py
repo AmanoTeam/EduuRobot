@@ -19,7 +19,5 @@ async def get_restarted() -> Tuple[int, int]:
 
 
 async def set_restarted(chat_id: int, message_id: int):
-    await conn.execute(
-        "INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id)
-    )
+    await conn.execute("INSERT INTO was_restarted_at VALUES (?, ?)", (chat_id, message_id))
     await conn.commit()

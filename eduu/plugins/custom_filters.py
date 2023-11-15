@@ -43,41 +43,31 @@ async def save_filter(c: Client, m: Message, strings):
     if m.reply_to_message and m.reply_to_message.photo:
         file_id = m.reply_to_message.photo.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         filter_type = "photo"
     elif m.reply_to_message and m.reply_to_message.document:
         file_id = m.reply_to_message.document.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         filter_type = "document"
     elif m.reply_to_message and m.reply_to_message.video:
         file_id = m.reply_to_message.video.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         filter_type = "video"
     elif m.reply_to_message and m.reply_to_message.audio:
         file_id = m.reply_to_message.audio.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         filter_type = "audio"
     elif m.reply_to_message and m.reply_to_message.animation:
         file_id = m.reply_to_message.animation.file_id
         raw_data = (
-            m.reply_to_message.caption.markdown
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         filter_type = "animation"
     elif m.reply_to_message and m.reply_to_message.sticker:
@@ -95,9 +85,7 @@ async def save_filter(c: Client, m: Message, strings):
         await update_filter(chat_id, trigger, raw_data, file_id, filter_type)
     else:
         await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
-    await m.reply_text(
-        strings("add_filter_success").format(trigger=trigger), quote=True
-    )
+    await m.reply_text(strings("add_filter_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], PREFIXES))
@@ -110,13 +98,9 @@ async def delete_filter(c: Client, m: Message, strings):
     check_filter = await check_for_filters(chat_id, trigger)
     if check_filter:
         await rm_filter(chat_id, trigger)
-        await m.reply_text(
-            strings("remove_filter_success").format(trigger=trigger), quote=True
-        )
+        await m.reply_text(strings("remove_filter_success").format(trigger=trigger), quote=True)
     else:
-        await m.reply_text(
-            strings("no_filter_with_name").format(trigger=trigger), quote=True
-        )
+        await m.reply_text(strings("no_filter_with_name").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command("filters", PREFIXES))
@@ -135,9 +119,7 @@ async def get_all_filter(c: Client, m: Message, strings):
         await m.reply_text(reply_text, quote=True)
 
 
-@Client.on_message(
-    (filters.group | filters.private) & filters.text & filters.incoming, group=1
-)
+@Client.on_message((filters.group | filters.private) & filters.text & filters.incoming, group=1)
 async def serve_filter(c: Client, m: Message):
     chat_id = m.chat.id
     text = m.text

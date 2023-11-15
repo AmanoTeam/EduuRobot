@@ -40,9 +40,7 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 id=uuid4(),
                 title=result["command"],
-                description=strings(
-                    result["description_key"], context=result["context"]
-                ),
+                description=strings(result["description_key"], context=result["context"]),
                 input_message_content=InputTextMessageContent(
                     f"{html.escape(result['command'])}: {strings(result['description_key'], context=result['context'])}"
                 ),
@@ -50,9 +48,7 @@ async def inline_search(c: Client, q: InlineQuery, strings):
                     [
                         [
                             InlineKeyboardButton(
-                                text=strings("run_command_button").format(
-                                    query=stripped_command
-                                ),
+                                text=strings("run_command_button").format(query=stripped_command),
                                 switch_inline_query_current_chat=stripped_command,
                             )
                         ]
@@ -61,3 +57,4 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             )
         )
     await q.answer(articles, cache_time=0)
+    return None

@@ -53,15 +53,17 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
                 statsformat=tioresstats,
             )
         )
-    else:
-        await m.reply_text(
-            strings("code_exec_tio_res_string_err").format(
-                langformat=execlanguage,
-                codeformat=html.escape(codetoexec),
-                resformat=html.escape(tiores),
-                errformat=html.escape(tioerrres),
-            )
+        return None
+
+    await m.reply_text(
+        strings("code_exec_tio_res_string_err").format(
+            langformat=execlanguage,
+            codeformat=html.escape(codetoexec),
+            resformat=html.escape(tiores),
+            errformat=html.escape(tioerrres),
         )
+    )
+    return None
 
 
 @Client.on_inline_query(filters.regex(r"^(run|exec)", re.I))
@@ -96,9 +98,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=strings("code_exec_inline_send").format(
-                        langformat=execlanguage
-                    ),
+                    title=strings("code_exec_inline_send").format(langformat=execlanguage),
                     description=tiores,
                     input_message_content=InputTextMessageContent(
                         strings("code_exec_tio_res_string_no_err").format(
@@ -112,26 +112,26 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
             ],
             cache_time=0,
         )
-    else:
-        await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("code_exec_inline_send").format(
-                        langformat=execlanguage
-                    ),
-                    description=tiores,
-                    input_message_content=InputTextMessageContent(
-                        strings("code_exec_tio_res_string_err").format(
-                            langformat=execlanguage,
-                            codeformat=html.escape(codetoexec),
-                            resformat=html.escape(tiores),
-                            errformat=html.escape(tioerrres),
-                        )
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+        return None
+
+    await q.answer(
+        [
+            InlineQueryResultArticle(
+                title=strings("code_exec_inline_send").format(langformat=execlanguage),
+                description=tiores,
+                input_message_content=InputTextMessageContent(
+                    strings("code_exec_tio_res_string_err").format(
+                        langformat=execlanguage,
+                        codeformat=html.escape(codetoexec),
+                        resformat=html.escape(tiores),
+                        errformat=html.escape(tioerrres),
+                    )
+                ),
+            )
+        ],
+        cache_time=0,
+    )
+    return None
 
 
 commands.add_command("run", "tools")

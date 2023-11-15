@@ -67,14 +67,13 @@ async def kang_sticker(c: Client, m: Message, strings):
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
-                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
-                or sticker_emoji
+                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:])))) or sticker_emoji
             )
         file = await c.download_media(m.reply_to_message, in_memory=True)
         if not file:
             # Failed to download
             await prog_msg.delete()
-            return
+            return None
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
@@ -89,7 +88,7 @@ async def kang_sticker(c: Client, m: Message, strings):
 
         if not img_url:
             await prog_msg.delete()
-            return
+            return None
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
@@ -103,8 +102,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"
             if len(m.command) > 2:
                 sticker_emoji = (
-                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
-                    or sticker_emoji
+                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:])))) or sticker_emoji
                 )
             resize = True
     else:
@@ -123,9 +121,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = (
-                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{bot_username}"
-                    )
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{bot_username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
@@ -234,9 +230,7 @@ def resize_image(file: str) -> BytesIO:
 async def getstickerid(c: Client, m: Message, strings):
     if m.reply_to_message.sticker:
         await m.reply_text(
-            strings("get_sticker_id_string").format(
-                stickerid=m.reply_to_message.sticker.file_id
-            )
+            strings("get_sticker_id_string").format(stickerid=m.reply_to_message.sticker.file_id)
         )
 
 
@@ -249,13 +243,13 @@ async def getstickeraspng(c: Client, m: Message, strings):
 
     if sticker.is_animated:
         await m.reply_text(strings("animated_not_supported"))
-    else:
-        sticker_file: BytesIO = await m.reply_to_message.download(
-            in_memory=True,
-        )
-        await m.reply_to_message.reply_document(
-            document=sticker_file,
-            caption=strings("sticker_info").format(
-                emoji=sticker.emoji, id=sticker.file_id
-            ),
-        )
+        return None
+
+    sticker_file: BytesIO = await m.reply_to_message.download(
+        in_memory=True,
+    )
+    await m.reply_to_message.reply_document(
+        document=sticker_file,
+        caption=strings("sticker_info").format(emoji=sticker.emoji, id=sticker.file_id),
+    )
+    return None

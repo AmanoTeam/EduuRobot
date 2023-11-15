@@ -23,9 +23,7 @@ async def check_for_notes(chat_id, trigger):
     return False
 
 
-@Client.on_message(
-    filters.command(["note", "savenote", "nota", "salvarnota"], PREFIXES)
-)
+@Client.on_message(filters.command(["note", "savenote", "nota", "salvarnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
 async def save_note(c: Client, m: Message, strings):
@@ -40,41 +38,31 @@ async def save_note(c: Client, m: Message, strings):
     if m.reply_to_message and m.reply_to_message.photo:
         file_id = m.reply_to_message.photo.file_id
         raw_data = (
-            m.reply_to_message.caption.html
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
         note_type = "photo"
     elif m.reply_to_message and m.reply_to_message.document:
         file_id = m.reply_to_message.document.file_id
         raw_data = (
-            m.reply_to_message.caption.html
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
         note_type = "document"
     elif m.reply_to_message and m.reply_to_message.video:
         file_id = m.reply_to_message.video.file_id
         raw_data = (
-            m.reply_to_message.caption.html
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
         note_type = "video"
     elif m.reply_to_message and m.reply_to_message.audio:
         file_id = m.reply_to_message.audio.file_id
         raw_data = (
-            m.reply_to_message.caption.html
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
         note_type = "audio"
     elif m.reply_to_message and m.reply_to_message.animation:
         file_id = m.reply_to_message.animation.file_id
         raw_data = (
-            m.reply_to_message.caption.html
-            if m.reply_to_message.caption is not None
-            else None
+            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
         note_type = "animation"
     elif m.reply_to_message and m.reply_to_message.sticker:
@@ -95,9 +83,7 @@ async def save_note(c: Client, m: Message, strings):
     await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
 
 
-@Client.on_message(
-    filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES)
-)
+@Client.on_message(filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
 async def delete_note(c: Client, m: Message, strings):
@@ -107,13 +93,9 @@ async def delete_note(c: Client, m: Message, strings):
     check_note = await check_for_notes(chat_id, trigger)
     if check_note:
         await rm_note(chat_id, trigger)
-        await m.reply_text(
-            strings("remove_note_success").format(trigger=trigger), quote=True
-        )
+        await m.reply_text(strings("remove_note_success").format(trigger=trigger), quote=True)
     else:
-        await m.reply_text(
-            strings("no_note_with_name").format(trigger=trigger), quote=True
-        )
+        await m.reply_text(strings("no_note_with_name").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["notes", "notas"], PREFIXES))

@@ -30,11 +30,13 @@ async def gif(c: Client, m: Message, strings):
         params={"q": text, "key": TENOR_API_KEY, "limit": 1},
     )
     rjson = r.json()
-    if rjson["results"]:
-        res = rjson["results"][0]["media"][0]["mediumgif"]["url"]
-        await m.reply_animation(res)
-    else:
+    if not rjson["results"]:
         await m.reply_text(strings("no_results", context="general"))
+        return None
+
+    res = rjson["results"][0]["media"][0]["mediumgif"]["url"]
+    await m.reply_animation(res)
+    return None
 
 
 commands.add_command("gif", "general")

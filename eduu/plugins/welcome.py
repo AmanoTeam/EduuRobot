@@ -13,9 +13,7 @@ from eduu.utils.decorators import require_admin, stop_here
 from eduu.utils.localization import use_chat_lang
 
 
-@Client.on_message(
-    filters.command(["welcomeformat", "start welcome_format_help"], PREFIXES)
-)
+@Client.on_message(filters.command(["welcomeformat", "start welcome_format_help"], PREFIXES))
 @use_chat_lang
 @stop_here
 async def welcome_format_message_help(c: Client, m: Message, strings):
@@ -46,16 +44,12 @@ async def set_welcome_message(c: Client, m: Message, strings):
             )
         except (KeyError, BadRequest) as e:
             await m.reply_text(
-                strings("welcome_set_error").format(
-                    error=f"{e.__class__.__name__}: {e!s}"
-                )
+                strings("welcome_set_error").format(error=f"{e.__class__.__name__}: {e!s}")
             )
 
         else:
             await set_welcome(m.chat.id, message)
-            await sent.edit_text(
-                strings("welcome_set_success").format(chat_title=m.chat.title)
-            )
+            await sent.edit_text(strings("welcome_set_success").format(chat_title=m.chat.title))
     else:
         await m.reply_text(
             strings("welcome_set_empty").format(bot_username=c.me.username),
@@ -64,8 +58,7 @@ async def set_welcome_message(c: Client, m: Message, strings):
 
 
 @Client.on_message(
-    (filters.command("welcome") & ~filters.command(["welcome on", "welcome off"]))
-    & filters.group
+    (filters.command("welcome") & ~filters.command(["welcome on", "welcome off"])) & filters.group
 )
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
@@ -103,9 +96,7 @@ async def disable_welcome_message(c: Client, m: Message, strings):
     await m.reply_text(strings("welcome_mode_disable").format(chat_title=m.chat.title))
 
 
-@Client.on_message(
-    filters.command(["resetwelcome", "clearwelcome"], PREFIXES) & filters.group
-)
+@Client.on_message(filters.command(["resetwelcome", "clearwelcome"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def reset_welcome_message(c: Client, m: Message, strings):

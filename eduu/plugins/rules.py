@@ -22,9 +22,7 @@ async def settherules(c: Client, m: Message, strings):
         await m.reply_text(strings("rules_set_empty"))
 
 
-@Client.on_message(
-    filters.command(["resetrules", "resetarregras"], PREFIXES) & filters.group
-)
+@Client.on_message(filters.command(["resetrules", "resetarregras"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def delete_rules(c: Client, m: Message, strings):

@@ -34,9 +34,7 @@ def gen_langs_kb():
 
 
 @Client.on_callback_query(filters.regex("^chlang$"))
-@Client.on_message(
-    filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group
-)
+@Client.on_message(filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group)
 @require_admin(allow_in_private=True)
 @use_chat_lang
 async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
@@ -91,6 +89,4 @@ async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
         )
     else:
         keyboard = None
-    await m.message.edit_text(
-        strings("language_changed_successfully"), reply_markup=keyboard
-    )
+    await m.message.edit_text(strings("language_changed_successfully"), reply_markup=keyboard)

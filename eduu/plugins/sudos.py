@@ -46,9 +46,9 @@ async def run_cmd(c: Client, m: Message, strings):
         res = strings("forbidden_command")
     else:
         stdout, stderr = await shell_exec(cmd)
-        res = (
-            f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else ""
-        ) + (f"\n<b>Errors:</b>\n<code>{stderr}</code>" if stderr else "")
+        res = (f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else "") + (
+            f"\n<b>Errors:</b>\n<code>{stderr}</code>" if stderr else ""
+        )
 
     await m.reply_text(res)
 
@@ -68,9 +68,7 @@ async def upgrade(c: Client, m: Message, strings):
             args = [sys.executable, "-m", "eduu"]
             os.execv(sys.executable, args)  # skipcq: BAN-B606
     else:
-        await sm.edit_text(
-            f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}"
-        )
+        await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}")
         proc = await asyncio.create_subprocess_shell("git merge --abort")
         await proc.communicate()
 
@@ -95,7 +93,7 @@ async def execs(c: Client, m: Message):
     strio = io.StringIO()
     code = m.text.split(maxsplit=1)[1]
     exec(
-        "async def __ex(c, m): " + " ".join("\n " + l for l in code.split("\n"))
+        "async def __ex(c, m): " + " ".join("\n " + line for line in code.split("\n"))
     )  # skipcq: PYL-W0122
     with redirect_stdout(strio):
         try:
@@ -108,6 +106,7 @@ async def execs(c: Client, m: Message):
     else:
         out = "Command executed."
     await m.reply_text(out)
+    return None
 
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
@@ -118,21 +117,15 @@ async def test_speed(c: Client, m: Message, strings):
     s = speedtest.Speedtest()
     bs = s.get_best_server()
     await sent.edit_text(
-        string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload=""
-        )
+        string.format(host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="")
     )
     dl = round(s.download() / 1024 / 1024, 2)
     await sent.edit_text(
-        string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=""
-        )
+        string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="")
     )
     ul = round(s.upload() / 1024 / 1024, 2)
     await sent.edit_text(
-        string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul
-        )
+        string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul)
     )
 
 
@@ -143,9 +136,7 @@ async def execsql(c: Client, m: Message):
     try:
         ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
-        return await m.reply_text(
-            f"SQL executed with an error: {e.__class__.__name__}: {e}"
-        )
+        return await m.reply_text(f"SQL executed with an error: {e.__class__.__name__}: {e}")
 
     ret = await ex.fetchall()
     await conn.commit()
@@ -155,15 +146,18 @@ async def execsql(c: Client, m: Message):
 
     res = "|".join([name[0] for name in ex.description]) + "\n"
     res += "\n".join(["|".join(str(s) for s in items) for items in ret])
-    if len(res) > 3500:
-        bio = io.BytesIO()
-        bio.name = "output.txt"
 
-        bio.write(res.encode())
-
-        await m.reply_document(bio)
-    else:
+    if len(res) < 3500:
         await m.reply_text(f"<code>{res}</code>")
+        return None
+
+    bio = io.BytesIO()
+    bio.name = "output.txt"
+
+    bio.write(res.encode())
+
+    await m.reply_document(bio)
+    return None
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
@@ -242,9 +236,7 @@ async def uploadfile(c: Client, m: Message):
         await m.reply_text("You must reply to a file to upload.")
 
     sent = await m.reply_to_message.reply_text("Uploading file…")
-    file_path = await m.reply_to_message.download(
-        m.command[1] if len(m.command) > 1 else ""
-    )
+    file_path = await m.reply_to_message.download(m.command[1] if len(m.command) > 1 else "")
     await sent.edit_text(f"File successfully saved to {file_path}.")
 
 
@@ -262,9 +254,11 @@ async def getchatcmd(c: Client, m: Message):
         return await m.reply_text("You must specify the Chat.")
 
     targetchat = await c.get_chat(m.command[1])
-    if targetchat.type != ChatType.PRIVATE:
-        await m.reply_text(
-            f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
-        )
-    else:
+    if targetchat.type == ChatType.PRIVATE:
         await m.reply_text("This is a private Chat.")
+        return None
+
+    await m.reply_text(
+        f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
+    )
+    return None

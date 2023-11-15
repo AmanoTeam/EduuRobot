@@ -34,9 +34,7 @@ async def pypi(c: Client, m: Message, strings):
     r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
     if r.status_code != 200:
         return await m.reply_text(
-            strings("package_not_found").format(
-                package_name=text, http_status=r.status_code
-            )
+            strings("package_not_found").format(package_name=text, http_status=r.status_code)
         )
 
     json = r.json()
@@ -45,9 +43,7 @@ async def pypi(c: Client, m: Message, strings):
     message = strings("package_details").format(
         package_name=pypi_info["name"],
         author_name=pypi_info["author"],
-        author_email=f"&lt;{pypi_info['author_email']}&gt;"
-        if pypi_info["author_email"]
-        else "",
+        author_email=f"&lt;{pypi_info['author_email']}&gt;" if pypi_info["author_email"] else "",
         platform=pypi_info["platform"] or strings("not_specified"),
         version=pypi_info["version"],
         license=pypi_info["license"] or strings("not_specified"),
@@ -68,6 +64,7 @@ async def pypi(c: Client, m: Message, strings):
     else:
         kb = None
     await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
+    return None
 
 
 commands.add_command("pypi", "tools")

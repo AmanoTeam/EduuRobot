@@ -34,9 +34,7 @@ async def sed(c: Client, m: Message, strings):
         return
 
     try:
-        res = regex.sub(
-            pattern, replace_with, text, count=count, flags=rflags, timeout=1
-        )
+        res = regex.sub(pattern, replace_with, text, count=count, flags=rflags, timeout=1)
     except TimeoutError:
         await m.reply_text(strings("regex_timeout"))
     except regex.error as e:
