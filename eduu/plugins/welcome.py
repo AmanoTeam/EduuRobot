@@ -24,37 +24,38 @@ async def welcome_format_message_help(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
 async def set_welcome_message(c: Client, m: Message, strings):
-    if len(m.text.split()) > 1:
-        message = m.text.html.split(None, 1)[1]
-        try:
-            # Try to send message with default parameters
-            sent = await m.reply_text(
-                message.format(
-                    id=m.from_user.id,
-                    username=m.from_user.username,
-                    mention=m.from_user.mention,
-                    first_name=m.from_user.first_name,
-                    full_name=m.from_user.full_name,
-                    name=m.from_user.first_name,
-                    # title and chat_title are the same
-                    title=m.chat.title,
-                    chat_title=m.chat.title,
-                    count=(await c.get_chat_members_count(m.chat.id)),
-                )
-            )
-        except (KeyError, BadRequest) as e:
-            await m.reply_text(
-                strings("welcome_set_error").format(error=f"{e.__class__.__name__}: {e!s}")
-            )
-
-        else:
-            await set_welcome(m.chat.id, message)
-            await sent.edit_text(strings("welcome_set_success").format(chat_title=m.chat.title))
-    else:
+    if len(m.text.split()) == 1:
         await m.reply_text(
             strings("welcome_set_empty").format(bot_username=c.me.username),
             disable_web_page_preview=True,
         )
+        return
+
+    message = m.text.html.split(None, 1)[1]
+    try:
+        # Try to send message with default parameters
+        sent = await m.reply_text(
+            message.format(
+                id=m.from_user.id,
+                username=m.from_user.username,
+                mention=m.from_user.mention,
+                first_name=m.from_user.first_name,
+                full_name=m.from_user.full_name,
+                name=m.from_user.first_name,
+                # title and chat_title are the same
+                title=m.chat.title,
+                chat_title=m.chat.title,
+                count=(await c.get_chat_members_count(m.chat.id)),
+            )
+        )
+    except (KeyError, BadRequest) as e:
+        await m.reply_text(
+            strings("welcome_set_error").format(error=f"{e.__class__.__name__}: {e!s}")
+        )
+
+    else:
+        await set_welcome(m.chat.id, message)
+        await sent.edit_text(strings("welcome_set_success").format(chat_title=m.chat.title))
 
 
 @Client.on_message(

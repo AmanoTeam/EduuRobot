@@ -74,7 +74,6 @@ async def tmute(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
-    return
 
 
 commands.add_command("mute", "admin")

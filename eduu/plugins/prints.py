@@ -32,24 +32,24 @@ async def prints(c: Client, m: Message, strings):
             target_url = entity.url
             break
     else:
-        if m.reply_to_message:
-            for entity in m.reply_to_message.entities or m.reply_to_message.caption_entities:
-                if entity.type == MessageEntityType.URL:
-                    if m.reply_to_message.text:
-                        target_url = m.reply_to_message.text[
-                            entity.offset : entity.offset + entity.length
-                        ]
-                    else:
-                        target_url = m.reply_to_message.caption[
-                            entity.offset : entity.offset + entity.length
-                        ]
-                    break
-                if entity.type == MessageEntityType.TEXT_LINK:
-                    target_url = entity.url
-                    break
-            else:
-                await m.reply_text(strings("print_usage"))
-                return
+        if not m.reply_to_message:
+            await m.reply_text(strings("print_usage"))
+            return
+
+        for entity in m.reply_to_message.entities or m.reply_to_message.caption_entities:
+            if entity.type == MessageEntityType.URL:
+                if m.reply_to_message.text:
+                    target_url = m.reply_to_message.text[
+                        entity.offset : entity.offset + entity.length
+                    ]
+                else:
+                    target_url = m.reply_to_message.caption[
+                        entity.offset : entity.offset + entity.length
+                    ]
+                break
+            if entity.type == MessageEntityType.TEXT_LINK:
+                target_url = entity.url
+                break
         else:
             await m.reply_text(strings("print_usage"))
             return
@@ -62,19 +62,20 @@ async def prints(c: Client, m: Message, strings):
         await sent.edit_text(f"<b>API returned an error:</b> <code>{e}</code>")
         return
 
-    if response:
-        try:
-            await m.reply_photo(response)
-        except BaseException as e:
-            # if failed to send the message, it's not API's fault.
-            # most probably there are some other kind of problem,
-            # for example it failed to delete its message.
-            # or the bot doesn't have access to send media in the chat.
-            await sent.edit_text(f"Failed to send the screenshot due to: {e!s}")
-        else:
-            await sent.delete()
-    else:
+    if not response:
         await m.reply_text("Couldn't get url value, most probably API is not accessible.")
+        return
+
+    try:
+        await m.reply_photo(response)
+    except BaseException as e:
+        # if failed to send the message, it's not API's fault.
+        # most probably there are some other kind of problem,
+        # for example it failed to delete its message.
+        # or the bot doesn't have access to send media in the chat.
+        await sent.edit_text(f"Failed to send the screenshot due to: {e!s}")
+    else:
+        await sent.delete()
 
 
 async def screenshot_page(target_url: str) -> str:

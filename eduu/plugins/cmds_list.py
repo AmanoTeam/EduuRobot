@@ -4,7 +4,6 @@
 from itertools import zip_longest
 
 from pyrogram import Client, filters
-from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -47,35 +46,39 @@ async def cmds_list(c: Client, m: CallbackQuery, strings):
     await m.message.edit_text(strings("select_command_category"), reply_markup=keyboard)
 
 
+@Client.on_message(filters.command(["help", "start help"]) & filters.private)
+@use_chat_lang
+@stop_here
+async def show_private_help(c: Client, m: Message, strings):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            *gen_categories_kb(strings),
+            [
+                InlineKeyboardButton(
+                    strings("back_btn", context="general"),
+                    callback_data="start_back",
+                )
+            ],
+        ]
+    )
+    await m.reply_text(strings("select_command_category"), reply_markup=keyboard)
+
+
 @Client.on_message(filters.command(["help", "start help"]))
 @use_chat_lang
 @stop_here
 async def show_help(c: Client, m: Message, strings):
-    if m.chat.type == ChatType.PRIVATE:
-        keyboard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                *gen_categories_kb(strings),
-                [
-                    InlineKeyboardButton(
-                        strings("back_btn", context="general"),
-                        callback_data="start_back",
-                    )
-                ],
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    strings("start_chat", context="start"),
+                    url=f"https://t.me/{c.me.username}?start=help",
+                )
             ]
-        )
-        await m.reply_text(strings("select_command_category"), reply_markup=keyboard)
-    else:
-        keyboard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        strings("start_chat", context="start"),
-                        url=f"https://t.me/{c.me.username}?start=help",
-                    )
-                ]
-            ]
-        )
-        await m.reply_text(strings("group_help"), reply_markup=keyboard)
+        ]
+    )
+    await m.reply_text(strings("group_help"), reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^view_category .+"))

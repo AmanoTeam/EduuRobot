@@ -119,68 +119,68 @@ async def serve_note(c: Client, m: Message, txt):
     text = txt
 
     all_notes = await get_all_notes(chat_id)
-    for note_s in all_notes:
-        keyword = note_s[1]
+    for note in all_notes:
+        keyword = note[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if not re.search(pattern, text, flags=re.IGNORECASE):
             continue
 
-        data, button = button_parser(note_s[2])
-        if note_s[4] == "text":
+        data, button = button_parser(note[2])
+        if note[4] == "text":
             await m.reply_text(
                 data,
                 quote=True,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif note_s[4] == "photo":
+        elif note[4] == "photo":
             await m.reply_photo(
-                note_s[3],
+                note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif note_s[4] == "document":
+        elif note[4] == "document":
             await m.reply_document(
-                note_s[3],
+                note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif note_s[4] == "video":
+        elif note[4] == "video":
             await m.reply_video(
-                note_s[3],
+                note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif note_s[4] == "audio":
+        elif note[4] == "audio":
             await m.reply_audio(
-                note_s[3],
+                note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif note_s[4] == "animation":
+        elif note[4] == "animation":
             await m.reply_animation(
-                note_s[3],
+                note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif note_s[4] == "sticker":
+        elif note[4] == "sticker":
             await m.reply_sticker(
-                note_s[3],
+                note[3],
                 quote=True,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )

@@ -121,19 +121,19 @@ async def get_user_warns_cmd(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
 async def set_warns_action_cmd(c: Client, m: Message, strings):
-    if len(m.text.split()) > 1:
-        if m.command[1] not in ("ban", "mute", "kick"):
-            await m.reply_text(strings("warns_action_set_invlaid"))
-            return
-
-        warn_action_txt = m.command[1]
-
-        await set_warn_action(m.chat.id, warn_action_txt)
-        await m.reply_text(strings("warns_action_set_string").format(action=warn_action_txt))
+    if len(m.text.split()) == 1:
+        warn_act = await get_warn_action(m.chat.id)
+        await m.reply_text(strings("warn_action_status").format(action=warn_act))
         return
 
-    warn_act = await get_warn_action(m.chat.id)
-    await m.reply_text(strings("warn_action_status").format(action=warn_act))
+    if m.command[1] not in ("ban", "mute", "kick"):
+        await m.reply_text(strings("warns_action_set_invlaid"))
+        return
+
+    warn_action_txt = m.command[1]
+
+    await set_warn_action(m.chat.id, warn_action_txt)
+    await m.reply_text(strings("warns_action_set_string").format(action=warn_action_txt))
 
 
 commands.add_command("warn", "admin")

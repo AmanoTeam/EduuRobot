@@ -43,14 +43,14 @@ async def sudos(c: Client, m: Message):
 async def run_cmd(c: Client, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
-        res = strings("forbidden_command")
-    else:
-        stdout, stderr = await shell_exec(cmd)
-        res = (f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else "") + (
-            f"\n<b>Errors:</b>\n<code>{stderr}</code>" if stderr else ""
-        )
+        await m.reply_text(strings("forbidden_command"))
+        return
 
-    await m.reply_text(res)
+    stdout, stderr = await shell_exec(cmd)
+    await m.reply_text(
+        (f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else "")
+        + (f"\n<b>Errors:</b>\n<code>{stderr}</code>" if stderr else "")
+    )
 
 
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
@@ -58,19 +58,20 @@ async def run_cmd(c: Client, m: Message, strings):
 async def upgrade(c: Client, m: Message, strings):
     sm = await m.reply_text("Upgrading sources…")
     stdout, proc = await shell_exec("git pull --no-edit")
-    if proc.returncode == 0:
-        if "Already up to date." in stdout:
-            await sm.edit_text("There's nothing to upgrade.")
-        else:
-            await sm.edit_text(strings("restarting"))
-            await set_restarted(sm.chat.id, sm.id)
-            await conn.commit()
-            args = [sys.executable, "-m", "eduu"]
-            os.execv(sys.executable, args)  # skipcq: BAN-B606
-    else:
+    if proc.returncode != 0:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}")
         proc = await asyncio.create_subprocess_shell("git merge --abort")
         await proc.communicate()
+        return
+
+    if "Already up to date." in stdout:
+        await sm.edit_text("There's nothing to upgrade.")
+    else:
+        await sm.edit_text(strings("restarting"))
+        await set_restarted(sm.chat.id, sm.id)
+        await conn.commit()
+        args = [sys.executable, "-m", "eduu"]
+        os.execv(sys.executable, args)  # skipcq: BAN-B606
 
 
 @Client.on_message(filters.command("eval", prefix) & sudofilter)

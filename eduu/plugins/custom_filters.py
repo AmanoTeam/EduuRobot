@@ -96,11 +96,13 @@ async def delete_filter(c: Client, m: Message, strings):
     trigger = args[1].lower()
     chat_id = m.chat.id
     check_filter = await check_for_filters(chat_id, trigger)
-    if check_filter:
-        await rm_filter(chat_id, trigger)
-        await m.reply_text(strings("remove_filter_success").format(trigger=trigger), quote=True)
-    else:
+
+    if not check_filter:
         await m.reply_text(strings("no_filter_with_name").format(trigger=trigger), quote=True)
+        return
+
+    await rm_filter(chat_id, trigger)
+    await m.reply_text(strings("remove_filter_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command("filters", PREFIXES))
@@ -115,8 +117,9 @@ async def get_all_filter(c: Client, m: Message, strings):
 
     if not all_filters:
         await m.reply_text(strings("filters_list_empty"), quote=True)
-    else:
-        await m.reply_text(reply_text, quote=True)
+        return
+
+    await m.reply_text(reply_text, quote=True)
 
 
 @Client.on_message((filters.group | filters.private) & filters.text & filters.incoming, group=1)
@@ -126,68 +129,68 @@ async def serve_filter(c: Client, m: Message):
     targeted_message = m.reply_to_message or m
 
     all_filters = await get_all_filters(chat_id)
-    for filter_s in all_filters:
-        keyword = filter_s[1]
+    for filter in all_filters:
+        keyword = filter[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if not re.search(pattern, text, flags=re.IGNORECASE):
             continue
 
-        data, button = button_parser(filter_s[2])
-        if filter_s[4] == "text":
+        data, button = button_parser(filter[2])
+        if filter[4] == "text":
             await targeted_message.reply_text(
                 data,
                 quote=True,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif filter_s[4] == "photo":
+        elif filter[4] == "photo":
             await targeted_message.reply_photo(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter_s[4] == "document":
+        elif filter[4] == "document":
             await targeted_message.reply_document(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter_s[4] == "video":
+        elif filter[4] == "video":
             await targeted_message.reply_video(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter_s[4] == "audio":
+        elif filter[4] == "audio":
             await targeted_message.reply_audio(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter_s[4] == "animation":
+        elif filter[4] == "animation":
             await targeted_message.reply_animation(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter_s[4] == "sticker":
+        elif filter[4] == "sticker":
             await targeted_message.reply_sticker(
-                filter_s[3],
+                filter[3],
                 quote=True,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )

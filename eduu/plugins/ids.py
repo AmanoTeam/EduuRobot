@@ -37,7 +37,6 @@ async def ids_private(c: Client, m: Message, strings):
             chat_type=m.chat.type,
         )
     )
-    return
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.group)
