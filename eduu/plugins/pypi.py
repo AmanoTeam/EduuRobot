@@ -29,7 +29,7 @@ def escape_definition(definition):
 async def pypi(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("pypi_usage"))
-        return None
+        return
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
@@ -37,7 +37,7 @@ async def pypi(c: Client, m: Message, strings):
         await m.reply_text(
             strings("package_not_found").format(package_name=text, http_status=r.status_code)
         )
-        return None
+        return
 
     json = r.json()
     pypi_info = escape_definition(json["info"])
@@ -66,7 +66,6 @@ async def pypi(c: Client, m: Message, strings):
     else:
         kb = None
     await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
-    return None
 
 
 commands.add_command("pypi", "tools")

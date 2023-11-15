@@ -18,18 +18,19 @@ async def ban(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
-    if check_admin.status not in ADMIN_STATUSES:
-        await m.chat.ban_member(target_user.id)
-        text = strings("ban_success").format(
-            user=target_user.mention,
-            admin=m.from_user.mention,
-        )
-        if reason:
-            await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
-        else:
-            await m.reply_text(text)
-    else:
+    if check_admin.status in ADMIN_STATUSES:
         await m.reply_text(strings("i_cant_ban_admins"))
+        return
+
+    await m.chat.ban_member(target_user.id)
+    text = strings("ban_success").format(
+        user=target_user.mention,
+        admin=m.from_user.mention,
+    )
+    if reason:
+        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
+    else:
+        await m.reply_text(text)
 
 
 @Client.on_message(filters.command("kick", PREFIXES))
@@ -39,19 +40,20 @@ async def kick(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     reason = await get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
-    if check_admin.status not in ADMIN_STATUSES:
-        await m.chat.ban_member(target_user.id)
-        await m.chat.unban_member(target_user.id)
-        text = strings("kick_success").format(
-            user=target_user.mention,
-            admin=m.from_user.mention,
-        )
-        if reason:
-            await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
-        else:
-            await m.reply_text(text)
-    else:
+    if check_admin.status in ADMIN_STATUSES:
         await m.reply_text(strings("i_cant_kick_admins"))
+        return
+
+    await m.chat.ban_member(target_user.id)
+    await m.chat.unban_member(target_user.id)
+    text = strings("kick_success").format(
+        user=target_user.mention,
+        admin=m.from_user.mention,
+    )
+    if reason:
+        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
+    else:
+        await m.reply_text(text)
 
 
 @Client.on_message(filters.command("unban", PREFIXES))
@@ -77,12 +79,12 @@ async def unban(c: Client, m: Message, strings):
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
-        return None
+        return
 
     split_time = m.text.split(None, 1)
     ban_time = await extract_time(m, split_time[1])
     if not ban_time:
-        return None
+        return
     await m.chat.ban_member(m.reply_to_message.from_user.id, until_date=ban_time)
 
     await m.reply_text(
@@ -92,7 +94,6 @@ async def tban(c: Client, m: Message, strings):
             time=split_time[1],
         )
     )
-    return None
 
 
 commands.add_command("ban", "admin")

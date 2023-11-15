@@ -22,7 +22,7 @@ async def ids_private(c: Client, m: Message, strings):
             )
         except BadRequest:
             await m.reply_text(strings("user_not_found").format(user=m.command[1]))
-            return None
+            return
     else:
         user_data = m.from_user
 
@@ -37,7 +37,7 @@ async def ids_private(c: Client, m: Message, strings):
             chat_type=m.chat.type,
         )
     )
-    return None
+    return
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.group)
@@ -50,7 +50,7 @@ async def ids(c: Client, m: Message, strings):
             )
         except BadRequest:
             await m.reply_text(strings("user_not_found").format(user=m.command[1]))
-            return None
+            return
 
     elif m.reply_to_message:
         user_data = m.reply_to_message.from_user
@@ -73,7 +73,6 @@ async def ids(c: Client, m: Message, strings):
             message_id=m.id + 1,
         )
     )
-    return None
 
 
 commands.add_command("id", "tools")

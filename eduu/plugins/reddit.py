@@ -25,7 +25,7 @@ def limit_length(title: str):
 async def reddit(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("reddit_usage"))
-        return None
+        return
 
     subreddit = m.command[1]
 
@@ -33,11 +33,11 @@ async def reddit(c: Client, m: Message, strings):
 
     if r.status_code in (404, 403):
         await m.reply_text(strings("not_found"))
-        return None
+        return
 
     if r.status_code >= 300:
         await m.reply_text(strings("error"))
-        return None
+        return
 
     data = r.json()
 
@@ -53,7 +53,7 @@ async def reddit(c: Client, m: Message, strings):
 
     if not feed_items:
         await m.reply_text(strings("no_results"))
-        return None
+        return
 
     feed = "\n".join(feed_items)
 
@@ -61,7 +61,6 @@ async def reddit(c: Client, m: Message, strings):
         f"<a href='https://www.reddit.com/r/{subreddit}'>r/{subreddit}</a>\n\n{feed}",
         disable_web_page_preview=True,
     )
-    return None
 
 
 commands.add_command("reddit", "tools", aliases=["r"])

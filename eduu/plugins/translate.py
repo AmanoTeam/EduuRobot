@@ -78,7 +78,7 @@ async def translate(c: Client, m: Message, strings):
 
     if not text:
         await m.reply_text(strings("translate_usage"), reply_to_message_id=m.id)
-        return None
+        return
 
     sent = await m.reply_text(strings("translating"), reply_to_message_id=m.id)
     langs = {}
@@ -98,7 +98,6 @@ async def translate(c: Client, m: Message, strings):
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
     )
-    return None
 
 
 @Client.on_inline_query(filters.regex(r"^tr .+", re.I))

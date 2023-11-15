@@ -87,7 +87,7 @@ async def get_ips_from_string(hostname: str) -> list[str]:
 async def ip_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) == 1:
         await m.reply_text(strings("ip_err_no_ip"))
-        return None
+        return
 
     text = m.text.split(maxsplit=1)[1]
 
@@ -95,11 +95,11 @@ async def ip_cmd(c: Client, m: Message, strings):
 
     if not ips:
         await m.reply_text(strings("ip_err_no_ips").format(domain=text))
-        return None
+        return
 
     if len(ips) == 1:
         await m.reply_text(await format_api_return(await get_api_return(ips[0]), strings))
-        return None
+        return
 
     await m.reply_text(
         strings("ip_select_ip").format(domain=text),
@@ -115,7 +115,6 @@ async def ip_cmd(c: Client, m: Message, strings):
             ]
         ),
     )
-    return None
 
 
 @Client.on_callback_query(filters.regex(r"^ip .+"))
@@ -140,7 +139,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
-        return None
+        return
 
     text = q.query.split(maxsplit=1)[1]
 
@@ -205,7 +204,6 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
         articles,
         cache_time=0,
     )
-    return None
 
 
 commands.add_command("ip", "tools")

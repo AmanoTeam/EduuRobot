@@ -100,14 +100,13 @@ async def execs(c: Client, m: Message):
             await locals()["__ex"](c, m)
         except BaseException:  # skipcq
             await m.reply_text(html.escape(traceback.format_exc()))
-            return None
+            return
 
     if strio.getvalue().strip():
         out = f"<code>{html.escape(strio.getvalue())}</code>"
     else:
         out = "Command executed."
     await m.reply_text(out)
-    return None
 
 
 @Client.on_message(filters.command("speedtest", prefix) & sudofilter)
@@ -138,21 +137,21 @@ async def execsql(c: Client, m: Message):
         ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
         await m.reply_text(f"SQL executed with an error: {e.__class__.__name__}: {e}")
-        return None
+        return
 
     ret = await ex.fetchall()
     await conn.commit()
 
     if not ret:
         await m.reply_text("SQL executed successfully and without any return.")
-        return None
+        return
 
     res = "|".join([name[0] for name in ex.description]) + "\n"
     res += "\n".join(["|".join(str(s) for s in items) for items in ret])
 
     if len(res) < 3500:
         await m.reply_text(f"<code>{res}</code>")
-        return None
+        return
 
     bio = io.BytesIO()
     bio.name = "output.txt"
@@ -160,7 +159,6 @@ async def execsql(c: Client, m: Message):
     bio.write(res.encode())
 
     await m.reply_document(bio)
-    return None
 
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
@@ -255,14 +253,13 @@ async def downloadfile(c: Client, m: Message):
 async def getchatcmd(c: Client, m: Message):
     if len(m.text.split()) == 1:
         await m.reply_text("You must specify the Chat.")
-        return None
+        return
 
     targetchat = await c.get_chat(m.command[1])
     if targetchat.type == ChatType.PRIVATE:
         await m.reply_text("This is a private Chat.")
-        return None
+        return
 
     await m.reply_text(
         f"<b>Title:</b> {targetchat.title}\n<b>Username:</b> {targetchat.username}\n<b>Members:</b> {targetchat.members_count}"
     )
-    return None

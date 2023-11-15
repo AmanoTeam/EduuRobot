@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 async def paste(c: Client, m: Message, strings):
     if not m.reply_to_message:
         await m.reply_text(strings("reply_to_document_or_text"))
-        return None
+        return
 
     if m.reply_to_message.document:
         tfile = m.reply_to_message
@@ -32,7 +32,6 @@ async def paste(c: Client, m: Message, strings):
     r = await http.post(url, json={"content": mean})
     url = f"https://nekobin.com/{r.json()['result']['key']}"
     await m.reply_text(url, disable_web_page_preview=True)
-    return None
 
 
 commands.add_command("paste", "tools")

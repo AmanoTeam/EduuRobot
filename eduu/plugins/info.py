@@ -24,7 +24,7 @@ async def user_info(c: Client, m: Message, strings):
             )
         except BadRequest:
             await m.reply_text(strings("user_not_found").format(user=m.command[1]))
-            return None
+            return
 
     elif m.reply_to_message:
         user = m.reply_to_message.from_user
@@ -51,7 +51,6 @@ async def user_info(c: Client, m: Message, strings):
             text += strings("info_chat_owner")
 
     await m.reply_text(text)
-    return None
 
 
 commands.add_command("info", "tools")

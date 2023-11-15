@@ -32,7 +32,7 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             ],
             cache_time=0,
         )
-        return None
+        return
 
     articles = []
     for result in results:
@@ -58,4 +58,3 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             )
         )
     await q.answer(articles, cache_time=0)
-    return None

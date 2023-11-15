@@ -16,7 +16,7 @@ from eduu.utils.localization import use_chat_lang
 async def coub(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("coub_usage"))
-        return None
+        return
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get("https://coub.com/api/v2/search/coubs", params={"q": text})

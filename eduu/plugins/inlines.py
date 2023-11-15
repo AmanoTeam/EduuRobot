@@ -127,7 +127,7 @@ async def info_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
-        return None
+        return
     await q.answer(
         [
             InlineQueryResultArticle(
@@ -143,7 +143,6 @@ async def info_inline(c: Client, q: InlineQuery, strings):
             )
         ]
     )
-    return None
 
 
 inline_commands.add_command("faces")

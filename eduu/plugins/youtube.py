@@ -134,14 +134,14 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
         await cq.answer(strings("ytdl_button_denied"), cache_time=60)
-        return None
+        return
     if int(fsize) > MAX_FILESIZE:
         await cq.answer(
             strings("ytdl_file_too_big"),
             show_alert=True,
             cache_time=60,
         )
-        return None
+        return
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
     await cq.message.edit_text(strings("ytdl_downloading"))
@@ -171,7 +171,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
         await cq.message.edit_text(strings("ytdl_send_error").format(errmsg=e))
-        return None
+        return
     await cq.message.edit_text(strings("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
@@ -210,4 +210,3 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
-    return None

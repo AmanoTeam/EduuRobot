@@ -33,7 +33,7 @@ async def jsondump(c: Client, m: Message):
             obj = obj[param]
         except (IndexError, KeyError) as e:
             await m.reply_text(f"{e.__class__.__name__}: {e}")
-            return None
+            return
         # There is nothing to get anymore.
         if obj is None:
             break
@@ -44,12 +44,11 @@ async def jsondump(c: Client, m: Message):
 
     if not as_file:
         await m.reply_text(f"<code>{html.escape(obj)}</code>")
-        return None
+        return
 
     bio = io.BytesIO(obj.encode())
     bio.name = f"dump-{m.chat.id}.json"
     await m.reply_document(bio)
-    return None
 
 
 commands.add_command("jsondump", "tools")

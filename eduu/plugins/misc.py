@@ -108,7 +108,6 @@ async def getbotinfo(c: Client, m: Message, strings):
         ),
         reply_to_message_id=m.id,
     )
-    return None
 
 
 @Client.on_message(filters.reply & filters.group & filters.regex(r"(?i)^rt$"))
@@ -171,7 +170,7 @@ async def request_cmd(c: Client, m: Message):
         await m.reply_text(
             "You must specify the url, E.g.: <code>/request https://example.com</code>"
         )
-        return None
+        return
 
     text = m.text.split(maxsplit=1)[1]
     url = text if re.match(r"^(https?)://", text) else f"http://{text}"
@@ -183,7 +182,6 @@ async def request_cmd(c: Client, m: Message):
     )
 
     await m.reply_text(f"<b>Headers:</b>\n{headers}")
-    return None
 
 
 @Client.on_message(filters.command("parsebutton"))

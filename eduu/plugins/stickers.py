@@ -50,7 +50,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         elif reply.sticker:
             if not reply.sticker.file_name:
                 await prog_msg.edit_text(strings("err_sticker_no_file_name"))
-                return None
+                return
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
@@ -58,7 +58,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 resize = True
         else:
             await prog_msg.edit_text(strings("invalid_media_string"))
-            return None
+            return
         pack_prefix = "anim" if animated else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
@@ -75,7 +75,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         if not file:
             # Failed to download
             await prog_msg.delete()
-            return None
+            return
     elif m.entities and len(m.entities) > 1:
         packname = f"a_{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
@@ -90,7 +90,7 @@ async def kang_sticker(c: Client, m: Message, strings):
 
         if not img_url:
             await prog_msg.delete()
-            return None
+            return
         try:
             r = await http.get(img_url)
             if r.status_code == 200:
@@ -98,7 +98,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 file.name = "sticker.png"
         except Exception as r_e:
             await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
-            return None
+            return
         if len(m.command) > 2:
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
@@ -110,7 +110,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             resize = True
     else:
         await prog_msg.delete()
-        return None
+        return
     try:
         if resize:
             file = resize_image(file)
@@ -201,7 +201,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                         ]
                     ),
                 )
-                return None
+                return
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
@@ -245,11 +245,11 @@ async def getstickeraspng(c: Client, m: Message, strings):
     sticker = m.reply_to_message.sticker
     if not sticker:
         await m.reply_text(strings("not_sticker"))
-        return None
+        return
 
     if sticker.is_animated:
         await m.reply_text(strings("animated_not_supported"))
-        return None
+        return
 
     sticker_file: BytesIO = await m.reply_to_message.download(
         in_memory=True,
@@ -258,4 +258,3 @@ async def getstickeraspng(c: Client, m: Message, strings):
         document=sticker_file,
         caption=strings("sticker_info").format(emoji=sticker.emoji, id=sticker.file_id),
     )
-    return None

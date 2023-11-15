@@ -84,7 +84,7 @@ async def warn_user(c: Client, m: Message, strings):
 async def on_set_warns_limit(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("warn_limit_help"))
-        return None
+        return
 
     try:
         warns_limit = int(m.command[1])
@@ -124,17 +124,16 @@ async def set_warns_action_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         if m.command[1] not in ("ban", "mute", "kick"):
             await m.reply_text(strings("warns_action_set_invlaid"))
-            return None
+            return
 
         warn_action_txt = m.command[1]
 
         await set_warn_action(m.chat.id, warn_action_txt)
         await m.reply_text(strings("warns_action_set_string").format(action=warn_action_txt))
-        return None
+        return
 
     warn_act = await get_warn_action(m.chat.id)
     await m.reply_text(strings("warn_action_status").format(action=warn_act))
-    return None
 
 
 commands.add_command("warn", "admin")

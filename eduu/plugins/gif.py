@@ -23,7 +23,7 @@ if not TENOR_API_KEY:
 async def gif(c: Client, m: Message, strings):
     if len(m.command) == 1:
         await m.reply_text(strings("gif_usage"))
-        return None
+        return
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(
@@ -33,11 +33,10 @@ async def gif(c: Client, m: Message, strings):
     rjson = r.json()
     if not rjson["results"]:
         await m.reply_text(strings("no_results", context="general"))
-        return None
+        return
 
     res = rjson["results"][0]["media"][0]["mediumgif"]["url"]
     await m.reply_animation(res)
-    return None
 
 
 commands.add_command("gif", "general")
