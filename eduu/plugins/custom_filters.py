@@ -81,10 +81,12 @@ async def save_filter(c: Client, m: Message, strings):
 
     chat_id = m.chat.id
     check_filter = await check_for_filters(chat_id, trigger)
+
     if check_filter:
         await update_filter(chat_id, trigger, raw_data, file_id, filter_type)
     else:
         await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
+
     await m.reply_text(strings("add_filter_success").format(trigger=trigger), quote=True)
 
 
@@ -129,68 +131,68 @@ async def serve_filter(c: Client, m: Message):
     targeted_message = m.reply_to_message or m
 
     all_filters = await get_all_filters(chat_id)
-    for filter in all_filters:
-        keyword = filter[1]
+    for filter_ in all_filters:
+        keyword = filter_[1]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if not re.search(pattern, text, flags=re.IGNORECASE):
             continue
 
-        data, button = button_parser(filter[2])
-        if filter[4] == "text":
+        data, button = button_parser(filter_[2])
+        if filter_[4] == "text":
             await targeted_message.reply_text(
                 data,
                 quote=True,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif filter[4] == "photo":
+        elif filter_[4] == "photo":
             await targeted_message.reply_photo(
-                filter[3],
+                filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter[4] == "document":
+        elif filter_[4] == "document":
             await targeted_message.reply_document(
-                filter[3],
+                filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter[4] == "video":
+        elif filter_[4] == "video":
             await targeted_message.reply_video(
-                filter[3],
+                filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter[4] == "audio":
+        elif filter_[4] == "audio":
             await targeted_message.reply_audio(
-                filter[3],
+                filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter[4] == "animation":
+        elif filter_[4] == "animation":
             await targeted_message.reply_animation(
-                filter[3],
+                filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
-        elif filter[4] == "sticker":
+        elif filter_[4] == "sticker":
             await targeted_message.reply_sticker(
-                filter[3],
+                filter_[3],
                 quote=True,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
