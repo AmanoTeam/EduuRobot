@@ -12,7 +12,7 @@ A multipurpose Telegram Bot made with Pyrogram and asynchronous programming.
 
 Requirements
 ------------
-- Python 3.7+
+- Python 3.8+
 - An Unix-like operating system (Windows support isn't tested. In case you find any issues inside Windows, please file an issue)
 
 

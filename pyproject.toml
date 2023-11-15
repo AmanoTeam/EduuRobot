@@ -21,7 +21,7 @@ dependencies = [
   "yarl",
   "yt-dlp==2023.10.13",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 authors = [{ name = "Amano LLC", email = "contact@amanoteam.com" }]
 license = { text = "MIT" }
