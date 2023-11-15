@@ -24,7 +24,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Set up configuration
       run: |
-        curl https://pastebin.com/raw/iu4nu94C -o config.py
+        curl https://pastebin.com/raw/1jgN48kr -o config.py
     - name: Install dependencies
       run: |
         pip install --upgrade pip wheel
