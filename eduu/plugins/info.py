@@ -23,7 +23,9 @@ async def user_info(c: Client, m: Message, strings):
                 int(m.command[1]) if m.command[1].isdecimal() else m.command[1]
             )
         except BadRequest:
-            return await m.reply_text(strings("user_not_found").format(user=m.command[1]))
+            await m.reply_text(strings("user_not_found").format(user=m.command[1]))
+            return None
+
     elif m.reply_to_message:
         user = m.reply_to_message.from_user
     else:

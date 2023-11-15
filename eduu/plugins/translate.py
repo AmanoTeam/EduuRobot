@@ -77,7 +77,8 @@ async def translate(c: Client, m: Message, strings):
         text = m.reply_to_message.text or m.reply_to_message.caption
 
     if not text:
-        return await m.reply_text(strings("translate_usage"), reply_to_message_id=m.id)
+        await m.reply_text(strings("translate_usage"), reply_to_message_id=m.id)
+        return None
 
     sent = await m.reply_text(strings("translating"), reply_to_message_id=m.id)
     langs = {}

@@ -117,7 +117,7 @@ async def info_inline(c: Client, q: InlineQuery, strings):
             txt = q.query.lower().split(None, 1)[1]
             user = await c.get_users(txt)
     except (PeerIdInvalid, UsernameInvalid, UserIdInvalid):
-        return await q.answer(
+        await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("user_info_inline_cant_found_user"),
@@ -127,6 +127,7 @@ async def info_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+        return None
     await q.answer(
         [
             InlineQueryResultArticle(

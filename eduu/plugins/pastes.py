@@ -18,7 +18,8 @@ if TYPE_CHECKING:
 @use_chat_lang
 async def paste(c: Client, m: Message, strings):
     if not m.reply_to_message:
-        return await m.reply_text(strings("reply_to_document_or_text"))
+        await m.reply_text(strings("reply_to_document_or_text"))
+        return None
 
     if m.reply_to_message.document:
         tfile = m.reply_to_message

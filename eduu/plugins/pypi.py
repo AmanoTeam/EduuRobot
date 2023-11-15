@@ -28,14 +28,16 @@ def escape_definition(definition):
 @use_chat_lang
 async def pypi(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("pypi_usage"))
+        await m.reply_text(strings("pypi_usage"))
+        return None
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
     if r.status_code != 200:
-        return await m.reply_text(
+        await m.reply_text(
             strings("package_not_found").format(package_name=text, http_status=r.status_code)
         )
+        return None
 
     json = r.json()
     pypi_info = escape_definition(json["info"])

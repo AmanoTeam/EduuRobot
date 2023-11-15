@@ -87,9 +87,10 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
     text = m.text if isinstance(m, Message) else m.query
     if len(text.split(maxsplit=1)) == 1:
         if isinstance(m, Message):
-            return await m.reply_text(strings("weather_usage"))
+            await m.reply_text(strings("weather_usage"))
+            return None
 
-        return await m.answer(
+        await m.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("no_location"),
@@ -100,6 +101,7 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
             ],
             cache_time=0,
         )
+        return None
 
     r = await http.get(
         get_coords,
@@ -114,9 +116,10 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
     loc_json = r.json()
     if not loc_json.get("location"):
         if isinstance(m, Message):
-            return await m.reply_text(strings("location_not_found"))
+            await m.reply_text(strings("location_not_found"))
+            return None
 
-        return await m.answer(
+        await m.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("location_not_found"),
@@ -127,6 +130,7 @@ async def weather(c: Client, m: Union[InlineQuery, Message], strings):
             ],
             cache_time=0,
         )
+        return None
 
     pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
     r = await http.get(

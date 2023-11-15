@@ -49,14 +49,16 @@ async def kang_sticker(c: Client, m: Message, strings):
             pass
         elif reply.sticker:
             if not reply.sticker.file_name:
-                return await prog_msg.edit_text(strings("err_sticker_no_file_name"))
+                await prog_msg.edit_text(strings("err_sticker_no_file_name"))
+                return None
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
             if not reply.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-            return await prog_msg.edit_text(strings("invalid_media_string"))
+            await prog_msg.edit_text(strings("invalid_media_string"))
+            return None
         pack_prefix = "anim" if animated else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
@@ -95,7 +97,8 @@ async def kang_sticker(c: Client, m: Message, strings):
                 file = BytesIO(r.content)
                 file.name = "sticker.png"
         except Exception as r_e:
-            return await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
+            await prog_msg.edit_text(f"{r_e.__class__.__name__}: {r_e}")
+            return None
         if len(m.command) > 2:
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
@@ -106,7 +109,8 @@ async def kang_sticker(c: Client, m: Message, strings):
                 )
             resize = True
     else:
-        return await prog_msg.delete()
+        await prog_msg.delete()
+        return None
     try:
         if resize:
             file = resize_image(file)
@@ -185,7 +189,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                     )
                 )
             except PeerIdInvalid:
-                return await prog_msg.edit_text(
+                await prog_msg.edit_text(
                     strings("cant_create_sticker_pack_string"),
                     reply_markup=InlineKeyboardMarkup(
                         [
@@ -197,6 +201,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                         ]
                     ),
                 )
+                return None
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
@@ -239,7 +244,8 @@ async def getstickerid(c: Client, m: Message, strings):
 async def getstickeraspng(c: Client, m: Message, strings):
     sticker = m.reply_to_message.sticker
     if not sticker:
-        return await m.reply_text(strings("not_sticker"))
+        await m.reply_text(strings("not_sticker"))
+        return None
 
     if sticker.is_animated:
         await m.reply_text(strings("animated_not_supported"))

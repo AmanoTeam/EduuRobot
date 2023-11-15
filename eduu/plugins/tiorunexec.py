@@ -30,11 +30,12 @@ langs_list_link = "https://amanoteam.com/etc/langs.html"
 async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
     if execlanguage not in langslist:
-        return await m.reply_text(
+        await m.reply_text(
             strings("code_exec_err_string").format(
                 langformat=execlanguage, langslistlink=langs_list_link
             )
         )
+        return None
 
     codetoexec = m.text.split(None, 2)[2]
     tioreq = TioRequest(lang=execlanguage, code=codetoexec)
@@ -71,7 +72,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     execlanguage = q.query.lower().split()[1]
     if execlanguage not in langslist:
-        return await q.answer(
+        await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("code_exec_err_inline_send_string").format(
@@ -85,6 +86,7 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+        return None
 
     codetoexec = q.query.split(None, 2)[2]
     tioreq = TioRequest(lang=execlanguage, code=codetoexec)

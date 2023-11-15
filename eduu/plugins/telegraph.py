@@ -15,7 +15,8 @@ from eduu.utils.localization import use_chat_lang
 @use_chat_lang
 async def telegraph(c: Client, m: Message, strings):
     if not m.reply_to_message:
-        return await m.reply_text(strings("telegraph_err_no_reply"))
+        await m.reply_text(strings("telegraph_err_no_reply"))
+        return None
 
     if not (m.reply_to_message.photo or m.reply_to_message.video or m.reply_to_message.animation):
         return None

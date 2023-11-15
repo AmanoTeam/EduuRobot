@@ -24,17 +24,20 @@ def limit_length(title: str):
 @use_chat_lang
 async def reddit(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("reddit_usage"))
+        await m.reply_text(strings("reddit_usage"))
+        return None
 
     subreddit = m.command[1]
 
     r = await http.get(f"https://www.reddit.com/r/{subreddit}/.json?limit=6")
 
     if r.status_code in (404, 403):
-        return await m.reply_text(strings("not_found"))
+        await m.reply_text(strings("not_found"))
+        return None
 
     if r.status_code >= 300:
-        return await m.reply_text(strings("error"))
+        await m.reply_text(strings("error"))
+        return None
 
     data = r.json()
 
@@ -49,7 +52,8 @@ async def reddit(c: Client, m: Message, strings):
         feed_items.append(post_item)
 
     if not feed_items:
-        return await m.reply_text(strings("no_results"))
+        await m.reply_text(strings("no_results"))
+        return None
 
     feed = "\n".join(feed_items)
 

@@ -99,7 +99,8 @@ async def execs(c: Client, m: Message):
         try:
             await locals()["__ex"](c, m)
         except BaseException:  # skipcq
-            return await m.reply_text(html.escape(traceback.format_exc()))
+            await m.reply_text(html.escape(traceback.format_exc()))
+            return None
 
     if strio.getvalue().strip():
         out = f"<code>{html.escape(strio.getvalue())}</code>"
@@ -136,13 +137,15 @@ async def execsql(c: Client, m: Message):
     try:
         ex = await conn.execute(command)
     except (IntegrityError, OperationalError) as e:
-        return await m.reply_text(f"SQL executed with an error: {e.__class__.__name__}: {e}")
+        await m.reply_text(f"SQL executed with an error: {e.__class__.__name__}: {e}")
+        return None
 
     ret = await ex.fetchall()
     await conn.commit()
 
     if not ret:
-        return await m.reply_text("SQL executed successfully and without any return.")
+        await m.reply_text("SQL executed successfully and without any return.")
+        return None
 
     res = "|".join([name[0] for name in ex.description]) + "\n"
     res += "\n".join(["|".join(str(s) for s in items) for items in ret])
@@ -251,7 +254,8 @@ async def downloadfile(c: Client, m: Message):
 @Client.on_message(filters.command("chat", prefix) & sudofilter)
 async def getchatcmd(c: Client, m: Message):
     if len(m.text.split()) == 1:
-        return await m.reply_text("You must specify the Chat.")
+        await m.reply_text("You must specify the Chat.")
+        return None
 
     targetchat = await c.get_chat(m.command[1])
     if targetchat.type == ChatType.PRIVATE:

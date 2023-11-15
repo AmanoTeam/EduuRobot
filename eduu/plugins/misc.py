@@ -20,7 +20,9 @@ from eduu.utils.localization import use_chat_lang
 @use_chat_lang
 async def mark(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("mark_usage"))
+        await m.reply_text(strings("mark_usage"))
+        return
+
     txt = m.text.split(None, 1)[1]
     msgtxt, buttons = button_parser(txt)
     await m.reply_text(
@@ -28,14 +30,15 @@ async def mark(c: Client, m: Message, strings):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
-    return None
 
 
 @Client.on_message(filters.command("html", PREFIXES))
 @use_chat_lang
 async def html(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("html_usage"))
+        await m.reply_text(strings("html_usage"))
+        return
+
     txt = m.text.split(None, 1)[1]
     msgtxt, buttons = button_parser(txt)
     await m.reply_text(
@@ -43,7 +46,6 @@ async def html(c: Client, m: Message, strings):
         parse_mode=ParseMode.HTML,
         reply_markup=(InlineKeyboardMarkup(buttons) if len(buttons) != 0 else None),
     )
-    return None
 
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
@@ -89,7 +91,9 @@ async def reportadmins(c: Client, m: Message, strings):
 @use_chat_lang
 async def getbotinfo(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("no_bot_token"), reply_to_message_id=m.id)
+        await m.reply_text(strings("no_bot_token"), reply_to_message_id=m.id)
+        return
+
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
@@ -140,7 +144,8 @@ async def urldecodecmd(c: Client, m: Message):
 @use_chat_lang
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) == 1:
-        return await m.reply_text(strings("err_no_bug_to_report"))
+        await m.reply_text(strings("err_no_bug_to_report"))
+        return
 
     try:
         bug_report = (
@@ -163,9 +168,10 @@ async def bug_report_cmd(c: Client, m: Message, strings):
 @Client.on_message(filters.command("request", PREFIXES))
 async def request_cmd(c: Client, m: Message):
     if len(m.text.split()) == 1:
-        return await m.reply_text(
+        await m.reply_text(
             "You must specify the url, E.g.: <code>/request https://example.com</code>"
         )
+        return None
 
     text = m.text.split(maxsplit=1)[1]
     url = text if re.match(r"^(https?)://", text) else f"http://{text}"

@@ -22,7 +22,8 @@ if not TENOR_API_KEY:
 @use_chat_lang
 async def gif(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("gif_usage"))
+        await m.reply_text(strings("gif_usage"))
+        return None
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(

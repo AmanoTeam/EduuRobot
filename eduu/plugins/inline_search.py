@@ -21,7 +21,7 @@ async def inline_search(c: Client, q: InlineQuery, strings):
 
     results = inline_commands.search_commands(command)
     if not results:
-        return await q.answer(
+        await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("no_results").format(query=command),
@@ -32,6 +32,7 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             ],
             cache_time=0,
         )
+        return None
 
     articles = []
     for result in results:

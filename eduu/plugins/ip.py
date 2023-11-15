@@ -94,10 +94,12 @@ async def ip_cmd(c: Client, m: Message, strings):
     ips = await get_ips_from_string(text)
 
     if not ips:
-        return await m.reply_text(strings("ip_err_no_ips").format(domain=text))
+        await m.reply_text(strings("ip_err_no_ips").format(domain=text))
+        return None
 
     if len(ips) == 1:
-        return await m.reply_text(await format_api_return(await get_api_return(ips[0]), strings))
+        await m.reply_text(await format_api_return(await get_api_return(ips[0]), strings))
+        return None
 
     await m.reply_text(
         strings("ip_select_ip").format(domain=text),
@@ -128,7 +130,7 @@ async def ip_callback(c: Client, cb: CallbackQuery, strings):
 @use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) == 1:
-        return await q.answer(
+        await q.answer(
             [
                 InlineQueryResultArticle(
                     title=strings("ip_no_url"),
@@ -138,6 +140,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 )
             ]
         )
+        return None
 
     text = q.query.split(maxsplit=1)[1]
 
@@ -198,10 +201,11 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
             ]
         )
 
-    return await q.answer(
+    await q.answer(
         articles,
         cache_time=0,
     )
+    return None
 
 
 commands.add_command("ip", "tools")

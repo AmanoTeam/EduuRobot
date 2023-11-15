@@ -133,13 +133,15 @@ async def ytdlcmd(c: Client, m: Message, strings):
 async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
-        return await cq.answer(strings("ytdl_button_denied"), cache_time=60)
+        await cq.answer(strings("ytdl_button_denied"), cache_time=60)
+        return None
     if int(fsize) > MAX_FILESIZE:
-        return await cq.answer(
+        await cq.answer(
             strings("ytdl_file_too_big"),
             show_alert=True,
             cache_time=60,
         )
+        return None
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
     await cq.message.edit_text(strings("ytdl_downloading"))

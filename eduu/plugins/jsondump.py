@@ -32,7 +32,8 @@ async def jsondump(c: Client, m: Message):
         try:
             obj = obj[param]
         except (IndexError, KeyError) as e:
-            return await m.reply_text(f"{e.__class__.__name__}: {e}")
+            await m.reply_text(f"{e.__class__.__name__}: {e}")
+            return None
         # There is nothing to get anymore.
         if obj is None:
             break

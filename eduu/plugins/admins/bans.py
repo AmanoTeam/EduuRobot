@@ -76,7 +76,9 @@ async def unban(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def tban(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        return await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
+        await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
+        return None
+
     split_time = m.text.split(None, 1)
     ban_time = await extract_time(m, split_time[1])
     if not ban_time:
