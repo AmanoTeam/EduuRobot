@@ -39,6 +39,9 @@ homepage = "https://github.com/AmanoTeam/EduuRobot"
 [tool.ruff]
 line-length = 99
 target-version = "py39"
+preview = true
+
+[tool.ruff.lint]
 select = [
     "I",    # isort
     "E",    # pycodestyle
@@ -56,7 +59,6 @@ select = [
     "TID",  # flake8-tidy-imports
 ]
 ignore = ["RUF001", "RUF002", "RUF003", "E203", "PERF203"]
-preview = true
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["eduu"]
