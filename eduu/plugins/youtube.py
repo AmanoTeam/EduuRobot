@@ -150,23 +150,19 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
 
     ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
     if "vid" in data:
-        ydl = YoutubeDL(
-            {
-                "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
-                "format": "best[ext=mp4]",
-                "max_filesize": MAX_FILESIZE,
-                "noplaylist": True,
-            }
-        )
+        ydl = YoutubeDL({
+            "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
+            "format": "best[ext=mp4]",
+            "max_filesize": MAX_FILESIZE,
+            "noplaylist": True,
+        })
     else:
-        ydl = YoutubeDL(
-            {
-                "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
-                "format": "bestaudio[ext=m4a]",
-                "max_filesize": MAX_FILESIZE,
-                "noplaylist": True,
-            }
-        )
+        ydl = YoutubeDL({
+            "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
+            "format": "bestaudio[ext=m4a]",
+            "max_filesize": MAX_FILESIZE,
+            "noplaylist": True,
+        })
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:

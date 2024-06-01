@@ -45,16 +45,14 @@ async def inline_search(c: Client, q: InlineQuery, strings):
                 input_message_content=InputTextMessageContent(
                     f"{html.escape(result['command'])}: {strings(result['description_key'], context=result['context'])}"
                 ),
-                reply_markup=InlineKeyboardMarkup(
+                reply_markup=InlineKeyboardMarkup([
                     [
-                        [
-                            InlineKeyboardButton(
-                                text=strings("run_command_button").format(query=stripped_command),
-                                switch_inline_query_current_chat=stripped_command,
-                            )
-                        ]
+                        InlineKeyboardButton(
+                            text=strings("run_command_button").format(query=stripped_command),
+                            switch_inline_query_current_chat=stripped_command,
+                        )
                     ]
-                ),
+                ]),
             )
         )
     await q.answer(articles, cache_time=0)

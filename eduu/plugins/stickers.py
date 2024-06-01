@@ -37,11 +37,8 @@ async def kang_sticker(c: Client, m: Message, strings):
     user = await c.resolve_peer(m.from_user.username or m.from_user.id)
     if reply and reply.media:
         if (
-            not reply.photo
-            and reply.document
-            and "image" in reply.document.mime_type
-            or reply.photo
-        ):
+            not reply.photo and reply.document and "image" in reply.document.mime_type
+        ) or reply.photo:
             resize = True
         elif reply.document and "tgsticker" in reply.document.mime_type:
             animated = True
@@ -191,30 +188,22 @@ async def kang_sticker(c: Client, m: Message, strings):
             except PeerIdInvalid:
                 await prog_msg.edit_text(
                     strings("cant_create_sticker_pack_string"),
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "/start", url=f"https://t.me/{bot_username}?start"
-                                )
-                            ]
-                        ]
-                    ),
+                    reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton("/start", url=f"https://t.me/{bot_username}?start")]
+                    ]),
                 )
                 return
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
-        markup = InlineKeyboardMarkup(
+        markup = InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton(
-                        strings("view_sticker_pack_btn"),
-                        url=f"t.me/addstickers/{packname}",
-                    )
-                ]
+                InlineKeyboardButton(
+                    strings("view_sticker_pack_btn"),
+                    url=f"t.me/addstickers/{packname}",
+                )
             ]
-        )
+        ])
         kanged_success_msg = strings("sticker_kanged_string")
         await prog_msg.edit_text(
             kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup

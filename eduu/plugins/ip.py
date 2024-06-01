@@ -103,17 +103,15 @@ async def ip_cmd(c: Client, m: Message, strings):
 
     await m.reply_text(
         strings("ip_select_ip").format(domain=text),
-        reply_markup=InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton(
-                        ip,
-                        callback_data=f"ip {ip}",
-                    )
-                ]
-                for ip in ips
+                InlineKeyboardButton(
+                    ip,
+                    callback_data=f"ip {ip}",
+                )
             ]
-        ),
+            for ip in ips
+        ]),
     )
 
 
@@ -129,16 +127,14 @@ async def ip_callback(c: Client, cb: CallbackQuery, strings):
 @use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) == 1:
-        await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("ip_no_url"),
-                    input_message_content=InputTextMessageContent(
-                        strings("ip_no_url_example").format(bot_username=c.me.username),
-                    ),
-                )
-            ]
-        )
+        await q.answer([
+            InlineQueryResultArticle(
+                title=strings("ip_no_url"),
+                input_message_content=InputTextMessageContent(
+                    strings("ip_no_url_example").format(bot_username=c.me.username),
+                ),
+            )
+        ])
         return
 
     text = q.query.split(maxsplit=1)[1]
@@ -175,30 +171,26 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 input_message_content=InputTextMessageContent(
                     strings("ip_select_ip").format(domain=text),
                 ),
-                reply_markup=InlineKeyboardMarkup(
+                reply_markup=InlineKeyboardMarkup([
                     [
-                        [
-                            InlineKeyboardButton(
-                                ip,
-                                callback_data=f"ip {ip}",
-                            )
-                        ]
-                        for ip in ips
+                        InlineKeyboardButton(
+                            ip,
+                            callback_data=f"ip {ip}",
+                        )
                     ]
-                ),
+                    for ip in ips
+                ]),
             )
         ]
-        articles.extend(
-            [
-                InlineQueryResultArticle(
-                    title=ip,
-                    input_message_content=InputTextMessageContent(
-                        await format_api_return(await get_api_return(ip), strings),
-                    ),
-                )
-                for ip in ips
-            ]
-        )
+        articles.extend([
+            InlineQueryResultArticle(
+                title=ip,
+                input_message_content=InputTextMessageContent(
+                    await format_api_return(await get_api_return(ip), strings),
+                ),
+            )
+            for ip in ips
+        ])
 
     await q.answer(
         articles,

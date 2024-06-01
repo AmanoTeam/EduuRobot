@@ -71,20 +71,16 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     execlanguage = q.query.lower().split()[1]
     if execlanguage not in langslist:
-        await q.answer(
-            [
-                InlineQueryResultArticle(
-                    title=strings("code_exec_err_inline_send_string").format(
-                        langformat=execlanguage
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        strings("code_exec_err_string").format(
-                            langformat=execlanguage, langslistlink=langs_list_link
-                        )
-                    ),
-                )
-            ]
-        )
+        await q.answer([
+            InlineQueryResultArticle(
+                title=strings("code_exec_err_inline_send_string").format(langformat=execlanguage),
+                input_message_content=InputTextMessageContent(
+                    strings("code_exec_err_string").format(
+                        langformat=execlanguage, langslistlink=langs_list_link
+                    )
+                ),
+            )
+        ])
         return
 
     codetoexec = q.query.split(None, 2)[2]

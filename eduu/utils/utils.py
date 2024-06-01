@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 from string import Formatter
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Union
 
 import httpx
 from pyrogram import Client, emoji, filters
@@ -127,7 +127,7 @@ def remove_escapes(text: str) -> str:
     return res
 
 
-def split_quotes(text: str) -> List:
+def split_quotes(text: str) -> list:
     if not any(text.startswith(char) for char in START_CHAR):
         return text.split(None, 1)
     counter = 1  # ignore first char -> is some kind of quote
@@ -147,7 +147,7 @@ def split_quotes(text: str) -> List:
     return list(filter(None, [key, rest]))
 
 
-def button_parser(text_note: str) -> Tuple[str, List[InlineKeyboardButton]]:
+def button_parser(text_note: str) -> tuple[str, list[InlineKeyboardButton]]:
     """Parse a string and return the parsed string and buttons.
 
     Parameters
@@ -227,14 +227,12 @@ class BotCommands:
 
         if self.commands.get(category) is None:
             self.commands[category] = []
-        self.commands[category].append(
-            {
-                "command": command,
-                "description_key": description_key,
-                "context": context,
-                "aliases": aliases or [],
-            }
-        )
+        self.commands[category].append({
+            "command": command,
+            "description_key": description_key,
+            "context": context,
+            "aliases": aliases or [],
+        })
 
     def get_commands_message(self, strings, category: Optional[str] = None):
         # TODO: Add pagination support.
@@ -268,14 +266,12 @@ class InlineBotCommands:
 
         description_key = f"{command.split()[0]}_description"
 
-        self.commands.append(
-            {
-                "command": command,
-                "description_key": description_key,
-                "context": context,
-                "aliases": aliases or [],
-            }
-        )
+        self.commands.append({
+            "command": command,
+            "description_key": description_key,
+            "context": context,
+            "aliases": aliases or [],
+        })
 
     def search_commands(self, query: Optional[str] = None):
         return [
@@ -345,7 +341,7 @@ async def shell_exec(code):
     return stdout, process
 
 
-def get_format_keys(string: str) -> List[str]:
+def get_format_keys(string: str) -> list[str]:
     """Return a list of formatting keys present in string.
 
     Parameters

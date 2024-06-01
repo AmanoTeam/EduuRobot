@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
-from typing import List
-
 from .utils import (
     EMOJI_PATTERN,
     button_parser,
@@ -25,11 +23,12 @@ from .utils import (
     sudofilter,
 )
 
-__all__: List[str] = [
+__all__: list[str] = [
     "EMOJI_PATTERN",
     "button_parser",
     "check_perms",
     "commands",
+    "extract_time",
     "get_emoji_regex",
     "get_format_keys",
     "get_reason_text",
@@ -43,5 +42,4 @@ __all__: List[str] = [
     "shell_exec",
     "split_quotes",
     "sudofilter",
-    "extract_time",
 ]
