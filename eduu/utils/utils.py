@@ -1,15 +1,17 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 import asyncio
 import inspect
 import math
+import operator
 import re
 from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 from string import Formatter
-from typing import Optional, Union
 
 import httpx
 from hydrogram import Client, filters
@@ -52,8 +54,8 @@ def pretty_size(size_bytes):
 
 
 async def check_perms(
-    message: Union[CallbackQuery, Message],
-    permissions: Optional[ChatPrivileges] = None,
+    message: CallbackQuery | Message,
+    permissions: ChatPrivileges | None = None,
     complain_missing_perms: bool = True,
     strings=None,
 ) -> bool:
@@ -92,8 +94,8 @@ async def check_perms(
 sudofilter = filters.user(SUDOERS)
 
 
-async def extract_time(m: Message, time: str) -> Optional[datetime]:
-    if time[-1] not in ["m", "h", "d"]:
+async def extract_time(m: Message, time: str) -> datetime | None:
+    if time[-1] not in {"m", "h", "d"}:
         await m.reply_text("Invalid time format. Use 'h'/'m'/'d' ")
         return None
 
@@ -219,7 +221,7 @@ class BotCommands:
         self,
         command: str,
         category: str,
-        aliases: Optional[list] = None,
+        aliases: list | None = None,
     ):
         context = get_caller_context()
 
@@ -234,18 +236,18 @@ class BotCommands:
             "aliases": aliases or [],
         })
 
-    def get_commands_message(self, strings, category: Optional[str] = None):
+    def get_commands_message(self, strings, category: str | None = None):
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
-            for category in self.commands:
-                cmds_list += self.commands[category]
+            for subcategory in self.commands:
+                cmds_list += self.commands[subcategory]
         else:
             cmds_list = self.commands[category]
 
         res = strings("command_category_title").format(category=strings(category)) + "\n\n"
 
-        cmds_list.sort(key=lambda k: k["command"])
+        cmds_list.sort(key=operator.itemgetter("command"))
 
         for cmd in cmds_list:
             res += f"<b>/{cmd['command']}</b> - <i>{strings(cmd['description_key'], context=cmd['context'])}</i>\n"
@@ -260,7 +262,7 @@ class InlineBotCommands:
     def add_command(
         self,
         command: str,
-        aliases: Optional[list] = None,
+        aliases: list | None = None,
     ):
         context = get_caller_context()
 
@@ -273,10 +275,10 @@ class InlineBotCommands:
             "aliases": aliases or [],
         })
 
-    def search_commands(self, query: Optional[str] = None):
+    def search_commands(self, query: str | None = None):
         return [
             cmd
-            for cmd in sorted(self.commands, key=lambda k: k["command"])
+            for cmd in sorted(self.commands, key=operator.itemgetter("command"))
             if (
                 not query
                 or query.lower() in cmd["command"]

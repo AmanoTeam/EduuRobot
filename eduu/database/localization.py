@@ -11,7 +11,7 @@ conn = database.get_conn()
 
 
 async def set_db_lang(chat_id: int, chat_type: str, lang_code: str):
-    if chat_type in [ChatType.PRIVATE, ChatType.BOT]:
+    if chat_type in {ChatType.PRIVATE, ChatType.BOT}:
         await conn.execute(
             "UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id)
         )

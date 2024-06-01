@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 from itertools import zip_longest
-from typing import Union
 
 from hydrogram import Client, filters
 from hydrogram.enums import ChatType
@@ -37,7 +38,7 @@ def gen_langs_kb():
 @Client.on_message(filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group)
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def chlang(c: Client, m: Union[CallbackQuery, Message], strings):
+async def chlang(c: Client, m: CallbackQuery | Message, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),

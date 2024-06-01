@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 import asyncio
 from functools import partial, wraps
-from typing import Callable, Optional, Union
+from typing import Callable
 
 from hydrogram import Client, StopPropagation
 from hydrogram.enums import ChatType
@@ -30,7 +32,7 @@ def aiowrap(func: Callable) -> Callable:
 
 
 def require_admin(
-    permissions: Optional[ChatPrivileges] = None,
+    permissions: ChatPrivileges | None = None,
     allow_in_private: bool = False,
     complain_missing_perms: bool = True,
 ):
@@ -54,7 +56,7 @@ def require_admin(
 
     def decorator(func):
         @wraps(func)
-        async def wrapper(client: Client, message: Union[CallbackQuery, Message], *args, **kwargs):
+        async def wrapper(client: Client, message: CallbackQuery | Message, *args, **kwargs):
             lang = await get_lang(message)
             strings = partial(
                 get_locale_string,

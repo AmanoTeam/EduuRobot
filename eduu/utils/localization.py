@@ -1,10 +1,12 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 import json
 from functools import partial
 from pathlib import Path
-from typing import Callable, Optional, Union
+from typing import Callable
 
 from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, InlineQuery, Message
@@ -67,7 +69,7 @@ def get_locale_string(
     language: str,
     default_context: str,
     key: str,
-    context: Optional[str] = None,
+    context: str | None = None,
 ) -> str:
     if context:
         default_context = context
@@ -76,7 +78,7 @@ def get_locale_string(
     return res
 
 
-async def get_lang(message: Union[CallbackQuery, Message, InlineQuery]) -> str:
+async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:
     if isinstance(message, CallbackQuery):
         chat = message.message.chat if message.message else message.from_user
         chat_type = message.message.chat.type if message.message else ChatType.PRIVATE

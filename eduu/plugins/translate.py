@@ -100,7 +100,7 @@ async def translate(c: Client, m: Message, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^tr .+", re.I))
+@Client.on_inline_query(filters.regex(r"^tr .+", re.IGNORECASE))
 @use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, strings):
     to_tr = q.query.split(None, 2)[2]

@@ -66,7 +66,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
     )
 
 
-@Client.on_inline_query(filters.regex(r"^(run|exec)", re.I))
+@Client.on_inline_query(filters.regex(r"^(run|exec)", re.IGNORECASE))
 @use_chat_lang
 async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     execlanguage = q.query.lower().split()[1]

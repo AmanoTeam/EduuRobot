@@ -45,7 +45,7 @@ class Eduu(Client):
             self.me.username,
         )
 
-        from .database.restarted import del_restarted, get_restarted
+        from .database.restarted import del_restarted, get_restarted  # noqa: PLC0415
 
         wr = await get_restarted()
         await del_restarted()

@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 import re
-from typing import Union
 
 from hydrogram import Client, filters
 from hydrogram.types import (
@@ -81,9 +82,9 @@ def get_status_emoji(status_code: int) -> str:
 
 
 @Client.on_message(filters.command(["clima", "weather"], PREFIXES))
-@Client.on_inline_query(filters.regex(r"^(clima|weather) .+", re.I))
+@Client.on_inline_query(filters.regex(r"^(clima|weather) .+", re.IGNORECASE))
 @use_chat_lang
-async def weather(c: Client, m: Union[InlineQuery, Message], strings):
+async def weather(c: Client, m: InlineQuery | Message, strings):
     text = m.text if isinstance(m, Message) else m.query
     if len(text.split(maxsplit=1)) == 1:
         if isinstance(m, Message):

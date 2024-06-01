@@ -31,7 +31,7 @@ async def reddit(c: Client, m: Message, strings):
 
     r = await http.get(f"https://www.reddit.com/r/{subreddit}/.json?limit=6")
 
-    if r.status_code in (404, 403):
+    if r.status_code in {404, 403}:
         await m.reply_text(strings("not_found"))
         return
 

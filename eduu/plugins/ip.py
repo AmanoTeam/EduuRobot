@@ -123,7 +123,7 @@ async def ip_callback(c: Client, cb: CallbackQuery, strings):
     await cb.edit_message_text(format_api_return(await get_api_return(ip), strings))
 
 
-@Client.on_inline_query(filters.regex(r"^ip .+", re.I))
+@Client.on_inline_query(filters.regex(r"^ip .+", re.IGNORECASE))
 @use_chat_lang
 async def ip_inline(c: Client, q: InlineQuery, strings):
     if len(q.query.split()) == 1:

@@ -5,10 +5,15 @@
 from subprocess import run
 
 __commit__ = (
-    run(["git", "rev-parse", "--short", "HEAD"], capture_output=True).stdout.decode().strip()
+    run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, check=False)
+    .stdout.decode()
+    .strip()
     or "None"
 )
 
 __version_number__ = (
-    run(["git", "rev-list", "--count", "HEAD"], capture_output=True).stdout.decode().strip() or "0"
+    run(["git", "rev-list", "--count", "HEAD"], capture_output=True, check=False)
+    .stdout.decode()
+    .strip()
+    or "0"
 )

@@ -57,7 +57,7 @@ faces_list: Iterable[str] = (
 )
 
 
-@Client.on_inline_query(filters.regex(r"^face", re.I))
+@Client.on_inline_query(filters.regex(r"^face", re.IGNORECASE))
 async def faces_inline(c: Client, q: InlineQuery):
     results: list[InlineQueryResultArticle] = [
         InlineQueryResultArticle(title=i, input_message_content=InputTextMessageContent(i))
@@ -67,7 +67,7 @@ async def faces_inline(c: Client, q: InlineQuery):
     await q.answer(results)
 
 
-@Client.on_inline_query(filters.regex(r"^markdown .+", re.I))
+@Client.on_inline_query(filters.regex(r"^markdown .+", re.IGNORECASE))
 @use_chat_lang
 async def markdown_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
@@ -81,7 +81,7 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
     ])
 
 
-@Client.on_inline_query(filters.regex(r"^html .+", re.I))
+@Client.on_inline_query(filters.regex(r"^html .+", re.IGNORECASE))
 @use_chat_lang
 async def html_inline(c: Client, q: InlineQuery, strings):
     queryinputres = q.query.split(None, 1)[1]
@@ -97,7 +97,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
     ])
 
 
-@Client.on_inline_query(filters.regex(r"^info .+", re.I))
+@Client.on_inline_query(filters.regex(r"^info .+", re.IGNORECASE))
 @use_chat_lang
 async def info_inline(c: Client, q: InlineQuery, strings):
     try:

@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
+from __future__ import annotations
+
 import asyncio
 import html
 import io
@@ -11,14 +13,13 @@ import time
 import traceback
 from contextlib import redirect_stdout, suppress
 from sqlite3 import IntegrityError, OperationalError
-from typing import Union
+from typing import TYPE_CHECKING
 
 import humanfriendly
 import speedtest
 from hydrogram import Client, filters
 from hydrogram.enums import ChatType
 from hydrogram.errors import RPCError
-from hydrogram.types import Message
 from meval import meval
 
 from config import DATABASE_PATH
@@ -28,7 +29,10 @@ from eduu.utils import sudofilter
 from eduu.utils.localization import use_chat_lang
 from eduu.utils.utils import shell_exec
 
-prefix: Union[list, str] = "!"
+if TYPE_CHECKING:
+    from hydrogram.types import Message
+
+prefix: list | str = "!"
 
 conn = database.get_conn()
 
