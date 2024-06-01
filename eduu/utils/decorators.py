@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import asyncio
 from functools import partial, wraps
-from typing import Callable
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, StopPropagation
 from hydrogram.enums import ChatType
@@ -18,6 +18,9 @@ from eduu.utils.localization import (
     langdict,
 )
 from eduu.utils.utils import check_perms
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 def aiowrap(func: Callable) -> Callable:

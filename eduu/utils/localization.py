@@ -6,13 +6,16 @@ from __future__ import annotations
 import json
 from functools import partial
 from pathlib import Path
-from typing import Callable
+from typing import TYPE_CHECKING
 
 from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
 from eduu.utils.utils import get_caller_context
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 enabled_locales: list[str] = [
     "en-GB",  # English (United Kingdom)

@@ -12,7 +12,7 @@ A multipurpose Telegram Bot made with Hydrogram and asynchronous programming.
 
 Requirements
 ------------
-- Python 3.9+
+- Python 3.10+
 - An Unix-like operating system (Windows support isn't tested. In case you find any issues inside Windows, please file an issue)
 
 
