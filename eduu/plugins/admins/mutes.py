@@ -16,7 +16,7 @@ from eduu.utils.localization import use_chat_lang
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def mute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-    reason = await get_reason_text(c, m)
+    reason = get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status in ADMIN_STATUSES:
         await m.reply_text(strings("i_cant_mute_admins"))
@@ -38,7 +38,7 @@ async def mute(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def unmute(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
-    reason = await get_reason_text(c, m)
+    reason = get_reason_text(c, m)
     await m.chat.unban_member(target_user.id)
     text = strings("unmute_success").format(
         user=target_user.mention,

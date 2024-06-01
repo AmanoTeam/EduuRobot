@@ -316,7 +316,7 @@ async def get_target_user(c: Client, m: Message) -> User:
     )
 
 
-async def get_reason_text(c: Client, m: Message) -> Message:
+def get_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
 

@@ -29,7 +29,7 @@ async def get_api_return(ip: str) -> dict[str, str]:
     return req
 
 
-async def format_api_return(req: dict[str, str], strings) -> str:
+def format_api_return(req: dict[str, str], strings) -> str:
     if req.get("bogon"):
         return strings("ip_err_bogon_ip").format(ip=req["ip"])
 
@@ -98,7 +98,7 @@ async def ip_cmd(c: Client, m: Message, strings):
         return
 
     if len(ips) == 1:
-        await m.reply_text(await format_api_return(await get_api_return(ips[0]), strings))
+        await m.reply_text(format_api_return(await get_api_return(ips[0]), strings))
         return
 
     await m.reply_text(
@@ -120,7 +120,7 @@ async def ip_cmd(c: Client, m: Message, strings):
 async def ip_callback(c: Client, cb: CallbackQuery, strings):
     ip = cb.data.split(maxsplit=1)[1]
 
-    await cb.edit_message_text(await format_api_return(await get_api_return(ip), strings))
+    await cb.edit_message_text(format_api_return(await get_api_return(ip), strings))
 
 
 @Client.on_inline_query(filters.regex(r"^ip .+", re.I))
@@ -160,7 +160,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
                 if api_return.get("bogon")
                 else strings("ip_info_inline").format(domain=text),
                 input_message_content=InputTextMessageContent(
-                    await format_api_return(api_return, strings),
+                    format_api_return(api_return, strings),
                 ),
             )
         ]
@@ -186,7 +186,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 title=ip,
                 input_message_content=InputTextMessageContent(
-                    await format_api_return(await get_api_return(ip), strings),
+                    format_api_return(await get_api_return(ip), strings),
                 ),
             )
             for ip in ips

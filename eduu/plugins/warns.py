@@ -20,7 +20,7 @@ from eduu.utils.decorators import require_admin
 from eduu.utils.localization import use_chat_lang
 
 
-async def get_warn_reason_text(c: Client, m: Message) -> Message:
+def get_warn_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
     spilt_text = m.text.split
 
@@ -39,7 +39,7 @@ async def warn_user(c: Client, m: Message, strings):
     target_user = await get_target_user(c, m)
     warns_limit = await get_warns_limit(m.chat.id)
     check_admin = await m.chat.get_member(target_user.id)
-    reason = await get_warn_reason_text(c, m)
+    reason = get_warn_reason_text(c, m)
     warn_action = await get_warn_action(m.chat.id)
 
     if check_admin.status in ADMIN_STATUSES:
