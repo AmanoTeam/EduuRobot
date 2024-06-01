@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
-from pyrogram.enums import ChatType
+from hydrogram.enums import ChatType
 
 from eduu.utils.consts import GROUP_TYPES
 

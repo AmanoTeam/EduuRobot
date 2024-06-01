@@ -6,7 +6,7 @@ import logging
 import platform
 import sys
 
-from pyrogram import idle
+from hydrogram import idle
 
 from .bot import Eduu
 from .database import database
@@ -19,8 +19,8 @@ logging.basicConfig(
 )
 
 # To avoid some annoying log
-logging.getLogger("pyrogram.syncer").setLevel(logging.WARNING)
-logging.getLogger("pyrogram.client").setLevel(logging.WARNING)
+logging.getLogger("hydrogram.syncer").setLevel(logging.WARNING)
+logging.getLogger("hydrogram.client").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 

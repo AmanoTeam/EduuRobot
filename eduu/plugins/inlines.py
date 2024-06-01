@@ -4,10 +4,10 @@
 import re
 from collections.abc import Iterable
 
-from pyrogram import Client, filters
-from pyrogram.enums import ParseMode
-from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
-from pyrogram.types import (
+from hydrogram import Client, filters
+from hydrogram.enums import ParseMode
+from hydrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
+from hydrogram.types import (
     InlineKeyboardMarkup,
     InlineQuery,
     InlineQueryResultArticle,

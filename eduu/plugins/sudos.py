@@ -15,11 +15,11 @@ from typing import Union
 
 import humanfriendly
 import speedtest
+from hydrogram import Client, filters
+from hydrogram.enums import ChatType
+from hydrogram.errors import RPCError
+from hydrogram.types import Message
 from meval import meval
-from pyrogram import Client, filters
-from pyrogram.enums import ChatType
-from pyrogram.errors import RPCError
-from pyrogram.types import Message
 
 from config import DATABASE_PATH
 from eduu.database import database

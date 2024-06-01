@@ -1,17 +1,17 @@
 [project]
 name = "eduu"
 version = "0.0.0"
-description = "A multipurpose Telegram Bot made with Pyrogram and asynchronous programming."
+description = "A multipurpose Telegram Bot made with Hydrogram and asynchronous programming."
 readme = "README.rst"
 
 dependencies = [
+  "emoji-regex",
   "gpytranslate==1.5.1",
   "httpx[http2]>=0.18.1,<1.0.0",
   "humanfriendly",
+  "hydrogram @ https://github.com/hydrogram/hydrogram/archive/dev.zip",
   "meval==2.5",
   "Pillow>=8.4.0,<11.0.0",
-  # Using Amano's Pyrogram fork
-  "pyrogram @ https://github.com/AmanoTeam/pyrogram/archive/master.zip",
   "pytio",
   "regex",
   "speedtest-cli",

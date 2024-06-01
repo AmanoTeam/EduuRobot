@@ -7,7 +7,7 @@ EduuRobot
 
 |License| |Codacy| |Crowdin| |Black| |Telegram Channel| |Telegram Chat|
 
-A multipurpose Telegram Bot made with Pyrogram and asynchronous programming.
+A multipurpose Telegram Bot made with Hydrogram and asynchronous programming.
 
 
 Requirements

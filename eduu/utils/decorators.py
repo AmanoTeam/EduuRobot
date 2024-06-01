@@ -5,9 +5,9 @@ import asyncio
 from functools import partial, wraps
 from typing import Callable, Optional, Union
 
-from pyrogram import Client, StopPropagation
-from pyrogram.enums import ChatType
-from pyrogram.types import CallbackQuery, ChatPrivileges, Message
+from hydrogram import Client, StopPropagation
+from hydrogram.enums import ChatType
+from hydrogram.types import CallbackQuery, ChatPrivileges, Message
 
 from eduu.utils.localization import (
     default_language,

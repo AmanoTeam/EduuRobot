@@ -6,8 +6,8 @@ from functools import partial
 from pathlib import Path
 from typing import Callable, Optional, Union
 
-from pyrogram.enums import ChatType
-from pyrogram.types import CallbackQuery, InlineQuery, Message
+from hydrogram.enums import ChatType
+from hydrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
 from eduu.utils.utils import get_caller_context

@@ -4,8 +4,8 @@
 import html
 
 import regex
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from hydrogram import Client, filters
+from hydrogram.types import Message
 
 from eduu.utils.localization import use_chat_lang
 

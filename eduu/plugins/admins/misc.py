@@ -3,8 +3,8 @@
 
 import asyncio
 
-from pyrogram import Client, filters
-from pyrogram.types import ChatPrivileges, Message
+from hydrogram import Client, filters
+from hydrogram.types import ChatPrivileges, Message
 
 from config import PREFIXES
 from eduu.database.admins import check_if_del_service, toggle_del_service

@@ -4,9 +4,9 @@
 from itertools import zip_longest
 from typing import Union
 
-from pyrogram import Client, filters
-from pyrogram.enums import ChatType
-from pyrogram.types import (
+from hydrogram import Client, filters
+from hydrogram.enums import ChatType
+from hydrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,

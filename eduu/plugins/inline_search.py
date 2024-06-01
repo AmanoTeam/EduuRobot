@@ -1,8 +1,8 @@
 import html
 from uuid import uuid4
 
-from pyrogram import Client
-from pyrogram.types import (
+from hydrogram import Client
+from hydrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     InlineQuery,

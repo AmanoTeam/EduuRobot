@@ -3,23 +3,24 @@
 
 from io import BytesIO
 
-from PIL import Image, ImageOps
-from pyrogram import Client, filters
-from pyrogram.enums import MessageEntityType
-from pyrogram.errors import PeerIdInvalid, StickersetInvalid
-from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
-from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
-from pyrogram.raw.types import (
+from emoji_regex import emoji_regex
+from hydrogram import Client, filters
+from hydrogram.enums import MessageEntityType
+from hydrogram.errors import PeerIdInvalid, StickersetInvalid
+from hydrogram.raw.functions.messages import GetStickerSet, SendMedia
+from hydrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
+from hydrogram.raw.types import (
     DocumentAttributeFilename,
     InputDocument,
     InputMediaUploadedDocument,
     InputStickerSetItem,
     InputStickerSetShortName,
 )
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from hydrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from PIL import Image, ImageOps
 
 from config import LOG_CHAT, PREFIXES
-from eduu.utils import EMOJI_PATTERN, http
+from eduu.utils import http
 from eduu.utils.localization import use_chat_lang
 
 
@@ -66,7 +67,7 @@ async def kang_sticker(c: Client, m: Message, strings):
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
-                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:])))) or sticker_emoji
+                "".join(set(emoji_regex.findall("".join(m.command[1:])))) or sticker_emoji
             )
         file = await c.download_media(m.reply_to_message, in_memory=True)
         if not file:
@@ -102,7 +103,7 @@ async def kang_sticker(c: Client, m: Message, strings):
                 packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"
             if len(m.command) > 2:
                 sticker_emoji = (
-                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:])))) or sticker_emoji
+                    "".join(set(emoji_regex.findall("".join(m.command[2:])))) or sticker_emoji
                 )
             resize = True
     else:

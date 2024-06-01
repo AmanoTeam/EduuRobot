@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
-from pyrogram import Client, filters
-from pyrogram.types import ChatPermissions, ChatPrivileges, Message
+from hydrogram import Client, filters
+from hydrogram.types import ChatPermissions, ChatPrivileges, Message
 
 from config import PREFIXES
 from eduu.utils import commands, extract_time, get_reason_text, get_target_user

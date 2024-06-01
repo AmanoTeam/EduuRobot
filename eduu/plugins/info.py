@@ -4,10 +4,10 @@
 import html
 from contextlib import suppress
 
-from pyrogram import Client, filters
-from pyrogram.enums import ChatMemberStatus
-from pyrogram.errors import BadRequest, UserNotParticipant
-from pyrogram.types import Message
+from hydrogram import Client, filters
+from hydrogram.enums import ChatMemberStatus
+from hydrogram.errors import BadRequest, UserNotParticipant
+from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands

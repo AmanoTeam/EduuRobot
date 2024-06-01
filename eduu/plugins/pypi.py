@@ -4,8 +4,8 @@
 import html
 import re
 
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from hydrogram import Client, filters
+from hydrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.utils import commands, http

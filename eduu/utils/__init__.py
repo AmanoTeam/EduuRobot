@@ -3,12 +3,10 @@
 # Copyright (c) 2018-2024 Amano LLC
 
 from .utils import (
-    EMOJI_PATTERN,
     button_parser,
     check_perms,
     commands,
     extract_time,
-    get_emoji_regex,
     get_format_keys,
     get_reason_text,
     get_target_user,
@@ -24,12 +22,10 @@ from .utils import (
 )
 
 __all__: list[str] = [
-    "EMOJI_PATTERN",
     "button_parser",
     "check_perms",
     "commands",
     "extract_time",
-    "get_emoji_regex",
     "get_format_keys",
     "get_reason_text",
     "get_target_user",

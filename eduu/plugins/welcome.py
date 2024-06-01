@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
-from pyrogram import Client, filters
-from pyrogram.enums import ParseMode
-from pyrogram.errors import BadRequest
-from pyrogram.types import ChatPrivileges, InlineKeyboardMarkup, Message
+from hydrogram import Client, filters
+from hydrogram.enums import ParseMode
+from hydrogram.errors import BadRequest
+from hydrogram.types import ChatPrivileges, InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome

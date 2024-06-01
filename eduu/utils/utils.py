@@ -12,9 +12,9 @@ from string import Formatter
 from typing import Optional, Union
 
 import httpx
-from pyrogram import Client, emoji, filters
-from pyrogram.enums import ChatMemberStatus, MessageEntityType
-from pyrogram.types import (
+from hydrogram import Client, filters
+from hydrogram.enums import ChatMemberStatus, MessageEntityType
+from hydrogram.types import (
     CallbackQuery,
     ChatPrivileges,
     InlineKeyboardButton,
@@ -289,20 +289,6 @@ commands = BotCommands()
 inline_commands = InlineBotCommands()
 
 
-def get_emoji_regex():
-    e_list = [
-        getattr(emoji, e).encode("unicode-escape").decode("ASCII")
-        for e in dir(emoji)
-        if not e.startswith("_")
-    ]
-    # to avoid re.error excluding char that start with '*'
-    e_sort = sorted([x for x in e_list if not x.startswith("*")], reverse=True)
-    # Sort emojis by length to make sure multi-character emojis are
-    # matched first
-    pattern_ = f"({'|'.join(e_sort)})"
-    return re.compile(pattern_)
-
-
 async def get_target_user(c: Client, m: Message) -> User:
     if m.reply_to_message:
         return m.reply_to_message.from_user
@@ -326,9 +312,6 @@ def get_reason_text(c: Client, m: Message) -> Message:
         return spilt_text(None, 1)[1]
 
     return None
-
-
-EMOJI_PATTERN = get_emoji_regex()
 
 
 # Thank github.com/usernein for shell_exec

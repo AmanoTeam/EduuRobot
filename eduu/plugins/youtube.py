@@ -8,10 +8,10 @@ import shutil
 import tempfile
 from pathlib import Path
 
-from pyrogram import Client, filters
-from pyrogram.errors import BadRequest
-from pyrogram.helpers import ikb
-from pyrogram.types import CallbackQuery, Message
+from hydrogram import Client, filters
+from hydrogram.errors import BadRequest
+from hydrogram.helpers import ikb
+from hydrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
 from config import PREFIXES

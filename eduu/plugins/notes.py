@@ -3,9 +3,9 @@
 
 import re
 
-from pyrogram import Client, filters
-from pyrogram.enums import ParseMode
-from pyrogram.types import InlineKeyboardMarkup, Message
+from hydrogram import Client, filters
+from hydrogram.enums import ParseMode
+from hydrogram.types import InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.database.notes import add_note, get_all_notes, rm_note, update_note

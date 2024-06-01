@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2024 Amano LLC
 
-from pyrogram import Client
-from pyrogram.types import Message
+from hydrogram import Client
+from hydrogram.types import Message
 
 from eduu.database.chats import add_chat, chat_exists
 

@@ -3,7 +3,7 @@
 
 from collections.abc import Iterable
 
-from pyrogram.enums import ChatMemberStatus, ChatType
+from hydrogram.enums import ChatMemberStatus, ChatType
 
 GROUP_TYPES: Iterable[ChatType] = (ChatType.GROUP, ChatType.SUPERGROUP)
 

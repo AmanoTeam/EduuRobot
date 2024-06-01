@@ -5,10 +5,10 @@ import re
 from html import escape
 from urllib.parse import quote, unquote
 
-from pyrogram import Client, filters
-from pyrogram.enums import ChatMembersFilter, ParseMode
-from pyrogram.errors import BadRequest
-from pyrogram.types import InlineKeyboardMarkup, Message
+from hydrogram import Client, filters
+from hydrogram.enums import ChatMembersFilter, ParseMode
+from hydrogram.errors import BadRequest
+from hydrogram.types import InlineKeyboardMarkup, Message
 
 from config import LOG_CHAT, PREFIXES
 from eduu.utils import button_parser, commands, http

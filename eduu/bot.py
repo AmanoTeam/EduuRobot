@@ -4,11 +4,11 @@
 import logging
 import time
 
-import pyrogram
-from pyrogram import Client
-from pyrogram.enums import ParseMode
-from pyrogram.errors import BadRequest
-from pyrogram.raw.all import layer
+import hydrogram
+from hydrogram import Client
+from hydrogram.enums import ParseMode
+from hydrogram.errors import BadRequest
+from hydrogram.raw.all import layer
 
 from config import API_HASH, API_ID, DISABLED_PLUGINS, LOG_CHAT, TOKEN, WORKERS
 
@@ -39,8 +39,8 @@ class Eduu(Client):
         self.start_time = time.time()
 
         logger.info(
-            "Eduu running with Pyrogram v%s (Layer %s) started on @%s. Hi!",
-            pyrogram.__version__,
+            "Eduu running with Hydrogram v%s (Layer %s) started on @%s. Hi!",
+            hydrogram.__version__,
             layer,
             self.me.username,
         )
@@ -53,7 +53,7 @@ class Eduu(Client):
         start_message = (
             "<b>EduuRobot started!</b>\n\n"
             f"<b>Version number:</b> <code>r{__version_number__} ({__commit__})</code>\n"
-            f"<b>Pyrogram:</b> <code>v{pyrogram.__version__}</code>"
+            f"<b>Hydrogram:</b> <code>v{hydrogram.__version__}</code>"
         )
 
         try:

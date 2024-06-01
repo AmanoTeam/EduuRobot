@@ -5,9 +5,9 @@ import uuid
 from json import JSONDecodeError
 
 from httpx import HTTPError
-from pyrogram import Client, filters
-from pyrogram.enums import MessageEntityType
-from pyrogram.types import Message
+from hydrogram import Client, filters
+from hydrogram.enums import MessageEntityType
+from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
