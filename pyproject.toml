@@ -21,7 +21,7 @@ dependencies = [
   "yarl",
   "yt-dlp==2023.11.16",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 
 authors = [{ name = "Amano LLC", email = "contact@amanoteam.com" }]
 license = { text = "MIT" }
@@ -38,7 +38,7 @@ homepage = "https://github.com/AmanoTeam/EduuRobot"
 
 [tool.ruff]
 line-length = 99
-target-version = "py38"
+target-version = "py39"
 select = [
     "I",    # isort
     "E",    # pycodestyle

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2023 Amano LLC
+# Copyright (c) 2018-2024 Amano LLC
 
 from html import escape
 
