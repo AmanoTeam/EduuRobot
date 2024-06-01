@@ -7,19 +7,19 @@ readme = "README.rst"
 dependencies = [
   "emoji-regex",
   "gpytranslate==1.5.1",
-  "httpx[http2]>=0.18.1,<1.0.0",
+  "httpx[http2]>=0.27.0,<1.0.0",
   "humanfriendly",
   "hydrogram @ https://github.com/hydrogram/hydrogram/archive/dev.zip",
   "meval==2.5",
-  "Pillow>=8.4.0,<11.0.0",
+  "Pillow>=10.3.0,<11.0.0",
   "pytio",
   "regex",
   "speedtest-cli",
   "tgcrypto",
   # Using uvloop to increase general speed and stability. Ignored under Windows
-  "uvloop>=0.10.0,<1.0.0; platform_system != 'Windows'",
+  "uvloop>=0.19.0,<1.0.0; platform_system != 'Windows'",
   "yarl",
-  "yt-dlp==2023.11.16",
+  "yt-dlp==2024.5.27",
 ]
 requires-python = ">=3.9"
 
