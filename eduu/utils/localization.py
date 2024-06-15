@@ -33,6 +33,7 @@ enabled_locales: list[str] = [
     "pl-PL",  # Polish
     "pt-BR@formal",  # Portuguese (Brazil, extended version)
     "pt-BR@informal",  # Portuguese (Brazil, informal version)
+    "eo-XX",  # Esperanto
     "ro-RO",  # Romanian
     "ru-RU",  # Russian
     "sv-SE",  # Swedish
