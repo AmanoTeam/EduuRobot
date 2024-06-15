@@ -81,8 +81,14 @@ def get_locale_string(
     language: str,
     key: str,
 ) -> str:
-    res: str = langdict[language].get(key) or langdict[default_language].get(key) or key
-    return res
+    if "@" in language and language.split("@")[0] in langdict:
+        # if an @ (tone modifier) is present, try to get string from parent language if nullish
+        string = langdict[language].get(key) or langdict[language.split("@")[0]].get(key)
+    else:
+        string = langdict[language].get(key)
+
+    # return and fallback if nullish
+    return string or langdict[default_language].get(key) or key
 
 
 Strings = Callable[[str], str]
