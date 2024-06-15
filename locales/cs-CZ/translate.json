@@ -1,5 +1,5 @@
 {
-  "translate_usage": "<b>Použití:</b> <code>/tr &lt;language&gt; text pro překlad</code> (použije se také v odpovědi na zprávu).",
-  "translating": "Překládání…",
-  "translation": "<b>Jazyk:</b> {from_lang} -> {to_lang}\n<b>Překlad:</b> <code>{translation}</code>"
+  "tr_usage": "<b>Použití:</b> <code>/tr &lt;language&gt; text pro překlad</code> (použije se také v odpovědi na zprávu).",
+  "tr_translating": "Překládání…",
+  "tr_translation": "<b>Jazyk:</b> {from_lang} -> {to_lang}\n<b>Překlad:</b> <code>{translation}</code>"
 }

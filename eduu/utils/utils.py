@@ -4,13 +4,11 @@
 from __future__ import annotations
 
 import asyncio
-import inspect
 import math
 import operator
 import re
 from datetime import datetime, timedelta
 from functools import partial
-from pathlib import Path
 from string import Formatter
 
 import httpx
@@ -75,7 +73,7 @@ async def check_perms(
         return True
     if user.status != ChatMemberStatus.ADMINISTRATOR:
         if complain_missing_perms:
-            await sender(strings("no_admin_error"))
+            await sender(strings("admins_no_admin_error"))
         return False
 
     missing_perms = [
@@ -87,7 +85,9 @@ async def check_perms(
     if not missing_perms:
         return True
     if complain_missing_perms:
-        await sender(strings("no_permission_error").format(permissions=", ".join(missing_perms)))
+        await sender(
+            strings("admins_no_permission_error").format(permissions=", ".join(missing_perms))
+        )
     return False
 
 
@@ -194,25 +194,6 @@ def button_parser(text_note: str) -> tuple[str, list[InlineKeyboardButton]]:
     return note_data, buttons
 
 
-def get_caller_context(depth: int = 2) -> str:
-    """Get the context of the caller of the function calling this function.
-
-    Parameters
-    ----------
-    depth: int
-        Depth of the caller. Defaults to 2.
-
-    Returns
-    -------
-    str
-        The context of the caller.
-    """
-    fpath = Path(inspect.stack()[depth].filename)
-    cwd = Path.cwd()
-    fpath = fpath.relative_to(cwd)
-    return fpath.parts[2] if len(fpath.parts) == 4 else fpath.stem
-
-
 class BotCommands:
     def __init__(self):
         self.commands = {}
@@ -223,8 +204,6 @@ class BotCommands:
         category: str,
         aliases: list | None = None,
     ):
-        context = get_caller_context()
-
         description_key = f"cmd_{command}_description"
 
         if self.commands.get(category) is None:
@@ -232,7 +211,6 @@ class BotCommands:
         self.commands[category].append({
             "command": command,
             "description_key": description_key,
-            "context": context,
             "aliases": aliases or [],
         })
 
@@ -245,12 +223,17 @@ class BotCommands:
         else:
             cmds_list = self.commands[category]
 
-        res = strings("command_category_title").format(category=strings(category)) + "\n\n"
+        res = (
+            strings("cmds_list_category_title").format(
+                category=strings(f"cmds_category_{category}")
+            )
+            + "\n\n"
+        )
 
         cmds_list.sort(key=operator.itemgetter("command"))
 
         for cmd in cmds_list:
-            res += f"<b>/{cmd['command']}</b> - <i>{strings(cmd['description_key'], context=cmd['context'])}</i>\n"
+            res += f"<b>/{cmd['command']}</b> - <i>{strings(cmd['description_key'])}</i>\n"
 
         return res
 
@@ -264,14 +247,11 @@ class InlineBotCommands:
         command: str,
         aliases: list | None = None,
     ):
-        context = get_caller_context()
-
         description_key = f"inline_cmd_{command.split()[0]}_description"
 
         self.commands.append({
             "command": command,
             "description_key": description_key,
-            "context": context,
             "aliases": aliases or [],
         })
 

@@ -1,8 +1,8 @@
 {
-  "admin": "👮‍♂️ Administra a dor",
-  "command_category_title": "Cat do comando <b>{category}</b>:",
-  "general": "✨ General",
-  "select_command_category": "Celesione um treco aí para ver os trecos.",
-  "tools": "🔧 Chave inglesa",
-  "group_help": "Pleaase, use o treco certo, ou em um chat ou clika no botão pra ver os commands."
+  "cmds_category_admin": "👮‍♂️ Administra a dor",
+  "cmds_list_category_title": "Cat do comando <b>{category}</b>:",
+  "cmds_category_general": "✨ General",
+  "cmds_list_select_category": "Celesione um treco aí para ver os trecos.",
+  "cmds_category_tools": "🔧 Chave inglesa",
+  "cmds_list_group_help": "Pleaase, use o treco certo, ou em um chat ou clika no botão pra ver os commands."
 }

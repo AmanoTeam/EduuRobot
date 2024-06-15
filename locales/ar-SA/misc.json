@@ -6,12 +6,12 @@
   "cmd_mark_description": "تنسيق النص المقدم باستخدام بنية Markdown.",
   "mark_usage": "<b>الاستخدام:</b> <code>/mark علامة **النص** في __markdown__</code> — يقوم بتنسيق النص المقدم باستخدام صيغة Markdown.",
   "cmd_token_description": "الحصول على معلومات من توكن البوت المقدم.",
-  "bot_token_invalid": "التوكن غير صحيح.",
+  "token_bot_token_invalid": "التوكن غير صحيح.",
   "cmd_urldecode_description": "تشفير النص المقدم بترميز URL-safe.",
   "cmd_urlencode_description": "فك تشفير النص المقدم بترميز URL-safe.",
   "cmd_parsebutton_description": "تساعدك على تحليل الزر.",
-  "bug_reported_success_to_bot_admins": "تم الإبلاغ عن الخطأ بنجاح.",
-  "err_cant_send_bug_report_to_bot_admins": "خطأ، لم أستطع إرسال تقرير الخطأ إلى مشرفي البوت.",
-  "donatecmdstring": "إذا أعجبك المشروع وتريده أن يستمر مجاناً وعلى قيد الحياة، يرجى إظهار دعمك بالتبرع عبر النقر على الرابط أدناه. أي مبلغ هو موضع تقدير. شكرا!\n\nhttps://amanoteam.com/donate",
-  "report_admns": "{admins_list}{reported_user} تم تبليغه للمشرفين."
+  "bug_report_success": "تم الإبلاغ عن الخطأ بنجاح.",
+  "bug_report_failed": "خطأ، لم أستطع إرسال تقرير الخطأ إلى مشرفي البوت.",
+  "donate_info": "إذا أعجبك المشروع وتريده أن يستمر مجاناً وعلى قيد الحياة، يرجى إظهار دعمك بالتبرع عبر النقر على الرابط أدناه. أي مبلغ هو موضع تقدير. شكرا!\n\nhttps://amanoteam.com/donate",
+  "report_admins": "{admins_list}{reported_user} تم تبليغه للمشرفين."
 }

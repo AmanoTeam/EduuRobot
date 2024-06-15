@@ -35,20 +35,20 @@ async def pypi(c: Client, m: Message, strings):
     r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
     if r.status_code != 200:
         await m.reply_text(
-            strings("package_not_found").format(package_name=text, http_status=r.status_code)
+            strings("pypi_package_not_found").format(package_name=text, http_status=r.status_code)
         )
         return
 
     json = r.json()
     pypi_info = escape_definition(json["info"])
 
-    message = strings("package_details").format(
+    message = strings("pypi_package_details").format(
         package_name=pypi_info["name"],
         author_name=pypi_info["author"],
         author_email=f"&lt;{pypi_info['author_email']}&gt;" if pypi_info["author_email"] else "",
-        platform=pypi_info["platform"] or strings("not_specified"),
+        platform=pypi_info["platform"] or strings("pypi_platform_not_specified"),
         version=pypi_info["version"],
-        license=pypi_info["license"] or strings("not_specified"),
+        license=pypi_info["license"] or strings("pypi_platform_not_specified"),
         summary=pypi_info["summary"],
     )
 
@@ -57,7 +57,7 @@ async def pypi(c: Client, m: Message, strings):
             inline_keyboard=[
                 [
                     InlineKeyboardButton(
-                        text=strings("package_home_page"),
+                        text=strings("pypi_package_home_page"),
                         url=pypi_info["home_page"],
                     )
                 ]

@@ -6,5 +6,6 @@
   "no_location": "Please specify a location or city.",
   "weather_language": "en-GB",
   "cmd_weather_description": "Get weather information for the given location or city.",
+  "inline_cmd_weather_description": "Get weather information for the given location or city.",
   "weather_usage": "<b>Usage:</b> <code>/weather location or city</code> — Get information about the weather in <i>location or city</i>."
 }

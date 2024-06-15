@@ -1,14 +1,14 @@
 {
-  "get_sticker_id_string": "O id deste sticker é: <code>{stickerid}</code>",
-  "animated_not_supported": "Stickers animados não rolam, mano.",
-  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID do Sticker:</b> <code>{id}</code>",
-  "not_sticker": "Ixi, isso não é um sticker não!",
-  "kanging_sticker_msg": "<code>Kibando o sticker…</code>",
-  "sticker_kanged_string": "Sticker adicionado ao pack com <b>sucesso</b>, beleza!\nEmoji: {sticker_emoji}",
-  "use_existing_pack": "<code>Usando o pack de stickers que já tem...</code>",
-  "err_sticker_no_file_name": "<b>Erro</b>: <code>Esse sticker não tem nome de arquivo!</code>",
-  "view_sticker_pack_btn": "Visualizar",
-  "create_new_pack_string": "Criando um novo pacote de stickers...",
-  "invalid_media_string": "<b>Erro:</b> <code>Mídia inválida<code>",
-  "cant_create_sticker_pack_string": "Oops, parece que eu não tenho permissões suficientes para criar um pacote de stickers para você! \n<b>Por favor, inicie o bot primeiro</b>."
+  "stickerid_string": "O id deste sticker é: <code>{stickerid}</code>",
+  "getsticker_animated_not_supported": "Stickers animados não rolam, mano.",
+  "getsticker_sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID do Sticker:</b> <code>{id}</code>",
+  "getsticker_not_sticker": "Ixi, isso não é um sticker não!",
+  "kang_kanging_sticker_msg": "<code>Kibando o sticker…</code>",
+  "kang_sticker_kanged_string": "Sticker adicionado ao pack com <b>sucesso</b>, beleza!\nEmoji: {sticker_emoji}",
+  "kang_use_existing_pack": "<code>Usando o pack de stickers que já tem...</code>",
+  "kang_err_sticker_no_file_name": "<b>Erro</b>: <code>Esse sticker não tem nome de arquivo!</code>",
+  "kang_view_sticker_pack_btn": "Visualizar",
+  "kang_create_new_pack_string": "Criando um novo pacote de stickers...",
+  "kang_invalid_media_string": "<b>Erro:</b> <code>Mídia inválida<code>",
+  "kang_cant_create_sticker_pack_string": "Oops, parece que eu não tenho permissões suficientes para criar um pacote de stickers para você! \n<b>Por favor, inicie o bot primeiro</b>."
 }

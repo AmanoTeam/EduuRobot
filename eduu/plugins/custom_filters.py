@@ -37,7 +37,7 @@ async def save_filter(c: Client, m: Message, strings):
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text(strings("add_filter_empty"), quote=True)
+        await m.reply_text(strings("filters_add_empty"), quote=True)
         return
 
     if m.reply_to_message and m.reply_to_message.photo:
@@ -87,7 +87,7 @@ async def save_filter(c: Client, m: Message, strings):
     else:
         await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
 
-    await m.reply_text(strings("add_filter_success").format(trigger=trigger), quote=True)
+    await m.reply_text(strings("filters_add_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], PREFIXES))
@@ -100,11 +100,13 @@ async def delete_filter(c: Client, m: Message, strings):
     check_filter = await check_for_filters(chat_id, trigger)
 
     if not check_filter:
-        await m.reply_text(strings("no_filter_with_name").format(trigger=trigger), quote=True)
+        await m.reply_text(
+            strings("filters_no_filter_with_name").format(trigger=trigger), quote=True
+        )
         return
 
     await rm_filter(chat_id, trigger)
-    await m.reply_text(strings("remove_filter_success").format(trigger=trigger), quote=True)
+    await m.reply_text(strings("filters_remove_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command("filters", PREFIXES))

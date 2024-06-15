@@ -1,7 +1,7 @@
 {
   "cmd_resetwarns_description": "Redefine as advertências do usuário.",
   "cmd_setwarnslimit_description": "Define o limite de advertências do chat.",
-  "user_warned": "O {target_user} é {warn_count}/{warn_limit}. Mas para ser banido.",
+  "warn_warned": "O {target_user} é {warn_count}/{warn_limit}. Mas para ser banido.",
   "warn_banned": "O usuário {target_user} foi banido porque ele foi advertido {warn_count} vezes.",
   "warn_kicked": "O usuário {target_user} foi kickado porque ele foi advertido {warn_count} vezes.",
   "warn_muted": "O usuário {target_user} foi mutado porque ele foi advertido {warn_count} vezes.",

@@ -1,7 +1,7 @@
 {
-  "info_private": "<b>מידע:</b>\n<b>שם:</b> <code>{first_name} {last_name}</code>\n<b>שם משתמש:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>שפה:</b> <code>{lang}</code>\n<b>סוג הצ'אט:</b> <code>{chat_type}</code>",
-  "info_group": "<b>מידע על המשתמש:</b>\n<b>שם:</b> <code>{first_name} {last_name}</code>\n<b>שם משתמש:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>שפה:</b> <code>{lang}</code>\n\n<b>מידע על הצ'אט:</b>\n<b>שם:</b> <code>{chat_title}</code>\n<b>שם משתמש:</b> {chat_username}\n<b>ID של הצ'אט:</b> <code>{chat_id}</code>\n<b>ה datacenter של הצ'אט:</b> <code>{chat_dc}</code>\n<b>סוג הצ'אט:</b> <code>{chat_type}</code>\n<b>הודעות:</b> <code>{message_id}</code>",
-  "none": "ללא",
-  "unknown": "לא ידוע",
-  "user_not_found": "לא נמצא משתמש ל r '<code>{user}</code>'."
+  "id_info_private": "<b>מידע:</b>\n<b>שם:</b> <code>{first_name} {last_name}</code>\n<b>שם משתמש:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>שפה:</b> <code>{lang}</code>\n<b>סוג הצ'אט:</b> <code>{chat_type}</code>",
+  "id_info_group": "<b>מידע על המשתמש:</b>\n<b>שם:</b> <code>{first_name} {last_name}</code>\n<b>שם משתמש:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>שפה:</b> <code>{lang}</code>\n\n<b>מידע על הצ'אט:</b>\n<b>שם:</b> <code>{chat_title}</code>\n<b>שם משתמש:</b> {chat_username}\n<b>ID של הצ'אט:</b> <code>{chat_id}</code>\n<b>ה datacenter של הצ'אט:</b> <code>{chat_dc}</code>\n<b>סוג הצ'אט:</b> <code>{chat_type}</code>\n<b>הודעות:</b> <code>{message_id}</code>",
+  "id_none": "ללא",
+  "id_unknown": "לא ידוע",
+  "id_user_not_found": "לא נמצא משתמש ל r '<code>{user}</code>'."
 }

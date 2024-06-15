@@ -24,7 +24,7 @@ def gen_langs_kb():
     return [
         [
             InlineKeyboardButton(
-                f"{langdict[lang]['main']['language_flag']} {langdict[lang]['main']['language_name']}",
+                f"{langdict[lang]['_meta_language_flag']} {langdict[lang]['_meta_language_name']}",
                 callback_data=f"set_lang {lang}",
             )
             for lang in langs
@@ -42,11 +42,7 @@ async def chlang(c: Client, m: CallbackQuery | Message, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),
-            [
-                InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
-            ],
+            [InlineKeyboardButton(strings("general_back_btn"), callback_data="start_back")],
         ]
     )
 
@@ -82,7 +78,7 @@ async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
             inline_keyboard=[
                 [
                     InlineKeyboardButton(
-                        strings("back_btn", context="general"),
+                        strings("general_back_btn"),
                         callback_data="start_back",
                     )
                 ]

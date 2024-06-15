@@ -1,7 +1,7 @@
 {
   "cmd_ip_description": "Get IP info of a domain or IP address.",
   "ip_err_bogon_ip": "The provided IP address <code>{ip}</code> is a <i>bogon</i> IP address, meaning it's either not in use or is reserved for special use.",
-  "api_err_bogon_ip_inline": "Invalid IP address {ip} (bogon IP address).",
+  "ip_inline_err_bogon_ip": "Invalid IP address {ip} (bogon IP address).",
   "ip_err_no_ip": "You must specify the url, E.g.: <code>/ip example.com</code>",
   "ip_err_no_ips": "No IP addresses found for {domain}.",
   "ip_info_inline": "Click here to see the IP info of {domain}.",

@@ -77,10 +77,10 @@ async def translate(c: Client, m: Message, strings):
         text = m.reply_to_message.text or m.reply_to_message.caption
 
     if not text:
-        await m.reply_text(strings("translate_usage"), reply_to_message_id=m.id)
+        await m.reply_text(strings("tr_usage"), reply_to_message_id=m.id)
         return
 
-    sent = await m.reply_text(strings("translating"), reply_to_message_id=m.id)
+    sent = await m.reply_text(strings("tr_translating"), reply_to_message_id=m.id)
     langs = {}
 
     if len(lang.split("-")) > 1:
@@ -94,7 +94,7 @@ async def translate(c: Client, m: Message, strings):
 
     res = html.escape(text)
     await sent.edit_text(
-        strings("translation").format(
+        strings("tr_translation").format(
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
     )
@@ -109,7 +109,7 @@ async def tr_inline(c: Client, q: InlineQuery, strings):
     translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
     await q.answer([
         InlineQueryResultArticle(
-            title=strings("translate_inline_send").format(
+            title=strings("tr_inline_send").format(
                 srclangformat=source_language, tolangformat=to_language
             ),
             description=f"{translation.text}",

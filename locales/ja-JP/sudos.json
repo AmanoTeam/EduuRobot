@@ -1,4 +1,4 @@
 {
-  "forbidden_command": "禁止されたコマンド",
-  "restarting": "再起動中…"
+  "sudos_forbidden_command": "禁止されたコマンド",
+  "sudos_restarting": "再起動中…"
 }

@@ -1,4 +1,4 @@
 {
-  "forbidden_command": "Zabronione polecenie.",
-  "restarting": "Restartowanie…"
+  "sudos_forbidden_command": "Zabronione polecenie.",
+  "sudos_restarting": "Restartowanie…"
 }

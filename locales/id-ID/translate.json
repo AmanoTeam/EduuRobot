@@ -1,4 +1,4 @@
 {
-  "translating": "Menerjemahkan…",
-  "translation": "<b>Bahasa:</b> {from_lang} -> {to_lang}\n<b>Terjemahan:</b> <code>{translation}</code>"
+  "tr_translating": "Menerjemahkan…",
+  "tr_translation": "<b>Bahasa:</b> {from_lang} -> {to_lang}\n<b>Terjemahan:</b> <code>{translation}</code>"
 }

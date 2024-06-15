@@ -1,4 +1,4 @@
 {
-  "forbidden_command": "禁止的命令。",
-  "restarting": "正在重新啟動…"
+  "sudos_forbidden_command": "禁止的命令。",
+  "sudos_restarting": "正在重新啟動…"
 }

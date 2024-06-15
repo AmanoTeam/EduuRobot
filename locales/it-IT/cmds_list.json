@@ -1,6 +1,6 @@
 {
-  "admin": "👮‍♂️ Amministrazione",
-  "command_category_title": "Comandi nella categoria <b>{category}</b>:",
-  "general": "✨ Generale",
-  "tools": "🔧 Strumenti"
+  "cmds_category_admin": "👮‍♂️ Amministrazione",
+  "cmds_list_category_title": "Comandi nella categoria <b>{category}</b>:",
+  "cmds_category_general": "✨ Generale",
+  "cmds_category_tools": "🔧 Strumenti"
 }

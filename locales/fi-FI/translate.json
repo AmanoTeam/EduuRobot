@@ -1,5 +1,5 @@
 {
-  "translate_usage": "<b>Käyttö:</b> <code>/tr &lt;language&gt; teksti käännökseen</code> (käytä myös vastattaessa viestiin).",
-  "translating": "Käännetään…",
-  "translation": "<b>Kieli:</b> {from_lang} -> {to_lang}\n<b>Käännös:</b> <code>{translation}</code>"
+  "tr_usage": "<b>Käyttö:</b> <code>/tr &lt;language&gt; teksti käännökseen</code> (käytä myös vastattaessa viestiin).",
+  "tr_translating": "Käännetään…",
+  "tr_translation": "<b>Kieli:</b> {from_lang} -> {to_lang}\n<b>Käännös:</b> <code>{translation}</code>"
 }

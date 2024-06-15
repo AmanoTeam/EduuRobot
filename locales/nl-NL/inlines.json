@@ -1,6 +1,6 @@
 {
   "markdown_send_inline": "Klik hier om de tekst met markdown opmaak te verzenden.",
   "html_send_inline": "Klik hier om de tekst met html opmaak te verzenden.",
-  "user_info_inline_cant_found_user": "Gebruiker niet gevonden.",
+  "user_info_inline_couldnt_find_user": "Gebruiker niet gevonden.",
   "user_info_inline_string": "Gebruikersnaam: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nGebruikerslink: {usermentionformat}"
 }

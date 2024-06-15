@@ -1,9 +1,9 @@
 {
-  "commands_btn": "📚 Komennot",
-  "infos_btn": "ℹ️ Tietoja",
-  "language_btn": "🌐 Kieli",
-  "add_chat_btn": "➕ Lisää keskusteluun",
-  "private": "Hei! Olen EduuRobot. Saadaksesi lisätietoa toiminnoistani, klikkaa alla olevia painikkeita.",
+  "start_commands_btn": "📚 Komennot",
+  "start_infos_btn": "ℹ️ Tietoja",
+  "start_language_btn": "🌐 Kieli",
+  "start_add_to_chat_btn": "➕ Lisää keskusteluun",
+  "start_private": "Hei! Olen EduuRobot. Saadaksesi lisätietoa toiminnoistani, klikkaa alla olevia painikkeita.",
   "start_chat": "🤖 Aloita keskustelu",
-  "group": "Hei! Olen EduuRobotti. Voit tutustua toimintoihini ja aloittaa keskustelun kanssani."
+  "start_group": "Hei! Olen EduuRobotti. Voit tutustua toimintoihini ja aloittaa keskustelun kanssani."
 }

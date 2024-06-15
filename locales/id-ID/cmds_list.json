@@ -1,6 +1,6 @@
 {
-  "admin": "👮‍♂️ Administrasi",
-  "command_category_title": "Perintah dalam <b>{category}</b> kategori:",
-  "general": "✨ Umum",
-  "tools": "🔧 Peralatan"
+  "cmds_category_admin": "👮‍♂️ Administrasi",
+  "cmds_list_category_title": "Perintah dalam <b>{category}</b> kategori:",
+  "cmds_category_general": "✨ Umum",
+  "cmds_category_tools": "🔧 Peralatan"
 }

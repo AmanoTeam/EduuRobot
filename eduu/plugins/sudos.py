@@ -47,7 +47,7 @@ async def sudos(c: Client, m: Message):
 async def run_cmd(c: Client, m: Message, strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
-        await m.reply_text(strings("forbidden_command"))
+        await m.reply_text(strings("sudos_forbidden_command"))
         return
 
     stdout, stderr = await shell_exec(cmd)
@@ -71,7 +71,7 @@ async def upgrade(c: Client, m: Message, strings):
     if "Already up to date." in stdout:
         await sm.edit_text("There's nothing to upgrade.")
     else:
-        await sm.edit_text(strings("restarting"))
+        await sm.edit_text(strings("sudos_restarting"))
         await set_restarted(sm.chat.id, sm.id)
         await conn.commit()
         args = [sys.executable, "-m", "eduu"]
@@ -114,10 +114,10 @@ async def execs(c: Client, m: Message):
     await m.reply_text(out)
 
 
-@Client.on_message(filters.command("speedtest", prefix) & sudofilter)
+@Client.on_message(filters.command("sudos_speedtest", prefix) & sudofilter)
 @use_chat_lang
 async def test_speed(c: Client, m: Message, strings):
-    string = strings("speedtest")
+    string = strings("sudos_speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
@@ -169,7 +169,7 @@ async def execsql(c: Client, m: Message):
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
 @use_chat_lang
 async def restart(c: Client, m: Message, strings):
-    sent = await m.reply_text(strings("restarting"))
+    sent = await m.reply_text(strings("sudos_restarting"))
     await set_restarted(sent.chat.id, sent.id)
     await conn.commit()
     args = [sys.executable, "-m", "eduu"]

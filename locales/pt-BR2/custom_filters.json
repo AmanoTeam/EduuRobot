@@ -1,11 +1,11 @@
 {
-  "add_filter_success": "Opa filtro adicionado <b>{trigger}</b>.",
-  "add_filter_empty": "Ow, você fez errado, especifique o conteúdo do filtro.",
+  "filters_add_success": "Opa filtro adicionado <b>{trigger}</b>.",
+  "filters_add_empty": "Ow, você fez errado, especifique o conteúdo do filtro.",
   "cmd_delfilter_description": "Ele remove o filtro desse chat.",
   "cmd_filter_description": "Ele cria um filtro para esse chat.",
   "cmd_filters_description": "Ele mostras todos os filtros atuais desse chat.",
   "filters_list": "Eu analisei o sistema e os filtros são:\n\n",
   "filters_list_empty": "Olha, n tem filtros nesse chat, você terá que criar filtros para usufruir desse comando direito.",
-  "no_filter_with_name": "Ei, não há nenhum filtro com esse nome aí não <b>{trigger}</b>.",
-  "remove_filter_success": "OK, eu removi o <b>{trigger}</b> dos filtros desse chat. VIVA AO GRUPO SEM CENSURA."
+  "filters_no_filter_with_name": "Ei, não há nenhum filtro com esse nome aí não <b>{trigger}</b>.",
+  "filters_remove_success": "OK, eu removi o <b>{trigger}</b> dos filtros desse chat. VIVA AO GRUPO SEM CENSURA."
 }

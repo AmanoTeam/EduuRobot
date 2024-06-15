@@ -1,9 +1,9 @@
 {
-  "commands_btn": "📚 Polecenia",
-  "infos_btn": "ℹ️ O",
-  "language_btn": "🌐 Język",
-  "add_chat_btn": "➕ Dodaj do czatu",
-  "private": "Witaj! Jestem EduuRobot. Aby dowiedzieć się więcej o moich funkcjach, kliknij na przyciski poniżej.",
+  "start_commands_btn": "📚 Polecenia",
+  "start_infos_btn": "ℹ️ O",
+  "start_language_btn": "🌐 Język",
+  "start_add_to_chat_btn": "➕ Dodaj do czatu",
+  "start_private": "Witaj! Jestem EduuRobot. Aby dowiedzieć się więcej o moich funkcjach, kliknij na przyciski poniżej.",
   "start_chat": "🤖 Rozpocznij czat",
-  "group": "Witaj! Jestem EduuRobot. Aby odkryć moje funkcje rozpocznij rozmowę ze mną."
+  "start_group": "Witaj! Jestem EduuRobot. Aby odkryć moje funkcje rozpocznij rozmowę ze mną."
 }

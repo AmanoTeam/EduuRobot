@@ -1,4 +1,4 @@
 {
   "cmd_dice_description": "שולח את הקובייה והמספר.",
-  "result": "🎲 הקוביות נעצרו במספר: {number}"
+  "dice_result": "🎲 הקוביות נעצרו במספר: {number}"
 }

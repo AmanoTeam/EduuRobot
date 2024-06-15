@@ -1,5 +1,5 @@
 {
-  "animated_not_supported": "Stiker animasi tidak didukung.",
-  "sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID Stiker:</b> <code>{id}</code>",
-  "not_sticker": "Itu bukanlah stiker."
+  "getsticker_animated_not_supported": "Stiker animasi tidak didukung.",
+  "getsticker_sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID Stiker:</b> <code>{id}</code>",
+  "getsticker_not_sticker": "Itu bukanlah stiker."
 }

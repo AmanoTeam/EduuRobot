@@ -1,6 +1,6 @@
 {
-  "package_details": "<b>{package_name}</b> von <i>{author_name} {author_email}</i>\nPlattform: <b>{platform}</b>\nVersion: <b>{version}</b>\nLizenz: <b>{license}</b>\nZusammenfassung: <b>{summary}</b>",
-  "package_home_page": "Paket-Startseite",
-  "package_not_found": "Kann <b>{package_name}</b> in PyPI nicht finden (Rückgabewert wurde {http_status}).",
-  "not_specified": "Nicht angegeben"
+  "pypi_package_details": "<b>{package_name}</b> von <i>{author_name} {author_email}</i>\nPlattform: <b>{platform}</b>\nVersion: <b>{version}</b>\nLizenz: <b>{license}</b>\nZusammenfassung: <b>{summary}</b>",
+  "pypi_package_home_page": "Paket-Startseite",
+  "pypi_package_not_found": "Kann <b>{package_name}</b> in PyPI nicht finden (Rückgabewert wurde {http_status}).",
+  "pypi_platform_not_specified": "Nicht angegeben"
 }

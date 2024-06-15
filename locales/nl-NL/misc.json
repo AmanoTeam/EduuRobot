@@ -6,12 +6,12 @@
   "cmd_mark_description": "Maakt de opgegeven tekst op met Markdown syntax.",
   "mark_usage": "<b>Gebruik:</b> <code>/mark **tekst** in __markdown__</code> — Maakt de de opgegeven tekst op met de Markdown syntax.",
   "cmd_token_description": "Krijg informatie over de opgegeven bot token.",
-  "bot_token_invalid": "Ongeldige bot token.",
+  "token_bot_token_invalid": "Ongeldige bot token.",
   "cmd_urldecode_description": "Codeer de opgegeven tekst met URL-veilige codering.",
   "cmd_urlencode_description": "Decodeer de opgegeven tekst vanuit URL-veilige codering.",
   "cmd_parsebutton_description": "Help om knoppen op te maken.",
-  "bug_reported_success_to_bot_admins": "De bug is succesvol gerapporteerd.",
-  "err_cant_send_bug_report_to_bot_admins": "Fout, het bugrapport kon niet worden verstuurd naar de beheerders van de bot.",
-  "donatecmdstring": "Als je het project leuk vindt en wilt dat het gratis en levend blijft, laat dan je waardering zien door op onderstaande link te klikken. Elk bedrag wordt gewaardeerd. Bedankt!\n\nhttps://amanoteam.com/donate",
-  "report_admns": "{admins_list}{reported_user} Gerapporteerd aan de beheerders."
+  "bug_report_success": "De bug is succesvol gerapporteerd.",
+  "bug_report_failed": "Fout, het bugrapport kon niet worden verstuurd naar de beheerders van de bot.",
+  "donate_info": "Als je het project leuk vindt en wilt dat het gratis en levend blijft, laat dan je waardering zien door op onderstaande link te klikken. Elk bedrag wordt gewaardeerd. Bedankt!\n\nhttps://amanoteam.com/donate",
+  "report_admins": "{admins_list}{reported_user} Gerapporteerd aan de beheerders."
 }

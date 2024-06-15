@@ -6,12 +6,12 @@
   "cmd_mark_description": "מציג את הטקסט בפורמט Markdown.",
   "mark_usage": "<b>שימוש:</b> <code>/mark **טקסט** in __markdown__</code> — מחזיר את הטקסט בפורמט Markdown.",
   "cmd_token_description": "קבל פרטים מהטוקן שצויין.",
-  "bot_token_invalid": "טוקן לא חוקי",
+  "token_bot_token_invalid": "טוקן לא חוקי",
   "cmd_urldecode_description": "מקודד את הטקסט.",
   "cmd_urlencode_description": "מחזיר את הטקסט לטקסט לא מקודד.",
   "cmd_parsebutton_description": "עוזר לך לעצב כפתור.",
-  "bug_reported_success_to_bot_admins": "התקלה דווחה בהצלחה",
-  "err_cant_send_bug_report_to_bot_admins": "שגיאה, אני לא יכול לדווח על התקלה למנהלים של הבוט",
-  "donatecmdstring": "אם אתה אוהב את הפרויקט ורוצה שהוא ימשיך לפעול ובחינם, אתה יכול לתמוך בזה על ידי תרומה על ידי לחיצה על הקישור למטה. כל סכום מוערך. תודה!\n\nhttps://amanoteam.com/donate",
-  "report_admns": "{admins_list}{reported_user} דווח למנהלים."
+  "bug_report_success": "התקלה דווחה בהצלחה",
+  "bug_report_failed": "שגיאה, אני לא יכול לדווח על התקלה למנהלים של הבוט",
+  "donate_info": "אם אתה אוהב את הפרויקט ורוצה שהוא ימשיך לפעול ובחינם, אתה יכול לתמוך בזה על ידי תרומה על ידי לחיצה על הקישור למטה. כל סכום מוערך. תודה!\n\nhttps://amanoteam.com/donate",
+  "report_admins": "{admins_list}{reported_user} דווח למנהלים."
 }

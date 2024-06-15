@@ -16,9 +16,9 @@ async def cat(c: Client, m: Message, strings):
     rj = r.json()
 
     if rj[0]["url"].endswith(".gif"):
-        await m.reply_animation(rj[0]["url"], caption=strings("meow"))
+        await m.reply_animation(rj[0]["url"], caption=strings("cat_meow"))
     else:
-        await m.reply_photo(rj[0]["url"], caption=strings("meow"))
+        await m.reply_photo(rj[0]["url"], caption=strings("cat_meow"))
 
 
 commands.add_command("cat", "general")

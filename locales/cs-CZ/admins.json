@@ -1,8 +1,8 @@
 {
-  "error_must_specify_time": "Musíte zadat čas po příkazu. Např.: <code>/{command} 7d</code>.",
-  "no_admin_error": "Pro použití tohoto příkazu musíte být správcem.",
-  "no_permission_error": "Je mi líto, ale nemáte dostatečná oprávnění k provedení tohoto příkazu. Chybějící oprávnění: {permissions}",
-  "private_not_allowed": "Tento příkaz nelze použít v soukromém chatu. Pokud potřebujete pomoc, použijte příkaz <code>/help</code>.",
+  "admins_error_must_specify_time": "Musíte zadat čas po příkazu. Např.: <code>/{command} 7d</code>.",
+  "admins_no_admin_error": "Pro použití tohoto příkazu musíte být správcem.",
+  "admins_no_permission_error": "Je mi líto, ale nemáte dostatečná oprávnění k provedení tohoto příkazu. Chybějící oprávnění: {permissions}",
+  "cmd_private_not_allowed": "Tento příkaz nelze použít v soukromém chatu. Pokud potřebujete pomoc, použijte příkaz <code>/help</code>.",
   "purge_in_progress": "Mazání zpráv…",
   "purge_success": "Smazáno <b>{count}</b> zpráv."
 }

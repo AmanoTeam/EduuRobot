@@ -1,6 +1,6 @@
 {
-  "package_details": "<b>{package_name}</b> door <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersie: <b>{version}</b>\nLicentie: <b>{license}</b>\nSummary: <b>{summary}</b>",
-  "package_home_page": "Startpagina van het pakket",
-  "package_not_found": "Kan <b>{package_name}</b> niet vinden in PyPI (Geretourneerde code was {http_status}).",
-  "not_specified": "Niet gespecificeerd"
+  "pypi_package_details": "<b>{package_name}</b> door <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersie: <b>{version}</b>\nLicentie: <b>{license}</b>\nSummary: <b>{summary}</b>",
+  "pypi_package_home_page": "Startpagina van het pakket",
+  "pypi_package_not_found": "Kan <b>{package_name}</b> niet vinden in PyPI (Geretourneerde code was {http_status}).",
+  "pypi_platform_not_specified": "Niet gespecificeerd"
 }

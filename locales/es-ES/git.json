@@ -1,6 +1,6 @@
 {
   "cmd_git_description": "Obtiene información de un perfil de GitHub.",
-  "info_git_user": "<b>Nombre</b>: <code>{name}</code>\n<b>Nombre de usuario</b>: <code>{username}</code>\n<b>Ubicación</b>: <code>{location}</code>\n<b>Tipo</b>: <code>{type}</code>\n<b>Bio</b>: <code>{bio}</code>",
-  "not_found_user": "Usuario no encontrado.",
-  "no_username_err": "Por favor especifique un nombre de usuario."
+  "git_user_info": "<b>Nombre</b>: <code>{name}</code>\n<b>Nombre de usuario</b>: <code>{username}</code>\n<b>Ubicación</b>: <code>{location}</code>\n<b>Tipo</b>: <code>{type}</code>\n<b>Bio</b>: <code>{bio}</code>",
+  "git_user_not_found": "Usuario no encontrado.",
+  "git_no_username": "Por favor especifique un nombre de usuario."
 }

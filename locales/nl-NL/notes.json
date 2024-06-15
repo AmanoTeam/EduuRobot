@@ -1,9 +1,9 @@
 {
-  "add_note_success": "Notitie <b>{trigger}</b> toegevoegd.",
-  "add_note_empty": "Geef een inhoud op voor de notitie.",
+  "notes_add_success": "Notitie <b>{trigger}</b> toegevoegd.",
+  "notes_add_empty": "Geef een inhoud op voor de notitie.",
   "cmd_delnote_description": "Verwijder een notitie uit deze chat.",
   "cmd_note_description": "Maak een notitie aan voor deze chat.",
   "notes_list": "Notities in deze chat:\n\n",
   "notes_list_empty": "Er zijn momenteel geen notities in deze chat.",
-  "remove_note_success": "<b>{trigger}</b> verwijderd uit de notities."
+  "notes_remove_success": "<b>{trigger}</b> verwijderd uit de notities."
 }

@@ -1,11 +1,11 @@
 {
-  "add_filter_success": "Добавлен фильтр <b>{trigger}</b>.",
-  "add_filter_empty": "Укажите содержимое для фильтра.",
+  "filters_add_success": "Добавлен фильтр <b>{trigger}</b>.",
+  "filters_add_empty": "Укажите содержимое для фильтра.",
   "cmd_delfilter_description": "Удалить фильтр из этого чата.",
   "cmd_filter_description": "Создать фильтр в этом чате.",
   "cmd_filters_description": "Показать текущие фильтры в этом чате.",
   "filters_list": "Список фильтров в чате:",
   "filters_list_empty": "В настоящее время в этом чате нет фильтров.",
-  "no_filter_with_name": "Фильтр с именем <b>{trigger}</b> не найден.",
-  "remove_filter_success": "Фильтр <b>{trigger}</b> был удален."
+  "filters_no_filter_with_name": "Фильтр с именем <b>{trigger}</b> не найден.",
+  "filters_remove_success": "Фильтр <b>{trigger}</b> был удален."
 }

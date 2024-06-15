@@ -8,5 +8,5 @@
   "info_userlink": "\nEnlace de usuario: {link}",
   "info_chat_admin": "\nEste usuario tiene '<b>derechos de administrador</b>' en este chat.",
   "info_chat_owner": "\nEste usuario es el '<b>propietario</b>' de este chat.",
-  "user_not_found": "\nNo se ha encontrado ningún usuario para '<code>{user}</code>'."
+  "info_user_not_found": "\nNo se ha encontrado ningún usuario para '<code>{user}</code>'."
 }

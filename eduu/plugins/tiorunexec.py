@@ -31,7 +31,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
     execlanguage = m.command[1]
     if execlanguage not in langslist:
         await m.reply_text(
-            strings("code_exec_err_string").format(
+            strings("run_err_string").format(
                 langformat=execlanguage, langslistlink=langs_list_link
             )
         )
@@ -47,7 +47,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 
     if sendtioreq.error is None:
         await m.reply_text(
-            strings("code_exec_tio_res_string_no_err").format(
+            strings("run_tio_res_string_no_err").format(
                 langformat=execlanguage,
                 codeformat=html.escape(codetoexec),
                 resformat=html.escape(tiores),
@@ -57,7 +57,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
         return
 
     await m.reply_text(
-        strings("code_exec_tio_res_string_err").format(
+        strings("run_tio_res_string_err").format(
             langformat=execlanguage,
             codeformat=html.escape(codetoexec),
             resformat=html.escape(tiores),
@@ -73,9 +73,9 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     if execlanguage not in langslist:
         await q.answer([
             InlineQueryResultArticle(
-                title=strings("code_exec_err_inline_send_string").format(langformat=execlanguage),
+                title=strings("run_err_inline_send_string").format(langformat=execlanguage),
                 input_message_content=InputTextMessageContent(
-                    strings("code_exec_err_string").format(
+                    strings("run_err_string").format(
                         langformat=execlanguage, langslistlink=langs_list_link
                     )
                 ),
@@ -95,10 +95,10 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=strings("code_exec_inline_send").format(langformat=execlanguage),
+                    title=strings("run_inline_send").format(langformat=execlanguage),
                     description=tiores,
                     input_message_content=InputTextMessageContent(
-                        strings("code_exec_tio_res_string_no_err").format(
+                        strings("run_tio_res_string_no_err").format(
                             langformat=execlanguage,
                             codeformat=html.escape(codetoexec),
                             resformat=html.escape(tiores),
@@ -114,10 +114,10 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     await q.answer(
         [
             InlineQueryResultArticle(
-                title=strings("code_exec_inline_send").format(langformat=execlanguage),
+                title=strings("run_inline_send").format(langformat=execlanguage),
                 description=tiores,
                 input_message_content=InputTextMessageContent(
-                    strings("code_exec_tio_res_string_err").format(
+                    strings("run_tio_res_string_err").format(
                         langformat=execlanguage,
                         codeformat=html.escape(codetoexec),
                         resformat=html.escape(tiores),

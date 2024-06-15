@@ -7,5 +7,5 @@
   "info_userlink": "\nקישור למשתמש: {link}",
   "info_chat_admin": "\nלמשתמש הזה יש '<b>הרשאות ניהול</b>' בצ'אט הזה.",
   "info_chat_owner": "\nהמשתמש הזה הוא '<b>היוצר</b>' של הצ'אט הזה.",
-  "user_not_found": "\nלא נמצא משתמש המתאים ל '<code>{user}</code>'."
+  "info_user_not_found": "\nלא נמצא משתמש המתאים ל '<code>{user}</code>'."
 }

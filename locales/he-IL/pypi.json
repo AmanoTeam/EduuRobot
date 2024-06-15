@@ -1,6 +1,6 @@
 {
-  "package_details": "<b>{package_name}</b> נוצר על ידי <i>{author_name} {author_email}</i>\nפלטפורמה: <b>{platform}</b>\nגרסה: <b>{version}</b>\nרישיון: <b>{license}</b>\nתקציר: <b>{summary}</b>",
-  "package_home_page": "עמוד הבית של הסיפרייה",
-  "package_not_found": "לא נמצאה הסיפרייה <b>{package_name}</b> ב PyPI (החזיר קוד שגיאה {http_status}).",
-  "not_specified": "לא מוגדר"
+  "pypi_package_details": "<b>{package_name}</b> נוצר על ידי <i>{author_name} {author_email}</i>\nפלטפורמה: <b>{platform}</b>\nגרסה: <b>{version}</b>\nרישיון: <b>{license}</b>\nתקציר: <b>{summary}</b>",
+  "pypi_package_home_page": "עמוד הבית של הסיפרייה",
+  "pypi_package_not_found": "לא נמצאה הסיפרייה <b>{package_name}</b> ב PyPI (החזיר קוד שגיאה {http_status}).",
+  "pypi_platform_not_specified": "לא מוגדר"
 }

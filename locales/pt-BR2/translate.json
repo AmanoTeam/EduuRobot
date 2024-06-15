@@ -1,7 +1,7 @@
 {
   "cmd_tr_description": "Traduz o texto pra qualquer língua que tu quiser (se não escolher, vai na língua padrão do chat).",
-  "translate_usage": "<b>Ow vc usa assim:</b> <del>/tr &lt;indioma&gt; e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara</del> aprende o indioma.",
-  "translating": "Traduzindo pra caramba…",
-  "translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>",
-  "translate_inline_send": "Traduzir de {srclangformat} para {tolangformat}"
+  "tr_usage": "<b>Ow vc usa assim:</b> <del>/tr &lt;indioma&gt; e logó apoiz u teixto tanto ixcritu tantu resposdendo a um cara</del> aprende o indioma.",
+  "tr_translating": "Traduzindo pra caramba…",
+  "tr_translation": "<b>Indioma natal:</b> {from_lang}, <b>Indioma a ser aprendido:</b> {to_lang}\n<b>Não leia:</b> <code>{translation}</code>",
+  "tr_inline_send": "Traduzir de {srclangformat} para {tolangformat}"
 }

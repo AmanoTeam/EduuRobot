@@ -1,7 +1,7 @@
 {
-  "info_private": "<b>Information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Benutzername:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Rechenzentrum:</b> <code>{user_dc}</code>\n<b>Sprachen:</b> <code>{lang}</code>\n<b>Chattyp:</b> <code>{chat_type}</code>",
-  "info_group": "<b>Benutzerinformation:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Benutzername:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Rechenzentrum:</b> <code>{user_dc}</code>\n<b>Sprache:</b> <code>{lang}</code>\n\n<b>Chatinformation:</b>\n<b>Chatname:</b> <code>{chat_title}</code>\n<b>Chat-Benutzername:</b> {chat_username}\n<b>Chat-ID:</b> <code>{chat_id}</code>\n<b>Chat-Rechenzentrum:</b> <code>{chat_dc}</code>\n<b>Chattyp:</b> <code>{chat_type}</code>\n<b>Nachrichten:</b> <code>{message_id}</code>",
-  "none": "Keine",
-  "unknown": "Unbekannt",
-  "user_not_found": "Es wurde kein Benutzer für '<code>{user}</code>' gefunden."
+  "id_info_private": "<b>Information:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Benutzername:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Rechenzentrum:</b> <code>{user_dc}</code>\n<b>Sprachen:</b> <code>{lang}</code>\n<b>Chattyp:</b> <code>{chat_type}</code>",
+  "id_info_group": "<b>Benutzerinformation:</b>\n<b>Name:</b> <code>{first_name} {last_name}</code>\n<b>Benutzername:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Rechenzentrum:</b> <code>{user_dc}</code>\n<b>Sprache:</b> <code>{lang}</code>\n\n<b>Chatinformation:</b>\n<b>Chatname:</b> <code>{chat_title}</code>\n<b>Chat-Benutzername:</b> {chat_username}\n<b>Chat-ID:</b> <code>{chat_id}</code>\n<b>Chat-Rechenzentrum:</b> <code>{chat_dc}</code>\n<b>Chattyp:</b> <code>{chat_type}</code>\n<b>Nachrichten:</b> <code>{message_id}</code>",
+  "id_none": "Keine",
+  "id_unknown": "Unbekannt",
+  "id_user_not_found": "Es wurde kein Benutzer für '<code>{user}</code>' gefunden."
 }

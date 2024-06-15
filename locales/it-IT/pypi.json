@@ -1,6 +1,6 @@
 {
-  "package_details": "<b>{package_name}</b> di <i>{author_name} {author_email}</i>\nPiattaforma: <b>{platform}</b>\nVersione: <b>{version}</b>\nLicenza: <b>{license}</b>\nRiepilogo: <b>{summary}</b>",
-  "package_home_page": "Pagina iniziale del pacchetto",
-  "package_not_found": "Impossibile trovare <b>{package_name}</b> in PyPI (Il codice restituito è {http_status}).",
-  "not_specified": "Non specificato"
+  "pypi_package_details": "<b>{package_name}</b> di <i>{author_name} {author_email}</i>\nPiattaforma: <b>{platform}</b>\nVersione: <b>{version}</b>\nLicenza: <b>{license}</b>\nRiepilogo: <b>{summary}</b>",
+  "pypi_package_home_page": "Pagina iniziale del pacchetto",
+  "pypi_package_not_found": "Impossibile trovare <b>{package_name}</b> in PyPI (Il codice restituito è {http_status}).",
+  "pypi_platform_not_specified": "Non specificato"
 }

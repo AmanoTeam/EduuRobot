@@ -1,6 +1,6 @@
 {
-  "admin": "بەڕێوەبردن 👮‍♂️",
-  "command_category_title": "فەرمانەکانی بەشی <b>{category}</b>:",
-  "general": "✨ گشتی",
-  "tools": "🔧 کەرەستەکان"
+  "cmds_category_admin": "بەڕێوەبردن 👮‍♂️",
+  "cmds_list_category_title": "فەرمانەکانی بەشی <b>{category}</b>:",
+  "cmds_category_general": "✨ گشتی",
+  "cmds_category_tools": "🔧 کەرەستەکان"
 }

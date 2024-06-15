@@ -1,7 +1,7 @@
 {
-  "code_exec_tio_res_string_no_err": "<b>Sprache:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Ergebnisse:</b>\n<code>{resformat}</code>\n\n<b>Statistiken:</b><code>{statsformat}</code>",
-  "code_exec_tio_res_string_err": "<b>Sprache:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Ergebnisse:</b>\n<code>{resformat}</code>\n\n<b>Fehler:</b>\n<code>{errformat}</code>",
-  "code_exec_err_string": "Fehler: Die Sprache <b>{langformat}</b> wurde nicht gefunden. Liste der unterstützten Sprachen: {langslistlink}",
-  "code_exec_inline_send": "Sprache: {langformat}",
-  "code_exec_err_inline_send_string": "Sprache {langformat} nicht gefunden."
+  "run_tio_res_string_no_err": "<b>Sprache:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Ergebnisse:</b>\n<code>{resformat}</code>\n\n<b>Statistiken:</b><code>{statsformat}</code>",
+  "run_tio_res_string_err": "<b>Sprache:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Ergebnisse:</b>\n<code>{resformat}</code>\n\n<b>Fehler:</b>\n<code>{errformat}</code>",
+  "run_err_string": "Fehler: Die Sprache <b>{langformat}</b> wurde nicht gefunden. Liste der unterstützten Sprachen: {langslistlink}",
+  "run_inline_send": "Sprache: {langformat}",
+  "run_err_inline_send_string": "Sprache {langformat} nicht gefunden."
 }

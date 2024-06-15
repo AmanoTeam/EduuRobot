@@ -1,7 +1,7 @@
 {
   "cmd_resetwarns_description": "Сбрасывает предупреждения пользователя.",
   "cmd_setwarnslimit_description": "Устанавливает лимит предупреждений в чате.",
-  "user_warned": "Пользователь {target_user} имеет {warn_count} из {warn_limit} предупреждений.",
+  "warn_warned": "Пользователь {target_user} имеет {warn_count} из {warn_limit} предупреждений.",
   "warn_banned": "Забанен пользователь {target_user} потому что он был предупреждён {warn_count} раз.",
   "warn_kicked": "Пользователь {target_user} был кикнут, потому что он был предупрежден {warn_count} раз.",
   "warn_muted": "Пользователь {target_user} был заглушен, потому что он был предупреждён {warn_count} раз.",

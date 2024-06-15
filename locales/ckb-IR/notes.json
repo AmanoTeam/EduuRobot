@@ -1,9 +1,9 @@
 {
-  "add_note_success": "تێبینیی <b>{trigger}</b> زیادکرا.",
-  "add_note_empty": "تکایە ناوەڕۆکێک بۆ تێبینییەکە دەستنیشان بکە.",
+  "notes_add_success": "تێبینیی <b>{trigger}</b> زیادکرا.",
+  "notes_add_empty": "تکایە ناوەڕۆکێک بۆ تێبینییەکە دەستنیشان بکە.",
   "cmd_delnote_description": "تێبینییەک لەم گروپە لاببە.",
   "cmd_note_description": "تێبینییەک لەم گروپە زیادبکە.",
   "notes_list": "تێبینییەکان لەم گروپە:\n\n",
   "notes_list_empty": "لە ئێستادا هیچ تێبینییەک لەم گروپەدا نییە.",
-  "remove_note_success": "تێبینیی <b>{trigger}</b> لابرا."
+  "notes_remove_success": "تێبینیی <b>{trigger}</b> لابرا."
 }

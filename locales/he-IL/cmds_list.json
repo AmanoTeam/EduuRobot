@@ -1,6 +1,6 @@
 {
-  "admin": "👮‍♂️ ניהול",
-  "command_category_title": "פקודות בקטגוריה <b>{category}</b>:",
-  "general": "✨ כללי",
-  "tools": "🔧 כלים"
+  "cmds_category_admin": "👮‍♂️ ניהול",
+  "cmds_list_category_title": "פקודות בקטגוריה <b>{category}</b>:",
+  "cmds_category_general": "✨ כללי",
+  "cmds_category_tools": "🔧 כלים"
 }

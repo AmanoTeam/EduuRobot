@@ -1,10 +1,10 @@
 {
-  "commands_btn": "📚 Commandes",
-  "infos_btn": "ℹ️ À propos",
-  "language_btn": "🌐 Langue",
-  "add_chat_btn": "➕ Ajouter à un chat",
-  "private": "Bonjour! Je suis EduuRobot. Pour en savoir plus sur mes fonctions, cliquez sur les boutons ci-dessous.",
+  "start_commands_btn": "📚 Commandes",
+  "start_infos_btn": "ℹ️ À propos",
+  "start_language_btn": "🌐 Langue",
+  "start_add_to_chat_btn": "➕ Ajouter à un chat",
+  "start_private": "Bonjour! Je suis EduuRobot. Pour en savoir plus sur mes fonctions, cliquez sur les boutons ci-dessous.",
   "start_chat": "🤖 Démarrer un chat",
-  "group": "Bonjour! Je suis EduuRobot. Pour découvrir mes fonctions, commencez une conversation avec moi.",
+  "start_group": "Bonjour! Je suis EduuRobot. Pour découvrir mes fonctions, commencez une conversation avec moi.",
   "cmd_start_description": "Démarrer le bot."
 }

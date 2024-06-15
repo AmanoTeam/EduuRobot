@@ -1,6 +1,6 @@
 {
   "cmd_git_description": "從 GitHub 個人資料中獲取信息。",
-  "info_git_user": "<b>名稱</b>：<code>{name}</code>\n<b>用戶名</b>：<code>{username}</code>\n<b>位置</b>：<code>{location}</code>\n<b>類型</b>：<code>{type}</code>\n<b>簡歷</b>：<code>{bio}</code>",
-  "not_found_user": "未找到用戶。",
-  "no_username_err": "請指定用戶名。"
+  "git_user_info": "<b>名稱</b>：<code>{name}</code>\n<b>用戶名</b>：<code>{username}</code>\n<b>位置</b>：<code>{location}</code>\n<b>類型</b>：<code>{type}</code>\n<b>簡歷</b>：<code>{bio}</code>",
+  "git_user_not_found": "未找到用戶。",
+  "git_no_username": "請指定用戶名。"
 }

@@ -1,4 +1,4 @@
 {
-  "no_results": "No command named '{query}'.",
-  "run_command_button": "🔨 Run '{query}'"
+  "inline_cmds_no_results": "No command named '{query}'.",
+  "inline_cmds_run_command_button": "🔨 Run '{query}'"
 }

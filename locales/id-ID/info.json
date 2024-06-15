@@ -7,5 +7,5 @@
   "info_userlink": "\nTautan pengguna: {link}",
   "info_chat_admin": "\nPengguna ini memiliki '<b>hak admin</b>' dalam obrolan ini.",
   "info_chat_owner": "\nPengguna ini merupakan '<b>pemilik</b>' dari obrolan ini.",
-  "user_not_found": "\nTidak ada pengguna yang ditemukan untuk '<code>{user}</code>'."
+  "info_user_not_found": "\nTidak ada pengguna yang ditemukan untuk '<code>{user}</code>'."
 }

@@ -32,11 +32,11 @@ async def reddit(c: Client, m: Message, strings):
     r = await http.get(f"https://www.reddit.com/r/{subreddit}/.json?limit=6")
 
     if r.status_code in {404, 403}:
-        await m.reply_text(strings("not_found"))
+        await m.reply_text(strings("reddit_not_found"))
         return
 
     if r.status_code >= 300:
-        await m.reply_text(strings("error"))
+        await m.reply_text(strings("reddit_error"))
         return
 
     data = r.json()
@@ -46,13 +46,13 @@ async def reddit(c: Client, m: Message, strings):
         post_url = post["data"]["url"]
         post_title = escape(limit_length(post["data"]["title"]))
         nsfw = "NSFW" if post["data"]["over_18"] else "SFW"
-        comments = strings("comments").format(post["data"]["num_comments"])
+        comments = strings("reddit_comments").format(post["data"]["num_comments"])
 
         post_item = f" - <a href='{post_url}'>{post_title}</a> &lt;{nsfw}&gt; - <a href='{post_url}'>{comments}</a>"
         feed_items.append(post_item)
 
     if not feed_items:
-        await m.reply_text(strings("no_results"))
+        await m.reply_text(strings("reddit_no_results"))
         return
 
     feed = "\n".join(feed_items)

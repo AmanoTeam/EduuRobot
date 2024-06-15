@@ -65,7 +65,7 @@ async def warn_user(c: Client, m: Message, strings):
         warn_text = warn_string.format(target_user=target_user.mention, warn_count=user_warns)
         await reset_warns(m.chat.id, target_user.id)
     else:
-        warn_text = strings("user_warned").format(
+        warn_text = strings("warn_warned").format(
             target_user=target_user.mention,
             warn_count=user_warns,
             warn_limit=warns_limit,

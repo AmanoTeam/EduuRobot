@@ -1,8 +1,8 @@
 {
-  "admin": "👮‍♂️ Administración",
-  "command_category_title": "Comandos en la categoría <b>{category}</b>:",
-  "general": "✨ General",
-  "select_command_category": "Por favor seleccione una categoría para ver los comandos disponibles.",
-  "tools": "🔧 Herramientas",
-  "group_help": "Por favor use el comando en un chat privado o haga clic en el botón de abajo para ver los comandos disponibles."
+  "cmds_category_admin": "👮‍♂️ Administración",
+  "cmds_list_category_title": "Comandos en la categoría <b>{category}</b>:",
+  "cmds_category_general": "✨ General",
+  "cmds_list_select_category": "Por favor seleccione una categoría para ver los comandos disponibles.",
+  "cmds_category_tools": "🔧 Herramientas",
+  "cmds_list_group_help": "Por favor use el comando en un chat privado o haga clic en el botón de abajo para ver los comandos disponibles."
 }

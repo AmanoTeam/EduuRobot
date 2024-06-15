@@ -1,4 +1,4 @@
 {
   "cmd_dice_description": "Sends a dice and its number.",
-  "result": "🎲 The dice stopped at the number: {number}"
+  "dice_result": "🎲 The dice stopped at the number: {number}"
 }

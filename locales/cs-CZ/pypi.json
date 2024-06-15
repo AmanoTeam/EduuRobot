@@ -1,6 +1,6 @@
 {
-  "package_details": "<b>{package_name}</b> od <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVerze: <b>{version}</b>\nLicence: <b>{license}</b>\nShrnutí: <b>{summary}</b>",
-  "package_home_page": "Domovská stránka balíčku",
-  "package_not_found": "V PyPI nelze najít <b>{package_name}</b> (eturned kód byl {http_status}).",
-  "not_specified": "Neuvedeno"
+  "pypi_package_details": "<b>{package_name}</b> od <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVerze: <b>{version}</b>\nLicence: <b>{license}</b>\nShrnutí: <b>{summary}</b>",
+  "pypi_package_home_page": "Domovská stránka balíčku",
+  "pypi_package_not_found": "V PyPI nelze najít <b>{package_name}</b> (eturned kód byl {http_status}).",
+  "pypi_platform_not_specified": "Neuvedeno"
 }

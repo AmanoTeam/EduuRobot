@@ -1,7 +1,7 @@
 {
   "cmd_resetwarns_description": "Resets user warnings.",
   "cmd_setwarnslimit_description": "Sets the chat warnings limit.",
-  "user_warned": "The user {target_user} has {warn_count} out of {warn_limit} warnings.",
+  "warn_warned": "The user {target_user} has {warn_count} out of {warn_limit} warnings.",
   "warn_banned": "The user {target_user} has been banned because they have been warned {warn_count} times.",
   "warn_kicked": "The user {target_user} has been kicked because they have been warned {warn_count} times.",
   "warn_muted": "The user {target_user} has been muted because they have been warned {warn_count} times.",

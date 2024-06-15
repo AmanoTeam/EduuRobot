@@ -6,12 +6,12 @@
   "cmd_mark_description": "Formatiert den angegebenen Text mit der Markdown-Syntax.",
   "mark_usage": "<b>Verwendung:</b> <code>/mark **text** in __markdown__</code> — Formatiert den angegebenen Text mit der Markdown-Syntax.",
   "cmd_token_description": "Informationen aus dem angegebenen Bot-Token abrufen.",
-  "bot_token_invalid": "Ungültiges Bot-Token.",
+  "token_bot_token_invalid": "Ungültiges Bot-Token.",
   "cmd_urldecode_description": "Den angegebenen Text mit URL-Kodierung kodieren.",
   "cmd_urlencode_description": "Den angegebenen Text mit URL-Kodierung dekodieren.",
   "cmd_parsebutton_description": "Hilfe beim Parsen des Buttons.",
-  "bug_reported_success_to_bot_admins": "Der Bug wurde erfolgreich gemeldet.",
-  "err_cant_send_bug_report_to_bot_admins": "Fehler. Der Fehlerbericht konnte nicht an die Admins des Bots gesendet werden.",
-  "donatecmdstring": "Wenn du das Projekt magst und möchtest, dass es weiterhin kostenlos und am Leben bleibt, dann zeige deine Unterstützung durch eine Spende, indem du auf den untenstehenden Link klickst. Jeder Wert wird geschätzt. Danke!\n\nhttps://amanoteam.com/donate",
-  "report_admns": "{admins_list}{reported_user} Bei den Admins gemeldet."
+  "bug_report_success": "Der Bug wurde erfolgreich gemeldet.",
+  "bug_report_failed": "Fehler. Der Fehlerbericht konnte nicht an die Admins des Bots gesendet werden.",
+  "donate_info": "Wenn du das Projekt magst und möchtest, dass es weiterhin kostenlos und am Leben bleibt, dann zeige deine Unterstützung durch eine Spende, indem du auf den untenstehenden Link klickst. Jeder Wert wird geschätzt. Danke!\n\nhttps://amanoteam.com/donate",
+  "report_admins": "{admins_list}{reported_user} Bei den Admins gemeldet."
 }

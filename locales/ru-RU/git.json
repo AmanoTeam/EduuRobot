@@ -1,6 +1,6 @@
 {
   "cmd_git_description": "Получить информацию из профиля GitHub.",
-  "info_git_user": "<b>Имя</b>: <code>{name}</code>\n<b>Имя пользователя</b>: <code>{username}</code>\n<b>Местоположение</b>: <code>{location}</code>\n<b>Тип</b>: <code>{type}</code>\n<b>Биография</b>: <code>{bio}</code>",
-  "not_found_user": "Пользователь не найден.",
-  "no_username_err": "Пожалуйста укажите имя пользователя."
+  "git_user_info": "<b>Имя</b>: <code>{name}</code>\n<b>Имя пользователя</b>: <code>{username}</code>\n<b>Местоположение</b>: <code>{location}</code>\n<b>Тип</b>: <code>{type}</code>\n<b>Биография</b>: <code>{bio}</code>",
+  "git_user_not_found": "Пользователь не найден.",
+  "git_no_username": "Пожалуйста укажите имя пользователя."
 }

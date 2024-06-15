@@ -1,4 +1,4 @@
 {
   "cmd_dice_description": "Invia un dado e il suo numero.",
-  "result": "🎲 Il dado si è fermato sul numero: {number}"
+  "dice_result": "🎲 Il dado si è fermato sul numero: {number}"
 }

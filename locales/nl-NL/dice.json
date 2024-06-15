@@ -1,4 +1,4 @@
 {
   "cmd_dice_description": "Stuurt een dobbelsteen en zijn getal.",
-  "result": "🎲 De dobbelsteen is gestopt op het getal: {number}"
+  "dice_result": "🎲 De dobbelsteen is gestopt op het getal: {number}"
 }

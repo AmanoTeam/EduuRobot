@@ -54,7 +54,7 @@ async def prints(c: Client, m: Message, strings):
             await m.reply_text(strings("print_usage"))
             return
 
-    sent = await m.reply_text(strings("taking_screenshot"))
+    sent = await m.reply_text(strings("print_taking_screenshot"))
 
     try:
         response = await screenshot_page(target_url)

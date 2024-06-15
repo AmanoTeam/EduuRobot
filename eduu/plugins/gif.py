@@ -32,7 +32,7 @@ async def gif(c: Client, m: Message, strings):
     )
     rjson = r.json()
     if not rjson["results"]:
-        await m.reply_text(strings("no_results", context="general"))
+        await m.reply_text(strings("general_no_results"))
         return
 
     res = rjson["results"][0]["media"][0]["mediumgif"]["url"]

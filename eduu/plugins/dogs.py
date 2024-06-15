@@ -15,7 +15,7 @@ async def dog(c: Client, m: Message, strings):
     r = await http.get("https://random.dog/woof.json")
     rj = r.json()
 
-    await m.reply_photo(rj["url"], caption=strings("woof"))
+    await m.reply_photo(rj["url"], caption=strings("dog_woof"))
 
 
 commands.add_command("dog", "general")

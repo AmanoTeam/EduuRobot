@@ -156,7 +156,7 @@ async def ip_inline(c: Client, q: InlineQuery, strings):
 
         articles = [
             InlineQueryResultArticle(
-                title=strings("api_err_bogon_ip_inline").format(ip=ips[0])
+                title=strings("ip_inline_err_bogon_ip").format(ip=ips[0])
                 if api_return.get("bogon")
                 else strings("ip_info_inline").format(domain=text),
                 input_message_content=InputTextMessageContent(

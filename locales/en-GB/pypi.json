@@ -1,8 +1,8 @@
 {
-  "package_details": "<b>{package_name}</b> by <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersion: <b>{version}</b>\nLicense: <b>{license}</b>\nSummary: <b>{summary}</b>",
-  "package_home_page": "Package home page",
-  "package_not_found": "Can't find <b>{package_name}</b> in PyPI (Returned code was {http_status}).",
-  "not_specified": "Not specified",
+  "pypi_package_details": "<b>{package_name}</b> by <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersion: <b>{version}</b>\nLicense: <b>{license}</b>\nSummary: <b>{summary}</b>",
+  "pypi_package_home_page": "Package home page",
+  "pypi_package_not_found": "Can't find <b>{package_name}</b> in PyPI (Returned code was {http_status}).",
+  "pypi_platform_not_specified": "Not specified",
   "cmd_pypi_description": "Searches for a package in the Python Package Index (PyPI).",
   "pypi_usage": "<b>Usage:</b> <code>/pypi package_name</code> — Searches for a package in the Python Package Index (PyPI)."
 }

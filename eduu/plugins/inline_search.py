@@ -24,9 +24,9 @@ async def inline_search(c: Client, q: InlineQuery, strings):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=strings("no_results").format(query=command),
+                    title=strings("inline_cmds_no_results").format(query=command),
                     input_message_content=InputTextMessageContent(
-                        strings("no_results").format(query=command)
+                        strings("inline_cmds_no_results").format(query=command)
                     ),
                 )
             ],
@@ -41,14 +41,16 @@ async def inline_search(c: Client, q: InlineQuery, strings):
             InlineQueryResultArticle(
                 id=uuid4(),
                 title=result["command"],
-                description=strings(result["description_key"], context=result["context"]),
+                description=strings(result["description_key"]),
                 input_message_content=InputTextMessageContent(
-                    f"{html.escape(result['command'])}: {strings(result['description_key'], context=result['context'])}"
+                    f"{html.escape(result['command'])}: {strings(result['description_key'])}"
                 ),
                 reply_markup=InlineKeyboardMarkup([
                     [
                         InlineKeyboardButton(
-                            text=strings("run_command_button").format(query=stripped_command),
+                            text=strings("inline_cmds_run_command_button").format(
+                                query=stripped_command
+                            ),
                             switch_inline_query_current_chat=stripped_command,
                         )
                     ]

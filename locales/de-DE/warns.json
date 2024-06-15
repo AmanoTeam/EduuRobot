@@ -1,5 +1,5 @@
 {
-  "user_warned": "Der Benutzer {target_user} hat {warn_count} von {warn_limit} Warnungen.",
+  "warn_warned": "Der Benutzer {target_user} hat {warn_count} von {warn_limit} Warnungen.",
   "warn_cant_admin": "Ich kann keine Admins warnen.",
   "cmd_warn_description": "Einen Benutzer warnen.",
   "warn_limit_changed": "Warnungslimit erfolgreich auf {warn_limit} geändert.",

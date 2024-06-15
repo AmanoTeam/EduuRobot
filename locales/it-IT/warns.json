@@ -1,5 +1,5 @@
 {
-  "user_warned": "L'utente {target_user} ha {warn_count} ammonizioni su {warn_limit}.",
+  "warn_warned": "L'utente {target_user} ha {warn_count} ammonizioni su {warn_limit}.",
   "warn_cant_admin": "Non posso ammonire gli amministratori.",
   "cmd_warn_description": "Ammonisce un utente.",
   "warn_limit_changed": "Limite di ammonizioni cambiato con successo in {warn_limit}.",

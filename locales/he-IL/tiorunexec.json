@@ -1,7 +1,7 @@
 {
-  "code_exec_tio_res_string_no_err": "<b>שפה:</b> <code>{langformat}</code>\n\n<b>קוד:</b>\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n<code>{resformat}</code>\n\n<b>סטטיסטיקה:</b><code>{statsformat}</code>",
-  "code_exec_tio_res_string_err": "<b>שפה:</b> <code>{langformat}</code>\n\n<b>קוד:</b>\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n<code>{resformat}</code>\n\n<b>שגיאות:</b>\n<code>{errformat}</code>",
-  "code_exec_err_string": "שגיאה: השפה <b>{langformat}</b> לא נמצאה, רשימת השפות הנתמכות: {langslistlink}",
-  "code_exec_inline_send": "שפה: {langformat}",
-  "code_exec_err_inline_send_string": "שפה {langformat} לא נמצא."
+  "run_tio_res_string_no_err": "<b>שפה:</b> <code>{langformat}</code>\n\n<b>קוד:</b>\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n<code>{resformat}</code>\n\n<b>סטטיסטיקה:</b><code>{statsformat}</code>",
+  "run_tio_res_string_err": "<b>שפה:</b> <code>{langformat}</code>\n\n<b>קוד:</b>\n<code>{codeformat}</code>\n\n<b>תוצאה:</b>\n<code>{resformat}</code>\n\n<b>שגיאות:</b>\n<code>{errformat}</code>",
+  "run_err_string": "שגיאה: השפה <b>{langformat}</b> לא נמצאה, רשימת השפות הנתמכות: {langslistlink}",
+  "run_inline_send": "שפה: {langformat}",
+  "run_err_inline_send_string": "שפה {langformat} לא נמצא."
 }

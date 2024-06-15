@@ -32,7 +32,7 @@ async def save_note(c: Client, m: Message, strings):
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text(strings("add_note_empty"), quote=True)
+        await m.reply_text(strings("notes_add_empty"), quote=True)
         return
 
     if m.reply_to_message and m.reply_to_message.photo:
@@ -80,7 +80,7 @@ async def save_note(c: Client, m: Message, strings):
         await update_note(chat_id, trigger, raw_data, file_id, note_type)
     else:
         await add_note(chat_id, trigger, raw_data, file_id, note_type)
-    await m.reply_text(strings("add_note_success").format(trigger=trigger), quote=True)
+    await m.reply_text(strings("notes_add_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES))
@@ -93,9 +93,9 @@ async def delete_note(c: Client, m: Message, strings):
     check_note = await check_for_notes(chat_id, trigger)
     if check_note:
         await rm_note(chat_id, trigger)
-        await m.reply_text(strings("remove_note_success").format(trigger=trigger), quote=True)
+        await m.reply_text(strings("notes_remove_success").format(trigger=trigger), quote=True)
     else:
-        await m.reply_text(strings("no_note_with_name").format(trigger=trigger), quote=True)
+        await m.reply_text(strings("notes_no_note_with_name").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["notes", "notas"], PREFIXES))

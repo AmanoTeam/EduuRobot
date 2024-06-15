@@ -5,7 +5,7 @@
   "inline_cmd_markdown_description": "Formats the provided text as markdown.",
   "markdown_send_inline": "Click here to send the text in markdown format.",
   "html_send_inline": "Click here to send the text in html format.",
-  "user_info_inline_cant_found_user": "User not found.",
+  "user_info_inline_couldnt_find_user": "User not found.",
   "user_info_inline_send": "Click here for user information.",
   "user_info_inline_string": "Username: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nUser link: {usermentionformat}"
 }

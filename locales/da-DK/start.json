@@ -1,9 +1,9 @@
 {
-  "commands_btn": "📚 Kommandoer",
-  "infos_btn": "ℹ️ Om",
-  "language_btn": "🌐 Sprog",
-  "add_chat_btn": "➕ Tilføj til en chat",
-  "private": "Hej! Jeg er EduuRobot. Hvis du vil vide mere om mine funktioner, skal du klikke på knapperne nedenfor.",
+  "start_commands_btn": "📚 Kommandoer",
+  "start_infos_btn": "ℹ️ Om",
+  "start_language_btn": "🌐 Sprog",
+  "start_add_to_chat_btn": "➕ Tilføj til en chat",
+  "start_private": "Hej! Jeg er EduuRobot. Hvis du vil vide mere om mine funktioner, skal du klikke på knapperne nedenfor.",
   "start_chat": "🤖 Start en chat",
-  "group": "Hej! Jeg er EduuRobot. For at opdage mine funktioner skal du starte en samtale med mig."
+  "start_group": "Hej! Jeg er EduuRobot. For at opdage mine funktioner skal du starte en samtale med mig."
 }

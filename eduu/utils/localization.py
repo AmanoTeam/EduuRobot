@@ -12,7 +12,6 @@ from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
-from eduu.utils.utils import get_caller_context
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -48,14 +47,13 @@ enabled_locales: list[str] = [
 default_language: str = "en-GB"
 
 
-def cache_localizations(files: list[Path]) -> dict[str, dict[str, dict[str, str]]]:
+def cache_localizations(files: list[Path]) -> dict[str, dict[str, str]]:
     ldict = {lang: {} for lang in enabled_locales}
     for file in files:
         _, lname, pname = file.parts
         pname = pname.split(".")[0]
         dic: dict = json.load(file.open("r", encoding="utf8"))
-        dic.update(ldict[lname].get(pname, {}))
-        ldict[lname][pname] = dic
+        ldict[lname].update(dic)
     return ldict
 
 
@@ -68,16 +66,10 @@ langdict = cache_localizations(jsons)
 
 
 def get_locale_string(
-    dic: dict,
     language: str,
-    default_context: str,
     key: str,
-    context: str | None = None,
 ) -> str:
-    if context:
-        default_context = context
-        dic = langdict[language].get(context, langdict[default_language][context])
-    res: str = dic.get(key) or langdict[default_language][default_context].get(key) or key
+    res: str = langdict[language].get(key) or langdict[default_language].get(key) or key
     return res
 
 
@@ -115,14 +107,11 @@ async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:
 
 def use_chat_lang(func: Callable):
     """Decorator to get the chat language and pass it to the function."""
-    context = get_caller_context()
 
     async def wrapper(client, message, *args, **kwargs):
         lang = await get_lang(message)
 
-        dic = langdict.get(lang, langdict[default_language])
-
-        lfunc = partial(get_locale_string, dic.get(context, {}), lang, context)
+        lfunc = partial(get_locale_string, lang)
         return await func(client, message, *args, lfunc, **kwargs)
 
     return wrapper

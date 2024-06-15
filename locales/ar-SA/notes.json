@@ -1,9 +1,9 @@
 {
-  "add_note_success": "تمت إضافة الملاحظة <b>{trigger}</b>.",
-  "add_note_empty": "الرجاء تحديد محتوى الملاحظة.",
+  "notes_add_success": "تمت إضافة الملاحظة <b>{trigger}</b>.",
+  "notes_add_empty": "الرجاء تحديد محتوى الملاحظة.",
   "cmd_delnote_description": "إزالة ملاحظة من هذه المحادثة.",
   "cmd_note_description": "إنشاء ملاحظة لهذه المحادثة.",
   "notes_list": "ملاحظات في هذه المحادثة:\n\n",
   "notes_list_empty": "حاليا لا توجد ملاحظات في هذه المحادثة.",
-  "remove_note_success": "تمت إزالة <b>{trigger}</b> من الملاحظات."
+  "notes_remove_success": "تمت إزالة <b>{trigger}</b> من الملاحظات."
 }

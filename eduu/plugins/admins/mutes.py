@@ -19,7 +19,7 @@ async def mute(c: Client, m: Message, strings):
     reason = get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
     if check_admin.status in ADMIN_STATUSES:
-        await m.reply_text(strings("i_cant_mute_admins"))
+        await m.reply_text(strings("mute_cannot_mute_admins"))
         return
 
     await m.chat.restrict_member(target_user.id, ChatPermissions(can_send_messages=False))
@@ -28,7 +28,9 @@ async def mute(c: Client, m: Message, strings):
         admin=m.from_user.mention,
     )
     if reason:
-        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
+        await m.reply_text(
+            text + "\n" + strings("admins_reason_string").format(reason_text=reason)
+        )
     else:
         await m.reply_text(text)
 
@@ -45,7 +47,9 @@ async def unmute(c: Client, m: Message, strings):
         admin=m.from_user.mention,
     )
     if reason:
-        await m.reply_text(text + "\n" + strings("reason_string").format(reason_text=reason))
+        await m.reply_text(
+            text + "\n" + strings("admins_reason_string").format(reason_text=reason)
+        )
     else:
         await m.reply_text(text)
 
@@ -55,7 +59,7 @@ async def unmute(c: Client, m: Message, strings):
 @require_admin(ChatPrivileges(can_restrict_members=True))
 async def tmute(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        await m.reply_text(strings("error_must_specify_time").format(command=m.command[0]))
+        await m.reply_text(strings("admins_error_must_specify_time").format(command=m.command[0]))
         return
 
     split_time = m.text.split(None, 1)

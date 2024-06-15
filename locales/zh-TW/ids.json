@@ -1,8 +1,8 @@
 {
   "cmd_id_description": "獲取有關聊天的信息。",
-  "info_private": "<b>信息：</b>\n<b>姓名：</b> <code>{first_name} {last_name}</code>\n<b>用戶名：</b> {username}\n<b>ID：</b> <code>{user_id}</code>\n<b>數據中心：</b> <code>{user_dc}</code>\n<b>語言：</b> <code>{lang}</code>\n<b>聊天類型：</b> <code>{chat_type}</code>",
-  "info_group": "<b>用戶信息：</b>\n<b>姓名：</b> <code>{first_name} {last_name}</code>\n<b>用戶名：</b> {username}\n<b>ID：</b> <code>{user_id}</code>\n<b>數據中心：</b> <code>{user_dc}</code>\n<b>語言：</b> <code>{lang}</code>\n\n<b>聊天信息：</b>\n<b>聊天名稱：</b> <code>{chat_title}</code>\n<b>聊天用戶名：</b> {chat_username}\n<b>聊天 ID：</b> <code>{chat_id}</code>\n<b>聊天數據中心：</b> <code>{chat_dc}</code>\n<b>聊天類型：</b> <code>{chat_type}</code>\n<b>消息：</b> <code>{message_id}</code>",
-  "none": "沒有任何",
-  "unknown": "未知",
-  "user_not_found": "未找到“<code>{user}</code>”的用戶。"
+  "id_info_private": "<b>信息：</b>\n<b>姓名：</b> <code>{first_name} {last_name}</code>\n<b>用戶名：</b> {username}\n<b>ID：</b> <code>{user_id}</code>\n<b>數據中心：</b> <code>{user_dc}</code>\n<b>語言：</b> <code>{lang}</code>\n<b>聊天類型：</b> <code>{chat_type}</code>",
+  "id_info_group": "<b>用戶信息：</b>\n<b>姓名：</b> <code>{first_name} {last_name}</code>\n<b>用戶名：</b> {username}\n<b>ID：</b> <code>{user_id}</code>\n<b>數據中心：</b> <code>{user_dc}</code>\n<b>語言：</b> <code>{lang}</code>\n\n<b>聊天信息：</b>\n<b>聊天名稱：</b> <code>{chat_title}</code>\n<b>聊天用戶名：</b> {chat_username}\n<b>聊天 ID：</b> <code>{chat_id}</code>\n<b>聊天數據中心：</b> <code>{chat_dc}</code>\n<b>聊天類型：</b> <code>{chat_type}</code>\n<b>消息：</b> <code>{message_id}</code>",
+  "id_none": "沒有任何",
+  "id_unknown": "未知",
+  "id_user_not_found": "未找到“<code>{user}</code>”的用戶。"
 }

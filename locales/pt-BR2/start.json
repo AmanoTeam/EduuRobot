@@ -1,11 +1,11 @@
 {
-  "commands_btn": "📚 Comandos do Bot",
-  "infos_btn": "ℹ️ Sobre mim",
-  "language_btn": "🌐 Indioma",
-  "add_chat_btn": "➕ Add a um chat",
-  "private": "E aí, eu sou o EduuRobot! Para descobrir minhas manhas, clica nos botões abaixo.",
+  "start_commands_btn": "📚 Comandos do Bot",
+  "start_infos_btn": "ℹ️ Sobre mim",
+  "start_language_btn": "🌐 Indioma",
+  "start_add_to_chat_btn": "➕ Add a um chat",
+  "start_private": "E aí, eu sou o EduuRobot! Para descobrir minhas manhas, clica nos botões abaixo.",
   "start_chat": "🤖 Vamos conversar!",
-  "group": "E aí! Sou o EduuRobot. Pra saber o que eu posso fazer, só começar a bater um papo comigo.",
-  "info_page": "\nE aí, galera! Aqui quem fala é o EduuRobot, o robô mais irado da área! Se liga só nas minhas specs:\n\n- Número de versão: {version_number} ({commit_hash})\n- Código Fonte: <a href=\"https://github.com/AmanoTeam/EduuRobot\">Manda bala aqui, meu chapa!</a>\n- Desenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nE não para por aí, não! Eu ainda tenho umas parcerias de peso, como a <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>, que é só sucesso!\n\nEntão, se você quer ter o melhor robô do pedaço, é só colar comigo, que eu tô sempre na atividade! Ah, e não esquece: ©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a> é nóis na fita!",
+  "start_group": "E aí! Sou o EduuRobot. Pra saber o que eu posso fazer, só começar a bater um papo comigo.",
+  "start_info_page": "\nE aí, galera! Aqui quem fala é o EduuRobot, o robô mais irado da área! Se liga só nas minhas specs:\n\n- Número de versão: {version_number} ({commit_hash})\n- Código Fonte: <a href=\"https://github.com/AmanoTeam/EduuRobot\">Manda bala aqui, meu chapa!</a>\n- Desenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nE não para por aí, não! Eu ainda tenho umas parcerias de peso, como a <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>, que é só sucesso!\n\nEntão, se você quer ter o melhor robô do pedaço, é só colar comigo, que eu tô sempre na atividade! Ah, e não esquece: ©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a> é nóis na fita!",
   "cmd_start_description": "Bora começar o bot."
 }

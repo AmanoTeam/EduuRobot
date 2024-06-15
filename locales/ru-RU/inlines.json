@@ -1,7 +1,7 @@
 {
   "markdown_send_inline": "Нажмите здесь что бы отправить текст в  markdown формате.",
   "html_send_inline": "Нажмите здесь, чтобы отправить текст в html формате.",
-  "user_info_inline_cant_found_user": "Пользователь не найден.",
+  "user_info_inline_couldnt_find_user": "Пользователь не найден.",
   "user_info_inline_send": "Для более подробной информации нажмите здесь.",
   "user_info_inline_string": "Ник пользователя: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nСсылка на пользователя: {usermentionformat}"
 }

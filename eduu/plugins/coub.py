@@ -26,7 +26,7 @@ async def coub(c: Client, m: Message, strings):
         links = content["permalink"]
         title = content["title"]
     except IndexError:
-        await m.reply_text(strings("no_results", context="general"))
+        await m.reply_text(strings("general_no_results"))
     else:
         await m.reply_text(f'<b><a href="https://coub.com/v/{links}">{title}</a></b>')
 

@@ -1,6 +1,6 @@
 {
-  "translate_usage": "<b>Verwendung:</b> <code>/tr &lt;sprache&gt; Text für Übersetzung</code> (Kann auch als Antwort auf eine Mitteilung verwendet werden).",
-  "translating": "Übersetzen…",
-  "translation": "<b>Sprache:</b> {from_lang} -> {to_lang}\n<b>Übersetzung:</b> <code>{translation}</code>",
-  "translate_inline_send": "Übersetzen von {srclangformat} nach {tolangformat}"
+  "tr_usage": "<b>Verwendung:</b> <code>/tr &lt;sprache&gt; Text für Übersetzung</code> (Kann auch als Antwort auf eine Mitteilung verwendet werden).",
+  "tr_translating": "Übersetzen…",
+  "tr_translation": "<b>Sprache:</b> {from_lang} -> {to_lang}\n<b>Übersetzung:</b> <code>{translation}</code>",
+  "tr_inline_send": "Übersetzen von {srclangformat} nach {tolangformat}"
 }

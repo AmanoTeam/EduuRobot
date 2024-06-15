@@ -109,9 +109,9 @@ async def info_inline(c: Client, q: InlineQuery, strings):
     except (PeerIdInvalid, UsernameInvalid, UserIdInvalid):
         await q.answer([
             InlineQueryResultArticle(
-                title=strings("user_info_inline_cant_found_user"),
+                title=strings("user_info_inline_couldnt_find_user"),
                 input_message_content=InputTextMessageContent(
-                    strings("user_info_inline_cant_found_user")
+                    strings("user_info_inline_couldnt_find_user")
                 ),
             )
         ])

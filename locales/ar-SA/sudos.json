@@ -1,5 +1,5 @@
 {
-  "speedtest": "<b>اختبار السرعة</b>\n\n<b>🌐 استضافة:</b> <code>{host}</code>\n\n<b>🏓 بينغ:</b> <code>{ping} ms</code>\n<b>⬇️ التحميل:</b> <code>{download} Mbps</code>\n<b>⬆️ الرفع:</b> <code>{upload} Mbps</code>",
-  "forbidden_command": "أمر محظور.",
-  "restarting": "إعادة التشغيل…"
+  "sudos_speedtest": "<b>اختبار السرعة</b>\n\n<b>🌐 استضافة:</b> <code>{host}</code>\n\n<b>🏓 بينغ:</b> <code>{ping} ms</code>\n<b>⬇️ التحميل:</b> <code>{download} Mbps</code>\n<b>⬆️ الرفع:</b> <code>{upload} Mbps</code>",
+  "sudos_forbidden_command": "أمر محظور.",
+  "sudos_restarting": "إعادة التشغيل…"
 }

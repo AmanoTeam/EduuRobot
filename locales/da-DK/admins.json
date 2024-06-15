@@ -1,8 +1,8 @@
 {
-  "error_must_specify_time": "Du skal angive en tid efter kommandoen. Fx.: <code>/{command} 7d</code>.",
-  "no_admin_error": "Du skal være administrator for at bruge denne kommando.",
-  "no_permission_error": "Beklager, men du har ikke de nødvendige tilladelser til at køre denne kommando. Manglende tilladelser: {permissions}",
-  "private_not_allowed": "Denne kommando kan ikke bruges i en privat chat. Hvis du har brug for hjælp, så brug venligst <code>/help</code> -kommandoen.",
+  "admins_error_must_specify_time": "Du skal angive en tid efter kommandoen. Fx.: <code>/{command} 7d</code>.",
+  "admins_no_admin_error": "Du skal være administrator for at bruge denne kommando.",
+  "admins_no_permission_error": "Beklager, men du har ikke de nødvendige tilladelser til at køre denne kommando. Manglende tilladelser: {permissions}",
+  "cmd_private_not_allowed": "Denne kommando kan ikke bruges i en privat chat. Hvis du har brug for hjælp, så brug venligst <code>/help</code> -kommandoen.",
   "purge_in_progress": "Mangler beskeder…",
   "purge_success": "Slettede <b>{count}</b> beskeder."
 }

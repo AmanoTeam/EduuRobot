@@ -6,7 +6,7 @@
   "cmd_mark_description": "بە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
   "mark_usage": "<b>بەکارهێنان:</b>\n<code>/mark **text** in __markdown__</code>\n\nبە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
   "cmd_token_description": "زانیاری دەربارەی تۆکنێکی بۆت وەربگرە.",
-  "bot_token_invalid": "ئەم تۆکنە دروست نییە.",
+  "token_bot_token_invalid": "ئەم تۆکنە دروست نییە.",
   "cmd_urldecode_description": "نووسینە پێدراوەکە شفرەبکە.",
   "cmd_urlencode_description": "نووسینە پێدراوەکە ناشفرەبکە."
 }

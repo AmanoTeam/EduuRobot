@@ -1,8 +1,8 @@
 {
-  "comments": "Comments: {0}",
-  "error": "Error loading Subreddit",
-  "no_results": "This Subreddit has no posts",
-  "not_found": "Subreddit not found",
+  "reddit_comments": "Comments: {0}",
+  "reddit_error": "Error loading Subreddit",
+  "reddit_no_results": "This Subreddit has no posts",
+  "reddit_not_found": "Subreddit not found",
   "cmd_reddit_description": "See the latest posts from the specified Subreddit",
   "reddit_usage": "<b>Usage</b>: <code>/reddit subreddit</code> — See the latest posts from the specified Subreddit"
 }

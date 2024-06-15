@@ -1,11 +1,11 @@
 {
-  "commands_btn": "📚 Perintah",
-  "infos_btn": "ℹ️ Tentang",
-  "language_btn": "🌐 Bahasa",
-  "add_chat_btn": "➕ Tambahkan ke obrolan",
-  "private": "Halo! Saya EduuRobot. Untuk mengetahui lebih lanjut tentang fungsi saya, klik tombol di bawah.",
+  "start_commands_btn": "📚 Perintah",
+  "start_infos_btn": "ℹ️ Tentang",
+  "start_language_btn": "🌐 Bahasa",
+  "start_add_to_chat_btn": "➕ Tambahkan ke obrolan",
+  "start_private": "Halo! Saya EduuRobot. Untuk mengetahui lebih lanjut tentang fungsi saya, klik tombol di bawah.",
   "start_chat": "🤖 Mulailah obrolan",
-  "group": "Halo! Saya EduuRobot. Untuk menemukan fungsi saya, mulailah percakapan dengan saya.",
-  "info_page": "• EduuRobot\n\nNomor versi: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kode Sumber</a>\nPengembang: <a href=\"https://github.com/AmanoTeam\">Tim Amano</a>\n\nKemitraan:\n » <a href=\"https://t.me/hpxlist\">HPXList - oleh usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_group": "Halo! Saya EduuRobot. Untuk menemukan fungsi saya, mulailah percakapan dengan saya.",
+  "start_info_page": "• EduuRobot\n\nNomor versi: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kode Sumber</a>\nPengembang: <a href=\"https://github.com/AmanoTeam\">Tim Amano</a>\n\nKemitraan:\n » <a href=\"https://t.me/hpxlist\">HPXList - oleh usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "cmd_start_description": "Mulai bot."
 }

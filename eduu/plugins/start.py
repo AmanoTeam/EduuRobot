@@ -32,19 +32,19 @@ async def start_pvt(c: Client, m: Message | CallbackQuery, strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(strings("commands_btn"), callback_data="commands"),
-                InlineKeyboardButton(strings("infos_btn"), callback_data="infos"),
+                InlineKeyboardButton(strings("start_commands_btn"), callback_data="commands"),
+                InlineKeyboardButton(strings("start_infos_btn"), callback_data="infos"),
             ],
             [
-                InlineKeyboardButton(strings("language_btn"), callback_data="chlang"),
+                InlineKeyboardButton(strings("start_language_btn"), callback_data="chlang"),
                 InlineKeyboardButton(
-                    strings("add_chat_btn"),
+                    strings("start_add_to_chat_btn"),
                     url=f"https://t.me/{c.me.username}?startgroup=new",
                 ),
             ],
         ]
     )
-    await send(strings("private"), reply_markup=keyboard)
+    await send(strings("start_private"), reply_markup=keyboard)
 
 
 @Client.on_message(filters.command("start", PREFIXES) & filters.group, group=2)
@@ -60,23 +60,19 @@ async def start_grp(c: Client, m: Message | CallbackQuery, strings):
             ]
         ]
     )
-    await m.reply_text(strings("group"), reply_markup=keyboard)
+    await m.reply_text(strings("start_group"), reply_markup=keyboard)
 
 
 @Client.on_callback_query(filters.regex("^infos$"))
 @use_chat_lang
 async def infos(c: Client, m: CallbackQuery, strings):
-    res = strings("info_page").format(
+    res = strings("start_info_page").format(
         version_number=f"r{__version_number__}",
         commit_hash=linkify_commit(__commit__),
     )
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    strings("back_btn", context="general"), callback_data="start_back"
-                )
-            ]
+            [InlineKeyboardButton(strings("general_back_btn"), callback_data="start_back")]
         ]
     )
     await m.message.edit_text(res, reply_markup=keyboard, disable_web_page_preview=True)

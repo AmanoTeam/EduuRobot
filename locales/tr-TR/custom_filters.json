@@ -1,4 +1,4 @@
 {
-  "add_filter_success": "<b>{trigger}</b> filtresi eklendi.",
-  "add_filter_empty": "Lütfen filtre için bir içerik belirtin."
+  "filters_add_success": "<b>{trigger}</b> filtresi eklendi.",
+  "filters_add_empty": "Lütfen filtre için bir içerik belirtin."
 }

@@ -1,8 +1,8 @@
 {
   "cmd_run_description": "Roda o código na linguagem de programação que você escolher.",
-  "code_exec_tio_res_string_no_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Estatísticas:</b><code>{statsformat}</code>",
-  "code_exec_tio_res_string_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Erros:</b>\n<code>{errformat}</code>",
-  "code_exec_err_string": "Erro: Não encontrei a linguagem <b>{langformat}</b>. Aqui estão as linguagens suportadas: {langslistlink}",
-  "code_exec_inline_send": "Linguagem: {langformat}",
-  "code_exec_err_inline_send_string": "Não achei essa linguagem, mano: {langformat}."
+  "run_tio_res_string_no_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Estatísticas:</b><code>{statsformat}</code>",
+  "run_tio_res_string_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Erros:</b>\n<code>{errformat}</code>",
+  "run_err_string": "Erro: Não encontrei a linguagem <b>{langformat}</b>. Aqui estão as linguagens suportadas: {langslistlink}",
+  "run_inline_send": "Linguagem: {langformat}",
+  "run_err_inline_send_string": "Não achei essa linguagem, mano: {langformat}."
 }

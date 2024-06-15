@@ -1,5 +1,5 @@
 {
-  "speedtest": "<b>Velocidad</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Descarga:</b> <code>{download} Mbps</code>\n<b>⬆️ Subir:</b> <code>{upload} Mbps</code>",
-  "forbidden_command": "Comando prohibido.",
-  "restarting": "Reiniciando…"
+  "sudos_speedtest": "<b>Velocidad</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Descarga:</b> <code>{download} Mbps</code>\n<b>⬆️ Subir:</b> <code>{upload} Mbps</code>",
+  "sudos_forbidden_command": "Comando prohibido.",
+  "sudos_restarting": "Reiniciando…"
 }

@@ -7,5 +7,5 @@
   "info_userlink": "\nبەستەر: {link}",
   "info_chat_admin": "\nئەم بەکارهێنەرە لەم گروپە <b>بەڕێوەبەرە</b>.",
   "info_chat_owner": "\nئەم بەکارهێنەرە <b>خاوەنی</b> ئەم گروپەیە.",
-  "user_not_found": "\nهیچ بەکارهێنەرێک بۆ <code>{user}</code> نەدۆزرایەوە."
+  "info_user_not_found": "\nهیچ بەکارهێنەرێک بۆ <code>{user}</code> نەدۆزرایەوە."
 }

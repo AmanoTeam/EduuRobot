@@ -1,8 +1,8 @@
 {
-  "error_must_specify_time": "Musisz określić czas po komendzie. Np.: <code>/{command} 7d</code>.",
-  "no_admin_error": "Musisz być administratorem, aby użyć tego polecenia.",
-  "no_permission_error": "Przykro mi, ale nie masz wymaganych uprawnień do uruchomienia tej komendy. Brakuje uprawnień: {permissions}",
-  "private_not_allowed": "Ta komenda nie może być użyta na czacie prywatnym. Jeśli potrzebujesz pomocy, użyj komendy <code>/help</code>.",
+  "admins_error_must_specify_time": "Musisz określić czas po komendzie. Np.: <code>/{command} 7d</code>.",
+  "admins_no_admin_error": "Musisz być administratorem, aby użyć tego polecenia.",
+  "admins_no_permission_error": "Przykro mi, ale nie masz wymaganych uprawnień do uruchomienia tej komendy. Brakuje uprawnień: {permissions}",
+  "cmd_private_not_allowed": "Ta komenda nie może być użyta na czacie prywatnym. Jeśli potrzebujesz pomocy, użyj komendy <code>/help</code>.",
   "purge_in_progress": "Czyszczenie wiadomości…",
   "purge_success": "Usunięto <b>{count}</b> wiadomości."
 }

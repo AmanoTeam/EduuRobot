@@ -1,5 +1,5 @@
 {
-  "animated_not_supported": "Gli sticker animati non sono supportati.",
-  "sticker_kanged_string": "Sticker rubato <b>correttamente</b>\nEmoji: {sticker_emoji}",
-  "view_sticker_pack_btn": "Vedi"
+  "getsticker_animated_not_supported": "Gli sticker animati non sono supportati.",
+  "kang_sticker_kanged_string": "Sticker rubato <b>correttamente</b>\nEmoji: {sticker_emoji}",
+  "kang_view_sticker_pack_btn": "Vedi"
 }

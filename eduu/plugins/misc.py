@@ -80,7 +80,7 @@ async def reportadmins(c: Client, m: Message, strings):
         if not (i.user.is_deleted or i.privileges.is_anonymous or i.user.is_bot):
             mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
     await m.reply_to_message.reply_text(
-        strings("report_admns").format(
+        strings("report_admins").format(
             admins_list=mention,
             reported_user=m.reply_to_message.from_user.mention(),
         ),
@@ -91,17 +91,17 @@ async def reportadmins(c: Client, m: Message, strings):
 @use_chat_lang
 async def getbotinfo(c: Client, m: Message, strings):
     if len(m.command) == 1:
-        await m.reply_text(strings("no_bot_token"), reply_to_message_id=m.id)
+        await m.reply_text(strings("token_no_bot_token"), reply_to_message_id=m.id)
         return
 
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
     if not fullres["ok"]:
-        await m.reply_text(strings("bot_token_invalid"))
+        await m.reply_text(strings("token_bot_token_invalid"))
     else:
         res = fullres["result"]
-        get_bot_info_text = strings("bot_token_info")
+        get_bot_info_text = strings("token_bot_token_info")
     await m.reply_text(
         get_bot_info_text.format(
             botname=res["first_name"], botusername=res["username"], botid=res["id"]
@@ -143,7 +143,7 @@ async def urldecodecmd(c: Client, m: Message):
 @use_chat_lang
 async def bug_report_cmd(c: Client, m: Message, strings):
     if len(m.text.split()) == 1:
-        await m.reply_text(strings("err_no_bug_to_report"))
+        await m.reply_text(strings("bug_report_empty"))
         return
 
     try:
@@ -159,9 +159,9 @@ async def bug_report_cmd(c: Client, m: Message, strings):
             text=bug_report,
             disable_web_page_preview=True,
         )
-        await m.reply_text(strings("bug_reported_success_to_bot_admins"))
+        await m.reply_text(strings("bug_report_success"))
     except BadRequest:
-        await m.reply_text(strings("err_cant_send_bug_report_to_bot_admins"))
+        await m.reply_text(strings("bug_report_failed"))
 
 
 @Client.on_message(filters.command("request", PREFIXES))
@@ -199,7 +199,7 @@ async def button_parse_helper(c: Client, m: Message, strings):
 @Client.on_message(filters.command("donate", PREFIXES))
 @use_chat_lang
 async def donatecmd(c: Client, m: Message, strings):
-    await m.reply_text(strings("donatecmdstring"))
+    await m.reply_text(strings("donate_info"))
 
 
 commands.add_command("mark", "general")

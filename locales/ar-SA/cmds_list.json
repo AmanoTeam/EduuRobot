@@ -1,6 +1,6 @@
 {
-  "admin": "👮‍♂️ الإدارة",
-  "command_category_title": "الأوامر في فئة <b>{category}</b>:",
-  "general": "✨ عام",
-  "tools": "الأدوات 🔧"
+  "cmds_category_admin": "👮‍♂️ الإدارة",
+  "cmds_list_category_title": "الأوامر في فئة <b>{category}</b>:",
+  "cmds_category_general": "✨ عام",
+  "cmds_category_tools": "الأدوات 🔧"
 }

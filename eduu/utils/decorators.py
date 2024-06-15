@@ -12,10 +12,8 @@ from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, ChatPrivileges, Message
 
 from eduu.utils.localization import (
-    default_language,
     get_lang,
     get_locale_string,
-    langdict,
 )
 from eduu.utils.utils import check_perms
 
@@ -63,9 +61,7 @@ def require_admin(
             lang = await get_lang(message)
             strings = partial(
                 get_locale_string,
-                langdict[lang].get("admins", langdict[default_language]["admins"]),
                 lang,
-                "admins",
             )
 
             if isinstance(message, CallbackQuery):
@@ -83,7 +79,7 @@ def require_admin(
             if msg.chat.type == ChatType.PRIVATE:
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
-                return await sender(strings("private_not_allowed"))
+                return await sender(strings("cmd_private_not_allowed"))
             if msg.chat.type == ChatType.CHANNEL:
                 return await func(client, message, *args, *kwargs)
             has_perms = await check_perms(message, permissions, complain_missing_perms, strings)
