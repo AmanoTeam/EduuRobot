@@ -1,6 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nTemperatura percepita: <code>{feels_like} °C</code>\nUmidità dell'aria: <code>{air_humidity}%</code>\nVelocità del vento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Posizione non trovata.",
-  "measurement_unit": "m",
-  "weather_language": "it-IT"
-}

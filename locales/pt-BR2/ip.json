@@ -1,7 +1,0 @@
-{
-  "cmd_ip_description": "Obtém informações de IP de um domínio ou endereço IP.",
-  "ip_err_no_ip": "Você deve especificar uma url, ex.: <code>/ip example.com</code>",
-  "ip_info_inline": "Clique aqui para ver a informação de IP de {domain}.",
-  "ip_no_url": "Você deve especificar a url.",
-  "ip_no_url_example": "Você deve especificar a url, por exemplo: <code>@{bot_username} ip example.com</code>."
-}

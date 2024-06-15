@@ -1,6 +1,0 @@
-{
-  "markdown_send_inline": "انقر هنا لإرسال النص بتنسيق markdown.",
-  "html_send_inline": "انقر هنا لإرسال النص بصيغة html.",
-  "user_info_inline_couldnt_find_user": "لم يتم العثور على المستخدم.",
-  "user_info_inline_string": "اسم المستخدم: {usernameformat}\nالمعرف: {useridformat}\nمركز البيانات: {userdcformat}\nرابط المستخدم: {usermentionformat}"
-}

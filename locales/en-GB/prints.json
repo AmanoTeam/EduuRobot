@@ -1,5 +1,0 @@
-{
-  "cmd_print_description": "Take a screenshot of the specified website.",
-  "print_usage": "<b>Usage:</b> <code>/print https://example.com</code> — Take a screenshot of the specified website.",
-  "print_taking_screenshot": "Taking screenshot…"
-}

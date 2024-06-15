@@ -1,5 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperatură: <code>{temperature} °C</code>\nTemperatura se simte astfel: <code>{feels_like} °C</code></code>\nUtilitate aeriană: <code>{air_humidity}%</code>\nViteza vântului: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Locaţia nu a fost găsită.",
-  "weather_language": "ro-RO"
-}

@@ -1,8 +1,0 @@
-{
-  "cmd_run_description": "Runs code in the specified programming language.",
-  "run_tio_res_string_no_err": "<b>Language:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Results:</b>\n<code>{resformat}</code>\n\n<b>Stats:</b><code>{statsformat}</code>",
-  "run_tio_res_string_err": "<b>Language:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Results:</b>\n<code>{resformat}</code>\n\n<b>Errors:</b>\n<code>{errformat}</code>",
-  "run_err_string": "Error: The language <b>{langformat}</b> was not found. Supported languages list: {langslistlink}",
-  "run_inline_send": "Language: {langformat}",
-  "run_err_inline_send_string": "Language {langformat} not found."
-}

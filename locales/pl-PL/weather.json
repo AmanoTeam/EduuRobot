@@ -1,5 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nTemperatura czuje się taka: <code>{feels_like} °C</code>\nwilgotność powietrza: <code>{air_humidity}%</code>\nPrędkość wiatru: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Nie znaleziono lokalizacji.",
-  "weather_language": "pl-PL"
-}

@@ -1,8 +1,0 @@
-{
-  "cmd_id_description": "Получить информацию о чате.",
-  "id_info_private": "<b>Информация:</b>\n<b>Имя:</b> <code>{first_name} {last_name}</code>\n<b>Имя пользователя:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Датацентр:</b> <code>{user_dc}</code>\n<b>Язык:</b> <code>{lang}</code>\n<b>Тип чата:</b> <code>{chat_type}</code>",
-  "id_info_group": "<b>Информация о пользователе:</b>\n<b>Имя:</b> <code>{first_name} {last_name}</code>\n<b>Имя пользователя:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Датацентр:</b> <code>{user_dc}</code>\n<b>Язык:</b> <code>{lang}</code>\n\n<b>Информация о чате:</b>\n<b>Чат имя:</b> <code>{chat_title}</code>\n<b>Имя пользователя:</b> {chat_username}\n<b>Чат ID:</b> <code>{chat_id}</code>\n<b>Датацентр чата:</b> <code>{chat_dc}</code>\n<b>Тип чата:</b> <code>{chat_type}</code>\n<b>Сообщения:</b> <code>{message_id}</code> </code>",
-  "id_none": "Ничего",
-  "id_unknown": "Неизвестно",
-  "id_user_not_found": "Пользователь не найден для '<code>{user}</code>'."
-}

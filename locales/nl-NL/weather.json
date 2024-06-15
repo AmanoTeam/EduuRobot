@@ -1,6 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperatuur: <code>{temperature} °C</code>\nGevoelstemperatuur: <code>{feels_like} °C</code>\nLuchtvochtigheid: <code>{air_humidity}%</code>\nWindsnelheid: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Locatie niet gevonden.",
-  "measurement_unit": "min",
-  "weather_language": "nl-NL"
-}

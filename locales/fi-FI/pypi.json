@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> tekijältä <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVersio: <b>{version}</b>\nLisenssi: <b>{license}</b>\nYhteenveto: <b>{summary}</b>",
-  "pypi_package_home_page": "Paketin kotisivu",
-  "pypi_package_not_found": "Ei löydy <b>{package_name}</b> PyPI (Palautettu koodi oli {http_status}).",
-  "pypi_platform_not_specified": "Ei määritetty"
-}

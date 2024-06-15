@@ -1,8 +1,0 @@
-{
-  "welcome_default": "Hey {first_name}, welkom bij {chat_title}!",
-  "welcome_mode_disable": "Het welkomstbericht voor {chat_title} is nu uitgeschakeld.",
-  "welcome_mode_enable": "Het welkomstbericht voor {chat_title} is nu ingeschakeld.",
-  "welcome_mode_invalid": "Ongeldig argument. Gebruik <code>/welkom off/on</code>.",
-  "welcome_set_error": "Er is een fout opgetreden en het welkomstbericht kon niet worden ingesteld. Fout: {error}",
-  "welcome_format_help_msg": "Het bericht kan worden geformatteerd in html formaat of met Telegram's ingebouwde tekstopmaker. Je kunt het commando /html gebruiken om te controleren of je html juist is.\n\nJe kunt deze argumenten gebruiken voor het welkomstbericht:\n - <code>{id}</code> om de gebruikers-ID te tonen in het welkomstbericht.\n - <code>{username}</code> om de gebruikersnaam van de gebruiker te tonen in het welkomstbericht. als de gebruiker geen gebruikersnaam heeft, toont de bot een vermelding.\n - <code>{first_name}</code> om de naam van de gebruiker te tonen in het welkomstbericht.\n - <code>{full_name}</code> of <code>{name}</code> om de volledige naam van de gebruiker te tonen in het welkomstbericht.\n - <code>{mention}</code> om de gebruiker te vermelden in het welkomstbericht.\n - <code>{chat_title}</code> of <code>{title}</code> om de chat-titel te tonen in het welkomstbericht.\n - <code>{count}</code> om het aantal groepsleden van de chat te laten zien in het welkomstbericht.\n\nOm knoppen toe te voegen kan je <code>[knop tekst](knop URL:knop link)</code> gebruiken. Om meer knoppen op dezelfde lijn toe te voegen, kan je :same toevoegen na de link, zoals dit: <code>[knop tekst](knop URL:knop link:same)</code>."
-}

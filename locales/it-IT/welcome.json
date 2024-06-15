@@ -1,7 +1,0 @@
-{
-  "welcome_default": "Ehi {first_name}, benvenuto in {chat_title}!",
-  "welcome_mode_disable": "Il messaggio di benvenuto di {chat_title} è stato disattivato.",
-  "welcome_mode_enable": "Il messaggio di benvenuto di {chat_title} è stato attivato.",
-  "welcome_mode_invalid": "Argomento non valido. Usa <code>/welcome off/on</code>.",
-  "welcome_set_error": "Si è verificato un errore e non è stato possibile impostare il messaggio di benvenuto. Errore: {error}"
-}

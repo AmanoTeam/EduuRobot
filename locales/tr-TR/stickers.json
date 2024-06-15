@@ -1,6 +1,0 @@
-{
-  "stickerid_string": "Bu çıkartmanın kimliği: <code>{stickerid}</code>",
-  "getsticker_animated_not_supported": "Animasyonlu çıkartmalar desteklenmez.",
-  "getsticker_sticker_info": "<b>Emoji:</b> {emoji}\n<b>Çıkartma Kimliği:</b> <code>{id}</code>",
-  "getsticker_not_sticker": "Bu bir çıkartma değil."
-}

@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> av <i>{author_name} {author_email}</i>\nPlattform: <b>{platform}</b>\nVersion: <b>{version}</b>\nLicens: <b>{license}</b>\nSammanfattning: <b>{summary}</b>",
-  "pypi_package_home_page": "Paketets hemsida",
-  "pypi_package_not_found": "Kan inte hitta <b>{package_name}</b> i PyPI (Returnerad kod var {http_status}).",
-  "pypi_platform_not_specified": "Ej specificerad"
-}

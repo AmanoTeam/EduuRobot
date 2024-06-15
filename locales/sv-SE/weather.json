@@ -1,5 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperatur: <code>{temperature} °C</code>\nTemperaturen känns som: <code>{feels_like} °C</code>\nLuftfuktighet: <code>{air_humidity}%</code>\nVindhastighet: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Platsen hittades inte.",
-  "weather_language": "sv-SE"
-}

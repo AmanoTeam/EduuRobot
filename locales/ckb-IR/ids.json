@@ -1,7 +1,0 @@
-{
-  "id_info_private": "<b>زانیاری:</b>\n<b>ناو:</b> <code>{first_name} {last_name} </code>\n<b>ناوی بەکارهێنەر</b>: {username}\n<b>ناسنامە:</b> <code>{user_id}</code>\n<b>داتاسەنتەر:</b> <code>{user_dc}</code>\n<b>زمان:</b> <code>{lang}</code>\n<b>جۆری گروپ:</b> <code>{chat_type}</code>",
-  "id_info_group": "<b>زانیاریی بەکارهێنەر:</b>\n<b>ناو:</b> <code>{first_name} {last_name}</code> \n<b>ناوی بەکارهێنەر:</b> {username}\n<b>ناسنامە:</b> <code>{user_id}</code>\n<b>داتاسەنتەر:</b> <code>{user_dc}</code>\n<b>زمان:</b> <code>{lang}</code>\n\n<b>زانیاریی گروپ:</b>\n<b>ناو:</b> <code>{chat_title}</code>\n<b>ناوی بەکارهێنەر:</b> {chat_username}\n<b>ناسنامە:</b> <code>{chat_id}</code>\n<b>داتاسەنتەر:</b> <code>{chat_dc}</code>\n<b>جۆر:</b> <code>{chat_type}</code>\n<b>پەیامەکان:</b> <code>{message_id}</code>",
-  "id_none": "هیچ",
-  "id_unknown": "نەزانراو",
-  "id_user_not_found": "هیچ بەکارهێنەرێک بۆ '<code>{user}</code>' نەدۆزرایەوە."
-}

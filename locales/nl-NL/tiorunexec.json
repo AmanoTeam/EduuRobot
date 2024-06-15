@@ -1,7 +1,0 @@
-{
-  "run_tio_res_string_no_err": "<b>Taal:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Resultaten:</b>\n<code>{resformat}</code>\n\n<b>Statistieken:</b><code>{statsformat}</code>",
-  "run_tio_res_string_err": "<b>Taal:</b> <code>{langformat}</code>\n\n<b>Code:</b>\n<code>{codeformat}</code>\n\n<b>Resultaten:</b>\n<code>{resformat}</code>\n\n<b>Fouten:</b><code>{errformat}</code>",
-  "run_err_string": "Fout: De taal <b>{langformat}</b> werd niet gevonden. Lijst met ondersteunde talen: {langslistlink}",
-  "run_inline_send": "Taal: {langformat}",
-  "run_err_inline_send_string": "Taal {langformat} niet gevonden."
-}

@@ -1,8 +1,0 @@
-{
-  "cmd_resetrules_description": "Restablecer las reglas de chat.",
-  "cmd_rules_description": "Mostrar las reglas de chat.",
-  "rules_empty": "No se han establecido reglas para este chat.",
-  "rules_message": "Las reglas del chat {chat_title} son:\n\n{rules}",
-  "rules_set_success": "Las reglas para {chat_title} se han establecido correctamente.",
-  "cmd_setrules_description": "Establece las reglas del chat."
-}

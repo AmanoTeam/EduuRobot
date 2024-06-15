@@ -1,9 +1,0 @@
-{
-  "warn_warned": "Gebruiker {target_user} heeft {warn_count} van {warn_limit} waarschuwingen.",
-  "warn_cant_admin": "Ik kan beheerders niet waarschuwen.",
-  "cmd_warn_description": "Waarschuw een gebruiker.",
-  "warn_limit_changed": "De limiet voor waarschuwingen is gewijzigd naar {warn_limit}.",
-  "warn_limit_invalid": "Het opgegeven getal is niet geldig.",
-  "cmd_warns_description": "Krijg de waarschuwingen van de gebruiker.",
-  "warns_count_string": "Gebruiker {target_user} heeft {warns_count} waarschuwingen."
-}

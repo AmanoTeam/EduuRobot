@@ -1,5 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTeplota: <code>{temperature} °C</code>\nTeplota se cítí: <code>{feels_like} °C</code>\nSvětlá vlhkost vzduchu: <code>{air_humidity}%</code>\nRychlost větru: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
-  "location_not_found": "Poloha nebyla nalezena.",
-  "weather_language": "cs-CZ"
-}

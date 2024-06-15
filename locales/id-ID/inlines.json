@@ -1,6 +1,0 @@
-{
-  "markdown_send_inline": "Klik ini untuk mengirim teks dalam format markdown.",
-  "html_send_inline": "Klik ini untuk mengirim teks dalam format html.",
-  "user_info_inline_couldnt_find_user": "Pengguna tidak ditemukan.",
-  "user_info_inline_string": "Username: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nTautan pengguna: {usermentionformat}"
-}

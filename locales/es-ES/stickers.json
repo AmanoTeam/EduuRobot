@@ -1,7 +1,0 @@
-{
-  "getsticker_animated_not_supported": "Los stickers animados no están soportados.",
-  "getsticker_sticker_info": "<b>Emoji:</b> {emoji}\n<b>ID de Sticker:</b> <code>{id}</code>",
-  "getsticker_not_sticker": "Eso no es un sticker.",
-  "kang_sticker_kanged_string": "Sticker <b>añadido con éxito</b> al pack\nEmoji: {sticker_emoji}",
-  "kang_view_sticker_pack_btn": "Ver"
-}

@@ -1,6 +1,0 @@
-{
-  "cmd_git_description": "Obteim info de um git perfil.",
-  "git_user_info": "<b>Nome</b>: <code>{name}</code>\n<b>Username</b>: <code>{username}</code>\n<b>Localização</b>: <code>{location}</code>\n<b>Tipo</b>: <code>{type}</code>\n<b>Bio</b>: <code>{bio}</code>",
-  "git_user_not_found": "Usuário não encontrado.",
-  "git_no_username": "Por favor, especifique um nome de usuário."
-}

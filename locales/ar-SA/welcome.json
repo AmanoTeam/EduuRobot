@@ -1,7 +1,0 @@
-{
-  "welcome_default": "مرحبًا {first_name}، مرحبًا بك في {chat_title}!",
-  "welcome_mode_disable": "رسالة الترحيب لـ {chat_title} معطلة الآن.",
-  "welcome_mode_enable": "رسالة الترحيب لـ {chat_title} مفعلة الآن.",
-  "welcome_mode_invalid": "قيمة غير صالحة. استخدم <code>/welcome off/on</code>.",
-  "welcome_set_error": "حدث خطأ ولم يتم تعيين رسالة الترحيب. الخطأ: {error}"
-}

@@ -1,8 +1,0 @@
-{
-  "cmds_category_admin": "👮‍♂️ Administration",
-  "cmds_list_category_title": "Commands in the <b>{category}</b> category:",
-  "cmds_category_general": "✨ General",
-  "cmds_list_select_category": "Please select a category to see the available commands.",
-  "cmds_category_tools": "🔧 Tools",
-  "cmds_list_group_help": "Please use the command in a private chat or click the button below to see the available commands."
-}

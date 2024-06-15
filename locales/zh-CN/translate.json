@@ -1,5 +1,0 @@
-{
-  "tr_usage": "<b>用法：</b> <code>/tr &lt;语言&gt; 要翻译的文本</code> (可用于回复邮件).",
-  "tr_translating": "正在翻译…",
-  "tr_translation": "<b>语言：</b> {from_lang} -> {to_lang}\n<b>翻译：</b> <code>{translation}</code>"
-}

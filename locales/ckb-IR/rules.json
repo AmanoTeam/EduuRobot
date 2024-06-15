@@ -1,8 +1,0 @@
-{
-  "cmd_resetrules_description": "یاساکانی گروپ لابە.",
-  "cmd_rules_description": "یاساکان ببینە.",
-  "rules_empty": "هیچ یاسایەک بۆ ئەم گروپە دانەنراوە.",
-  "rules_message": "یاساکانی ئەم گروپی {chat_title}:\n\n{rules}",
-  "rules_set_success": "یاساکانی {chat_title} گۆڕران.",
-  "cmd_setrules_description": "یاساکانی گروپ دابنێ."
-}

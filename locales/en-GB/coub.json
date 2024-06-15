@@ -1,4 +1,0 @@
-{
-  "cmd_coub_description": "Sends a random Coub (short video) from search results.",
-  "coub_usage": "<b>Usage:</b> <code>/coub search term</code> — Sends a random Coub (short video) from search results."
-}

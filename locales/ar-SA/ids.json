@@ -1,7 +1,0 @@
-{
-  "id_info_private": "<b>معلومات:</b>\n<b>الاسم:</b> <code>{first_name} {last_name}</code>\n<b>اسم المستخدم:</b> {username}\n<b>المعرف:</b> <code>{user_id}</code>\n<b>مركز البيانات:</b> <code>{user_dc}</code>\n<b>اللغة:</b> <code>{lang}</code>\n<b>نوع المحادثة:</b> <code>{chat_type}</code>",
-  "id_info_group": "<b>معلومات العضو:</b>\n<b>الاسم:</b> <code>{first_name} {last_name}</code>\n<b>اسم المستخدم:</b> {username}\n<b>المعرف:</b> <code>{user_id}</code>\n<b>مركز البيانات:</b> <code>{user_dc}</code>\n<b>اللغة:</b> <code>{lang}</code>\n\n<b>معلومات المحادثة:</b>\n<b>اسم المحادثة:</b> <code>{chat_title}</code>\n<b>اسم مستخدم المحادثة:</b> {chat_username}\n<b>معرف المحادثة:</b> <code>{chat_id}</code>\n<b>مركز بيانات المحادثة:</b> <code>{chat_dc}</code>\n<b>نوع المحادثة:</b> <code>{chat_type}</code>\n<b>الرسائل:</b> <code>{message_id}</code>",
-  "id_none": "لا يوجد",
-  "id_unknown": "مجهول",
-  "id_user_not_found": "لم يتم العثور على أي مستخدم لـ '<code>{user}</code>'."
-}

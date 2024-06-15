@@ -1,8 +1,0 @@
-{
-  "reddit_comments": "Comentários: {0}",
-  "reddit_error": "Erro ao carregar o Subreddit",
-  "reddit_no_results": "Este Subreddit não possui posts",
-  "reddit_not_found": "Subreddit não encontrado",
-  "cmd_reddit_description": "Veja os últimos posts do Subreddit especificado",
-  "reddit_usage": "<b>Uso</b>: <code>/reddit subreddit</code> — Veja os últimos posts do Subreddit especificado"
-}

@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> بواسطة <i>{author_name} {author_email}</i>\nالمنصة: <b>{platform}</b>\nالإصدار: <b>{version}</b>\nالترخيص: <b>{license}</b>\nالملخص: <b>{summary}</b>",
-  "pypi_package_home_page": "الصفحة الرئيسية للحزمة",
-  "pypi_package_not_found": "لا يمكن العثور على <b>{package_name}</b> في PyPI (رمز العودة كان {http_status}).",
-  "pypi_platform_not_specified": "غير محدد"
-}

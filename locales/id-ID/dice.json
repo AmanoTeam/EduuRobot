@@ -1,4 +1,0 @@
-{
-  "cmd_dice_description": "Mengirim buah dadu dan nomornya.",
-  "dice_result": "🎲 Dadu berhenti di nomor tersebut: {number}"
-}

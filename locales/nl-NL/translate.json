@@ -1,6 +1,0 @@
-{
-  "tr_usage": "<b>Gebruik:</b> <code>/tr &lt;language&gt; tekst voor vertaling</code> (Kan ook worden gebruikt als antwoord op een bericht).",
-  "tr_translating": "Vertalen…",
-  "tr_translation": "<b>Taal:</b> {from_lang} -> {to_lang}\n<b>Vertaling:</b> <code>{translation}</code>",
-  "tr_inline_send": "Vertaal van {srclangformat} naar {tolangformat}"
-}

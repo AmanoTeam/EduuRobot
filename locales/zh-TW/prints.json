@@ -1,5 +1,0 @@
-{
-  "cmd_print_description": "截取指定網站的屏幕截圖。",
-  "print_usage": "<b>用法：</b> <code>/print https://example.com</code> — 對指定網站進行截圖。",
-  "print_taking_screenshot": "截圖…"
-}

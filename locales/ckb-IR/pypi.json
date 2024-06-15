@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "‮<b>{package_name}</b> لەلایەن <i>{author_name} {author_email}</i>\nپلاتفۆرم: <b>{platform}</b>\nوەشان: <b>{version}</b>\nبڕوانامە: <b>{license}</b>\nکورتە: <b>{summary}</b>",
-  "pypi_package_home_page": "پەڕەی ماڵەوە",
-  "pypi_package_not_found": "ناتوانم <b>{package_name}</b> لە PyPi بدۆزمەوە (کۆدی وەڵامدانەوەکە بریتیبوو لە {http_status}).",
-  "pypi_platform_not_specified": "دیارینەکراوە"
-}

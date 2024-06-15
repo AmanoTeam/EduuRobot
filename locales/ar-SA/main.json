@@ -1,4 +1,163 @@
 {
+  "_meta_language_flag": "🇸🇦",
   "_meta_language_name": "العربية",
-  "_meta_language_flag": "🇸🇦"
+  "admins_error_must_specify_time": "يجب عليك تحديد الوقت بعد الأمر. على سبيل المثال: <code>/{command} 7d</code>.",
+  "admins_list": "المشرفون في المحادثة {chat_title}:\n{admins_list}",
+  "admins_no_admin_error": "يجب أن تكون مشرفاً لاستخدام هذا الأمر.",
+  "admins_no_permission_error": "أنا آسف ولكن ليست لديك الصلاحيات المطلوبة لتشغيل هذا الأمر. الصلاحيات المفقودة: {permissions}",
+  "admins_reason_string": "السبب: {reason_text}",
+  "antichannelpin_disabled": "تم تعطيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
+  "antichannelpin_enabled": "تم تفعيل مكافحة تثبيت القناة لهذه الدردشة الآن.",
+  "antichannelpin_invalid_arg": "قيمة غير صالحة. استخدم <code>/antichannelpin off/on</code>.",
+  "antichannelpin_status_disabled": "مكافحة ثثبيت القناة معطل حاليًا في هذه الدردشة.",
+  "antichannelpin_status_enabled": "مكافحة ثثبيت القناة مفعل حاليًا في هذه الدردشة.",
+  "ban_cannot_ban_admins": "لا يمكنني حظر المشرفين.",
+  "ban_success": "{user} تم فك حظره من قبل {admin}.",
+  "bug_report_failed": "خطأ، لم أستطع إرسال تقرير الخطأ إلى مشرفي البوت.",
+  "bug_report_success": "تم الإبلاغ عن الخطأ بنجاح.",
+  "cat_meow": "مياو!",
+  "cleanservice_disabled": "تم الآن تعطيل حذف رسائل الاحداث لهذه المحادثة.",
+  "cleanservice_enabled": "حذف رسائل الأحداث لهذه المحادثة مفعل الآن.",
+  "cleanservice_invalid_arg": "قيمة غير صالحة. استخدم <code>/cleanservice off/on</code>.",
+  "cleanservice_status_disabled": "حذف رسائل الأحداث معطل حاليا في هذه المحادثة.",
+  "cleanservice_status_enabled": "حذف رسائل الأحداث مفعل حاليا في هذه المحادثة.",
+  "cmd_admins_description": "إظهار قائمة مع مشرفي المحادثة.",
+  "cmd_antichannelpin_description": "إلغاء تثبيت الرسائل القادمة من القناة المرتبطة بالدردشة تلقائياً.",
+  "cmd_ban_description": "حظر مستخدم من الدرشة.",
+  "cmd_cat_description": "إرسال صورة قطة عشوائية.",
+  "cmd_cleanservice_description": "تنظيف رسائل الأحداث (مثلاً: عندما ينضم عضو للمحادثة) من المحادثة.",
+  "cmd_delfilter_description": "إزالة فلتر من هذه المحادثة.",
+  "cmd_delnote_description": "إزالة ملاحظة من هذه المحادثة.",
+  "cmd_dice_description": "إرسال نرد ورقمه.",
+  "cmd_dog_description": "إرسال صورة كلب عشوائية.",
+  "cmd_filter_description": "إنشاء فلتر لهذه المحادثة.",
+  "cmd_filters_description": "إظهار الفلاتر الحالية لهذه المحادثة.",
+  "cmd_html_description": "تنسيق النص المقدم باستخدام بنية HTML.",
+  "cmd_jsondump_description": "الجصول على تفريغ للرسالة الحالية في json.",
+  "cmd_kick_description": "طرد مستخدم من المحادثة.",
+  "cmd_mark_description": "تنسيق النص المقدم باستخدام بنية Markdown.",
+  "cmd_mute_description": "كتم عضو في المحادثة.",
+  "cmd_note_description": "إنشاء ملاحظة لهذه المحادثة.",
+  "cmd_parsebutton_description": "تساعدك على تحليل الزر.",
+  "cmd_paste_description": "لصق النص / المستند الذي تم الرد عليه في nekobin.com.",
+  "cmd_pin_description": "تثبيت الرسالة التي تم الرد عليها في المحادثة. <code>loud</code> يمكن استخدامه لتمكين الإشعار.",
+  "cmd_private_not_allowed": "لا يمكن استخدام هذا الأمر في محادثة خاصة. إذا كنت بحاجة إلى أي مساعدة، يرجى استخدام الأمر <code>/help</code>.",
+  "cmd_purge_description": "مسح السجل حتى الرسالة التي تم الرد عليها.",
+  "cmd_resetrules_description": "إعادة تعيين قواعد المحادثة.",
+  "cmd_rules_description": "إظهار قواعد المحادثة.",
+  "cmd_setrules_description": "تعيين قواعد المحادثة.",
+  "cmd_start_description": "ابدأ البوت.",
+  "cmd_tban_description": "حظر عضو من المحادثة لوقت المحدد.",
+  "cmd_tmute_description": "كتم عضو من المحادثة لوقت المحدد.",
+  "cmd_token_description": "الحصول على معلومات من توكن البوت المقدم.",
+  "cmd_unban_description": "فك الحظر عن المستخدم في المحادثة.",
+  "cmd_unmute_description": "الغاء الكتم عن عضو في المحادثة.",
+  "cmd_unpin_description": "إلغاء تثبيت الرسالة التي تم الرد عليها في المحادثة.",
+  "cmd_unpinall_description": "إلغاء تثبيت جميع الرسائل في المحادثة.",
+  "cmd_urldecode_description": "تشفير النص المقدم بترميز URL-safe.",
+  "cmd_urlencode_description": "فك تشفير النص المقدم بترميز URL-safe.",
+  "cmd_warn_description": "تحذير مستخدم.",
+  "cmd_warns_description": "إعطاء تحذيرات للمستخدم.",
+  "cmds_category_admin": "👮‍♂️ الإدارة",
+  "cmds_category_general": "✨ عام",
+  "cmds_category_tools": "الأدوات 🔧",
+  "cmds_list_category_title": "الأوامر في فئة <b>{category}</b>:",
+  "details": "<b>{location}</b>:\n\nدرجة الحرارة: <code>{temperature} °C</code>\nتبدو درجة الحرارة مثل: <code>{feels_like} °C</code>\nرطوبة الجو: <code>{air_humidity}%</code>\nسرعة الرياح: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
+  "dice_result": "🎲 توقف النرد عند الرقم: {number}",
+  "dog_woof": "هاو!",
+  "donate_info": "إذا أعجبك المشروع وتريده أن يستمر مجاناً وعلى قيد الحياة، يرجى إظهار دعمك بالتبرع عبر النقر على الرابط أدناه. أي مبلغ هو موضع تقدير. شكرا!\n\nhttps://amanoteam.com/donate",
+  "filters_add_empty": "الرجاء تحديد محتوى للفلتر.",
+  "filters_add_success": "تمت إضافة فلتر <b>{trigger}</b>.",
+  "filters_list": "الفلاتر في هذه المحادثة:\n\n",
+  "filters_list_empty": "حاليا لا توجد فلاتر في هذه المحادثة.",
+  "filters_no_filter_with_name": "لا يوجد فلتر باسم <b>{trigger}</b>.",
+  "filters_remove_success": "تمت إزالة <b>{trigger}</b> من الفلاتر.",
+  "general_back_btn": "« العودة للخلف",
+  "general_no_results": "لم يتم العثور على نتائج.",
+  "getsticker_animated_not_supported": "الملصقات المتحركة غير مدعومة.",
+  "gif_usage": "<b>الاستخدام:</b> <code>كلمة البحث /gif</code> — إرسال GIF عشوائي من نتائج البحث.",
+  "git_user_not_found": "لم يتم العثور على المستخدم.",
+  "html_send_inline": "انقر هنا لإرسال النص بصيغة html.",
+  "html_usage": "<b>الاستخدام:</b> <code>/html &lt;b&gt;النص&lt;/b&gt; في &lt;i&gt;html&lt;/i&gt;</code> — تنسيق النص المقدم مع بنية HTML.",
+  "id_info_group": "<b>معلومات العضو:</b>\n<b>الاسم:</b> <code>{first_name} {last_name}</code>\n<b>اسم المستخدم:</b> {username}\n<b>المعرف:</b> <code>{user_id}</code>\n<b>مركز البيانات:</b> <code>{user_dc}</code>\n<b>اللغة:</b> <code>{lang}</code>\n\n<b>معلومات المحادثة:</b>\n<b>اسم المحادثة:</b> <code>{chat_title}</code>\n<b>اسم مستخدم المحادثة:</b> {chat_username}\n<b>معرف المحادثة:</b> <code>{chat_id}</code>\n<b>مركز بيانات المحادثة:</b> <code>{chat_dc}</code>\n<b>نوع المحادثة:</b> <code>{chat_type}</code>\n<b>الرسائل:</b> <code>{message_id}</code>",
+  "id_info_private": "<b>معلومات:</b>\n<b>الاسم:</b> <code>{first_name} {last_name}</code>\n<b>اسم المستخدم:</b> {username}\n<b>المعرف:</b> <code>{user_id}</code>\n<b>مركز البيانات:</b> <code>{user_dc}</code>\n<b>اللغة:</b> <code>{lang}</code>\n<b>نوع المحادثة:</b> <code>{chat_type}</code>",
+  "id_none": "لا يوجد",
+  "id_unknown": "مجهول",
+  "id_user_not_found": "لم يتم العثور على أي مستخدم لـ '<code>{user}</code>'.",
+  "info_chat_admin": "\nهذا المستخدم لديه '<b>صلاحية المشرف</b>' في هذه المحادثة.",
+  "info_chat_owner": "\nهذا المستخدم هو '<b>المالك</b>' لهذه المحادثة.",
+  "info_first_name": "\nالاسم الأول: {first_name}",
+  "info_header": "<b>معلومات المستخدم:</b>",
+  "info_id": "\nالمعرف: <code>{id}</code>",
+  "info_last_name": "\nالإسم الأخير: {last_name}",
+  "info_user_not_found": "\nلم يتم العثور على أي مستخدم لـ '<code>{user}</code>'.",
+  "info_userlink": "\nرابط المستخدم: {link}",
+  "info_username": "\nاسم المستخدم: @{username}",
+  "ip_err_no_ip": "يجب عليك تحديد الرابط، على سبيل المثال: <code>/ip example.com</code>",
+  "kang_sticker_kanged_string": "تمت إضافة الملصق <b>بنجاح</b> إلى الحزمة\nالرموز التعبيرية: {sticker_emoji}",
+  "kang_view_sticker_pack_btn": "معاينة",
+  "kick_cannot_kick_admins": "لا يمكنني طرد المشرفين.",
+  "kick_success": "{user} تم فك حظره من قبل {admin}.",
+  "location_not_found": "لم يتم العثور على الموقع.",
+  "mark_usage": "<b>الاستخدام:</b> <code>/mark علامة **النص** في __markdown__</code> — يقوم بتنسيق النص المقدم باستخدام صيغة Markdown.",
+  "markdown_send_inline": "انقر هنا لإرسال النص بتنسيق markdown.",
+  "measurement_unit": "m",
+  "mute_cannot_mute_admins": "لا يمكنني كتم المشرفين.",
+  "mute_success": "{user} تم كتمه بواسطة {admin}.",
+  "notes_add_empty": "الرجاء تحديد محتوى الملاحظة.",
+  "notes_add_success": "تمت إضافة الملاحظة <b>{trigger}</b>.",
+  "notes_list": "ملاحظات في هذه المحادثة:\n\n",
+  "notes_list_empty": "حاليا لا توجد ملاحظات في هذه المحادثة.",
+  "notes_remove_success": "تمت إزالة <b>{trigger}</b> من الملاحظات.",
+  "print_taking_screenshot": "أخذ لقطة شاشة…",
+  "purge_in_progress": "جاري مسح الرسائل…",
+  "purge_success": "تم حذف <b>{count}</b> رسائل.",
+  "pypi_package_details": "<b>{package_name}</b> بواسطة <i>{author_name} {author_email}</i>\nالمنصة: <b>{platform}</b>\nالإصدار: <b>{version}</b>\nالترخيص: <b>{license}</b>\nالملخص: <b>{summary}</b>",
+  "pypi_package_home_page": "الصفحة الرئيسية للحزمة",
+  "pypi_package_not_found": "لا يمكن العثور على <b>{package_name}</b> في PyPI (رمز العودة كان {http_status}).",
+  "pypi_platform_not_specified": "غير محدد",
+  "report_admins": "{admins_list}{reported_user} تم تبليغه للمشرفين.",
+  "rules_empty": "لم يتم تحديد قواعد لهذه المحادثة.",
+  "rules_message": "القواعد في المحادثة {chat_title} هي:\n\n{rules}",
+  "rules_set_success": "تم تعيين قواعد {chat_title} بنجاح.",
+  "run_err_inline_send_string": "اللغة {langformat} غير موجودة.",
+  "run_err_string": "خطأ: لم يتم العثور على اللغة <b>{langformat}</b>. قائمة اللغات المدعومة: {langslistlink}",
+  "run_inline_send": "اللغة: {langformat}",
+  "run_tio_res_string_err": "<b>اللغة:</b> <code>{langformat}</code>\n\n<b>الكود:</b>\n<code>{codeformat}</code>\n\n<b>النتائج:</b>\n<code>{resformat}</code>\n\n<b>أخطاء:</b>\n<code>{errformat}</code>",
+  "run_tio_res_string_no_err": "<b>اللغة:</b> <code>{langformat}</code>\n\n<b>الكود:</b>\n<code>{codeformat}</code>\n\n<b>النتائج:</b>\n<code>{resformat}</code>\n\n<b>إحصائيات:</b><code>{statsformat}</code>",
+  "start_add_to_chat_btn": "➕ إضافة إلى محادثة",
+  "start_chat": "🤖 بدء محادثة",
+  "start_commands_btn": "📚 الأوامر",
+  "start_group": "مرحبا! أنا EduuRobot. لاكتشاف وظائفي ، ابدأ محادثة معي.",
+  "start_infos_btn": "ℹ️ حول",
+  "start_language_btn": "🌐 اللغة",
+  "start_private": "مرحبًا! أنا EduuRobot. لاكتشاف المزيد عن وظائفي، انقر على الأزرار أدناه.",
+  "sudos_forbidden_command": "أمر محظور.",
+  "sudos_restarting": "إعادة التشغيل…",
+  "sudos_speedtest": "<b>اختبار السرعة</b>\n\n<b>🌐 استضافة:</b> <code>{host}</code>\n\n<b>🏓 بينغ:</b> <code>{ping} ms</code>\n<b>⬇️ التحميل:</b> <code>{download} Mbps</code>\n<b>⬆️ الرفع:</b> <code>{upload} Mbps</code>",
+  "tban_success": "{user} تم حظر حظره مؤقتا من قبل {admin} لـ <b>{time}</b>.",
+  "telegraph_err_no_reply": "الرجاء الرد على صورة أو فيديو.",
+  "token_bot_token_invalid": "التوكن غير صحيح.",
+  "tr_inline_send": "الترجمة من {srclangformat} إلى {tolangformat}",
+  "tr_translating": "ترجمة…",
+  "tr_translation": "<b>اللغة:</b> {from_lang} -> {to_lang}\n<b>الترجمة:</b> <code>{translation}</code>",
+  "tr_usage": "<b>الاستخدام:</b> <code>/tr &lt;language&gt; النص للترجمة</code> (يمكن استخدامه أيضا في الرد على رسالة).",
+  "user_info_inline_couldnt_find_user": "لم يتم العثور على المستخدم.",
+  "user_info_inline_string": "اسم المستخدم: {usernameformat}\nالمعرف: {useridformat}\nمركز البيانات: {userdcformat}\nرابط المستخدم: {usermentionformat}",
+  "warn_cant_admin": "لا يمكنني تحذير المشرفين.",
+  "warn_limit_changed": "تم تغيير حد التحذيرات بنجاح إلى {warn_limit}.",
+  "warn_limit_invalid": "الرقم المقدم غير صالح.",
+  "warn_warned": "المستخدم {target_user} لديه {warn_count} من {warn_limit} من التحذيرات.",
+  "warns_count_string": "المستخدم {target_user} لديه {warns_count} من التحذيرات.",
+  "weather_language": "ar-SA",
+  "welcome_default": "مرحبًا {first_name}، مرحبًا بك في {chat_title}!",
+  "welcome_mode_disable": "رسالة الترحيب لـ {chat_title} معطلة الآن.",
+  "welcome_mode_enable": "رسالة الترحيب لـ {chat_title} مفعلة الآن.",
+  "welcome_mode_invalid": "قيمة غير صالحة. استخدم <code>/welcome off/on</code>.",
+  "welcome_set_error": "حدث خطأ ولم يتم تعيين رسالة الترحيب. الخطأ: {error}",
+  "ytdl_audio_button": "💿 صوت",
+  "ytdl_downloading": "جاري التحميل…",
+  "ytdl_missing_argument": "الرجاء الرد على رابط أو نص يوتيوب.",
+  "ytdl_sending": "جار الإرسال…",
+  "ytdl_video_button": "🎬 فيديو"
 }

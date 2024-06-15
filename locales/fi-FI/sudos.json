@@ -1,5 +1,0 @@
-{
-  "sudos_speedtest": "<b>Nopeustesti</b>\n\n<b>🌐 Isäntä:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Lataa:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
-  "sudos_forbidden_command": "Kielletty komento.",
-  "sudos_restarting": "Käynnistetään Uudelleen…"
-}

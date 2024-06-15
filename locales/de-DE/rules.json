@@ -1,8 +1,0 @@
-{
-  "cmd_resetrules_description": "Chatregeln zurücksetzen.",
-  "cmd_rules_description": "Chatregeln anzeigen.",
-  "rules_empty": "Es wurden keine Regeln für diesen Chat festgelegt.",
-  "rules_message": "Die Regeln im Chat {chat_title} sind:\n\n{rules}",
-  "rules_set_success": "Die Regeln für {chat_title} wurden erfolgreich definiert.",
-  "cmd_setrules_description": "Regeln für den Chat festlegen."
-}

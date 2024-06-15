@@ -1,7 +1,0 @@
-{
-  "id_info_private": "<b>Info:</b>\n<b>Nome:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Centro elaborazione dati:</b> <code>{user_dc}</code>\n<b>Lingua:</b> <code>{lang}</code>\n<b>Tipo di chat:</b> <code>{chat_type}</code>",
-  "id_info_group": "<b>Info utente:</b>\n<b>Nome:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Centro elaborazione dati:</b> <code>{user_dc}</code>\n<b>Lingua:</b> <code>{lang}</code>\n\n<b>Info chat:</b>\n<b>Nome</b> <code>{chat_title}</code>\n<b>Username:</b> {chat_username}\n<b>ID:</b> <code>{chat_id}</code>\n<b>Centro elaborazione dati</b> <code>{chat_dc}</code>\n<b>Tipo di chat:</b> <code>{chat_type}</code>\n<b>Messaggi:</b> <code>{message_id}</code>",
-  "id_none": "Nessuno",
-  "id_unknown": "Sconosciuto",
-  "id_user_not_found": "Nessun utente trovato per '<code>{user}</code>'."
-}

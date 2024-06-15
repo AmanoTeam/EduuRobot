@@ -1,6 +1,0 @@
-{
-  "tr_usage": "<b>الاستخدام:</b> <code>/tr &lt;language&gt; النص للترجمة</code> (يمكن استخدامه أيضا في الرد على رسالة).",
-  "tr_translating": "ترجمة…",
-  "tr_translation": "<b>اللغة:</b> {from_lang} -> {to_lang}\n<b>الترجمة:</b> <code>{translation}</code>",
-  "tr_inline_send": "الترجمة من {srclangformat} إلى {tolangformat}"
-}

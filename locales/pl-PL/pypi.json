@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> przez <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nWersja: <b>{version}</b>\nLicencja: <b>{license}</b>\nPodsumowanie: <b>{summary}</b>",
-  "pypi_package_home_page": "Strona główna pakietu",
-  "pypi_package_not_found": "Nie można odnaleźć <b>{package_name}</b> w PyPI (kod rekursowany to {http_status}).",
-  "pypi_platform_not_specified": "Nie określono"
-}

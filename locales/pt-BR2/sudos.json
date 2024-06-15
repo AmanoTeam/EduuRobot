@@ -1,5 +1,0 @@
-{
-  "sudos_speedtest": "<b>Teste de lerdeza</b>\n\n<b>🌐 Houst:</b> <code>{host}</code>\n\n<b>🏓 Raquete:</b> <code>{ping} ms</code>\n<b>⬇️ Seta para baixo:</b> <code>{download} Mbps</code>\n<b>⬆️ Seta para cima:</b> <code>{upload} Mbps</code>",
-  "sudos_forbidden_command": "Ow vacilau, isso é proíbido.",
-  "sudos_restarting": "Apagando a porra toda…"
-}

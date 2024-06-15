@@ -1,8 +1,0 @@
-{
-  "admins_error_must_specify_time": "Du måste ange en tid efter kommandot. T.ex.: <code>/{command} 7d</code>.",
-  "admins_no_admin_error": "Du måste vara administratör för att använda detta kommando.",
-  "admins_no_permission_error": "Jag är ledsen men du har inte de nödvändiga behörigheterna för att köra detta kommando. Behörigheter saknas: {permissions}",
-  "cmd_private_not_allowed": "Detta kommando kan inte användas i en privat chatt. Om du behöver hjälp, använd <code>/help</code> -kommandot.",
-  "purge_in_progress": "Rensar meddelanden…",
-  "purge_success": "Tog bort <b>{count}</b> meddelanden."
-}

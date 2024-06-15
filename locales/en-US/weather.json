@@ -1,5 +1,0 @@
-{
-  "details": "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</code>\nTemperature feels like: <code>{feels_like} °F</code>\nAir humidity: <code>{air_humidity}%</code>\nWind speed: <code>{wind_speed} mph</code>\n\n- <i>{overview}</i>",
-  "measurement_unit": "e",
-  "weather_language": "en-US"
-}

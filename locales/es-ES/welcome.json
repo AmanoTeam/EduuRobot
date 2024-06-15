@@ -1,8 +1,0 @@
-{
-  "welcome_default": "Hola {first_name}, ¡bienvenido a {chat_title}!",
-  "welcome_mode_disable": "El mensaje de bienvenida para {chat_title} está ahora deshabilitado.",
-  "welcome_mode_enable": "El mensaje de bienvenida para {chat_title} está ahora habilitado.",
-  "welcome_mode_invalid": "Argumento inválido. Usa <code>/welcome off/on</code>.",
-  "welcome_set_error": "Hubo un error y el mensaje de bienvenida no pudo ser establecido. Error: {error}",
-  "welcome_format_help_msg": "El mensaje puede ser formateado en formato html o con el formateador de texto incorporado de Telegram. Puede utilizar el comando /html para verificar que su html es correcto.\n\nPuede utilizar estos argumentos para el mensaje de bienvenida:\n - <code>{id}</code> para mostrar el ID de usuario en el mensaje de bienvenida.\n - <code>{username}</code> para mostrar el username del usuario en el mensaje de bienvenida. si el usuario no tiene nombre de usuario, el bot muestra una mención.\n - <code>{first_name}</code> para mostrar el nombre del usuario en el mensaje de bienvenida.\n - <code>{full_name}</code> o <code>{name}</code> para mostrar el nombre completo del usuario en el mensaje de bienvenida.\n - <code>{mention}</code> para mencionar al usuario en el mensaje de bienvenida.\n - <code>{chat_title}</code> o <code>{title}</code> para mostrar el título del chat en el mensaje de bienvenida.\n - <code>{count}</code> para mostrar el conteo de miembros del chat en el mensaje de bienvenida.\n\nPara añadir botones puedes usar <code>[texto del botón](buttonurl:button link)</code>. Para añadir más botones en la misma línea, puedes añadir :same después del enlace, como este: <code>[texto del botón](buttonurl:button link:same)</code>."
-}

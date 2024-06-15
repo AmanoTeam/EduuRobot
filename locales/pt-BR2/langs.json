@@ -1,5 +1,0 @@
-{
-  "language_changed_successfully": "O idioma foi alterado com sucesso.",
-  "language_changer_chat": "Aqui você pode alterar o idioma usado pelo bot durante o bate-papo.\nSe o seu idioma não está listado aqui e gostaria de contribuir, vá para @AmanoChat.",
-  "language_changer_private": "Aqui você pode alterar o idioma usado para o bot no chat privado.\n\nSe você quiser mudar o idioma do seu grupo, por favor execute o comando <code>/setchatlang</code> nele.\nSe o seu idioma não estiver listado aqui e você gostaria de contribuir, vá para @AmanoChat."
-}

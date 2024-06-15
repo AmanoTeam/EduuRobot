@@ -1,7 +1,0 @@
-{
-  "run_tio_res_string_no_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Estatísticas:</b><code>{statsformat}</code>",
-  "run_tio_res_string_err": "<b>Linguagem:</b> <code>{langformat}</code>\n\n<b>Código:</b>\n<code>{codeformat}</code>\n\n<b>Resultados:</b>\n<code>{resformat}</code>\n\n<b>Erros:</b>\n<code>{errformat}</code>",
-  "run_err_string": "Erro: A linguagem <b>{langformat}</b> não foi encontrada. Lista de linguagens suportadas: {langslistlink}",
-  "run_inline_send": "Linguagem: {langformat}",
-  "run_err_inline_send_string": "Linguagem {langformat} não encontrada."
-}

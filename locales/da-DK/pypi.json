@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> af <i>{author_name} {author_email}</i>\nPlatform: <b>{platform}</b>\nVariation: <b>{version}</b>\nLicens: <b>{license}</b>\nResumé: <b>{summary}</b>",
-  "pypi_package_home_page": "Pakke hjemmeside",
-  "pypi_package_not_found": "Kan ikke finde <b>{package_name}</b> i PyPI (Returneret kode var {http_status}).",
-  "pypi_platform_not_specified": "Ikke angivet"
-}

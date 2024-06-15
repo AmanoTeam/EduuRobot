@@ -1,9 +1,0 @@
-{
-  "notes_add_success": "Nota <b>{trigger}</b> aggiunta.",
-  "notes_add_empty": "Specifica un contenuto per la nota.",
-  "cmd_delnote_description": "Rimuove una nota da questa chat.",
-  "cmd_note_description": "Crea una nota per questa chat.",
-  "notes_list": "Note in questa chat:\n\n",
-  "notes_list_empty": "Attualmente non ci sono note in questa chat.",
-  "notes_remove_success": "<b>{trigger}</b> rimosso dalle note."
-}

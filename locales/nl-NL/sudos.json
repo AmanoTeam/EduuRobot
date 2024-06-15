@@ -1,5 +1,0 @@
-{
-  "sudos_speedtest": "<b>Snelheidstest</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
-  "sudos_forbidden_command": "Verboden commando.",
-  "sudos_restarting": "Herstarten…"
-}

@@ -1,5 +1,0 @@
-{
-  "pypi_package_home_page": "パッケージのホーム ページ",
-  "pypi_package_not_found": "PyPI に <b>{package_name}</b> が見つかりません (返されたコードは {http_status} でした)。",
-  "pypi_platform_not_specified": "指定されていない"
-}

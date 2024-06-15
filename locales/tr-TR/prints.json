@@ -1,5 +1,0 @@
-{
-  "cmd_print_description": "Belirtilen web sitesinin ekran görüntüsünü alın.",
-  "print_usage": "<b>Kullanım:</b> <code>/print https://example.com</code> — Belirtilen web sitesinin ekran görüntüsünü alın.",
-  "print_taking_screenshot": "Ekran görüntüsü alınıyor…"
-}

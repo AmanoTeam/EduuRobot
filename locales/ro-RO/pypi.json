@@ -1,6 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b> de <i>{author_name} {author_email}</i>\nPlatformă: <b>{platform}</b>\nVersiune: <b>{version}</b>\nLicență: <b>{license}</b>\nSummar: <b>{summary}</b>",
-  "pypi_package_home_page": "Pagina principală a pachetului",
-  "pypi_package_not_found": "Nu se poate găsi <b>{package_name}</b> în PyPI (Codul reformat a fost {http_status}).",
-  "pypi_platform_not_specified": "Nu este specificat"
-}

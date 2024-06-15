@@ -1,8 +1,0 @@
-{
-  "cmd_resetrules_description": "Set ulang peraturan obrolan.",
-  "cmd_rules_description": "Tampilkan peraturan obrolan.",
-  "rules_empty": "Tidak ada peraturan yang ditetapkan untuk obrolan ini.",
-  "rules_message": "Peraturan obrolan ini {chat_title} ialah:\n\n{rules}",
-  "rules_set_success": "Peraturan obrolan untuk {chat_title} berhasil ditetapkan.",
-  "cmd_setrules_description": "Menetapkan peraturan obrolan."
-}

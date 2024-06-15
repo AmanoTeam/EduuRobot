@@ -1,6 +1,0 @@
-{
-  "ip_err_no_ip": "Вы должны указать url адрес, Например.: <code>/ip example.com</code>",
-  "ip_info_inline": "Нажмите здесь, чтобы посмотреть IP информацию {domain}.",
-  "ip_no_url": "Вы должны указать Url адрес.",
-  "ip_no_url_example": "Вы должны указать url, например.: <code>@{bot_username} ip example.com</code>."
-}

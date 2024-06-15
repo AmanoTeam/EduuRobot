@@ -1,8 +1,0 @@
-{
-  "pypi_package_details": "<b>{package_name}</b>, <i>{author_name} {author_email}</i> tarafından\nPlatform: <b>{platform}</b>\nSürüm: <b>{version}</b>\nLisans: <b>{license}</b>\nÖzet: <b>{summary}</b>",
-  "pypi_package_home_page": "Paket ana sayfası",
-  "pypi_package_not_found": "PyPI'de <b>{package_name}</b> bulunamıyor (döndürülen kod şuydu: {http_status}).",
-  "pypi_platform_not_specified": "Belirtilmemiş",
-  "cmd_pypi_description": "Python Paket Dizini'nde (PyPI) bir paket arar.",
-  "pypi_usage": "<b>Kullanım:</b> <code>/pypi paket_adı</code> — Python Paket Dizininde (PyPI) bir paket arar."
-}
