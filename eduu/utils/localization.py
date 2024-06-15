@@ -47,19 +47,28 @@ default_language: str = "en-GB"
 
 def cache_locales(locales: list[str]) -> dict[str, dict[str, str]]:
     # init ldict with empty dict
-    locales_dict = {lang: {} for lang in locales}
+    locales_dict = {}
 
     for locale in locales:
         file = Path("locales", locale, "main.json")
+
         if not file.exists():
             logging.warning(
-                "Unable to load locale %s. This locale will fallback to %s",
+                "Unable to find locale %s. This locale will fallback to %s",
                 locale,
                 default_language,
             )
             continue
 
-        locales_dict[locale] = json.load(file.open("r", encoding="utf8"))
+        locale_keys = json.load(file.open("r", encoding="utf8"))
+
+        if "_meta_language_name" not in locale_keys or "_meta_language_flag" not in locale_keys:
+            logging.warning(
+                "Locale has required keys _meta_language_name or _meta_language_flag missing. This locale will not be loaded."
+            )
+            continue
+
+        locales_dict[locale] = locale_keys
 
     return locales_dict
 
