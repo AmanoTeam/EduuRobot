@@ -90,7 +90,7 @@ async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:
         chat_type = message.chat.type
     elif isinstance(message, InlineQuery):
         chat = message.from_user
-        chat_type = message.chat_type
+        chat_type = ChatType.PRIVATE
     else:
         raise TypeError(f"Update type '{message.__name__}' is not supported.")
 
