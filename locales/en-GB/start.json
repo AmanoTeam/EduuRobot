@@ -7,5 +7,5 @@
   "start_chat": "🤖 Start a chat",
   "group": "Hello! I'm EduuRobot. To discover my functions start a conversation with me.",
   "info_page": "• EduuRobot\n\nVersion number: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Source Code</a>\nDevelopers: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nPartnerships:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
-  "start_description": "Start the bot."
+  "cmd_start_description": "Start the bot."
 }

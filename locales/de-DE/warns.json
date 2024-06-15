@@ -1,9 +1,9 @@
 {
   "user_warned": "Der Benutzer {target_user} hat {warn_count} von {warn_limit} Warnungen.",
   "warn_cant_admin": "Ich kann keine Admins warnen.",
-  "warn_description": "Einen Benutzer warnen.",
+  "cmd_warn_description": "Einen Benutzer warnen.",
   "warn_limit_changed": "Warnungslimit erfolgreich auf {warn_limit} geändert.",
   "warn_limit_invalid": "Die eingegebene Zahl ist nicht gültig.",
-  "warns_description": "Warnungen des Benutzers abrufen.",
+  "cmd_warns_description": "Warnungen des Benutzers abrufen.",
   "warns_count_string": "Der Benutzer {target_user} hat {warns_count} Warnungen."
 }

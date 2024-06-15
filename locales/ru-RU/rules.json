@@ -1,10 +1,10 @@
 {
-  "resetrules_description": "Сбросить правила в чате.",
+  "cmd_resetrules_description": "Сбросить правила в чате.",
   "rules_deleted": "Правила для этого чата успешно удалены.",
-  "rules_description": "Показать правила чата.",
+  "cmd_rules_description": "Показать правила чата.",
   "rules_empty": "Для этого чата не установлены правила.",
   "rules_message": "Список правил в чате {chat_title} :\n\n{rules}",
   "rules_set_empty": "Вы можете указать правила, Например.: <code>/setrules ваши правила в чате</code>.",
   "rules_set_success": "Правила для чата {chat_title} были успешно установлены.",
-  "setrules_description": "Установить правила в чате."
+  "cmd_setrules_description": "Установить правила в чате."
 }

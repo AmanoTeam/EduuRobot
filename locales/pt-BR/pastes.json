@@ -1,4 +1,4 @@
 {
-  "paste_description": "Envia o texto/documento respondido para o nekobin.com.",
+  "cmd_paste_description": "Envia o texto/documento respondido para o nekobin.com.",
   "reply_to_document_or_text": "Por favor, responda a um texto ou documento para colar o conteúdo."
 }

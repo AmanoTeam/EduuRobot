@@ -7,5 +7,5 @@
   "start_chat": "🤖 Iniciar uma conversa",
   "group": "Saudações, caro utilizador! A alcunha geralmente à mim atribuída é a de EduuRobot. Para que você possa descobrir as minhas habilidades e capacidades, permita-me sugerir que inicie uma conversa comigo, para que possamos trocar informações e conhecimentos.",
   "info_page": "• EduuRobot\n\nNúmero de versão: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Código Fonte</a>\nDesenvolvedores: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nParcerias:\n » <a href=\"https://t.me/hpxlist\">HPXList - por usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
-  "start_description": "Inicia o bot."
+  "cmd_start_description": "Inicia o bot."
 }

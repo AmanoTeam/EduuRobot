@@ -1,9 +1,9 @@
 {
   "add_filter_success": "Filter <b>{trigger}</b> toegevoegd.",
   "add_filter_empty": "Geef een inhoud op voor het filter.",
-  "delfilter_description": "Verwijder een filter uit deze chat.",
-  "filter_description": "Maak een filter aan voor deze chat.",
-  "filters_description": "Toon de huidige filters voor deze chat.",
+  "cmd_delfilter_description": "Verwijder een filter uit deze chat.",
+  "cmd_filter_description": "Maak een filter aan voor deze chat.",
+  "cmd_filters_description": "Toon de huidige filters voor deze chat.",
   "filters_list": "Filters in deze chat:\n\n",
   "filters_list_empty": "Er zijn momenteel geen filters in deze chat.",
   "no_filter_with_name": "Er is geen filter met de naam <b>{trigger}</b>.",

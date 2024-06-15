@@ -1,5 +1,5 @@
 {
-  "id_description": "Obtém informações sobre o chat.",
+  "cmd_id_description": "Obtém informações sobre o chat.",
   "info_private": "<b>Info:</b>\n<b>Titolu:</b> <code>{first_name} {last_name}</code>\n<b>Name do user:</b> {username}\n<b>Número da Conta:</b> <code>{user_id}</code>\n<b>Centro de data:</b> <code>{user_dc}</code>\n<b>Indioma:</b> <code>{lang}</code>\n<b>Chat do tipo:</b> <code>{chat_type}</code>",
   "info_group": "<b>Info do user:</b>\n<b>Drone:</b> <code>{first_name} {last_name}</code>\n<b>Nome do user:</b> {username}\n<b>Número da Conta:</b> <code>{user_id}</code>\n<b>Centro de data:</b> <code>{user_dc}</code>\n<b>Indioma:</b> <code>{lang}</code>\n\n<b>Info do Xat:</b>\n<b>Name do xat:</b> <code>{chat_title}</code>\n<b>Name do xat:</b> {chat_username}\n<b>Número do xat:</b> <code>{chat_id}</code>\n<b>Centro do xat:</b> <code>{chat_dc}</code>\n<b>Xat do tipo:</b> <code>{chat_type}</code>\n<b>Id do xat da mensagem:</b> <code>{message_id}</code>",
   "none": "Vai nadar",

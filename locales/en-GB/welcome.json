@@ -1,8 +1,8 @@
 {
-  "resetwelcome_description": "Resets the welcome message to the bot's default welcome message.",
-  "setwelcome_description": "Set the welcome message to the specified message. For help with formatting, see /welcomeformat.",
+  "cmd_resetwelcome_description": "Resets the welcome message to the bot's default welcome message.",
+  "cmd_setwelcome_description": "Set the welcome message to the specified message. For help with formatting, see /welcomeformat.",
   "welcome_default": "Hey {first_name}, welcome to {chat_title}!",
-  "welcome_description": "Toggles the welcome message on or off.",
+  "cmd_welcome_description": "Toggles the welcome message on or off.",
   "welcome_mode_disable": "The welcome message for {chat_title} is now disabled.",
   "welcome_mode_enable": "The welcome message for {chat_title} is now enabled.",
   "welcome_mode_invalid": "Invalid argument. Use <code>/welcome off/on</code>.",
@@ -11,5 +11,5 @@
   "welcome_set_error": "There was an error and the welcome message could not be set. Error: {error}",
   "welcome_set_success": "The welcome message for {chat_title} has been set successfully.",
   "welcome_format_help_msg": "The message can be formatted in html format or with Telegram's builtin text formatter. You can use the /html command to verify that your html is correct.\n\nYou can use these arguments for the welcome message:\n - <code>{id}</code> to show the user ID in the welcome message.\n - <code>{username}</code> to show the user's username in the welcome message. if the user has no username the bot shows a mention.\n - <code>{first_name}</code> to show the user's name in the welcome message.\n - <code>{full_name}</code> or <code>{name}</code> to show the user's full name in the welcome message.\n - <code>{mention}</code> to mention the user in the welcome message.\n - <code>{chat_title}</code> or <code>{title}</code> to show the chat title in the welcome message.\n - <code>{count}</code> to show the chat members count in the welcome message.\n\nTo add buttons you can use <code>[button text](buttonurl:button link)</code>. To add more buttons on the same line, you can add :same after the link, like this: <code>[button text](buttonurl:button link:same)</code>.",
-  "welcomeformat_description": "Help you format the welcome message."
+  "cmd_welcomeformat_description": "Help you format the welcome message."
 }

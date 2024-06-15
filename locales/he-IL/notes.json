@@ -1,8 +1,8 @@
 {
   "add_note_success": "הפתק <b>{trigger}</b> נוסף בהצלחה.",
   "add_note_empty": "בבקשה תציין את התוכן של הפתק.",
-  "delnote_description": "מוחק את הפתק מהצ'אט.",
-  "note_description": "הוסף פתק לצ'אט.",
+  "cmd_delnote_description": "מוחק את הפתק מהצ'אט.",
+  "cmd_note_description": "הוסף פתק לצ'אט.",
   "notes_list": "פתקים בצ'אט זה:\n\n",
   "notes_list_empty": "אין כרגע פתקים בצ'אט זה.",
   "remove_note_success": "הפתק <b>{trigger}</b> נמחק."

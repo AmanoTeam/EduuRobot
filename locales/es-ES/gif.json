@@ -1,4 +1,4 @@
 {
-  "gif_description": "Envía un GIF aleatorio de los resultados de búsqueda.",
+  "cmd_gif_description": "Envía un GIF aleatorio de los resultados de búsqueda.",
   "gif_usage": "<b>Uso:</b> <code>/gif término de búsqueda</code> — Envía un GIF aleatorio de los resultados de búsqueda."
 }

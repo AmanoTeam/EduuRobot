@@ -1,9 +1,9 @@
 {
   "user_warned": "ئاگادارکردنەوەکانی بەکارهێنەر {target_user}:\n{warn_count}/{warn_limit}",
   "warn_cant_admin": "ناتوانم بەرێوەبەر ئاگاداربکەمەوە.",
-  "warn_description": "بەکارهێنەرێک ئاگاداربکەرەوە.",
+  "cmd_warn_description": "بەکارهێنەرێک ئاگاداربکەرەوە.",
   "warn_limit_changed": "سنووری ئاگادارکردنەوە کرا بە {warn_limit}.",
   "warn_limit_invalid": "ژمارە پێدراوەکە دروست نییە.",
-  "warns_description": "ئاگادارکردنەوەکانی بەکارهێنەرێک ببینە.",
+  "cmd_warns_description": "ئاگادارکردنەوەکانی بەکارهێنەرێک ببینە.",
   "warns_count_string": "ژمارەی ئاگادارکردنەوەکانی بەکارهێنەر {target_user}: {warns_count}."
 }

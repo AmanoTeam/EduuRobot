@@ -1,4 +1,4 @@
 {
-  "cat_description": "Invia una foto casuale del gatto.",
+  "cmd_cat_description": "Invia una foto casuale del gatto.",
   "meow": "Miao!"
 }

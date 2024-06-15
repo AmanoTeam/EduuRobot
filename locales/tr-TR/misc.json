@@ -2,14 +2,14 @@
   "no_bot_token": "Lütfen bir bot jetonu belirtin.",
   "bot_token_invalid": "Geçersiz bot jetonu.",
   "bot_token_info": "<b>Ad</b>: <code>{botname}</code>\n<b>Kullanıcı adı</b>: <code>{botusername}</code>\n<b>Kimlik</b>: <code>{botid}</code>",
-  "urldecode_description": "Sağlanan metni URL güvenli kodlamayla kodlayın.",
-  "urlencode_description": "URL güvenli kodlamadan sağlanan metnin kodunu çözün.",
+  "cmd_urldecode_description": "Sağlanan metni URL güvenli kodlamayla kodlayın.",
+  "cmd_urlencode_description": "URL güvenli kodlamadan sağlanan metnin kodunu çözün.",
   "parsebtn_err": "Bir url ve düğmenin metnini belirtmelisiniz, Ör.: <code>/parsebutton https://google.com text</code>.",
-  "parsebutton_description": "Düğmeyi ayrıştırmanıza yardımcı olun.",
+  "cmd_parsebutton_description": "Düğmeyi ayrıştırmanıza yardımcı olun.",
   "bug_reported_success_to_bot_admins": "Hata başarıyla bildirildi.",
   "err_cant_send_bug_report_to_bot_admins": "Hata, hata raporunu botun yöneticilerine gönderemedim.",
   "err_no_bug_to_report": "Bildirilecek hatayı belirtmelisiniz, Ör.: <code>/bug your bug</code>.",
-  "donate_description": "Nasıl bağış yapacağınız hakkında bilgi alın.",
+  "cmd_donate_description": "Nasıl bağış yapacağınız hakkında bilgi alın.",
   "donatecmdstring": "Projeyi beğendiyseniz ve ücretsiz ve canlı devam etmesini istiyorsanız, lütfen aşağıdaki bağlantıya tıklayarak bağış yaparak desteğinizi gösterin. Herhangi bir değer takdir edilir. Teşekkürler!\n\nhttps://amanoteam.com/donate",
   "report_admns": "{admins_list}{reported_user} Yöneticilere bildirildi."
 }

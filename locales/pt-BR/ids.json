@@ -1,5 +1,5 @@
 {
-  "id_description": "Obtém informações sobre o chat.",
+  "cmd_id_description": "Obtém informações sobre o chat.",
   "info_private": "<b>Informações:</b>\n<b>Nome:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Idioma:</b> <code>{lang}</code>\n<b>Tipo de chat:</b> <code>{chat_type}</code>",
   "info_group": "<b>Informações do usuário:</b>\n<b>Nome:</b> <code>{first_name} {last_name}</code>\n<b>Username:</b> {username}\n<b>ID:</b> <code>{user_id}</code>\n<b>Datacenter:</b> <code>{user_dc}</code>\n<b>Idioma:</b> <code>{lang}</code>\n\n<b>Informações do chat:</b>\n<b>Nome do chat:</b> <code>{chat_title}</code>\n<b>Username do chat:</b> {chat_username}\n<b>ID do chat:</b> <code>{chat_id}</code>\n<b>Datacenter do chat:</b> <code>{chat_dc}</code>\n<b>Tipo de chat:</b> <code>{chat_type}</code>\n<b>Mensagens:</b> <code>{message_id}</code>",
   "none": "Nenhum",

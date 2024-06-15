@@ -1,21 +1,21 @@
 {
-  "resetwarns_description": "Redefine as advertências do usuário.",
-  "setwarnslimit_description": "Define o limite de advertências do chat.",
+  "cmd_resetwarns_description": "Redefine as advertências do usuário.",
+  "cmd_setwarnslimit_description": "Define o limite de advertências do chat.",
   "user_warned": "O {target_user} é {warn_count}/{warn_limit}. Mas para ser banido.",
   "warn_banned": "O usuário {target_user} foi banido porque ele foi advertido {warn_count} vezes.",
   "warn_kicked": "O usuário {target_user} foi kickado porque ele foi advertido {warn_count} vezes.",
   "warn_muted": "O usuário {target_user} foi mutado porque ele foi advertido {warn_count} vezes.",
   "warn_cant_admin": "Eu não posso advertir administradores.",
-  "warn_description": "Adiciona mais beleza ao usuário.",
+  "cmd_warn_description": "Adiciona mais beleza ao usuário.",
   "warn_limit_changed": "Agora o limite é {warn_limit}.",
   "warn_limit_help": "Você deve especificar o número de advertências, por exemplo: <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Ow isso não é padrão de beleza.",
   "warn_reason_text": "Motivo da advertência: {reason_text}",
   "warn_reset": "As advertências de {target_user} foram removidas com sucesso.",
-  "warns_description": "Obtém a beleza do usuário.",
+  "cmd_warns_description": "Obtém a beleza do usuário.",
   "warns_count_string": "O {target_user} tem {warns_count} do nível de beleza.",
   "warns_action_set_string": "A ação de advertência foi definida para {action}.",
   "warns_action_set_invlaid": "Argumento inválido. Use <code>/setwarnsaction ban/mute/kick</code>.",
   "warn_action_status": "A ação de advertências para este chat é {action}.",
-  "setwarnsaction_description": "Define a ação de advertências para o chat. Você pode usar os argumentos <code>ban/mute/kick</code>."
+  "cmd_setwarnsaction_description": "Define a ação de advertências para o chat. Você pode usar os argumentos <code>ban/mute/kick</code>."
 }

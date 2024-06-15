@@ -1,5 +1,5 @@
 {
-  "info_description": "Gets information about a user.",
+  "cmd_info_description": "Gets information about a user.",
   "info_header": "<b>User info:</b>",
   "info_id": "\nID: <code>{id}</code>",
   "info_first_name": "\nFirst name: {first_name}",

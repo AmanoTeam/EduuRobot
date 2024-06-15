@@ -1,8 +1,8 @@
 {
   "add_note_success": "Notiz <b>{trigger}</b> hinzugefügt.",
   "add_note_empty": "Bitte gib einen Inhalt für die Notiz an.",
-  "delnote_description": "Eine Notiz aus diesem Chat entfernen.",
-  "note_description": "Eine Notiz für diesen Chat erstellen.",
+  "cmd_delnote_description": "Eine Notiz aus diesem Chat entfernen.",
+  "cmd_note_description": "Eine Notiz für diesen Chat erstellen.",
   "notes_list": "Notizen in diesem Chat:\n\n",
   "notes_list_empty": "Derzeit gibt es keine Notizen in diesem Chat.",
   "remove_note_success": "<b>{trigger}</b> aus den Notizen entfernt."

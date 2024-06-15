@@ -1,9 +1,9 @@
 {
   "add_filter_success": "Añadido filtro <b>{trigger}</b>.",
   "add_filter_empty": "Por favor, especifique un contenido para el filtro.",
-  "delfilter_description": "Eliminar un filtro de este chat.",
-  "filter_description": "Crear un filtro para este chat.",
-  "filters_description": "Mostrar los filtros actuales para este chat.",
+  "cmd_delfilter_description": "Eliminar un filtro de este chat.",
+  "cmd_filter_description": "Crear un filtro para este chat.",
+  "cmd_filters_description": "Mostrar los filtros actuales para este chat.",
   "filters_list": "Filtros en este chat:\n\n",
   "filters_list_empty": "Actualmente no hay filtros en este chat.",
   "no_filter_with_name": "No hay ningún filtro con el nombre <b>{trigger}</b>.",

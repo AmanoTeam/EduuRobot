@@ -7,5 +7,5 @@
   "start_chat": "🤖 Mulailah obrolan",
   "group": "Halo! Saya EduuRobot. Untuk menemukan fungsi saya, mulailah percakapan dengan saya.",
   "info_page": "• EduuRobot\n\nNomor versi: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kode Sumber</a>\nPengembang: <a href=\"https://github.com/AmanoTeam\">Tim Amano</a>\n\nKemitraan:\n » <a href=\"https://t.me/hpxlist\">HPXList - oleh usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
-  "start_description": "Mulai bot."
+  "cmd_start_description": "Mulai bot."
 }

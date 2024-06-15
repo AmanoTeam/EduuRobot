@@ -1,4 +1,4 @@
 {
-  "dice_description": "إرسال نرد ورقمه.",
+  "cmd_dice_description": "إرسال نرد ورقمه.",
   "result": "🎲 توقف النرد عند الرقم: {number}"
 }

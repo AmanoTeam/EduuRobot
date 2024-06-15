@@ -1,4 +1,4 @@
 {
-  "dog_description": "發送隨機狗照片。",
+  "cmd_dog_description": "發送隨機狗照片。",
   "woof": "緯！"
 }

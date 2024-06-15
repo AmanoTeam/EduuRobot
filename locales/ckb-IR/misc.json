@@ -1,12 +1,12 @@
 {
-  "admins_description": "هەموو بەڕێوەبەرەکان ببینە.",
+  "cmd_admins_description": "هەموو بەڕێوەبەرەکان ببینە.",
   "admins_list": "بەڕێوەبەرەکانی {chat_title}:\n{admins_list}",
-  "html_description": "بە سینتاکسی HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
+  "cmd_html_description": "بە سینتاکسی HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
   "html_usage": "<b>بەکارهێنان:</b>\n<code>/html &lt;b&gt;text&lt;/b&gt; in &lt;i&gt;html&lt;/i&gt;</code>\n\nبە سینتاکسی ‌HTML نووسینە پێدراوەکە دەرازێنێتەوە.",
-  "mark_description": "بە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
+  "cmd_mark_description": "بە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
   "mark_usage": "<b>بەکارهێنان:</b>\n<code>/mark **text** in __markdown__</code>\n\nبە سینتاکسی MD نووسینە پێدراوەکە دەرازێنێتەوە.",
-  "token_description": "زانیاری دەربارەی تۆکنێکی بۆت وەربگرە.",
+  "cmd_token_description": "زانیاری دەربارەی تۆکنێکی بۆت وەربگرە.",
   "bot_token_invalid": "ئەم تۆکنە دروست نییە.",
-  "urldecode_description": "نووسینە پێدراوەکە شفرەبکە.",
-  "urlencode_description": "نووسینە پێدراوەکە ناشفرەبکە."
+  "cmd_urldecode_description": "نووسینە پێدراوەکە شفرەبکە.",
+  "cmd_urlencode_description": "نووسینە پێدراوەکە ناشفرەبکە."
 }

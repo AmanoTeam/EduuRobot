@@ -1,4 +1,4 @@
 {
-  "cat_description": "發送一張隨機的貓照片。",
+  "cmd_cat_description": "發送一張隨機的貓照片。",
   "meow": "喵！"
 }

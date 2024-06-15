@@ -1,10 +1,10 @@
 {
-  "resetrules_description": "Redefine as regras do chat.",
+  "cmd_resetrules_description": "Redefine as regras do chat.",
   "rules_deleted": "As regras para este chat foram excluídas com sucesso.",
-  "rules_description": "Exibe as regras do chat.",
+  "cmd_rules_description": "Exibe as regras do chat.",
   "rules_empty": "Nenhuma regra foi definida para este chat.",
   "rules_message": "As regras do chat {chat_title} são:\n\n{rules}",
   "rules_set_empty": "Você deve especificar as regras, por exemplo: <code>/setrules regras do seu chat</code>.",
   "rules_set_success": "As regras de {chat_title} foram definidas com sucesso.",
-  "setrules_description": "Define as regras do chat."
+  "cmd_setrules_description": "Define as regras do chat."
 }

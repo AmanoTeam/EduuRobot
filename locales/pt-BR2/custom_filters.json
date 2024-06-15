@@ -1,9 +1,9 @@
 {
   "add_filter_success": "Opa filtro adicionado <b>{trigger}</b>.",
   "add_filter_empty": "Ow, você fez errado, especifique o conteúdo do filtro.",
-  "delfilter_description": "Ele remove o filtro desse chat.",
-  "filter_description": "Ele cria um filtro para esse chat.",
-  "filters_description": "Ele mostras todos os filtros atuais desse chat.",
+  "cmd_delfilter_description": "Ele remove o filtro desse chat.",
+  "cmd_filter_description": "Ele cria um filtro para esse chat.",
+  "cmd_filters_description": "Ele mostras todos os filtros atuais desse chat.",
   "filters_list": "Eu analisei o sistema e os filtros são:\n\n",
   "filters_list_empty": "Olha, n tem filtros nesse chat, você terá que criar filtros para usufruir desse comando direito.",
   "no_filter_with_name": "Ei, não há nenhum filtro com esse nome aí não <b>{trigger}</b>.",

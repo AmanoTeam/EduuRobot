@@ -1,9 +1,9 @@
 {
   "user_warned": "المستخدم {target_user} لديه {warn_count} من {warn_limit} من التحذيرات.",
   "warn_cant_admin": "لا يمكنني تحذير المشرفين.",
-  "warn_description": "تحذير مستخدم.",
+  "cmd_warn_description": "تحذير مستخدم.",
   "warn_limit_changed": "تم تغيير حد التحذيرات بنجاح إلى {warn_limit}.",
   "warn_limit_invalid": "الرقم المقدم غير صالح.",
-  "warns_description": "إعطاء تحذيرات للمستخدم.",
+  "cmd_warns_description": "إعطاء تحذيرات للمستخدم.",
   "warns_count_string": "المستخدم {target_user} لديه {warns_count} من التحذيرات."
 }

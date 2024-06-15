@@ -225,7 +225,7 @@ class BotCommands:
     ):
         context = get_caller_context()
 
-        description_key = f"{command}_description"
+        description_key = f"cmd_{command}_description"
 
         if self.commands.get(category) is None:
             self.commands[category] = []
@@ -266,7 +266,7 @@ class InlineBotCommands:
     ):
         context = get_caller_context()
 
-        description_key = f"{command.split()[0]}_description"
+        description_key = f"inline_cmd_{command.split()[0]}_description"
 
         self.commands.append({
             "command": command,

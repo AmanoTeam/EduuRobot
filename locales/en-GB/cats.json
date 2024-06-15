@@ -1,4 +1,4 @@
 {
-  "cat_description": "Sends a random cat photo.",
+  "cmd_cat_description": "Sends a random cat photo.",
   "meow": "Meow!"
 }

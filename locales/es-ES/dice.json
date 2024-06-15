@@ -1,4 +1,4 @@
 {
-  "dice_description": "Envía un dado y su número.",
+  "cmd_dice_description": "Envía un dado y su número.",
   "result": "🎲 Los dados se detuvieron en el número: {number}"
 }

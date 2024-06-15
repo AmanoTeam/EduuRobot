@@ -1,5 +1,5 @@
 {
-  "antichannelpin_description": "Désépingler automatiquement les messages provenant du chaîne lié au chat.",
+  "cmd_antichannelpin_description": "Désépingler automatiquement les messages provenant du chaîne lié au chat.",
   "antichannelpin_disabled": "Le pin anti-chaîne pour ce chat est maintenant désactivée.",
   "antichannelpin_enabled": "Le pin anti-chaîne pour ce chat est maintenant activée.",
   "error_must_specify_time": "Vous devez spécifier une heure après la commande. Ex. : <code>/{command} 7d</code>.",

@@ -6,5 +6,5 @@
   "private": "Ciao! Sono EduuRobot. Per scoprire di più sulle mie funzioni, clicca uno dei pulsanti qui sotto.",
   "start_chat": "🤖 Avvia una chat",
   "group": "Ciao! Sono EduuRobot. Per scoprire le mie funzioni, avvia una conversazione con me.",
-  "start_description": "Avvia il bot."
+  "cmd_start_description": "Avvia il bot."
 }

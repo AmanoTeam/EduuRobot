@@ -1,8 +1,8 @@
 {
-  "resetrules_description": "Reset de chatregels.",
-  "rules_description": "Toon de chatregels.",
+  "cmd_resetrules_description": "Reset de chatregels.",
+  "cmd_rules_description": "Toon de chatregels.",
   "rules_empty": "Er zijn geen regels ingesteld voor deze chat.",
   "rules_message": "De regels in de chat {chat_title} zijn:\n\n{rules}",
   "rules_set_success": "De regels voor {chat_title} zijn succesvol ingesteld.",
-  "setrules_description": "Stel de regels van de chat in."
+  "cmd_setrules_description": "Stel de regels van de chat in."
 }

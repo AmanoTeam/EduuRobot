@@ -1,5 +1,5 @@
 {
-  "info_description": "Получить информацию о пользователе.",
+  "cmd_info_description": "Получить информацию о пользователе.",
   "info_header": "<b>Информация о пользователе:</b>",
   "info_first_name": "\nИмя: {first_name}",
   "info_last_name": "\nФамилия: {last_name}",

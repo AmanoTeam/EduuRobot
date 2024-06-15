@@ -5,6 +5,6 @@
   "measurement_unit": "m",
   "no_location": "Por favor, especifique uma cidade ou localização.",
   "weather_language": "pt-BR",
-  "weather_description": "Obtém informações sobre o clima na localização ou cidade especificada.",
+  "cmd_weather_description": "Obtém informações sobre o clima na localização ou cidade especificada.",
   "weather_usage": "<b>Uso:</b> <code>/clima localização ou cidade</code> — Obtém informações sobre o clima na <i>localização ou cidade</i>."
 }

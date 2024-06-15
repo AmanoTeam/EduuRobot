@@ -1,9 +1,9 @@
 {
   "add_filter_success": "Filter <b>{trigger}</b> hinzugefügt.",
   "add_filter_empty": "Bitte gib einen Inhalt für den Filter an.",
-  "delfilter_description": "Einen Filter aus diesem Chat entfernen.",
-  "filter_description": "Einen Filter für diesen Chat erstellen.",
-  "filters_description": "Die aktuellen Filter für diesen Chat anzeigen.",
+  "cmd_delfilter_description": "Einen Filter aus diesem Chat entfernen.",
+  "cmd_filter_description": "Einen Filter für diesen Chat erstellen.",
+  "cmd_filters_description": "Die aktuellen Filter für diesen Chat anzeigen.",
   "filters_list": "Filter in diesem Chat:\n\n",
   "filters_list_empty": "Derzeit gibt es keine Filter in diesem Chat.",
   "no_filter_with_name": "Es gibt keinen Filter mit dem Namen <b>{trigger}</b>.",

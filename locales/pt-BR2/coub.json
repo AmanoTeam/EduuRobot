@@ -1,4 +1,4 @@
 {
-  "coub_description": "Envia um Coub aleatório (vídeo curto) dos resultados da pesquisa.",
+  "cmd_coub_description": "Envia um Coub aleatório (vídeo curto) dos resultados da pesquisa.",
   "coub_usage": "<b>Uso:</b> <code>/coub termo de pesquisa</code> — Envia um Coub aleatório (vídeo curto) dos resultados da pesquisa."
 }

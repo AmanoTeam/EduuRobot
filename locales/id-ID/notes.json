@@ -1,8 +1,8 @@
 {
   "add_note_success": "Catatan ditambahkan <b>{trigger}</b>.",
   "add_note_empty": "Silakan menentukan isi konten untuk catatan.",
-  "delnote_description": "Catatan dihapus dari obrolan ini.",
-  "note_description": "Catatan dibuat untuk obrolan ini.",
+  "cmd_delnote_description": "Catatan dihapus dari obrolan ini.",
+  "cmd_note_description": "Catatan dibuat untuk obrolan ini.",
   "notes_list": "Catatan dalam obrolan ini:\n\n",
   "notes_list_empty": "Saat ini tidak ada catatan dalam obrolan ini.",
   "remove_note_success": "<b>{trigger}</b> dihapus dari catatan."

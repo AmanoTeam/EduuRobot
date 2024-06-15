@@ -1,5 +1,5 @@
 {
-  "info_description": "獲取有關用戶的信息。",
+  "cmd_info_description": "獲取有關用戶的信息。",
   "info_header": "<b>用戶信息：</b>",
   "info_id": "\nID：<code>{id}</code>",
   "info_first_name": "\n名： {first_name}",

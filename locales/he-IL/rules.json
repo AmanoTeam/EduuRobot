@@ -1,8 +1,8 @@
 {
-  "resetrules_description": "אפס את כללי הצ'אט.",
-  "rules_description": "הצג את כללי הצ'אט.",
+  "cmd_resetrules_description": "אפס את כללי הצ'אט.",
+  "cmd_rules_description": "הצג את כללי הצ'אט.",
   "rules_empty": "לא הוגדרו כללים לצ'אט זה.",
   "rules_message": "הכללים לצ'אט {chat_title} הם:\n\n{rules}",
   "rules_set_success": "הכללים לצ'אט {chat_title} הוגדרו בהצלחה.",
-  "setrules_description": "הגדר את כללי הצ'אט."
+  "cmd_setrules_description": "הגדר את כללי הצ'אט."
 }

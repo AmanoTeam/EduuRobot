@@ -1,21 +1,21 @@
 {
-  "resetwarns_description": "Сбрасывает предупреждения пользователя.",
-  "setwarnslimit_description": "Устанавливает лимит предупреждений в чате.",
+  "cmd_resetwarns_description": "Сбрасывает предупреждения пользователя.",
+  "cmd_setwarnslimit_description": "Устанавливает лимит предупреждений в чате.",
   "user_warned": "Пользователь {target_user} имеет {warn_count} из {warn_limit} предупреждений.",
   "warn_banned": "Забанен пользователь {target_user} потому что он был предупреждён {warn_count} раз.",
   "warn_kicked": "Пользователь {target_user} был кикнут, потому что он был предупрежден {warn_count} раз.",
   "warn_muted": "Пользователь {target_user} был заглушен, потому что он был предупреждён {warn_count} раз.",
   "warn_cant_admin": "Я не могу выдавать предупреждения администраторам.",
-  "warn_description": "Предупредить пользователя.",
+  "cmd_warn_description": "Предупредить пользователя.",
   "warn_limit_changed": "Лимит предупреждений успешно изменен на {warn_limit}.",
   "warn_limit_help": "Необходимо указать количество предупреждений, например, <code>/setwarnslimit 5</code>.",
   "warn_limit_invalid": "Указанный номер не допустим.",
   "warn_reason_text": "Причина предупреждения: {reason_text}",
   "warn_reset": "Предупреждения {target_user} успешно удалены.",
-  "warns_description": "Получить информацию о предупреждениях пользователя.",
+  "cmd_warns_description": "Получить информацию о предупреждениях пользователя.",
   "warns_count_string": "Пользователь {target_user} имеет {warns_count} предупреждений.",
   "warns_action_set_string": "Действие предупреждения установлено на {action}.",
   "warns_action_set_invlaid": "Недопустимый аргумент. Используйте <code>/setwarnsaction ban/mute/kick</code>.",
   "warn_action_status": "Действие предупреждения установлено на {action}.",
-  "setwarnsaction_description": "Установить действия предупреждения для чата. Вы можете использовать аргументы <code>ban/mute/kick</code>."
+  "cmd_setwarnsaction_description": "Установить действия предупреждения для чата. Вы можете использовать аргументы <code>ban/mute/kick</code>."
 }

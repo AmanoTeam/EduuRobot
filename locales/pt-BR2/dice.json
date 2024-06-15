@@ -1,4 +1,4 @@
 {
-  "dice_description": "Vc tem dado em casa?",
+  "cmd_dice_description": "Vc tem dado em casa?",
   "result": "U dadu parô nu numeru: {number}"
 }

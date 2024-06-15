@@ -1,4 +1,4 @@
 {
-  "paste_description": "將回复的文本/文檔粘貼到 nekobin.com。",
+  "cmd_paste_description": "將回复的文本/文檔粘貼到 nekobin.com。",
   "reply_to_document_or_text": "請回复文本或文檔以粘貼其內容。"
 }
