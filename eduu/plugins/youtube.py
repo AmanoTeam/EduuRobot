@@ -15,7 +15,7 @@ from hydrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
 from config import PREFIXES
-from eduu.utils import http, pretty_size
+from eduu.utils import commands, http, pretty_size
 from eduu.utils.decorators import aiowrap
 from eduu.utils.localization import use_chat_lang
 
@@ -206,3 +206,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
         await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
+
+
+commands.add_command("yt", "tools")
+commands.add_command("ytdl", "tools")

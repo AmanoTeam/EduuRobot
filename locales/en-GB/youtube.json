@@ -1,4 +1,6 @@
 {
+  "cmd_yt_description": "Searches YouTube for the given query.",
+  "cmd_ytdl_description": "Downloads a YouTube video or audio from the given name or URL.",
   "ytdl_sending": "Sending…",
   "ytdl_missing_argument": "Please reply to a YouTube link or text.",
   "ytdl_audio_button": "💿 Audio",
