@@ -69,7 +69,7 @@
   "cmd_tban_description": "Bans a user from chat for the specified time.",
   "cmd_tmute_description": "Mutes a user in the chat for the specified time.",
   "cmd_token_description": "Get information from the provided bot token.",
-  "cmd_tr_description": "trs the text into the given language (defaults to the chat's default language).",
+  "cmd_tr_description": "Translates the text into the given language (defaults to the chat's default language).",
   "cmd_unban_description": "Unbans a user from chat.",
   "cmd_unmute_description": "Unmutes a user in the chat.",
   "cmd_unpin_description": "Unpins the replied message in chat.",
