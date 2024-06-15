@@ -18,9 +18,9 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("mark", PREFIXES))
 @use_chat_lang
-async def mark(c: Client, m: Message, strings):
+async def mark(c: Client, m: Message, s):
     if len(m.command) == 1:
-        await m.reply_text(strings("mark_usage"))
+        await m.reply_text(s("mark_usage"))
         return
 
     txt = m.text.split(None, 1)[1]
@@ -34,9 +34,9 @@ async def mark(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("html", PREFIXES))
 @use_chat_lang
-async def html(c: Client, m: Message, strings):
+async def html(c: Client, m: Message, s):
     if len(m.command) == 1:
-        await m.reply_text(strings("html_usage"))
+        await m.reply_text(s("html_usage"))
         return
 
     txt = m.text.split(None, 1)[1]
@@ -50,14 +50,14 @@ async def html(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
 @use_chat_lang
-async def mentionadmins(c: Client, m: Message, strings):
+async def mentionadmins(c: Client, m: Message, s):
     mention = ""
     async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
         if not (i.user.is_deleted or i.privileges.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
         m.chat.id,
-        strings("admins_list").format(chat_title=m.chat.title, admins_list=mention),
+        s("admins_list").format(chat_title=m.chat.title, admins_list=mention),
     )
 
 
@@ -67,7 +67,7 @@ async def mentionadmins(c: Client, m: Message, strings):
     & filters.reply
 )
 @use_chat_lang
-async def reportadmins(c: Client, m: Message, strings):
+async def reportadmins(c: Client, m: Message, s):
     if not m.reply_to_message.from_user:
         return
 
@@ -80,7 +80,7 @@ async def reportadmins(c: Client, m: Message, strings):
         if not (i.user.is_deleted or i.privileges.is_anonymous or i.user.is_bot):
             mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
     await m.reply_to_message.reply_text(
-        strings("report_admins").format(
+        s("report_admins").format(
             admins_list=mention,
             reported_user=m.reply_to_message.from_user.mention(),
         ),
@@ -89,19 +89,19 @@ async def reportadmins(c: Client, m: Message, strings):
 
 @Client.on_message(filters.command("token"))
 @use_chat_lang
-async def getbotinfo(c: Client, m: Message, strings):
+async def getbotinfo(c: Client, m: Message, s):
     if len(m.command) == 1:
-        await m.reply_text(strings("token_no_bot_token"), reply_to_message_id=m.id)
+        await m.reply_text(s("token_no_bot_token"), reply_to_message_id=m.id)
         return
 
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
     fullres = req.json()
     if not fullres["ok"]:
-        await m.reply_text(strings("token_bot_token_invalid"))
+        await m.reply_text(s("token_bot_token_invalid"))
     else:
         res = fullres["result"]
-        get_bot_info_text = strings("token_bot_token_info")
+        get_bot_info_text = s("token_bot_token_info")
     await m.reply_text(
         get_bot_info_text.format(
             botname=res["first_name"], botusername=res["username"], botid=res["id"]
@@ -141,9 +141,9 @@ async def urldecodecmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("bug", PREFIXES))
 @use_chat_lang
-async def bug_report_cmd(c: Client, m: Message, strings):
+async def bug_report_cmd(c: Client, m: Message, s):
     if len(m.text.split()) == 1:
-        await m.reply_text(strings("bug_report_empty"))
+        await m.reply_text(s("bug_report_empty"))
         return
 
     try:
@@ -159,9 +159,9 @@ async def bug_report_cmd(c: Client, m: Message, strings):
             text=bug_report,
             disable_web_page_preview=True,
         )
-        await m.reply_text(strings("bug_report_success"))
+        await m.reply_text(s("bug_report_success"))
     except BadRequest:
-        await m.reply_text(strings("bug_report_failed"))
+        await m.reply_text(s("bug_report_failed"))
 
 
 @Client.on_message(filters.command("request", PREFIXES))
@@ -186,20 +186,20 @@ async def request_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("parsebutton"))
 @use_chat_lang
-async def button_parse_helper(c: Client, m: Message, strings):
+async def button_parse_helper(c: Client, m: Message, s):
     if len(m.text.split()) > 2:
         await m.reply_text(
             f"[{m.text.split(None, 2)[2]}](buttonurl:{m.command[1]})",
             parse_mode=ParseMode.DISABLED,
         )
     else:
-        await m.reply_text(strings("parsebtn_err"))
+        await m.reply_text(s("parsebtn_err"))
 
 
 @Client.on_message(filters.command("donate", PREFIXES))
 @use_chat_lang
-async def donatecmd(c: Client, m: Message, strings):
-    await m.reply_text(strings("donate_info"))
+async def donatecmd(c: Client, m: Message, s):
+    await m.reply_text(s("donate_info"))
 
 
 commands.add_command("mark", "general")

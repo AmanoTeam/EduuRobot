@@ -67,7 +67,7 @@ def get_tr_lang(text):
 
 @Client.on_message(filters.command("tr", PREFIXES))
 @use_chat_lang
-async def translate(c: Client, m: Message, strings):
+async def translate(c: Client, m: Message, s):
     text = m.text[4:]
     lang = get_tr_lang(text)
 
@@ -77,10 +77,10 @@ async def translate(c: Client, m: Message, strings):
         text = m.reply_to_message.text or m.reply_to_message.caption
 
     if not text:
-        await m.reply_text(strings("tr_usage"), reply_to_message_id=m.id)
+        await m.reply_text(s("tr_usage"), reply_to_message_id=m.id)
         return
 
-    sent = await m.reply_text(strings("tr_translating"), reply_to_message_id=m.id)
+    sent = await m.reply_text(s("tr_translating"), reply_to_message_id=m.id)
     langs = {}
 
     if len(lang.split("-")) > 1:
@@ -94,7 +94,7 @@ async def translate(c: Client, m: Message, strings):
 
     res = html.escape(text)
     await sent.edit_text(
-        strings("tr_translation").format(
+        s("tr_translation").format(
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
     )
@@ -102,14 +102,14 @@ async def translate(c: Client, m: Message, strings):
 
 @Client.on_inline_query(filters.regex(r"^tr .+", re.IGNORECASE))
 @use_chat_lang
-async def tr_inline(c: Client, q: InlineQuery, strings):
+async def tr_inline(c: Client, q: InlineQuery, s):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
     to_language = q.query.lower().split()[1]
     translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
     await q.answer([
         InlineQueryResultArticle(
-            title=strings("tr_inline_send").format(
+            title=s("tr_inline_send").format(
                 srclangformat=source_language, tolangformat=to_language
             ),
             description=f"{translation.text}",

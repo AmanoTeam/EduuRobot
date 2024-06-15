@@ -55,7 +55,7 @@ async def check_perms(
     message: CallbackQuery | Message,
     permissions: ChatPrivileges | None = None,
     complain_missing_perms: bool = True,
-    strings=None,
+    s=None,
 ) -> bool:
     if isinstance(message, CallbackQuery):
         sender = partial(message.answer, show_alert=True)
@@ -73,7 +73,7 @@ async def check_perms(
         return True
     if user.status != ChatMemberStatus.ADMINISTRATOR:
         if complain_missing_perms:
-            await sender(strings("admins_no_admin_error"))
+            await sender(s("admins_no_admin_error"))
         return False
 
     missing_perms = [
@@ -85,9 +85,7 @@ async def check_perms(
     if not missing_perms:
         return True
     if complain_missing_perms:
-        await sender(
-            strings("admins_no_permission_error").format(permissions=", ".join(missing_perms))
-        )
+        await sender(s("admins_no_permission_error").format(permissions=", ".join(missing_perms)))
     return False
 
 
@@ -214,7 +212,7 @@ class BotCommands:
             "aliases": aliases or [],
         })
 
-    def get_commands_message(self, strings, category: str | None = None):
+    def get_commands_message(self, s, category: str | None = None):
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
@@ -224,16 +222,13 @@ class BotCommands:
             cmds_list = self.commands[category]
 
         res = (
-            strings("cmds_list_category_title").format(
-                category=strings(f"cmds_category_{category}")
-            )
-            + "\n\n"
+            s("cmds_list_category_title").format(category=s(f"cmds_category_{category}")) + "\n\n"
         )
 
         cmds_list.sort(key=operator.itemgetter("command"))
 
         for cmd in cmds_list:
-            res += f"<b>/{cmd['command']}</b> - <i>{strings(cmd['description_key'])}</i>\n"
+            res += f"<b>/{cmd['command']}</b> - <i>{s(cmd['description_key'])}</i>\n"
 
         return res
 

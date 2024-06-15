@@ -16,9 +16,9 @@ from eduu.utils.localization import use_chat_lang
 @Client.on_message(filters.command("purge", PREFIXES))
 @require_admin(ChatPrivileges(can_delete_messages=True), allow_in_private=True)
 @use_chat_lang
-async def purge(c: Client, m: Message, strings):
+async def purge(c: Client, m: Message, s):
     """Purge upto the replied message."""
-    status_message = await m.reply_text(strings("purge_in_progress"), quote=True)
+    status_message = await m.reply_text(s("purge_in_progress"), quote=True)
     await m.delete()
     message_ids = []
     count_del_etion_s = 0
@@ -32,7 +32,7 @@ async def purge(c: Client, m: Message, strings):
         if len(message_ids) > 0:
             await c.delete_messages(chat_id=m.chat.id, message_ids=message_ids)
             count_del_etion_s += len(message_ids)
-    await status_message.edit_text(strings("purge_success").format(count=count_del_etion_s))
+    await status_message.edit_text(s("purge_success").format(count=count_del_etion_s))
     await asyncio.sleep(5)
     await status_message.delete()
 
@@ -40,22 +40,22 @@ async def purge(c: Client, m: Message, strings):
 @Client.on_message(filters.command("cleanservice", PREFIXES))
 @require_admin(ChatPrivileges(can_delete_messages=True))
 @use_chat_lang
-async def delservice(c: Client, m: Message, strings):
+async def delservice(c: Client, m: Message, s):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             await toggle_del_service(m.chat.id, True)
-            await m.reply_text(strings("cleanservice_enabled"))
+            await m.reply_text(s("cleanservice_enabled"))
         elif m.command[1] == "off":
             await toggle_del_service(m.chat.id, None)
-            await m.reply_text(strings("cleanservice_disabled"))
+            await m.reply_text(s("cleanservice_disabled"))
         else:
-            await m.reply_text(strings("cleanservice_invalid_arg"))
+            await m.reply_text(s("cleanservice_invalid_arg"))
     else:
         check_delservice = await check_if_del_service(m.chat.id)
         if check_delservice is None:
-            await m.reply_text(strings("cleanservice_status_disabled"))
+            await m.reply_text(s("cleanservice_status_disabled"))
         else:
-            await m.reply_text(strings("cleanservice_status_enabled"))
+            await m.reply_text(s("cleanservice_status_enabled"))
 
 
 @Client.on_message(filters.service, group=-1)

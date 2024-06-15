@@ -12,7 +12,7 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)
 @use_chat_lang
-async def sed(c: Client, m: Message, strings):
+async def sed(c: Client, m: Message, s):
     exp = regex.split(r"(?<![^\\]\\)/", m.text)
     pattern = exp[1]
     replace_with = exp[2].replace(r"\/", "/")
@@ -36,7 +36,7 @@ async def sed(c: Client, m: Message, strings):
     try:
         res = regex.sub(pattern, replace_with, text, count=count, flags=rflags, timeout=1)
     except TimeoutError:
-        await m.reply_text(strings("sed_regex_timeout"))
+        await m.reply_text(s("sed_regex_timeout"))
     except regex.error as e:
         await m.reply_text(str(e))
     else:

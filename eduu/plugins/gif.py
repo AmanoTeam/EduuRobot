@@ -20,9 +20,9 @@ if not TENOR_API_KEY:
 
 @Client.on_message(filters.command("gif", PREFIXES))
 @use_chat_lang
-async def gif(c: Client, m: Message, strings):
+async def gif(c: Client, m: Message, s):
     if len(m.command) == 1:
-        await m.reply_text(strings("gif_usage"))
+        await m.reply_text(s("gif_usage"))
         return
 
     text = m.text.split(maxsplit=1)[1]
@@ -32,7 +32,7 @@ async def gif(c: Client, m: Message, strings):
     )
     rjson = r.json()
     if not rjson["results"]:
-        await m.reply_text(strings("general_no_results"))
+        await m.reply_text(s("general_no_results"))
         return
 
     res = rjson["results"][0]["media"][0]["mediumgif"]["url"]

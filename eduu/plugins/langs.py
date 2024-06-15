@@ -38,11 +38,11 @@ def gen_langs_kb():
 @Client.on_message(filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group)
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def chlang(c: Client, m: CallbackQuery | Message, strings):
+async def chlang(c: Client, m: CallbackQuery | Message, s):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),
-            [InlineKeyboardButton(strings("general_back_btn"), callback_data="start_back")],
+            [InlineKeyboardButton(s("general_back_btn"), callback_data="start_back")],
         ]
     )
 
@@ -54,9 +54,9 @@ async def chlang(c: Client, m: CallbackQuery | Message, strings):
         sender = msg.reply_text
 
     res = (
-        strings("language_changer_private")
+        s("language_changer_private")
         if msg.chat.type == ChatType.PRIVATE
-        else strings("language_changer_chat")
+        else s("language_changer_chat")
     )
 
     await sender(res, reply_markup=keyboard)
@@ -72,13 +72,13 @@ async def set_chat_lang(c: Client, m: CallbackQuery):
 
 
 @use_chat_lang
-async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
+async def set_chat_lang_edit(c: Client, m: CallbackQuery, s):
     if m.message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
                     InlineKeyboardButton(
-                        strings("general_back_btn"),
+                        s("general_back_btn"),
                         callback_data="start_back",
                     )
                 ]
@@ -86,4 +86,4 @@ async def set_chat_lang_edit(c: Client, m: CallbackQuery, strings):
         )
     else:
         keyboard = None
-    await m.message.edit_text(strings("language_changed_successfully"), reply_markup=keyboard)
+    await m.message.edit_text(s("language_changed_successfully"), reply_markup=keyboard)

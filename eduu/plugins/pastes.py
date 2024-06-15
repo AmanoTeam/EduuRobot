@@ -16,9 +16,9 @@ if TYPE_CHECKING:
 
 @Client.on_message(filters.command("paste", PREFIXES))
 @use_chat_lang
-async def paste(c: Client, m: Message, strings):
+async def paste(c: Client, m: Message, s):
     if not m.reply_to_message:
-        await m.reply_text(strings("pastes_reply_to_document_or_text"))
+        await m.reply_text(s("pastes_reply_to_document_or_text"))
         return
 
     if m.reply_to_message.document:

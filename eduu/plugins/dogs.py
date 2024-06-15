@@ -11,11 +11,11 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("dog", PREFIXES))
 @use_chat_lang
-async def dog(c: Client, m: Message, strings):
+async def dog(c: Client, m: Message, s):
     r = await http.get("https://random.dog/woof.json")
     rj = r.json()
 
-    await m.reply_photo(rj["url"], caption=strings("dog_woof"))
+    await m.reply_photo(rj["url"], caption=s("dog_woof"))
 
 
 commands.add_command("dog", "general")

@@ -69,12 +69,12 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 @Client.on_inline_query(filters.regex(r"^markdown .+", re.IGNORECASE))
 @use_chat_lang
-async def markdown_inline(c: Client, q: InlineQuery, strings):
+async def markdown_inline(c: Client, q: InlineQuery, s):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer([
         InlineQueryResultArticle(
-            title=strings("markdown_send_inline"),
+            title=s("markdown_send_inline"),
             input_message_content=InputTextMessageContent(querytxt, parse_mode=ParseMode.MARKDOWN),
             reply_markup=(InlineKeyboardMarkup(querybuttons) if len(querybuttons) != 0 else None),
         )
@@ -83,12 +83,12 @@ async def markdown_inline(c: Client, q: InlineQuery, strings):
 
 @Client.on_inline_query(filters.regex(r"^html .+", re.IGNORECASE))
 @use_chat_lang
-async def html_inline(c: Client, q: InlineQuery, strings):
+async def html_inline(c: Client, q: InlineQuery, s):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer([
         InlineQueryResultArticle(
-            title=strings("html_send_inline"),
+            title=s("html_send_inline"),
             input_message_content=InputTextMessageContent(
                 querytxt,
             ),
@@ -99,7 +99,7 @@ async def html_inline(c: Client, q: InlineQuery, strings):
 
 @Client.on_inline_query(filters.regex(r"^info .+", re.IGNORECASE))
 @use_chat_lang
-async def info_inline(c: Client, q: InlineQuery, strings):
+async def info_inline(c: Client, q: InlineQuery, s):
     try:
         if q.query == "info":
             user = q.from_user
@@ -109,18 +109,18 @@ async def info_inline(c: Client, q: InlineQuery, strings):
     except (PeerIdInvalid, UsernameInvalid, UserIdInvalid):
         await q.answer([
             InlineQueryResultArticle(
-                title=strings("user_info_inline_couldnt_find_user"),
+                title=s("user_info_inline_couldnt_find_user"),
                 input_message_content=InputTextMessageContent(
-                    strings("user_info_inline_couldnt_find_user")
+                    s("user_info_inline_couldnt_find_user")
                 ),
             )
         ])
         return
     await q.answer([
         InlineQueryResultArticle(
-            title=strings("user_info_inline_send"),
+            title=s("user_info_inline_send"),
             input_message_content=InputTextMessageContent(
-                strings("user_info_inline_string").format(
+                s("user_info_inline_string").format(
                     usernameformat=user.username,
                     useridformat=user.id,
                     userdcformat=user.dc_id,

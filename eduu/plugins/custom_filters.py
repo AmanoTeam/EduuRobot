@@ -31,13 +31,13 @@ async def check_for_filters(chat_id, trigger):
 @Client.on_message(filters.command(["filter", "savefilter"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def save_filter(c: Client, m: Message, strings):
+async def save_filter(c: Client, m: Message, s):
     args = m.text.markdown.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text(strings("filters_add_empty"), quote=True)
+        await m.reply_text(s("filters_add_empty"), quote=True)
         return
 
     if m.reply_to_message and m.reply_to_message.photo:
@@ -87,40 +87,38 @@ async def save_filter(c: Client, m: Message, strings):
     else:
         await add_filter(chat_id, trigger, raw_data, file_id, filter_type)
 
-    await m.reply_text(strings("filters_add_success").format(trigger=trigger), quote=True)
+    await m.reply_text(s("filters_add_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def delete_filter(c: Client, m: Message, strings):
+async def delete_filter(c: Client, m: Message, s):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
     check_filter = await check_for_filters(chat_id, trigger)
 
     if not check_filter:
-        await m.reply_text(
-            strings("filters_no_filter_with_name").format(trigger=trigger), quote=True
-        )
+        await m.reply_text(s("filters_no_filter_with_name").format(trigger=trigger), quote=True)
         return
 
     await rm_filter(chat_id, trigger)
-    await m.reply_text(strings("filters_remove_success").format(trigger=trigger), quote=True)
+    await m.reply_text(s("filters_remove_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command("filters", PREFIXES))
 @use_chat_lang
-async def get_all_filter(c: Client, m: Message, strings):
+async def get_all_filter(c: Client, m: Message, s):
     chat_id = m.chat.id
-    reply_text = strings("filters_list")
+    reply_text = s("filters_list")
     all_filters = await get_all_filters(chat_id)
     for filter_s in all_filters:
         keyword = filter_s[1]
         reply_text += f" - {keyword} \n"
 
     if not all_filters:
-        await m.reply_text(strings("filters_list_empty"), quote=True)
+        await m.reply_text(s("filters_list_empty"), quote=True)
         return
 
     await m.reply_text(reply_text, quote=True)

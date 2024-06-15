@@ -26,13 +26,13 @@ async def check_for_notes(chat_id, trigger):
 @Client.on_message(filters.command(["note", "savenote", "nota", "salvarnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def save_note(c: Client, m: Message, strings):
+async def save_note(c: Client, m: Message, s):
     args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
     if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text(strings("notes_add_empty"), quote=True)
+        await m.reply_text(s("notes_add_empty"), quote=True)
         return
 
     if m.reply_to_message and m.reply_to_message.photo:
@@ -80,36 +80,36 @@ async def save_note(c: Client, m: Message, strings):
         await update_note(chat_id, trigger, raw_data, file_id, note_type)
     else:
         await add_note(chat_id, trigger, raw_data, file_id, note_type)
-    await m.reply_text(strings("notes_add_success").format(trigger=trigger), quote=True)
+    await m.reply_text(s("notes_add_success").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def delete_note(c: Client, m: Message, strings):
+async def delete_note(c: Client, m: Message, s):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
     check_note = await check_for_notes(chat_id, trigger)
     if check_note:
         await rm_note(chat_id, trigger)
-        await m.reply_text(strings("notes_remove_success").format(trigger=trigger), quote=True)
+        await m.reply_text(s("notes_remove_success").format(trigger=trigger), quote=True)
     else:
-        await m.reply_text(strings("notes_no_note_with_name").format(trigger=trigger), quote=True)
+        await m.reply_text(s("notes_no_note_with_name").format(trigger=trigger), quote=True)
 
 
 @Client.on_message(filters.command(["notes", "notas"], PREFIXES))
 @use_chat_lang
-async def get_all_chat_note(c: Client, m: Message, strings):
+async def get_all_chat_note(c: Client, m: Message, s):
     chat_id = m.chat.id
-    reply_text = strings("notes_list")
+    reply_text = s("notes_list")
     all_notes = await get_all_notes(chat_id)
     for note_s in all_notes:
         keyword = note_s[1]
         reply_text += f" - {keyword} \n"
 
     if not all_notes:
-        await m.reply_text(strings("notes_list_empty"), quote=True)
+        await m.reply_text(s("notes_list_empty"), quote=True)
     else:
         await m.reply_text(reply_text, quote=True)
 

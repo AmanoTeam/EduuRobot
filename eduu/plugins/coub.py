@@ -13,9 +13,9 @@ from eduu.utils.localization import use_chat_lang
 
 @Client.on_message(filters.command("coub", PREFIXES))
 @use_chat_lang
-async def coub(c: Client, m: Message, strings):
+async def coub(c: Client, m: Message, s):
     if len(m.command) == 1:
-        await m.reply_text(strings("coub_usage"))
+        await m.reply_text(s("coub_usage"))
         return
 
     text = m.text.split(maxsplit=1)[1]
@@ -26,7 +26,7 @@ async def coub(c: Client, m: Message, strings):
         links = content["permalink"]
         title = content["title"]
     except IndexError:
-        await m.reply_text(strings("general_no_results"))
+        await m.reply_text(s("general_no_results"))
     else:
         await m.reply_text(f'<b><a href="https://coub.com/v/{links}">{title}</a></b>')
 

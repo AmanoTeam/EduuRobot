@@ -69,7 +69,7 @@ async def yt_search_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("ytdl", PREFIXES))
 @use_chat_lang
-async def ytdlcmd(c: Client, m: Message, strings):
+async def ytdlcmd(c: Client, m: Message, s):
     user = m.from_user.id
 
     afsize = 0
@@ -80,7 +80,7 @@ async def ytdlcmd(c: Client, m: Message, strings):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text(strings("ytdl_missing_argument"))
+        await m.reply_text(s("ytdl_missing_argument"))
         return
 
     ydl = YoutubeDL({"noplaylist": True})
@@ -105,11 +105,11 @@ async def ytdlcmd(c: Client, m: Message, strings):
     keyboard = [
         [
             (
-                strings("ytdl_audio_button"),
+                s("ytdl_audio_button"),
                 f'_aud.{yt["id"]}|{afsize}|{temp}|{m.chat.id}|{user}|{m.id}',
             ),
             (
-                strings("ytdl_video_button"),
+                s("ytdl_video_button"),
                 f'_vid.{yt["id"]}|{vfsize}|{temp}|{m.chat.id}|{user}|{m.id}',
             ),
         ]
@@ -130,21 +130,21 @@ async def ytdlcmd(c: Client, m: Message, strings):
 
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
 @use_chat_lang
-async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
+async def cli_ytdl(c: Client, cq: CallbackQuery, s):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
-        await cq.answer(strings("ytdl_button_denied"), cache_time=60)
+        await cq.answer(s("ytdl_button_denied"), cache_time=60)
         return
     if int(fsize) > MAX_FILESIZE:
         await cq.answer(
-            strings("ytdl_file_too_big"),
+            s("ytdl_file_too_big"),
             show_alert=True,
             cache_time=60,
         )
         return
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
-    await cq.message.edit_text(strings("ytdl_downloading"))
+    await cq.message.edit_text(s("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = Path(tempdir) / "ytdl"
 
@@ -166,9 +166,9 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
-        await cq.message.edit_text(strings("ytdl_send_error").format(errmsg=e))
+        await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
         return
-    await cq.message.edit_text(strings("ytdl_sending"))
+    await cq.message.edit_text(s("ytdl_sending"))
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
     thumb.name = "thumbnail.png"
@@ -201,7 +201,7 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, strings):
                 reply_to_message_id=int(mid),
             )
     except BadRequest as e:
-        await cq.message.edit_text(strings("ytdl_send_error").format(errmsg=e))
+        await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
     else:
         await cq.message.delete()
 

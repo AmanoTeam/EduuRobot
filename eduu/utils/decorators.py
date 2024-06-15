@@ -59,7 +59,7 @@ def require_admin(
         @wraps(func)
         async def wrapper(client: Client, message: CallbackQuery | Message, *args, **kwargs):
             lang = await get_lang(message)
-            strings = partial(
+            s = partial(
                 get_locale_string,
                 lang,
             )
@@ -79,10 +79,10 @@ def require_admin(
             if msg.chat.type == ChatType.PRIVATE:
                 if allow_in_private:
                     return await func(client, message, *args, *kwargs)
-                return await sender(strings("cmd_private_not_allowed"))
+                return await sender(s("cmd_private_not_allowed"))
             if msg.chat.type == ChatType.CHANNEL:
                 return await func(client, message, *args, *kwargs)
-            has_perms = await check_perms(message, permissions, complain_missing_perms, strings)
+            has_perms = await check_perms(message, permissions, complain_missing_perms, s)
             if has_perms:
                 return await func(client, message, *args, *kwargs)
             return None

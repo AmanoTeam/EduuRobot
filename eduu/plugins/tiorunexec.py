@@ -27,13 +27,11 @@ langs_list_link = "https://amanoteam.com/etc/langs.html"
 
 @Client.on_message(filters.command(["run", "exec_code"], PREFIXES))
 @use_chat_lang
-async def exec_tio_run_code(c: Client, m: Message, strings):
+async def exec_tio_run_code(c: Client, m: Message, s):
     execlanguage = m.command[1]
     if execlanguage not in langslist:
         await m.reply_text(
-            strings("run_err_string").format(
-                langformat=execlanguage, langslistlink=langs_list_link
-            )
+            s("run_err_string").format(langformat=execlanguage, langslistlink=langs_list_link)
         )
         return
 
@@ -47,7 +45,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 
     if sendtioreq.error is None:
         await m.reply_text(
-            strings("run_tio_res_string_no_err").format(
+            s("run_tio_res_string_no_err").format(
                 langformat=execlanguage,
                 codeformat=html.escape(codetoexec),
                 resformat=html.escape(tiores),
@@ -57,7 +55,7 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
         return
 
     await m.reply_text(
-        strings("run_tio_res_string_err").format(
+        s("run_tio_res_string_err").format(
             langformat=execlanguage,
             codeformat=html.escape(codetoexec),
             resformat=html.escape(tiores),
@@ -68,14 +66,14 @@ async def exec_tio_run_code(c: Client, m: Message, strings):
 
 @Client.on_inline_query(filters.regex(r"^(run|exec)", re.IGNORECASE))
 @use_chat_lang
-async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
+async def exec_tio_run_code_inline(c: Client, q: InlineQuery, s):
     execlanguage = q.query.lower().split()[1]
     if execlanguage not in langslist:
         await q.answer([
             InlineQueryResultArticle(
-                title=strings("run_err_inline_send_string").format(langformat=execlanguage),
+                title=s("run_err_inline_send_string").format(langformat=execlanguage),
                 input_message_content=InputTextMessageContent(
-                    strings("run_err_string").format(
+                    s("run_err_string").format(
                         langformat=execlanguage, langslistlink=langs_list_link
                     )
                 ),
@@ -95,10 +93,10 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
         await q.answer(
             [
                 InlineQueryResultArticle(
-                    title=strings("run_inline_send").format(langformat=execlanguage),
+                    title=s("run_inline_send").format(langformat=execlanguage),
                     description=tiores,
                     input_message_content=InputTextMessageContent(
-                        strings("run_tio_res_string_no_err").format(
+                        s("run_tio_res_string_no_err").format(
                             langformat=execlanguage,
                             codeformat=html.escape(codetoexec),
                             resformat=html.escape(tiores),
@@ -114,10 +112,10 @@ async def exec_tio_run_code_inline(c: Client, q: InlineQuery, strings):
     await q.answer(
         [
             InlineQueryResultArticle(
-                title=strings("run_inline_send").format(langformat=execlanguage),
+                title=s("run_inline_send").format(langformat=execlanguage),
                 description=tiores,
                 input_message_content=InputTextMessageContent(
-                    strings("run_tio_res_string_err").format(
+                    s("run_tio_res_string_err").format(
                         langformat=execlanguage,
                         codeformat=html.escape(codetoexec),
                         resformat=html.escape(tiores),
