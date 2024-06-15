@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from functools import partial
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -47,22 +48,26 @@ enabled_locales: list[str] = [
 default_language: str = "en-GB"
 
 
-def cache_localizations(files: list[Path]) -> dict[str, dict[str, str]]:
-    ldict = {lang: {} for lang in enabled_locales}
-    for file in files:
-        _, lname, pname = file.parts
-        pname = pname.split(".")[0]
-        dic: dict = json.load(file.open("r", encoding="utf8"))
-        ldict[lname].update(dic)
-    return ldict
+def cache_locales(locales: list[str]) -> dict[str, dict[str, str]]:
+    # init ldict with empty dict
+    locales_dict = {lang: {} for lang in locales}
+
+    for locale in locales:
+        file = Path("locales", locale, "main.json")
+        if not file.exists():
+            logging.warning(
+                "Unable to load locale %s. This locale will fallback to %s",
+                locale,
+                default_language,
+            )
+            continue
+
+        locales_dict[locale] = json.load(file.open("r", encoding="utf8"))
+
+    return locales_dict
 
 
-jsons: list[Path] = []
-
-for locale in enabled_locales:
-    jsons.extend((Path("locales") / locale).glob("*.json"))
-
-langdict = cache_localizations(jsons)
+langdict = cache_locales(enabled_locales)
 
 
 def get_locale_string(
