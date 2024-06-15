@@ -9,7 +9,7 @@ from hydrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 def cleanhtml(raw_html):
@@ -26,7 +26,7 @@ def escape_definition(definition):
 
 @Client.on_message(filters.command("pypi", PREFIXES))
 @use_chat_lang
-async def pypi(c: Client, m: Message, s):
+async def pypi(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("pypi_usage"))
         return

@@ -15,7 +15,7 @@ from hydrogram.types import (
 )
 
 from eduu.utils import button_parser, inline_commands
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 faces_list: Iterable[str] = (
     "¯\\_(ツ)_/¯",
@@ -69,7 +69,7 @@ async def faces_inline(c: Client, q: InlineQuery):
 
 @Client.on_inline_query(filters.regex(r"^markdown .+", re.IGNORECASE))
 @use_chat_lang
-async def markdown_inline(c: Client, q: InlineQuery, s):
+async def markdown_inline(c: Client, q: InlineQuery, s: Strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer([
@@ -83,7 +83,7 @@ async def markdown_inline(c: Client, q: InlineQuery, s):
 
 @Client.on_inline_query(filters.regex(r"^html .+", re.IGNORECASE))
 @use_chat_lang
-async def html_inline(c: Client, q: InlineQuery, s):
+async def html_inline(c: Client, q: InlineQuery, s: Strings):
     queryinputres = q.query.split(None, 1)[1]
     querytxt, querybuttons = button_parser(queryinputres)
     await q.answer([
@@ -99,7 +99,7 @@ async def html_inline(c: Client, q: InlineQuery, s):
 
 @Client.on_inline_query(filters.regex(r"^info .+", re.IGNORECASE))
 @use_chat_lang
-async def info_inline(c: Client, q: InlineQuery, s):
+async def info_inline(c: Client, q: InlineQuery, s: Strings):
     try:
         if q.query == "info":
             user = q.from_user

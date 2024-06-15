@@ -15,7 +15,7 @@ from hydrogram.types import (
 
 from config import PREFIXES
 from eduu.utils import commands, inline_commands
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 tr = Translator()
 
@@ -67,7 +67,7 @@ def get_tr_lang(text):
 
 @Client.on_message(filters.command("tr", PREFIXES))
 @use_chat_lang
-async def translate(c: Client, m: Message, s):
+async def translate(c: Client, m: Message, s: Strings):
     text = m.text[4:]
     lang = get_tr_lang(text)
 
@@ -102,7 +102,7 @@ async def translate(c: Client, m: Message, s):
 
 @Client.on_inline_query(filters.regex(r"^tr .+", re.IGNORECASE))
 @use_chat_lang
-async def tr_inline(c: Client, q: InlineQuery, s):
+async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
     to_language = q.query.lower().split()[1]

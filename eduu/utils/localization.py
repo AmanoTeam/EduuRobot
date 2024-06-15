@@ -5,17 +5,14 @@ from __future__ import annotations
 
 import json
 import logging
+from collections.abc import Callable
 from functools import partial
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
-
-if TYPE_CHECKING:
-    from collections.abc import Callable
 
 enabled_locales: list[str] = [
     "en-GB",  # English (United Kingdom)
@@ -76,6 +73,9 @@ def get_locale_string(
 ) -> str:
     res: str = langdict[language].get(key) or langdict[default_language].get(key) or key
     return res
+
+
+Strings = Callable[[str], str]
 
 
 async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:

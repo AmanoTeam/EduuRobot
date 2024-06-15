@@ -8,12 +8,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("git", PREFIXES))
 @use_chat_lang
-async def git(c: Client, m: Message, s):
+async def git(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("git_no_username"), reply_to_message_id=m.id)
         return

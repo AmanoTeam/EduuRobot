@@ -8,7 +8,7 @@ from hydrogram.types import Message
 
 from config import PREFIXES, TENOR_API_KEY
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ if not TENOR_API_KEY:
 
 @Client.on_message(filters.command("gif", PREFIXES))
 @use_chat_lang
-async def gif(c: Client, m: Message, s):
+async def gif(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("gif_usage"))
         return

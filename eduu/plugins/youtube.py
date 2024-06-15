@@ -17,7 +17,7 @@ from yt_dlp import YoutubeDL
 from config import PREFIXES
 from eduu.utils import commands, http, pretty_size
 from eduu.utils.decorators import aiowrap
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
@@ -69,7 +69,7 @@ async def yt_search_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("ytdl", PREFIXES))
 @use_chat_lang
-async def ytdlcmd(c: Client, m: Message, s):
+async def ytdlcmd(c: Client, m: Message, s: Strings):
     user = m.from_user.id
 
     afsize = 0
@@ -130,7 +130,7 @@ async def ytdlcmd(c: Client, m: Message, s):
 
 @Client.on_callback_query(filters.regex("^(_(vid|aud))"))
 @use_chat_lang
-async def cli_ytdl(c: Client, cq: CallbackQuery, s):
+async def cli_ytdl(c: Client, cq: CallbackQuery, s: Strings):
     data, fsize, temp, cid, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
         await cq.answer(s("ytdl_button_denied"), cache_time=60)

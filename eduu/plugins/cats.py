@@ -6,12 +6,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("cat", PREFIXES))
 @use_chat_lang
-async def cat(c: Client, m: Message, s):
+async def cat(c: Client, m: Message, s: Strings):
     r = await http.get("https://api.thecatapi.com/v1/images/search")
     rj = r.json()
 

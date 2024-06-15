@@ -7,12 +7,12 @@ import regex
 from hydrogram import Client, filters
 from hydrogram.types import Message
 
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)
 @use_chat_lang
-async def sed(c: Client, m: Message, s):
+async def sed(c: Client, m: Message, s: Strings):
     exp = regex.split(r"(?<![^\\]\\)/", m.text)
     pattern = exp[1]
     replace_with = exp[2].replace(r"\/", "/")

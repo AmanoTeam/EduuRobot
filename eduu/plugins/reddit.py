@@ -8,7 +8,7 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 CHARACTER_LIMIT = 25
 
@@ -22,7 +22,7 @@ def limit_length(title: str):
 
 @Client.on_message(filters.command(["reddit", "r"], PREFIXES))
 @use_chat_lang
-async def reddit(c: Client, m: Message, s):
+async def reddit(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("reddit_usage"))
         return

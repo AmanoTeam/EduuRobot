@@ -11,12 +11,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("print", PREFIXES))
 @use_chat_lang
-async def prints(c: Client, m: Message, s):
+async def prints(c: Client, m: Message, s: Strings):
     # Get the target URl from the message using Telegram entities.
     # If there is no URL, try to get an URL from the replied message.
     # If there is no URL in the replied message, fail.

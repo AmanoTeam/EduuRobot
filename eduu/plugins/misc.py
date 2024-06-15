@@ -13,12 +13,12 @@ from hydrogram.types import InlineKeyboardMarkup, Message
 from config import LOG_CHAT, PREFIXES
 from eduu.utils import button_parser, commands, http
 from eduu.utils.consts import ADMIN_STATUSES
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("mark", PREFIXES))
 @use_chat_lang
-async def mark(c: Client, m: Message, s):
+async def mark(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("mark_usage"))
         return
@@ -34,7 +34,7 @@ async def mark(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("html", PREFIXES))
 @use_chat_lang
-async def html(c: Client, m: Message, s):
+async def html(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("html_usage"))
         return
@@ -50,7 +50,7 @@ async def html(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
 @use_chat_lang
-async def mentionadmins(c: Client, m: Message, s):
+async def mentionadmins(c: Client, m: Message, s: Strings):
     mention = ""
     async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
         if not (i.user.is_deleted or i.privileges.is_anonymous):
@@ -67,7 +67,7 @@ async def mentionadmins(c: Client, m: Message, s):
     & filters.reply
 )
 @use_chat_lang
-async def reportadmins(c: Client, m: Message, s):
+async def reportadmins(c: Client, m: Message, s: Strings):
     if not m.reply_to_message.from_user:
         return
 
@@ -89,7 +89,7 @@ async def reportadmins(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("token"))
 @use_chat_lang
-async def getbotinfo(c: Client, m: Message, s):
+async def getbotinfo(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("token_no_bot_token"), reply_to_message_id=m.id)
         return
@@ -141,7 +141,7 @@ async def urldecodecmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("bug", PREFIXES))
 @use_chat_lang
-async def bug_report_cmd(c: Client, m: Message, s):
+async def bug_report_cmd(c: Client, m: Message, s: Strings):
     if len(m.text.split()) == 1:
         await m.reply_text(s("bug_report_empty"))
         return
@@ -186,7 +186,7 @@ async def request_cmd(c: Client, m: Message):
 
 @Client.on_message(filters.command("parsebutton"))
 @use_chat_lang
-async def button_parse_helper(c: Client, m: Message, s):
+async def button_parse_helper(c: Client, m: Message, s: Strings):
     if len(m.text.split()) > 2:
         await m.reply_text(
             f"[{m.text.split(None, 2)[2]}](buttonurl:{m.command[1]})",
@@ -198,7 +198,7 @@ async def button_parse_helper(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("donate", PREFIXES))
 @use_chat_lang
-async def donatecmd(c: Client, m: Message, s):
+async def donatecmd(c: Client, m: Message, s: Strings):
     await m.reply_text(s("donate_info"))
 
 

@@ -17,7 +17,7 @@ from eduu.database.warns import (
 from eduu.utils import commands, get_target_user
 from eduu.utils.consts import ADMIN_STATUSES
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 def get_warn_reason_text(c: Client, m: Message) -> Message:
@@ -35,7 +35,7 @@ def get_warn_reason_text(c: Client, m: Message) -> Message:
 @Client.on_message(filters.command("warn", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
-async def warn_user(c: Client, m: Message, s):
+async def warn_user(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     warns_limit = await get_warns_limit(m.chat.id)
     check_admin = await m.chat.get_member(target_user.id)
@@ -79,7 +79,7 @@ async def warn_user(c: Client, m: Message, s):
 @Client.on_message(filters.command("setwarnslimit", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_restrict_members=True, can_change_info=True))
 @use_chat_lang
-async def on_set_warns_limit(c: Client, m: Message, s):
+async def on_set_warns_limit(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("warn_limit_help"))
         return
@@ -96,7 +96,7 @@ async def on_set_warns_limit(c: Client, m: Message, s):
 @Client.on_message(filters.command(["resetwarns", "unwarn"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
-async def unwarn_user(c: Client, m: Message, s):
+async def unwarn_user(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     await reset_warns(m.chat.id, target_user.id)
     await m.reply_text(s("warn_reset").format(target_user=target_user.mention))
@@ -105,7 +105,7 @@ async def unwarn_user(c: Client, m: Message, s):
 @Client.on_message(filters.command("warns", PREFIXES) & filters.group)
 @require_admin()
 @use_chat_lang
-async def get_user_warns_cmd(c: Client, m: Message, s):
+async def get_user_warns_cmd(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     user_warns = await get_warns(m.chat.id, target_user.id)
     await m.reply_text(
@@ -116,7 +116,7 @@ async def get_user_warns_cmd(c: Client, m: Message, s):
 @Client.on_message(filters.command(["setwarnsaction", "warnsaction"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_restrict_members=True))
 @use_chat_lang
-async def set_warns_action_cmd(c: Client, m: Message, s):
+async def set_warns_action_cmd(c: Client, m: Message, s: Strings):
     if len(m.text.split()) == 1:
         warn_act = await get_warn_action(m.chat.id)
         await m.reply_text(s("warn_action_status").format(action=warn_act))

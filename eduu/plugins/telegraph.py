@@ -8,12 +8,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("telegraph", PREFIXES))
 @use_chat_lang
-async def telegraph(c: Client, m: Message, s):
+async def telegraph(c: Client, m: Message, s: Strings):
     if not m.reply_to_message:
         await m.reply_text(s("telegraph_err_no_reply"))
         return

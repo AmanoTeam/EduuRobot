@@ -8,13 +8,13 @@ from config import PREFIXES
 from eduu.utils import commands, extract_time, get_reason_text, get_target_user
 from eduu.utils.consts import ADMIN_STATUSES
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("ban", PREFIXES))
 @use_chat_lang
 @require_admin(ChatPrivileges(can_restrict_members=True))
-async def ban(c: Client, m: Message, s):
+async def ban(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     reason = get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
@@ -36,7 +36,7 @@ async def ban(c: Client, m: Message, s):
 @Client.on_message(filters.command("kick", PREFIXES))
 @use_chat_lang
 @require_admin(ChatPrivileges(can_restrict_members=True))
-async def kick(c: Client, m: Message, s):
+async def kick(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     reason = get_reason_text(c, m)
     check_admin = await m.chat.get_member(target_user.id)
@@ -59,7 +59,7 @@ async def kick(c: Client, m: Message, s):
 @Client.on_message(filters.command("unban", PREFIXES))
 @use_chat_lang
 @require_admin(ChatPrivileges(can_restrict_members=True))
-async def unban(c: Client, m: Message, s):
+async def unban(c: Client, m: Message, s: Strings):
     target_user = await get_target_user(c, m)
     reason = get_reason_text(c, m)
     await m.chat.unban_member(target_user.id)
@@ -76,7 +76,7 @@ async def unban(c: Client, m: Message, s):
 @Client.on_message(filters.command("tban", PREFIXES))
 @use_chat_lang
 @require_admin(ChatPrivileges(can_restrict_members=True))
-async def tban(c: Client, m: Message, s):
+async def tban(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("admins_error_must_specify_time").format(command=m.command[0]))
         return

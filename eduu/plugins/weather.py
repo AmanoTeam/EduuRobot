@@ -15,7 +15,7 @@ from hydrogram.types import (
 
 from config import PREFIXES
 from eduu.utils import commands, http, inline_commands
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 # Api key used in weather.com's mobile app.
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
@@ -84,7 +84,7 @@ def get_status_emoji(status_code: int) -> str:
 @Client.on_message(filters.command(["clima", "weather"], PREFIXES))
 @Client.on_inline_query(filters.regex(r"^(clima|weather) .+", re.IGNORECASE))
 @use_chat_lang
-async def weather(c: Client, m: InlineQuery | Message, s):
+async def weather(c: Client, m: InlineQuery | Message, s: Strings):
     text = m.text if isinstance(m, Message) else m.query
     if len(text.split(maxsplit=1)) == 1:
         if isinstance(m, Message):

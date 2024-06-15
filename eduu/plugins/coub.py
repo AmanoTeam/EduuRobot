@@ -8,12 +8,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("coub", PREFIXES))
 @use_chat_lang
-async def coub(c: Client, m: Message, s):
+async def coub(c: Client, m: Message, s: Strings):
     if len(m.command) == 1:
         await m.reply_text(s("coub_usage"))
         return

@@ -21,12 +21,12 @@ from PIL import Image, ImageOps
 
 from config import LOG_CHAT, PREFIXES
 from eduu.utils import http
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command(["kang", "kibe", "steal"], PREFIXES))
 @use_chat_lang
-async def kang_sticker(c: Client, m: Message, s):
+async def kang_sticker(c: Client, m: Message, s: Strings):
     prog_msg = await m.reply_text(s("kang_kanging_sticker_msg"))
     bot_username = c.me.username
     sticker_emoji = "🤔"
@@ -222,7 +222,7 @@ def resize_image(file: str) -> BytesIO:
 
 @Client.on_message(filters.command("stickerid", PREFIXES) & filters.reply)
 @use_chat_lang
-async def getstickerid(c: Client, m: Message, s):
+async def getstickerid(c: Client, m: Message, s: Strings):
     if m.reply_to_message.sticker:
         await m.reply_text(
             s("stickerid_string").format(stickerid=m.reply_to_message.sticker.file_id)
@@ -231,7 +231,7 @@ async def getstickerid(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("getsticker", PREFIXES) & filters.reply)
 @use_chat_lang
-async def getstickeraspng(c: Client, m: Message, s):
+async def getstickeraspng(c: Client, m: Message, s: Strings):
     sticker = m.reply_to_message.sticker
     if not sticker:
         await m.reply_text(s("getsticker_not_sticker"))

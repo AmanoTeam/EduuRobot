@@ -26,7 +26,7 @@ from config import DATABASE_PATH
 from eduu.database import database
 from eduu.database.restarted import set_restarted
 from eduu.utils import sudofilter
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 from eduu.utils.utils import shell_exec
 
 if TYPE_CHECKING:
@@ -44,7 +44,7 @@ async def sudos(c: Client, m: Message):
 
 @Client.on_message(filters.command("cmd", prefix) & sudofilter)
 @use_chat_lang
-async def run_cmd(c: Client, m: Message, s):
+async def run_cmd(c: Client, m: Message, s: Strings):
     cmd = m.text.split(maxsplit=1)[1]
     if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
         await m.reply_text(s("sudos_forbidden_command"))
@@ -59,7 +59,7 @@ async def run_cmd(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang
-async def upgrade(c: Client, m: Message, s):
+async def upgrade(c: Client, m: Message, s: Strings):
     sm = await m.reply_text("Upgrading sources…")
     stdout, proc = await shell_exec("git pull --no-edit")
     if proc.returncode != 0:
@@ -116,7 +116,7 @@ async def execs(c: Client, m: Message):
 
 @Client.on_message(filters.command("sudos_speedtest", prefix) & sudofilter)
 @use_chat_lang
-async def test_speed(c: Client, m: Message, s):
+async def test_speed(c: Client, m: Message, s: Strings):
     string = s("sudos_speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
@@ -168,7 +168,7 @@ async def execsql(c: Client, m: Message):
 
 @Client.on_message(filters.command("restart", prefix) & sudofilter)
 @use_chat_lang
-async def restart(c: Client, m: Message, s):
+async def restart(c: Client, m: Message, s: Strings):
     sent = await m.reply_text(s("sudos_restarting"))
     await set_restarted(sent.chat.id, sent.id)
     await conn.commit()

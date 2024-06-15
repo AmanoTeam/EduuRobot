@@ -17,7 +17,7 @@ from hydrogram.types import (
 from config import PREFIXES
 from eduu.database.localization import set_db_lang
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import langdict, use_chat_lang
+from eduu.utils.localization import Strings, langdict, use_chat_lang
 
 
 def gen_langs_kb():
@@ -38,7 +38,7 @@ def gen_langs_kb():
 @Client.on_message(filters.command(["setchatlang", "setlang"], PREFIXES) & filters.group)
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def chlang(c: Client, m: CallbackQuery | Message, s):
+async def chlang(c: Client, m: CallbackQuery | Message, s: Strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             *gen_langs_kb(),
@@ -72,7 +72,7 @@ async def set_chat_lang(c: Client, m: CallbackQuery):
 
 
 @use_chat_lang
-async def set_chat_lang_edit(c: Client, m: CallbackQuery, s):
+async def set_chat_lang_edit(c: Client, m: CallbackQuery, s: Strings):
     if m.message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[

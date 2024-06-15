@@ -8,13 +8,13 @@ from config import PREFIXES
 from eduu.database.rules import get_rules, set_rules
 from eduu.utils import button_parser, commands
 from eduu.utils.decorators import require_admin, stop_here
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command(["setrules", "defregras"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def settherules(c: Client, m: Message, s):
+async def settherules(c: Client, m: Message, s: Strings):
     if len(m.text.split()) == 1:
         await m.reply_text(s("rules_set_empty"))
         return
@@ -26,14 +26,14 @@ async def settherules(c: Client, m: Message, s):
 @Client.on_message(filters.command(["resetrules", "resetarregras"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def delete_rules(c: Client, m: Message, s):
+async def delete_rules(c: Client, m: Message, s: Strings):
     await set_rules(m.chat.id, None)
     await m.reply_text(s("rules_deleted"))
 
 
 @Client.on_message(filters.command(["rules", "regras"], PREFIXES) & filters.group)
 @use_chat_lang
-async def show_rules(c: Client, m: Message, s):
+async def show_rules(c: Client, m: Message, s: Strings):
     rules = await get_rules(m.chat.id)
     rulestxt, rules_buttons = button_parser(rules)
 
@@ -50,7 +50,7 @@ async def show_rules(c: Client, m: Message, s):
 @Client.on_message(filters.regex("^/start rules_") & filters.private)
 @use_chat_lang
 @stop_here
-async def show_rules_pvt(c: Client, m: Message, s):
+async def show_rules_pvt(c: Client, m: Message, s: Strings):
     cid_one = m.text.split("_")[1]
     rules = await get_rules(cid_one if cid_one.startswith("-") else f"-{cid_one}")
     rulestxt, rules_buttons = button_parser(rules)

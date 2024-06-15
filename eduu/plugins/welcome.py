@@ -10,20 +10,20 @@ from config import PREFIXES
 from eduu.database.welcome import get_welcome, set_welcome, toggle_welcome
 from eduu.utils import button_parser, commands, get_format_keys
 from eduu.utils.decorators import require_admin, stop_here
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command(["welcomeformat", "start welcome_format_help"], PREFIXES))
 @use_chat_lang
 @stop_here
-async def welcome_format_message_help(c: Client, m: Message, s):
+async def welcome_format_message_help(c: Client, m: Message, s: Strings):
     await m.reply_text(s("welcome_format_help_msg"))
 
 
 @Client.on_message(filters.command("setwelcome", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def set_welcome_message(c: Client, m: Message, s):
+async def set_welcome_message(c: Client, m: Message, s: Strings):
     if len(m.text.split()) == 1:
         await m.reply_text(
             s("welcome_set_empty").format(bot_username=c.me.username),
@@ -61,14 +61,14 @@ async def set_welcome_message(c: Client, m: Message, s):
 )
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def invlaid_welcome_status_arg(c: Client, m: Message, s):
+async def invlaid_welcome_status_arg(c: Client, m: Message, s: Strings):
     await m.reply_text(s("welcome_mode_invalid"))
 
 
 @Client.on_message(filters.command("getwelcome", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def getwelcomemsg(c: Client, m: Message, s):
+async def getwelcomemsg(c: Client, m: Message, s: Strings):
     welcome, welcome_enabled = await get_welcome(m.chat.id)
     if welcome_enabled:
         await m.reply_text(
@@ -82,7 +82,7 @@ async def getwelcomemsg(c: Client, m: Message, s):
 @Client.on_message(filters.command("welcome on", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def enable_welcome_message(c: Client, m: Message, s):
+async def enable_welcome_message(c: Client, m: Message, s: Strings):
     await toggle_welcome(m.chat.id, True)
     await m.reply_text(s("welcome_mode_enable").format(chat_title=m.chat.title))
 
@@ -90,7 +90,7 @@ async def enable_welcome_message(c: Client, m: Message, s):
 @Client.on_message(filters.command("welcome off", PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def disable_welcome_message(c: Client, m: Message, s):
+async def disable_welcome_message(c: Client, m: Message, s: Strings):
     await toggle_welcome(m.chat.id, False)
     await m.reply_text(s("welcome_mode_disable").format(chat_title=m.chat.title))
 
@@ -98,14 +98,14 @@ async def disable_welcome_message(c: Client, m: Message, s):
 @Client.on_message(filters.command(["resetwelcome", "clearwelcome"], PREFIXES) & filters.group)
 @require_admin(ChatPrivileges(can_change_info=True))
 @use_chat_lang
-async def reset_welcome_message(c: Client, m: Message, s):
+async def reset_welcome_message(c: Client, m: Message, s: Strings):
     await set_welcome(m.chat.id, None)
     await m.reply_text(s("welcome_reset").format(chat_title=m.chat.title))
 
 
 @Client.on_message(filters.new_chat_members & filters.group)
 @use_chat_lang
-async def greet_new_members(c: Client, m: Message, s):
+async def greet_new_members(c: Client, m: Message, s: Strings):
     if m.new_chat_members[0].is_bot:
         return
 

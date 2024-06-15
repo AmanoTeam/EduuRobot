@@ -16,7 +16,7 @@ from eduu.database.custom_filters import (
 )
 from eduu.utils import button_parser, commands, split_quotes
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 async def check_for_filters(chat_id, trigger):
@@ -31,7 +31,7 @@ async def check_for_filters(chat_id, trigger):
 @Client.on_message(filters.command(["filter", "savefilter"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def save_filter(c: Client, m: Message, s):
+async def save_filter(c: Client, m: Message, s: Strings):
     args = m.text.markdown.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
@@ -93,7 +93,7 @@ async def save_filter(c: Client, m: Message, s):
 @Client.on_message(filters.command(["delfilter", "rmfilter", "stop"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def delete_filter(c: Client, m: Message, s):
+async def delete_filter(c: Client, m: Message, s: Strings):
     args = m.text.markdown.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -109,7 +109,7 @@ async def delete_filter(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("filters", PREFIXES))
 @use_chat_lang
-async def get_all_filter(c: Client, m: Message, s):
+async def get_all_filter(c: Client, m: Message, s: Strings):
     chat_id = m.chat.id
     reply_text = s("filters_list")
     all_filters = await get_all_filters(chat_id)

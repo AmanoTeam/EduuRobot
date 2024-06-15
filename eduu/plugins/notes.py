@@ -11,7 +11,7 @@ from config import PREFIXES
 from eduu.database.notes import add_note, get_all_notes, rm_note, update_note
 from eduu.utils import button_parser, commands, split_quotes
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 async def check_for_notes(chat_id, trigger):
@@ -26,7 +26,7 @@ async def check_for_notes(chat_id, trigger):
 @Client.on_message(filters.command(["note", "savenote", "nota", "salvarnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def save_note(c: Client, m: Message, s):
+async def save_note(c: Client, m: Message, s: Strings):
     args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
@@ -86,7 +86,7 @@ async def save_note(c: Client, m: Message, s):
 @Client.on_message(filters.command(["delnote", "rmnote", "delnota", "rmnota"], PREFIXES))
 @require_admin(allow_in_private=True)
 @use_chat_lang
-async def delete_note(c: Client, m: Message, s):
+async def delete_note(c: Client, m: Message, s: Strings):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -100,7 +100,7 @@ async def delete_note(c: Client, m: Message, s):
 
 @Client.on_message(filters.command(["notes", "notas"], PREFIXES))
 @use_chat_lang
-async def get_all_chat_note(c: Client, m: Message, s):
+async def get_all_chat_note(c: Client, m: Message, s: Strings):
     chat_id = m.chat.id
     reply_text = s("notes_list")
     all_notes = await get_all_notes(chat_id)

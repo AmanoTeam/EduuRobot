@@ -10,13 +10,13 @@ from config import PREFIXES
 from eduu.database.admins import check_if_del_service, toggle_del_service
 from eduu.utils import commands
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("purge", PREFIXES))
 @require_admin(ChatPrivileges(can_delete_messages=True), allow_in_private=True)
 @use_chat_lang
-async def purge(c: Client, m: Message, s):
+async def purge(c: Client, m: Message, s: Strings):
     """Purge upto the replied message."""
     status_message = await m.reply_text(s("purge_in_progress"), quote=True)
     await m.delete()
@@ -40,7 +40,7 @@ async def purge(c: Client, m: Message, s):
 @Client.on_message(filters.command("cleanservice", PREFIXES))
 @require_admin(ChatPrivileges(can_delete_messages=True))
 @use_chat_lang
-async def delservice(c: Client, m: Message, s):
+async def delservice(c: Client, m: Message, s: Strings):
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
             await toggle_del_service(m.chat.id, True)

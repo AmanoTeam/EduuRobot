@@ -9,12 +9,12 @@ from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.private)
 @use_chat_lang
-async def ids_private(c: Client, m: Message, s):
+async def ids_private(c: Client, m: Message, s: Strings):
     if len(m.command) == 2:
         try:
             user_data = await c.get_users(
@@ -41,7 +41,7 @@ async def ids_private(c: Client, m: Message, s):
 
 @Client.on_message(filters.command("id", PREFIXES) & filters.group)
 @use_chat_lang
-async def ids(c: Client, m: Message, s):
+async def ids(c: Client, m: Message, s: Strings):
     if len(m.command) == 2:
         try:
             user_data = await c.get_users(

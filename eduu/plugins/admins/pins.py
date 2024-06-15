@@ -8,13 +8,13 @@ from config import PREFIXES
 from eduu.database.admins import check_if_antichannelpin, toggle_antichannelpin
 from eduu.utils import commands
 from eduu.utils.decorators import require_admin
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_message(filters.command("antichannelpin", PREFIXES))
 @require_admin(ChatPrivileges(can_pin_messages=True))
 @use_chat_lang
-async def setantichannelpin(c: Client, m: Message, s):
+async def setantichannelpin(c: Client, m: Message, s: Strings):
     if len(m.text.split()) == 1:
         check_acp = await check_if_antichannelpin(m.chat.id)
         if not check_acp:

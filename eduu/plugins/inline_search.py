@@ -11,12 +11,12 @@ from hydrogram.types import (
 )
 
 from eduu.utils import inline_commands
-from eduu.utils.localization import use_chat_lang
+from eduu.utils.localization import Strings, use_chat_lang
 
 
 @Client.on_inline_query(group=2)
 @use_chat_lang
-async def inline_search(c: Client, q: InlineQuery, s):
+async def inline_search(c: Client, q: InlineQuery, s: Strings):
     command = q.query.split(maxsplit=1)[0] if q.query else q.query
 
     results = inline_commands.search_commands(command)
