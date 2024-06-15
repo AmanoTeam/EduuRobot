@@ -1,1 +1,10 @@
-{}
+{
+  "_meta_language_flag": "🌐",
+  "_meta_language_name": "Esperanto",
+  "admins_error_must_specify_time": "Vi devas precizigi tempon post la komando. Ekz.: <code>/{command} 7d</code>.",
+  "admins_list": "Administrantoj en la babilejo {chat_title}:\n{admins_list}",
+  "admins_no_admin_error": "Vi devas esti administranto por uzi ĉi tiun komandon.",
+  "admins_no_permission_error": "Mi bedaŭras, sed vi ne havas la bezonatajn rajtojn por plenumi ĉi tiun komandon. Mankas permesoj: {permissions}",
+  "admins_reason_string": "Kialo: {reason_text}",
+  "antichannelpin_disabled": "La kontraŭ-kanala pinglo por ĉi tiu babilejo estas nun malŝaltita."
+}
