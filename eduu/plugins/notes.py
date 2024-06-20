@@ -40,7 +40,7 @@ async def save_note(c: Client, m: Message, s: Strings):
     ):
         file_id = getattr(m.reply_to_message, m.reply_to_message.media.value).file_id
         raw_data = (
-            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
+            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
         note_type = m.reply_to_message.media.value
     elif m.reply_to_message and m.reply_to_message.sticker:
