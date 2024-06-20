@@ -124,7 +124,7 @@ async def serve_filter(c: Client, m: Message):
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
         elif filter_[4] in ("photo", "document", "video", "audio", "animation", "sticker"):
-            await m.reply_cached_media(
+            await targeted_message.reply_cached_media(
                 filter_[3],
                 quote=True,
                 caption=data,
