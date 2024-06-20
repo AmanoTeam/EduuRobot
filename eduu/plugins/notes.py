@@ -35,36 +35,14 @@ async def save_note(c: Client, m: Message, s: Strings):
         await m.reply_text(s("notes_add_empty"), quote=True)
         return
 
-    if m.reply_to_message and m.reply_to_message.photo:
-        file_id = m.reply_to_message.photo.file_id
+    if m.reply_to_message.media and m.reply_to_message.media.value in (
+        "photo", "document", "video", "audio", "animation"
+    ):
+        file_id = getattr(m.reply_to_message, m.reply_to_message.media.value).file_id
         raw_data = (
             m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
         )
-        note_type = "photo"
-    elif m.reply_to_message and m.reply_to_message.document:
-        file_id = m.reply_to_message.document.file_id
-        raw_data = (
-            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
-        )
-        note_type = "document"
-    elif m.reply_to_message and m.reply_to_message.video:
-        file_id = m.reply_to_message.video.file_id
-        raw_data = (
-            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
-        )
-        note_type = "video"
-    elif m.reply_to_message and m.reply_to_message.audio:
-        file_id = m.reply_to_message.audio.file_id
-        raw_data = (
-            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
-        )
-        note_type = "audio"
-    elif m.reply_to_message and m.reply_to_message.animation:
-        file_id = m.reply_to_message.animation.file_id
-        raw_data = (
-            m.reply_to_message.caption.html if m.reply_to_message.caption is not None else None
-        )
-        note_type = "animation"
+        note_type = m.reply_to_message.media.value
     elif m.reply_to_message and m.reply_to_message.sticker:
         file_id = m.reply_to_message.sticker.file_id
         raw_data = split_text[1] if len(split_text) > 1 else None
@@ -133,58 +111,14 @@ async def serve_note(c: Client, m: Message, txt):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif note[4] == "photo":
-            await m.reply_photo(
+        elif note[4] in ("photo", "document", "video", "audio", "animation", "sticker"):
+            await m.reply_cached_media(
                 note[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-
-        elif note[4] == "document":
-            await m.reply_document(
-                note[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif note[4] == "video":
-            await m.reply_video(
-                note[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif note[4] == "audio":
-            await m.reply_audio(
-                note[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif note[4] == "animation":
-            await m.reply_animation(
-                note[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif note[4] == "sticker":
-            await m.reply_sticker(
-                note[3],
-                quote=True,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
 
 @Client.on_message(
     (filters.group | filters.private)
