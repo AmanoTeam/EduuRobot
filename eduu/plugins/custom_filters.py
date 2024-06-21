@@ -40,9 +40,13 @@ async def save_filter(c: Client, m: Message, s: Strings):
         await m.reply_text(s("filters_add_empty"), quote=True)
         return
 
-    if m.reply_to_message.media and m.reply_to_message.media.value in (
-        "photo", "document", "video", "audio", "animation"
-    ):
+    if m.reply_to_message.media and m.reply_to_message.media.value in {
+        "photo",
+        "document",
+        "video",
+        "audio",
+        "animation",
+    }:
         file_id = getattr(m.reply_to_message, m.reply_to_message.media.value).file_id
         raw_data = (
             m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
@@ -123,7 +127,7 @@ async def serve_filter(c: Client, m: Message):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif filter_[4] in ("photo", "document", "video", "audio", "animation", "sticker"):
+        elif filter_[4] in {"photo", "document", "video", "audio", "animation", "sticker"}:
             await targeted_message.reply_cached_media(
                 filter_[3],
                 quote=True,

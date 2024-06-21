@@ -35,9 +35,13 @@ async def save_note(c: Client, m: Message, s: Strings):
         await m.reply_text(s("notes_add_empty"), quote=True)
         return
 
-    if m.reply_to_message.media and m.reply_to_message.media.value in (
-        "photo", "document", "video", "audio", "animation"
-    ):
+    if m.reply_to_message.media and m.reply_to_message.media.value in {
+        "photo",
+        "document",
+        "video",
+        "audio",
+        "animation",
+    }:
         file_id = getattr(m.reply_to_message, m.reply_to_message.media.value).file_id
         raw_data = (
             m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
@@ -111,7 +115,7 @@ async def serve_note(c: Client, m: Message, txt):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif note[4] in ("photo", "document", "video", "audio", "animation", "sticker"):
+        elif note[4] in {"photo", "document", "video", "audio", "animation", "sticker"}:
             await m.reply_cached_media(
                 note[3],
                 quote=True,
@@ -119,6 +123,7 @@ async def serve_note(c: Client, m: Message, txt):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
+
 
 @Client.on_message(
     (filters.group | filters.private)
