@@ -51,7 +51,7 @@ def cache_locales(locales: list[str]) -> dict[str, dict[str, str]]:
     locales_dict = {}
 
     for locale in locales:
-        file = Path("locales", locale, "main.json")
+        file = Path("locales", f"{locale}.json")
 
         if not file.exists():
             logging.warning(
