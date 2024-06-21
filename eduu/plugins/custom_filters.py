@@ -40,36 +40,18 @@ async def save_filter(c: Client, m: Message, s: Strings):
         await m.reply_text(s("filters_add_empty"), quote=True)
         return
 
-    if m.reply_to_message and m.reply_to_message.photo:
-        file_id = m.reply_to_message.photo.file_id
+    if m.reply_to_message.media and m.reply_to_message.media.value in {
+        "photo",
+        "document",
+        "video",
+        "audio",
+        "animation",
+    }:
+        file_id = getattr(m.reply_to_message, m.reply_to_message.media.value).file_id
         raw_data = (
             m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
         )
-        filter_type = "photo"
-    elif m.reply_to_message and m.reply_to_message.document:
-        file_id = m.reply_to_message.document.file_id
-        raw_data = (
-            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
-        )
-        filter_type = "document"
-    elif m.reply_to_message and m.reply_to_message.video:
-        file_id = m.reply_to_message.video.file_id
-        raw_data = (
-            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
-        )
-        filter_type = "video"
-    elif m.reply_to_message and m.reply_to_message.audio:
-        file_id = m.reply_to_message.audio.file_id
-        raw_data = (
-            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
-        )
-        filter_type = "audio"
-    elif m.reply_to_message and m.reply_to_message.animation:
-        file_id = m.reply_to_message.animation.file_id
-        raw_data = (
-            m.reply_to_message.caption.markdown if m.reply_to_message.caption is not None else None
-        )
-        filter_type = "animation"
+        filter_type = m.reply_to_message.media.value
     elif m.reply_to_message and m.reply_to_message.sticker:
         file_id = m.reply_to_message.sticker.file_id
         raw_data = split_text[1] if len(split_text) > 1 else None
@@ -145,55 +127,12 @@ async def serve_filter(c: Client, m: Message):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
-        elif filter_[4] == "photo":
-            await targeted_message.reply_photo(
+        elif filter_[4] in {"photo", "document", "video", "audio", "animation", "sticker"}:
+            await targeted_message.reply_cached_media(
                 filter_[3],
                 quote=True,
                 caption=data,
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif filter_[4] == "document":
-            await targeted_message.reply_document(
-                filter_[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif filter_[4] == "video":
-            await targeted_message.reply_video(
-                filter_[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif filter_[4] == "audio":
-            await targeted_message.reply_audio(
-                filter_[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif filter_[4] == "animation":
-            await targeted_message.reply_animation(
-                filter_[3],
-                quote=True,
-                caption=data,
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
-            )
-
-        elif filter_[4] == "sticker":
-            await targeted_message.reply_sticker(
-                filter_[3],
-                quote=True,
                 reply_markup=InlineKeyboardMarkup(button) if len(button) != 0 else None,
             )
 
