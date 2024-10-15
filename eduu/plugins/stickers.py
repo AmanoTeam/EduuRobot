@@ -183,7 +183,6 @@ async def kang_sticker(c: Client, m: Message, s: Strings):
                                 emoji=sticker_emoji,
                             )
                         ],
-                        animated=animated,
                     )
                 )
             except PeerIdInvalid:
@@ -213,7 +212,7 @@ async def kang_sticker(c: Client, m: Message, s: Strings):
 
 def resize_image(file: str) -> BytesIO:
     im = Image.open(file)
-    im = ImageOps.contain(im, (512, 512), method=Image.ANTIALIAS)
+    im = ImageOps.contain(im, (512, 512), method=Image.LANCZOS)
     image = BytesIO()
     image.name = "sticker.png"
     im.save(image, "PNG")
