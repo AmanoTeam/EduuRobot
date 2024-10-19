@@ -221,7 +221,7 @@
   "warns_action_set_invlaid": "Argumen tidak valid. Gunakan <code>/setwarnsaction ban/mute/kick</code>.",
   "warns_action_set_string": "Tindakan peringatan telah ditetapkan ke {action}.",
   "warns_count_string": "Pengguna {target_user} memiliki {warns_count} peringatan.",
-  "weather_usage": "<b>Penggunaan:</b> <code>/cuaca lokasi atau kota</code> - Dapatkan informasi tentang cuaca di <i>lokasi atau kota</i>.",
+  "weather_usage": "<b>Penggunaan:</b> <code>/weather lokasi atau kota</code> - Dapatkan informasi tentang cuaca di <i>lokasi atau kota</i>.",
   "welcome_default": "Hai {first_name}, selamat datang di {chat_title}!",
   "welcome_mode_disable": "Pesan selamat datang untuk {chat_title} sekarang dinonaktifkan.",
   "welcome_mode_enable": "Pesan selamat datang untuk {chat_title} sekarang telah diaktifkan.",
