@@ -30,7 +30,7 @@
   "sudos_restarting": "Repornire…",
   "sudos_speedtest": "<b>Viteză</b>\n\n<b>🌐 Gazda:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Traducere…",
-  "tr_translation": "<b>Limbă:</b> {from_lang} -> {to_lang}\n<b>Traducere:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Limbă:</b> {source_lang} -> {target_lang}\n<b>Traducere:</b> <code>{translation}</code>",
   "tr_usage": "<b>Utilizare:</b> <code>/tr &lt;language&gt; text pentru traducere</code> (Can folosit și ca răspuns la un mesaj).",
   "weather_language": "ro-RO"
 }

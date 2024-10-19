@@ -29,7 +29,7 @@
   "sudos_restarting": "Genstarter…",
   "sudos_speedtest": "<b>Speedtest</b>\n\n<b>🌐 Vært:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>:downϊ_selector: Download:</b> <code>{download} Mbps</code>\n<b>:upř_selector: Upload:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Oversætter…",
-  "tr_translation": "<b>Sprog:</b> {from_lang} -> {to_lang}\n<b>Oversættelse:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Sprog:</b> {source_lang} -> {target_lang}\n<b>Oversættelse:</b> <code>{translation}</code>",
   "tr_usage": "<b>Brug:</b> <code>/tr &lt;language&gt; tekst til oversættelse</code> (Kan også anvendes som svar på en meddelelse).",
   "weather_language": "da-DK"
 }

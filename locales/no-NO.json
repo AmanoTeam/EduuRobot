@@ -30,7 +30,7 @@
   "sudos_restarting": "Restarter…",
   "sudos_speedtest": "<b>Speedtest</b>\n\n<b>🌐 Vert:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Nedlasting:</b> <code>{download} Mbps</code>\n<b>⬆️ Opplasting:</b> <code><code>{upload} Mbps</code>",
   "tr_translating": "Oversetter…",
-  "tr_translation": "<b>Språk:</b> {from_lang} -> {to_lang}\n<b>Oversettelse:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Språk:</b> {source_lang} -> {target_lang}\n<b>Oversettelse:</b> <code>{translation}</code>",
   "tr_usage": "<b>Bruk:</b> <code>/tr &lt;language&gt; tekst for oversettelse</code> (Can blir også brukt som svar på en melding).",
   "weather_language": "nb-NO"
 }

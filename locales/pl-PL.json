@@ -28,7 +28,7 @@
   "sudos_forbidden_command": "Zabronione polecenie.",
   "sudos_restarting": "Restartowanie…",
   "tr_translating": "Tłumaczenie…",
-  "tr_translation": "<b>Język:</b> {from_lang} -> {to_lang}\n<b>Tłumaczenie:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Język:</b> {source_lang} -> {target_lang}\n<b>Tłumaczenie:</b> <code>{translation}</code>",
   "tr_usage": "<b>Użycie:</b> <code>/tr &lt;language&gt; tekst do tłumaczenia</code> (może być również używany w odpowiedzi na wiadomość).",
   "weather_language": "pl-PL"
 }

@@ -28,7 +28,7 @@
   "sudos_forbidden_command": "Заборонена команда.",
   "sudos_restarting": "Перезавантаження…",
   "tr_translating": "Перекладається…",
-  "tr_translation": "<b>Мова:</b> {from_lang} -> {to_lang}\n<b>Переклад:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Мова:</b> {source_lang} -> {target_lang}\n<b>Переклад:</b> <code>{translation}</code>",
   "tr_usage": "<b>Використання:</b> <code>/tr &lt;language&gt; текст для перекладу</code> (також може бути використаний у відповідь на повідомлення).",
   "weather_language": "uk-UA"
 }

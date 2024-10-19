@@ -31,7 +31,7 @@
   "sudos_restarting": "正在重启…",
   "sudos_speedtest": "<b>速度测试</b>\n\n<b>🌐 主机:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ 下载:</b> <code>{download} Mbps</code>\n<b>⬆️ 上传:</b> <code>{upload} Mbps</code>",
   "tr_translating": "正在翻译…",
-  "tr_translation": "<b>语言：</b> {from_lang} -> {to_lang}\n<b>翻译：</b> <code>{translation}</code>",
+  "tr_translation": "<b>语言：</b> {source_lang} -> {target_lang}\n<b>翻译：</b> <code>{translation}</code>",
   "tr_usage": "<b>用法：</b> <code>/tr &lt;语言&gt; 要翻译的文本</code> (可用于回复邮件).",
   "weather_language": "zh-CN"
 }

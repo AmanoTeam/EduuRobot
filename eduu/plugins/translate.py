@@ -95,7 +95,7 @@ async def translate(c: Client, m: Message, s: Strings):
     res = html.escape(text)
     await sent.edit_text(
         s("tr_translation").format(
-            from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
+            source_lang=trres.lang, target_lang=langs["targetlang"], translation=res
         )
     )
 
@@ -105,12 +105,12 @@ async def translate(c: Client, m: Message, s: Strings):
 async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
-    to_language = q.query.lower().split()[1]
-    translation = await tr(to_tr, sourcelang=source_language, targetlang=to_language)
+    target_language = q.query.lower().split()[1]
+    translation = await tr(to_tr, sourcelang=source_language, targetlang=target_language)
     await q.answer([
         InlineQueryResultArticle(
             title=s("tr_inline_send").format(
-                srclangformat=source_language, tolangformat=to_language
+                source_lang=source_language, target_lang=target_language
             ),
             description=f"{translation.text}",
             input_message_content=InputTextMessageContent(f"{translation.text}"),

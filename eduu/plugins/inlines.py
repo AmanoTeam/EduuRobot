@@ -121,10 +121,10 @@ async def info_inline(c: Client, q: InlineQuery, s: Strings):
             title=s("user_info_inline_send"),
             input_message_content=InputTextMessageContent(
                 s("user_info_inline_string").format(
-                    usernameformat=user.username,
-                    useridformat=user.id,
-                    userdcformat=user.dc_id,
-                    usermentionformat=user.mention(),
+                    username=user.username,
+                    user_id=user.id,
+                    user_dc=user.dc_id,
+                    user_mention=user.mention(),
                 ),
             ),
         )

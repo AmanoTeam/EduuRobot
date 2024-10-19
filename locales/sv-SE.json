@@ -28,7 +28,7 @@
   "sudos_restarting": "Startar om…",
   "sudos_speedtest": "<b>Speedtest</b>\n\n<b>🌐 Värd:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Ladda ner:</b> <code>{download} Mbps</code>\n<b>⬆️ Ladda upp:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Översättar…",
-  "tr_translation": "<b>Språk:</b> {from_lang} -> {to_lang}\n<b>Översättning:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Språk:</b> {source_lang} -> {target_lang}\n<b>Översättning:</b> <code>{translation}</code>",
   "tr_usage": "<b>Användning:</b> <code>/tr &lt;language&gt; text för översättning</code> (Kan också användas för att svara på ett meddelande).",
   "weather_language": "sv-SE"
 }

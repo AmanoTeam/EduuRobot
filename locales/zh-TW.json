@@ -137,6 +137,6 @@
   "unmute_success": "{user} 已被 {admin} 取消靜音。",
   "user_info_inline_couldnt_find_user": "未找到用戶。",
   "user_info_inline_send": "單擊此處獲取用戶信息。",
-  "user_info_inline_string": "用戶名：{usernameformat}\nID：{useridformat}\nDC：{userdcformat}\n用戶鏈接：{usermentionformat}",
+  "user_info_inline_string": "用戶名：{username}\nID：{user_id}\nDC：{user_dc}\n用戶鏈接：{user_mention}",
   "weather_language": "zh-TW"
 }

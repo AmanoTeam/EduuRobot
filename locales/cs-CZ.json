@@ -30,7 +30,7 @@
   "sudos_restarting": "Restartování…",
   "sudos_speedtest": "<b>Rychlost</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Stáhnout:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Překládání…",
-  "tr_translation": "<b>Jazyk:</b> {from_lang} -> {to_lang}\n<b>Překlad:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Jazyk:</b> {source_lang} -> {target_lang}\n<b>Překlad:</b> <code>{translation}</code>",
   "tr_usage": "<b>Použití:</b> <code>/tr &lt;language&gt; text pro překlad</code> (použije se také v odpovědi na zprávu).",
   "weather_language": "cs-CZ"
 }

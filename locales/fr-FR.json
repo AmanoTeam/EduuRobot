@@ -34,7 +34,7 @@
   "sudos_restarting": "Redémarrage…",
   "sudos_speedtest": "<b>Test de vitesse</b>\n\n<b>🌐 Hôte:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} m</code>\n<b>⬇️ Téléchargement:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Traduction…",
-  "tr_translation": "<b>Langue:</b> {from_lang} -> {to_lang}\n<b>Traduction:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Langue:</b> {source_lang} -> {target_lang}\n<b>Traduction:</b> <code>{translation}</code>",
   "tr_usage": "<b>Utilisation:</b> <code>/tr &lt;langue&gt; texte pour la traduction</code> (Il faut aussi utiliser en réponse à un message).",
   "weather_language": "fr-FR"
 }

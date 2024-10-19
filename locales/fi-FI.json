@@ -30,7 +30,7 @@
   "sudos_restarting": "Käynnistetään Uudelleen…",
   "sudos_speedtest": "<b>Nopeustesti</b>\n\n<b>🌐 Isäntä:</b> <code>{host}</code>\n\n<b>🏓 Ping:</b> <code>{ping} ms</code>\n<b>⬇️ Lataa:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>",
   "tr_translating": "Käännetään…",
-  "tr_translation": "<b>Kieli:</b> {from_lang} -> {to_lang}\n<b>Käännös:</b> <code>{translation}</code>",
+  "tr_translation": "<b>Kieli:</b> {source_lang} -> {target_lang}\n<b>Käännös:</b> <code>{translation}</code>",
   "tr_usage": "<b>Käyttö:</b> <code>/tr &lt;language&gt; teksti käännökseen</code> (käytä myös vastattaessa viestiin).",
   "weather_language": "fi-FI"
 }
