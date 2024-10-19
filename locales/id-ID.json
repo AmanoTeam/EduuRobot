@@ -149,7 +149,7 @@
   "stickerid_string": "Identitas stiker ini adalah: <code>{stickerid}</code>",
   "warn_reset": "{target_user}peringatan telah berhasil dihapus.",
   "run_tio_res_string_err": "<b>Bahasa:</b> <code>{language}</code>\n\n<b>Kode:</b>\n<pre language=\"{pre_language}\">{code}</pre>\n\n<b>Hasil:</b>\n<code>{results}</code>\n\n<b>Kesalahan:</b>\n<code>{errors}</code>",
-  "run_tio_res_string_no_err": "<b>Bahasa:</b> <code>{language}</code>\n\n<b>Kode:</b>\n<pre lang=\"{language}\">{code}</pre>\n\n<b>Hasil:</b>\n<code>{results}</code>\n\n<b>Statistik:</b><code>{stats}</code>",
+  "run_tio_res_string_no_err": "<b>Bahasa:</b> <code>{language}</code>\n\n<b>Kode:</b>\n<pre language=\"{pre_language}\">{code}</pre>\n\n<b>Hasil:</b>\n<code>{results}</code>\n\n<b>Statistik:</b><code>{stats}</code>",
   "tr_inline_send": "tr dari {source_lang} ke {target_lang}",
   "ban_success": "{user} telah dilarang oleh {admin}.",
   "bug_report_empty": "Anda harus menentukan bug yang akan dilaporkan, mis: <code>/bug bug Anda</code>.",
