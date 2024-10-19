@@ -30,7 +30,7 @@ async def set_db_lang(chat_id: int, chat_type: str, lang_code: str):
         raise TypeError(f"Unknown chat type '{chat_type}'.")
 
 
-async def get_db_lang(chat_id: int, chat_type: str) -> str:
+async def get_db_lang(chat_id: int, chat_type: ChatType) -> str:
     if chat_type == ChatType.PRIVATE:
         cursor = await conn.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = await cursor.fetchone()
@@ -42,4 +42,5 @@ async def get_db_lang(chat_id: int, chat_type: str) -> str:
         ul = await cursor.fetchone()
     else:
         raise TypeError(f"Unknown chat type '{chat_type}'.")
+
     return ul[0] if ul else None

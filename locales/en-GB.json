@@ -196,7 +196,7 @@
   "run_err_string": "Error: The language <b>{language}</b> was not found. Supported languages list: {supported_langs}",
   "run_inline_send": "Language: {language}",
   "run_tio_res_string_err": "<b>Language:</b> <code>{language}</code>\n\n<b>Code:</b>\n<pre language=\"{pre_language}\">{code}</pre>\n\n<b>Results:</b>\n<code>{results}</code>\n\n<b>Errors:</b>\n<code>{errors}</code>",
-  "run_tio_res_string_no_err": "<b>Language:</b> <code>{language}</code>\n\n<b>Code:</b>\n<pre lang=\"{language}\">{code}</pre>\n\n<b>Results:</b>\n<code>{results}</code>\n\n<b>Stats:</b><code>{stats}</code>",
+  "run_tio_res_string_no_err": "<b>Language:</b> <code>{language}</code>\n\n<b>Code:</b>\n<pre language=\"{pre_language}\">{code}</pre>\n\n<b>Results:</b>\n<code>{results}</code>\n\n<b>Stats:</b><code>{stats}</code>",
   "sed_regex_timeout": "Oops, your regex pattern has run for too long.",
   "start_add_to_chat_btn": "➕ Add to a chat",
   "start_chat": "🤖 Start a chat",
