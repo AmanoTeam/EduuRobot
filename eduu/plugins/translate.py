@@ -4,7 +4,7 @@
 import html
 import re
 
-from gpytranslate import Translator
+# from gpytranslate import Translator
 from hydrogram import Client, filters
 from hydrogram.types import (
     InlineQuery,
@@ -14,9 +14,75 @@ from hydrogram.types import (
 )
 
 from config import PREFIXES
-from eduu.utils import commands, inline_commands
+from eduu.utils import commands, inline_commands, http
 from eduu.utils.localization import Strings, use_chat_lang
 
+class Translator:    
+    def __init__(self, base_url: str = "https://sakty-playground-twilight-leaf-8a39.ymahessa.workers.dev"):
+        self.base_url = base_url
+        self.headers = {'sec-fetch-site': 'same-origin', 'password': 'rahasia'}
+    
+    async def detect(self, text: str):
+        """
+        Detect the language of the provided text.
+        
+        Args:
+            text: The text to detect
+            
+        Returns:
+            Dictionary with detection results
+        """
+        try:
+            response = await http.post(
+                f"{self.base_url}/detect_trans",
+                json={"text": text},
+                headers=self.headers
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            return {
+                "cek": False, 
+                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
+            }
+        except Exception as e:
+            return {"cek": False, "alasan": str(e)}
+    
+    async def translate(self, 
+                        text: str, 
+                        sourcelang: str = "auto", 
+                        targetlang: str = "en"):
+        """
+        Translate text from source language to target language.
+        
+        Args:
+            text: The text to translate
+            source_lang: Source language code (default: "auto" for automatic detection)
+            target_lang: Target language code (default: "en" for English)
+            
+        Returns:
+            Dictionary with translation results
+        """
+        try:
+            response = await http.post(
+                f"{self.base_url}/google_v2_trans",
+                json={
+                    "text": text,
+                    "from": sourcelang,
+                    "to": targetlang
+                },
+                headers=self.headers
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            return {
+                "cek": False, 
+                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
+            }
+        except Exception as e:
+            return {"cek": False, "alasan": str(e)}
+            
 tr = Translator()
 
 # See https://cloud.google.com/translate/docs/languages
@@ -90,7 +156,10 @@ async def translate(c: Client, m: Message, s: Strings):
         langs["targetlang"] = lang
 
     trres = await tr.translate(text, **langs)
-    text = trres.text
+    if not trres.get('cek'):
+        return await sent.edit_text(f"Translation Error: {trres.get('alasan', 'error')}")
+        
+    text = trres.get('terjemah')
 
     res = html.escape(text)
     await sent.edit_text(
@@ -105,14 +174,26 @@ async def translate(c: Client, m: Message, s: Strings):
 async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
+    
+    if not translation.get('cek'):
+        source_language = 'en'
+    else:
+        source_language = source_language['detect']
+        
     target_language = q.query.lower().split()[1]
-    translation = await tr(to_tr, sourcelang=source_language, targetlang=target_language)
+    translation = await tr.translate(to_tr, sourcelang=source_language, targetlang=target_language)
+    
+    if not translation.get('cek'):
+        text = translation.get('alasan', 'error')
+    else:
+        text = translation.get('terjemah')
+        
     await q.answer([
         InlineQueryResultArticle(
             title=s("tr_inline_send").format(
                 source_lang=source_language, target_lang=target_language
             ),
-            description=f"{translation.text}",
+            description=f"{text}",
             input_message_content=InputTextMessageContent(f"{translation.text}"),
         )
     ])
