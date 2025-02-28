@@ -3,6 +3,7 @@
 
 import html
 import re
+import os
 
 # from gpytranslate import Translator
 from hydrogram import Client, filters
