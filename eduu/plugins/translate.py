@@ -22,66 +22,30 @@ class Translator:
         self.base_url = base_url
         self.headers = {'sec-fetch-site': 'same-origin', 'password': os.environ.get('TRANSLATION_PWD')}
     
+    async def _request(self, endpoint: str, payload: dict):
+        try:
+            response = await http.post(f"{self.base_url}/{endpoint}", json=payload, headers=self.headers)
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            return {
+                "cek": False,
+                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
+            }
+        except Exception as e:
+            return {"cek": False, "alasan": str(e)}
+
     async def detect(self, text: str):
-        """
-        Detect the language of the provided text.
-        
-        Args:
-            text: The text to detect
-            
-        Returns:
-            Dictionary with detection results
-        """
-        try:
-            response = await http.post(
-                f"{self.base_url}/detect_trans",
-                json={"text": text},
-                headers=self.headers
-            )
-            response.raise_for_status()
-            return response.json()
-        except httpx.HTTPStatusError as e:
-            return {
-                "cek": False, 
-                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
-            }
-        except Exception as e:
-            return {"cek": False, "alasan": str(e)}
-    
-    async def translate(self, 
-                        text: str, 
-                        sourcelang: str = "auto", 
-                        targetlang: str = "en"):
-        """
-        Translate text from source language to target language.
-        
-        Args:
-            text: The text to translate
-            source_lang: Source language code (default: "auto" for automatic detection)
-            target_lang: Target language code (default: "en" for English)
-            
-        Returns:
-            Dictionary with translation results
-        """
-        try:
-            response = await http.post(
-                f"{self.base_url}/google_v2_trans",
-                json={
-                    "text": text,
-                    "from": sourcelang,
-                    "to": targetlang
-                },
-                headers=self.headers
-            )
-            response.raise_for_status()
-            return response.json()
-        except httpx.HTTPStatusError as e:
-            return {
-                "cek": False, 
-                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
-            }
-        except Exception as e:
-            return {"cek": False, "alasan": str(e)}
+        """Detect the language of the provided text."""
+        return await self._request("detect_trans", {"text": text})
+
+    async def translate(self, text: str, sourcelang: str = "auto", targetlang: str = "en"):
+        """Translate text from source language to target language."""
+        return await self._request("google_v2_trans", {
+            "text": text,
+            "from": sourcelang,
+            "to": targetlang
+        })
             
 tr = Translator()
 
