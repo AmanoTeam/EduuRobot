@@ -20,7 +20,7 @@ from eduu.utils.localization import Strings, use_chat_lang
 class Translator:    
     def __init__(self, base_url: str = "https://sakty-playground-twilight-leaf-8a39.ymahessa.workers.dev"):
         self.base_url = base_url
-        self.headers = {'sec-fetch-site': 'same-origin', 'password': 'rahasia'}
+        self.headers = {'sec-fetch-site': 'same-origin', 'password': os.environ.get('TRANSLATION_PWD')}
     
     async def detect(self, text: str):
         """
@@ -175,7 +175,7 @@ async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
     
-    if not translation.get('cek'):
+    if not source_language.get('cek'):
         source_language = 'en'
     else:
         source_language = source_language['detect']
