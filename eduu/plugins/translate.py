@@ -143,7 +143,7 @@ async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     if not source_language.get('cek'):
         source_language = 'en'
     else:
-        source_language = source_language['detect']
+        source_language = source_language.get('detect', 'en')
 
     target_language = q.query.lower().split()[1]
     translation = await tr.translate(to_tr, sourcelang=source_language, targetlang=target_language)
