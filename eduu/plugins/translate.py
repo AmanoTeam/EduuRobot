@@ -17,11 +17,11 @@ from config import PREFIXES
 from eduu.utils import commands, inline_commands, http
 from eduu.utils.localization import Strings, use_chat_lang
 
-class Translator:    
+class Translator:
     def __init__(self, base_url: str = "https://sakty-playground-twilight-leaf-8a39.ymahessa.workers.dev"):
         self.base_url = base_url
         self.headers = {'sec-fetch-site': 'same-origin', 'password': 'rahasia'}
-    
+        
     async def _request(self, endpoint: str, payload: dict):
         try:
             response = await http.post(f"{self.base_url}/{endpoint}", json=payload, headers=self.headers)
