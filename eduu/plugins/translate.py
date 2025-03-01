@@ -3,8 +3,8 @@
 
 import html
 import re
+import httpx
 
-# from gpytranslate import Translator
 from hydrogram import Client, filters
 from hydrogram.types import (
     InlineQuery,
