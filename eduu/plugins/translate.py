@@ -3,7 +3,6 @@
 
 import html
 import re
-import os
 
 # from gpytranslate import Translator
 from hydrogram import Client, filters
@@ -21,7 +20,7 @@ from eduu.utils.localization import Strings, use_chat_lang
 class Translator:    
     def __init__(self, base_url: str = "https://sakty-playground-twilight-leaf-8a39.ymahessa.workers.dev"):
         self.base_url = base_url
-        self.headers = {'sec-fetch-site': 'same-origin', 'password': os.environ.get('TRANSLATION_PWD')}
+        self.headers = {'sec-fetch-site': 'same-origin', 'password': 'rahasia'}
     
     async def _request(self, endpoint: str, payload: dict):
         try:
@@ -159,7 +158,7 @@ async def tr_inline(c: Client, q: InlineQuery, s: Strings):
                 source_lang=source_language, target_lang=target_language
             ),
             description=f"{text}",
-            input_message_content=InputTextMessageContent(f"{translation.text}"),
+            input_message_content=InputTextMessageContent(f"{text}"),
         )
     ])
 
