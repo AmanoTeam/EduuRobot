@@ -46,7 +46,7 @@ class Translator:
             "from": sourcelang,
             "to": targetlang
         })
-            
+
 tr = Translator()
 
 # See https://cloud.google.com/translate/docs/languages
@@ -122,7 +122,7 @@ async def translate(c: Client, m: Message, s: Strings):
     trres = await tr.translate(text, **langs)
     if not trres.get('cek'):
         return await sent.edit_text(f"Translation Error: {trres.get('alasan', 'error')}")
-        
+
     text = trres.get('terjemah')
 
     res = html.escape(text)
@@ -138,20 +138,20 @@ async def translate(c: Client, m: Message, s: Strings):
 async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
-    
+
     if not source_language.get('cek'):
         source_language = 'en'
     else:
         source_language = source_language['detect']
-        
+
     target_language = q.query.lower().split()[1]
     translation = await tr.translate(to_tr, sourcelang=source_language, targetlang=target_language)
-    
+
     if not translation.get('cek'):
         text = translation.get('alasan', 'error')
     else:
         text = translation.get('terjemah')
-        
+
     await q.answer([
         InlineQueryResultArticle(
             title=s("tr_inline_send").format(
