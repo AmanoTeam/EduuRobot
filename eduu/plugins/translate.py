@@ -19,7 +19,7 @@ from eduu.utils import commands, inline_commands, http
 from eduu.utils.localization import Strings, use_chat_lang
 
 class Translator:
-    def __init__(self, base_url: str = "https://sakty-playground-twilight-leaf-8a39.ymahessa.workers.dev"):
+    def __init__(self, base_url: str = os.environ.get('GOOGLE_TRANSLATE_URL')):
         self.base_url = base_url
         self.headers = {'sec-fetch-site': 'same-origin', 'password': os.environ.get('GOOGLE_TRANSLATE_PWD')}
 
