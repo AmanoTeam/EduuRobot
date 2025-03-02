@@ -45,7 +45,7 @@ async def search_yt(query):
         )
     ).json()
     list_videos = []
-    for video in page[1]["response"]["contents"]["twoColumnSearchResultsRenderer"][
+    for video in page["response"]["contents"]["twoColumnSearchResultsRenderer"][
         "primaryContents"
     ]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]:
         if video.get("videoRenderer"):
