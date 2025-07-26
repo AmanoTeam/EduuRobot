@@ -115,7 +115,7 @@ async def rtcommand(c: Client, m: Message):
     rt_text = None
     rt_text = m.reply_to_message.caption if m.reply_to_message.media else m.reply_to_message.text
 
-    if rt_text is None or re.match("🔃 .* retweeted:\n\n👤 .*", rt_text):
+    if rt_text is None or re.match(r"🔃 .* retweeted:\n\n👤 .*", rt_text):
         return
 
     text = f"🔃 <b>{escape(m.from_user.first_name)}</b> retweeted:\n\n"
@@ -175,7 +175,7 @@ async def request_cmd(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     url = text if re.match(r"^(https?)://", text) else f"http://{text}"
     req = await http.get(url)
-    headers = f'<b>{req.extensions.get("http_version").decode()}</b> <code>{req.status_code} {req.extensions.get("reason_phrase", b"").decode()}</code>\n'
+    headers = f"<b>{req.extensions.get('http_version').decode()}</b> <code>{req.status_code} {req.extensions.get('reason_phrase', b'').decode()}</code>\n"
 
     headers += "\n".join(
         f"<b>{x.title()}:</b> <code>{escape(req.headers[x])}</code>" for x in req.headers

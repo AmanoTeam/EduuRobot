@@ -13,7 +13,7 @@ from eduu.utils.localization import Strings, use_chat_lang
 
 
 def cleanhtml(raw_html):
-    cleanr = re.compile("<.*?>")
+    cleanr = re.compile(r"<.*?>")
     return re.sub(cleanr, "", raw_html)
 
 

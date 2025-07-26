@@ -46,7 +46,7 @@ async def sudos(c: Client, m: Message):
 @use_chat_lang
 async def run_cmd(c: Client, m: Message, s: Strings):
     cmd = m.text.split(maxsplit=1)[1]
-    if re.match("(?i)poweroff|halt|shutdown|reboot", cmd):
+    if re.match(r"(?i)poweroff|halt|shutdown|reboot", cmd):
         await m.reply_text(s("sudos_forbidden_command"))
         return
 

@@ -106,11 +106,11 @@ async def ytdlcmd(c: Client, m: Message, s: Strings):
         [
             (
                 s("ytdl_audio_button"),
-                f'_aud.{yt["id"]}|{afsize}|{temp}|{m.chat.id}|{user}|{m.id}',
+                f"_aud.{yt['id']}|{afsize}|{temp}|{m.chat.id}|{user}|{m.id}",
             ),
             (
                 s("ytdl_video_button"),
-                f'_vid.{yt["id"]}|{vfsize}|{temp}|{m.chat.id}|{user}|{m.id}',
+                f"_vid.{yt['id']}|{vfsize}|{temp}|{m.chat.id}|{user}|{m.id}",
             ),
         ]
     ]
