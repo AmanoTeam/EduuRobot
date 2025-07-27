@@ -136,7 +136,7 @@
   "sudos_restarting": "מפעיל מחדש…",
   "sudos_speedtest": "<b>בדיקת מהירות</b>\n\n<b>🌐 מארח:</b> <code>{host}</code>\n\n<b>🏓 פינג:</b> <code>{ping} ms</code>\n<b>⬇️ הורדה:</b> <code>{download} Mbps</code>\n<b>⬆️ העלאה:</b> <code>{upload} Mbps</code>",
   "telegraph_err_no_reply": "בבקשה תשיב לתמונה או לוידאו",
-  "token_bot_token_invalid": "טוקן לא חוקי",
+  "token_bot_token_invalid": "טוקן לא חוקי.",
   "tr_inline_send": "תרגם מ {source_lang} ל {target_lang}",
   "tr_translating": "מתרגם…",
   "tr_translation": "<b>שפה:</b> {source_lang} -> {target_lang}\n<b>תרגום:</b> <code>{translation}</code>",
