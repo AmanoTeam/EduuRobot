@@ -5,7 +5,7 @@
   "admins_no_admin_error": "Du må være administrator for å bruke denne kommandoen.",
   "admins_no_permission_error": "Beklager, men du har ikke de nødvendige tillatelsene for å kjøre denne kommandoen. Mangler tillatelser: {permissions}",
   "cat_meow": "Nei!",
-  "cmd_private_not_allowed": "Denne kommandoen kan ikke brukes i en privat chat. Hvis du trenger hjelp, kan du bruke kommandoen <code>/help</code>",
+  "cmd_private_not_allowed": "Denne kommandoen kan ikke brukes i en privat chat. Hvis du trenger hjelp, kan du bruke kommandoen <code>/help</code>.",
   "details": "<b>{location}</b>:\n\nTemperatur: <code>{temperature} °C</code>\nTemperatur følelse: <code>{feels_like} °C</code>\nLuftfuktighet: <code>{air_humidity}%</code>\nVindhastighet: <code>{wind_speed} km/t</code>\n\n- <i>{overview}</i>",
   "dice_result": "🎲 Termen stoppet på nummeret: {number}",
   "general_back_btn": "« Gå tilbake",

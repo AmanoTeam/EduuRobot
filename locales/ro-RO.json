@@ -6,7 +6,7 @@
   "admins_no_permission_error": "Îmi pare rău, dar nu ai permisiunile necesare pentru a rula această comandă. Permisiuni lipsă: {permissions}",
   "cat_meow": "Bău!",
   "cmd_private_not_allowed": "Această comandă nu poate fi folosită într-o conversație privată. Dacă ai nevoie de ajutor, te rugăm să folosești comanda <code>/help</code>.",
-  "details": "<b>{location}</b>:\n\nTemperatură: <code>{temperature} °C</code>\nTemperatura se simte astfel: <code>{feels_like} °C</code></code>\nUtilitate aeriană: <code>{air_humidity}%</code>\nViteza vântului: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
+  "details": "<b>{location}</b>:\n\nTemperatură: <code>{temperature} °C</code>\nTemperatura se simte astfel: <code>{feels_like} °C</code>\nUtilitate aeriană: <code>{air_humidity}%</code>\nViteza vântului: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "dice_result": "🎲 Zețarul s-a oprit la numărul: {number}",
   "dog_woof": "Lemn!",
   "general_back_btn": "« Întoarce-te",
