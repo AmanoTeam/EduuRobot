@@ -1,7 +1,7 @@
 {
   "_meta_language_flag": "🇮🇹",
   "_meta_language_name": "Italiano",
-  "admins_error_must_specify_time": "Devi specificare un tempo dopo il comando. Ad esempio: <code>/{command} 7d</code>.",
+  "admins_error_must_specify_time": "Devi specificare un tempo dopo il comando, ad esempio: <code>/{command} 7d</code>.",
   "admins_list": "Amministratori nella chat {chat_title}:\n{admins_list}",
   "admins_no_admin_error": "Devi essere un amministratore per usare questo comando.",
   "admins_no_permission_error": "Non hai i permessi necessari per eseguire questo comando. Permessi mancanti: {permissions}",
@@ -70,7 +70,7 @@
   "cmd_tmute_description": "Muta un utente nella chat per il tempo specificato.",
   "cmd_token_description": "Fornisce info sul token bot fornito.",
   "cmd_tr_description": "Traduce il testo nella lingua indicata (predefinita nella lingua predefinita della chat).",
-  "cmd_unban_description": "Riammette un utente alla chat.",
+  "cmd_unban_description": "Riammette un utente nella chat.",
   "cmd_unmute_description": "Smuta un utente nella chat.",
   "cmd_unpin_description": "Toglie il messaggio a cui si sta rispondendo nella chat.",
   "cmd_unpinall_description": "Toglie tutti i messaggi nella chat.",
