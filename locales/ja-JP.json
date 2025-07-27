@@ -31,6 +31,6 @@
   "sudos_restarting": "再起動中…",
   "tr_translating": "翻訳中…",
   "tr_translation": "<b>言語:</b> {source_lang} -> {target_lang}\n<b>翻訳:</b> <code>{translation}</code>",
-  "tr_usage": "<b>使用法:</b> <code>/tr &lt;言語&gt; 翻訳</code> (メッセージへの返信にも使用できます)",
+  "tr_usage": "<b>使用法:</b> <code>/tr &lt;言語&gt; 翻訳</code> (メッセージへの返信にも使用できます).",
   "weather_language": "ja-JP"
 }
