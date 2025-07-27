@@ -1,7 +1,7 @@
 {
   "_meta_language_flag": "🇪🇸",
   "_meta_language_name": "Español",
-  "admins_error_must_specify_time": "Debes especificar una hora después del comando. E.g.: <code>/{command} 7d</code>.",
+  "admins_error_must_specify_time": "Debes especificar una hora después del comando, por ejemplo: <code>/{command} 7d</code>.",
   "admins_list": "Administradores en el chat {chat_title}:\n{admins_list}",
   "admins_no_admin_error": "Debes ser un administrador para usar este comando.",
   "admins_no_permission_error": "Lo siento, pero no tienes los permisos necesarios para ejecutar este comando. Permisos faltantes: {permissions}",

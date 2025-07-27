@@ -168,7 +168,7 @@ async def bug_report_cmd(c: Client, m: Message, s: Strings):
 async def request_cmd(c: Client, m: Message):
     if len(m.text.split()) == 1:
         await m.reply_text(
-            "You must specify the url, E.g.: <code>/request https://example.com</code>"
+            "You must specify the url, e.g.: <code>/request https://example.com</code>"
         )
         return
 
