@@ -1,7 +1,7 @@
 {
   "_meta_language_flag": "🇧🇷",
   "_meta_language_name": "Português (Brasil)",
-  "admins_error_must_specify_time": "Você deve especificar um tempo após o comando. Por exemplo: <code>/{command} 7d</code>.",
+  "admins_error_must_specify_time": "Você deve especificar um tempo após o comando, por exemplo: <code>/{command} 7d</code>.",
   "admins_list": "Administradores no chat {chat_title}:\n{admins_list}",
   "admins_no_admin_error": "Você precisa ser um administrador para usar este comando.",
   "admins_no_permission_error": "Sinto muito, mas você não tem as permissões necessárias para executar esse comando. Permissões ausentes: {permissions}",
@@ -26,7 +26,7 @@
   "cmd_antichannelpin_description": "Desafixa automaticamente as mensagens provenientes do canal vinculado ao chat.",
   "cmd_ban_description": "Bane um usuário do chat.",
   "cmd_cat_description": "Envia uma foto aleatória de um gato.",
-  "cmd_cleanservice_description": "Limpa mensagens de serviço (por exemplo: Quando um usuário entra no chat) no chat.",
+  "cmd_cleanservice_description": "Limpa mensagens de serviço (por exemplo: quando um usuário entra no chat) no chat.",
   "cmd_coub_description": "Envia um Coub aleatório (vídeo curto) dos resultados da pesquisa.",
   "cmd_delfilter_description": "Remove um filtro deste chat.",
   "cmd_delnote_description": "Remove uma nota deste chat.",
