@@ -61,7 +61,7 @@
     "cmd_private_not_allowed": "This command cannot be used in a private chat. If you need any help, please use the <code>/help</code> command.",
     "cmd_purge_description": "Purges the history up to the replied message.",
     "cmd_pypi_description": "Searches for a package in the Python Package Index (PyPI).",
-    "cmd_reddit_description": "Views the latest posts from the specified Subreddit.",
+    "cmd_reddit_description": "Views the latest posts from the specified Subreddit",
     "cmd_resetrules_description": "Resets the chat rules.",
     "cmd_resetwarns_description": "Resets user warnings.",
     "cmd_resetwelcome_description": "Resets the welcome message to the bot's default welcome message.",
