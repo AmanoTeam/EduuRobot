@@ -1,7 +1,7 @@
 {
   "_meta_language_flag": "🇨🇳",
   "_meta_language_name": "中文（简体）",
-  "admins_error_must_specify_time": "您必须在命令后指定时间。例如： <code>/{command} 7d</code>。",
+  "admins_error_must_specify_time": "您必须在命令后指定一个时间，例如<code>/{command} 7d</code>.",
   "admins_no_admin_error": "您必须是管理员才能使用此命令。",
   "admins_no_permission_error": "很抱歉，您没有运行此命令所需的权限。缺少权限： {permissions}",
   "cat_meow": "喵！",
@@ -11,7 +11,7 @@
   "dog_woof": "纬！",
   "general_back_btn": "« 回去",
   "general_no_results": "未找到任何结果。",
-  "gif_usage": "<b>用法：</b> <code>/gif 搜索词</code> — 从搜索结果中发送一个随机的 GIF",
+  "gif_usage": "<b>使用方法：</b> <code>/gif 搜索词</code> - 从搜索结果中随机发送一个 GIF。",
   "location_not_found": "找不到位置。",
   "measurement_unit": "m",
   "purge_in_progress": "正在清除消息…",
