@@ -160,7 +160,7 @@
   "location_not_found": "Location not found.",
   "mark_usage": "<b>Usage:</b> <code>/mark **text** in __markdown__</code> — Formats the provided text with the Markdown syntax.",
   "markdown_send_inline": "Click here to send the text in markdown format.",
-  "measurement_unit": "u",
+  "measurement_unit": "e",
   "mute_cannot_mute_admins": "I can't mute admins.",
   "mute_success": "{user} has been muted by {admin}.",
   "no_location": "Please specify a location or city.",
