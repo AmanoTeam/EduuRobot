@@ -5,7 +5,7 @@
   "admins_no_admin_error": "Sinun täytyy olla järjestelmänvalvoja käyttääksesi tätä komentoa.",
   "admins_no_permission_error": "Anteeksi, mutta sinulla ei ole vaadittuja oikeuksia tämän komennon suorittamiseen. Puuttuvat oikeudet: {permissions}",
   "cat_meow": "Niin!",
-  "cmd_private_not_allowed": "Tätä komentoa ei voi käyttää yksityisessä keskustelussa. Jos tarvitset apua, käytä komentoa <code>/help</code>",
+  "cmd_private_not_allowed": "Tätä komentoa ei voi käyttää yksityisessä keskustelussa. Jos tarvitset apua, käytä komentoa <code>/help</code>.",
   "details": "<b>{location}</b>:\n\nLämpötila: <code>{temperature} °C</code>\nLämpötila tuntui: <code>{feels_like} °C</code>\nIlmankosteus: <code>{air_humidity}%</code>\nTuulen nopeus: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>",
   "dice_result": "🎲 Noppaa pysäytettiin numeroon: {number}",
   "dog_woof": "Katto!",
