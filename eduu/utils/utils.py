@@ -291,16 +291,6 @@ def get_reason_text(c: Client, m: Message) -> Message:
     return None
 
 
-# Thank github.com/usernein for shell_exec
-async def shell_exec(code):
-    process = await asyncio.create_subprocess_shell(
-        code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
-    )
-
-    stdout = (await process.communicate())[0].decode().strip()
-    return stdout, process
-
-
 def get_format_keys(string: str) -> list[str]:
     """Return a list of formatting keys present in string.
 

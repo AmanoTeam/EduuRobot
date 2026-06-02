@@ -27,7 +27,6 @@ from eduu.database import database
 from eduu.database.restarted import set_restarted
 from eduu.utils import sudofilter
 from eduu.utils.localization import Strings, use_chat_lang
-from eduu.utils.utils import shell_exec
 
 if TYPE_CHECKING:
     from hydrogram.types import Message
@@ -45,23 +44,46 @@ async def sudos(c: Client, m: Message):
 @Client.on_message(filters.command("cmd", prefix) & sudofilter)
 @use_chat_lang
 async def run_cmd(c: Client, m: Message, s: Strings):
+    if len(m.text.split()) < 2:
+        await m.reply_text("You must provide a command.")
+        return
+
     cmd = m.text.split(maxsplit=1)[1]
-    if re.match(r"(?i)poweroff|halt|shutdown|reboot", cmd):
+    if re.search(r"(?i)\b(poweroff|halt|shutdown|reboot)\b", cmd):
         await m.reply_text(s("sudos_forbidden_command"))
         return
 
-    stdout, stderr = await shell_exec(cmd)
-    await m.reply_text(
-        (f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else "")
-        + (f"\n<b>Errors:</b>\n<code>{stderr}</code>" if stderr else "")
+    try:
+        process = await asyncio.create_subprocess_shell(
+            cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+        )
+        stdout, stderr = await asyncio.wait_for(process.communicate(), timeout=60)
+        stdout = stdout.decode().strip()
+        stderr = stderr.decode().strip()
+    except asyncio.TimeoutError:
+        await m.reply_text("Command timed out.")
+        return
+
+    output = (f"<b>Output:</b>\n<code>{html.escape(stdout)}</code>" if stdout else "") + (
+        f"\n<b>Errors:</b>\n<code>{html.escape(stderr)}</code>" if stderr else ""
     )
+
+    if not output:
+        output = "Command executed with no output."
+    elif len(output) > 4000:
+        output = output[:4000] + "\n... (truncated)"
+
+    await m.reply_text(output)
 
 
 @Client.on_message(filters.command("upgrade", prefix) & sudofilter)
 @use_chat_lang
 async def upgrade(c: Client, m: Message, s: Strings):
     sm = await m.reply_text("Upgrading sources…")
-    stdout, proc = await shell_exec("git pull --no-edit")
+    proc = await asyncio.create_subprocess_shell(
+        "git pull --no-edit", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
+    )
+    stdout = (await proc.communicate())[0].decode().strip()
     if proc.returncode != 0:
         await sm.edit_text(f"Upgrade failed (process exited with {proc.returncode}):\n{stdout}")
         proc = await asyncio.create_subprocess_shell("git merge --abort")

@@ -16,7 +16,6 @@ from .utils import (
     pretty_size,
     remove_escapes,
     run_async,
-    shell_exec,
     split_quotes,
     sudofilter,
 )
@@ -35,7 +34,6 @@ __all__: list[str] = [
     "pretty_size",
     "remove_escapes",
     "run_async",
-    "shell_exec",
     "split_quotes",
     "sudofilter",
 ]
