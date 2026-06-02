@@ -8,11 +8,17 @@ import logging
 from collections.abc import Callable
 from functools import partial
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from hydrogram.enums import ChatType
 from hydrogram.types import CallbackQuery, InlineQuery, Message
 
 from eduu.database.localization import get_db_lang
+
+if TYPE_CHECKING:
+    from collections.abc import Coroutine
+
+    from hydrogram import Client
 
 enabled_locales: list[str] = [
     "en-GB",  # English (United Kingdom)
@@ -66,7 +72,8 @@ def cache_locales(locales: list[str]) -> dict[str, dict[str, str]]:
 
         if "_meta_language_name" not in locale_keys or "_meta_language_flag" not in locale_keys:
             logging.warning(
-                "Locale has required keys _meta_language_name or _meta_language_flag missing. This locale will not be loaded."
+                "Locale has required keys _meta_language_name or _meta_language_flag missing."
+                " This locale will not be loaded."
             )
             continue
 
@@ -127,10 +134,17 @@ async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:
     return lang if lang in enabled_locales else default_language
 
 
-def use_chat_lang(func: Callable):
+def use_chat_lang[T](
+    func: Callable[..., Coroutine[None, None, T]],
+) -> Callable[..., Coroutine[None, None, T]]:
     """Decorator to get the chat language and pass it to the function."""
 
-    async def wrapper(client, message, *args, **kwargs):
+    async def wrapper(
+        client: Client,
+        message: CallbackQuery | Message | InlineQuery,
+        *args,
+        **kwargs,
+    ) -> T:
         lang = await get_lang(message)
 
         lfunc = partial(get_locale_string, lang)

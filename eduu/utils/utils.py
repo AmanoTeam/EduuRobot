@@ -10,6 +10,7 @@ import re
 from datetime import datetime, timedelta
 from functools import partial
 from string import Formatter
+from typing import TYPE_CHECKING
 
 from curl_cffi.requests import AsyncSession
 from hydrogram import Client, filters
@@ -24,6 +25,12 @@ from hydrogram.types import (
 
 from config import SUDOERS
 
+if TYPE_CHECKING:
+    from collections.abc import Callable, Coroutine
+    from typing import Any
+
+    from eduu.utils.localization import Strings
+
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
 SMART_OPEN = "“"
@@ -34,12 +41,14 @@ START_CHAR = ("'", '"', SMART_OPEN)
 http = AsyncSession(timeout=40)
 
 
-def run_async(func, *args, **kwargs):
+def run_async[T, **P](
+    func: Callable[P, Coroutine[Any, Any, T]], *args: P.args, **kwargs: P.kwargs
+) -> T:
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(func(*args, **kwargs))
+    return loop.run_until_complete(func(*args, **kwargs))
 
 
-def pretty_size(size_bytes):
+def pretty_size(size_bytes: int) -> str:
     if size_bytes == 0:
         return "0B"
     size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
@@ -53,7 +62,7 @@ async def check_perms(
     message: CallbackQuery | Message,
     permissions: ChatPrivileges | None = None,
     complain_missing_perms: bool = True,
-    s=None,
+    s: Strings | None = None,
 ) -> bool:
     if isinstance(message, CallbackQuery):
         sender = partial(message.answer, show_alert=True)
@@ -125,7 +134,7 @@ def remove_escapes(text: str) -> str:
     return res
 
 
-def split_quotes(text: str) -> list:
+def split_quotes(text: str) -> list[str]:
     if not any(text.startswith(char) for char in START_CHAR):
         return text.split(None, 1)
     counter = 1  # ignore first char -> is some kind of quote
@@ -198,8 +207,8 @@ class BotCommands:
         self,
         command: str,
         category: str,
-        aliases: list | None = None,
-    ):
+        aliases: list[str] | None = None,
+    ) -> None:
         description_key = f"cmd_{command}_description"
 
         if self.commands.get(category) is None:
@@ -210,7 +219,7 @@ class BotCommands:
             "aliases": aliases or [],
         })
 
-    def get_commands_message(self, s, category: str | None = None):
+    def get_commands_message(self, s: Strings, category: str | None = None) -> str:
         # TODO: Add pagination support.
         if category is None:
             cmds_list = []
@@ -238,8 +247,8 @@ class InlineBotCommands:
     def add_command(
         self,
         command: str,
-        aliases: list | None = None,
-    ):
+        aliases: list[str] | None = None,
+    ) -> None:
         description_key = f"inline_cmd_{command.split(maxsplit=1)[0]}_description"
 
         self.commands.append({
@@ -248,7 +257,7 @@ class InlineBotCommands:
             "aliases": aliases or [],
         })
 
-    def search_commands(self, query: str | None = None):
+    def search_commands(self, query: str | None = None) -> list[dict[str, str | list[str]]]:
         return [
             cmd
             for cmd in sorted(self.commands, key=operator.itemgetter("command"))
@@ -277,7 +286,7 @@ async def get_target_user(c: Client, m: Message) -> User:
     )
 
 
-def get_reason_text(c: Client, m: Message) -> Message:
+def get_reason_text(c: Client, m: Message) -> str | None:
     reply = m.reply_to_message
     spilt_text = m.text.split
 

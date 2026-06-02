@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 from hydrogram.enums import ChatType
 
 from eduu.utils.consts import GROUP_TYPES
@@ -10,7 +12,7 @@ from .core import database
 conn = database.get_conn()
 
 
-async def set_db_lang(chat_id: int, chat_type: ChatType, lang_code: str):
+async def set_db_lang(chat_id: int, chat_type: ChatType, lang_code: str) -> None:
     if chat_type in {ChatType.PRIVATE, ChatType.BOT}:
         await conn.execute(
             "UPDATE users SET chat_lang = ? WHERE user_id = ?", (lang_code, chat_id)
@@ -30,7 +32,7 @@ async def set_db_lang(chat_id: int, chat_type: ChatType, lang_code: str):
         raise TypeError(f"Unknown chat type '{chat_type}'.")
 
 
-async def get_db_lang(chat_id: int, chat_type: ChatType) -> str:
+async def get_db_lang(chat_id: int, chat_type: ChatType) -> str | None:
     if chat_type == ChatType.PRIVATE:
         cursor = await conn.execute("SELECT chat_lang FROM users WHERE user_id = ?", (chat_id,))
         ul = await cursor.fetchone()

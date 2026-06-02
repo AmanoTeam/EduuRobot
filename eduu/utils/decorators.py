@@ -18,12 +18,12 @@ from eduu.utils.localization import (
 from eduu.utils.utils import check_perms
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
+    from collections.abc import Callable, Coroutine
 
 
-def aiowrap(func: Callable) -> Callable:
+def aiowrap[T, **P](func: Callable[P, T]) -> Callable[..., Coroutine[None, None, T]]:
     @wraps(func)
-    async def run(*args, loop=None, executor=None, **kwargs):
+    async def run(*args: P.args, loop=None, executor=None, **kwargs: P.kwargs) -> T:
         if loop is None:
             loop = asyncio.get_event_loop()
         pfunc = partial(func, *args, **kwargs)
@@ -92,10 +92,12 @@ def require_admin(
     return decorator
 
 
-def stop_here(func: Callable) -> Callable:
-    async def wrapper(*args, **kwargs):
+def stop_here[T, **P](
+    func: Callable[P, Coroutine[None, None, T]],
+) -> Callable[P, Coroutine[None, None, T]]:
+    async def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
         try:
-            await func(*args, **kwargs)
+            return await func(*args, **kwargs)
         finally:
             raise StopPropagation
 
