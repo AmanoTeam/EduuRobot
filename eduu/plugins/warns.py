@@ -89,7 +89,7 @@ async def on_set_warns_limit(c: Client, m: Message, s: Strings):
     except ValueError:
         await m.reply_text(s("warn_limit_invalid"))
     else:
-        set_warns_limit(m.chat.id, warns_limit)
+        await set_warns_limit(m.chat.id, warns_limit)
         await m.reply_text(s("warn_limit_changed").format(warn_limit=warns_limit))
 
 

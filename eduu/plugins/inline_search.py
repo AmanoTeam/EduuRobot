@@ -39,7 +39,7 @@ async def inline_search(c: Client, q: InlineQuery, s: Strings):
         stripped_command = result["command"].split()[0]
         articles.append(
             InlineQueryResultArticle(
-                id=uuid4(),
+                id=str(uuid4()),
                 title=result["command"],
                 description=s(result["description_key"]),
                 input_message_content=InputTextMessageContent(

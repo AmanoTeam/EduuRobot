@@ -238,11 +238,11 @@ async def del_message(c: Client, m: Message):
     try:
         await c.delete_messages(m.chat.id, m.reply_to_message.id)
     except RPCError as e:
-        err += e
+        err += str(e)
     try:
         await c.delete_messages(m.chat.id, m.id)
     except RPCError as e:
-        err += e
+        err += str(e)
 
     await m.reply_text(err)
 

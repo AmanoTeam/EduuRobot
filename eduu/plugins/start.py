@@ -49,7 +49,7 @@ async def start_pvt(c: Client, m: Message | CallbackQuery, s: Strings):
 
 @Client.on_message(filters.command("start", PREFIXES) & filters.group, group=2)
 @use_chat_lang
-async def start_grp(c: Client, m: Message | CallbackQuery, s: Strings):
+async def start_grp(c: Client, m: Message, s: Strings):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
