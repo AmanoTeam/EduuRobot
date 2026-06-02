@@ -8,7 +8,7 @@ from .core import database
 conn = database.get_conn()
 
 
-async def get_warn_action(chat_id: int) -> tuple[str | None, bool]:
+async def get_warn_action(chat_id: int) -> str | None:
     cursor = await conn.execute("SELECT warn_action FROM groups WHERE chat_id = (?)", (chat_id,))
     res = (await cursor.fetchone())[0]
     return "ban" if res is None else res
