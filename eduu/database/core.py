@@ -74,9 +74,6 @@ class Database:
         """
         )
 
-        # Enable VACUUM
-        await conn.execute("VACUUM")
-
         # Enable WAL
         await conn.execute("PRAGMA journal_mode=WAL")
 
