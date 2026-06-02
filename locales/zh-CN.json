@@ -202,7 +202,7 @@
   "start_chat": "🤖 开始聊天",
   "start_commands_btn": "📚 命令",
   "start_group": "你好！我是EduuRobot。要发现我的功能，请与我开始对话。",
-  "start_info_page": "• EduuRobot\n\n版本号：{version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代码</a>\n开发者：<a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\n合作伙伴：\n » <a href=\"https://t.me/hpxlist\">HPXList - 由 usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\n版本号：{version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代码</a>\n开发者：<a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\n合作伙伴：\n » <a href=\"https://t.me/hpxlist\">HPXList - 由 usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ 关于",
   "start_language_btn": "🌐 语言",
   "start_private": "你好！我是EduuRobot。要发现更多关于我的功能，请点击下面的按钮。",

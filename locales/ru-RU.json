@@ -202,7 +202,7 @@
   "start_chat": "🤖 Начать чат",
   "start_commands_btn": "📚 Команды",
   "start_group": "Привет! Я EduuRobot. Чтобы узнать мои функции, начните разговор со мной.",
-  "start_info_page": "• EduuRobot\n\nНомер версии: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Исходный код</a>\nРазработчик: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nПартнерские отношения:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\nНомер версии: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Исходный код</a>\nРазработчик: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nПартнерские отношения:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ О программе",
   "start_language_btn": "🌐 Язык",
   "start_private": "Привет! Я EduuRobot. Чтобы узнать больше о моих функциях, нажмите на кнопки ниже.",

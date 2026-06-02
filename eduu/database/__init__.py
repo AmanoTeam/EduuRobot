@@ -1,6 +1,6 @@
 """EduuRobot database."""
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2024 Amano LLC
+# Copyright (c) 2018-2026 Amano LLC
 
 from .core import database
 

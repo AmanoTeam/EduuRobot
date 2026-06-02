@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2024 Amano LLC
+# Copyright (c) 2018-2026 Amano LLC
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from hydrogram.types import (
 )
 
 from config import PREFIXES
-from eduu import __commit__, __version_number__
+from eduu import __commit__, __copyright_year__, __version_number__
 from eduu.utils import commands, linkify_commit
 from eduu.utils.localization import Strings, use_chat_lang
 
@@ -69,6 +69,7 @@ async def infos(c: Client, m: CallbackQuery, s: Strings):
     res = s("start_info_page").format(
         version_number=f"r{__version_number__}",
         commit_hash=linkify_commit(__commit__),
+        copyright_year=__copyright_year__,
     )
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(s("general_back_btn"), callback_data="start_back")]]

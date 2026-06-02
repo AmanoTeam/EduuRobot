@@ -202,7 +202,7 @@
   "start_chat": "🤖 Komencu babiladon",
   "start_commands_btn": "📚 Komandoj",
   "start_group": "Saluton! Mi estas EduuRobot. Eltrovi miajn funkciojn, komencas konversacion kun mi.",
-  "start_info_page": "• EduuRobot\n\nVersia nombro: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Fonto Kodas</a>\nEllaborantoj: <a href=\"https://github.com/AmanoTeam\">Amano Teamo</a>\n\nPartnerecoj:\n » <a href=\"https://t.me/hpxlist\">HPXList - de usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\nVersia nombro: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Fonto Kodas</a>\nEllaborantoj: <a href=\"https://github.com/AmanoTeam\">Amano Teamo</a>\n\nPartnerecoj:\n » <a href=\"https://t.me/hpxlist\">HPXList - de usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ Proksimume",
   "start_language_btn": "🌐 Lingvo",
   "start_private": "Saluton! Mi estas EduuRobot. Eltrovi pli da pri miaj funkcioj, klako sur la butonoj sub.",

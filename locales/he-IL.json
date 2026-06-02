@@ -128,7 +128,7 @@
   "start_chat": "🤖 תתחילו אותי בפרטי",
   "start_commands_btn": "📚 פקודות",
   "start_group": "שלום, אני EduuRobot, בשביל לגלות מה אני עושה תתחילו אותי בפרטי.",
-  "start_info_page": "• EduuRobot\n\nגרסת מספר: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">קוד מקור</a>\nמפתחים: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nשותפים:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\nגרסת מספר: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">קוד מקור</a>\nמפתחים: <a href=\"https://github.com/AmanoTeam\">Amano Team</a>\n\nשותפים:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ אודות",
   "start_language_btn": "🌐 שפה",
   "start_private": "שלום, אני EduuRobot. בשביל לגלות את מה שאני עושה תלחצו על הכפתורים למטה.",

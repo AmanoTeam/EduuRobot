@@ -202,7 +202,7 @@
   "start_chat": "🤖 بدء محادثة",
   "start_commands_btn": "📚 الأوامر",
   "start_group": "مرحبا! أنا EduuRobot. لاكتشاف وظائفي ، ابدأ محادثة معي.",
-  "start_info_page": "• روبوت تعليمي\n\n رقم الإصدار: {version_number} ( {commit_hash} )\n\n <a href=\"https://github.com/AmanoTeam/EduuRobot\"> الكود المصدر </a>\n المطورون: <a href=\"https://github.com/AmanoTeam\"> فريق أمانو </a>\n\n الشراكات:\n » <a href=\"https://t.me/hpxlist\"> HPXList - بواسطة usernein </a>\n\n ©2024 - <a href=\"https://amanoteam.com\"> فريق أمانو™ </a>",
+  "start_info_page": "• روبوت تعليمي\n\n رقم الإصدار: {version_number} ( {commit_hash} )\n\n <a href=\"https://github.com/AmanoTeam/EduuRobot\"> الكود المصدر </a>\n المطورون: <a href=\"https://github.com/AmanoTeam\"> فريق أمانو </a>\n\n الشراكات:\n » <a href=\"https://t.me/hpxlist\"> HPXList - بواسطة usernein </a>\n\n ©{copyright_year} - <a href=\"https://amanoteam.com\"> فريق أمانو™ </a>",
   "start_infos_btn": "ℹ️ حول",
   "start_language_btn": "🌐 اللغة",
   "start_private": "مرحبًا! أنا EduuRobot. لاكتشاف المزيد عن وظائفي، انقر على الأزرار أدناه.",

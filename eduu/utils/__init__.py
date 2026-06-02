@@ -1,6 +1,6 @@
 """EduuRobot utilities."""
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2024 Amano LLC
+# Copyright (c) 2018-2026 Amano LLC
 
 from .utils import (
     button_parser,

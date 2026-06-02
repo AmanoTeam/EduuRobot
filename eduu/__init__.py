@@ -1,6 +1,6 @@
 """EduuRobot core package."""
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2018-2024 Amano LLC
+# Copyright (c) 2018-2026 Amano LLC
 
 from subprocess import run
 
@@ -17,3 +17,5 @@ __version_number__ = (
     .strip()
     or "0"
 )
+
+__copyright_year__ = 2026

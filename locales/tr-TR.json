@@ -102,7 +102,7 @@
   "start_chat": "🤖 Bir konuşma başlat",
   "start_commands_btn": "📚 Komutlar",
   "start_group": "Merhaba! Ben EduuRobot. Komutlarımı görmek için özelden yazınız.",
-  "start_info_page": "• EduuRobot\n\nSürüm numarası: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kaynak Kodu</a>\nGeliştiriciler: <a href=\"https://github.com/AmanoTeam\">Amano Ekibi</a>\n\nOrtaklıklar:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\nSürüm numarası: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Kaynak Kodu</a>\nGeliştiriciler: <a href=\"https://github.com/AmanoTeam\">Amano Ekibi</a>\n\nOrtaklıklar:\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ Hakkında",
   "start_language_btn": "🌐 Dil",
   "start_private": "Merhaba! Ben EduuRobot. Komutlarımı görmek için butonları kullanabilirsiniz.",

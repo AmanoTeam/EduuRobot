@@ -202,7 +202,7 @@
   "start_chat": "🤖 Chatni boshlash",
   "start_commands_btn": "📚 Buyruqlar",
   "start_group": "Salom! Men EduuRobotman. Funksiyalarimni bilish uchun men bilan suhbatni boshlang.",
-  "start_info_page": "• EduuRobot\n\nVersiya raqami: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Manba kodi</a>\nIshlab chiquvchilar: <a href=\"https://github.com/AmanoTeam\">Amano jamoasi</a>\n\nHamkorlik: \n» <a href=\"https://t.me/hpxlist\">HPXList - usernein tomonidan</a>\n\n©2025 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\nVersiya raqami: {version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">Manba kodi</a>\nIshlab chiquvchilar: <a href=\"https://github.com/AmanoTeam\">Amano jamoasi</a>\n\nHamkorlik: \n» <a href=\"https://t.me/hpxlist\">HPXList - usernein tomonidan</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️ Haqida",
   "start_language_btn": "🌐 Til",
   "start_private": "Salom! Men EduuRobotman. Mening funksiyalarim haqida ko'proq bilish uchun quyidagi tugmalarni bosing.",

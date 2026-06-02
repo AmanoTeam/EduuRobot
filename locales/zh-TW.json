@@ -121,7 +121,7 @@
   "start_chat": "🤖 開始聊天",
   "start_commands_btn": "📚 命令",
   "start_group": "你好！ 我是EduuRobot。 要發現我的功能，請與我交談。",
-  "start_info_page": "• EduuRobot\n\n版本號：{version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代碼</a>\n開發者：<a href=\"https://github.com/AmanoTeam\">天野團隊</a>\n\n合作夥伴：\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©2024 - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
+  "start_info_page": "• EduuRobot\n\n版本號：{version_number} ({commit_hash})\n\n<a href=\"https://github.com/AmanoTeam/EduuRobot\">源代碼</a>\n開發者：<a href=\"https://github.com/AmanoTeam\">天野團隊</a>\n\n合作夥伴：\n » <a href=\"https://t.me/hpxlist\">HPXList - by usernein</a>\n\n©{copyright_year} - <a href=\"https://amanoteam.com\">AmanoTeam™</a>",
   "start_infos_btn": "ℹ️關於",
   "start_language_btn": "🌐 語言",
   "start_private": "你好！ 我是EduuRobot。 要了解有關我的功能的更多信息，請單擊下面的按鈕。",
