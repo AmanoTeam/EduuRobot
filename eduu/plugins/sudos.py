@@ -141,16 +141,16 @@ async def execs(c: Client, m: Message):
 async def test_speed(c: Client, m: Message, s: Strings):
     string = s("sudos_speedtest")
     sent = await m.reply_text(string.format(host="", ping="", download="", upload=""))
-    s = speedtest.Speedtest()
-    bs = s.get_best_server()
+    sp = speedtest.Speedtest()
+    bs = sp.get_best_server()
     await sent.edit_text(
         string.format(host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="")
     )
-    dl = round(s.download() / 1024 / 1024, 2)
+    dl = round(sp.download() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="")
     )
-    ul = round(s.upload() / 1024 / 1024, 2)
+    ul = round(sp.upload() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul)
     )
