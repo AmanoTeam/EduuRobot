@@ -60,7 +60,7 @@ async def run_cmd(c: Client, m: Message, s: Strings):
         stdout, stderr = await asyncio.wait_for(process.communicate(), timeout=60)
         stdout = stdout.decode().strip()
         stderr = stderr.decode().strip()
-    except asyncio.TimeoutError:
+    except TimeoutError:
         await m.reply_text("Command timed out.")
         return
 
