@@ -110,13 +110,13 @@ async def extract_time(m: Message, time: str) -> datetime | None:
         await m.reply_text("Invalid Amount specified")
         return None
 
-    if unit == "m":
-        return datetime.now() + timedelta(minutes=int(num))
-    if unit == "h":
-        return datetime.now() + timedelta(hours=int(num))
-    if unit == "d":
-        return datetime.now() + timedelta(days=int(num))
-
+    match unit:
+        case "m":
+            return datetime.now() + timedelta(minutes=int(num))
+        case "h":
+            return datetime.now() + timedelta(hours=int(num))
+        case "d":
+            return datetime.now() + timedelta(days=int(num))
     return None
 
 
@@ -228,16 +228,16 @@ class BotCommands:
         else:
             cmds_list = self.commands[category]
 
-        res = (
-            s("cmds_list_category_title").format(category=s(f"cmds_category_{category}")) + "\n\n"
-        )
-
         cmds_list.sort(key=operator.itemgetter("command"))
 
-        for cmd in cmds_list:
-            res += f"<b>/{cmd['command']}</b> - <i>{s(cmd['description_key'])}</i>\n"
-
-        return res
+        return (
+            s("cmds_list_category_title").format(category=s(f"cmds_category_{category}"))
+            + "\n\n"
+            + "".join(
+                f"<b>/{cmd['command']}</b> - <i>{s(cmd['description_key'])}</i>\n"
+                for cmd in cmds_list
+            )
+        )
 
 
 class InlineBotCommands:
@@ -288,12 +288,11 @@ async def get_target_user(c: Client, m: Message) -> User:
 
 def get_reason_text(c: Client, m: Message) -> str | None:
     reply = m.reply_to_message
-    spilt_text = m.text.split
 
-    if not reply and len(spilt_text()) >= 3:
-        return spilt_text(None, 2)[2]
-    if reply and len(spilt_text()) >= 2:
-        return spilt_text(None, 1)[1]
+    if not reply and len(parts := m.text.split()) >= 3:
+        return " ".join(parts[2:])
+    if reply and len(parts := m.text.split()) >= 2:
+        return " ".join(parts[1:])
 
     return None
 

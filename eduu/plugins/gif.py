@@ -1,14 +1,19 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import logging
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, filters
-from hydrogram.types import Message
 
 from config import PREFIXES, TENOR_API_KEY
 from eduu.utils import commands, http
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 logger = logging.getLogger(__name__)
 

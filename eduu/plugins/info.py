@@ -1,17 +1,22 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import html
 from contextlib import suppress
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, filters
 from hydrogram.enums import ChatMemberStatus
 from hydrogram.errors import BadRequest, UserNotParticipant
-from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 
 @Client.on_message(filters.command("info", PREFIXES))
@@ -45,10 +50,11 @@ async def user_info(c: Client, m: Message, s: Strings):
 
     with suppress((UserNotParticipant, ValueError)):
         member = await m.chat.get_member(user.id)
-        if member.status == ChatMemberStatus.ADMINISTRATOR:
-            text += s("info_chat_admin")
-        elif member.status == ChatMemberStatus.OWNER:
-            text += s("info_chat_owner")
+        match member.status:
+            case ChatMemberStatus.ADMINISTRATOR:
+                text += s("info_chat_admin")
+            case ChatMemberStatus.OWNER:
+                text += s("info_chat_owner")
 
     await m.reply_text(text)
 

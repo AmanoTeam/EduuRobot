@@ -99,7 +99,7 @@ def get_locale_string(
     return string or langdict[default_language].get(key) or key
 
 
-Strings = Callable[[str], str]
+type Strings = Callable[[str], str]
 
 
 async def get_lang(message: CallbackQuery | Message | InlineQuery) -> str:

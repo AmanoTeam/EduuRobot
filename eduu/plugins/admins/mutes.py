@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 from hydrogram import Client, filters
 from hydrogram.types import ChatPermissions, ChatPrivileges, Message
 

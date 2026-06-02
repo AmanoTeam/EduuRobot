@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import re
 from html import escape
 from urllib.parse import quote, unquote
@@ -51,10 +53,11 @@ async def html(c: Client, m: Message, s: Strings):
 @Client.on_message(filters.command("admins", PREFIXES) & filters.group)
 @use_chat_lang
 async def mentionadmins(c: Client, m: Message, s: Strings):
-    mention = ""
-    async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
-        if not (i.user.is_deleted or i.privileges.is_anonymous):
-            mention += f"{i.user.mention}\n"
+    mention = "".join(
+        f"{i.user.mention}\n"
+        async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS)
+        if not (i.user.is_deleted or i.privileges.is_anonymous)
+    )
     await c.send_message(
         m.chat.id,
         s("admins_list").format(chat_title=m.chat.title, admins_list=mention),
@@ -75,10 +78,11 @@ async def reportadmins(c: Client, m: Message, s: Strings):
     if check_admin.status in ADMIN_STATUSES:
         return
 
-    mention = ""
-    async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
-        if not (i.user.is_deleted or i.privileges.is_anonymous or i.user.is_bot):
-            mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
+    mention = "".join(
+        f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
+        async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS)
+        if not (i.user.is_deleted or i.privileges.is_anonymous or i.user.is_bot)
+    )
     await m.reply_to_message.reply_text(
         s("report_admins").format(
             admins_list=mention,

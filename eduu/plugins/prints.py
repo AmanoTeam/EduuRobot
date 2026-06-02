@@ -1,17 +1,22 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import uuid
 from json import JSONDecodeError
+from typing import TYPE_CHECKING
 
 from curl_cffi.requests.exceptions import HTTPError
 from hydrogram import Client, filters
 from hydrogram.enums import MessageEntityType
-from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 
 @Client.on_message(filters.command("print", PREFIXES))

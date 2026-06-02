@@ -1,10 +1,16 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from hydrogram import Client
-from hydrogram.types import Message
 
 from eduu.database.chats import add_chat, chat_exists
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 # This is the first plugin run to guarantee
 # that the actual chat is initialized in the DB.

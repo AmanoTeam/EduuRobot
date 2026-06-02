@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 from hydrogram import Client, filters
 from hydrogram.types import ChatPermissions, ChatPrivileges, Message
 
@@ -22,12 +24,11 @@ from eduu.utils.localization import Strings, use_chat_lang
 
 def get_warn_reason_text(c: Client, m: Message) -> Message:
     reply = m.reply_to_message
-    spilt_text = m.text.split
 
-    if not reply and len(spilt_text()) >= 3:
-        return spilt_text(None, 2)[2]
-    if reply and len(spilt_text()) >= 2:
-        return spilt_text(None, 1)[1]
+    if not reply and len(parts := m.text.split()) >= 3:
+        return " ".join(parts[2:])
+    if reply and len(parts := m.text.split()) >= 2:
+        return " ".join(parts[1:])
 
     return None
 
@@ -49,18 +50,21 @@ async def warn_user(c: Client, m: Message, s: Strings):
     await add_warns(m.chat.id, target_user.id, 1)
     user_warns = await get_warns(m.chat.id, target_user.id)
     if user_warns >= warns_limit:
-        if warn_action == "ban":
-            await m.chat.ban_member(target_user.id)
-            warn_string = s("warn_banned")
-        elif warn_action == "mute":
-            await m.chat.restrict_member(target_user.id, ChatPermissions(can_send_messages=False))
-            warn_string = s("warn_muted")
-        elif warn_action == "kick":
-            await m.chat.ban_member(target_user.id)
-            await m.chat.unban_member(target_user.id)
-            warn_string = s("warn_kicked")
-        else:
-            return
+        match warn_action:
+            case "ban":
+                await m.chat.ban_member(target_user.id)
+                warn_string = s("warn_banned")
+            case "mute":
+                await m.chat.restrict_member(
+                    target_user.id, ChatPermissions(can_send_messages=False)
+                )
+                warn_string = s("warn_muted")
+            case "kick":
+                await m.chat.ban_member(target_user.id)
+                await m.chat.unban_member(target_user.id)
+                warn_string = s("warn_kicked")
+            case _:
+                return
 
         warn_text = warn_string.format(target_user=target_user.mention, warn_count=user_warns)
         await reset_warns(m.chat.id, target_user.id)

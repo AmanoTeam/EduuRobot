@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import html
 from uuid import uuid4
 
@@ -34,27 +36,25 @@ async def inline_search(c: Client, q: InlineQuery, s: Strings):
         )
         return
 
-    articles = []
-    for result in results:
-        stripped_command = result["command"].split()[0]
-        articles.append(
-            InlineQueryResultArticle(
-                id=str(uuid4()),
-                title=result["command"],
-                description=s(result["description_key"]),
-                input_message_content=InputTextMessageContent(
-                    f"{html.escape(result['command'])}: {s(result['description_key'])}"
-                ),
-                reply_markup=InlineKeyboardMarkup([
-                    [
-                        InlineKeyboardButton(
-                            text=s("inline_cmds_run_command_button").format(
-                                query=stripped_command
-                            ),
-                            switch_inline_query_current_chat=stripped_command,
-                        )
-                    ]
-                ]),
-            )
+    articles = [
+        InlineQueryResultArticle(
+            id=str(uuid4()),
+            title=result["command"],
+            description=s(result["description_key"]),
+            input_message_content=InputTextMessageContent(
+                f"{html.escape(result['command'])}: {s(result['description_key'])}"
+            ),
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        text=s("inline_cmds_run_command_button").format(
+                            query=(stripped_command := result["command"].split()[0])
+                        ),
+                        switch_inline_query_current_chat=stripped_command,
+                    )
+                ]
+            ]),
         )
+        for result in results
+    ]
     await q.answer(articles, cache_time=0)

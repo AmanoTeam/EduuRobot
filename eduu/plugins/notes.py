@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import re
 
 from hydrogram import Client, filters
@@ -84,11 +86,8 @@ async def delete_note(c: Client, m: Message, s: Strings):
 @use_chat_lang
 async def get_all_chat_note(c: Client, m: Message, s: Strings):
     chat_id = m.chat.id
-    reply_text = s("notes_list")
     all_notes = await get_all_notes(chat_id)
-    for note_s in all_notes:
-        keyword = note_s[1]
-        reply_text += f" - {keyword} \n"
+    reply_text = s("notes_list") + "".join(f" - {note[1]} \n" for note in all_notes)
 
     if not all_notes:
         await m.reply_text(s("notes_list_empty"), quote=True)

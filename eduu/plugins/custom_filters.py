@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import re
 
 from hydrogram import Client, filters
@@ -93,11 +95,8 @@ async def delete_filter(c: Client, m: Message, s: Strings):
 @use_chat_lang
 async def get_all_filter(c: Client, m: Message, s: Strings):
     chat_id = m.chat.id
-    reply_text = s("filters_list")
     all_filters = await get_all_filters(chat_id)
-    for filter_s in all_filters:
-        keyword = filter_s[1]
-        reply_text += f" - {keyword} \n"
+    reply_text = s("filters_list") + "".join(f" - {f[1]} \n" for f in all_filters)
 
     if not all_filters:
         await m.reply_text(s("filters_list_empty"), quote=True)

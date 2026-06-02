@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import html
 import re
 
@@ -54,11 +56,12 @@ LANGUAGES = [
 
 
 def get_tr_lang(text):
-    if len(text.split()) > 0:
-        lang = text.split()[0]
-        if lang.split("-")[0] not in LANGUAGES:
+    if words := text.split():
+        lang = words[0]
+        parts = lang.split("-")
+        if parts[0] not in LANGUAGES:
             lang = "pt"
-        if len(lang.split("-")) > 1 and lang.split("-")[1] not in LANGUAGES:
+        if len(parts) > 1 and parts[1] not in LANGUAGES:
             lang = "pt"
     else:
         lang = "pt"
@@ -83,9 +86,9 @@ async def translate(c: Client, m: Message, s: Strings):
     sent = await m.reply_text(s("tr_translating"), reply_to_message_id=m.id)
     langs = {}
 
-    if len(lang.split("-")) > 1:
-        langs["sourcelang"] = lang.split("-")[0]
-        langs["targetlang"] = lang.split("-")[1]
+    if len(lang_parts := lang.split("-")) > 1:
+        langs["sourcelang"] = lang_parts[0]
+        langs["targetlang"] = lang_parts[1]
     else:
         langs["targetlang"] = lang
 
@@ -104,7 +107,7 @@ async def translate(c: Client, m: Message, s: Strings):
 @use_chat_lang
 async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
-    source_language = await tr.detect(q.query.split(None, 2)[2])
+    source_language = await tr.detect(to_tr)
     target_language = q.query.lower().split()[1]
     translation = await tr(to_tr, sourcelang=source_language, targetlang=target_language)
     await q.answer([

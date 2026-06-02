@@ -1,14 +1,19 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 from html import escape
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, filters
-from hydrogram.types import Message
 
 from config import PREFIXES
 from eduu.utils import commands, http
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 CHARACTER_LIMIT = 25
 
@@ -41,15 +46,16 @@ async def reddit(c: Client, m: Message, s: Strings):
 
     data = r.json()
 
-    feed_items = []
-    for post in data["data"]["children"]:
-        post_url = post["data"]["url"]
-        post_title = escape(limit_length(post["data"]["title"]))
-        nsfw = "NSFW" if post["data"]["over_18"] else "SFW"
-        comments = s("reddit_comments").format(post["data"]["num_comments"])
-
-        post_item = f" - <a href='{post_url}'>{post_title}</a> &lt;{nsfw}&gt; - <a href='{post_url}'>{comments}</a>"
-        feed_items.append(post_item)
+    feed_items = [
+        (
+            f" - <a href='{post['data']['url']}'>"
+            f"{escape(limit_length(post['data']['title']))}</a>"
+            f" &lt;{'NSFW' if post['data']['over_18'] else 'SFW'}&gt; - "
+            f"<a href='{post['data']['url']}'>"
+            f"{s('reddit_comments').format(post['data']['num_comments'])}</a>"
+        )
+        for post in data["data"]["children"]
+    ]
 
     if not feed_items:
         await m.reply_text(s("reddit_no_results"))

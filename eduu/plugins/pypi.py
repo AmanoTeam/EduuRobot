@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import html
 import re
 
@@ -18,10 +20,10 @@ def cleanhtml(raw_html):
 
 
 def escape_definition(definition):
-    for key, value in definition.items():
-        if isinstance(value, str):
-            definition[key] = html.escape(cleanhtml(value))
-    return definition
+    return {
+        key: html.escape(cleanhtml(value)) if isinstance(value, str) else value
+        for key, value in definition.items()
+    }
 
 
 @Client.on_message(filters.command("pypi", PREFIXES))

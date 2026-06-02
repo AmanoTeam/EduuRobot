@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import asyncio
 import html
 import re
@@ -29,18 +31,19 @@ def normalize_language_name(language_name: str) -> str:
     """
     Used for transforming user-provided language name into valid choices.
     """
-    if language_name == "python":
-        return "python3"
-    if language_name == "c":
-        return "c-clang"
-    if language_name in {"cpp", "cxx", "c++"}:
-        return "cpp-clang"
-    if language_name in {"javascript", "js"}:
-        return "javascript-node"
-    if language_name == "java":
-        return "java-openjdk"
-    if language_name in {"c#", "cs"}:
-        return "cs-core"
+    match language_name:
+        case "python":
+            return "python3"
+        case "c":
+            return "c-clang"
+        case "cpp" | "cxx" | "c++":
+            return "cpp-clang"
+        case "javascript" | "js":
+            return "javascript-node"
+        case "java":
+            return "java-openjdk"
+        case "c#" | "cs":
+            return "cs-core"
     return language_name
 
 

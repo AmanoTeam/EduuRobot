@@ -1,13 +1,18 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import html
+from typing import TYPE_CHECKING
 
 import regex
 from hydrogram import Client, filters
-from hydrogram.types import Message
 
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import Message
 
 
 @Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)

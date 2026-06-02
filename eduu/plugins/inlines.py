@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import re
-from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, filters
 from hydrogram.enums import ParseMode
@@ -16,6 +18,9 @@ from hydrogram.types import (
 
 from eduu.utils import button_parser, inline_commands
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
 
 faces_list: Iterable[str] = (
     "¯\\_(ツ)_/¯",

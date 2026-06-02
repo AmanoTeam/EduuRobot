@@ -1,23 +1,27 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import datetime
 import io
 import re
-import shutil
 import tempfile
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from hydrogram import Client, filters
 from hydrogram.errors import BadRequest
 from hydrogram.helpers import ikb
-from hydrogram.types import CallbackQuery, Message
 from yt_dlp import YoutubeDL
 
 from config import PREFIXES
 from eduu.utils import commands, http, pretty_size
 from eduu.utils.decorators import aiowrap
 from eduu.utils.localization import Strings, use_chat_lang
+
+if TYPE_CHECKING:
+    from hydrogram.types import CallbackQuery, Message
 
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/)|\.be\/|)([\w\-\_]*)(&(amp;)?[\w\?=]*)?"
@@ -44,17 +48,16 @@ async def search_yt(query):
             },
         )
     ).json()
-    list_videos = []
-    for video in page[1]["response"]["contents"]["twoColumnSearchResultsRenderer"][
-        "primaryContents"
-    ]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]:
-        if video.get("videoRenderer"):
-            dic = {
-                "title": video["videoRenderer"]["title"]["runs"][0]["text"],
-                "url": "https://www.youtube.com/watch?v=" + video["videoRenderer"]["videoId"],
-            }
-            list_videos.append(dic)
-    return list_videos
+    return [
+        {
+            "title": video["videoRenderer"]["title"]["runs"][0]["text"],
+            "url": f"https://www.youtube.com/watch?v={video['videoRenderer']['videoId']}",
+        }
+        for video in page[1]["response"]["contents"]["twoColumnSearchResultsRenderer"][
+            "primaryContents"
+        ]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"]
+        if video.get("videoRenderer")
+    ]
 
 
 @Client.on_message(filters.command("yt", PREFIXES))
@@ -75,8 +78,8 @@ async def ytdlcmd(c: Client, m: Message, s: Strings):
     afsize = 0
     vfsize = 0
 
-    if m.reply_to_message and m.reply_to_message.text:
-        url = m.reply_to_message.text
+    if (reply := m.reply_to_message) and reply.text:
+        url = reply.text
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
@@ -87,8 +90,7 @@ async def ytdlcmd(c: Client, m: Message, s: Strings):
 
     match = YOUTUBE_REGEX.match(url)
 
-    t = TIME_REGEX.search(url)
-    temp = t.group(1) if t else 0
+    temp = t.group(1) if (t := TIME_REGEX.search(url)) else 0
 
     if match:
         yt = await extract_info(ydl, match.group(), download=False)
@@ -115,11 +117,11 @@ async def ytdlcmd(c: Client, m: Message, s: Strings):
         ]
     ]
 
-    if " - " in yt["title"]:
-        performer, title = yt["title"].rsplit(" - ", 1)
+    if " - " in (yt_title := yt["title"]):
+        performer, title = yt_title.rsplit(" - ", 1)
     else:
         performer = yt.get("creator") or yt.get("uploader")
-        title = yt["title"]
+        title = yt_title
 
     text = f"🎧 <b>{performer}</b> - <i>{title}</i>\n"
     text += f"💾 <code>{pretty_size(afsize)}</code> (audio) / <code>{pretty_size(int(vfsize))}</code> (video)\n"
@@ -147,65 +149,62 @@ async def cli_ytdl(c: Client, cq: CallbackQuery, s: Strings):
     await cq.message.edit_text(s("ytdl_downloading"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = Path(tempdir) / "ytdl"
-
-    ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
-    if "vid" in data:
-        ydl = YoutubeDL({
-            "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
-            "format": "best[ext=mp4]",
-            "max_filesize": MAX_FILESIZE,
-            "noplaylist": True,
-        })
-    else:
-        ydl = YoutubeDL({
-            "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
-            "format": "bestaudio[ext=m4a]",
-            "max_filesize": MAX_FILESIZE,
-            "noplaylist": True,
-        })
-    try:
-        yt = await extract_info(ydl, url, download=True)
-    except BaseException as e:
-        await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
-        return
-    await cq.message.edit_text(s("ytdl_sending"))
-    filename = ydl.prepare_filename(yt)
-    thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
-    thumb.name = "thumbnail.png"
-    try:
+        ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
         if "vid" in data:
-            await c.send_video(
-                int(cid),
-                filename,
-                width=1920,
-                height=1080,
-                caption=ttemp + yt["title"],
-                duration=yt["duration"],
-                thumb=thumb,
-                reply_to_message_id=int(mid),
-            )
+            ydl = YoutubeDL({
+                "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
+                "format": "best[ext=mp4]",
+                "max_filesize": MAX_FILESIZE,
+                "noplaylist": True,
+            })
         else:
-            if " - " in yt["title"]:
-                performer, title = yt["title"].rsplit(" - ", 1)
+            ydl = YoutubeDL({
+                "outtmpl": f"{path}/%(title)s-%(id)s.%(ext)s",
+                "format": "bestaudio[ext=m4a]",
+                "max_filesize": MAX_FILESIZE,
+                "noplaylist": True,
+            })
+        try:
+            yt = await extract_info(ydl, url, download=True)
+        except BaseException as e:
+            await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
+            return
+        await cq.message.edit_text(s("ytdl_sending"))
+        filename = ydl.prepare_filename(yt)
+        thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
+        thumb.name = "thumbnail.png"
+        try:
+            if "vid" in data:
+                await c.send_video(
+                    int(cid),
+                    filename,
+                    width=1920,
+                    height=1080,
+                    caption=ttemp + yt["title"],
+                    duration=yt["duration"],
+                    thumb=thumb,
+                    reply_to_message_id=int(mid),
+                )
             else:
-                performer = yt.get("creator") or yt.get("uploader")
-                title = yt["title"]
-            await c.send_audio(
-                int(cid),
-                filename,
-                title=title,
-                performer=performer,
-                caption=ttemp[:-2],
-                duration=yt["duration"],
-                thumb=thumb,
-                reply_to_message_id=int(mid),
-            )
-    except BadRequest as e:
-        await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
-    else:
-        await cq.message.delete()
-
-    shutil.rmtree(tempdir, ignore_errors=True)
+                if " - " in (yt_title := yt["title"]):
+                    performer, title = yt_title.rsplit(" - ", 1)
+                else:
+                    performer = yt.get("creator") or yt.get("uploader")
+                    title = yt_title
+                await c.send_audio(
+                    int(cid),
+                    filename,
+                    title=title,
+                    performer=performer,
+                    caption=ttemp[:-2],
+                    duration=yt["duration"],
+                    thumb=thumb,
+                    reply_to_message_id=int(mid),
+                )
+        except BadRequest as e:
+            await cq.message.edit_text(s("ytdl_send_error").format(errmsg=e))
+        else:
+            await cq.message.delete()
 
 
 commands.add_command("yt", "tools")

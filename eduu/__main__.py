@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2026 Amano LLC
 
+from __future__ import annotations
+
 import asyncio
 import logging
 import platform
@@ -55,13 +57,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    # open new asyncio event loop
-    event_policy = asyncio.get_event_loop_policy()
-    event_loop = event_policy.new_event_loop()
-    asyncio.set_event_loop(event_loop)
-
-    # start the bot
-    event_loop.run_until_complete(main())
-
-    # close asyncio event loop
-    event_loop.close()
+    asyncio.run(main())
