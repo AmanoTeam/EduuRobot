@@ -35,7 +35,6 @@
   "cmd_mark_description": "Ele pega seu texto e converte na linguagem de expressão Marcopolo.",
   "cmd_mute_description": "Passar fita na boca do usuário.",
   "cmd_parsebutton_description": "Ele cria um botão para usar no bot, pode ser tojan, mas quem sabe?",
-  "cmd_paste_description": "Envia o troço respondido para esse site aki: nekobin.com.",
   "cmd_pin_description": "Deixa a mensagem fixa ali em cima. Vc também poderia usar <code>loud</code> para notificar todo mundo e te xingarem.",
   "cmd_private_not_allowed": "Ei esse comando não funciona aqui não em, c é Loko?",
   "cmd_purge_description": "Apagar todas as mensagens, ignorando totalmente as mensagens, seja importante ou não até a mensagem respondida, TOME CUIDADO!!!",
