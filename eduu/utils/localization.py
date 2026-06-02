@@ -39,6 +39,7 @@ enabled_locales: list[str] = [
     "sv-SE",  # Swedish
     "tr-TR",  # Turkish
     "uk-UA",  # Ukranian
+    "uz-UZ",  # Uzbek
     "zh-CN",  # Chinese (Simplified)
     "zh-TW",  # Chinese (Traditional)
 ]
