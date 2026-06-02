@@ -4,7 +4,7 @@
 import uuid
 from json import JSONDecodeError
 
-from httpx import HTTPError
+from curl_cffi.requests.exceptions import HTTPError
 from hydrogram import Client, filters
 from hydrogram.enums import MessageEntityType
 from hydrogram.types import Message
@@ -84,9 +84,6 @@ async def screenshot_page(target_url: str) -> str:
     :param target_url: The URL of the website to get a screenshot of.
     :return: The URL of the screenshot.
     """
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:151.0) Gecko/20100101 Firefox/151.0",
-    }
 
     data = {
         "url": target_url,
@@ -99,7 +96,7 @@ async def screenshot_page(target_url: str) -> str:
     }
 
     try:
-        resp = await http.post("https://htmlcsstoimage.com/image-demo", headers=headers, json=data)
+        resp = await http.post("https://htmlcsstoimage.com/image-demo", json=data)
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
         raise Exception("Screenshot API returned an invalid response.") from e

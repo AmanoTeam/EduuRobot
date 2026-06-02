@@ -7,7 +7,7 @@ readme = "README.rst"
 dependencies = [
   "emoji-regex",
   "gpytranslate==2.1.0",
-  "httpx[http2]>=0.28.0,<1.0.0",
+  "curl_cffi",
   "humanfriendly",
   "hydrogram @ https://github.com/hydrogram/hydrogram/archive/dev.zip",
   "meval==2.5",

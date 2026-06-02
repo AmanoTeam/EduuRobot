@@ -18,8 +18,10 @@ async def git(c: Client, m: Message, s: Strings):
         await m.reply_text(s("git_no_username"), reply_to_message_id=m.id)
         return
 
+    headers = {"User-Agent": "EduuRobot/1.0"}
+
     text = m.text.split(maxsplit=1)[1]
-    req = await http.get(f"https://api.github.com/users/{text}")
+    req = await http.get(f"https://api.github.com/users/{text}", headers=headers)
     res = req.json()
 
     if not res.get("login"):

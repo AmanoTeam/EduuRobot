@@ -175,7 +175,7 @@ async def request_cmd(c: Client, m: Message):
     text = m.text.split(maxsplit=1)[1]
     url = text if re.match(r"^(https?)://", text) else f"http://{text}"
     req = await http.get(url)
-    headers = f"<b>{req.extensions.get('http_version').decode()}</b> <code>{req.status_code} {req.extensions.get('reason_phrase', b'').decode()}</code>\n"
+    headers = f"<b>{req.http_version}</b> <code>{req.status_code} {req.reason}</code>\n"
 
     headers += "\n".join(
         f"<b>{x.title()}:</b> <code>{escape(req.headers[x])}</code>" for x in req.headers

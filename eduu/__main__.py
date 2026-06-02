@@ -49,7 +49,7 @@ async def main():
     finally:
         # close https connections and the DB if open
         await eduu.stop()
-        await http.aclose()
+        await http.close()
         if database.is_connected:
             await database.close()
 

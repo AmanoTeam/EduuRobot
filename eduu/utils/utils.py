@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from string import Formatter
 
-import httpx
+from curl_cffi.requests import AsyncSession
 from hydrogram import Client, filters
 from hydrogram.enums import ChatMemberStatus, MessageEntityType
 from hydrogram.types import (
@@ -31,9 +31,7 @@ SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
 
-timeout = httpx.Timeout(40, pool=None)
-
-http = httpx.AsyncClient(http2=True, timeout=timeout)
+http = AsyncSession(timeout=40)
 
 
 def run_async(func, *args, **kwargs):

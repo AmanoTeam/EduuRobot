@@ -32,7 +32,7 @@ async def pypi(c: Client, m: Message, s: Strings):
         return
 
     text = m.text.split(maxsplit=1)[1]
-    r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
+    r = await http.get(f"https://pypi.org/pypi/{text}/json")
     if r.status_code != 200:
         await m.reply_text(
             s("pypi_package_not_found").format(package_name=text, http_status=r.status_code)
