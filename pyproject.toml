@@ -6,12 +6,12 @@ readme = "README.rst"
 
 dependencies = [
   "emoji-regex",
-  "gpytranslate==2.0.0",
+  "gpytranslate==2.1.0",
   "httpx[http2]>=0.28.0,<1.0.0",
   "humanfriendly",
   "hydrogram @ https://github.com/hydrogram/hydrogram/archive/dev.zip",
   "meval==2.5",
-  "Pillow>=11.3.0,<12.0.0",
+  "Pillow>=12.2.0,<13.0.0",
   "pytio",
   "regex",
   "speedtest-cli",
@@ -19,7 +19,7 @@ dependencies = [
   # Using uvloop to increase general speed and stability. Ignored under Windows
   "uvloop>=0.21.0,<1.0.0; platform_system != 'Windows'",
   "yarl",
-  "yt-dlp==2025.7.21",
+  "yt-dlp==2026.3.17",
 ]
 requires-python = ">=3.10"
 
