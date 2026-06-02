@@ -85,7 +85,7 @@ async def screenshot_page(target_url: str) -> str:
     :return: The URL of the screenshot.
     """
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:151.0) Gecko/20100101 Firefox/151.0",
     }
 
     data = {
@@ -93,13 +93,13 @@ async def screenshot_page(target_url: str) -> str:
         # Sending a random CSS to make the API to generate a new screenshot.
         "css": f"random-tag: {uuid.uuid4()}",
         "render_when_ready": False,
-        "viewport_width": 1280,
-        "viewport_height": 720,
+        "viewport_width": 1920,
+        "viewport_height": 1080,
         "device_scale": 1,
     }
 
     try:
-        resp = await http.post("https://htmlcsstoimage.com/demo_run", headers=headers, json=data)
+        resp = await http.post("https://htmlcsstoimage.com/image-demo", headers=headers, json=data)
         return resp.json()["url"]
     except (JSONDecodeError, KeyError) as e:
         raise Exception("Screenshot API returned an invalid response.") from e
