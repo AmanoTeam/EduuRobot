@@ -3,8 +3,9 @@
 
 import html
 import re
+import httpx
+import os
 
-from gpytranslate import Translator
 from hydrogram import Client, filters
 from hydrogram.types import (
     InlineQuery,
@@ -14,8 +15,38 @@ from hydrogram.types import (
 )
 
 from config import PREFIXES
-from eduu.utils import commands, inline_commands
+from eduu.utils import commands, inline_commands, http
 from eduu.utils.localization import Strings, use_chat_lang
+
+class Translator:
+    def __init__(self, base_url: str = os.environ.get('GOOGLE_TRANSLATE_URL')):
+        self.base_url = base_url
+        self.headers = {'sec-fetch-site': 'same-origin', 'password': os.environ.get('GOOGLE_TRANSLATE_PWD')}
+
+    async def _request(self, endpoint: str, payload: dict):
+        try:
+            response = await http.post(f"{self.base_url}/{endpoint}", json=payload, headers=self.headers)
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            return {
+                "cek": False,
+                "alasan": f"HTTP error: {e.response.status_code}\n{e.response.text}"
+            }
+        except Exception as e:
+            return {"cek": False, "alasan": str(e)}
+
+    async def detect(self, text: str):
+        """Detect the language of the provided text."""
+        return await self._request("detect_trans", {"text": text})
+
+    async def translate(self, text: str, sourcelang: str = "auto", targetlang: str = "en"):
+        """Translate text from source language to target language."""
+        return await self._request("google_v2_trans", {
+            "text": text,
+            "from": sourcelang,
+            "to": targetlang
+        })
 
 tr = Translator()
 
@@ -90,7 +121,10 @@ async def translate(c: Client, m: Message, s: Strings):
         langs["targetlang"] = lang
 
     trres = await tr.translate(text, **langs)
-    text = trres.text
+    if not trres.get('cek'):
+        return await sent.edit_text(f"Translation Error: {trres.get('alasan', 'error')}")
+
+    text = trres.get('terjemah')
 
     res = html.escape(text)
     await sent.edit_text(
@@ -105,15 +139,27 @@ async def translate(c: Client, m: Message, s: Strings):
 async def tr_inline(c: Client, q: InlineQuery, s: Strings):
     to_tr = q.query.split(None, 2)[2]
     source_language = await tr.detect(q.query.split(None, 2)[2])
+
+    if not source_language.get('cek'):
+        source_language = 'en'
+    else:
+        source_language = source_language.get('detect', 'en')
+
     target_language = q.query.lower().split()[1]
-    translation = await tr(to_tr, sourcelang=source_language, targetlang=target_language)
+    translation = await tr.translate(to_tr, sourcelang=source_language, targetlang=target_language)
+
+    if not translation.get('cek'):
+        text = translation.get('alasan', 'error')
+    else:
+        text = translation.get('terjemah')
+
     await q.answer([
         InlineQueryResultArticle(
             title=s("tr_inline_send").format(
                 source_lang=source_language, target_lang=target_language
             ),
-            description=f"{translation.text}",
-            input_message_content=InputTextMessageContent(f"{translation.text}"),
+            description=f"{text}",
+            input_message_content=InputTextMessageContent(f"{text}"),
         )
     ])
 
